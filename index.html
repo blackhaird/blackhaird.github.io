@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/04/Mysql%E7%BB%8F%E5%85%B836%E9%97%AE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/04/Mysql%E9%9D%A2%E8%AF%95%E7%82%B9%E6%95%B4%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/08/04/Mysql%E7%BB%8F%E5%85%B836%E9%97%AE/" class="post-title-link" itemprop="url">Mysql经典36问</a>
+            <a href="/2022/08/04/Mysql%E9%9D%A2%E8%AF%95%E7%82%B9%E6%95%B4%E7%90%86/" class="post-title-link" itemprop="url">Mysql面试点整理</a>
         </h2>
 
         <div class="post-meta">
@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-08-04 01:03:01 / 修改时间：01:10:10" itemprop="dateCreated datePublished" datetime="2022-08-04T01:03:01+08:00">2022-08-04</time>
+              <time title="创建时间：2022-08-04 01:03:01 / 修改时间：01:23:06" itemprop="dateCreated datePublished" datetime="2022-08-04T01:03:01+08:00">2022-08-04</time>
             </span>
 
           
@@ -184,7 +184,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Mysql经典36问"><a href="#Mysql经典36问" class="headerlink" title="Mysql经典36问"></a>Mysql经典36问</h1><p>内容取自《程序员大彬》</p>
+          <h1 id="Mysql面试点整理"><a href="#Mysql面试点整理" class="headerlink" title="Mysql面试点整理"></a>Mysql面试点整理</h1><p>内容取自《程序员大彬》</p>
 <p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/VSsbUKEnILu1TbPjfwH8EA">https://mp.weixin.qq.com/s/VSsbUKEnILu1TbPjfwH8EA</a></p>
 <h2 id="事务的四大特性"><a href="#事务的四大特性" class="headerlink" title="事务的四大特性"></a>事务的四大特性</h2><p><strong>事务特性ACID</strong>：<strong>原子性</strong>（<code>Atomicity</code>）、<strong>一致性</strong>（<code>Consistency</code>）、<strong>隔离性</strong>（<code>Isolation</code>）、<strong>持久性</strong>（<code>Durability</code>）。</p>
 <ul>
@@ -215,7 +215,18 @@
 <p>设置隔离级别：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set session transaction isolation level read uncommitted;</span><br></pre></td></tr></table></figure>
 
-<h3 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h3><p>索引是存储引擎用于提高数据库表的访问速度的一种<strong>数据结构</strong>。</p>
+<h2 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h2><p>索引是存储引擎用于提高数据库表的访问速度的一种<strong>数据结构</strong>。</p>
+<h2 id="索引的优缺点？"><a href="#索引的优缺点？" class="headerlink" title="索引的优缺点？"></a>索引的优缺点？</h2><p><strong>优点：</strong></p>
+<ul>
+<li><strong>加快数据查找的速度</strong></li>
+<li>为用来排序或者是分组的字段添加索引，可以<strong>加快分组和排序的速度</strong></li>
+<li><strong>加快表与表之间连接的速度</strong></li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>建立索引需要<strong>占用物理空间</strong></li>
+<li>会降低表的增删改的效率，因为每次对表记录进行增删改，需要进行<strong>动态维护索引</strong>，导致增删改时间变长</li>
+</ul>
 
       
     </div>
