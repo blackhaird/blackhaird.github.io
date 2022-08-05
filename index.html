@@ -113,11 +113,6 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
         <li class="menu-item menu-item-tags">
 
     <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
@@ -183,9 +178,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-08-04 01:26:20 / 修改时间：01:26:30" itemprop="dateCreated datePublished" datetime="2022-08-04T01:26:20+08:00">2022-08-04</time>
+              <time title="创建时间：2022-08-04 01:26:20" itemprop="dateCreated datePublished" datetime="2022-08-04T01:26:20+08:00">2022-08-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-05 14:02:30" itemprop="dateModified" datetime="2022-08-05T14:02:30+08:00">2022-08-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a>
+                </span>
             </span>
 
           
@@ -242,164 +252,6 @@
 <li>建立索引需要<strong>占用物理空间</strong></li>
 <li>会降低表的增删改的效率，因为每次对表记录进行增删改，需要进行<strong>动态维护索引</strong>，导致增删改时间变长</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/03/Golang%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MEIDE">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MEIDE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/03/Golang%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Go的学习日记（1）- Go的基本语法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-08-03 13:26:38 / 修改时间：23:58:02" itemprop="dateCreated datePublished" datetime="2022-08-03T13:26:38+08:00">2022-08-03</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="GO的学习日记（1）-Go的基本语法"><a href="#GO的学习日记（1）-Go的基本语法" class="headerlink" title="GO的学习日记（1）- Go的基本语法"></a>GO的学习日记（1）- Go的基本语法</h1><p>本文章基于C语言中文网学习整理而来</p>
-<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/golang/syntax/">http://c.biancheng.net/golang/syntax/</a></p>
-<h2 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//var name type</span></span><br><span class="line">var a <span class="type">int</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<p>Go语言的基本类型有</p>
-<ul>
-<li>bool</li>
-<li>string</li>
-<li>int（int8、int16、int32、int64）</li>
-<li>uint（uint8、uint16、uint32、uint64、uintptr）</li>
-<li>byte（uint8别名）</li>
-<li>rune（int32的别名，代表一个Unicode码）</li>
-<li>float32、float64</li>
-<li>complex64、complex128</li>
-</ul>
-<p>声明变量时会自动赋予基于该类型的0值</p>
-<p>int 为 0，float 为 0.0，bool 为 false，string 为空字符串，指针为 nil 等。</p>
-<p>所有的内存在 Go 中都是经过初始化的。</p>
-<h3 id="批量声明与简短声明"><a href="#批量声明与简短声明" class="headerlink" title="批量声明与简短声明"></a>批量声明与简短声明</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//批量声明</span></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">    a <span class="type">int</span></span><br><span class="line">    b <span class="type">string</span></span><br><span class="line">    c []<span class="type">float32</span></span><br><span class="line">    d <span class="function"><span class="keyword">func</span><span class="params">()</span></span> <span class="type">bool</span></span><br><span class="line">    e <span class="keyword">struct</span>&#123;x <span class="type">int</span>&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">//简短声明</span></span><br><span class="line">i,j := <span class="number">0</span>,<span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在标准格式基础上，如果将后面的的格式省略，编译器会自动推导变量的类型</span></span><br><span class="line"><span class="keyword">var</span> hp = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">第 1 和 2 行，右值为整型，attack 和 defence 变量的类型为 int。</span></span><br><span class="line"><span class="comment">第 3 行，表达式的右值中使用了 0.17。所以这里如果不指定 damageRate 变量的类型，Go语言编译器会将 damageRate 类型推导为 float64，我们这里不需要 float64 的精度，所以需要强制指定类型为 float32。</span></span><br><span class="line"><span class="comment">第 4 行，将 attack 和 defence 相减后的数值结果依然为整型，使用 float32() 将结果转换为 float32 类型，再与 float32 类型的 damageRate 相乘后，damage 类型也是 float32 类型。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> attack = <span class="number">40</span></span><br><span class="line"><span class="keyword">var</span> defence = <span class="number">20</span></span><br><span class="line"><span class="keyword">var</span> damageRate <span class="type">float32</span> = <span class="number">0.17</span></span><br><span class="line"><span class="keyword">var</span> damage = <span class="type">float32</span>(attack-defence) * damageRate</span><br><span class="line">fmt.Println(damage)</span><br><span class="line"><span class="comment">//3.4 [(40-20)*0.17]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="多重赋值与匿名变量"><a href="#多重赋值与匿名变量" class="headerlink" title="多重赋值与匿名变量"></a>多重赋值与匿名变量</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//go语言的多重赋值</span></span><br><span class="line"><span class="keyword">var</span> a <span class="type">int</span> = <span class="number">100</span></span><br><span class="line"><span class="keyword">var</span> b <span class="type">int</span> = <span class="number">200</span></span><br><span class="line">b, a = a, b</span><br><span class="line">fmt.Println(a, b)</span><br><span class="line"></span><br><span class="line"><span class="comment">//匿名变量：匿名变量不占用内存空间，不会分配内存。匿名变量与匿名变量之间也不会因为多次声明而无法使用。</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetData</span><span class="params">()</span></span> (<span class="type">int</span>, <span class="type">int</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">100</span>, <span class="number">200</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    a, _ := GetData()</span><br><span class="line">    _, b := GetData()</span><br><span class="line">    fmt.Println(a, b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="整形int"><a href="#整形int" class="headerlink" title="整形int"></a>整形int</h3><p>大多数情况下，我们只需要 int 一种整型即可，它可以用于循环计数器（for 循环中控制循环次数的变量）、数组和切片的索引，以及任何通用目的的整型运算符，通常 int 类型的处理速度也是最快的。</p>
-<p>用来表示 Unicode 字符的 rune 类型和 int32 类型是等价的，通常用于表示一个 Unicode 码点。这两个名称可以互换使用。同样，byte 和 uint8 也是等价类型，byte 类型一般用于强调数值是一个原始的数据而不是一个小的整数。</p>
-<p>最后，还有一种无符号的整数类型 uintptr，它没有指定具体的 bit 大小但是足以容纳指针。uintptr 类型只有在底层编程时才需要，特别是Go语言和C语言函数库或操作系统接口相交互的地方。</p>
-<p>尽管在某些特定的运行环境下 int、uint 和 uintptr 的大小可能相等，但是它们依然是不同的类型，比如 int 和 int32，虽然 int 类型的大小也可能是 32 bit，但是在需要把 int 类型当做 int32 类型使用的时候必须显示的对类型进行转换，反之亦然。</p>
-<h5 id="哪些情况下使用-int-和-uint"><a href="#哪些情况下使用-int-和-uint" class="headerlink" title="哪些情况下使用 int 和 uint"></a>哪些情况下使用 int 和 uint</h5><p>程序逻辑对整型范围没有特殊需求。例如，对象的长度使用内建 len() 函数返回，这个长度可以根据不同平台的字节长度进行变化。实际使用中，切片或 map 的元素数量等都可以用 int 来表示。</p>
-<p>反之，在二进制传输、读写文件的结构描述时，为了保持文件的结构不会受到不同编译目标平台字节长度的影响，不要使用 int 和 uint。</p>
-<h3 id="浮点型float"><a href="#浮点型float" class="headerlink" title="浮点型float"></a>浮点型float</h3><ul>
-<li>常量 math.MaxFloat32 表示 float32 能取到的最大数值，大约是 3.4e38；</li>
-<li>常量 math.MaxFloat64 表示 float64 能取到的最大数值，大约是 1.8e308；</li>
-<li>float32 和 float64 能表示的最小值分别为 1.4e-45 和 4.9e-324。</li>
-</ul>
-<p>一个 float32 类型的浮点数可以提供大约 <span style="color:red">6 个十进制数</span>的精度，而 float64 则可以提供约<span style="color:red"> 15 个十进制数</span>的精度，通常应该优先使用 float64 类型，因为 float32 类型的累计计算误差很容易扩散，并且 float32 能精确表示的正整数并不是很大。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f <span class="type">float32</span> = <span class="number">16777216</span> <span class="comment">// 1 &lt;&lt; 24</span></span><br><span class="line">fmt.Println(f == f+<span class="number">1</span>)    <span class="comment">// &quot;true&quot;!</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明规则</span></span><br><span class="line"><span class="keyword">const</span> e = <span class="number">.71828</span> <span class="comment">// 0.71828</span></span><br><span class="line"><span class="keyword">const</span> f = <span class="number">1.</span>     <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//很小或很大的数最好用科学计数法书写，通过 e 或 E 来指定指数部分：</span></span><br><span class="line"><span class="keyword">const</span> Avogadro = <span class="number">6.02214129e23</span>  <span class="comment">// 阿伏伽德罗常数</span></span><br><span class="line"><span class="keyword">const</span> Planck   = <span class="number">6.62606957e-34</span> <span class="comment">// 普朗克常数</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文字输出</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;%f\n&quot;</span>, math.Pi)</span><br><span class="line">    fmt.Printf(<span class="string">&quot;%.2f\n&quot;</span>, math.Pi)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">3.141593</span></span><br><span class="line"><span class="comment">3.14</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="语言复数"><a href="#语言复数" class="headerlink" title="语言复数"></a>语言复数</h3><p>在计算机中，复数是由两个浮点数表示的，其中一个表示实部（real），一个表示虚部（imag）。</p>
-<p>Go语言中复数的类型有两种，分别是 complex128（64 位实数和虚数）和 complex64（32 位实数和虚数），其中 complex128 为复数的默认类型。</p>
-<p>复数的值由三部分组成 RE + IMi，其中 RE 是实数部分，IM 是虚数部分，RE 和 IM 均为 float 类型，而最后的 i 是虚数单位。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name <span class="type">complex128</span> = <span class="built_in">complex</span>(x,y)</span><br></pre></td></tr></table></figure>
-
-<p>其中 name 为复数的变量名，complex128 为复数的类型，“&#x3D;”后面的 complex 为Go语言的内置函数用于为复数赋值，x、y 分别表示构成该复数的两个 float64 类型的数值，x 为实部，y 为虚部。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x <span class="type">complex128</span> = <span class="built_in">complex</span>(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// 1+2i</span></span><br><span class="line"><span class="keyword">var</span> y <span class="type">complex128</span> = <span class="built_in">complex</span>(<span class="number">3</span>, <span class="number">4</span>) <span class="comment">// 3+4i</span></span><br><span class="line">fmt.Println(x*y)                 <span class="comment">// &quot;(-5+10i)&quot;</span></span><br><span class="line">fmt.Println(<span class="built_in">real</span>(x*y))           <span class="comment">// &quot;-5&quot;</span></span><br><span class="line">fmt.Println(<span class="built_in">imag</span>(x*y))           <span class="comment">// &quot;10&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="布尔类型bool"><a href="#布尔类型bool" class="headerlink" title="布尔类型bool"></a>布尔类型bool</h3><p><code>&amp;&amp;</code>的优先级比<code>||</code>高（&amp;&amp; 对应逻辑乘法，|| 对应逻辑加法，乘法比加法优先级要高）</p>
-<p>Go语言并不会隐性转换布尔值为1&#x2F;0</p>
-<h3 id="字符串string"><a href="#字符串string" class="headerlink" title="字符串string"></a>字符串string</h3><p>一个字符串是一个不可改变的字节序列，字符串可以包含任意的数据，但是通常是用来包含可读的文本，字符串是 UTF-8 字符的一个序列（当字符为 ASCII 码表上的字符时则占用 1 个字节，其它字符根据需要占用 2-4 个字节）。</p>
-<p>UTF-8 是一种被广泛使用的编码格式，是文本文件的标准编码，其中包括 XML 和 JSON 在内也都使用该编码。由于该编码对占用字节长度的不定性，在Go语言中字符串也可能根据需要占用 1 至 4 个字节，这与其它编程语言如 <a target="_blank" rel="noopener" href="http://c.biancheng.net/cplus/">C++</a>、<a target="_blank" rel="noopener" href="http://c.biancheng.net/java/">Java</a> 或者 <a target="_blank" rel="noopener" href="http://c.biancheng.net/python/">Python</a> 不同（Java 始终使用 2 个字节）。Go语言这样做不仅减少了内存和硬盘空间占用，同时也不用像其它语言那样需要对使用 UTF-8 字符集的文本进行编码和解码。</p>
-<p>可以使用双引号<code>&quot;&quot;</code>来定义字符串，字符串中可以使用转义字符来实现换行、缩进等效果，常用的转义字符包括：</p>
-<ul>
-<li>\n：换行符</li>
-<li>\r：回车符</li>
-<li>\t：tab 键</li>
-<li>\u 或 \U：Unicode 字符</li>
-<li>\：反斜杠自身</li>
-</ul>
-<p>一般的比较运算符（&#x3D;&#x3D;、!&#x3D;、&lt;、&lt;&#x3D;、&gt;&#x3D;、&gt;）是通过在内存中按字节比较来实现字符串比较的，因此比较的结果是字符串自然编码的顺序。字符串所占的字节长度可以通过函数 len() 来获取，例如 len(str)。</p>
-<p>字符串的内容（纯字节）可以通过标准索引法来获取，在方括号<code>[ ]</code>内写入索引，索引从 0 开始计数：</p>
-<ul>
-<li>字符串 str 的第 1 个字节：str[0]</li>
-<li>第 i 个字节：str[i - 1]</li>
-<li>最后 1 个字节：str[len(str)-1]</li>
-</ul>
-<h5 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h5><p>两个字符串 s1 和 s2 可以通过 s :&#x3D; s1 + s2 拼接在一起。将 s2 追加到 s1 尾部并生成一个新的字符串 s。</p>
-<h5 id="定义多行字符串"><a href="#定义多行字符串" class="headerlink" title="定义多行字符串"></a>定义多行字符串</h5><p>在Go语言中，使用双引号书写字符串的方式是字符串常见表达方式之一，被称为字符串字面量（string literal），这种双引号字面量不能跨行，如果想要在源码中嵌入一个多行字符串时，就必须使用&#96;反引号，代码如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">`第一行</span></span><br><span class="line"><span class="string">第二行</span></span><br><span class="line"><span class="string">第三行</span></span><br><span class="line"><span class="string">\r\n</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line">fmt.Println(str)</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">第一行</span></span><br><span class="line"><span class="comment">第二行</span></span><br><span class="line"><span class="comment">第三行</span></span><br><span class="line"><span class="comment">\r\n</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<p>在这种方式下，反引号间换行将被作为字符串中的换行，但是所有的转义字符均无效，文本将会原样输出。</p>
-<h3 id="字符类型byte和rune"><a href="#字符类型byte和rune" class="headerlink" title="字符类型byte和rune"></a>字符类型byte和rune</h3><p>Go语言的字符有以下两种：</p>
-<ul>
-<li>一种是 uint8 类型，或者叫 byte 型，代表了 ASCII 码的一个字符。</li>
-<li>另一种是 rune 类型，代表一个 UTF-8 字符，当需要处理中文、日文或者其他复合字符时，则需要用到 rune 类型。rune 类型等价于 int32 类型。</li>
-</ul>
-<p>byte 类型是 uint8 的别名，对于只占用 1 个字节的传统 ASCII 编码的字符来说，完全没有问题，例如 var ch byte &#x3D; ‘A’，字符使用单引号括起来。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在 ASCII 码表中，A 的值是 65，使用 16 进制表示则为 41，所以下面的写法是等效的：</span></span><br><span class="line"><span class="keyword">var</span> ch <span class="type">byte</span> = <span class="number">65</span> 或 <span class="keyword">var</span> ch <span class="type">byte</span> = <span class="string">&#x27;\x41&#x27;</span></span><br><span class="line"><span class="comment">//（\x 总是紧跟着长度为 2 的 16 进制数）</span></span><br></pre></td></tr></table></figure>
-
-<p>Go语言同样支持 Unicode（UTF-8），因此字符同样称为 Unicode 代码点或者 runes，并在内存中使用 int 来表示。在文档中，一般使用格式 U+hhhh 来表示，其中 h 表示一个 16 进制数。</p>
-<p>在书写 Unicode 字符时，需要在 16 进制数之前加上前缀<code>\u</code>或者<code>\U</code>。因为 Unicode 至少占用 2 个字节，所以我们使用 int16 或者 int 类型来表示。如果需要使用到 4 字节，则使用<code>\u</code>前缀，如果需要使用到 8 个字节，则使用<code>\U</code>前缀。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ch <span class="type">int</span> = <span class="string">&#x27;\u0041&#x27;</span></span><br><span class="line"><span class="keyword">var</span> ch2 <span class="type">int</span> = <span class="string">&#x27;\u03B2&#x27;</span></span><br><span class="line"><span class="keyword">var</span> ch3 <span class="type">int</span> = <span class="string">&#x27;\U00101234&#x27;</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%d - %d - %d\n&quot;</span>, ch, ch2, ch3) <span class="comment">// integer</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%c - %c - %c\n&quot;</span>, ch, ch2, ch3) <span class="comment">// character</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%X - %X - %X\n&quot;</span>, ch, ch2, ch3) <span class="comment">// UTF-8 bytes</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%U - %U - %U&quot;</span>, ch, ch2, ch3)   <span class="comment">// UTF-8 code point</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">65 - 946 - 1053236</span></span><br><span class="line"><span class="comment">A - β - r</span></span><br><span class="line"><span class="comment">41 - 3B2 - 101234</span></span><br><span class="line"><span class="comment">U+0041 - U+03B2 - U+101234</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<p>格式化说明符<code>%c</code>用于表示字符，当和字符配合使用时，<code>%v</code>或<code>%d</code>会输出用于表示该字符的整数，<code>%U</code>输出格式为 U+hhhh 的字符串。</p>
-<p>Unicode 包中内置了一些用于测试字符的函数，这些函数的返回值都是一个布尔值，如下所示（其中 ch 代表字符）：</p>
-<ul>
-<li>判断是否为字母：unicode.IsLetter(ch)</li>
-<li>判断是否为数字：unicode.IsDigit(ch)</li>
-<li>判断是否为空白符号：unicode.IsSpace(ch)</li>
-</ul>
-<h5 id="UTF-8-和-Unicode-有何区别？"><a href="#UTF-8-和-Unicode-有何区别？" class="headerlink" title="UTF-8 和 Unicode 有何区别？"></a>UTF-8 和 Unicode 有何区别？</h5><p>Unicode 与 ASCII 类似，都是一种字符集。</p>
-<p>字符集为每个字符分配一个唯一的 ID，我们使用到的所有字符在 Unicode 字符集中都有一个唯一的 ID，例如上面例子中的 a 在 Unicode 与 ASCII 中的编码都是 97。汉字“你”在 Unicode 中的编码为 20320，在不同国家的字符集中，字符所对应的 ID 也会不同。而无论任何情况下，Unicode 中的字符的 ID 都是不会变化的。</p>
-<p>UTF-8 是编码规则，将 Unicode 中字符的 ID 以某种方式进行编码，UTF-8 的是一种变长编码规则，从 1 到 4 个字节不等。编码规则如下：</p>
-<ul>
-<li>0xxxxxx 表示文字符号 0～127，兼容 ASCII 字符集。</li>
-<li>从 128 到 0x10ffff 表示其他字符。</li>
-</ul>
-<p>根据这个规则，拉丁文语系的字符编码一般情况下每个字符占用一个字节，而中文每个字符占用 3 个字节。</p>
-<p>广义的 Unicode 指的是一个标准，它定义了字符集及编码规则，即 Unicode 字符集和 UTF-8、UTF-16 编码等。</p>
 
       
     </div>
@@ -481,14 +333,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
