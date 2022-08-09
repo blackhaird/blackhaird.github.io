@@ -186,7 +186,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-10 02:30:48" itemprop="dateModified" datetime="2022-08-10T02:30:48+08:00">2022-08-10</time>
+                <time title="修改时间：2022-08-10 02:44:01" itemprop="dateModified" datetime="2022-08-10T02:44:01+08:00">2022-08-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,7 +282,7 @@
 <p>其中 a 和 b 均是预分配 2 个元素的切片，只是 b 的内部存储空间已经分配了 10 个，但实际使用了 2 个元素。</p>
 <p>容量不会影响当前的元素个数，因此 a 和 b 取 len 都是 2。</p>
 <h4 id="温馨提示"><a href="#温馨提示" class="headerlink" title="温馨提示"></a>温馨提示</h4><p>使用 make() 函数生成的切片一定发生了内存分配操作，但给定开始与结束位置（包括切片复位）的切片只是将新的切片结构指向已经分配好的内存区域，设定开始与结束位置，不会发生内存分配操作。</p>
-<h3 id="append-添加元素"><a href="#append-添加元素" class="headerlink" title="append()添加元素"></a>append()添加元素</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a []<span class="type">int</span></span><br><span class="line">a = <span class="built_in">append</span>(a, <span class="number">1</span>) <span class="comment">// 追加1个元素</span></span><br><span class="line">a = <span class="built_in">append</span>(a, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) <span class="comment">// 追加多个元素, 手写解包方式</span></span><br><span class="line">a = <span class="built_in">append</span>(a, []<span class="type">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;...) <span class="comment">// 追加一个切片, 切片需要解包</span></span><br></pre></td></tr></table></figure>
+<h3 id="切片操作"><a href="#切片操作" class="headerlink" title="切片操作"></a>切片操作</h3><h4 id="append-添加元素"><a href="#append-添加元素" class="headerlink" title="append()添加元素"></a>append()添加元素</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a []<span class="type">int</span></span><br><span class="line">a = <span class="built_in">append</span>(a, <span class="number">1</span>) <span class="comment">// 追加1个元素</span></span><br><span class="line">a = <span class="built_in">append</span>(a, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) <span class="comment">// 追加多个元素, 手写解包方式</span></span><br><span class="line">a = <span class="built_in">append</span>(a, []<span class="type">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;...) <span class="comment">// 追加一个切片, 切片需要解包</span></span><br></pre></td></tr></table></figure>
 
 <p>不过需要注意的是，在使用 append() 函数为切片动态添加元素时，如果空间不足以容纳足够多的元素，切片就会进行“扩容”，此时新切片的长度会发生改变。</p>
 <p>切片长度 len 并不等于切片的容量 cap。</p>
@@ -302,6 +302,34 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a []<span class="type">int</span></span><br><span class="line">a = <span class="built_in">append</span>(a[:i], <span class="built_in">append</span>([]<span class="type">int</span>&#123;x&#125;, a[i:]...)...) <span class="comment">// 在第i个位置插入x</span></span><br><span class="line">a = <span class="built_in">append</span>(a[:i], <span class="built_in">append</span>([]<span class="type">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;, a[i:]...)...) <span class="comment">// 在第i个位置插入切片</span></span><br></pre></td></tr></table></figure>
 
 <p>每个添加操作中的第二个 append 调用都会创建一个临时切片，并将 a[i:] 的内容复制到新创建的切片中，然后将临时创建的切片再追加到 a[:i] 中。</p>
+<h4 id="copy-切片复制"><a href="#copy-切片复制" class="headerlink" title="copy()切片复制"></a>copy()切片复制</h4><p>Go语言的内置函数 copy() 可以将一个数组切片复制到另一个数组切片中，如果加入的两个数组切片不一样大，就会按照其中较小的那个数组切片的元素个数进行复制。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">copy</span>( destSlice, srcSlice []T) <span class="type">int</span></span><br></pre></td></tr></table></figure>
+
+<p>其中 srcSlice 为数据来源切片，destSlice 为复制的目标（也就是将 srcSlice 复制到 destSlice），目标切片必须分配过空间且足够承载复制的元素个数，并且来源和目标的类型必须一致，copy() 函数的返回值表示实际发生复制的元素个数。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">slice1 := []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;</span><br><span class="line">slice2 := []<span class="type">int</span>&#123;<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>&#125;</span><br><span class="line"><span class="built_in">copy</span>(slice2, slice1) <span class="comment">// 只会复制slice1的前3个元素到slice2中</span></span><br><span class="line"><span class="built_in">copy</span>(slice1, slice2) <span class="comment">// 只会复制slice2的3个元素到slice1的前3个位置</span></span><br></pre></td></tr></table></figure>
+
+<p>虽然通过循环复制切片元素更直接，不过内置的 copy() 函数使用起来更加方便，copy() 函数的第一个参数是要复制的目标 slice，第二个参数是源 slice，两个 slice 可以共享同一个底层数组，甚至有重叠也没有问题。</p>
+<h4 id="切片删除"><a href="#切片删除" class="headerlink" title="切片删除"></a>切片删除</h4><h5 id="从开头位置删除"><a href="#从开头位置删除" class="headerlink" title="从开头位置删除"></a>从开头位置删除</h5><p>删除开头的元素可以直接移动数据指针：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">a = a[<span class="number">1</span>:] <span class="comment">// 删除开头1个元素</span></span><br><span class="line">a = a[N:] <span class="comment">// 删除开头N个元素</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以不移动数据指针，但是将后面的数据向开头移动，可以用 append 原地完成（所谓原地完成是指在原有的切片数据对应的内存区间内完成，不会导致内存空间结构的变化）：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">a = <span class="built_in">append</span>(a[:<span class="number">0</span>], a[<span class="number">1</span>:]...) <span class="comment">// 删除开头1个元素</span></span><br><span class="line">a = <span class="built_in">append</span>(a[:<span class="number">0</span>], a[N:]...) <span class="comment">// 删除开头N个元素</span></span><br></pre></td></tr></table></figure>
+
+<p>还可以用 copy() 函数来删除开头的元素：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">a = a[:<span class="built_in">copy</span>(a, a[<span class="number">1</span>:])] <span class="comment">// 删除开头1个元素</span></span><br><span class="line">a = a[:<span class="built_in">copy</span>(a, a[N:])] <span class="comment">// 删除开头N个元素</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="从中间位置删除"><a href="#从中间位置删除" class="headerlink" title="从中间位置删除"></a>从中间位置删除</h5><p>对于删除中间的元素，需要对剩余的元素进行一次整体挪动，同样可以用 append 或 copy 原地完成：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, ...&#125;</span><br><span class="line">a = <span class="built_in">append</span>(a[:i], a[i+<span class="number">1</span>:]...) <span class="comment">// 删除中间1个元素</span></span><br><span class="line">a = <span class="built_in">append</span>(a[:i], a[i+N:]...) <span class="comment">// 删除中间N个元素</span></span><br><span class="line">a = a[:i+<span class="built_in">copy</span>(a[i:], a[i+<span class="number">1</span>:])] <span class="comment">// 删除中间1个元素</span></span><br><span class="line">a = a[:i+<span class="built_in">copy</span>(a[i:], a[i+N:])] <span class="comment">// 删除中间N个元素</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="从尾部删除"><a href="#从尾部删除" class="headerlink" title="从尾部删除"></a>从尾部删除</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line">a = a[:<span class="built_in">len</span>(a)<span class="number">-1</span>] <span class="comment">// 删除尾部1个元素</span></span><br><span class="line">a = a[:<span class="built_in">len</span>(a)-N] <span class="comment">// 删除尾部N个元素</span></span><br></pre></td></tr></table></figure>
+
+<p>代码的删除过程可以使用下图来描述。</p>
+<p><img src="http://c.biancheng.net/uploads/allimg/180813/1-1PQ3164544530.jpg" alt="img"></p>
+<center>图：切片删除元素的操作过程</center>
+
+
+<p>Go语言中删除切片元素的本质是，以被删除元素为分界点，将前后两个部分的内存重新连接起来。</p>
+<h6 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h6><p>连续容器的元素删除无论在任何语言中，都要将删除点前后的元素移动到新的位置，随着元素的增加，这个过程将会变得极为耗时，因此，当业务需要大量、频繁地从一个切片中删除元素时，如果对性能要求较高的话，就需要考虑更换其他的容器了（如双链表等能快速从删除点删除元素）。</p>
 
       
     </div>
