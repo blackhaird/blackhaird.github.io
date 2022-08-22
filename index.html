@@ -155,6 +155,198 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/22/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%9F%A5%E8%AF%86%E7%82%B9%E7%A7%AF%E7%B4%AF%EF%BC%881%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/22/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%9F%A5%E8%AF%86%E7%82%B9%E7%A7%AF%E7%B4%AF%EF%BC%881%EF%BC%89/" class="post-title-link" itemprop="url">软件设计师知识点积累（1）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-08-22 21:08:54 / 修改时间：22:12:20" itemprop="dateCreated datePublished" datetime="2022-08-22T21:08:54+08:00">2022-08-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="软件设计师知识点积累（1）"><a href="#软件设计师知识点积累（1）" class="headerlink" title="软件设计师知识点积累（1）"></a>软件设计师知识点积累（1）</h1><h2 id="数据的表示"><a href="#数据的表示" class="headerlink" title="数据的表示"></a>数据的表示</h2><h3 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h3><h4 id="R-gt-10"><a href="#R-gt-10" class="headerlink" title="R-&gt;10"></a>R-&gt;10</h4><p>R进制转十进制使用<strong>按权展开法</strong>，其具体的操作方式为：将R进制数每一位数值用<br>$$<br>R^k<br>$$<br>来表示，k与该为何小数点之间的距离有关，当该位位于小数点左边，k的值是该位数的小数点之间的数码的个数</p>
+<p>当该位数位于小数点右边，k值是负值，其绝对值是该位和小数点之间码数的个数+1</p>
+<p>*例如 <code>二进制：10100.01</code>  &#x3D; 1*2^4	+	1*2^2	+	1*2^-2</p>
+<p>*例如 <code>七进制：604.01</code> &#x3D; 6*7^2 	+	4*7^0	+	1*7^-2 </p>
+<h4 id="10-gt-R"><a href="#10-gt-R" class="headerlink" title="10-&gt;R"></a>10-&gt;R</h4><p>十进制转R进制使用短除法</p>
+<p><em>例如将94转换为2进制数*<em>（取余数（除到最后的数小于进制））</em></em></p>
+<table>
+<thead>
+<tr>
+<th>数</th>
+<th>94</th>
+<th>47</th>
+<th>23</th>
+<th>11</th>
+<th>5</th>
+<th>2</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>除进制</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>余数</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>然后反取得：<strong>1011110</strong></p>
+<h4 id="2-gt-8"><a href="#2-gt-8" class="headerlink" title="2-&gt;8"></a>2-&gt;8</h4><p>$$<br>2^3 &#x3D; 8<br>$$</p>
+<p>*举例 10001110 转8进制</p>
+<p>拆分为</p>
+<table>
+<thead>
+<tr>
+<th>10</th>
+<th>001</th>
+<th>110</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2^1</td>
+<td>2^0</td>
+<td>2^2+2^1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>6</td>
+</tr>
+</tbody></table>
+<p>所以得出结果为216<br>$$<br>O216 或<br>(216)_8<br>$$</p>
+<h4 id="2-gt-16"><a href="#2-gt-16" class="headerlink" title="2-&gt;16"></a>2-&gt;16</h4><p>$$<br>2^4 &#x3D; 16<br>$$</p>
+<p>*举例 1001110 转16进制</p>
+<p>拆分为</p>
+<table>
+<thead>
+<tr>
+<th>1000</th>
+<th>1110</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2^3</td>
+<td>2^3+2^2+2^1</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8+4+2&#x3D;14 (A,B,C,D,E)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>E</td>
+</tr>
+</tbody></table>
+<p>所以转换为16进制为8E<br>$$<br>( 8E)_{16}或OX8E或8EH<br>$$</p>
+<h3 id="原码，反码，补码，移码"><a href="#原码，反码，补码，移码" class="headerlink" title="原码，反码，补码，移码"></a>原码，反码，补码，移码</h3><p>机器自查为8位2进制数，第一位为符号位：<strong>0表示正数，1表示负数</strong> ；后七位表示数</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>数值1</th>
+<th>数值-1</th>
+<th>1-1【1+(-1)】</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原码</td>
+<td>0000 0001</td>
+<td>1000 0001</td>
+<td>1000 0010（左边两个相加）</td>
+</tr>
+<tr>
+<td>反码</td>
+<td>0000 0001（一样）</td>
+<td>1111 1110 （除符号位，其他全变）</td>
+<td>1111 1111（左边两个相加）</td>
+</tr>
+<tr>
+<td>补码</td>
+<td>0000 0001（一样）</td>
+<td>1111 1111（在反码的基础上+1）</td>
+<td>0000 0000（左边两个相加）</td>
+</tr>
+<tr>
+<td>移码</td>
+<td>1000 0001（在补码基础上，变化符号位）</td>
+<td>0111 1111（补发基础上，变化符号位）</td>
+<td>1000 0000</td>
+</tr>
+</tbody></table>
+<p>**只有补码能加减计算</p>
+<p>原码：<br>$$<br>-(2^{n-1}-1)——+<br>$$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/19/Go%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0%EF%BC%883%EF%BC%89-Go%E7%9A%84%E6%B5%81%E4%BD%93%E6%8E%A7%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1336,20 +1528,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
