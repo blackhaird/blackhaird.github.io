@@ -29,10 +29,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/19/image-20220918101942613.png">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/19/image-20220918101357424.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/23/image3519aa493e77cd08.png">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/22/image-20220918151931192.png">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/19/image-20220918154932132.png">
 <meta property="article:published_time" content="2022-09-15T13:08:54.000Z">
-<meta property="article:modified_time" content="2022-09-22T07:22:30.410Z">
+<meta property="article:modified_time" content="2022-09-23T14:57:13.255Z">
 <meta property="article:author" content="MEIDE">
 <meta property="article:tag" content="考试知识点">
 <meta property="article:tag" content="软考">
@@ -193,7 +194,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-22 15:22:30" itemprop="dateModified" datetime="2022-09-22T15:22:30+08:00">2022-09-22</time>
+                <time title="修改时间：2022-09-23 22:57:13" itemprop="dateModified" datetime="2022-09-23T22:57:13+08:00">2022-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -409,7 +410,156 @@
 
 <img src="https://s1.imagehub.cc/images/2022/09/19/image-20220918101357424.png" alt="image-20220918101357424.png" border="0" />
 
-<h2 id="计算机基础知识例题"><a href="#计算机基础知识例题" class="headerlink" title="计算机基础知识例题"></a>计算机基础知识例题</h2><h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="进制转换题"><a href="#进制转换题" class="headerlink" title="进制转换题"></a>进制转换题</h4><h5 id="①-2015年下"><a href="#①-2015年下" class="headerlink" title="①.2015年下"></a>①.2015年下</h5><img src="https://s1.imagehub.cc/images/2022/09/22/image-20220918151931192.png" alt="image-20220918151931192.png" border="0" />
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p>$$<br>N&#x3D; 尾数*基数^{指数}<br>$$</p>
+<p>$$<br>举例:3.14*10^3<br>$$</p>
+<p>其中的</p>
+<p>3代表的就是阶码</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ol>
+<li>一般尾数用补码，阶码用移码</li>
+<li>阶码的位数决定数的<strong>表示范围</strong>，位数越多表示范围越大</li>
+<li>尾数的位数决定数的<strong>有效精度</strong>，位数越多精度越高</li>
+<li>对阶时，<strong>小数向大数看齐</strong></li>
+<li>对阶是通过比较<strong>小数的尾数右移</strong>实现的</li>
+</ol>
+<h4 id="运算过程"><a href="#运算过程" class="headerlink" title="运算过程"></a>运算过程</h4><p>对阶》尾数计算》结果格式化</p>
+<h4 id="存储格式"><a href="#存储格式" class="headerlink" title="存储格式"></a>存储格式</h4><p>3.14*10^3</p>
+<table>
+<thead>
+<tr>
+<th>阶符</th>
+<th>阶码</th>
+<th>数符</th>
+<th>尾数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0（阶码为正：0）</td>
+<td></td>
+<td>0(数字的正负)</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>浮点数。当机器字长为n时，定点数的补码和移码可表示2个数，而其原码和反码只 能表示2”-1个数（0的表示占用了两个编码）,因此，定点数所能表示的数值范围比较小，在 运算中很容易因结果超出范围而溢出。浮点数是小数点位置不固定的数，它能表示更大范围 的数。</p>
+<h2 id="Flynn计算机体系结构分类"><a href="#Flynn计算机体系结构分类" class="headerlink" title="Flynn计算机体系结构分类"></a>Flynn计算机体系结构分类</h2><table>
+<thead>
+<tr>
+<th>体系结构类型</th>
+<th>结构</th>
+<th>代表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单指令流单数据SISD</td>
+<td>控制部分：1<br/>处理器：1<br/>主存模块：1</td>
+<td>单处理器系统</td>
+</tr>
+<tr>
+<td>单指令流多数据流SIMD</td>
+<td>控制部分：1<br/>处理器：N<br/>主存模块：N</td>
+<td>并行处理机<br/><strong>阵列处理机</strong><br/>超级向量处理机</td>
+</tr>
+<tr>
+<td>多指令流单数据流MISD</td>
+<td>控制部分：N<br/>处理器：1<br/>主存模块：N</td>
+<td>目前没有，有理论<strong>流水线计算机</strong></td>
+</tr>
+<tr>
+<td>多指令流多数据流MIMD</td>
+<td>控制部分：N<br/>处理器：N<br/>主存模块：N</td>
+<td>多处理机系统<br/>多计算机</td>
+</tr>
+</tbody></table>
+<h2 id="指令的基本概念"><a href="#指令的基本概念" class="headerlink" title="指令的基本概念"></a>指令的基本概念</h2><p>一条指令就是机器语言的一个语句，它是一组有意义的二进制代码，指令的基本格式如下：</p>
+<p>例如a+b&#x3D;c</p>
+<table>
+<thead>
+<tr>
+<th>操作码字段</th>
+<th>地址码字段</th>
+<th>地址码字段</th>
+<th>地址码字段</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>操作码字段</th>
+<th>地址码字段</th>
+<th>地址码字段</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>a</td>
+<td>b</td>
+</tr>
+</tbody></table>
+<p>例如自增就只需一个地址码字段</p>
+<p>操作码部分指出了计算机要执行什么性质的操作，如加法、减法、取数、存数等。地址码字段需要包含各操作数的地址及操作结果的存放地址等，从其地址结构的角度可以分为三地址指令、二地址指令、一地址指令和零地址指令。</p>
+<h2 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>立即寻址方式</td>
+<td>操作数直接在指令中，速度快，灵活性差</td>
+</tr>
+<tr>
+<td>直接寻址方式</td>
+<td>指令中存放的是操作数的地址</td>
+</tr>
+<tr>
+<td>间接寻址放肆</td>
+<td>指令中存放了一个地址，这个地址对应的内容是操作数的地址</td>
+</tr>
+<tr>
+<td>寄存器寻址方式</td>
+<td>寄存器存放操作数</td>
+</tr>
+<tr>
+<td>寄存器间接寻址方式</td>
+<td>寄存器内存放的是操作数的地址</td>
+</tr>
+</tbody></table>
+<img src="https://s1.imagehub.cc/images/2022/09/23/image3519aa493e77cd08.png" alt="image3519aa493e77cd08.png" border="0" />
+
+<h2 id="CISC与RISC"><a href="#CISC与RISC" class="headerlink" title="CISC与RISC"></a>CISC与RISC</h2><table>
+<thead>
+<tr>
+<th>指令系统类型</th>
+<th>指令</th>
+<th>寻址方式</th>
+<th>实现方式</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CISC（复杂）</td>
+<td>数量多，使用频率差别大，可变长格式</td>
+<td>支持多种</td>
+<td>微程序控制技术（微码）</td>
+<td>研制周期长</td>
+</tr>
+<tr>
+<td>RISC（精简）</td>
+<td>数量少，使用频率接近，定长格式，大部分为单周期指令，操作寄存器，只有Load&#x2F;Store操作内存</td>
+<td>支持方式少</td>
+<td>增加了通用寄存器；硬布线逻辑控制为主适合采用流水线</td>
+<td>优化编译，有效支持高级语言</td>
+</tr>
+</tbody></table>
+<p><strong>CISC:复杂，指令数量多，频率差别大，多寻址<br>RISC:精简，指令数量少，操作奇存器，单周期，少寻址，多通用寄存器，流水线</strong></p>
+<h2 id="流水线-概念"><a href="#流水线-概念" class="headerlink" title="流水线-概念"></a>流水线-概念</h2><h2 id="计算机基础知识例题"><a href="#计算机基础知识例题" class="headerlink" title="计算机基础知识例题"></a>计算机基础知识例题</h2><h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="进制转换题"><a href="#进制转换题" class="headerlink" title="进制转换题"></a>进制转换题</h4><h5 id="①-2015年下"><a href="#①-2015年下" class="headerlink" title="①.2015年下"></a>①.2015年下</h5><img src="https://s1.imagehub.cc/images/2022/09/22/image-20220918151931192.png" alt="image-20220918151931192.png" border="0" />
 
 <h5 id="②-2017年下"><a href="#②-2017年下" class="headerlink" title="②.2017年下"></a>②.2017年下</h5><img src="https://s1.imagehub.cc/images/2022/09/19/image-20220918154932132.png" alt="image-20220918154932132.png" border="0" />
 
@@ -620,7 +770,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">计算机系统基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%A1%AC%E4%BB%B6%E5%9F%BA%E6%9C%AC%E5%82%A8%E5%AD%98"><span class="nav-number">1.1.</span> <span class="nav-text">计算机系统硬件基本储存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%8D%95%E5%85%83%EF%BC%88CPU%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">中央处理单元（CPU）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">1.2.1.</span> <span class="nav-text">CPU的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%EF%BC%88%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%89"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">程序控制（控制器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%8E%A7%E5%88%B6%EF%BC%88%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%89"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">操作控制（控制器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E6%8E%A7%E5%88%B6%EF%BC%88%E8%BF%90%E7%AE%97%E5%99%A8%EF%BC%89"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">时间控制（运算器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%EF%BC%88%E8%BF%90%E7%AE%97%E5%99%A8%EF%BC%89"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">数据处理（运算器）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E5%99%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">运算器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E5%99%A8%E6%9C%89%E4%B8%A4%E4%B8%AA%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">运算器有两个主要功能：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E5%99%A8%E4%B8%AD%E5%90%84%E7%BB%84%E6%88%90%E9%83%A8%E4%BB%B6%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">运算器中各组成部件的功能：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83ALU%EF%BC%9A"><span class="nav-number">1.2.2.2.1.</span> <span class="nav-text">算术逻辑单元ALU：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B4%AF%E5%8A%A0%E5%AF%84%E5%AD%98%E5%99%A8AC%EF%BC%9A"><span class="nav-number">1.2.2.2.2.</span> <span class="nav-text">累加寄存器AC：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BC%93%E5%86%B2%E5%AF%84%E5%AD%98%E5%99%A8DR"><span class="nav-number">1.2.2.2.3.</span> <span class="nav-text">数据缓冲寄存器DR:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%9D%A1%E4%BB%B6%E5%AF%84%E5%AD%98%E5%99%A8PSW%EF%BC%9A"><span class="nav-number">1.2.2.2.4.</span> <span class="nav-text">状态条件寄存器PSW：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E4%B8%AD%E5%90%84%E7%BB%84%E6%88%90%E9%83%A8%E4%BB%B6%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">控制器中各组成部件的功能：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E5%AF%84%E5%AD%98%E5%99%A8IR%EF%BC%9A"><span class="nav-number">1.2.3.1.1.</span> <span class="nav-text">指令寄存器IR：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8PC%EF%BC%9A"><span class="nav-number">1.2.3.1.2.</span> <span class="nav-text">程序计数器PC：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E5%AF%84%E5%AD%98%E5%99%A8AR"><span class="nav-number">1.2.3.1.3.</span> <span class="nav-text">地址寄存器AR:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E8%AF%91%E7%A0%81%E5%99%A8ID%EF%BC%9A"><span class="nav-number">1.2.3.1.4.</span> <span class="nav-text">指令译码器ID：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E6%9C%AC%E5%8D%95%E4%BD%8D"><span class="nav-number">1.3.</span> <span class="nav-text">计算机基本单位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.4.</span> <span class="nav-text">数据的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.4.1.</span> <span class="nav-text">进制转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#R-gt-10"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">R-&gt;10</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-gt-R"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">10-&gt;R</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-gt-8"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">2-&gt;8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-gt-16"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">2-&gt;16</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E5%BE%97%E5%8A%A0%E5%87%8F%E6%B3%95"><span class="nav-number">1.4.2.</span> <span class="nav-text">进制得加减法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%A0%81%EF%BC%8C%E5%8F%8D%E7%A0%81%EF%BC%8C%E8%A1%A5%E7%A0%81%EF%BC%8C%E7%A7%BB%E7%A0%81"><span class="nav-number">1.4.3.</span> <span class="nav-text">原码，反码，补码，移码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E8%8C%83%E5%9B%B4"><span class="nav-number">1.4.4.</span> <span class="nav-text">数据表示范围</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%BE%8B%E9%A2%98"><span class="nav-number">1.5.</span> <span class="nav-text">计算机基础知识例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.5.1.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E9%A2%98"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">进制转换题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0-2015%E5%B9%B4%E4%B8%8B"><span class="nav-number">1.5.1.1.1.</span> <span class="nav-text">①.2015年下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1-2017%E5%B9%B4%E4%B8%8B"><span class="nav-number">1.5.1.1.2.</span> <span class="nav-text">②.2017年下</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%94%E6%A1%88"><span class="nav-number">1.5.2.</span> <span class="nav-text">答案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E9%A2%98-1"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">进制转换题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0-2015%E5%B9%B4%E4%B8%8B-1"><span class="nav-number">1.5.2.1.1.</span> <span class="nav-text">①.2015年下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1-2017%E5%B9%B4%E4%B8%8B-1"><span class="nav-number">1.5.2.1.2.</span> <span class="nav-text">②.2017年下</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80"><span class="nav-number">2.</span> <span class="nav-text">程序设计语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8E%E7%BA%A7%E8%AF%AD%E8%A8%80%E5%92%8C%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80"><span class="nav-number">2.1.</span> <span class="nav-text">低级语言和高级语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E5%92%8C%E8%A7%A3%E9%87%8A%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.2.</span> <span class="nav-text">编译程序和解释程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="nav-number">2.2.1.</span> <span class="nav-text">解释器:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8"><span class="nav-number">2.2.2.</span> <span class="nav-text">编译器:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E6%88%90%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">程序设计语言的数据成分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%B8%B8%E9%87%8F%E5%92%8C%E5%8F%98%E9%87%8F"><span class="nav-number">3.1.</span> <span class="nav-text">1)常量和变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%85%A8%E5%B1%80%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E9%87%8F"><span class="nav-number">3.2.</span> <span class="nav-text">2)全局量和局部量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.3.</span> <span class="nav-text">3)数据类型</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">计算机系统基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%A1%AC%E4%BB%B6%E5%9F%BA%E6%9C%AC%E5%82%A8%E5%AD%98"><span class="nav-number">1.1.</span> <span class="nav-text">计算机系统硬件基本储存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%8D%95%E5%85%83%EF%BC%88CPU%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">中央处理单元（CPU）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="nav-number">1.2.1.</span> <span class="nav-text">CPU的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%EF%BC%88%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%89"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">程序控制（控制器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%8E%A7%E5%88%B6%EF%BC%88%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%89"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">操作控制（控制器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E6%8E%A7%E5%88%B6%EF%BC%88%E8%BF%90%E7%AE%97%E5%99%A8%EF%BC%89"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">时间控制（运算器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%EF%BC%88%E8%BF%90%E7%AE%97%E5%99%A8%EF%BC%89"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">数据处理（运算器）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E5%99%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">运算器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E5%99%A8%E6%9C%89%E4%B8%A4%E4%B8%AA%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">运算器有两个主要功能：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E5%99%A8%E4%B8%AD%E5%90%84%E7%BB%84%E6%88%90%E9%83%A8%E4%BB%B6%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">运算器中各组成部件的功能：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83ALU%EF%BC%9A"><span class="nav-number">1.2.2.2.1.</span> <span class="nav-text">算术逻辑单元ALU：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B4%AF%E5%8A%A0%E5%AF%84%E5%AD%98%E5%99%A8AC%EF%BC%9A"><span class="nav-number">1.2.2.2.2.</span> <span class="nav-text">累加寄存器AC：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BC%93%E5%86%B2%E5%AF%84%E5%AD%98%E5%99%A8DR"><span class="nav-number">1.2.2.2.3.</span> <span class="nav-text">数据缓冲寄存器DR:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%9D%A1%E4%BB%B6%E5%AF%84%E5%AD%98%E5%99%A8PSW%EF%BC%9A"><span class="nav-number">1.2.2.2.4.</span> <span class="nav-text">状态条件寄存器PSW：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E4%B8%AD%E5%90%84%E7%BB%84%E6%88%90%E9%83%A8%E4%BB%B6%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">控制器中各组成部件的功能：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E5%AF%84%E5%AD%98%E5%99%A8IR%EF%BC%9A"><span class="nav-number">1.2.3.1.1.</span> <span class="nav-text">指令寄存器IR：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8PC%EF%BC%9A"><span class="nav-number">1.2.3.1.2.</span> <span class="nav-text">程序计数器PC：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E5%AF%84%E5%AD%98%E5%99%A8AR"><span class="nav-number">1.2.3.1.3.</span> <span class="nav-text">地址寄存器AR:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E8%AF%91%E7%A0%81%E5%99%A8ID%EF%BC%9A"><span class="nav-number">1.2.3.1.4.</span> <span class="nav-text">指令译码器ID：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E6%9C%AC%E5%8D%95%E4%BD%8D"><span class="nav-number">1.3.</span> <span class="nav-text">计算机基本单位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.4.</span> <span class="nav-text">数据的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.4.1.</span> <span class="nav-text">进制转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#R-gt-10"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">R-&gt;10</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-gt-R"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">10-&gt;R</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-gt-8"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">2-&gt;8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-gt-16"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">2-&gt;16</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E5%BE%97%E5%8A%A0%E5%87%8F%E6%B3%95"><span class="nav-number">1.4.2.</span> <span class="nav-text">进制得加减法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%A0%81%EF%BC%8C%E5%8F%8D%E7%A0%81%EF%BC%8C%E8%A1%A5%E7%A0%81%EF%BC%8C%E7%A7%BB%E7%A0%81"><span class="nav-number">1.4.3.</span> <span class="nav-text">原码，反码，补码，移码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E8%8C%83%E5%9B%B4"><span class="nav-number">1.4.4.</span> <span class="nav-text">数据表示范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-number">1.4.5.</span> <span class="nav-text">浮点数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E8%BF%87%E7%A8%8B"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">运算过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.4.5.3.</span> <span class="nav-text">存储格式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flynn%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.5.</span> <span class="nav-text">Flynn计算机体系结构分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.6.</span> <span class="nav-text">指令的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-number">1.7.</span> <span class="nav-text">寻址方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CISC%E4%B8%8ERISC"><span class="nav-number">1.8.</span> <span class="nav-text">CISC与RISC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF-%E6%A6%82%E5%BF%B5"><span class="nav-number">1.9.</span> <span class="nav-text">流水线-概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%BE%8B%E9%A2%98"><span class="nav-number">1.10.</span> <span class="nav-text">计算机基础知识例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.10.1.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E9%A2%98"><span class="nav-number">1.10.1.1.</span> <span class="nav-text">进制转换题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0-2015%E5%B9%B4%E4%B8%8B"><span class="nav-number">1.10.1.1.1.</span> <span class="nav-text">①.2015年下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1-2017%E5%B9%B4%E4%B8%8B"><span class="nav-number">1.10.1.1.2.</span> <span class="nav-text">②.2017年下</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%94%E6%A1%88"><span class="nav-number">1.10.2.</span> <span class="nav-text">答案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E9%A2%98-1"><span class="nav-number">1.10.2.1.</span> <span class="nav-text">进制转换题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A0-2015%E5%B9%B4%E4%B8%8B-1"><span class="nav-number">1.10.2.1.1.</span> <span class="nav-text">①.2015年下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E2%91%A1-2017%E5%B9%B4%E4%B8%8B-1"><span class="nav-number">1.10.2.1.2.</span> <span class="nav-text">②.2017年下</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80"><span class="nav-number">2.</span> <span class="nav-text">程序设计语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8E%E7%BA%A7%E8%AF%AD%E8%A8%80%E5%92%8C%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80"><span class="nav-number">2.1.</span> <span class="nav-text">低级语言和高级语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E5%92%8C%E8%A7%A3%E9%87%8A%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.2.</span> <span class="nav-text">编译程序和解释程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="nav-number">2.2.1.</span> <span class="nav-text">解释器:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8"><span class="nav-number">2.2.2.</span> <span class="nav-text">编译器:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E6%88%90%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">程序设计语言的数据成分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%B8%B8%E9%87%8F%E5%92%8C%E5%8F%98%E9%87%8F"><span class="nav-number">3.1.</span> <span class="nav-text">1)常量和变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%85%A8%E5%B1%80%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E9%87%8F"><span class="nav-number">3.2.</span> <span class="nav-text">2)全局量和局部量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.3.</span> <span class="nav-text">3)数据类型</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

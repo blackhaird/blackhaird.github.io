@@ -182,7 +182,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-22 15:22:30" itemprop="dateModified" datetime="2022-09-22T15:22:30+08:00">2022-09-22</time>
+                <time title="修改时间：2022-09-23 22:57:13" itemprop="dateModified" datetime="2022-09-23T22:57:13+08:00">2022-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -398,7 +398,156 @@
 
 <img src="https://s1.imagehub.cc/images/2022/09/19/image-20220918101357424.png" alt="image-20220918101357424.png" border="0" />
 
-<h2 id="计算机基础知识例题"><a href="#计算机基础知识例题" class="headerlink" title="计算机基础知识例题"></a>计算机基础知识例题</h2><h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="进制转换题"><a href="#进制转换题" class="headerlink" title="进制转换题"></a>进制转换题</h4><h5 id="①-2015年下"><a href="#①-2015年下" class="headerlink" title="①.2015年下"></a>①.2015年下</h5><img src="https://s1.imagehub.cc/images/2022/09/22/image-20220918151931192.png" alt="image-20220918151931192.png" border="0" />
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p>$$<br>N&#x3D; 尾数*基数^{指数}<br>$$</p>
+<p>$$<br>举例:3.14*10^3<br>$$</p>
+<p>其中的</p>
+<p>3代表的就是阶码</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ol>
+<li>一般尾数用补码，阶码用移码</li>
+<li>阶码的位数决定数的<strong>表示范围</strong>，位数越多表示范围越大</li>
+<li>尾数的位数决定数的<strong>有效精度</strong>，位数越多精度越高</li>
+<li>对阶时，<strong>小数向大数看齐</strong></li>
+<li>对阶是通过比较<strong>小数的尾数右移</strong>实现的</li>
+</ol>
+<h4 id="运算过程"><a href="#运算过程" class="headerlink" title="运算过程"></a>运算过程</h4><p>对阶》尾数计算》结果格式化</p>
+<h4 id="存储格式"><a href="#存储格式" class="headerlink" title="存储格式"></a>存储格式</h4><p>3.14*10^3</p>
+<table>
+<thead>
+<tr>
+<th>阶符</th>
+<th>阶码</th>
+<th>数符</th>
+<th>尾数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0（阶码为正：0）</td>
+<td></td>
+<td>0(数字的正负)</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>浮点数。当机器字长为n时，定点数的补码和移码可表示2个数，而其原码和反码只 能表示2”-1个数（0的表示占用了两个编码）,因此，定点数所能表示的数值范围比较小，在 运算中很容易因结果超出范围而溢出。浮点数是小数点位置不固定的数，它能表示更大范围 的数。</p>
+<h2 id="Flynn计算机体系结构分类"><a href="#Flynn计算机体系结构分类" class="headerlink" title="Flynn计算机体系结构分类"></a>Flynn计算机体系结构分类</h2><table>
+<thead>
+<tr>
+<th>体系结构类型</th>
+<th>结构</th>
+<th>代表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单指令流单数据SISD</td>
+<td>控制部分：1<br/>处理器：1<br/>主存模块：1</td>
+<td>单处理器系统</td>
+</tr>
+<tr>
+<td>单指令流多数据流SIMD</td>
+<td>控制部分：1<br/>处理器：N<br/>主存模块：N</td>
+<td>并行处理机<br/><strong>阵列处理机</strong><br/>超级向量处理机</td>
+</tr>
+<tr>
+<td>多指令流单数据流MISD</td>
+<td>控制部分：N<br/>处理器：1<br/>主存模块：N</td>
+<td>目前没有，有理论<strong>流水线计算机</strong></td>
+</tr>
+<tr>
+<td>多指令流多数据流MIMD</td>
+<td>控制部分：N<br/>处理器：N<br/>主存模块：N</td>
+<td>多处理机系统<br/>多计算机</td>
+</tr>
+</tbody></table>
+<h2 id="指令的基本概念"><a href="#指令的基本概念" class="headerlink" title="指令的基本概念"></a>指令的基本概念</h2><p>一条指令就是机器语言的一个语句，它是一组有意义的二进制代码，指令的基本格式如下：</p>
+<p>例如a+b&#x3D;c</p>
+<table>
+<thead>
+<tr>
+<th>操作码字段</th>
+<th>地址码字段</th>
+<th>地址码字段</th>
+<th>地址码字段</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>操作码字段</th>
+<th>地址码字段</th>
+<th>地址码字段</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>a</td>
+<td>b</td>
+</tr>
+</tbody></table>
+<p>例如自增就只需一个地址码字段</p>
+<p>操作码部分指出了计算机要执行什么性质的操作，如加法、减法、取数、存数等。地址码字段需要包含各操作数的地址及操作结果的存放地址等，从其地址结构的角度可以分为三地址指令、二地址指令、一地址指令和零地址指令。</p>
+<h2 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>立即寻址方式</td>
+<td>操作数直接在指令中，速度快，灵活性差</td>
+</tr>
+<tr>
+<td>直接寻址方式</td>
+<td>指令中存放的是操作数的地址</td>
+</tr>
+<tr>
+<td>间接寻址放肆</td>
+<td>指令中存放了一个地址，这个地址对应的内容是操作数的地址</td>
+</tr>
+<tr>
+<td>寄存器寻址方式</td>
+<td>寄存器存放操作数</td>
+</tr>
+<tr>
+<td>寄存器间接寻址方式</td>
+<td>寄存器内存放的是操作数的地址</td>
+</tr>
+</tbody></table>
+<img src="https://s1.imagehub.cc/images/2022/09/23/image3519aa493e77cd08.png" alt="image3519aa493e77cd08.png" border="0" />
+
+<h2 id="CISC与RISC"><a href="#CISC与RISC" class="headerlink" title="CISC与RISC"></a>CISC与RISC</h2><table>
+<thead>
+<tr>
+<th>指令系统类型</th>
+<th>指令</th>
+<th>寻址方式</th>
+<th>实现方式</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CISC（复杂）</td>
+<td>数量多，使用频率差别大，可变长格式</td>
+<td>支持多种</td>
+<td>微程序控制技术（微码）</td>
+<td>研制周期长</td>
+</tr>
+<tr>
+<td>RISC（精简）</td>
+<td>数量少，使用频率接近，定长格式，大部分为单周期指令，操作寄存器，只有Load&#x2F;Store操作内存</td>
+<td>支持方式少</td>
+<td>增加了通用寄存器；硬布线逻辑控制为主适合采用流水线</td>
+<td>优化编译，有效支持高级语言</td>
+</tr>
+</tbody></table>
+<p><strong>CISC:复杂，指令数量多，频率差别大，多寻址<br>RISC:精简，指令数量少，操作奇存器，单周期，少寻址，多通用寄存器，流水线</strong></p>
+<h2 id="流水线-概念"><a href="#流水线-概念" class="headerlink" title="流水线-概念"></a>流水线-概念</h2><h2 id="计算机基础知识例题"><a href="#计算机基础知识例题" class="headerlink" title="计算机基础知识例题"></a>计算机基础知识例题</h2><h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="进制转换题"><a href="#进制转换题" class="headerlink" title="进制转换题"></a>进制转换题</h4><h5 id="①-2015年下"><a href="#①-2015年下" class="headerlink" title="①.2015年下"></a>①.2015年下</h5><img src="https://s1.imagehub.cc/images/2022/09/22/image-20220918151931192.png" alt="image-20220918151931192.png" border="0" />
 
 <h5 id="②-2017年下"><a href="#②-2017年下" class="headerlink" title="②.2017年下"></a>②.2017年下</h5><img src="https://s1.imagehub.cc/images/2022/09/19/image-20220918154932132.png" alt="image-20220918154932132.png" border="0" />
 
