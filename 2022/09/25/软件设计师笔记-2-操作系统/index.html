@@ -20,17 +20,31 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="操作系统的笔记进程管理进程的概念与状态进程是程序在一个数据集合上运行的过程，它是系统进行资源分配和调度的一个独立单位。它由程序块、进程控制块（PCB)和数据块三部分组成。 进程与程序的区别：进程是程序的一次执行过程，没有程序就没有进程。 进程是动态，程序是静态 程序是完成某个特定功能的一系列程序语句的集合，只要不被破坏，它就永远存在。程序是一个静态的概念，而进程是一个动态的概念，它由创建而产生，完">
+<meta property="og:type" content="article">
 <meta property="og:title" content="软件设计师笔记(2)-操作系统">
 <meta property="og:url" content="http://example.com/2022/09/25/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="MEIDE&#39;S BLOG">
+<meta property="og:description" content="操作系统的笔记进程管理进程的概念与状态进程是程序在一个数据集合上运行的过程，它是系统进行资源分配和调度的一个独立单位。它由程序块、进程控制块（PCB)和数据块三部分组成。 进程与程序的区别：进程是程序的一次执行过程，没有程序就没有进程。 进程是动态，程序是静态 程序是完成某个特定功能的一系列程序语句的集合，只要不被破坏，它就永远存在。程序是一个静态的概念，而进程是一个动态的概念，它由创建而产生，完">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image75e911e020bc174f.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image5e02be8476a99ad4.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image8f578fc725e29c00.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image04c31b785a36c085.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image46b0c53f97a041b8.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image73b2dc538d2a53ad.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image635296ec4876bc2d.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image69a305438b735379.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image5b13424217a03df2.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image0740322d7c82808d.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image5986d219fb34f0f2.png">
 <meta property="article:published_time" content="2022-09-25T08:50:22.000Z">
-<meta property="article:modified_time" content="2022-09-25T08:57:45.470Z">
+<meta property="article:modified_time" content="2022-09-27T08:35:39.501Z">
 <meta property="article:author" content="MEIDE">
 <meta property="article:tag" content="考试知识点">
 <meta property="article:tag" content="软考">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.imagehub.cc/images/2022/09/27/image75e911e020bc174f.png">
 
 <link rel="canonical" href="http://example.com/2022/09/25/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
 
@@ -178,10 +192,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-09-25 16:50:22 / 修改时间：16:57:45" itemprop="dateCreated datePublished" datetime="2022-09-25T16:50:22+08:00">2022-09-25</time>
+              <time title="创建时间：2022-09-25 16:50:22" itemprop="dateCreated datePublished" datetime="2022-09-25T16:50:22+08:00">2022-09-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-27 16:35:39" itemprop="dateModified" datetime="2022-09-27T16:35:39+08:00">2022-09-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -203,7 +223,46 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <h1 id="操作系统的笔记"><a href="#操作系统的笔记" class="headerlink" title="操作系统的笔记"></a>操作系统的笔记</h1><h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><h3 id="进程的概念与状态"><a href="#进程的概念与状态" class="headerlink" title="进程的概念与状态"></a>进程的概念与状态</h3><p>进程是程序在一个数据集合上运行的过程，它是系统进行资源分配和调度的一个独立单位。它由程序块、进程控制块（PCB)和数据块三部分组成。</p>
+<p><strong>进程与程序的区别：进程是程序的一次执行过程，没有程序就没有进程。</strong></p>
+<p>进程是动态，程序是静态</p>
+<p>程序是完成某个特定功能的一系列程序语句的集合，只要不被破坏，它就永远存在。程序是一个静态的概念，而进程是一个动态的概念，它由创建而产生，完成任务后因撤销而消亡；进程是系统进行资源分配和调度的独立单位，而程序不是。</p>
+<img src="https://s1.imagehub.cc/images/2022/09/27/image75e911e020bc174f.png" alt="image75e911e020bc174f.png" border="0" />
+
+<h3 id="进程的同步与互斥"><a href="#进程的同步与互斥" class="headerlink" title="进程的同步与互斥"></a>进程的同步与互斥</h3><img src="https://s1.imagehub.cc/images/2022/09/27/image5e02be8476a99ad4.png" alt="image5e02be8476a99ad4.png" border="0" />
+
+<p>同步：直接的制约关系，速度有差异。【李四到终点需要等待张三到达】</p>
+<p>互斥：间接制约关系，争夺临界资源。</p>
+<h4 id="PV操作"><a href="#PV操作" class="headerlink" title="PV操作"></a>PV操作</h4><p>临界资源：诸进程间需要互斥方式对其进行共享的资源，如打印机、磁带机等<br>临界区：每个进程中访问临界资源的<strong>那段代码称为临界区</strong><br>信号量：<strong>是一种特殊的变量</strong><br>P是荷兰语的Passeren,V是荷兰语的Verhoog.</p>
+<p>P操作就是申请资源操作，V就是释放资源操作。S就是信号量，若资源小于0，就需要进入阻塞队列。V操作资源数大于0就需要处理阻塞进程队列的资源。</p>
+<img src="https://s1.imagehub.cc/images/2022/09/27/image8f578fc725e29c00.png" alt="image8f578fc725e29c00.png" border="0" />
+
+<h5 id="同步模型"><a href="#同步模型" class="headerlink" title="同步模型"></a>同步模型</h5><img src="https://s1.imagehub.cc/images/2022/09/27/image04c31b785a36c085.png" alt="image04c31b785a36c085.png" border="0" />
+
+<h5 id="例题理解"><a href="#例题理解" class="headerlink" title="例题理解"></a>例题理解</h5><img src="https://s1.imagehub.cc/images/2022/09/27/image46b0c53f97a041b8.png" alt="image46b0c53f97a041b8.png" border="0" />
+
+<p>答案:A,C</p>
+<img src="https://s1.imagehub.cc/images/2022/09/27/image73b2dc538d2a53ad.png" alt="image73b2dc538d2a53ad.png" border="0" />
+
+<h3 id="死锁问题"><a href="#死锁问题" class="headerlink" title="死锁问题"></a>死锁问题</h3><p>进程管理是操作系统的核心，但如果设计不当，就会出现死锁的问题。如果一个进程在等待一件不可能发生的事，则进程就死锁了。而如果一个或多个进程产生死锁，就会造成系统死锁。</p>
+<img src="https://s1.imagehub.cc/images/2022/09/27/image635296ec4876bc2d.png" alt="image635296ec4876bc2d.png" border="0" />
+
+<p>基于分配的所需的系统资源数少1，随后相加起来，如图即3*5+1&#x3D;16个系统资源</p>
+<h4 id="形成死锁的4个必要条件"><a href="#形成死锁的4个必要条件" class="headerlink" title="形成死锁的4个必要条件"></a>形成死锁的4个必要条件</h4><img src="https://s1.imagehub.cc/images/2022/09/27/image69a305438b735379.png" alt="image69a305438b735379.png" border="0" />
+
+<p>有序资源分配法：需要多少系统资源给多少，比较浪费资源</p>
+<p>银行家算法：分配资源的原则</p>
+<ul>
+<li>当一个进程对资源的最大需求量不超过系统中的资源数时可以接纳该进程。</li>
+<li>进程可以分期请求资源，但请求的总数不能超过最大需求量。</li>
+<li>当系统现有的资源不能满足进程尚需资源数时，对进程的请求可以推迟分配，但总能使进程在有限的时间里得到资源。</li>
+</ul>
+<h4 id="银行家算法例子"><a href="#银行家算法例子" class="headerlink" title="银行家算法例子"></a>银行家算法例子</h4><img src="https://s1.imagehub.cc/images/2022/09/27/image5b13424217a03df2.png" alt="image5b13424217a03df2.png" border="0" />
+
+<img src="https://s1.imagehub.cc/images/2022/09/27/image0740322d7c82808d.png" alt="image0740322d7c82808d.png" border="0" />
+
+<img src="https://s1.imagehub.cc/images/2022/09/27/image5986d219fb34f0f2.png" alt="image5986d219fb34f0f2.png" border="0" />
+
     </div>
 
     
@@ -222,8 +281,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/09/15/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%9F%A5%E8%AF%86%E7%82%B9%E7%A7%AF%E7%B4%AF-%E4%B8%8A%E5%8D%88%E9%A2%98-1/" rel="prev" title="软件设计师知识点积累-上午题(1)">
-      <i class="fa fa-chevron-left"></i> 软件设计师知识点积累-上午题(1)
+    <a href="/2022/09/15/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" rel="prev" title="软件设计师笔记(1)-计算机基础">
+      <i class="fa fa-chevron-left"></i> 软件设计师笔记(1)-计算机基础
     </a></div>
       <div class="post-nav-item"></div>
     </div>
@@ -284,6 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">操作系统的笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%8A%B6%E6%80%81"><span class="nav-number">1.1.1.</span> <span class="nav-text">进程的概念与状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5"><span class="nav-number">1.1.2.</span> <span class="nav-text">进程的同步与互斥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PV%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">PV操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">同步模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%E7%90%86%E8%A7%A3"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">例题理解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.3.</span> <span class="nav-text">死锁问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%A2%E6%88%90%E6%AD%BB%E9%94%81%E7%9A%844%E4%B8%AA%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">形成死锁的4个必要条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95%E4%BE%8B%E5%AD%90"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">银行家算法例子</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
