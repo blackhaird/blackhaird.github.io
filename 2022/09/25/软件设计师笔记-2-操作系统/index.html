@@ -38,8 +38,10 @@
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image5b13424217a03df2.png">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image0740322d7c82808d.png">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/27/image5986d219fb34f0f2.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/30/image5f3219d7435e3cb4.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/30/imageee037074a82cbdc9.png">
 <meta property="article:published_time" content="2022-09-25T08:50:22.000Z">
-<meta property="article:modified_time" content="2022-09-27T08:35:39.501Z">
+<meta property="article:modified_time" content="2022-09-30T08:31:03.877Z">
 <meta property="article:author" content="MEIDE">
 <meta property="article:tag" content="考试知识点">
 <meta property="article:tag" content="软考">
@@ -200,7 +202,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-27 16:35:39" itemprop="dateModified" datetime="2022-09-27T16:35:39+08:00">2022-09-27</time>
+                <time title="修改时间：2022-09-30 16:31:03" itemprop="dateModified" datetime="2022-09-30T16:31:03+08:00">2022-09-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,6 +264,42 @@
 <img src="https://s1.imagehub.cc/images/2022/09/27/image0740322d7c82808d.png" alt="image0740322d7c82808d.png" border="0" />
 
 <img src="https://s1.imagehub.cc/images/2022/09/27/image5986d219fb34f0f2.png" alt="image5986d219fb34f0f2.png" border="0" />
+
+<h3 id="存储管理"><a href="#存储管理" class="headerlink" title="存储管理"></a>存储管理</h3><h4 id="页式存储"><a href="#页式存储" class="headerlink" title="页式存储"></a>页式存储</h4><p><strong>将程序与内存划分为同样大小的快，以页为单位将程序调入内存。</strong></p>
+<p>优点：利用率高，碎片小，分配及管理简单</p>
+<p>缺点：增加了系统开销；可能产生抖动现象</p>
+<img src="https://s1.imagehub.cc/images/2022/09/30/image5f3219d7435e3cb4.png" alt="image5f3219d7435e3cb4.png" border="0" />
+
+<h4 id="段页式存储"><a href="#段页式存储" class="headerlink" title="段页式存储"></a>段页式存储</h4><p><strong>段式与页式的综合体，先分段，再分页，1个程序有若千个段，每个段中可以有若干页，每个页的大小相同，但每个段的大小不同。</strong></p>
+<img src="https://s1.imagehub.cc/images/2022/09/30/imageee037074a82cbdc9.png" alt="imageee037074a82cbdc9.png" border="0" />
+
+<p>优点：空间浪费小，存储共享容易，存储保护容易，能动态连接</p>
+<p>缺点：由于管理软件的增加，复杂性和开销也随之增加，需要的硬件以及占用的内容也有所增加，使得执行速度大大下降</p>
+<h4 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h4><ul>
+<li>最优（Optimal,OPT)算法</li>
+<li>随机（RAND)算法</li>
+<li>√先进先出（FIFO)算法：有可能产生“抖动”。例如，432143543215序列，用3个页面，比4个缺页要少</li>
+<li>最近最少使用（LRU)算法：不会“抖动”，LRU的理论依据是“局部性原理”。</li>
+<li>时间局部性：刚被访问的内容，立即又被访问。</li>
+<li>空间局部性：刚被访问的内容，临近的空间很快被访问。</li>
+</ul>
+<h4 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h4><p>存取时间&#x3D;寻道时间+等待时间，寻道时间是指磁头移动到磁道所需的时间；等待时间为等待读写的扇区转到磁头下方所用的时间。</p>
+<h4 id="磁盘调度算法"><a href="#磁盘调度算法" class="headerlink" title="磁盘调度算法"></a>磁盘调度算法</h4><ul>
+<li>先来先服务（FCFS)</li>
+<li>最短寻道时间优先（SSTF)</li>
+<li>扫描算法（SCAN)</li>
+<li>循环扫描（CSCAN)算法</li>
+</ul>
+<h4 id="读取磁盘数据时间计算"><a href="#读取磁盘数据时间计算" class="headerlink" title="读取磁盘数据时间计算"></a>读取磁盘数据时间计算</h4><p>读取磁盘数据的时间应包括以下三个部分：</p>
+<ol>
+<li>找磁道的时间。</li>
+<li>找块（扇区）的时间，即旋转延迟时间。</li>
+<li>传输时间。</li>
+</ol>
+<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><p><code>某磁盘磁头从一个磁道移至另一个磁道需要10ms,文件在磁盘上非连续存放，逻辑上相邻数据块的平均移动距离为10个磁道，每块的旋转延迟时及传输时间分别为100ms和2ms,则读取一个100块的文件需要__ms时间。</code></p>
+<p><code>A.10200 B.11000 C.11200 D.20200</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这种问题先计算磁道移动缩需要的延迟即10*10</span><br><span class="line">然后加上每块区域旋转的延迟时间+每个数据块传输的时间</span><br><span class="line">最后再乘以总的读取文件总数。即[(10*10)+100+2]*100</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -343,7 +381,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">操作系统的笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%8A%B6%E6%80%81"><span class="nav-number">1.1.1.</span> <span class="nav-text">进程的概念与状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5"><span class="nav-number">1.1.2.</span> <span class="nav-text">进程的同步与互斥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PV%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">PV操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">同步模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%E7%90%86%E8%A7%A3"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">例题理解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.3.</span> <span class="nav-text">死锁问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%A2%E6%88%90%E6%AD%BB%E9%94%81%E7%9A%844%E4%B8%AA%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">形成死锁的4个必要条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95%E4%BE%8B%E5%AD%90"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">银行家算法例子</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">操作系统的笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%8A%B6%E6%80%81"><span class="nav-number">1.1.1.</span> <span class="nav-text">进程的概念与状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5"><span class="nav-number">1.1.2.</span> <span class="nav-text">进程的同步与互斥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PV%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">PV操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">同步模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98%E7%90%86%E8%A7%A3"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">例题理解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.3.</span> <span class="nav-text">死锁问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%A2%E6%88%90%E6%AD%BB%E9%94%81%E7%9A%844%E4%B8%AA%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">形成死锁的4个必要条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95%E4%BE%8B%E5%AD%90"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">银行家算法例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.4.</span> <span class="nav-text">存储管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">页式存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AE%B5%E9%A1%B5%E5%BC%8F%E5%AD%98%E5%82%A8"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">段页式存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">页面置换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">磁盘管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.4.5.</span> <span class="nav-text">磁盘调度算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E7%A3%81%E7%9B%98%E6%95%B0%E6%8D%AE%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97"><span class="nav-number">1.1.4.6.</span> <span class="nav-text">读取磁盘数据时间计算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.1.4.6.1.</span> <span class="nav-text">例题</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
