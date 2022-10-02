@@ -182,7 +182,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-30 16:31:03" itemprop="dateModified" datetime="2022-09-30T16:31:03+08:00">2022-09-30</time>
+                <time title="修改时间：2022-10-02 14:02:12" itemprop="dateModified" datetime="2022-10-02T14:02:12+08:00">2022-10-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,17 +245,17 @@
 
 <img src="https://s1.imagehub.cc/images/2022/09/27/image5986d219fb34f0f2.png" alt="image5986d219fb34f0f2.png" border="0" />
 
-<h3 id="存储管理"><a href="#存储管理" class="headerlink" title="存储管理"></a>存储管理</h3><h4 id="页式存储"><a href="#页式存储" class="headerlink" title="页式存储"></a>页式存储</h4><p><strong>将程序与内存划分为同样大小的快，以页为单位将程序调入内存。</strong></p>
+<h2 id="存储管理"><a href="#存储管理" class="headerlink" title="存储管理"></a>存储管理</h2><h3 id="页式存储"><a href="#页式存储" class="headerlink" title="页式存储"></a>页式存储</h3><p><strong>将程序与内存划分为同样大小的快，以页为单位将程序调入内存。</strong></p>
 <p>优点：利用率高，碎片小，分配及管理简单</p>
 <p>缺点：增加了系统开销；可能产生抖动现象</p>
 <img src="https://s1.imagehub.cc/images/2022/09/30/image5f3219d7435e3cb4.png" alt="image5f3219d7435e3cb4.png" border="0" />
 
-<h4 id="段页式存储"><a href="#段页式存储" class="headerlink" title="段页式存储"></a>段页式存储</h4><p><strong>段式与页式的综合体，先分段，再分页，1个程序有若千个段，每个段中可以有若干页，每个页的大小相同，但每个段的大小不同。</strong></p>
+<h3 id="段页式存储"><a href="#段页式存储" class="headerlink" title="段页式存储"></a>段页式存储</h3><p><strong>段式与页式的综合体，先分段，再分页，1个程序有若千个段，每个段中可以有若干页，每个页的大小相同，但每个段的大小不同。</strong></p>
 <img src="https://s1.imagehub.cc/images/2022/09/30/imageee037074a82cbdc9.png" alt="imageee037074a82cbdc9.png" border="0" />
 
 <p>优点：空间浪费小，存储共享容易，存储保护容易，能动态连接</p>
 <p>缺点：由于管理软件的增加，复杂性和开销也随之增加，需要的硬件以及占用的内容也有所增加，使得执行速度大大下降</p>
-<h4 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h4><ul>
+<h3 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h3><ul>
 <li>最优（Optimal,OPT)算法</li>
 <li>随机（RAND)算法</li>
 <li>√先进先出（FIFO)算法：有可能产生“抖动”。例如，432143543215序列，用3个页面，比4个缺页要少</li>
@@ -263,23 +263,60 @@
 <li>时间局部性：刚被访问的内容，立即又被访问。</li>
 <li>空间局部性：刚被访问的内容，临近的空间很快被访问。</li>
 </ul>
-<h4 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h4><p>存取时间&#x3D;寻道时间+等待时间，寻道时间是指磁头移动到磁道所需的时间；等待时间为等待读写的扇区转到磁头下方所用的时间。</p>
-<h4 id="磁盘调度算法"><a href="#磁盘调度算法" class="headerlink" title="磁盘调度算法"></a>磁盘调度算法</h4><ul>
+<h3 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h3><p>存取时间&#x3D;寻道时间+等待时间，寻道时间是指磁头移动到磁道所需的时间；等待时间为等待读写的扇区转到磁头下方所用的时间。</p>
+<h3 id="磁盘调度算法"><a href="#磁盘调度算法" class="headerlink" title="磁盘调度算法"></a>磁盘调度算法</h3><ul>
 <li>先来先服务（FCFS)</li>
 <li>最短寻道时间优先（SSTF)</li>
 <li>扫描算法（SCAN)</li>
 <li>循环扫描（CSCAN)算法</li>
 </ul>
-<h4 id="读取磁盘数据时间计算"><a href="#读取磁盘数据时间计算" class="headerlink" title="读取磁盘数据时间计算"></a>读取磁盘数据时间计算</h4><p>读取磁盘数据的时间应包括以下三个部分：</p>
+<h3 id="读取磁盘数据时间计算"><a href="#读取磁盘数据时间计算" class="headerlink" title="读取磁盘数据时间计算"></a>读取磁盘数据时间计算</h3><p>读取磁盘数据的时间应包括以下三个部分：</p>
 <ol>
 <li>找磁道的时间。</li>
 <li>找块（扇区）的时间，即旋转延迟时间。</li>
 <li>传输时间。</li>
 </ol>
-<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><p><code>某磁盘磁头从一个磁道移至另一个磁道需要10ms,文件在磁盘上非连续存放，逻辑上相邻数据块的平均移动距离为10个磁道，每块的旋转延迟时及传输时间分别为100ms和2ms,则读取一个100块的文件需要__ms时间。</code></p>
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p><code>某磁盘磁头从一个磁道移至另一个磁道需要10ms,文件在磁盘上非连续存放，逻辑上相邻数据块的平均移动距离为10个磁道，每块的旋转延迟时及传输时间分别为100ms和2ms,则读取一个100块的文件需要__ms时间。</code></p>
 <p><code>A.10200 B.11000 C.11200 D.20200</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这种问题先计算磁道移动缩需要的延迟即10*10</span><br><span class="line">然后加上每块区域旋转的延迟时间+每个数据块传输的时间</span><br><span class="line">最后再乘以总的读取文件总数。即[(10*10)+100+2]*100</span><br></pre></td></tr></table></figure>
 
+<h2 id="作业管理"><a href="#作业管理" class="headerlink" title="作业管理"></a>作业管理</h2><h3 id="作业状态与作业管理"><a href="#作业状态与作业管理" class="headerlink" title="# 作业状态与作业管理"></a># 作业状态与作业管理</h3><img src="https://s1.imagehub.cc/images/2022/10/02/imagea9990cb58b96b4e0.png" alt="imagea9990cb58b96b4e0.png" border="0" />
+
+<h3 id="作业的调度算法"><a href="#作业的调度算法" class="headerlink" title="作业的调度算法"></a>作业的调度算法</h3><ul>
+<li><p>先来先服务法：作业先来先执行</p>
+</li>
+<li><p>时间片轮转法：根据CPU的时间来核算</p>
+</li>
+<li><p>短作业优先法：执行执行时间最短的作业优先执行</p>
+</li>
+<li><p>最高优先权优先法：按照作业的优先权先后排列</p>
+</li>
+<li><p>高响应比优先法：根据响应比（作业的等待时间&#x2F;作业的执行时间）最高的优先执行</p>
+</li>
+</ul>
+<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><h3 id="索引文件结构"><a href="#索引文件结构" class="headerlink" title="索引文件结构"></a>索引文件结构</h3><img src="https://s1.imagehub.cc/images/2022/10/02/image2b7ad7ddada550f7.png" alt="image2b7ad7ddada550f7.png" border="0" />
+
+<ul>
+<li>0-9：使用直接索引，每一个物理块为1k，也就是10k（0-10239）</li>
+<li>10：一级间接索引，存一页即1KB用4个存地址，即256个（1024&#x2F;4），256每个对应1K，即256K</li>
+<li>11：二级间接索引，256个乘以256个乘以256K 即64M</li>
+<li>12：三级间接索引，256乘以二级间接索引，即16G</li>
+</ul>
+<img src="https://s1.imagehub.cc/images/2022/10/02/image539c6ba6d980eb73.png" alt="image539c6ba6d980eb73.png" border="0" />
+
+<h3 id="树形目录结构"><a href="#树形目录结构" class="headerlink" title="树形目录结构"></a>树形目录结构</h3><p>linux数据目录结构：&#x2F;</p>
+<p>就是文件夹目录，相对目录（不包括本身），绝对目录（从头写到尾）</p>
+<h3 id="空闲存储空间的管理"><a href="#空闲存储空间的管理" class="headerlink" title="空闲存储空间的管理"></a>空闲存储空间的管理</h3><p>位示图法：类似于电影院订票，可以清晰的看出</p>
+<h2 id="设备管理"><a href="#设备管理" class="headerlink" title="设备管理"></a>设备管理</h2><h3 id="数据传输控制方式"><a href="#数据传输控制方式" class="headerlink" title="数据传输控制方式"></a>数据传输控制方式</h3><p>（速度从低到高）</p>
+<ul>
+<li><strong>程序控制（查询）方式</strong>：分为无条件传送和程序查询方式两种。方法简单，硬件开销小，但I&#x2F;O能力不高，严重影响CPU的利用率</li>
+<li><strong>程序中断方式</strong>：与程序控制方式相比，中断方式因为CPU无需等待而提高了传输请求的响应速度。</li>
+<li><strong>DMA方式</strong>：DMA方式是为了在主存与外设之间实现高速、批量数据交换而设置的。DMA方式比程序控制方式与中断方式都高效（与CPU没关系，CPU只负责下指令）</li>
+<li><strong>通道方式</strong></li>
+<li><strong>I&#x2F;O处理机</strong></li>
+</ul>
+<h3 id="虚设备与SPOOLING技术"><a href="#虚设备与SPOOLING技术" class="headerlink" title="# 虚设备与SPOOLING技术"></a># 虚设备与SPOOLING技术</h3><p>排队式</p>
+<img src="https://s1.imagehub.cc/images/2022/10/02/image122ec490de3799c3.png" alt="image122ec490de3799c3.png" border="0" />
 
       
     </div>
