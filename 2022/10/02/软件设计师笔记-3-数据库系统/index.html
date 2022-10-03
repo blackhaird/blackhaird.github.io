@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="数据库系统笔记红星为重点内容   三级模式这部分是涉及数据库理论      模式 映射 独立性    外模式&#x3D;&gt;模式 概念模式映射 逻辑独立性   模式&#x3D;&gt;内模式 内模式映射 物理独立性   数据库设计过程  数据流图：用来更好的表达需求说明书，表达数据的来源和输出。（下午题15） 数据字典：补充数据流图的数据说明 ER模型：(下午题15)  * ER模型">
+  <meta name="description" content="数据库系统笔记红星为重点内容   三级模式这部分是涉及数据库理论      模式 映射 独立性    外模式&#x3D;&gt;模式 概念模式映射 逻辑独立性   模式&#x3D;&gt;内模式 内模式映射 物理独立性   数据库设计过程   数据流图：用来更好的表达需求说明书，表达数据的来源和输出。（下午题15） 数据字典：补充数据流图的数据说明 ER模型：(下午题15)  * ER模型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件设计师笔记(3)-数据库系统">
 <meta property="og:url" content="http://example.com/2022/10/02/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-3-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="MEIDE&#39;S BLOG">
-<meta property="og:description" content="数据库系统笔记红星为重点内容   三级模式这部分是涉及数据库理论      模式 映射 独立性    外模式&#x3D;&gt;模式 概念模式映射 逻辑独立性   模式&#x3D;&gt;内模式 内模式映射 物理独立性   数据库设计过程  数据流图：用来更好的表达需求说明书，表达数据的来源和输出。（下午题15） 数据字典：补充数据流图的数据说明 ER模型：(下午题15)  * ER模型">
+<meta property="og:description" content="数据库系统笔记红星为重点内容   三级模式这部分是涉及数据库理论      模式 映射 独立性    外模式&#x3D;&gt;模式 概念模式映射 逻辑独立性   模式&#x3D;&gt;内模式 内模式映射 物理独立性   数据库设计过程   数据流图：用来更好的表达需求说明书，表达数据的来源和输出。（下午题15） 数据字典：补充数据流图的数据说明 ER模型：(下午题15)  * ER模型">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/02/imagedc3f88bea1530fb3.png">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/02/imageef6d4eff440dd8bf.png">
-<meta property="og:image" content="http://example.com/image-20221002154542246.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/03/imagef42ae941c321613a.png">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/02/image124636e20b94692b.png">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/02/imageef01c1c392adade5.png">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/02/image1195e8b5884458e6.png">
@@ -51,7 +51,7 @@
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/03/image49ca5cc96126b5d6.png">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/03/image240bfe51cc694074.png">
 <meta property="article:published_time" content="2022-10-02T07:23:12.000Z">
-<meta property="article:modified_time" content="2022-10-03T12:29:02.668Z">
+<meta property="article:modified_time" content="2022-10-03T12:34:27.006Z">
 <meta property="article:author" content="MEIDE">
 <meta property="article:tag" content="考试知识点">
 <meta property="article:tag" content="软考">
@@ -212,7 +212,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-03 20:29:02" itemprop="dateModified" datetime="2022-10-03T20:29:02+08:00">2022-10-03</time>
+                <time title="修改时间：2022-10-03 20:34:27" itemprop="dateModified" datetime="2022-10-03T20:34:27+08:00">2022-10-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -260,7 +260,8 @@
 <td>物理独立性</td>
 </tr>
 </tbody></table>
-<h2 id="数据库设计过程"><a href="#数据库设计过程" class="headerlink" title="数据库设计过程"></a>数据库设计过程</h2><p><img src="/image-20221002154542246.png" alt="image-20221002154542246"></p>
+<h2 id="数据库设计过程"><a href="#数据库设计过程" class="headerlink" title="数据库设计过程"></a>数据库设计过程</h2><img src="https://s1.imagehub.cc/images/2022/10/03/imagef42ae941c321613a.png" alt="imagef42ae941c321613a.png" border="0" />
+
 <ul>
 <li>数据流图：用来更好的表达需求说明书，表达数据的来源和输出。（下午题15）</li>
 <li>数据字典：补充数据流图的数据说明</li>
