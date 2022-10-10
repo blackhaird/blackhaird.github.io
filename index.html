@@ -174,10 +174,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-10-06 13:34:49 / 修改时间：23:50:30" itemprop="dateCreated datePublished" datetime="2022-10-06T13:34:49+08:00">2022-10-06</time>
+              <time title="创建时间：2022-10-06 13:34:49" itemprop="dateCreated datePublished" datetime="2022-10-06T13:34:49+08:00">2022-10-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-10 22:14:57" itemprop="dateModified" datetime="2022-10-10T22:14:57+08:00">2022-10-10</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -404,6 +410,143 @@
 <p>TD-LTE</p>
 <p>WirelessMAN（802.16m）（WiMAX）</p>
 <h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><img src="https://s1.imagehub.cc/images/2022/10/06/image8219c273fbf57888.png" alt="image8219c273fbf57888.png" border="0" />
+
+
+
+<h2 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h2><img src="https://s1.imagehub.cc/images/2022/10/07/image.png" alt="image.png" border="0" />
+
+<h3 id="对称加密技术"><a href="#对称加密技术" class="headerlink" title="对称加密技术"></a>对称加密技术</h3><p>使用同一套秘钥<br>$$<br>K_e&#x3D;K_d<br>$$</p>
+<ul>
+<li>加密强度不高，但效率高效</li>
+<li>密钥分发困难</li>
+</ul>
+<p>常见对称秘钥加密算法：DES、3DES（三重DES）、RC-5、IDEA算法</p>
+<img src="https://s1.imagehub.cc/images/2022/10/07/imaged60a3862cdf4e261.png" alt="imaged60a3862cdf4e261.png" border="0" />
+
+<h3 id="非对称加密技术"><a href="#非对称加密技术" class="headerlink" title="非对称加密技术"></a>非对称加密技术</h3><p>加密和使用的不是同一套秘钥。密钥必须成对使用（公钥加密，相应的的私钥解密）</p>
+<p>使用接收方的公钥加密，使用接收方的私钥解密<br>$$<br>K_e ≠ K_d<br>$$</p>
+<p>特点：加密速度慢，但强度高</p>
+<p>常见非对称秘钥加密算法：RSA、ECC</p>
+<img src="https://s1.imagehub.cc/images/2022/10/07/imageeefd5f06393fda55.png" alt="imageeefd5f06393fda55.png" border="0" />
+
+<h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><p>为了证明文件的签发方。</p>
+<p>发送者用自己的私钥签发，接收者采用发送者的公钥作为验证。</p>
+<img src="https://s1.imagehub.cc/images/2022/10/10/imageb9fb441b60507e07.png" alt="imageb9fb441b60507e07.png" border="0" />
+
+<h3 id="消息摘要"><a href="#消息摘要" class="headerlink" title="消息摘要"></a>消息摘要</h3><p>数字摘要：由单向散列函数加密成固定长度的散列值。（不可逆的过程）</p>
+<p>常用的消息摘要算法有MD5，SHA等，市场上广泛使用的MD5，SHA算法的散列值分别为128和160位，由于SHA通常采用的密钥长度较长，因此安全性高于MD5。</p>
+<h3 id="PKI公钥体系"><a href="#PKI公钥体系" class="headerlink" title="# PKI公钥体系"></a># PKI公钥体系</h3><p>CA中心：管理公钥和私钥的注册和更新。</p>
+<h2 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h2><h3 id="各个网络层次的安全保障"><a href="#各个网络层次的安全保障" class="headerlink" title="各个网络层次的安全保障"></a>各个网络层次的安全保障</h3><table>
+    <tr>
+        <td>PGP</td>
+        <td>Https</td>
+        <td rowspan=4>SSL</td>
+        <td>应用层</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        
+<pre><code>    &lt;td&gt;表示层&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+    
+    &lt;td&gt;会话层&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;TLS&lt;/td&gt;
+    &lt;td&gt;SET&lt;/td&gt;
+    
+    &lt;td&gt;传输层&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;防火墙&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+    &lt;td&gt;IPSec&lt;/td&gt;
+    
+    &lt;td&gt;网络层&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;链路加密&lt;/td&gt;
+    &lt;td&gt;PPTP&lt;/td&gt;
+    &lt;td&gt;L2TP&lt;/td&gt;
+    
+    &lt;td&gt;数据链路层&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;隔离&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+    &lt;td&gt;屏蔽&lt;/td&gt;
+    
+    &lt;td&gt;物理层&lt;/td&gt;
+&lt;/tr&gt;
+</code></pre>
+</table>
+
+<h3 id="主动攻击与被动攻击"><a href="#主动攻击与被动攻击" class="headerlink" title="主动攻击与被动攻击"></a>主动攻击与被动攻击</h3><table>
+    <tr>
+        <td rowspan=2>被动攻击</td>
+        <td rowspan=2>监听（保密性)</td>
+        <td>消息内容获取</td>
+    </tr>
+    <tr>
+        <td>业务流分析</td>
+    </tr>
+    <tr>
+        <td rowspan=3>主动攻击</td>
+        <td rowspan=3></td>
+        <td>中断（可用性）</td>
+    </tr>
+    <tr>
+        <td>篡改（完整性）</td>
+    </tr>
+    <tr>
+        <td>伪装（真实性）</td>
+    </tr>
+</table>
+
+<h3 id="Dos-拒绝服务-与DDos"><a href="#Dos-拒绝服务-与DDos" class="headerlink" title="Dos(拒绝服务)与DDos"></a>Dos(拒绝服务)与DDos</h3><p>服务器忙于处理傀儡机请求，无法接受其他请求</p>
+<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><table>
+    <tr>
+        <td rowspan="2">网络级</td>
+        <td>包过滤（只检查包，不检查内部内容）</td>
+        <td rowspan="2">
+            内部网络->屏蔽路由器--Internet
+        </td>
+    </tr>
+    <tr>
+        <td>状态检测（全部检测，开销大）</td>
+    </tr>
+    
+<pre><code>&lt;tr&gt;
+    &lt;td rowspan=&quot;3&quot;&gt;应用级&lt;/td&gt;
+    &lt;td&gt;双穴主机&lt;/td&gt;
+    &lt;td&gt;内部网络-&gt;双穴主机--Internet&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;屏蔽主机&lt;/td&gt;
+    &lt;td&gt;
+        &lt;img src=&quot;https://s1.imagehub.cc/images/2022/10/10/image63967402bfa7c5b6.png&quot; alt=&quot;image63967402bfa7c5b6.png&quot; border=&quot;0&quot; /&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;屏蔽子网&lt;/td&gt;
+    &lt;td&gt;&lt;img src=&quot;https://s1.imagehub.cc/images/2022/10/10/image4b8790680f981eeb.png&quot; alt=&quot;image4b8790680f981eeb.png&quot; border=&quot;0&quot; /&gt;&lt;br&gt;
+    &lt;img src=&quot;https://s1.imagehub.cc/images/2022/10/10/imageb61e3b4c1f369535.png&quot; alt=&quot;imageb61e3b4c1f369535.png&quot; border=&quot;0&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+</code></pre>
+</table>
+
+<h3 id="安全防范体系"><a href="#安全防范体系" class="headerlink" title="安全防范体系"></a>安全防范体系</h3><ol>
+<li><strong>物理环境的安全性：</strong>物理环境的安全性。包括通信线路、物理设备和机房的安全等。物理层的安全主要体现在通信线路的可靠性（线路备份、网管软件和传输介质）、软硬件设备的安全性（普换设备、拆卸设备、增加设备设备的备份、防灾害能力、防干扰能力、设备的运行环境（温度、湿度、烟尘）和不间断电源保障等。</li>
+<li>**操作系统的安全性:**主要表现在三个方面，一是操作系统本身的缺陷带来的不安全因素，主要括身份认证、访问控制和系统漏洞等；二是对操作系统的安全配置问题；三是病毒对操作系统的威助。</li>
+<li>**网络的安全性:**网络层的安全问题主要体现在计算机网络方面的安全性，包括网络层身份认证网络资源的访问控制、数据传输的保密与完整性、远程接入的安全、域名系统的安全、路由系统入侵检测的手段和网络设施防病毒等。</li>
+<li><strong>应用的安全性：</strong>由提供服务所采用的应用软件和数据的安全性产生，包括Web服务、电子邮件统和DNS等，此外，还包括病毒对系统的威胁。</li>
+<li><strong>管理的安全性：</strong>包括安全技术和设备的管理、安全管理制度、部门与人员的组织规制规则等。管理的制度化极大程度地影响着整个计算机网络的安全，严格的安全管理制度、明确的部门安全职划分与合理的人员角色配置，都可以在很大程度上降低其他层次的安全漏洞。</li>
+</ol>
+<h3 id="病毒"><a href="#病毒" class="headerlink" title="病毒"></a>病毒</h3><img src="https://s1.imagehub.cc/images/2022/10/10/imagecaa9de44d4cf99c2.png" alt="imagecaa9de44d4cf99c2.png" border="0" />
 
       
     </div>
