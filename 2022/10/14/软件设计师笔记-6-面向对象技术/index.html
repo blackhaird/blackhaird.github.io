@@ -20,19 +20,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="面向对象技术">
+  <meta name="description" content="*面向对象技术本节内容是考试的重点   面向对象的基本概念 对象：属性（数据）+方法（操作）+对象ID 类（实体类&#x2F;控制类&#x2F;边界类） 继承与泛化：复用机制 封装：隐藏对象的属性和实现细节，仅对外公开接口 多态：不同对象收到同样的消息产生不同的结果 接口：一种特殊的类，他只有方法定义没有实现 重载：一个类可以有多个同名而参数类型不同的方法 模板类 消息和消息通信：消息是异步通信的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件设计师笔记(6)-面向对象技术">
 <meta property="og:url" content="http://example.com/2022/10/14/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-6-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%8A%80%E6%9C%AF/index.html">
 <meta property="og:site_name" content="MEIDE&#39;S BLOG">
-<meta property="og:description" content="面向对象技术">
+<meta property="og:description" content="*面向对象技术本节内容是考试的重点   面向对象的基本概念 对象：属性（数据）+方法（操作）+对象ID 类（实体类&#x2F;控制类&#x2F;边界类） 继承与泛化：复用机制 封装：隐藏对象的属性和实现细节，仅对外公开接口 多态：不同对象收到同样的消息产生不同的结果 接口：一种特殊的类，他只有方法定义没有实现 重载：一个类可以有多个同名而参数类型不同的方法 模板类 消息和消息通信：消息是异步通信的">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/14/image3c246187eb8bb105.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/14/image6048ef5257548366.png">
 <meta property="article:published_time" content="2022-10-14T08:00:30.000Z">
-<meta property="article:modified_time" content="2022-10-14T08:01:05.086Z">
+<meta property="article:modified_time" content="2022-10-14T09:55:11.451Z">
 <meta property="article:author" content="MEIDE">
 <meta property="article:tag" content="考试知识点">
 <meta property="article:tag" content="软考">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.imagehub.cc/images/2022/10/14/image3c246187eb8bb105.png">
 
 <link rel="canonical" href="http://example.com/2022/10/14/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-6-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%8A%80%E6%9C%AF/">
 
@@ -182,7 +185,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-10-14 16:00:30 / 修改时间：16:01:05" itemprop="dateCreated datePublished" datetime="2022-10-14T16:00:30+08:00">2022-10-14</time>
+              <time title="创建时间：2022-10-14 16:00:30 / 修改时间：17:55:11" itemprop="dateCreated datePublished" datetime="2022-10-14T16:00:30+08:00">2022-10-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -205,7 +208,229 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="面向对象技术"><a href="#面向对象技术" class="headerlink" title="面向对象技术"></a>面向对象技术</h1>
+        <h1 id="面向对象技术"><a href="#面向对象技术" class="headerlink" title="*面向对象技术"></a>*面向对象技术</h1><p>本节内容是考试的重点</p>
+<img src="https://s1.imagehub.cc/images/2022/10/14/image3c246187eb8bb105.png" alt="image3c246187eb8bb105.png" border="0" />
+
+<h2 id="面向对象的基本概念"><a href="#面向对象的基本概念" class="headerlink" title="面向对象的基本概念"></a>面向对象的基本概念</h2><ul>
+<li>对象：<strong>属性（数据）+方法（操作）</strong>+对象ID</li>
+<li>类（实体类&#x2F;控制类&#x2F;边界类）</li>
+<li>继承与泛化：复用机制</li>
+<li>封装：隐藏对象的属性和实现细节，仅对外公开接口</li>
+<li>多态：不同对象收到<strong>同样的消息产</strong>生不同的结果</li>
+<li>接口：一种特殊的类，他只有方法定义没有实现</li>
+<li>重载：一个类可以有多个<strong>同名而参数类型不同的方法</strong></li>
+<li>模板类</li>
+<li>消息和消息通信：消息是异步通信的</li>
+</ul>
+<h3 id="面向对象设计7大原则"><a href="#面向对象设计7大原则" class="headerlink" title="面向对象设计7大原则"></a>面向对象设计7大原则</h3><ul>
+<li>单一职责原则：设计目的单一的类</li>
+<li>开放-封闭原则：对扩展开放，对修改封闭</li>
+<li>李氏（Liskov）替换原则：子类可以替换父类</li>
+<li>依赖倒置原则：要依赖于抽象，而不是具体实现；针对接口编程，不要面向实现编程。</li>
+<li>接口隔离原则：使用多个专门的接口比使用单一的总接口要好</li>
+<li>组合重用原则：要尽量使用组合，而不是继承关系达到重用目的。</li>
+<li>迪米特（Demeter）原则（最少知识法则）：一个对象应当对其他对象有尽可能少的了解</li>
+</ul>
+<h2 id="UML（通用建模语言）"><a href="#UML（通用建模语言）" class="headerlink" title="*UML（通用建模语言）"></a>*UML（通用建模语言）</h2><table>
+<thead>
+<tr>
+<th>图名</th>
+<th>包含内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>结构图</td>
+<td><span style="color:red;font-weight:bold">类图</span><br>对象图<br># 包图<br/># 组合结构图（UML2.0新增内容）<br/>结构图<br/>部署图：软硬件之间映射<br/># 制品图</td>
+</tr>
+<tr>
+<td>行为图</td>
+<td><span style="color:red;font-weight:bold">用例图：系统与外部参与者的交互</span><br/>顺序图：强调按时间顺序<br/>通信图（协作图）<br/># 定时图（UML2.0新增内容）<br/>状态图<br/>活动图：类似程序流图，并行行为<br/># 交互概念图</td>
+</tr>
+</tbody></table>
+<h3 id="类图"><a href="#类图" class="headerlink" title="* 类图"></a>* 类图</h3><ul>
+<li>依赖关系：一个事物发生变化影响另一个事物。</li>
+<li>泛化关系：特殊&#x2F;一般关系（继承关系）</li>
+<li>关联关系：描述了一组链，链是对象之间的连接。<ul>
+<li>聚合关系：整体与部分生命周期不同。</li>
+<li>组合关系：整体与部分生命周期相同。</li>
+</ul>
+</li>
+<li>实现关系：接口与类之间的关系</li>
+</ul>
+<img src="https://s1.imagehub.cc/images/2022/10/14/image6048ef5257548366.png" alt="image6048ef5257548366.png" border="0" />
+
+<h3 id="设计模式的分类"><a href="#设计模式的分类" class="headerlink" title="* 设计模式的分类"></a>* 设计模式的分类</h3><h4 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h4><ul>
+<li><span style="color:red;font-weight:bold">工厂方法（factory method）模式</span></li>
+<li><span style="color:red;font-weight:bold">抽象工厂（abstract factory）模式</span></li>
+<li>原型（prototype）模式</li>
+<li><span style="color:red;font-weight:bold">单例（singleton）模式</span></li>
+<li>构建器（builder）模式</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>设计模式名称</th>
+<th>需要说明</th>
+<th>速记关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><span style="color:red;font-weight:bold">Abstract factory&lt;<br/>抽象工厂模式</span></td>
+<td>提供一个接口，可以创建一系列相关或相互依赖的对象而无需指定他们具体的类</td>
+<td>生产成系列对象</td>
+</tr>
+<tr>
+<td>Builder<br/>构建器模式</td>
+<td>将一个复杂类的表示与其构造相分离，使得相同的构建过程能够得出不同的表示</td>
+<td>复杂对象构造</td>
+</tr>
+<tr>
+<td><span style="color:red;font-weight:bold">Factory Method<br/>工厂方法模式</span></td>
+<td>定义一个创建对象的接口，但由子类决定需要实例化哪一个类。工厂方法使得子类实例化的过程推迟</td>
+<td>动态生产对象</td>
+</tr>
+<tr>
+<td>Prototype<br/>原型模式</td>
+<td>用原型实例指定创建对象的类型，并且通过拷贝这个原型来创建新的对象</td>
+<td>克隆对象</td>
+</tr>
+<tr>
+<td><span style="color:red;font-weight:bold">Singleton<br/>单列模式</span></td>
+<td>保证一个类只有一个实例，并提供一个访问他的全局访问点</td>
+<td>单实例</td>
+</tr>
+</tbody></table>
+<h4 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h4><ul>
+<li><span style="color:red;font-weight:bold">适配器（adapter）模式</span></li>
+<li><span style="color:red;font-weight:bold">桥接（bridge）模式</span></li>
+<li><span style="color:red;font-weight:bold">组合（composite）模式</span></li>
+<li><span style="color:red;font-weight:bold">装饰（decorator）模式</span></li>
+<li>外观（facade）模式</li>
+<li>享元（flyweight）模式</li>
+<li>代理（proxy）模式</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>设计模式名称</th>
+<th>简要说明</th>
+<th>速记关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><span style="color:red;font-weight:bold">Adapter<br/>适配器模式</span></td>
+<td>将一个类的接口转换成用户希望得到的另一种接口，他使原本不相容的接口得以协同工作</td>
+<td>转换接口</td>
+</tr>
+<tr>
+<td><span style="color:red;font-weight:bold">Bridge<br/>桥接模式</span></td>
+<td>将类的抽象部分和他的实现部分分离开来，使他们可以独立的变化</td>
+<td>继承树拆分</td>
+</tr>
+<tr>
+<td><span style="color:red;font-weight:bold">Composite<br/>组合模式</span></td>
+<td>将对象组合成树型结构以表示“整体-部分”的层次结构使得用户对单个对象和组合对象的使用具有一致性</td>
+<td>树形目录结构</td>
+</tr>
+<tr>
+<td><span style="color:red;font-weight:bold">Decorator<br/>装饰模式</span></td>
+<td>动态地给一个对绿添加一些颜外的职责。它提供了用子类 广展功能的 下灵活的替代，比派生一个子类更加灵活</td>
+<td>附加职责</td>
+</tr>
+<tr>
+<td>Facade<br/>外观模式</td>
+<td>是义一个高层接口，为子系统中的一组接口提供一个一致的外观，从而简化了该子系统的使用</td>
+<td>对外统一接口</td>
+</tr>
+<tr>
+<td>Flyweight<br/>享元模式</td>
+<td>提供支持大量细粒度对象共事的有效方法</td>
+<td>文章共事文字对象</td>
+</tr>
+<tr>
+<td>Proxy<br/>代理模式</td>
+<td>为其他对象提供一种代理以控制这个对象的访问</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h4><ul>
+<li><span style="color:red;font-weight:bold">职责链（chain of responsibility）模式</span></li>
+<li><span style="color:red;font-weight:bold">命令（command）模式</span></li>
+<li><span style="color:red;font-weight:bold">解释器（interpreter）模式</span></li>
+<li>选代器（iterator）模式</li>
+<li>中介者（mediator）模式</li>
+<li>备忘录（memento）模式</li>
+<li><span style="color:red;font-weight:bold">观察者（observer）模式</span></li>
+<li>状态（state）模式</li>
+<li><span style="color:red;font-weight:bold">策略（strategy）模式</span></li>
+<li>操板方法（template method）模式</li>
+<li>访问者（visitor）模式</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>设计模式名称</th>
+<th>简要说明</th>
+<th>速记关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Chain of Responsibility<br>职责链模式</td>
+<td>通过给多个对象处理请求的机会，减少请求的发送者与接收者之间的耦合，将接收对象链接起来，在链中传请求，直到有一个对象处理这个请求</td>
+<td>传递职责</td>
+</tr>
+<tr>
+<td>Command<br/>命令模式</td>
+<td>将一个请求封装为一个对象，从而可用不同的请求对户进行参数化，将请求排队或记录请求日志，支持可销的操作</td>
+<td>日志记录，可撤销</td>
+</tr>
+<tr>
+<td>Interpreter<br/>解释器模式</td>
+<td>给定一种语言，定义它的文法表示，并定义一个解释该解释器用来根据文法表示来解释语言中的句子</td>
+<td>虚拟机的机制</td>
+</tr>
+<tr>
+<td>Iterator<br/>迭代器模式</td>
+<td>提供一种方法来原序访间一个聚合对象中的各个元素而不需要暴量该对象的内部表示</td>
+<td>数据库数据集</td>
+</tr>
+<tr>
+<td>Mediator<br/>中介者模式</td>
+<td>一个中介对象来封装一系列的对象交互，它使各对将要显式地相互调用，从而达到低精合，还可以独他改变对象间的交互</td>
+<td>不直接引用</td>
+</tr>
+<tr>
+<td>Memento<br/>备忘录模式</td>
+<td>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，从而可以在以后将该对象恢复到原先保存的状态</td>
+<td></td>
+</tr>
+<tr>
+<td>Observer<br/>观察者模式</td>
+<td>定义对象间的一种一对多的依赖关系，当一个对象的状态生改变时，所有依赖于它的对象都得到通知并自动更新</td>
+<td>联动</td>
+</tr>
+<tr>
+<td>State<br/>状态模式</td>
+<td>允许一个对象在其内部状态改变时改变它的行为</td>
+<td>状态变成类</td>
+</tr>
+<tr>
+<td>Strategy<br/>策略模式</td>
+<td>定义一系列算法，把它们一个个封装起来，并且使它们之间可互相替换，从而让算法可以独立于使用它的用户而变化</td>
+<td>多方案切换</td>
+</tr>
+<tr>
+<td>Template Method<br/>模板方法模式</td>
+<td>定义一个操作中的算法骨架，而将一些步骤延迟到子类中，使得子类可以不改变一个算法的结构即可置新定义算法的专特定步量</td>
+<td></td>
+</tr>
+<tr>
+<td>Visitor<br/>访问者模式</td>
+<td>表示一个作用于某对象结构中的各元素的操作，使得在不变各元素的类的前提下定义作用于这些完素的新操作</td>
+<td></td>
+</tr>
+</tbody></table>
+
     </div>
 
     
@@ -286,7 +511,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%8A%80%E6%9C%AF"><span class="nav-number">1.</span> <span class="nav-text">面向对象技术</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%8A%80%E6%9C%AF"><span class="nav-number">1.</span> <span class="nav-text">*面向对象技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">面向对象的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A17%E5%A4%A7%E5%8E%9F%E5%88%99"><span class="nav-number">1.1.1.</span> <span class="nav-text">面向对象设计7大原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UML%EF%BC%88%E9%80%9A%E7%94%A8%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">*UML（通用建模语言）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9B%BE"><span class="nav-number">1.2.1.</span> <span class="nav-text">* 类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.2.2.</span> <span class="nav-text">* 设计模式的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">创建型模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">结构型模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">行为型模式</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
