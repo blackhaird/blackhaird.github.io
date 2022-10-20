@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/meideblog/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="多媒体基础知识音频相关概念  图像相关概念  媒体的种类  相关的计算  例题  常见的多媒体标准  数据压缩 空间冗余（几何冗余） 时间冗余 视觉冗余 信息熵冗余 结构冗余 知识冗余  有损压缩与无损压缩  知识产权保护范围与对象   法律法规名称 保护对象及范围 注意事项    著作权法（版权） 著作权文学、绘画、摄影等作品 1.不需要申请，作品完成即开始保护2.绘画或摄影作品原件出售（赠予）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件设计师笔记(9)-多媒体基础与知识产权标准化">
+<meta property="og:url" content="http://example.com/2022/10/20/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-9-%E5%A4%9A%E5%AA%92%E4%BD%93%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%9F%A5%E8%AF%86%E4%BA%A7%E6%9D%83%E6%A0%87%E5%87%86%E5%8C%96/index.html">
+<meta property="og:site_name" content="MEIDE&#39;S BLOG">
+<meta property="og:description" content="多媒体基础知识音频相关概念  图像相关概念  媒体的种类  相关的计算  例题  常见的多媒体标准  数据压缩 空间冗余（几何冗余） 时间冗余 视觉冗余 信息熵冗余 结构冗余 知识冗余  有损压缩与无损压缩  知识产权保护范围与对象   法律法规名称 保护对象及范围 注意事项    著作权法（版权） 著作权文学、绘画、摄影等作品 1.不需要申请，作品完成即开始保护2.绘画或摄影作品原件出售（赠予）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/20/image4ee03ae9628e6ac4.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/20/imagee9e38c233770eec0.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/20/image5cb5a51bb2ea65f4.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/20/image26669aadf7bf77e9.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/20/image2672b0b50b15d0dd.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/20/imagec673c5e87078ca79.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/20/imageba2e258046af3839.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/20/imageaadfd9e55b5e5e84.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/20/image6cdc7f58341771c2.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/20/image6dcab6d003c93d40.png">
+<meta property="og:image" content="https://s1.imagehub.cc/images/2022/10/20/imagef7d2927a32266f7c.png">
+<meta property="article:published_time" content="2022-10-20T13:33:56.000Z">
+<meta property="article:modified_time" content="2022-10-20T14:02:55.637Z">
+<meta property="article:author" content="MEIDE">
+<meta property="article:tag" content="考试知识点">
+<meta property="article:tag" content="软考">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.imagehub.cc/images/2022/10/20/image4ee03ae9628e6ac4.png">
+
+<link rel="canonical" href="http://example.com/2022/10/20/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-9-%E5%A4%9A%E5%AA%92%E4%BD%93%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%9F%A5%E8%AF%86%E4%BA%A7%E6%9D%83%E6%A0%87%E5%87%86%E5%8C%96/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>软件设计师笔记(9)-多媒体基础与知识产权标准化 | MEIDE'S BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MEIDE'S BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/20/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-9-%E5%A4%9A%E5%AA%92%E4%BD%93%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%9F%A5%E8%AF%86%E4%BA%A7%E6%9D%83%E6%A0%87%E5%87%86%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          软件设计师笔记(9)-多媒体基础与知识产权标准化
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-20 21:33:56 / 修改时间：22:02:55" itemprop="dateCreated datePublished" datetime="2022-10-20T21:33:56+08:00">2022-10-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="多媒体基础知识"><a href="#多媒体基础知识" class="headerlink" title="多媒体基础知识"></a>多媒体基础知识</h1><h2 id="音频相关概念"><a href="#音频相关概念" class="headerlink" title="音频相关概念"></a>音频相关概念</h2><img src="https://s1.imagehub.cc/images/2022/10/20/image4ee03ae9628e6ac4.png" alt="image4ee03ae9628e6ac4.png" border="0" />
+
+<h2 id="图像相关概念"><a href="#图像相关概念" class="headerlink" title="图像相关概念"></a>图像相关概念</h2><img src="https://s1.imagehub.cc/images/2022/10/20/imagee9e38c233770eec0.png" alt="imagee9e38c233770eec0.png" border="0" />
+
+<h2 id="媒体的种类"><a href="#媒体的种类" class="headerlink" title="媒体的种类"></a>媒体的种类</h2><img src="https://s1.imagehub.cc/images/2022/10/20/image5cb5a51bb2ea65f4.png" alt="image5cb5a51bb2ea65f4.png" border="0" />
+
+<h2 id="相关的计算"><a href="#相关的计算" class="headerlink" title="相关的计算"></a>相关的计算</h2><img src="https://s1.imagehub.cc/images/2022/10/20/image26669aadf7bf77e9.png" alt="image26669aadf7bf77e9.png" border="0" />
+
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><img src="https://s1.imagehub.cc/images/2022/10/20/image2672b0b50b15d0dd.png" alt="image2672b0b50b15d0dd.png" border="0" />
+
+<h2 id="常见的多媒体标准"><a href="#常见的多媒体标准" class="headerlink" title="常见的多媒体标准"></a>常见的多媒体标准</h2><img src="https://s1.imagehub.cc/images/2022/10/20/imagec673c5e87078ca79.png" alt="imagec673c5e87078ca79.png" border="0" />
+
+<h2 id="数据压缩"><a href="#数据压缩" class="headerlink" title="数据压缩"></a>数据压缩</h2><ul>
+<li>空间冗余（几何冗余）</li>
+<li>时间冗余</li>
+<li>视觉冗余</li>
+<li>信息熵冗余</li>
+<li>结构冗余</li>
+<li>知识冗余</li>
+</ul>
+<h2 id="有损压缩与无损压缩"><a href="#有损压缩与无损压缩" class="headerlink" title="有损压缩与无损压缩"></a>有损压缩与无损压缩</h2><img src="https://s1.imagehub.cc/images/2022/10/20/imageba2e258046af3839.png" alt="imageba2e258046af3839.png" border="0" />
+
+<h1 id="知识产权"><a href="#知识产权" class="headerlink" title="知识产权"></a>知识产权</h1><h2 id="保护范围与对象"><a href="#保护范围与对象" class="headerlink" title="保护范围与对象"></a>保护范围与对象</h2><table>
+<thead>
+<tr>
+<th>法律法规名称</th>
+<th>保护对象及范围</th>
+<th>注意事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>著作权法（版权）</td>
+<td>著作权<br>文学、绘画、摄影等作品</td>
+<td>1.不需要申请，作品完成即开始保护<br>2.绘画或摄影作品原件出售（赠予）著作权还归原作者，原件拥有者有：所有权、展览权</td>
+</tr>
+<tr>
+<td>软件著作权法<br/>计算机软件保护条例</td>
+<td>软件著作权<br/>软件作品</td>
+<td>1.不需要申请，作品完成即开始保护<br/>2.登记制度便于举证</td>
+</tr>
+<tr>
+<td>专利法</td>
+<td>专利权</td>
+<td>需要申请，专利权有效期是从申请日开始计算</td>
+</tr>
+<tr>
+<td>商标法</td>
+<td>商标权</td>
+<td>需要申请，核准之日起商标受保护</td>
+</tr>
+<tr>
+<td>反对不正当竞争法</td>
+<td>商业秘密权</td>
+<td>1.商业秘密包括技术与经营两个方面<br/>2.必须有保密措施才能认定商业秘密</td>
+</tr>
+</tbody></table>
+<h2 id="保护期限"><a href="#保护期限" class="headerlink" title="保护期限"></a>保护期限</h2><img src="https://s1.imagehub.cc/images/2022/10/20/imageaadfd9e55b5e5e84.png" alt="imageaadfd9e55b5e5e84.png" border="0" />
+
+<h2 id="知识产权人确定"><a href="#知识产权人确定" class="headerlink" title="知识产权人确定"></a>知识产权人确定</h2><img src="https://s1.imagehub.cc/images/2022/10/20/image6cdc7f58341771c2.png" alt="image6cdc7f58341771c2.png" border="0" />
+
+<img src="https://s1.imagehub.cc/images/2022/10/20/image6dcab6d003c93d40.png" alt="image6dcab6d003c93d40.png" border="0" />
+
+<h2 id="侵权判定"><a href="#侵权判定" class="headerlink" title="侵权判定"></a>侵权判定</h2><ol>
+<li>中国公民、法人或者其他组织的作品，不论是否发表，都享有著作权。</li>
+<li>开发软件所用的思想、处理过程、操作方法或者数学概念不受保护</li>
+<li>著作权法不适用于下列情形：<ul>
+<li>法律、法规，国家机关的决议、决定、命令和其他具有立法、行政、司法质的	文件，及其官方正式译文；</li>
+<li>时事新闻；</li>
+<li>历法、通用数表、通用表格和公式。</li>
+</ul>
+</li>
+</ol>
+<img src="https://s1.imagehub.cc/images/2022/10/20/imagef7d2927a32266f7c.png" alt="imagef7d2927a32266f7c.png" border="0" />
+
+<h1 id="标准化"><a href="#标准化" class="headerlink" title="标准化"></a>标准化</h1><h2 id="标准的分类"><a href="#标准的分类" class="headerlink" title="标准的分类"></a>标准的分类</h2><ul>
+<li>国际标准 : ISO、IEC等国际标准化组织</li>
+<li>国家标准 : GB（国标的拼音首字母）一中国、ANSI一美国、BS一英国、JIS一日本</li>
+<li>区域标准 : 又称为地区标准，如PASC一太平洋地区标准会议、CEN一欧洲标 准委员会、ASAC一亚洲标隹咨询委员会、ARSO一目洲地区标准化组织（考试不会涉及到，故不关注）</li>
+<li>行业标准 : GJB一中国军用标准、MIT-S一美国军用标准、IEEE一美国电气 电子工程师协会</li>
+<li>地方标准 : 国家的地方一级行政机构制订的标准</li>
+<li>企业标准 : 企业内部定的标准，有的时候也叫企业规范</li>
+<li>项目规范</li>
+</ul>
+<h2 id="标准的编号"><a href="#标准的编号" class="headerlink" title="标准的编号"></a>标准的编号</h2><p>通过标准的代号能够区分是属于什么样的标准。</p>
+<ul>
+<li>国际、国外标准代号 : 标准代号+专业类号+顺序号+年代号</li>
+<li>我国国家标准代号 : 强制性标准代号为 GB、推荐性标准代号为 GB&#x2F;T、指导性标准代号为 GB&#x2F;Z 、实物标准代号GSB</li>
+<li>行业标准代号 : 由汉语拼音大写字母组成 ( 如电子行业为 S J )</li>
+<li>通过排除法分析行业标准。</li>
+<li>地方标准代号 : 由DB加上省级行政区划代码的前两位</li>
+<li>企业标倠代号 : 由Q加上企业代号组成</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%80%83%E8%AF%95%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag"># 考试知识点</a>
+              <a href="/tags/%E8%BD%AF%E8%80%83/" rel="tag"># 软考</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/16/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-8-%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F%E5%9F%BA%E7%A1%80/" rel="prev" title="软件设计师笔记(8)-程序设计语言与语言处理程序基础">
+      <i class="fa fa-chevron-left"></i> 软件设计师笔记(8)-程序设计语言与语言处理程序基础
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/20/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-10-%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE-%E4%B8%8B%E5%8D%88%E9%A2%98%EF%BC%89/" rel="next" title="软件设计师笔记(10)-数据流图(下午题）">
+      软件设计师笔记(10)-数据流图(下午题） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%AA%92%E4%BD%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">多媒体基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9F%B3%E9%A2%91%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">音频相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">图像相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AA%92%E4%BD%93%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-number">1.3.</span> <span class="nav-text">媒体的种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">1.4.</span> <span class="nav-text">相关的计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.4.1.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%A4%9A%E5%AA%92%E4%BD%93%E6%A0%87%E5%87%86"><span class="nav-number">1.5.</span> <span class="nav-text">常见的多媒体标准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.6.</span> <span class="nav-text">数据压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9%E4%B8%8E%E6%97%A0%E6%8D%9F%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.7.</span> <span class="nav-text">有损压缩与无损压缩</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E4%BA%A7%E6%9D%83"><span class="nav-number">2.</span> <span class="nav-text">知识产权</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%9D%E6%8A%A4%E8%8C%83%E5%9B%B4%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.1.</span> <span class="nav-text">保护范围与对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%9D%E6%8A%A4%E6%9C%9F%E9%99%90"><span class="nav-number">2.2.</span> <span class="nav-text">保护期限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E4%BA%A7%E6%9D%83%E4%BA%BA%E7%A1%AE%E5%AE%9A"><span class="nav-number">2.3.</span> <span class="nav-text">知识产权人确定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%B5%E6%9D%83%E5%88%A4%E5%AE%9A"><span class="nav-number">2.4.</span> <span class="nav-text">侵权判定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">标准化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">3.1.</span> <span class="nav-text">标准的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E7%9A%84%E7%BC%96%E5%8F%B7"><span class="nav-number">3.2.</span> <span class="nav-text">标准的编号</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MEIDE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MEIDE</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/meideblog/anime.min.js"></script>
+  <script src="/meideblog/velocity/velocity.min.js"></script>
+  <script src="/meideblog/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
