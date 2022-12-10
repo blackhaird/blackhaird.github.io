@@ -182,7 +182,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-11 00:09:28" itemprop="dateModified" datetime="2022-12-11T00:09:28+08:00">2022-12-11</time>
+                <time title="修改时间：2022-12-11 00:34:52" itemprop="dateModified" datetime="2022-12-11T00:34:52+08:00">2022-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -581,9 +581,22 @@
 </ol>
 <img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img/img/20221211000920.png"/>
 
+<h4 id="（2）失真的一种现象-码间串扰"><a href="#（2）失真的一种现象-码间串扰" class="headerlink" title="（2）失真的一种现象-码间串扰"></a>（2）失真的一种现象-码间串扰</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img/img/20221211001129.png"/>
 
+<h3 id="香农准则内容"><a href="#香农准则内容" class="headerlink" title="香农准则内容"></a>香农准则内容</h3><p>奈氏准则：在理想低通（无噪声，带宽受限）条件下，为了避免码间串扰，极限码元传输速率为2WBaud,W是信道带宽，单位是Hz。<br>$$<br>理想低通信道下的极限数据传输率&#x3D;2Wlog_2V(b&#x2F;s)<br>$$</p>
+<ol>
+<li>在任何信道中，<strong>码元传输的速率是有上限的</strong>。若传输速率超过此上限，就会出现严重的码间串扰问题，使接收端对码元的完全正确识别成为不可能。</li>
+<li>信道的<strong>频带越宽</strong>（即能通过的信号高频分量越多）,就可以用更高的速率进行码元的有效传输。</li>
+<li><strong>奈氏准则给出了码元传输速率的限制，但并没有对信息传输速率给出限制。</strong></li>
+<li>由于码元的传输速率受奈氏准则的制约，所以要提高数据的传输速率，就必须设法使每个码元能携带更多个比特的信息量，这就需要采用多元制的调制方法。</li>
+</ol>
+<p>通过下面实例来理解：</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img/img/20221211002121.png"/>
 
-<h1 id="image-base64"><a href="#image-base64" class="headerlink" title="image_base64"></a>image_base64</h1>
+<h2 id="香农定理"><a href="#香农定理" class="headerlink" title="香农定理"></a>香农定理</h2><p>噪声存在于所有的电子设备和通信信道中。由于噪声随机产生，它的瞬时值有时会很大，因此噪声会使接收端对码元的判决产生错误。但是噪声的影响是相对的，若信号较强，那么噪声影响相对较小。因此，信噪比就很重要。信噪比&#x3D;信号的平均功率&#x2F;噪声的平均功率，常记为S&#x2F;N,并用分贝（dB)作为度量单位，即：<br>$$<br>信噪比(dB) &#x3D; 10log_10(S&#x2F;N)<br>$$<br>香农定理：在带宽受限且有噪声的信道中，为了不产生误差，信息的数据传输速率有上限值。<br>$$<br>信道的极限传输速率&#x3D;Wlog_2(1+S&#x2F;N)(b&#x2F;s)<br>$$<br>其中<strong>S&#x2F;N</strong>就是所谓信噪比</p>
+<p>S:是信道所传信号的平均功率</p>
+<p>N:是信道内的高斯噪声功率</p>
+
       
     </div>
 
