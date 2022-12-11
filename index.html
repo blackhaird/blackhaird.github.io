@@ -182,7 +182,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-11 13:56:17" itemprop="dateModified" datetime="2022-12-11T13:56:17+08:00">2022-12-11</time>
+                <time title="修改时间：2022-12-11 14:30:41" itemprop="dateModified" datetime="2022-12-11T14:30:41+08:00">2022-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -489,7 +489,9 @@
 
 <img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img/img/20221211000126.png"/>
 
-<h1 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h1><h2 id="物理层的基本概念"><a href="#物理层的基本概念" class="headerlink" title="物理层的基本概念"></a>物理层的基本概念</h2><p>电脑要组网，第一件事要干什么？当然是先把电脑连起来，可以用光缆、电缆、双绞线、无线电波等方式。<br>这就叫做”实体层”，逼格高一点的叫法就是<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E7%89%A9%E7%90%86%E5%B1%82&spm=1001.2101.3001.7020">物理层</a>。它就是把电脑连接起来的物理手段。它主要规定了网络的一些电气特性，作用是负责传送0和1的电信号。<br>至于0和1的信号是什么，还轮不到物理层还决定。</p>
+<h1 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h1><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212111430252.png"/>
+
+<h2 id="物理层的基本概念"><a href="#物理层的基本概念" class="headerlink" title="物理层的基本概念"></a>物理层的基本概念</h2><p>电脑要组网，第一件事要干什么？当然是先把电脑连起来，可以用光缆、电缆、双绞线、无线电波等方式。<br>这就叫做”实体层”，逼格高一点的叫法就是<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E7%89%A9%E7%90%86%E5%B1%82&spm=1001.2101.3001.7020">物理层</a>。它就是把电脑连接起来的物理手段。它主要规定了网络的一些电气特性，作用是负责传送0和1的电信号。<br>至于0和1的信号是什么，还轮不到物理层还决定。</p>
 <p>物理层解决如何在连接各种计算机的传输媒体上<span style="color:red">传输数据比特流</span>，而不是指具体的传输媒体。</p>
 <p>物理层主要任务：确定与传输媒体<span style="color:blue">接口</span>有关的一些特性  ——定义标准</p>
 <p><strong>1.机械特性：</strong>定义物理连接的特性，规定物理连接时所采用的规格、接口形状、引线数目、引脚数量和排列情况</p>
@@ -720,6 +722,25 @@
 
 <h3 id="调制（数据-gt-模拟信号）"><a href="#调制（数据-gt-模拟信号）" class="headerlink" title="调制（数据-&gt;模拟信号）"></a>调制（数据-&gt;模拟信号）</h3><p>常用的调制方法：调频(AM)，调频(FM)，调相(PM)</p>
 <img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212111355023.png"/>
+
+
+
+<h3 id="模拟数据-编码-为数字信号"><a href="#模拟数据-编码-为数字信号" class="headerlink" title="模拟数据 编码 为数字信号"></a>模拟数据 <code>编码</code> 为数字信号</h3><p>计算机内部处理的是二进制数据，处理的都是<strong>数字音频</strong>，所以需要将模拟音频通过采样、量化转换成有限个数字表示的离散序列（即实现音频数字化）</p>
+<p>最典型的例子就是对音频信号进行编码的脉码调制(PCM),在计算机应用中，能够达到最高保真水平的就是PCM编码，被广泛用于素材保存及音乐欣赏，CD、DVD以及我们常见的WV文件中均有应用。它主要包括三步：抽样、量化、编码。</p>
+<ul>
+<li><strong>抽样</strong>：对模拟信号周期性扫描，把时间上 <strong>连续</strong> 的信号变成时间上 <strong>离散</strong> 的信号。为了使所得的离散信号能无失真地代表被抽样的模拟数据，要使用采样定理进行采样</li>
+</ul>
+<p>$$<br>  f_{采样频率} \geq 2f_{信号最高频率 } （采样频率越大，则采取到的数据更接近原数据）<br>$$</p>
+<ul>
+<li><p><strong>量化</strong>：把抽样取得的电平幅值按照一定的分级标度转化为对应的数字值，并取整数，这就把<strong>连续</strong>的<strong>电平幅值</strong>转换为<strong>离散</strong>的<strong>数字量</strong>。</p>
+</li>
+<li><p><strong>编码</strong>：把量化的结果转换为与之对应的<strong>二进制编码</strong></p>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212111428000.png"/>
+
+<h3 id="模拟数据调制为模拟信号"><a href="#模拟数据调制为模拟信号" class="headerlink" title="模拟数据调制为模拟信号"></a>模拟数据<code>调制</code>为模拟信号</h3><p>为了实现传输的有效性，可能需要较高的频率。这种调制方式还可以使用频分复用技术，充分利用带宽资源。在电话机和本地交换机所传输的信号是采用模拟信号传输模拟数据的方式：模拟的声音数据是加载到模拟的载波信号中传输的。</p>
+<p>简单的说就是将信号放大，避免在传输过程中失真太严重</p>
 
       
     </div>
