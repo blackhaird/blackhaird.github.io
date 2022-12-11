@@ -182,7 +182,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-11 11:26:30" itemprop="dateModified" datetime="2022-12-11T11:26:30+08:00">2022-12-11</time>
+                <time title="修改时间：2022-12-11 13:56:17" itemprop="dateModified" datetime="2022-12-11T13:56:17+08:00">2022-12-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -591,11 +591,135 @@
 <li>由于码元的传输速率受奈氏准则的制约，所以要提高数据的传输速率，就必须设法使每个码元能携带更多个比特的信息量，这就需要采用多元制的调制方法。</li>
 </ol>
 <p>通过下面实例来理解：</p>
-<img src="https://gitee.com/blackhaird/blog_img/raw/master/img/20221211002121.png"/>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img/img/20221211002121.png"/>
 
 <h2 id="香农定理"><a href="#香农定理" class="headerlink" title="香农定理"></a>香农定理</h2><p>噪声存在于所有的电子设备和通信信道中。由于噪声随机产生，它的瞬时值有时会很大，因此噪声会使接收端对码元的判决产生错误。但是噪声的影响是相对的，若信号较强，那么噪声影响相对较小。因此，信噪比就很重要。信噪比&#x3D;信号的平均功率&#x2F;噪声的平均功率，常记为S&#x2F;N,并用分贝（dB)作为度量单位，即：<br>$$<br>信噪比(dB) &#x3D; 10log_10(S&#x2F;N)<br>$$<br>香农定理：在带宽受限且有噪声的信道中，为了不产生误差，信息的数据传输速率有上限值。<br>$$<br>信道的极限传输速率&#x3D;Wlog_2(1+S&#x2F;N)(b&#x2F;s)<br>$$<br>其中<strong>S&#x2F;N</strong>就是所谓信噪比</p>
 <p>S:是信道所传信号的平均功率</p>
 <p>N:是信道内的高斯噪声功率</p>
+<ol>
+<li>信道的带宽或信道中的信噪比越大，则信息的极限传输速率就越高。</li>
+<li>对一定的传输带宽和一定的信噪比，信息传输速率的上限就确定了。</li>
+<li>只要信息的传输速率低于信道的极限传输速率，就一定能找到某种方法来实现无差错的传输。</li>
+<li>香农定理得出的为极限信息传输速率，实际信道能达到的传输速率要比它低不少。</li>
+<li>从香农定理可以看出，若信道带宽W或信噪比S&#x2F;N没有上限（不可能）,那么信道的极限信息传输速率也就没有上限。</li>
+</ol>
+<h2 id="基带信号和宽带-x2F-带通信号（Base-band，pass-band）"><a href="#基带信号和宽带-x2F-带通信号（Base-band，pass-band）" class="headerlink" title="基带信号和宽带&#x2F;带通信号（Base band，pass band）"></a>基带信号和宽带&#x2F;带通信号（Base band，pass band）</h2><ul>
+<li>根据原始电信号的特征，基带信号可分为数字基带信号和模拟基带信号（相应地，信源也分为数字信源和模拟信源）其由信源决定</li>
+<li>宽带信号的定义是传输速度达到200kbps或以上,不管模拟信号还是数字信号只要满足就可算作宽带信号。</li>
+</ul>
+<p>计算机网络中用的基带信号是<strong>数字信号</strong></p>
+<table>
+    <tr>
+        <td rowspan=2>
+            信道上传送的信号
+        </td>
+        <td>基带信号</td>
+        <td>将数字信号1和0直接用两种不同的电压表示，再送到数字信道上去传输（基带传输）。
+来自信源的信号，像计算机输出的代表各种文字或图像文件的数据信号都属于基带信
+            号。基带信号就是发出的<b>直接表达了要传输的信息的信号</b>，比如我们说话的声波就是
+基带信号。</td>
+    </tr>
+    <tr>
+        <td>宽带信号</td>
+        <td>将基带信号进行调制后形成的频分复用模拟信号，再传送到模拟信道上去传输（宽带传输）。
+把<b>基带信号经过载波调制后</b>，把信号的<b>频率范围搬移到较高的频段以使在信道中传输</b>（即仅
+在一段频率范围内能够通过信道)。</td>
+    </tr>
+</table>
+
+<ul>
+<li>在传输距离较<strong>近</strong>时，计算机网络采用<strong>基带传输</strong>方式（近距离衰减小，从而信号内容不易发生变化）</li>
+<li>在传输距离较<strong>远</strong>时，计算机网络采用<strong>宽带传输</strong>方式（远距离衰诚大，即使信号变化大也能最后过滤出来基带信号）</li>
+</ul>
+<h2 id="编码与调制"><a href="#编码与调制" class="headerlink" title="编码与调制"></a>编码与调制</h2><ul>
+<li><p>数据无论是数字的，还是模拟的，为了传输的目的都必须转变成信号。</p>
+</li>
+<li><p>把数据变换为数字信号的过程称为<strong>编码</strong>，把数据变换为模拟信号的过程称为<strong>调制</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212111339740.png"/></li>
+</ul>
+<h3 id="编码（数据-gt-数字信号）"><a href="#编码（数据-gt-数字信号）" class="headerlink" title="编码（数据-&gt;数字信号）"></a>编码（数据-&gt;数字信号）</h3><p>将数据转化为<strong>数字信号</strong></p>
+<ul>
+<li><p>数字数据(digtal data)通过 数字发送器(digit emitter) 转化为 数字信号(digtal signal)</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212111318395.png"/>
+</li>
+<li><p>模拟数据(analog data)通过 PCM编码器(PCM coder) 转化为 数字信号 (digtal signal)</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212111321773.png"/></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>简述</th>
+<th>缺陷</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>单极性不归零编码</strong></td>
+<td>只使用一个电压值，高电平表示1，低电平表示0</td>
+<td>高1，低0</td>
+<td>编码容易实现，但没有检错功能，且无法判断一个码元的开始和结束，以至于收发双方难以保持同步</td>
+</tr>
+<tr>
+<td><strong>双极性不归零编码</strong></td>
+<td>用幅值相等的正负电平表示二进制数1和0</td>
+<td>正电1，负电0</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>单极性归零编码</strong></td>
+<td>发送码1时高电平在整个码元期间只持续一段时间，其余时间返回零电平</td>
+<td>变化1，其他时间为0<br>（反向不归零即相反）</td>
+<td>信号电平在一个码元之内都要恢夏到零的这种编码成编码方式。<br>接收方根据跳变调整本方的时钟基准，这就为双方提供了自同步机制。由于归零需要占用一部分带宽，因此传输效率受到了一定的影响</td>
+</tr>
+<tr>
+<td><strong>双极性归零编码</strong></td>
+<td>正负零三个电平，信号本身携带同步信息</td>
+<td>正1，负0，默认平时</td>
+<td></td>
+</tr>
+</tbody></table>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212111322473.png"/>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>简述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>曼彻斯特编码</strong></td>
+<td>【以太网的编码方式】单极性编码的缺点是没有办法区分此时是没有信号，还是有信号，但是信号是0<br>这种编码方式是bit中间有信号，低-高跳转表示0，高-低跳转表示1，一个时钟周期只可以表示一个bit，并且必须通过两次采样才能得到一个bit。它能携带时钟信号，而且能区分此时是没有信号还是信号为0</td>
+<td>高跳低1，低跳高0</td>
+</tr>
+<tr>
+<td><strong>差分曼彻斯特编码</strong></td>
+<td>抗干扰能力比曼彻斯特编码更强。bit与bit之间有信号跳变，表示下一个bit为0，bit与bit之间没有信号跳变，表示下一个bit为1。</td>
+<td>逢1跳变</td>
+</tr>
+</tbody></table>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212111351400.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212111328328.png"/>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>4B&#x2F;5B编码</strong></td>
+<td>比特流中插入额外的比特以打破一连串的0或1,就是用5个比特来编码4个比特的数据，之后再传给接收方，因此称为4B&#x2F;5B。编码效率为80%。<br>只采用16种对应16种不同的4位码，其他的16种作为控制码（帧的开始和结束，线路的状态信息等）或保留。</td>
+</tr>
+</tbody></table>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212111353763.png"/>
+
+<h3 id="调制（数据-gt-模拟信号）"><a href="#调制（数据-gt-模拟信号）" class="headerlink" title="调制（数据-&gt;模拟信号）"></a>调制（数据-&gt;模拟信号）</h3><p>常用的调制方法：调频(AM)，调频(FM)，调相(PM)</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212111355023.png"/>
 
       
     </div>
