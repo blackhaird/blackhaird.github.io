@@ -175,10 +175,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-11 14:32:53 / 修改时间：14:34:39" itemprop="dateCreated datePublished" datetime="2022-12-11T14:32:53+08:00">2022-12-11</time>
+              <time title="创建时间：2022-12-11 14:32:53" itemprop="dateCreated datePublished" datetime="2022-12-11T14:32:53+08:00">2022-12-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-12 22:38:22" itemprop="dateModified" datetime="2022-12-12T22:38:22+08:00">2022-12-12</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -204,7 +210,232 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><strong>结点</strong>：主机、路由器</p>
+<p><strong>链路</strong>：网络中两个结点之间的物理通道，链路的传输介质主要有双绞线、光纤和微波。分为有线链路、无线链路。</p>
+<p><strong>数据链路</strong>：网络中两个结点之间的逻辑通道，把实现控制数据传输协议的硬件和软件加到链路上就构成数据链路。</p>
+<p><strong>帧</strong>：链路层的协议数据单元，封装网络层数据报。</p>
+<p>数据链路层负责通过一条链路从一个结点向另一个物理链路直接相连的相邻结点传送数据报。（简单来说就是将网络层的数据报进行再次封装搬运给物理层</p>
+<p>数据链路层在物理层提供服务的基础上<strong>向网络层提供服务</strong>，其最基本的服务是将源自网络层来的数据可靠地传输到相邻节点的目标机网络层。<strong>其主要作用是加强物理层传输原始比特流的功能</strong>，将物理层提供的可能出错的物理连接改造成为逻辑上无差错的数据链路，使之对网络层表现为一条无差错的链路。</p>
+<h3 id="帧"><a href="#帧" class="headerlink" title="帧"></a>帧</h3><p>以太网规定，一组电信号构成一个数据包，叫做”帧”（Frame）。每一帧分成两个部分：<strong>标头（Head）和数据（Data）</strong>。<br>“标头”包含数据包的一些说明项，比如发送者、接受者、数据类型等等；”数据”则是数据包的具体内容。<br><strong>“标头”的长度，固定为18字节。”数据”的长度，最短为46字节，最长为1500字节。</strong>因此，整个<strong>”帧”最短为64字节，最长为1518字节</strong>。如果数据很长，就必须分割成多个帧进行发送。</p>
+<h3 id="MAC地址"><a href="#MAC地址" class="headerlink" title="MAC地址"></a>MAC地址</h3><p>以太网规定，连入网络的所有设备，都必须具有”网卡”接口。数据包必须是从一块网卡，传送到另一块网卡。网卡的地址，就是数据包的发送地址和接收地址，这叫做<strong>MAC地址</strong>。长度为6字节，共48比特，通常用十六进制表示法，地址的每个字节被表示为一对十六进制数</p>
+<p>每个适配器具有一个<strong>唯一的MAC地址</strong>，不随位置发生变化（就像人的身份证，而IP则像人的邮政地址）</p>
+<h3 id="广播的概念"><a href="#广播的概念" class="headerlink" title="广播的概念"></a>广播的概念</h3><p>其次，就算有了MAC地址，系统怎样才能把数据包准确送到接收方？<br>回答是以太网采用了一种很”原始”的方式，它不是把数据包准确送到接收方，而是向本网络内所有计算机发送，让每台计算机自己判断，是否为接收方。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121916196.png"/>
+
+<p>上图中，1号计算机向2号计算机发送一个数据包，同一个子网络的3号、4号、5号计算机都会收到这个包。它们读取这个包的”标头”，找到接收方的MAC地址，然后与自身的MAC地址相比较，如果两者相同，就接受这个包，做进一步处理，否则就丢弃这个包。这种发送方式就叫做”广播”（broadcasting）。</p>
+<h2 id="数据链路层的功能概述"><a href="#数据链路层的功能概述" class="headerlink" title="数据链路层的功能概述"></a>数据链路层的功能概述</h2><p>功能一：为网络层提供服务。无确认无连接服务，有确认无连接服务，有确认面向连接服务。有连接一定有确认！</p>
+<p>功能二：链路管理，即连接的建立、维持、释放（用于面向连接的服务）。</p>
+<p>功能三：组帧。</p>
+<p>功能四：流量控制。限制发送方哦~</p>
+<p>功能五：差错控制（帧错&#x2F;位错）。</p>
+<p>因为物理层可能会把数据弄丢，所以数据链路层需要进行一些设置来使得物理层可以可靠的传输数据</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121818959.png"/>
+
+<h2 id="ARP协议（地址解析协议）"><a href="#ARP协议（地址解析协议）" class="headerlink" title="ARP协议（地址解析协议）"></a>ARP协议（地址解析协议）</h2><p><strong>ARP协议</strong>：完成主机或路由器IP地址到MAC地址的映射【解决下一跳走哪的问题】（专门用于寻找MAC地址的协议）</p>
+<p>每个节点的ARP模块都在它的RAM中有一个ARP表，包含IP地址到MAC地址的映射关系，每个表项还包含TTL字段，表示表项过期时间（ARP表是自动创建的，如果某节点与子网断开连接，它的表项最终会从留在子网中的节点的表中删除。通常一个表项的过期时间是20分钟）</p>
+<p>主机向其ARP模块提供一个IP地址，ARP模块返回IP地址对应的MAC地址<br>（注释：在OSI七层模型中，ARP属于链路层模型，所以这里也先简单介绍一下，构建知识体系）</p>
+<h3 id="ARP协议使用过程："><a href="#ARP协议使用过程：" class="headerlink" title="ARP协议使用过程："></a>ARP协议使用过程：</h3><p>检查<strong>ARP高速缓存</strong>，有对应表项则写入<strong>MAC帧</strong>，没有则用目的MAC地址为<strong>FF-FF-FF-FF-FF</strong>的帧封装并<span style="color:red"><strong>广播ARP请求分组</strong></span>，<strong>同一局域网</strong>中所有主机都能收到该请求。目的主机收到请求后就会向源主机<span style="color:green"><strong>单播一个ARP响应分组</strong></span>，源主机收到后将此映射<strong>写入ARP缓存</strong>（10-20min更新一次）。</p>
+<h3 id="ARP协议4中典型情况："><a href="#ARP协议4中典型情况：" class="headerlink" title="ARP协议4中典型情况："></a>ARP协议4中典型情况：</h3><ol>
+<li>主机A发给<strong>本网络</strong>上的主机B：用ARP找到主机B的硬件地址；</li>
+<li>主机A发给<strong>另一网络</strong>上的主机B：用ARP找到本网络上一个路由器（网关）的硬件地址；</li>
+<li>路由器发给<strong>本网络</strong>的主机A：用ARP找到主机A的硬件地址；</li>
+<li>路由器发给<strong>另一网络</strong>的主机B：用ARP找到本网络上的一个路由器的硬件地址。</li>
+</ol>
+<h2 id="封装成帧、帧定界、帧同步"><a href="#封装成帧、帧定界、帧同步" class="headerlink" title="封装成帧、帧定界、帧同步"></a>封装成帧、帧定界、帧同步</h2><p><strong>透明传输</strong>就是为了防止<strong>特殊的数据无法正常传输</strong>的的情况的发生，比如说在封装成帧的过程中，可能出现数据中的某些标记符与开始&#x2F;结束标记符恰巧重复的情况，如果不加以处理，那么会导致无法判定帧的开始于结束。</p>
+<p><strong>封装成帧</strong>：就是在一段数据的前后部分添加<strong>首部和尾部</strong>，这样就构成了一个帧。接收端在收到物理层上交的比特流后，就能根据资许加控制信息，他们的一个重要作用：<strong>帧定界</strong>（确定赖的界限）。</p>
+<p><strong>帧同步</strong>：接收方应当能从接收到的二进制比特流中区分出帧的起始和终止。</p>
+<p><strong>组帧的四种方法</strong>：1.字符计数法，2.字符（节）填充法，3.零比特填充法，4.违规编码法。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121823925.png"/>
+
+<h2 id="透明传输的概念"><a href="#透明传输的概念" class="headerlink" title="透明传输的概念"></a>透明传输的概念</h2><p>透明传输：是<strong>指不管所传数据是什么样的比特组合，都应当能够在链路上传送</strong>。因此，链路层就“看不见”有什么妨碍数据的东西。</p>
+<p>当所传数据中的比特组合恰巧与某一个控制信息完全一样时，就必须采取适当的措施，使收方不会将这样的数据误认为是某种控制信息。这样才能保证数据链路层的传输是透明的。</p>
+<h2 id="透明传输的实现方法"><a href="#透明传输的实现方法" class="headerlink" title="透明传输的实现方法"></a>透明传输的实现方法</h2><h3 id="字符计数法"><a href="#字符计数法" class="headerlink" title="字符计数法"></a>字符计数法</h3><p>就是在帧的首部做计数，这个字符记录了当前帧有多少个字符。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">缺点：如果在某一个帧内，标记位后面的某个字节的数据丢失，那么会影响后面的帧</span><br><span class="line">比如3 1 1 和 4 2 2 2，如果前面的帧丢失变成 3 1，那么后面的4就会被补到前面变成 3 1 4导致错误</span><br></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121853613.png"/>
+
+
+
+<h3 id="字符填充法"><a href="#字符填充法" class="headerlink" title="字符填充法"></a>字符填充法</h3><p>就是加头加尾分别标记开始结束，和零比特填充法（见下）对比，<strong>开始和结束的对应的字符不一样</strong><br>但有可能出现数据内某段比特流数据正好<strong>与标记字段重复</strong>，从而导致误判断的情况</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121855920.png"/>
+
+<p><strong>解决方法：添加转义字符。即对于那些与标记字符重复的数据流，在它们的前面添加一段转义字符，这样接收方在解析帧时，看到这些转义字符就不会认为那些特殊的数据当成帧的开始&#x2F;结束了。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121902833.png"/>
+
+<h3 id="零比特填充法"><a href="#零比特填充法" class="headerlink" title="零比特填充法"></a>零比特填充法</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121902052.png"/>
+
+<h3 id="违规编码法"><a href="#违规编码法" class="headerlink" title="违规编码法"></a>违规编码法</h3><p>因为曼彻斯特编码不使用高-高，低-低来表示，所以如果使用高-高，低-低来表示帧起始和终止就<strong>不会与数据冲突</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121903762.png"/>
+
+
+
+<h2 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h2><h3 id="何为差错"><a href="#何为差错" class="headerlink" title="何为差错"></a>何为差错</h3><p>数据链路层的差错检测的是<strong>比特</strong>的错误<br>需要注意的是，即使采用差错检测比特，也还是可能有未检出比特差错的情况。<br>因此，主要是选择一个差错检测方案，使得这种事件发生的概率很小</p>
+<p>概括来说，传输中的差错都是由于噪声引起的。</p>
+<p><strong>全局性</strong> ：1.由于线路本身电气特性所产生的<strong>随机噪声</strong>（热噪声）,是信道固有的，随机存在的。<br>                    解决办法：提高信噪比来减少或避免干扰。（对传感器下手）</p>
+<p><strong>局部性</strong> ：2.外界特定的短暂原因所造成的<strong>冲击噪声</strong>，是产生差错的主要原因。<br>                    解决办法：通常利用编码技术来解决。</p>
+<p>链路层为网络层提供服务：<strong>无确认无连接服务，有确认无连接服务，有确认面向连接服务。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121906841.png"/>
+
+<h4 id="为什么要在数据链路层进行差错控制？"><a href="#为什么要在数据链路层进行差错控制？" class="headerlink" title="为什么要在数据链路层进行差错控制？"></a>为什么要在数据链路层进行差错控制？</h4><p>因为错误可以尽早发现，不会让一个错误的数据包发送了很长时间到达最终目的地之后才被发现，从而导致网络资源的浪费</p>
+<h3 id="检错编码（奇偶校验码，循环冗余码CRC）"><a href="#检错编码（奇偶校验码，循环冗余码CRC）" class="headerlink" title="检错编码（奇偶校验码，循环冗余码CRC）"></a>检错编码（奇偶校验码，循环冗余码CRC）</h3><h4 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h4><p>奇偶校验：只需包含1个附加比特。</p>
+<p>对于偶校验，选择一个值，使得所有比特中1出现偶数次。</p>
+<p>对于奇校验，选择一个值，使得所有比特中1出现奇数次。接收方通过检测1出现的次数判断是否出现差错。如果出现偶数个比特差错，则检验不出</p>
+<p><strong>缺点：只能检测出1，3，5，7…等等奇位数错误，检测成功率位50%</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121909365.png"/>
+
+
+
+<h4 id="循环冗余编码（CRC）"><a href="#循环冗余编码（CRC）" class="headerlink" title="循环冗余编码（CRC）"></a>循环冗余编码（CRC）</h4><p>发送方和接收方协商一个r+1比特的生成多项式(G)，要起其最高比特位为1。发送方通过在d比特的数据后附加r比特，使得整个(d+r)比特的值能够被G整除。接收方用G去除(d+r)比特，如果余数非0，则出现差错</p>
+<p>可能难以理解，这边举个实例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例：要发送的数据是1101011011,采用CRC校验，生成多项式是10011,那么最终发送的数据应该是？</span><br></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121919348.png"/>
+
+<p>进行异或算法：<strong>同0异1</strong></p>
+<p>TIPS：多项式N位，阶为N-1。</p>
+<p><strong>接收方收到数据后进行检测</strong></p>
+<p>把收到的每一个帧都除以同样的除数，然后检查得到的余数R。</p>
+<p>1.余数为0,判定这个帧没有差错，接受。</p>
+<p>2.余数为不为0,判定这个帧有差错（无法确定到位）,丢弃。FCS的生成以及接收端CRC检验都是由硬件实现，处理很迅速，因此不会延误数据的传输。</p>
+<p>在数据链路层仅仅使用循环穴余检验CRC差错检测技术，只能做到对帧的无差错接收，即“凡是接收端数据链路层接受的帧，我们都能以非常接近于1的概率认为这些帧在传输过程中没有产生差错”。接收端丢弃的帧虽然曾收到了，但是最终还是因为有差错被丢弃。“凡是接收端数据链路层接收的帧均无差错”。“可靠传输”：数据链路层发送端发送什么，接收端就收到什么。链路层使用CRC检验，能够实现无比特差错的传输，但这还不是可靠传输。</p>
+<h3 id="纠错编码（海明码）"><a href="#纠错编码（海明码）" class="headerlink" title="纠错编码（海明码）"></a>纠错编码（海明码）</h3><h4 id="第一步-确认校验码位数r"><a href="#第一步-确认校验码位数r" class="headerlink" title="第一步 确认校验码位数r"></a>第一步 确认校验码位数r</h4><p>海明码不等式：<br>$$<br>2^r \geq k+r+1 (r为冗余信息位，k为信息位)<br>$$</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">若要发送的数据：D=101101</span><br><span class="line">数据的位数k=6</span><br><span class="line">满足不等式的最小r为4,</span><br><span class="line">也就是D=101101的海明码应该有6+4=10位，</span><br><span class="line">其中原数据6位，效验码4位。</span><br></pre></td></tr></table></figure>
+
+<h4 id="第二步-确定校验码和数据的位置"><a href="#第二步-确定校验码和数据的位置" class="headerlink" title="第二步 确定校验码和数据的位置"></a>第二步 确定校验码和数据的位置</h4><p>注释：<br>1.为什么是10为数据位？因为4位校验码+6位信息位&#x3D;10位<br>2.校验码放到2的几次方的位置，其他的地方按顺序放已知的信息位</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121935057.png"/>
+
+<h4 id="第三步-求出校验码的值"><a href="#第三步-求出校验码的值" class="headerlink" title="第三步 求出校验码的值"></a>第三步 求出校验码的值</h4><p>注释</p>
+<ol>
+<li><p>先是通过二进制位确定有几位。本题中因为最大位10的二进制是1010，所以是4为，将其标注</p>
+</li>
+<li><p>然后从p1开始看，看p1的二进制位的数值和所有信息位的对应位置的数值是否相同，然后找出来这些位</p>
+</li>
+</ol>
+<p>这里有点难理解，这里以p1为例辅助理解，这里找出来的就是P1,D1,D2,D4,D5</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121937540.png"/>
+
+<p>然后计算异或值，比如说这里D1&#x3D;1,D2&#x3D;0,D4&#x3D;1,D5&#x3D;0,就是p1要同时和<strong>0</strong>,<strong>1</strong>，<strong>0</strong>,<strong>1</strong>进行异或之后得到0，为了标识我加粗原始计算数据<br>举例：<strong>0</strong>和<strong>1</strong>异或得1,1和<strong>0</strong>异或得1,1和<strong>1</strong>异或得0，那么p1和0异或得0，p1就是0了</p>
+<p>3.其他同理，按顺序计算出P2,P3,P4,然后填入表格</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121940537.png"/>
+
+<h4 id="第四步-检测并纠错"><a href="#第四步-检测并纠错" class="headerlink" title="第四步 检测并纠错"></a>第四步 检测并纠错</h4><p>就是和上面一样，将所有校验位进行运算，得出的结果的值就是错误的位</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121941617.png"/>
+
+<h2 id="数据链路层的流量控制和可靠传输"><a href="#数据链路层的流量控制和可靠传输" class="headerlink" title="数据链路层的流量控制和可靠传输"></a>数据链路层的流量控制和可靠传输</h2><p>流量控制是为了让传输过程中的发送速度和接受速度匹配，减少传输出错与资源浪费<br>可靠传输是发送端发送什么，接收端就要受到什么</p>
+<h3 id="停止等待协议（Stop-and-Wait）"><a href="#停止等待协议（Stop-and-Wait）" class="headerlink" title="停止等待协议（Stop-and-Wait）"></a>停止等待协议（Stop-and-Wait）</h3><p>除了比特出差错，底层信道还会出现丢包问题。为了实现流量控制。所以就需要有停止-等待协议</p>
+<p>注释：丢包-物理线路故障、设备故障、病毒攻击、路由信息<br>错误等原因，会导致数据包的丢失。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">虽然现在常用全双工通信方式，但为了讨论问题方便，仅考虑一方发送数据（发送方）,一方接收数据(接收方）。</span><br><span class="line"></span><br><span class="line">因为是在讨论可靠传输的原理，所以并不考虑数据是在哪一个层次上传送的。</span><br><span class="line"></span><br><span class="line">“停止-等待”就是每发送完一个分组就停止发送，等待对方确认，在收到确认后再发送下一个分组。</span><br></pre></td></tr></table></figure>
+
+<h4 id="停止等待协议—无差错情况"><a href="#停止等待协议—无差错情况" class="headerlink" title="停止等待协议—无差错情况"></a>停止等待协议—无差错情况</h4><p>注释：因为一次就一个，所以用0和1标记ack（确认序号）就行</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121944092.png"/>
+
+<h4 id="停止等待协议—有差错情况"><a href="#停止等待协议—有差错情况" class="headerlink" title="停止等待协议—有差错情况"></a>停止等待协议—有差错情况</h4><p>使用一个超时计时器，每发一帧就开始计时，设置时间略长于一个RTT（往返时延）。</p>
+<p>发送端发送数据开始，到发送端收到来自接收端的确认（接收端收到数据后便立即发送确认），总共经历的时延：<br>$$<br>RTT &#x3D; 传播时延*2+处理时间（有时可直接忽略）<br>$$<br><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121946606.png"/></p>
+<h5 id="ACK丢失"><a href="#ACK丢失" class="headerlink" title="ACK丢失"></a>ACK丢失</h5><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121947459.png"/>
+
+<h5 id="ACK迟到"><a href="#ACK迟到" class="headerlink" title="ACK迟到"></a>ACK迟到</h5><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121948655.png"/>
+
+<p>停止等待协议的特点</p>
+<ol>
+<li>简单</li>
+<li>信道利用率低。大部分时间数据都在路上，发送方很长时间闲置，资源浪费</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121949044.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121950756.png"/>
+
+<h3 id="后退N帧协议（GBN）"><a href="#后退N帧协议（GBN）" class="headerlink" title="后退N帧协议（GBN）"></a>后退N帧协议（GBN）</h3><p>因为停止等待协议太浪费时间了，所以尝试采用GBN，发送连续多个数据帧，以增大信道利用率</p>
+<p>注释：<br>累计确认：就是收到一个确认帧，那么<strong>它和它之前的所有帧</strong>都默认已收到，反之，如果某个确认帧没收到，那么<strong>它和它之后的所有帧</strong>都默认丢失（即使收到了也丢掉），进行重传</p>
+<h4 id="GBN发送方必须响应的三件事"><a href="#GBN发送方必须响应的三件事" class="headerlink" title="GBN发送方必须响应的三件事"></a>GBN发送方必须响应的三件事</h4><ol>
+<li><p>上层的调用</p>
+<p>上层要发送数据时，发送方先检查发送窗口是否已满，<strong>如果未满</strong>，则产生一个帧并将其发送；<strong>如果窗口已满</strong>，发送方只需将数据返回给上层，暗示上层窗口已满。上层等一会再发送。（实际实现中，发送方可以缓存这些数据，窗口不满时再发送帧）。</p>
+</li>
+<li><p>收到一个ACK</p>
+<p>GBN协议中，对n号帧的确认采用<strong>累积确认</strong>的方式，标明接收方已经收到n号帧和它之前的全部帧</p>
+</li>
+<li><p>超时时间</p>
+<p>协议的名字为后退N帧&#x2F;回退N帧，来源于出现丢失和时延过长帧时发送方的行为。就像在停等协议中一样，定时器将再次用于恢复数据帧或确认赖的丢失。如果出现超时，发送方重传所有已发送但未被确认的帧。</p>
+</li>
+</ol>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>此图发送2帧时丢失，<strong>所以接收方几首收到后面的帧也是直接丢弃并且发送最晚收到的有效帧1的ACK</strong>，</p>
+<p>直至2帧的超时重传机制被触发进行重传并得到ACK之后，接收方才会接受2帧以及后面的帧，</p>
+<p>如果所示，GBN的形式就像排队，接收端为所有帧“预定”了接收位置，如果接收端发送的数据因为某些原因没有接收到，即使收到了这一帧后面所有的帧，<strong>这些“排在后面的”帧也要被丢弃</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121958226.png"/>
+
+<p>发送窗口不能无限大，与使用的编号的比特数有关，二进制表示。<br>很简单，就是1比特编号0和1,<br>同理2比特编号0-3，二进制表示就是00，01，10，11。<br>如果用1比特编号，却要4个窗口长度，那么窗口内数据编号都编不过来，直接乱套了<br>GBN的优缺点也显而易见，优点是相对于上面的停止等待协议，明显提高了信道利用率，缺点是因为重传机制的原因，导致已经收到数据却需要强行丢弃，进而造成浪费</p>
+<h3 id="选择重传协议（SR）"><a href="#选择重传协议（SR）" class="headerlink" title="选择重传协议（SR）"></a>选择重传协议（SR）</h3><p>吸取了GBN协议的教训，我们打算尝试只重传错误的帧，这样的话就不用浪费资源把已经收到的帧再重传一次了。</p>
+<p>在GBN中，仅有接收端有一个窗口来存放数据帧，在SR中，两者都有窗口了。</p>
+<p>和GBN的区别其实就是做了一个数据缓存，已经收到的帧不用扔了，等待之前因意外丢失的帧收到的时候确认即可，但是只能缓存窗口尺寸内的包含的帧（注释：缓存不可能无限大）</p>
+<p><strong>注释：2帧丢失之后仍然在发送，但是2帧丢失之后只是缓存，并没有移动窗口；它可以继续接受窗口范围内排在2帧后面的数据帧，直至最后2帧收到后一次性确认窗口内的所有已经收到的帧，再移动窗口。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122003758.png"/>
+
+<p>同样的，因为编号的问题，发送窗口不能无限大<br>当发送窗口最后和接受窗口<strong>大小相同</strong>时，利用率比较高</p>
+<h2 id="介质访问控制技术"><a href="#介质访问控制技术" class="headerlink" title="介质访问控制技术"></a>介质访问控制技术</h2><p>虽然使用一条共享信道，但是通过多路复用技术组合进行传输，提高了信道的利用率</p>
+<p>就是让节点之间的通信不会进行相互干扰</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122017412.png"/>
+
+<h3 id="频分多路复用FDM"><a href="#频分多路复用FDM" class="headerlink" title="频分多路复用FDM"></a>频分多路复用FDM</h3><p>用户在分配到一定的频带后，在通信过程中自始至终都占用这个频带。<strong>频分复用的所有用户在同样的时间占用不同的带宽（频率带宽）资源</strong></p>
+<p>充分利用传输介质带宽，<strong>系统效率较高</strong>；由于技术比较成熟，实现也比较<strong>容易</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122018650.png"/>
+
+<h3 id="时分多路复用TDM"><a href="#时分多路复用TDM" class="headerlink" title="时分多路复用TDM"></a>时分多路复用TDM</h3><p>将时间划分为一段段等长的时分复用帧（TDM帧）。每一个时分复用的用户在每一个TDM帧中占用固定序号的时隙，所有用户轮流占用信道。</p>
+<p>TDM的缺点就是利用率低，所以又衍生出了STDM</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122025593.png"/>
+
+<h3 id="统计时分复用STDM"><a href="#统计时分复用STDM" class="headerlink" title="统计时分复用STDM"></a>统计时分复用STDM</h3><p>STDM的原则是先到先走，满了就发，相对于TDM提高了利用率</p>
+<p>每一个STDM帧中的时隙数小于连接在集中器上的用户数。各用户有了数据就随时发往集中器的输入缓存，然后集中器按顺序依次扫描输入缓存，把缓存中的输入数据放入STDM帧中，一个STDM帧满了就发出。<strong>STDM帧不是固定分配时隙，而是按需动态分配时隙。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122028591.png"/>
+
+<h3 id="码分多路复用CDM"><a href="#码分多路复用CDM" class="headerlink" title="码分多路复用CDM"></a>码分多路复用CDM</h3><p>每个节点分配一种不同的编码，每个节点使用其唯一的编码来对发送的数据进行编码（如果精心选择编码，不同节点能同时传输）</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122029336.png"/>
+
+<h2 id="随机接入协议"><a href="#随机接入协议" class="headerlink" title="随机接入协议"></a>随机接入协议</h2><p>所有用户都可以随机发送信息，发送时可以占用全部带宽，理论上个人使用时比静态分配信道的速度更快</p>
+<h3 id="ALOHA协议"><a href="#ALOHA协议" class="headerlink" title="ALOHA协议"></a>ALOHA协议</h3><p>帧到达节点时，立刻传输。如果发生碰撞，节点将立即(在完全传输碰撞帧后)以概率p重传。否则，等待一个帧传输时间，再以概率p重传。信道有效传输速率实际不是R bps，而是时隙ALOHA的一半</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122033941.png"/>
+
+<p>时隙ALOHA协议<br>时间被划分为时隙，每个节点的时间同步，帧的传输只在时隙的开始时进行。如果发生碰撞，在下一个时隙开始时以概率p重传，否则等待一个时隙再以概率p重传…（信道有效传输速率实际不是R bps，而是0.37R bps）</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122033818.png"/>
+
+<h3 id="CSMA协议-载波侦听多路访问"><a href="#CSMA协议-载波侦听多路访问" class="headerlink" title="CSMA协议(载波侦听多路访问)"></a>CSMA协议(载波侦听多路访问)</h3><p><strong>CS</strong>：载波侦听&#x2F;监听，每一个站在发送数据之前要检测一下总线上是否有其他计算机在发送数据。</p>
+<p><code>当几个站同时在总线上发送数据时，总线上的信号电压摆动值将会增大（互相叠加）。当一个站检测到的信号电压摆动值超过一定门限值时，就认为总线上至少有两个站同时在发送数据，表明产生了碰撞，即发生了冲突。</code></p>
+<p><strong>MA</strong>：多点接入，表示许多计算机以多点接入的方式连接在一根总线上。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122040654.png"/>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1-坚持CSMA</td>
+<td>发送信息时监听信道，一空闲下来就立即传输，信道忙也一直监听，如果发送时冲突就等待随机时长之后再监听</td>
+<td>立即发送，利用率高</td>
+<td>如果多台设备同时监听，那么会发生冲突</td>
+</tr>
+<tr>
+<td>非坚持CSMA</td>
+<td>发送信息时监听信道，如果空闲就立即传输，信道忙就随机等待一段时间后再监听</td>
+<td>冲突发生的几率减少</td>
+<td>因为需要等待，所以利用率不高</td>
+</tr>
+<tr>
+<td>p-坚持CSMA</td>
+<td>发送信息时监听信道，空闲时以概率p进行传输，概率1-p不传输。信道忙就随机等待一段时间后再监听</td>
+<td>冲突减少的同时效率也比较高</td>
+<td>即使发生冲突也要坚持发送数据，资源被浪费</td>
+</tr>
+</tbody></table>
+<h3 id="CSMA-x2F-CD协议（载波监听多点接入-x2F-碰撞检测）"><a href="#CSMA-x2F-CD协议（载波监听多点接入-x2F-碰撞检测）" class="headerlink" title="CSMA&#x2F;CD协议（载波监听多点接入&#x2F;碰撞检测）"></a>CSMA&#x2F;CD协议（载波监听多点接入&#x2F;碰撞检测）</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>因为链路实际有长短，发送数据需要时间，这个时间内可能就被其他节点当成空闲状态导致发生碰撞。</p>
+<p>先侦听信道，如果没有其它节点在使用信道，则传输数据。但是有碰撞检测，如果发生碰撞，会停止传输剩下的数据，等待一个随机时间(通常比传输一帧短)后，再进行尝试。</p>
+<p>知道自己发生碰撞的最长时间是2τ（两倍的<strong>传播时延</strong>），就是一去一回</p>
+<p><strong>CS</strong>:载波侦听&#x2F;监听，每一个站在发送数据之前以及发送数据时都要检测一下总线上是否有其他计算机在发送数据</p>
+<p><strong>MA</strong>:多点接入，表示许多计算机以多点接入的方式连接在一根总线上。【总线型网络】</p>
+<p><strong>CD</strong>:碰撞检测（冲突检测）,“边发送边监听”，适配器边发送数据边检测信道上信号电压的变化情况，以便判断自己在发送数据时其他站是否也在发送数据。【半双工网络】</p>
+
       
     </div>
 
