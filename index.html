@@ -152,6 +152,663 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">数据库原理知识点总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-20 16:28:28 / 修改时间：18:15:53" itemprop="dateCreated datePublished" datetime="2022-12-20T16:28:28+08:00">2022-12-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">数据库原理</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h1><h2 id="数据库系统概述"><a href="#数据库系统概述" class="headerlink" title="数据库系统概述"></a>数据库系统概述</h2><p><strong>数据库技术</strong>是信息系统的核心和基础</p>
+<h3 id="四个基本概念"><a href="#四个基本概念" class="headerlink" title="四个基本概念"></a>四个基本概念</h3><p>数据库的4个基本概念：</p>
+<ol>
+<li><p>数据（data）:数据库中存储的基本对象</p>
+</li>
+<li><p>数据库（DataBase、DB）:<strong>长期存储在计算机内、有组织的、可共享的大量数据的集合</strong></p>
+</li>
+<li><p>数据库管理系统（DataBase Management System、DBMS）:科学地<strong>组织</strong>和<strong>存储</strong>数据、高效地<strong>获取</strong>和<strong>维护</strong>数据。</p>
+<ol>
+<li><p>数据定义功能（DDL）</p>
+</li>
+<li><p>数据组织、存储和管理 </p>
+</li>
+<li><p>数据操纵功能（DML）</p>
+</li>
+<li><p>数据库的事物管理和运行管理 </p>
+</li>
+<li><p>数据库的建立和维护功能</p>
+</li>
+</ol>
+</li>
+<li><p>数据库系统（DataBase System 、DBS）:</p>
+<ul>
+<li><p>数据库</p>
+</li>
+<li><p>数据库管理系统</p>
+</li>
+<li><p>应用程序</p>
+</li>
+<li><p>数据库管理员</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="数据库技术的产生和发展"><a href="#数据库技术的产生和发展" class="headerlink" title="数据库技术的产生和发展"></a>数据库技术的产生和发展</h3><p>数据管理：对数据进行<strong>分类、组织、编码、存储、检索和维护</strong></p>
+<p>数据管理技术的发展过程：</p>
+<ul>
+<li><strong>人工管理阶段</strong>（<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%89%B9%E5%A4%84%E7%90%86&spm=1001.2101.3001.7020">批处理</a>，20世纪50年代中之前）</li>
+<li><strong>文件系统阶段</strong>（联机实时处理、批处理，20世纪50年代末—60年代中）</li>
+<li><strong>数据库系统阶段</strong>（联机实时处理、分布处理、批处理，20世纪60年代末—现在）</li>
+</ul>
+<h3 id="数据库系统的特点"><a href="#数据库系统的特点" class="headerlink" title="数据库系统的特点"></a>数据库系统的特点</h3><ol>
+<li>数据结构化</li>
+<li>数据的共享性高、冗余度低且易扩充</li>
+<li>数据独立性高 </li>
+<li>数据由数据库管理系统统一管理和控制</li>
+</ol>
+<p>数据的最小存取单位是<strong>数据项</strong>，用<strong>数据模型</strong>来描述</p>
+<h4 id="数据库的三级模式与两层映像"><a href="#数据库的三级模式与两层映像" class="headerlink" title="数据库的三级模式与两层映像"></a><strong>数据库的三级模式与两层映像</strong></h4><p><strong>内模式</strong>：对应于物理层数据抽象，它是数据的物理结构和存储方式的描述，是数据在数据库内部的表示方式。</p>
+<p><strong>模式</strong>：对应于逻辑层数据抽象，它是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图。</p>
+<p><strong>外模式</strong>：对应于视图层数据抽象，它是数据库用户能够看见和使用的局部数据的逻辑结构和特征的描述。</p>
+<p>为了能够在系统内部实现3个抽象层次的数据之间的联系和转换，数据库管理系统提出了两层映像：外模式&#x2F;模式映像，模式&#x2F;内模式映像。正是这两层映像保证了数据库中的数据具有较高的逻辑独立性和物理独立性。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>映像</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>逻辑独立性</strong></td>
+<td>是指用户的应用程序与数据库的逻辑结构是相互独立的，数据的逻辑结构改变了，应用程序不用改变</td>
+<td>外模式&#x2F;模式映像</td>
+</tr>
+<tr>
+<td><strong>物理独立性</strong></td>
+<td>是指用户的应用程序与数据库的物理存储是相互独立的，当数据的物理存储改变了，应用程序不用改变</td>
+<td>模式&#x2F;内模式映像</td>
+</tr>
+</tbody></table>
+<p><strong>数据管理系统提供的数据控制功能</strong>：</p>
+<ol>
+<li>数据的安全性保护</li>
+<li>数据的完整性保护</li>
+<li>并发控制</li>
+<li>数据库恢复</li>
+</ol>
+<p>数据的安全性保护：保护数据以防止不合法的使用造成数据的泄密和破坏</p>
+<p>数据的完整性保护：保护数据的正确性、有效性和相容性</p>
+<h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><p>常用的数据模型：层次模型、网状模型、关系模型、面向对象数据模型、对象关系数据模型、半结构化数据模型</p>
+<h3 id="数据模型分类"><a href="#数据模型分类" class="headerlink" title="数据模型分类"></a>数据模型分类</h3><p>概念模型：也称信息模型，用于数据库设计，E-R模型、OO模型</p>
+<p>逻辑模型：层次模型、网状模型、<strong>关系模型</strong>、面向对象数据模型、对象关系数据数据模型、半结构化数据模型。DBMS实现</p>
+<p>物理模型：用来描述数据的物理存储结构和存储方式、在磁盘或磁带上的存储方式和存取方法</p>
+<h3 id="概念模型"><a href="#概念模型" class="headerlink" title="概念模型"></a>概念模型</h3><p>表示方法：<strong>实体—联系方法</strong> <strong>：E-R图</strong> E-R方法也称为E-R模型</p>
+<p>实体：客观存在并可相互区别的事物称为实体</p>
+<p>属性：实体所具有的某一特性称为属性</p>
+<p><span style="color:red"><strong>码：唯一标识实体的属性集称为 码</strong></span></p>
+<p><strong>实体之间的联系</strong>：<strong>一对一、一对多、多对多</strong></p>
+<p>用<strong>E-R图</strong>来描述现实世界的概念模型</p>
+<h3 id="数据模型的组成要素"><a href="#数据模型的组成要素" class="headerlink" title="数据模型的组成要素"></a>数据模型的组成要素</h3><ol>
+<li><p>数据结构：描述数据库的组成对象，以及对象之间的联系，<strong>对系统静态特性的描述</strong></p>
+</li>
+<li><p>数据操作：对数据库中各种对象的实例允许执行的<strong>操作的集合</strong>，包括<strong>操作</strong>及有关的<strong>操作规则</strong>，<strong>对系统动态特性的描述</strong></p>
+<p>数据操作的类型：<strong>查询</strong>，<strong>更新</strong>（插入、删除、修改）</p>
+</li>
+<li><p>数据的完整性约束条件</p>
+</li>
+</ol>
+<h3 id="层次模型"><a href="#层次模型" class="headerlink" title="层次模型"></a>层次模型</h3><p>层次模型用<strong>树形结构</strong>来表示各类实体以及实体间的联系， 典型代表：IMS</p>
+<p>特点：只能直接处理一对多的实体联系</p>
+<table>
+<thead>
+<tr>
+<th>优缺点</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>优点</td>
+<td>（1）数据结构比较简单清晰 <br>（2）查询效率高，性能优于关系模型 ，不低于网状模型（3）提供良好的完整性支持</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>（1）多对多联系表示不自然 <br>（2）插入和删除限制多 <br>（3）查询子女结点必须通过双亲节点 <br>（4）层次命令趋于程序化</td>
+</tr>
+</tbody></table>
+<h3 id="网状模型"><a href="#网状模型" class="headerlink" title="网状模型"></a>网状模型</h3><p>网状数据库系统采用<strong>网状模型</strong>作为数据库的组织方式，典型代表：DBTG（亦称CODASYL系统）</p>
+<p>层次模型是网状模型的一个特例，用网状模型<strong>间接</strong>表示多对多联系（将多对多联系直接分解成一对多联系）</p>
+<table>
+<thead>
+<tr>
+<th>优缺点</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>优点</td>
+<td>（1）更为直观地描述现实世界，如一个结点可以有多个双亲 <br>（2）具有良好的性能，存取效率较高</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>（1）结构复杂 <br>（2）DDL、DML语言复杂 <br>（3）记录之间联系是通过存取路径实现，用户必须了解系统结构的细节</td>
+</tr>
+</tbody></table>
+<h3 id="关系模型"><a href="#关系模型" class="headerlink" title="*关系模型"></a>*关系模型</h3><p>关系数据库系统采用<strong>关系模型</strong>作为数据的组织方式</p>
+<p>用户观点下，关系模型中数据的逻辑结构是一张<strong>二维表</strong>，它由行和列组成</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>关系</td>
+<td>一个关系对应通常说的一张表</td>
+</tr>
+<tr>
+<td>元组</td>
+<td>表中的一行即为一个元组</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>表中的一列即为一个属性</td>
+</tr>
+<tr>
+<td><strong>码</strong></td>
+<td><strong>唯一标识实体的属性集称为码</strong></td>
+</tr>
+<tr>
+<td><strong>主码</strong></td>
+<td><strong>也称码键，表中的某个属性组，它可以唯一确定一个元组</strong></td>
+</tr>
+<tr>
+<td>域</td>
+<td>是一组具有相同数据类型的值的集合，属性的取值范围来自某个域</td>
+</tr>
+<tr>
+<td>分量</td>
+<td>元组中的一个属性值</td>
+</tr>
+</tbody></table>
+<p>数据操作是集合操作，操作对象和操作结果都是<strong>关系</strong></p>
+<h4 id="关系模式：对关系的描述"><a href="#关系模式：对关系的描述" class="headerlink" title="关系模式：对关系的描述"></a><strong>关系模式：对关系的描述</strong></h4><p>关系必须是规范化的：关系的每一个分量必须是一个不可分的数据项，<strong>不允许表中还有表</strong></p>
+<p>关系的完整性约束：</p>
+<ol>
+<li><strong>实体完整性</strong></li>
+<li><strong>参照完整性</strong></li>
+<li><strong>用户定义完整性</strong></li>
+</ol>
+<p><strong>优点：</strong></p>
+<ol>
+<li><p>建立在严格的数学概念的基础上</p>
+</li>
+<li><p>概念单一（实体和各类联系都用关系表示，对数据的检索结果也是关系）</p>
+</li>
+<li><p>关系模型的存取路径对用户透明（更高的数据独立性，更好的安全保密性，简化程序员的工作和数据库开发建立的工作）</p>
+</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>存取路径对用户透明，查询效率往往不如格式化数据模型 </li>
+<li>为提高性能，需对用户的查询请求进行优化，增加开发数据库管理系统的难度</li>
+</ol>
+<h2 id="数据库系统的结构"><a href="#数据库系统的结构" class="headerlink" title="数据库系统的结构"></a>数据库系统的结构</h2><p>数据库系统通常采用<strong>三级模式</strong>结构，数据库系统内部的系统结构</p>
+<p>最终用户角度：（1）单用户结构 （2）主从式结构 （3）分布式结构 （4）客户—服务器结构 （5）浏览器—应用服务器 &#x2F; 数据库服务器多层结构</p>
+<h3 id="数据库系统模式的概念"><a href="#数据库系统模式的概念" class="headerlink" title="数据库系统模式的概念"></a>数据库系统模式的概念</h3><p>型：对某一类数据的结构和属性的说明</p>
+<p>值：是型的一个具体赋值</p>
+<p><strong>模式：数据库逻辑结构和特征的描述</strong></p>
+<p>实例：模式的一个具体值</p>
+<h3 id="数据库系统的三级模式结构"><a href="#数据库系统的三级模式结构" class="headerlink" title="数据库系统的三级模式结构"></a>数据库系统的三级模式结构</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>外模式（子模式）</strong></td>
+<td>数据库用户使用的<strong>局部</strong>数据的逻辑结构和特征的描述，数据库用户的数据视图<br><strong>一个数据库可以有多个外模式</strong><br /><strong>模式与外模式：</strong>一对多，外模式通常是模式的子集<br /><strong>外模式与应用：</strong>一对多，一个应用程序中只能使用一个外模式<br />用途：（1）保护数据库安全性 （2）每个用户只能看见和访问所对应的外模式中的数据</td>
+</tr>
+<tr>
+<td><strong>模式</strong></td>
+<td>数据库中全体数据的<strong>逻辑结构和特征</strong>的描述，所有用户的公共数据视图<br><strong>一个数据库只有一个模式</strong></td>
+</tr>
+<tr>
+<td><strong>内模式（存储模式）</strong></td>
+<td>数据物理结构和存储方式的描述，数据在数据库内部的表示方式<br /><strong>一个数据库只有一个内模式</strong></td>
+</tr>
+</tbody></table>
+<h3 id="数据库的二级映像功能与数据独立性"><a href="#数据库的二级映像功能与数据独立性" class="headerlink" title="数据库的二级映像功能与数据独立性"></a>数据库的二级映像功能与数据独立性</h3><p>为了能够在系统内部实现3个抽象层次的数据之间的联系和转换，数据库管理系统提出了两层映像：外模式&#x2F;模式映像，模式&#x2F;内模式映像。正是这两层映像保证了数据库中的数据具有较高的逻辑独立性和物理独立性。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>映像</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>逻辑独立性</strong></td>
+<td>每一个外模式，数据库系统都有一个外模式 &#x2F; 模式映像，定义外模式与模式之间的对应关系<br>是指用户的应用程序与数据库的逻辑结构是相互独立的，数据的逻辑结构改变了，应用程序不用改变</td>
+<td>外模式&#x2F;模式映像</td>
+</tr>
+<tr>
+<td><strong>物理独立性</strong></td>
+<td>定义数据全局逻辑结构与存储结构之间的对应关系<br />数据库中模式 &#x2F; 内模式映像是<strong>唯一的</strong><br />是指用户的应用程序与数据库的物理存储是相互独立的，当数据的物理存储改变了，应用程序不用改变</td>
+<td>模式&#x2F;内模式映像</td>
+</tr>
+</tbody></table>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="数据库系统的组成"><a href="#数据库系统的组成" class="headerlink" title="数据库系统的组成"></a>数据库系统的组成</h2><p>（1）数据库 （2）数据库管理系统 （3）应用程序 （4）数据库管理员 （5）硬件平台及数据库 （6）软件 （7）人员</p>
+<h1 id="第二章-关系数据库"><a href="#第二章-关系数据库" class="headerlink" title="第二章 关系数据库"></a>第二章 关系数据库</h1><h2 id="关系数据结构及形式化定义"><a href="#关系数据结构及形式化定义" class="headerlink" title="关系数据结构及形式化定义"></a>关系数据结构及形式化定义</h2><h3 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h3><p>单一的数据结构：关系，逻辑结构：二维表</p>
+<p>域：一组具有相同数据类型的值的集合</p>
+<p>笛卡尔积：可表示为一张二维表，表中的每列对应一个域</p>
+<p><strong>关系：笛卡尔积的有限子集</strong></p>
+<p><strong>码：唯一标识实体的属性集称为码</strong></p>
+<p><strong>主码：表中的某个属性组，它可以唯一确定一个元组</strong></p>
+<hr>
+
+<p>一个关系的候选码可以有多个，但主码只能有一个</p>
+<p>（1）候选码：<strong>若关系中的某一属性组的值能唯一地标识一个元组</strong>，则称该属性组为候选码。简单的情况：候选码只包含一个属性</p>
+<p>（2）全码：关系模式的所有属性组是这个关系模式的候选码，称为全码</p>
+<p>（3）主码：若一个关系有多个候选码，则选定其中一个为主码</p>
+<p>（4）主属性：候选码的诸属性称为主属性。不包含在任何候选码中的属性称为非主属性或非码属性</p>
+<p>（5）三类关系：</p>
+<hr>
+
+<p>1.基本关系（基本表或基表）：实际存在的表，实际存储数据的逻辑表示</p>
+<p>2.查询表：查询结果对应的表</p>
+<p>3.视图表：由基本表或其他视图表导出的表，是虚表，不对应实际存储的数据</p>
+<h3 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h3><p>关系模式是型，关系是值，关系模式是对关系的描述：1.元组集合的结构 2.完整性约束条件</p>
+<p>关系模式可以形式化地表示为：R (U,D,DOM,F)</p>
+<p>R：关系名，U：组成该关系的属性名集合，D：U中属性所来自的域 DOM：属性向域的映像集合 F：属性间数据的依赖关系的集合</p>
+<p>关系模式是对关系的描述，静态的稳定的</p>
+<p>关系是关系模式在某一时刻的状态或内容，动态的、随时间不断变化的</p>
+<h3 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h3><p>在一个给定的应用领域中，所有关系的集合构成一个关系数据库</p>
+<h3 id="关系模型和存储结构"><a href="#关系模型和存储结构" class="headerlink" title="关系模型和存储结构"></a>关系模型和存储结构</h3><p>关系数据库的物理组织：交给操作系统 or 申请若干个大文件</p>
+<h2 id="关系操作"><a href="#关系操作" class="headerlink" title="关系操作"></a>关系操作</h2><p><strong>查询操作：选择、投影、连接、除、并、差、交、笛卡尔积</strong></p>
+<p><span style="color:red">5种基本操作：<strong>选择、投影、并、差、笛卡尔积</strong></span></p>
+<p>更新操作：插入、删除、修改</p>
+<p>关系操作特点：操作的对象和结果都是集合，<strong>一次一集合</strong>的方式</p>
+<p>关系代数是一种抽象的查询语言，它用对关系的运算来表达查询，运算对象和运算结果都是<strong>关系</strong></p>
+<p><strong>关系代数中的连接操作是由选择和笛卡尔积操作组合而成</strong></p>
+<h2 id="关系模型中的三类完整性约束"><a href="#关系模型中的三类完整性约束" class="headerlink" title="*关系模型中的三类完整性约束"></a>*关系模型中的三类完整性约束</h2><p>关系代数语言：用<strong>对关系的运算</strong>来表达查询要求 ISBL</p>
+<p>关系演算语言：用<strong>谓词</strong>来表达查询要求（元组关系演算语言和域关系演算语言） APLHA QUEL</p>
+<p>具有关系代数和关系演算双重特点的语言：SQL（Structured Query Language）结构化查询语言</p>
+<p>关系模型必须满足的完整性约束条件称为关系的两个<strong>不变性</strong>，应该由关系系统自动支持</p>
+<h3 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h3><p>实体完整性规则：若属性A是基本关系R的主属性，则属性A不能取空值</p>
+<p>例如：选修（学号，课程号，成绩）</p>
+<p>“学号，课程号”为主码，这两个属性都不能取空值</p>
+<p>关系模型中以主码作为唯一标识符，<strong>主码中的属性即主属性不能取空值</strong></p>
+<h3 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h3><p>定义：指如果属性（或属性组）F是关系R的外码，且对应了关系S的主码K（R和S可以是同一个关系），那么对于R中的每个元组中的F上的值，必须满足：<br>（1） 要么F取空值<br>（2） 要么等于S中某个元组的主码的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">例：</span><br><span class="line">	学生（学号，姓名）</span><br><span class="line">	课程（课程号，课程名）</span><br><span class="line">	选修（学号，课程号，成绩）</span><br></pre></td></tr></table></figure>
+
+<p>选修表中的学号就称为选修表的一个外码，它对应的是学生表中的学号。</p>
+<p>并且称选修关系为<code>参照关系</code>，而学生关系为<code>被参照关系</code>。</p>
+<p>显然，在选修关系中的学号，必须是学生表里真正存在的学号，且选修表里的课程号，也必须是课程表里真正存在的课程号。这就是参照完整性的一个典型表现了。</p>
+<p>参照完整性规则的说明：</p>
+<ul>
+<li>关系R和S不一定是不同的关系</li>
+<li>目标关系S的主码Ks 和参照关系的外码F必须定义在同一个（或一组）域上</li>
+<li>外码并不一定要与相应的主码同名</li>
+</ul>
+<h3 id="用户定义的完整性"><a href="#用户定义的完整性" class="headerlink" title="用户定义的完整性"></a>用户定义的完整性</h3><p>针对某一具体关系数据库的约束条件，反映某一具体应用所设计的数据必须满足的语义要求</p>
+<h2 id="关系代数"><a href="#关系代数" class="headerlink" title="*关系代数"></a>*关系代数</h2><p>更具体的请看：<a target="_blank" rel="noopener" href="https://blog.csdn.net/dreaming_coder/article/details/108043502">https://blog.csdn.net/dreaming_coder/article/details/108043502</a></p>
+<p>关系代数是一种抽象的查询语言，它用对关系的运算来表达查询，运算对象和运算结果都是<strong>关系</strong></p>
+<p>关系代数的运算符</p>
+<p>（1）集合运算符（从行的角度进行）：并 差 交 笛卡尔积</p>
+<p>（2）专门的关系运算符（涉及行和列）： 选择 投影 连接 除</p>
+<p>选择 σ：从行的角度进行的运算</p>
+<p>投影 π：从列的角度进行运算，不仅消除某些列，而且还可能取消某些元组（避免重复行）</p>
+<p>连接：1.等值连接 2.自然连接</p>
+<p><strong>一般的连接操作都是从行的角度进行运算。自然连接还需要取消重复列，所以是同时从行和列的角度进行运算</strong></p>
+<p>自然连接是一种特殊的等值连接：1.两个关系中进行比较的分量必须是相同的属性组 2.在结果中把重复的属性列去掉</p>
+<p>外连接：把悬浮元组也保存在结果关系中，而在其他属性上填空值，就叫外连接</p>
+<p>除运算：同时从行和列角度进行运算</p>
+<h3 id="例如"><a href="#例如" class="headerlink" title="例如"></a>例如</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sname,rating from s where s.id = c.studentid and rating&gt;60;</span><br></pre></td></tr></table></figure>
+
+
+<p>$$<br>π_{sname , rating} (σ_{rating&gt;60}(s⋈c ))<br>$$</p>
+<h1 id="第三章-SQL"><a href="#第三章-SQL" class="headerlink" title="第三章 SQL"></a>第三章 SQL</h1><p>SQL：结构化查询语言，关系数据库的标准语言</p>
+<p>SQL可分为<strong>数据定义、数据查询、数据更新、数据控制</strong>四大部分</p>
+<p>SQL特点：（1）综合统一 （2）高度非过程化 （3）面向<strong>集合</strong>的操作方式 （4）独立的语言 嵌入式语言 （5）语言简洁，易学易用</p>
+<p>数据查询：SELECT</p>
+<p>数据定义：CREATE、DROP、ALTER</p>
+<p>数据操纵：INSERT、UPDATE、DELETE</p>
+<p>数据控制：GRANT、REVOKE</p>
+<p>基本表、存储文件、视图</p>
+<h2 id="数据定义"><a href="#数据定义" class="headerlink" title="数据定义"></a>数据定义</h2><p>模式（CREATE SCHEMA，DROP SCHEMA）</p>
+<p>表（CREATE TABLE，DROP TABLE，ALTER TABLE）</p>
+<p>视图（CREATE VIEW， DROP VIEW）</p>
+<p>索引（CREATE INDEX， DROP INDEX，ALTER INDEX）</p>
+<h3 id="模式的定义与删除"><a href="#模式的定义与删除" class="headerlink" title="模式的定义与删除"></a>模式的定义与删除</h3><p>定义模式实际上定义了一个命名空间</p>
+<p>定义模式：CREATE SCHEMA &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt;[&lt;表定义子句&gt;|&lt;视图定义子句&gt;|&lt;授权定义子句&gt;]</p>
+<p>删除模式：DROP SCHEMA &lt;模式名&gt; &lt;CASCADE|RESTRICT&gt;</p>
+<h3 id="基本表的定义、删除与修改"><a href="#基本表的定义、删除与修改" class="headerlink" title="基本表的定义、删除与修改"></a>基本表的定义、删除与修改</h3><p>定义基本表：CREATE TABLE</p>
+<p>SQL中域的概念用<strong>数据类型</strong>来实现</p>
+<p>每一个基本表都属于一个模式，一个模式包含多个基本表</p>
+<p>设置搜索路径：SET search_path TO “S-T”,PUBLIC;</p>
+<p>修改：ALTER TABLE （ADD、 DROP COLUMN、DROP CONSTRAINT、 ALTER COLUMN）</p>
+<p>删除：DROP TABLE &lt;表名&gt; [RESTRICT|CASCADE]</p>
+<h3 id="索引的建立与删除"><a href="#索引的建立与删除" class="headerlink" title="索引的建立与删除"></a>索引的建立与删除</h3><p>建立索引的目的：加快查询速度</p>
+<p>B+树索引具有动态平衡的优点，HASH索引具有查找速度快的特点</p>
+<p>用户建立索引，系统维护、使用索引</p>
+<p>建立：CREATE [UNIQUE] [CLUSTER] INDEX &lt;索引名&gt;</p>
+<p>修改：ALTER INDEX &lt;旧索引名&gt; RENAME TO &lt;新索引名&gt;</p>
+<p>删除：DROP INDEX &lt;索引名&gt;</p>
+<h3 id="数据字典"><a href="#数据字典" class="headerlink" title="数据字典"></a>数据字典</h3><p>记录数据库中所有定义信息：关系模式、视图、索引、完整性约束、各类用户对数据库的操作权限、统计信息</p>
+<p>关系数据库管理系统在执行SQL的数据定义语句时，实际上就是在更新<strong>数据字典</strong>中的相应信息</p>
+<h2 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h2><p>SELECT FROM WHERE GROUP BY HAVING ORDER BY</p>
+<h3 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h3><p>（1）选择表中的若干列</p>
+<p>查询经过计算的值：使用列<strong>别名</strong>改变查询结果的列标题</p>
+<p>（2）选择表中的若干元组</p>
+<p>DISTINCT 去掉重复的行</p>
+<p>比较大小 确定范围 确定集合 字符匹配 涉及空值的查询 多重条件查询</p>
+<p>%：任意长度的字符串</p>
+<p>_：任意单个字符</p>
+<p>（3）ORDER BY子句</p>
+<p>可以按一个或多个属性列排序</p>
+<p>（4）聚集函数</p>
+<p>COUNT、SUM、AVG、MAX、MIN</p>
+<p>（5）GROUP BY子句</p>
+<p>HAVING必须在GROUP BY里面，而WHERE是整个查询的结果</p>
+<p><strong>WHERE子句是不能用聚集函数作为条件表达式</strong></p>
+<p><strong>HAVING短语与WHERE子句作用对象不同</strong>，WHERE子句作用与基表或视图，从中选择满足条件的元组，HAVING短语作用于组，从中选择满足条件的组</p>
+<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><p>连接查询：同时涉及两个以上的表的查询</p>
+<p>（1）等值与非等值连接</p>
+<p>连接操作的执行过程：嵌套循环法、排序合并法、索引连接</p>
+<p>（2）自身连接</p>
+<p>一个表与其自己进行连接</p>
+<p>（3）外连接</p>
+<p>左外连接，保留左边的内容</p>
+<p>（4）多表连接</p>
+<p>多表连接：两个以上的表进行连接</p>
+<h3 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h3><p>一个SELECT-FROM-WHERE子句称为一个查询块</p>
+<p>将一个查询块嵌套在另一个查询块的WHERE子句或HAVING短语的条件中的查询称为嵌套查询</p>
+<p>SQL语言允许多层嵌套查询，子查询不能使用ORDER BY子句</p>
+<p>不相关子查询 相关子查询</p>
+<p>（1）带有IN谓词的子查询</p>
+<p>（2）带有比较运算符的子查询</p>
+<p>（3）带有ANY（SOME）或ALL谓词的子查询</p>
+<p>使用ANY或ALL谓词时必须同时使用比较运算</p>
+<p>（4）带有EXISTS谓词的子查询</p>
+<p>不返回如何数据，只产生逻辑值</p>
+<h3 id="集合查询"><a href="#集合查询" class="headerlink" title="集合查询"></a>集合查询</h3><p>并操作、交操作、差操作</p>
+<h3 id="基于派生表的查询"><a href="#基于派生表的查询" class="headerlink" title="基于派生表的查询"></a>基于派生表的查询</h3><p>如果子查询中没有聚集函数，派生表可以不指定属性列</p>
+<h2 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><p>（1）插入元组</p>
+<p>INSERT INTO &lt;表名&gt; VALUES</p>
+<p>（2）插入子查询结果</p>
+<p>INSERT INTO &lt;表名&gt; 子查询</p>
+<p>实体完整性、参照完整性、用户定义的完整性（NOT NULL约束，UNIQUE约束，值域约束）</p>
+<h3 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h3><p>（1）修改某一个元组的值</p>
+<p>（2）修改多个元组的值</p>
+<p>（3）带子查询的修改语句</p>
+<p>实体完整性、主码不允许修改、用户定义的完整性（NOT NULL约束，UNIQUE约束，值域约束）</p>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><p>（1）删除某一个元组的值</p>
+<p>（2）删除多个元组的值</p>
+<p>（3）带子查询的删除语句</p>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>虚表，是一个或几个基本表（或视图）导出的表</p>
+<p>只存放视图的定义，不存放视图对应的数据</p>
+<p>基表中的数据发生变化 ，从视图中查询出的数据也随之改变</p>
+<h3 id="定义视图"><a href="#定义视图" class="headerlink" title="定义视图"></a>定义视图</h3><p>（1）建立视图</p>
+<p>CREATE VIEW xxx AS xxx [WITH CHECK OPTION];</p>
+<p>基于多个基表的视图、基于视图的视图、带表达式的视图、分组视图</p>
+<p>（2）删除视图</p>
+<p>DROP VIEW &lt;视图名&gt; [CASCADE]</p>
+<h3 id="查询视图"><a href="#查询视图" class="headerlink" title="查询视图"></a>查询视图</h3><p>视图消解法</p>
+<h3 id="更新视图"><a href="#更新视图" class="headerlink" title="更新视图"></a>更新视图</h3><p>允许对<strong>行列子集视图</strong>进行更新</p>
+<p>对其他类型视图的更新不同系统由不同限制</p>
+<h3 id="视图的作用"><a href="#视图的作用" class="headerlink" title="视图的作用"></a>视图的作用</h3><p>视图能够<strong>简化</strong>用户操作</p>
+<p>视图使用户能以<strong>多种角度</strong>看待同一数据</p>
+<p>视图对重构数据库提供了一定的逻辑独立性</p>
+<p>视图能够对机密数据提供安全保护</p>
+<p>适当利用视图可以更清晰的表达查询</p>
+<h1 id="第四章-数据库安全性"><a href="#第四章-数据库安全性" class="headerlink" title="第四章 数据库安全性"></a>第四章 数据库安全性</h1><p>数据库的安全性是指保护数据库以防止不合法使用所造成的<strong>数据泄漏、更改或破坏</strong></p>
+<h2 id="数据库安全性概述"><a href="#数据库安全性概述" class="headerlink" title="数据库安全性概述"></a>数据库安全性概述</h2><h3 id="数据库的不安全因素"><a href="#数据库的不安全因素" class="headerlink" title="数据库的不安全因素"></a>数据库的不安全因素</h3><p>（1）非授权用户对数据库的恶意存取和破坏</p>
+<p>（2）数据库中重要或敏感的数据被泄漏</p>
+<p>（3）安全环境的脆弱性</p>
+<h3 id="安全标准简介"><a href="#安全标准简介" class="headerlink" title="安全标准简介"></a>安全标准简介</h3><p>（1）TCSEC标准：安全策略，责任，保证，文档</p>
+<p>D级 最小保护，C1 自主安全保护，C2 受控的存取保护（自主存取控制）</p>
+<p>B1 标记安全保护（强制存取控制）， B2 结构化保护， B3 安全域， A1 验证设计</p>
+<p>（2）CC标准</p>
+<h2 id="数据安全性控制"><a href="#数据安全性控制" class="headerlink" title="数据安全性控制"></a>数据安全性控制</h2><p>数据库安全控制的常用方法：<strong>用户标识和鉴定、存取控制、视图、审计、数据加密</strong></p>
+<h3 id="用户身份鉴别"><a href="#用户身份鉴别" class="headerlink" title="用户身份鉴别"></a>用户身份鉴别</h3><p>静态口令鉴别：密码</p>
+<p>动态口令鉴别：验证码，一次一密</p>
+<p>生物特征鉴别：指纹，眼角膜，FaceID</p>
+<p>智能卡鉴别</p>
+<h3 id="存取控制"><a href="#存取控制" class="headerlink" title="存取控制"></a>存取控制</h3><p>自主存取控制 C2</p>
+<p>强制存取控制 B1</p>
+<h3 id="自主存取控制方法"><a href="#自主存取控制方法" class="headerlink" title="自主存取控制方法"></a>自主存取控制方法</h3><p>通过SQL的GRANT语句和REVOKE语句实现</p>
+<p>用户权限组成：数据对象和操作类型</p>
+<p>定义存取权限称为<strong>授权</strong></p>
+<p>关系数据库系统中存取控制对象：</p>
+<p>（1）数据库模式</p>
+<p>模式（CREATE SCHEMA）基本表（CREATE TABLE ，ALTER TABLE） 视图（CREATE VIEW） 索引（CREATE INDEX）</p>
+<p>（2）数据</p>
+<p>基本表和视图（SELECT INSERT UPDATE DELETE REFERENCES ALL PRIVILEGES）</p>
+<p>属性列（SELECT INSERT UPDATE REFERENCES ALL PRIVILEGES）</p>
+<h3 id="授权：授予与回收"><a href="#授权：授予与回收" class="headerlink" title="授权：授予与回收"></a>授权：授予与回收</h3><p>GRANT：将对指定操作对象的指定操作权限授予指定的用户</p>
+<p>不允许循环授权</p>
+<p>REVOKE：收回权限</p>
+<h3 id="数据库角色"><a href="#数据库角色" class="headerlink" title="数据库角色"></a>数据库角色</h3><p>数据库角色：被命名的一组与数据库操作相关的权限</p>
+<h3 id="强制存取控制方法"><a href="#强制存取控制方法" class="headerlink" title="强制存取控制方法"></a>强制存取控制方法</h3><p>在强制存取控制中，数据库管理系统所管理的全部实体被分为主体和客体两大类</p>
+<p>主体是系统中的活动实体，客体是系统中的被动实体，受主体操纵</p>
+<p>敏感度标记：<strong>绝密（TS）&gt;&#x3D; 机密（S）&gt;&#x3D; 可信（C）&gt;&#x3D; 公开（P）</strong></p>
+<p>主体的敏感度标记称为许可证级别，客体的敏感度标记称为密级</p>
+<p>强制存取控制规则</p>
+<p>（1）主体的许可证级别大于或等于客体的密级时，该主体才能<strong>读</strong>取相应的客体</p>
+<p>（2）主体的许可证级别小于或等于客体的密级时，该主体才能<strong>写</strong>相应的客体</p>
+<p>实现强制存取控制首先要实现自主存取控制</p>
+<h2 id="视图机制"><a href="#视图机制" class="headerlink" title="视图机制"></a>视图机制</h2><p>把要保密的数据对无权存取这些数据的用户隐藏起来，对数据提供一定程度的安全保护，间接地实现支持存取谓词的用户权限定义</p>
+<h2 id="审计"><a href="#审计" class="headerlink" title="审计"></a>审计</h2><p>审计：启用一个专用的审计日志，将用户对数据库的所有操作记录在上面，审计员利用审计日志，监控数据库中的各种行为，找到非法存取数据的人、时间和内容</p>
+<p>用户级审计、系统级审计</p>
+<h2 id="数据加密"><a href="#数据加密" class="headerlink" title="数据加密"></a>数据加密</h2><p>数据加密是防止数据库中数据在<strong>存储和传输</strong>中失密的有效手段</p>
+<p>加密方法：存储加密和传输加密</p>
+<h2 id="其他安全性"><a href="#其他安全性" class="headerlink" title="其他安全性"></a>其他安全性</h2><p>推理控制、隐蔽信道、数据隐私保护</p>
+<h1 id="第五章-数据完整性"><a href="#第五章-数据完整性" class="headerlink" title="第五章 数据完整性"></a>第五章 数据完整性</h1><p><strong>数据库的完整性：保护数据的正确性、有效性和相容性</strong></p>
+<p>为维护数据库的完整性。数据库管理系统必须：（1）提供定义完整性约束条件的机制 （2）提供完整性检查的方法 （3）违约处理</p>
+<h2 id="实体完整性-1"><a href="#实体完整性-1" class="headerlink" title="实体完整性"></a>实体完整性</h2><p>实体完整性定义：关系模型的实体完整性，单属性构成的码：列级约束条件，表级约束条件，多个属性构成的码：表级约束条件</p>
+<p>全表扫描，建立<strong>索引</strong>加快速度 B+树索引</p>
+<h2 id="参照完整性-1"><a href="#参照完整性-1" class="headerlink" title="参照完整性"></a>参照完整性</h2><p>FOREIGN KEY短语定义外码，REFERENCES短语指明这些外码参照表的哪些主码</p>
+<p>违约处理：拒绝执行、级联操作、设置为空值</p>
+<h2 id="用户定义的完整性-1"><a href="#用户定义的完整性-1" class="headerlink" title="用户定义的完整性"></a>用户定义的完整性</h2><p>用户定义完整性：针对某一具体应用的数据必须满足的语义要求</p>
+<p>（1）属性上的约束条件：列值非空，列值唯一，检查列值是否满足一个条件表达式</p>
+<p>（2）元组上的约束条件：CHECK短语定义元组上的约束条件，即元组级的限制</p>
+<h2 id="完整性约束命名字句"><a href="#完整性约束命名字句" class="headerlink" title="完整性约束命名字句"></a>完整性约束命名字句</h2><p>CONSTRAINT &lt;完整性约束条件名&gt; &lt;完整性约束条件&gt;</p>
+<p>&lt;完整性约束条件&gt;包括NOT NULL、UNIQUE、PRIMARY KEY短语、FOREIGN KEY短语、CHECK短语等</p>
+<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>通过声明性断言来指定更具一般性的约束</p>
+<p>CREATE ASSERTION &lt;断言名&gt; &lt;CHECK子句&gt;</p>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>CREATE TRIGGER</p>
+<p>触发器又叫做<strong>事件-条件-动作</strong>规则</p>
+<p>触发器由触发事件激活</p>
+<p>执行顺序：（1）执行该表上的BEFORE触发器 （2）激活触发器的SQL语句 （3）执行该表上的AFTER触发器</p>
+<p>DROP TRIGGER &lt;触发器名&gt; ON &lt;表名&gt;</p>
+<h1 id="第六章-关系数据理论"><a href="#第六章-关系数据理论" class="headerlink" title="第六章 关系数据理论"></a>第六章 关系数据理论</h1><p>关系数据库逻辑设计—关系数据库的规范化理论</p>
+<p><strong>第一范式（1NF）：每个分量必须是不可分开的数据项</strong>，无重复的列</p>
+<p>数据依赖是一个关系内部属性与属性之间的一种约束关系，可分为<strong>函数依赖</strong>和<strong>多值依赖</strong></p>
+<p><strong>数据冗余、更新异常、插入异常、删除异常</strong></p>
+<p>原因：由存在于模式中的某些数据依赖引起</p>
+<p>解决方法：用规范化理论改造关系模式来消除不合适的数据依赖（分解）</p>
+<h2 id="规范化"><a href="#规范化" class="headerlink" title="规范化"></a>规范化</h2><h3 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h3><p><strong>X函数确定Y，Y函数依赖于X，记作X—&gt;Y</strong></p>
+<p>函数依赖是指关系模式R的所有关系实例均要满足的约束条件，是语义范畴的概念</p>
+<p>X—&gt;Y，但 Y 不属于 X，则称X—&gt;Y是<strong>非平凡的函数依赖</strong></p>
+<p>X—&gt;Y，但 Y 属于 X（Y是X的子集），则称X—&gt;Y是<strong>平凡的函数依赖</strong>，平凡函数依赖必成立</p>
+<p>若X—&gt;Y，则X称为这个函数依赖的<strong>决定因素</strong></p>
+<ol>
+<li>**完全函数依赖 **</li>
+<li><strong>部分函数依赖</strong></li>
+<li><strong>传递函数依赖</strong></li>
+</ol>
+<h3 id="码"><a href="#码" class="headerlink" title="码"></a>码</h3><ol>
+<li>候选码 </li>
+<li>主码 </li>
+<li>主属性 </li>
+<li>非主属性 </li>
+<li>全码 </li>
+<li>外码</li>
+</ol>
+<h3 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h3><p>范式是符合某一级别的关系模式的集合</p>
+<p><strong>1NF 包含 2NF 包含 3NF 包含 BCNF 包含 4NF 包含 5NF</strong></p>
+<p>一个低一级范式的关系模式，通过<strong>模式分解</strong>可以转换为若干个高一级范式的关系模式的集合，这种过程就叫<strong>规范化</strong></p>
+<p>关系数据库的规范化理论是数据库逻辑设计的工具，规范化实质上是概念的单一化</p>
+<p>一个关系模式不属于2NF，会产生插入异常、删除异常、修改复杂的问题</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>第二范式（2NF）</strong></td>
+<td><strong>关系模式R属于1NF，并且每一个非主属性都完全函数依赖于任何一个候选码（即不存在非主属性部分函数依赖于候选码），则R属于2NF</strong></td>
+</tr>
+<tr>
+<td><strong>第三范式（3NF）</strong></td>
+<td><strong>关系模式R&lt;U,F&gt;属于1NF，若R中不存在非主属性Z对码X的传递函数依赖，则称R&lt;U,F&gt;属于3NF</strong></td>
+</tr>
+<tr>
+<td><strong>BCNF</strong></td>
+<td><strong>在关系模式R&lt;U,F&gt;中，如果每一个决定属性集都包含候选码，则R属于BCNF</strong></td>
+</tr>
+</tbody></table>
+<p>关系模式的规范化：一个低一级范式的关系模式，通过<strong>模式分解</strong>可以转换为若干个高一级范式的关系模式集合</p>
+<h4 id="关系数据库的规范化是数据库逻辑设计的工具"><a href="#关系数据库的规范化是数据库逻辑设计的工具" class="headerlink" title="关系数据库的规范化是数据库逻辑设计的工具"></a>关系数据库的规范化是数据库逻辑设计的工具</h4><p>1NF—&gt;2NF：消除非主属性对码的部分函数依赖</p>
+<p>2NF—&gt;3NF：消除非主属性对码的传递函数依赖</p>
+<p>3NF—&gt;BCNF：消除主属性对码的部分和传递函数依赖</p>
+<p>BCNF—&gt;4NF：消除非平凡且非函数依赖的多值依赖</p>
+<p>1NF—&gt;BCNF：消除决定因素非码的非平凡函数依赖</p>
+<p>不能说规范化程度越高的关系模式就越好</p>
+<h1 id="第七章-数据库设计"><a href="#第七章-数据库设计" class="headerlink" title="第七章 数据库设计"></a>第七章 数据库设计</h1><p>需求分析和概念设计独立于任何数据库管理系统，逻辑设计和物理设计与选用的数据库管理系统密切相关</p>
+<p>需求分析阶段：综合各个用户的应用需求</p>
+<p>概念设计阶段：<strong>概念模式</strong>（信息时间模型），用E-R图来描述</p>
+<p>逻辑设计阶段：<strong>逻辑模式、外模式</strong></p>
+<p>物理设计阶段：<strong>内模式</strong></p>
+<p>在逻辑设计阶段将E-R图转换成具体的数据库产品支持的数据模型如关系模式，形成数据库<strong>逻辑模式</strong></p>
+<p>根据用户处理的要求，安全性的考虑，在基本表的基础上再建立必要的视图，形成数据的<strong>外模式</strong></p>
+<p>在物理设计阶段根据DBMS特点和处理的需要，进行物理存储安排，设计索引，形成数据库<strong>内模式</strong></p>
+<h3 id="数据库设计的基本步骤"><a href="#数据库设计的基本步骤" class="headerlink" title="数据库设计的基本步骤"></a>数据库设计的基本步骤</h3><p><strong>需求分析、概念结构设计、逻辑结构设计、物理结构设计、数据库实施、数据库运行和维护</strong></p>
+<p>需求分析和概念结构设计独立于任何数据库管理系统</p>
+<p>逻辑设计和物理设计与选用的数据库管理系统密切相关</p>
+<h3 id="数据库设计过程中的各级模式"><a href="#数据库设计过程中的各级模式" class="headerlink" title="数据库设计过程中的各级模式"></a>数据库设计过程中的各级模式</h3><p>需求分析：综合各个用户的应用需求</p>
+<p>概念设计阶段：E-R图</p>
+<p>逻辑设计阶段：逻辑模式 外模式</p>
+<p>物理设计阶段：内模式</p>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>需求分析就是分析用户的需求</p>
+<p>分析方法：结构化分析方法</p>
+<p>数据字典是关于数据库中的数据描述，即元数据</p>
+<p>数据字典的内容：数据项、数据结构、数据流、数据存储、处理过程</p>
+<h2 id="概念结构设计"><a href="#概念结构设计" class="headerlink" title="概念结构设计"></a>概念结构设计</h2><h3 id="7-3-1-概念模型"><a href="#7-3-1-概念模型" class="headerlink" title="7.3.1 概念模型"></a>7.3.1 概念模型</h3><p>描述概念模型的工具 E-R模型</p>
+<h3 id="7-3-2-E-R模型"><a href="#7-3-2-E-R模型" class="headerlink" title="7.3.2 E-R模型"></a>7.3.2 E-R模型</h3><p>实体之间的联系：一对一（1:1）、一对多（1:n）、多对多（m:n）</p>
+<p>联系的度：参与联系的实体型的数目</p>
+<p>E-R图提供了表示实体型、属性和联系的方法</p>
+<h3 id="7-3-3-概念结构设计"><a href="#7-3-3-概念结构设计" class="headerlink" title="7.3.3 概念结构设计"></a>7.3.3 概念结构设计</h3><p>两条准则：（1）属性必须是不可分的数据项，不能包含其他属性 （2）属性不能与其他实体具有联系，即E-R图中所表示的联系是实体之间的联系</p>
+<p>E-R图的集成一般需要两步</p>
+<p>（1）合并</p>
+<p>子系统E-R图之间的冲突主要有三类：属性冲突、命名冲突、结构冲突</p>
+<p>（2）修改和重构</p>
+<h2 id="逻辑结构设计"><a href="#逻辑结构设计" class="headerlink" title="逻辑结构设计"></a>逻辑结构设计</h2><h3 id="7-4-1-E-R图向关系模型的转换"><a href="#7-4-1-E-R图向关系模型的转换" class="headerlink" title="7.4.1 E-R图向关系模型的转换"></a>7.4.1 E-R图向关系模型的转换</h3><p>（1）1:1联系转换为一个独立的关系模式</p>
+<p>（2）1:1联系与任意一端合并</p>
+<p>（3）1:n联系可以转换为一个独立的关系模式，也可以与n端对应的关系模式合并</p>
+<p>（4）一个m:n联系转换为一个关系模式，取m，n端的码作为独立关系的组合码，再加自有属性</p>
+<p>（5）三个或三个以上实体间的一个<strong>多元联系</strong>转换为一个关系模式</p>
+<p>（6）具有相同码的关系模式可合并</p>
+<h3 id="7-4-2-数据模型的优化"><a href="#7-4-2-数据模型的优化" class="headerlink" title="7.4.2 数据模型的优化"></a>7.4.2 数据模型的优化</h3><p>无通用规则，数据库逻辑设计的结果不是唯一的</p>
+<h3 id="7-4-3-设计用户子模式"><a href="#7-4-3-设计用户子模式" class="headerlink" title="7.4.3 设计用户子模式"></a>7.4.3 设计用户子模式</h3><p>（1）使用更符合用户习惯的别名 （2）针对不同级别的用户定义不同的视图，以保证系统的安全性 （3）简化用户对系统的使用</p>
+<h2 id="物理结构设计"><a href="#物理结构设计" class="headerlink" title="物理结构设计"></a>物理结构设计</h2><p>数据库在物理设备上的<strong>存储结构与存取方法</strong>称为数据库的物理结构，它依赖于选定的数据库管理系统</p>
+<p>数据库管理系统常用存取方法：B+树索引存取方法、Hash索引存取方法、聚簇存取方法</p>
+<p>确定数据库物理结构主要确定数据的<strong>存放位置</strong>和<strong>存储结构</strong></p>
+<p>确定数据的存放位置和存储结构要综合考虑<strong>存取时间、存储空间利用率和维护代价</strong></p>
+<h1 id="单元测试笔记"><a href="#单元测试笔记" class="headerlink" title="单元测试笔记"></a>单元测试笔记</h1><h2 id="单元测试2"><a href="#单元测试2" class="headerlink" title="单元测试2"></a>单元测试2</h2><p>关系代数中的连接操作是由<strong>选择和笛卡尔积</strong>操作组合而成</p>
+<p>关系数据模型的基本数据结构是<strong>关系</strong></p>
+<p>关系R中能唯一标识一个元组的是它的 <strong>主码、全码、候选码</strong></p>
+<p>关系是动态的、随时间变化的，关系模式是静态的、稳定的</p>
+<h2 id="单元测试4"><a href="#单元测试4" class="headerlink" title="单元测试4"></a>单元测试4</h2><p>安全性控制的防范对象是<strong>非法用户</strong>，防止他们对数据库数据的存取</p>
+<p>数据库安全审计系统提供了一种<strong>事后检查</strong>的安全机制。</p>
+<p>在数据库的安全性控制中，授权对象的约束粒度越小，授权子系统就越灵活</p>
+<h2 id="单元测试5"><a href="#单元测试5" class="headerlink" title="单元测试5"></a>单元测试5</h2><p>实体完整性规则检查的内容包括：检查主码值是否唯一,如果不唯一就拒绝插入或修改，检查主码的各个属性值是否为空,只要有一个为空就拒绝插入或修改</p>
+<p>触发器只能定义在基本表上</p>
+<h2 id="单元测试6"><a href="#单元测试6" class="headerlink" title="单元测试6"></a>单元测试6</h2><p>算法：按以下步骤求候选键：<br>1.只在FD右部出现的属性，不属于候选码;<br>2.只在FD左部出现的属性，一定存在于某候选码当中;<br>3.外部属性一定存在于任何候选码当中;<br>4.其他属性逐个与2,3的属性组合，求属性闭包，直至X的闭包等于U,若等于U,则X为候选码</p>
+<p>关系模式R的整个属性组是码,则R满足的最高范式至少是<strong>3NF</strong></p>
+<p>关系规范化中的删除异常是指<strong>不该删除的数据被删除</strong></p>
+<p>关系数据库的规范化理论主要解决的问题是<strong>如何构造合适的数据逻辑结构</strong></p>
+<p>在关系数据库设计中,设计关系模式是数据库设计中<strong>逻辑结构设计阶段</strong>的任务</p>
+<h1 id="刷题"><a href="#刷题" class="headerlink" title="刷题"></a>刷题</h1><p>子模式（外模式）DDL用来描述数据库的局部逻辑结构</p>
+<p>SQL中的视图提高了数据库系统的安全性</p>
+<p>候选码：若关系中的某一属性组的值能够唯一确定一个元组，则该属性组为候选码</p>
+<p>主码：若一个关系有多个候选码，选定一个作为主码</p>
+<p>外码：设关系R的一个属性组F，F不是关系R的主码，若F与关系S的主码相对应，则称F是关系R的外码</p>
+<p>一个关系的候选码可以有多个，但主码只有一个</p>
+<p>每一个实体对应一个关系模式</p>
+<p>每个m：n联系对应一个关系模式</p>
+<p>概念结构设计的方法有四种：自顶向下、自底向上、逐步扩张、混合策略</p>
+<p>设计步骤：（1）进行数据抽象，设计局部E-R模型，即设计局部示图 （2）集成各局部E-R模型，形成全局E-R模型，即视图的集成</p>
+<p>在数据库中，产生数据不一致的根本原因是未对数据进行完整性控制</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-2-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%B1%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2377,425 +3034,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/06/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-4-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MEIDE">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MEIDE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/06/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-4-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/" class="post-title-link" itemprop="url">软件设计师笔记(4)-计算机网络与信息安全</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-06 13:34:49" itemprop="dateCreated datePublished" datetime="2022-10-06T13:34:49+08:00">2022-10-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-10 22:18:34" itemprop="dateModified" datetime="2022-10-10T22:18:34+08:00">2022-10-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="计算机网络于信息安全"><a href="#计算机网络于信息安全" class="headerlink" title="计算机网络于信息安全"></a>计算机网络于信息安全</h1><h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><img src="https://s1.imagehub.cc/images/2022/10/06/image536eda3da1d0c940.png" alt="image536eda3da1d0c940.png" border="0" />
-
-<h3 id="OSI-x2F-RM七层模型"><a href="#OSI-x2F-RM七层模型" class="headerlink" title="OSI&#x2F;RM七层模型"></a>OSI&#x2F;RM七层模型</h3><table>
-    <tr style="font-weight:bold">
-        <td>层次</td>
-        <td>名称</td>
-        <td>主要功能</td>
-        <td>主要设备及协议</td>
-    </tr>
-    <tr>
-        <td>7</td>
-        <td>应用层</td>
-        <td>实现具体的应用功能</td>
-        <td rowspan="3">POP3、FTP、HTTP、Telnet、SMTP、DHCP、TFTP、SNMP、DNS</td>
-    </tr>
-    <tr>
-        <td>6</td>
-        <td>表示层</td>
-        <td>数据的格式与表达、加密、压缩</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>会话层</td>
-        <td>建立、管理、和终止会话</td>
-    </tr>
-    <tr>
-    <td>4</td>
-    <td>传输层</td>
-    <td>端到端的连接(P2P) 《报文》</td>
-    <td>TCP、UDP</td>
-</tr>
-    <tr>
-    <td>3</td>
-    <td>网络层</td>
-    <td>分组传输和路由选择 《包》</td>
-    <td>三层交换机、路由器、<br/>ARP、RARP、ICMP、IGMP</td>
-</tr>
-    <tr>
-    <td>2</td>
-    <td>数据链路层</td>
-    <td>传送以帧为单位的信息 《帧》</td>
-    <td>网桥、交换机（多端口网桥）、网卡、<br/>PPTP、L2TP、SLIP、PPP</td>
-</tr>
-    <tr>
-    <td>1</td>
-    <td>物理层</td>
-    <td>二进制传输 《bit》</td>
-    <td>中继器、集线器（多端口中继器）</td>
-</tr>
-
-<h3 id="TCP-x2F-IP协议族"><a href="#TCP-x2F-IP协议族" class="headerlink" title="TCP&#x2F;IP协议族"></a>TCP&#x2F;IP协议族</h3><div style="color:blue;font-weight:bold">基于TCP（可靠的传输层协议）协议的协议族：</div>
-
-<ul>
-<li>POP3：<span style="color:blue">端口号 110</span>	收邮件协议，一旦接受网络，就把所有右键接受下来《耗费流量》</li>
-<li>FTP：<span style="color:blue">端口号 20&#x2F;21</span>	文件传输协议，控制端口为21，主动端口20，被动随意。</li>
-<li>HTTP：<span style="color:blue">端口号 80</span>	网站协议，如今使用HTTPS协议，端口号为443</li>
-<li>Telnet： <span style="color:blue">端口号 23</span>	远程访问协议</li>
-<li>SMTP： <span style="color:blue">端口号 25</span>	简单邮件传输协议</li>
-</ul>
-<div style="color:purple;font-weight:bold">基于UDP（不可靠的传输层协议）协议的协议族：</div>
-
-<ul>
-<li>DHCP：<span style="color:purple">端口号 67</span>	动态地址分配，自动分配IP地址</li>
-<li>TFTP：<span style="color:purple">端口号 69</span>	文件传输协议</li>
-<li>SNMP：<span style="color:purple">端口号 161</span>	网络管理协议</li>
-<li>DNS： <span style="color:purple">端口号 53</span>	域名解析协议，将域名解析IP地址</li>
-</ul>
- <table>
-     <tr style="font-weight:bold">
-         <td style="color:red">所包含协议</td>
-         <td>TCP/IP模型</td>
-         <td>OSI七层模型</td>
-     </tr>
-     <tr>
-         <td rowspan="3">
-             <span style="color:blue">POP3|FTP|HTTP|Telnet|HTTP|SMTP</span><br>
-             <span style="color:red">NFS</span><br>
-             <span style="color:purple">DHCP|TFTP|SNMP|DNS</span>
-         </td>
-         <td rowspan="3">应用层</td>
-         <td>应用层</td>
-     </tr>
-     <tr>
-         <td>表示层</td>
-     </tr>
-     <tr>
-         <td>会话层</td>
-     </tr>
-     <tr>
-         <td>
-             <span style="color:blue">TCP:有线连接，三次握手（打电话）</span>
-             <br>
-             <span style="color:purple">UDP:无线链接，无需握手（发短信）</span></td>
-         <td>传输层</td>
-         <td>传输层</td>
-     </tr>
-     <tr>
-         <td style="color:red">
-             <span style="color:blue">IP|ICMP</span><br>
-             IGMP<br>
-             <span style="color:purple">ARP|RARP|</span>
-         </td>
-         <td>网际层</td>
-         <td>网络层</td>
-     </tr>
-     <tr>
-         <td rowspan="2" style="color:red">
-             <span style="color:blue">CSMA/CD:载波监听多路访问<span
-                 <br>
-             <span style="color:red">TokingRing:令牌访问</span>
-         </td>
-         <td rowspan="2">网络接口层</td>
-         <td>数据链路层</td>
-     </tr>
-     <tr>
-         <td>物理层</td>
-     </tr>
- </table>
-
-<img src="https://s1.imagehub.cc/images/2022/10/06/image95f91e782fc4ec6b.png" alt="image95f91e782fc4ec6b.png" border="0" />
-
-<h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><p>目前使用的是IPV4 32位 </p>
-<img src="https://s1.imagehub.cc/images/2022/10/06/image4a5671debaffc81a.png" alt="image4a5671debaffc81a.png" border="0" />
-
-<h3 id="子网划分"><a href="#子网划分" class="headerlink" title="子网划分"></a>子网划分</h3><ol>
-<li><p>子网掩码</p>
-</li>
-<li><p>将一个网络划分成多个子网（取部分主机号当子网号）</p>
-</li>
-<li><p>将多个网络合并成一个大的网络（取部分网络号当主机号）</p>
-</li>
-</ol>
-<p>例1,将B类IP地址168.195.0.0划分成27个子网，子网掩码为多少？</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">27&lt;2^5</span><br><span class="line">168.195.0.0转为二进制</span><br><span class="line">1010 1000 1100 0011 0000 0000 0000 0000</span><br><span class="line">也就是说现在需要向168.195.0.0借5位得</span><br><span class="line">1010 1000 1100 0011 1111 1000 0000 0000</span><br><span class="line">将前序所有变为1，即获得子网掩码</span><br><span class="line">1111 1111 1111 1111 1111 1000 0000 0000</span><br><span class="line">255.	  255.		248.	  0</span><br><span class="line">所以子网掩码为：255.255.248.0</span><br></pre></td></tr></table></figure>
-
-<p>例2,将B类IP地址168.195.0.0划分成若干子网，每个子网内有主机700台，则子网掩码为多少？</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">需要700台</span><br><span class="line">2^5=512</span><br><span class="line">2^10=1024</span><br><span class="line">所以需要2^10-2=1024-2=1022位（减2因为是B类）</span><br><span class="line">因为B类有16位主机号</span><br><span class="line">所以2^16-2^10=2^6</span><br><span class="line">由此需要如上述借6位</span><br><span class="line">1010 1000 1100 0011 0000 0000 0000 0000</span><br><span class="line">1111 1111 1111 1111 1111 1100 0000 0000</span><br><span class="line">255.	  255.		252.	  0</span><br><span class="line">所以答案为255.255.252.0</span><br></pre></td></tr></table></figure>
-
-<h3 id="网络规划与设计"><a href="#网络规划与设计" class="headerlink" title="网络规划与设计"></a>网络规划与设计</h3><table>
-    <span>
-    <tr>
-        <td>需求分析</td>
-        <td>
-            网络功能要求
-            <br>网络性能要求<br>
-            网络运行环境要求<br>
-            网络的可扩充性和可维护性要求<br>
-        </td>
-    </tr>
-    <tr>
-        <td>网络规划原则</td>
-        <td>实用性原则<br>
-            开放性原则<br>
-            先进行原则
-        </td>
-    </tr>
-    <tr>
-        <td>网络设计与实施原则</td>
-        <td>可靠性原则<br>
-            安全性原则<br>
-            高效性原则<br>
-            可扩展性原则
-        </td>
-    </tr>
-    <tr>
-        <td>层次化网络设计(见下图）</td>
-        <td>核心层<br>
-            汇聚层<br>
-            接入层<br>
-        </td>
-    </tr>
-</table>
-
-<img src="https://s1.imagehub.cc/images/2022/10/06/image005f3b980b1ccacb.png" alt="image005f3b980b1ccacb.png" border="0" />
-
-<h3 id="计算机网络分类"><a href="#计算机网络分类" class="headerlink" title="计算机网络分类"></a>计算机网络分类</h3><h4 id="按分布范围分"><a href="#按分布范围分" class="headerlink" title="按分布范围分"></a>按分布范围分</h4><ul>
-<li>局域网（LAN）：无线局域网（WLAN，802.11，WI-FI）</li>
-<li>城域网（MAN）：无线城域网（WMAN，802.16，WiMax）</li>
-<li>广域网（WAN）：无线广域网（WWAN，3G&#x2F;4G）</li>
-<li>因特网：无线个任务（WPAN，802.15，Bluetooth）</li>
-</ul>
-<h4 id="按照拓扑结构分"><a href="#按照拓扑结构分" class="headerlink" title="按照拓扑结构分"></a>按照拓扑结构分</h4><ul>
-<li>总线型</li>
-<li>星型</li>
-<li>环形</li>
-</ul>
-<img src="https://s1.imagehub.cc/images/2022/10/06/image30067cc759293d2d.png" alt="image30067cc759293d2d.png" border="0" />
-
-<h3 id="网络接入技术"><a href="#网络接入技术" class="headerlink" title="网络接入技术"></a>网络接入技术</h3><h4 id="有线接入"><a href="#有线接入" class="headerlink" title="有线接入"></a>有线接入</h4><p>PSTN：公用交换电话网络</p>
-<p>DDN：数字数据网</p>
-<p>ISDN：综合业务数字网</p>
-<p><span style="color:red">ADSL：非对称数字用户线路</span></p>
-<p>HFC：同轴光纤技术</p>
-<h4 id="无线接入"><a href="#无线接入" class="headerlink" title="无线接入"></a>无线接入</h4><p>IEEE 802.11：WIFI</p>
-<p>IEEE 802.15：蓝牙Bluetooth</p>
-<p>IrDA：红外</p>
-<p>WAPI</p>
-<h4 id="3G"><a href="#3G" class="headerlink" title="3G"></a>3G</h4><p>WCDMA：联通</p>
-<p>CDMA2000：电信</p>
-<p>TD-SCDMA：移动</p>
-<p>WirelessMAN（802.16）（WiMAX）</p>
-<h4 id="4G"><a href="#4G" class="headerlink" title="4G"></a>4G</h4><p>FDD-LTE</p>
-<p>TD-LTE</p>
-<p>WirelessMAN（802.16m）（WiMAX）</p>
-<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><img src="https://s1.imagehub.cc/images/2022/10/06/image8219c273fbf57888.png" alt="image8219c273fbf57888.png" border="0" />
-
-
-
-<h2 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h2><img src="https://s1.imagehub.cc/images/2022/10/07/image.png" alt="image.png" border="0" />
-
-<h3 id="对称加密技术"><a href="#对称加密技术" class="headerlink" title="对称加密技术"></a>对称加密技术</h3><p>使用同一套秘钥<br>$$<br>K_e&#x3D;K_d<br>$$</p>
-<ul>
-<li>加密强度不高，但效率高效</li>
-<li>密钥分发困难</li>
-</ul>
-<p>常见对称秘钥加密算法：DES、3DES（三重DES）、RC-5、IDEA算法</p>
-<img src="https://s1.imagehub.cc/images/2022/10/07/imaged60a3862cdf4e261.png" alt="imaged60a3862cdf4e261.png" border="0" />
-
-<h3 id="非对称加密技术"><a href="#非对称加密技术" class="headerlink" title="非对称加密技术"></a>非对称加密技术</h3><p>加密和使用的不是同一套秘钥。密钥必须成对使用（公钥加密，相应的的私钥解密）</p>
-<p>使用接收方的公钥加密，使用接收方的私钥解密<br>$$<br>K_e ≠ K_d<br>$$</p>
-<p>特点：加密速度慢，但强度高</p>
-<p>常见非对称秘钥加密算法：RSA、ECC</p>
-<img src="https://s1.imagehub.cc/images/2022/10/07/imageeefd5f06393fda55.png" alt="imageeefd5f06393fda55.png" border="0" />
-
-<h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><p>为了证明文件的签发方。</p>
-<p>发送者用自己的私钥签发，接收者采用发送者的公钥作为验证。</p>
-<img src="https://s1.imagehub.cc/images/2022/10/10/imageb9fb441b60507e07.png" alt="imageb9fb441b60507e07.png" border="0" />
-
-<h3 id="消息摘要"><a href="#消息摘要" class="headerlink" title="消息摘要"></a>消息摘要</h3><p>数字摘要：由单向散列函数加密成固定长度的散列值。（不可逆的过程）</p>
-<p>常用的消息摘要算法有MD5，SHA等，市场上广泛使用的MD5，SHA算法的散列值分别为128和160位，由于SHA通常采用的密钥长度较长，因此安全性高于MD5。</p>
-<h3 id="PKI公钥体系"><a href="#PKI公钥体系" class="headerlink" title="# PKI公钥体系"></a># PKI公钥体系</h3><p>CA中心：管理公钥和私钥的注册和更新。</p>
-<h2 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h2><h3 id="各个网络层次的安全保障"><a href="#各个网络层次的安全保障" class="headerlink" title="各个网络层次的安全保障"></a>各个网络层次的安全保障</h3><table>
-    <tr>
-        <td>PGP</td>
-        <td>Https</td>
-        <td rowspan=4>SSL</td>
-        <td>应用层</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        
-<pre><code>    &lt;td&gt;表示层&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-    &lt;td&gt;&lt;/td&gt;
-    &lt;td&gt;&lt;/td&gt;
-    
-    &lt;td&gt;会话层&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-    &lt;td&gt;TLS&lt;/td&gt;
-    &lt;td&gt;SET&lt;/td&gt;
-    
-    &lt;td&gt;传输层&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-    &lt;td&gt;防火墙&lt;/td&gt;
-    &lt;td&gt;&lt;/td&gt;
-    &lt;td&gt;IPSec&lt;/td&gt;
-    
-    &lt;td&gt;网络层&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-    &lt;td&gt;链路加密&lt;/td&gt;
-    &lt;td&gt;PPTP&lt;/td&gt;
-    &lt;td&gt;L2TP&lt;/td&gt;
-    
-    &lt;td&gt;数据链路层&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-    &lt;td&gt;隔离&lt;/td&gt;
-    &lt;td&gt;&lt;/td&gt;
-    &lt;td&gt;屏蔽&lt;/td&gt;
-    
-    &lt;td&gt;物理层&lt;/td&gt;
-&lt;/tr&gt;
-</code></pre>
-</table>
-
-<h3 id="主动攻击与被动攻击"><a href="#主动攻击与被动攻击" class="headerlink" title="主动攻击与被动攻击"></a>主动攻击与被动攻击</h3><table>
-    <tr>
-        <td rowspan=2>被动攻击</td>
-        <td rowspan=2>监听（保密性)</td>
-        <td>消息内容获取</td>
-    </tr>
-    <tr>
-        <td>业务流分析</td>
-    </tr>
-    <tr>
-        <td rowspan=3>主动攻击</td>
-        <td rowspan=3></td>
-        <td>中断（可用性）</td>
-    </tr>
-    <tr>
-        <td>篡改（完整性）</td>
-    </tr>
-    <tr>
-        <td>伪装（真实性）</td>
-    </tr>
-</table>
-
-<h3 id="Dos-拒绝服务-与DDos"><a href="#Dos-拒绝服务-与DDos" class="headerlink" title="Dos(拒绝服务)与DDos"></a>Dos(拒绝服务)与DDos</h3><p>服务器忙于处理傀儡机请求，无法接受其他请求</p>
-<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><table>
-    <tr>
-        <td rowspan="2">网络级</td>
-        <td>包过滤（只检查包，不检查内部内容）</td>
-        <td rowspan="2">
-            内部网络->屏蔽路由器--Internet
-        </td>
-    </tr>
-    <tr>
-        <td>状态检测（全部检测，开销大）</td>
-    </tr>
-    
-<pre><code>&lt;tr&gt;
-    &lt;td rowspan=&quot;3&quot;&gt;应用级&lt;/td&gt;
-    &lt;td&gt;双穴主机&lt;/td&gt;
-    &lt;td&gt;内部网络-&gt;双穴主机--Internet&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-    &lt;td&gt;屏蔽主机&lt;/td&gt;
-    &lt;td&gt;
-        &lt;img src=&quot;https://s1.imagehub.cc/images/2022/10/10/image63967402bfa7c5b6.png&quot; alt=&quot;image63967402bfa7c5b6.png&quot; border=&quot;0&quot; /&gt;
-    &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-    &lt;td&gt;屏蔽子网&lt;/td&gt;
-    &lt;td&gt;&lt;img src=&quot;https://s1.imagehub.cc/images/2022/10/10/image4b8790680f981eeb.png&quot; alt=&quot;image4b8790680f981eeb.png&quot; border=&quot;0&quot; /&gt;&lt;br&gt;
-    &lt;img src=&quot;https://s1.imagehub.cc/images/2022/10/10/imageb61e3b4c1f369535.png&quot; alt=&quot;imageb61e3b4c1f369535.png&quot; border=&quot;0&quot; /&gt;&lt;/td&gt;
-&lt;/tr&gt;
-</code></pre>
-</table>
-
-<h3 id="安全防范体系"><a href="#安全防范体系" class="headerlink" title="安全防范体系"></a>安全防范体系</h3><ol>
-<li><strong>物理环境的安全性：</strong>物理环境的安全性。包括通信线路、物理设备和机房的安全等。物理层的安全主要体现在通信线路的可靠性（线路备份、网管软件和传输介质）、软硬件设备的安全性（普换设备、拆卸设备、增加设备设备的备份、防灾害能力、防干扰能力、设备的运行环境（温度、湿度、烟尘）和不间断电源保障等。</li>
-<li>**操作系统的安全性:**主要表现在三个方面，一是操作系统本身的缺陷带来的不安全因素，主要括身份认证、访问控制和系统漏洞等；二是对操作系统的安全配置问题；三是病毒对操作系统的威助。</li>
-<li>**网络的安全性:**网络层的安全问题主要体现在计算机网络方面的安全性，包括网络层身份认证网络资源的访问控制、数据传输的保密与完整性、远程接入的安全、域名系统的安全、路由系统入侵检测的手段和网络设施防病毒等。</li>
-<li><strong>应用的安全性：</strong>由提供服务所采用的应用软件和数据的安全性产生，包括Web服务、电子邮件统和DNS等，此外，还包括病毒对系统的威胁。</li>
-<li><strong>管理的安全性：</strong>包括安全技术和设备的管理、安全管理制度、部门与人员的组织规制规则等。管理的制度化极大程度地影响着整个计算机网络的安全，严格的安全管理制度、明确的部门安全职划分与合理的人员角色配置，都可以在很大程度上降低其他层次的安全漏洞。</li>
-</ol>
-<h3 id="病毒"><a href="#病毒" class="headerlink" title="病毒"></a>病毒</h3><img src="https://s1.imagehub.cc/images/2022/10/10/imagecaa9de44d4cf99c2.png" alt="imagecaa9de44d4cf99c2.png" border="0" />
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2861,20 +3103,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
