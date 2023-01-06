@@ -840,7 +840,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-12 22:38:22" itemprop="dateModified" datetime="2022-12-12T22:38:22+08:00">2022-12-12</time>
+                <time title="修改时间：2023-01-07 01:04:30" itemprop="dateModified" datetime="2023-01-07T01:04:30+08:00">2023-01-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1092,7 +1092,54 @@
 <p><strong>CS</strong>:载波侦听&#x2F;监听，每一个站在发送数据之前以及发送数据时都要检测一下总线上是否有其他计算机在发送数据</p>
 <p><strong>MA</strong>:多点接入，表示许多计算机以多点接入的方式连接在一根总线上。【总线型网络】</p>
 <p><strong>CD</strong>:碰撞检测（冲突检测）,“边发送边监听”，适配器边发送数据边检测信道上信号电压的变化情况，以便判断自己在发送数据时其他站是否也在发送数据。【半双工网络】</p>
+<img src="https://gitee.com/blackhaird/blog_img/raw/master/img/202212262143992.png"/>
 
+<p>帧的传输时延至少要两倍于信号在总线中的传播时延</p>
+<p>以太网规定最短帧长为64B,凡是长度小于64B的都是由于冲突而异常终止的无效帧<br>$$<br>帧长(bit)&#x2F;数据传输速率 \ge 2τ<br>$$</p>
+<p>$$<br>最小帧长&#x3D;总线传播时延<em>数据传输速率</em>2<br>$$</p>
+<p>$$<br>2τ*数据传输速率<br>$$</p>
+<img src="https://gitee.com/blackhaird/blog_img/raw/master/img/202301070057756.png"/>
+
+<h3 id="CSMA-x2F-CA协议（载波监听多点接入-x2F-碰撞避免）"><a href="#CSMA-x2F-CA协议（载波监听多点接入-x2F-碰撞避免）" class="headerlink" title="CSMA&#x2F;CA协议（载波监听多点接入&#x2F;碰撞避免）"></a>CSMA&#x2F;CA协议（载波监听多点接入&#x2F;碰撞避免）</h3><ul>
+<li>发送数据前，先检测信道是否空闲。</li>
+<li>空闲则发出RTS(request to send),RTS包括发射端的地址、接收端的地址、下一份数据将持续发送的时间等信息；信道忙则等待。</li>
+<li>接收端收到RTS后，将响应CTS(clear to send)。</li>
+<li>发送端收到CTS后，开始发送数据帧（同时预约信道：发送方告知其他站点自己要传多久数据）。</li>
+<li>接收端收到数据帧后，将用CRC来检验数据是否正确，正确则响应ACK帧。</li>
+<li>发送方收到ACK就可以进行下一个数据帧的发送，若没有则一直重传至规定重发次数为止（采用二进制指数退避算法来确定随机的推迟时间）。</li>
+</ul>
+<ol>
+<li>预约信道</li>
+<li>.ACK帧</li>
+<li>RTS&#x2F;CTS帧（可选）</li>
+</ol>
+<h4 id="CSMA-x2F-CD-与-CSMA-x2F-CA的区别"><a href="#CSMA-x2F-CD-与-CSMA-x2F-CA的区别" class="headerlink" title="CSMA&#x2F;CD 与 CSMA&#x2F;CA的区别"></a>CSMA&#x2F;CD 与 CSMA&#x2F;CA的区别</h4><p>相同点：</p>
+<p>CSMA&#x2F;CD与CSMA&#x2F;CA机制都从属于CSMA的思路，其核心是先听再说。换言之，两个在接入信道之前都须要 进行监听。当发现信道空闲后，才能进行接入。</p>
+<p>不同点：</p>
+<ol>
+<li><p>传输介质不同：CSMA&#x2F;CD用于总线式以太网【有线】，而CSMA&#x2F;CA用于无线局域网【无线】。</p>
+</li>
+<li><p>载波检测方式不同：因传输介质不同，CSMA&#x2F;CD与CSMA&#x2F;CA的检测方式也不同。CSMA&#x2F;CD通过电缆中电压的变化来检测，当数据发生碰撞时，电缆中的电压就会随着发生变化；而CSMA&#x2F;CA采用能量检测（ED)、载波检测（CS)和能量载波混合检测三种检测信道空闲的方式。</p>
+</li>
+<li><p>CSMA&#x2F;CD检测冲突，CSMA&#x2F;CA避免冲突，二者出现冲突后都会进行有上限的重传。</p>
+</li>
+</ol>
+<h2 id="轮询访问介质访问控制"><a href="#轮询访问介质访问控制" class="headerlink" title="轮询访问介质访问控制"></a>轮询访问介质访问控制</h2><p>主要包括两大类，一个是<strong>轮询协议</strong>，另一个是<strong>令牌传递协议</strong></p>
+<h3 id="轮询协议"><a href="#轮询协议" class="headerlink" title="轮询协议"></a>轮询协议</h3><p>即选出一个代表，由他控制所有的传输，但会存在以下问题</p>
+<ul>
+<li>轮询开销：在随着服务的节点越多，需要用于查询是否发送数据发送的数据帧也就越多，会造成一定开销</li>
+<li>等待延迟：就是因为这是轮流“邀请”，所以难免某个节点需要发送数据，但是主节点还在较远的需要里有需求的节点那边，导致需求得不到立即响应</li>
+<li>单点故障：很好理解，就是代表挂了</li>
+</ul>
+<h3 id="令牌传输协议"><a href="#令牌传输协议" class="headerlink" title="令牌传输协议"></a>令牌传输协议</h3><p>在节点之间没有收发数据的需求时，令牌在节点之间循环。</p>
+<p>发送数据的流程</p>
+<ol>
+<li>当一个节点需要时就可以获得这个令牌。然后修改这个令牌的状态（空闲-&gt;占用）</li>
+<li>再将令牌与数据帧结合，让其在节点构成的环之间流动</li>
+<li>不是目的地的节点收到令牌也不接受，直接略过，目标节点收到信息并复制一份到本地（传输完成），因为是个闭环，所以发送节点最后得到令牌</li>
+<li>最后，发送令牌的节点对令牌的内容进行检查，如果发现数据出错还要重新发一遍<br>问题基本和轮询协议相同</li>
+</ol>
+<img src="https://gitee.com/blackhaird/blog_img/raw/master/img/202301070104724.png"/>
       
     </div>
 
@@ -3147,7 +3194,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
