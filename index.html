@@ -152,6 +152,242 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/02/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">计算机操作系统</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-02-18 13:27:36 / 修改时间：15:31:36" itemprop="dateCreated datePublished" datetime="2023-02-18T13:27:36+08:00">2023-02-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">计算操作系统</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="计算机系统概述"><a href="#计算机系统概述" class="headerlink" title="计算机系统概述"></a>计算机系统概述</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>操作系统（Operating Ststem， OS）是指控制和管理整个计算机系统的硬件和软件资源，并合理地组织调度计算机的工作和资源的分配，以提供给用户和其他软件方便的接口和环境，它是计算机系统中最基本的系统软件。</p>
+<h2 id="操作系统的功能和目标"><a href="#操作系统的功能和目标" class="headerlink" title="操作系统的功能和目标"></a>操作系统的功能和目标</h2><ol>
+<li><p>作为系统资源的管理者</p>
+<ul>
+<li><p>文件管理</p>
+</li>
+<li><p>内存管理</p>
+</li>
+<li><p>处理及（CPU）管理</p>
+</li>
+<li><p>设备（计算机硬件，例如摄像头）管理</p>
+</li>
+</ul>
+</li>
+<li><p>作为用户和计算机硬件之间的接口</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181513303.png"/>
+
+
+</li>
+<li><p>对硬件机器的扩展</p>
+</li>
+</ol>
+<h2 id="操作系统的四个特征"><a href="#操作系统的四个特征" class="headerlink" title="操作系统的四个特征"></a>操作系统的四个特征</h2><ol>
+<li><p>并发</p>
+<p>并发是指<strong>两个或多个事件在同一时间间隔内发生</strong>。这些事件在宏观上是同时发生的，在微观上是交替发生的。</p>
+<p><span style="color:red">易混淆的概念——并行：两个或多个事件在同一时刻同时发生</span></p>
+</li>
+<li><p>共享</p>
+<p>共享即资源共享，是指系统中的资源内存中多个并发执行的进程共同使用。</p>
+<table>
+<thead>
+<tr>
+<th>两种资源共享方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>互斥共享方式</td>
+<td>系统中的某些资源，虽然可以提供给多个进程使用，<br><span style="color:red">但<strong>一个时间段内只允许一个进程访问该资源</strong></span></td>
+</tr>
+<tr>
+<td>同时共享方式</td>
+<td>系统中的某些资源，<br><span style="color:red"><strong>允许一个时间段内由多个进程“同时”对它们进行访问</strong></span></td>
+</tr>
+</tbody></table>
+<p>所谓的“同时”往往是宏观上的，而在微观上，这些进程可能是交替地对该资源进行访问的(即分时共享)</p>
+<p>例如：</p>
+<ul>
+<li><p>互斥共享方式：使用QQ和微信进行视频，但是同一个时间段内摄像头只能分配给其中一个进程</p>
+</li>
+<li><p>同时共享方式：使用QQ发送文件A，同时使用微信发送文件B。宏观上看，两边都在同时读取并发送文件，说明两个进程都在访问硬盘资源，从中读取数据。<strong>微观上看，两个进程是交替着访问硬盘的。</strong></p>
+</li>
+</ul>
+</li>
+<li><p>虚拟</p>
+<p>虚拟是指把一个屋里上的实体变成若干个逻辑上的对应物。物理实体（前者）是实际存在的，而逻辑上对应物（后者）是用户感受到的。</p>
+<table>
+<thead>
+<tr>
+<th>虚拟技术</th>
+<th>例如</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>空分复用技术</td>
+<td>虚拟存储器技术</td>
+<td></td>
+</tr>
+<tr>
+<td>时分复用技术</td>
+<td>虚拟处理器</td>
+<td>显然，如果失去了并发性，则一个时间段内系统中只需运行一道程序，那么就失去了实现虚拟性的意义了。因此，<span style="color:red"><strong>没有并发性，就谈不上虚拟性</strong></span></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>异步</p>
+<p>异步是指,在多道程序环境下，<strong>允许多个程序并发执行</strong>，但是由于资源有限，进程的执行不是一贯到底的，而是走走停停，以不可预知的速度向前推进，这就是进程的异步性。</p>
+<ul>
+<li>只有系统拥有并发性，才有可能导致异步性。</li>
+</ul>
+</li>
+</ol>
+<h2 id="操作系统的运行机制和体系结构"><a href="#操作系统的运行机制和体系结构" class="headerlink" title="操作系统的运行机制和体系结构"></a>操作系统的运行机制和体系结构</h2><h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>特权指令</td>
+<td>如内存清零指令（不允许用户程序使用）</td>
+</tr>
+<tr>
+<td>非特权指令</td>
+<td>如普通的运算指令</td>
+</tr>
+</tbody></table>
+<h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><table>
+<thead>
+<tr>
+<th>两种处理器状态</th>
+<th>(用程序状态字寄存器（PSW)中的某 标志位来标识当前处理器处于什么状 态。如0为用户态，1为核心态)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户态（目态）</td>
+<td>此时CPU只能执行非特权指令</td>
+</tr>
+<tr>
+<td>核心态（管态）</td>
+<td>特权指令、非特权指令都可执行</td>
+</tr>
+</tbody></table>
+<h3 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h3><table>
+<thead>
+<tr>
+<th>两种程序</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>内核程序</td>
+<td>操作系统的内核程序是系统的管理者，即可执行特权指令，也可以执行非特权指令，运行也在核心态</td>
+</tr>
+<tr>
+<td>应用程序</td>
+<td>为了保证系统能安全运行，普通应用程序只能执行费特权指令，运行在用户态</td>
+</tr>
+</tbody></table>
+<h3 id="操作系统的内核"><a href="#操作系统的内核" class="headerlink" title="操作系统的内核"></a>操作系统的内核</h3><p>由于内核划分功能的不同，内核分为大内核和微内核</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181514707.png"/>
+
+<ul>
+<li><p>大内核和微内核的优缺点</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181515691.png"/></li>
+</ul>
+<p>类比：</p>
+<ul>
+<li>操作系统的体系结构问题与企业的管理问题很相似。</li>
+<li>内核就是企业的管理层，负责一些重要的工作。只有管理层才能执行特权指令，普通员工只能执行非特权指令。用户态、核心态之间的切换相当于普通员工和管理层之间的工作交接</li>
+<li>大内核:企业初创时体量不大，管理层的人会负责大部分的事情。优点是效率高;缺点是组织结构混乱，难以维护。</li>
+<li>微内核:随着企业体量越来越大，管理层只负责最核心的一些工作。优点是组织结构清晰，方便维护;缺点是效率低。</li>
+</ul>
+<h2 id="中断和异常"><a href="#中断和异常" class="headerlink" title="中断和异常"></a>中断和异常</h2><h3 id="概念和作用"><a href="#概念和作用" class="headerlink" title="概念和作用"></a>概念和作用</h3><p><strong>中断</strong>是指计算机运行过程中，出现某些意外情况需主机干预时，机器能自动停止正在运行的程序并转入处理新情况的程序，处理完毕后又返回原被暂停的程序继续运行。</p>
+<ol>
+<li>当中断发生时，CPU立即进入核心态</li>
+<li>当中断发生后，当前运行的进程暂停运行，并由操作系统内核对中断进行处理。</li>
+<li>对于不同的中断信号，会进行不同的处理。</li>
+<li>有了中断，才能实现多道程序并发执行。</li>
+<li>“用户态→核心态”是通过中断实现的，<strong>并且中断是唯一途径</strong>。“核心态→用户态”的切换是通过执行一个特权指令，将程序状态字（ PSW）的标志位设置为 “用户态”。</li>
+</ol>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p> 中断型号的来源来自CPU内部称为内中断，外部称为外中断。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181520216.png"/>
+
+<h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><p>“系统调用”是操作系统提供给应用程序（程序员&#x2F;编程人员）使用的接口，可以理解为一种可供应用程序调用的特殊函数，应用程序可以发出系统调用请求来获得操作系统的服务。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181523855.png"/>
+
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>应用程序通过系统调用请求操作系统的服务。系统中的各种共享资源都由操作系统统一掌管，因此在用户程序中，凡是与资源有关的操作（如存储分配、I&#x2F;O操作、文件管理等），都必须通过系统调用的方式向操作系统提出服务请求，由操作系统代为完成。这样可以保证操作系统的稳定性和安全性，防止用户进行非法操作。</p>
+<h3 id="系统调用和库函数的区别"><a href="#系统调用和库函数的区别" class="headerlink" title="系统调用和库函数的区别"></a>系统调用和库函数的区别</h3><p>编程语言（C、JAVA）中里边有很多库函数，其实他们（不是所有的库函数）就是将系统调用封装起来，隐藏一些细节，使上层进行系统调用更加方便。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>系统调用发生在用户态，对系统调用的处理发生在核心态。</li>
+<li>执行陷入指令（自陷指令或访管指令）会处理内中断，使处理器（CPU）从用户态进行核心态。</li>
+</ul>
+<h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><h2 id="进程的定义，组成，组织方式，特征"><a href="#进程的定义，组成，组织方式，特征" class="headerlink" title="进程的定义，组成，组织方式，特征"></a>进程的定义，组成，组织方式，特征</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-3-%E4%BC%A0%E8%BE%93%E5%B1%82%E4%B8%8E%E5%BA%94%E7%94%A8%E5%B1%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3585,320 +3821,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/14/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-6-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%8A%80%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MEIDE">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MEIDE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/14/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-6-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">软件设计师笔记(6)-面向对象技术</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-14 16:00:30" itemprop="dateCreated datePublished" datetime="2022-10-14T16:00:30+08:00">2022-10-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-15 21:23:22" itemprop="dateModified" datetime="2022-10-15T21:23:22+08:00">2022-10-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="面向对象技术"><a href="#面向对象技术" class="headerlink" title="*面向对象技术"></a>*面向对象技术</h1><p>本节内容是考试的重点</p>
-<img src="https://s1.imagehub.cc/images/2022/10/14/image3c246187eb8bb105.png" alt="image3c246187eb8bb105.png" border="0" />
-
-<h2 id="面向对象的基本概念"><a href="#面向对象的基本概念" class="headerlink" title="面向对象的基本概念"></a>面向对象的基本概念</h2><ul>
-<li>对象：<strong>属性（数据）+方法（操作）</strong>+对象ID</li>
-<li>类（实体类&#x2F;控制类&#x2F;边界类）</li>
-<li>继承与泛化：复用机制</li>
-<li>封装：隐藏对象的属性和实现细节，仅对外公开接口</li>
-<li>多态：不同对象收到<strong>同样的消息产</strong>生不同的结果</li>
-<li>接口：一种特殊的类，他只有方法定义没有实现</li>
-<li>重载：一个类可以有多个<strong>同名而参数类型不同的方法</strong></li>
-<li>模板类</li>
-<li>消息和消息通信：消息是异步通信的</li>
-</ul>
-<h3 id="面向对象设计7大原则"><a href="#面向对象设计7大原则" class="headerlink" title="面向对象设计7大原则"></a>面向对象设计7大原则</h3><ul>
-<li>单一职责原则：设计目的单一的类</li>
-<li>开放-封闭原则：对扩展开放，对修改封闭</li>
-<li>李氏（Liskov）替换原则：子类可以替换父类</li>
-<li>依赖倒置原则：要依赖于抽象，而不是具体实现；针对接口编程，不要面向实现编程。</li>
-<li>接口隔离原则：使用多个专门的接口比使用单一的总接口要好</li>
-<li>组合重用原则：要尽量使用组合，而不是继承关系达到重用目的。</li>
-<li>迪米特（Demeter）原则（最少知识法则）：一个对象应当对其他对象有尽可能少的了解</li>
-</ul>
-<h2 id="UML（通用建模语言）"><a href="#UML（通用建模语言）" class="headerlink" title="*UML（通用建模语言）"></a>*UML（通用建模语言）</h2><table>
-<thead>
-<tr>
-<th>图名</th>
-<th>包含内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>结构图</td>
-<td><span style="color:red;font-weight:bold">类图</span><br>对象图<br># 包图<br/># 组合结构图（UML2.0新增内容）<br/>结构图<br/>部署图：软硬件之间映射<br/># 制品图</td>
-</tr>
-<tr>
-<td>行为图</td>
-<td><span style="color:red;font-weight:bold">用例图：系统与外部参与者的交互</span><br/>顺序图：强调按时间顺序<br/>通信图（协作图）<br/># 定时图（UML2.0新增内容）<br/>状态图<br/>活动图：类似程序流图，并行行为<br/># 交互概念图</td>
-</tr>
-</tbody></table>
-<h3 id="类图"><a href="#类图" class="headerlink" title="* 类图"></a>* 类图</h3><ul>
-<li>依赖关系：一个事物发生变化影响另一个事物。</li>
-<li>泛化关系：特殊&#x2F;一般关系（继承关系）</li>
-<li>关联关系：描述了一组链，链是对象之间的连接。<ul>
-<li>聚合关系：整体与部分生命周期不同。</li>
-<li>组合关系：整体与部分生命周期相同。</li>
-</ul>
-</li>
-<li>实现关系：接口与类之间的关系</li>
-</ul>
-<img src="https://s1.imagehub.cc/images/2022/10/14/image6048ef5257548366.png" alt="image6048ef5257548366.png" border="0" />
-
-<h3 id="设计模式的分类"><a href="#设计模式的分类" class="headerlink" title="* 设计模式的分类"></a>* 设计模式的分类</h3><h4 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h4><ul>
-<li><span style="color:red;font-weight:bold">工厂方法（factory method）模式</span></li>
-<li><span style="color:red;font-weight:bold">抽象工厂（abstract factory）模式</span></li>
-<li>原型（prototype）模式</li>
-<li><span style="color:red;font-weight:bold">单例（singleton）模式</span></li>
-<li>构建器（builder）模式</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>设计模式名称</th>
-<th>需要说明</th>
-<th>速记关键字</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><span style="color:red;font-weight:bold">Abstract factory&lt;<br/>抽象工厂模式</span></td>
-<td>提供一个接口，可以创建一系列相关或相互依赖的对象而无需指定他们具体的类</td>
-<td>生产成系列对象</td>
-</tr>
-<tr>
-<td>Builder<br/>构建器模式</td>
-<td>将一个复杂类的表示与其构造相分离，使得相同的构建过程能够得出不同的表示</td>
-<td>复杂对象构造</td>
-</tr>
-<tr>
-<td><span style="color:red;font-weight:bold">Factory Method<br/>工厂方法模式</span></td>
-<td>定义一个创建对象的接口，但由子类决定需要实例化哪一个类。工厂方法使得子类实例化的过程推迟</td>
-<td>动态生产对象</td>
-</tr>
-<tr>
-<td>Prototype<br/>原型模式</td>
-<td>用原型实例指定创建对象的类型，并且通过拷贝这个原型来创建新的对象</td>
-<td>克隆对象</td>
-</tr>
-<tr>
-<td><span style="color:red;font-weight:bold">Singleton<br/>单列模式</span></td>
-<td>保证一个类只有一个实例，并提供一个访问他的全局访问点</td>
-<td>单实例</td>
-</tr>
-</tbody></table>
-<h5 id="工厂模式（Factory-Method）"><a href="#工厂模式（Factory-Method）" class="headerlink" title="工厂模式（Factory Method）"></a>工厂模式（Factory Method）</h5><p>工厂模式的意图是：定义一个创建对象的接口，但由子类决定需要实例化哪一个类工厂方法使得子类实例化的过程推迟。</p>
-<img src="https://s1.imagehub.cc/images/2022/10/15/image.png" alt="image.png" border="0" />
-
-<ul>
-<li>Product：产品角色定义产品的接口。</li>
-<li>ConcreteProduct：真实的产品，实现接口Product的类。</li>
-<li>Creator：工厂角色声明工厂方法（Factory Method)，返回一个产品</li>
-<li>ConcreteCreator：真实的工厂实现Factory Method工厂方法，由客户调用，返回一个产品的实例。</li>
-</ul>
-<h5 id="抽象工厂模式（Abstract-Factory）"><a href="#抽象工厂模式（Abstract-Factory）" class="headerlink" title="抽象工厂模式（Abstract Factory）"></a>抽象工厂模式（Abstract Factory）</h5><p>抽象工厂模式的意图是：提供一个接口，可以创建一系列相关或相互依赖的对象，而无需指定它们具体的类。</p>
-<img src="https://s1.imagehub.cc/images/2022/10/15/imageb6a57e0899ad799e.png" alt="imageb6a57e0899ad799e.png" border="0" />
-
-<ul>
-<li>AbstractFactory：抽象工厂，声明抽象产品的方法。</li>
-<li>ConcreteFactory：具体工厂，执行生成抽象产品的方法，生成一个具体的产品。</li>
-<li>AbstractProduct：抽象产品，为一种产品声明接口。</li>
-<li>Product：”具体产品，定义具体工厂生成的具体产品的对象，实现产品接口，</li>
-<li>Client：客户，我们的应用程序使用抽象产品和抽象工厂生成对象。</li>
-</ul>
-<h4 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h4><ul>
-<li><span style="color:red;font-weight:bold">适配器（adapter）模式</span></li>
-<li><span style="color:red;font-weight:bold">桥接（bridge）模式</span></li>
-<li><span style="color:red;font-weight:bold">组合（composite）模式</span></li>
-<li><span style="color:red;font-weight:bold">装饰（decorator）模式</span></li>
-<li>外观（facade）模式</li>
-<li>享元（flyweight）模式</li>
-<li>代理（proxy）模式</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>设计模式名称</th>
-<th>简要说明</th>
-<th>速记关键字</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><span style="color:red;font-weight:bold">Adapter<br/>适配器模式</span></td>
-<td>将一个类的接口转换成用户希望得到的另一种接口，他使原本不相容的接口得以协同工作</td>
-<td>转换接口</td>
-</tr>
-<tr>
-<td><span style="color:red;font-weight:bold">Bridge<br/>桥接模式</span></td>
-<td>将类的抽象部分和他的实现部分分离开来，使他们可以独立的变化</td>
-<td>继承树拆分</td>
-</tr>
-<tr>
-<td><span style="color:red;font-weight:bold">Composite<br/>组合模式</span></td>
-<td>将对象组合成树型结构以表示“整体-部分”的层次结构使得用户对单个对象和组合对象的使用具有一致性</td>
-<td>树形目录结构</td>
-</tr>
-<tr>
-<td><span style="color:red;font-weight:bold">Decorator<br/>装饰模式</span></td>
-<td>动态地给一个对绿添加一些颜外的职责。它提供了用子类 广展功能的 下灵活的替代，比派生一个子类更加灵活</td>
-<td>附加职责</td>
-</tr>
-<tr>
-<td>Facade<br/>外观模式</td>
-<td>是义一个高层接口，为子系统中的一组接口提供一个一致的外观，从而简化了该子系统的使用</td>
-<td>对外统一接口</td>
-</tr>
-<tr>
-<td>Flyweight<br/>享元模式</td>
-<td>提供支持大量细粒度对象共事的有效方法</td>
-<td>文章共事文字对象</td>
-</tr>
-<tr>
-<td>Proxy<br/>代理模式</td>
-<td>为其他对象提供一种代理以控制这个对象的访问</td>
-<td></td>
-</tr>
-</tbody></table>
-<h4 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h4><ul>
-<li><span style="color:red;font-weight:bold">职责链（chain of responsibility）模式</span></li>
-<li><span style="color:red;font-weight:bold">命令（command）模式</span></li>
-<li><span style="color:red;font-weight:bold">解释器（interpreter）模式</span></li>
-<li>选代器（iterator）模式</li>
-<li>中介者（mediator）模式</li>
-<li>备忘录（memento）模式</li>
-<li><span style="color:red;font-weight:bold">观察者（observer）模式</span></li>
-<li>状态（state）模式</li>
-<li><span style="color:red;font-weight:bold">策略（strategy）模式</span></li>
-<li>操板方法（template method）模式</li>
-<li>访问者（visitor）模式</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>设计模式名称</th>
-<th>简要说明</th>
-<th>速记关键字</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Chain of Responsibility<br>职责链模式</td>
-<td>通过给多个对象处理请求的机会，减少请求的发送者与接收者之间的耦合，将接收对象链接起来，在链中传请求，直到有一个对象处理这个请求</td>
-<td>传递职责</td>
-</tr>
-<tr>
-<td>Command<br/>命令模式</td>
-<td>将一个请求封装为一个对象，从而可用不同的请求对户进行参数化，将请求排队或记录请求日志，支持可销的操作</td>
-<td>日志记录，可撤销</td>
-</tr>
-<tr>
-<td>Interpreter<br/>解释器模式</td>
-<td>给定一种语言，定义它的文法表示，并定义一个解释该解释器用来根据文法表示来解释语言中的句子</td>
-<td>虚拟机的机制</td>
-</tr>
-<tr>
-<td>Iterator<br/>迭代器模式</td>
-<td>提供一种方法来原序访间一个聚合对象中的各个元素而不需要暴量该对象的内部表示</td>
-<td>数据库数据集</td>
-</tr>
-<tr>
-<td>Mediator<br/>中介者模式</td>
-<td>一个中介对象来封装一系列的对象交互，它使各对将要显式地相互调用，从而达到低精合，还可以独他改变对象间的交互</td>
-<td>不直接引用</td>
-</tr>
-<tr>
-<td>Memento<br/>备忘录模式</td>
-<td>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，从而可以在以后将该对象恢复到原先保存的状态</td>
-<td></td>
-</tr>
-<tr>
-<td>Observer<br/>观察者模式</td>
-<td>定义对象间的一种一对多的依赖关系，当一个对象的状态生改变时，所有依赖于它的对象都得到通知并自动更新</td>
-<td>联动</td>
-</tr>
-<tr>
-<td>State<br/>状态模式</td>
-<td>允许一个对象在其内部状态改变时改变它的行为</td>
-<td>状态变成类</td>
-</tr>
-<tr>
-<td>Strategy<br/>策略模式</td>
-<td>定义一系列算法，把它们一个个封装起来，并且使它们之间可互相替换，从而让算法可以独立于使用它的用户而变化</td>
-<td>多方案切换</td>
-</tr>
-<tr>
-<td>Template Method<br/>模板方法模式</td>
-<td>定义一个操作中的算法骨架，而将一些步骤延迟到子类中，使得子类可以不改变一个算法的结构即可置新定义算法的专特定步量</td>
-<td></td>
-</tr>
-<tr>
-<td>Visitor<br/>访问者模式</td>
-<td>表示一个作用于某对象结构中的各元素的操作，使得在不变各元素的类的前提下定义作用于这些完素的新操作</td>
-<td></td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3968,20 +3890,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

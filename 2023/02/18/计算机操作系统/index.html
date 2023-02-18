@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/meideblog/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="计算机系统概述简介操作系统（Operating Ststem， OS）是指控制和管理整个计算机系统的硬件和软件资源，并合理地组织调度计算机的工作和资源的分配，以提供给用户和其他软件方便的接口和环境，它是计算机系统中最基本的系统软件。 操作系统的功能和目标 作为系统资源的管理者  文件管理  内存管理  处理及（CPU）管理  设备（计算机硬件，例如摄像头）管理    作为用户和计算机硬件之间的接口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机操作系统">
+<meta property="og:url" content="http://example.com/2023/02/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="MEIDE&#39;S BLOG">
+<meta property="og:description" content="计算机系统概述简介操作系统（Operating Ststem， OS）是指控制和管理整个计算机系统的硬件和软件资源，并合理地组织调度计算机的工作和资源的分配，以提供给用户和其他软件方便的接口和环境，它是计算机系统中最基本的系统软件。 操作系统的功能和目标 作为系统资源的管理者  文件管理  内存管理  处理及（CPU）管理  设备（计算机硬件，例如摄像头）管理    作为用户和计算机硬件之间的接口">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181513303.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181514707.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181515691.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181520216.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181523855.png">
+<meta property="article:published_time" content="2023-02-18T05:27:36.000Z">
+<meta property="article:modified_time" content="2023-02-18T07:31:36.646Z">
+<meta property="article:author" content="MEIDE">
+<meta property="article:tag" content="考研408">
+<meta property="article:tag" content="计算机操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181513303.png">
+
+<link rel="canonical" href="http://example.com/2023/02/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>计算机操作系统 | MEIDE'S BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MEIDE'S BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机操作系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-02-18 13:27:36 / 修改时间：15:31:36" itemprop="dateCreated datePublished" datetime="2023-02-18T13:27:36+08:00">2023-02-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">计算操作系统</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="计算机系统概述"><a href="#计算机系统概述" class="headerlink" title="计算机系统概述"></a>计算机系统概述</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>操作系统（Operating Ststem， OS）是指控制和管理整个计算机系统的硬件和软件资源，并合理地组织调度计算机的工作和资源的分配，以提供给用户和其他软件方便的接口和环境，它是计算机系统中最基本的系统软件。</p>
+<h2 id="操作系统的功能和目标"><a href="#操作系统的功能和目标" class="headerlink" title="操作系统的功能和目标"></a>操作系统的功能和目标</h2><ol>
+<li><p>作为系统资源的管理者</p>
+<ul>
+<li><p>文件管理</p>
+</li>
+<li><p>内存管理</p>
+</li>
+<li><p>处理及（CPU）管理</p>
+</li>
+<li><p>设备（计算机硬件，例如摄像头）管理</p>
+</li>
+</ul>
+</li>
+<li><p>作为用户和计算机硬件之间的接口</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181513303.png"/>
+
+
+</li>
+<li><p>对硬件机器的扩展</p>
+</li>
+</ol>
+<h2 id="操作系统的四个特征"><a href="#操作系统的四个特征" class="headerlink" title="操作系统的四个特征"></a>操作系统的四个特征</h2><ol>
+<li><p>并发</p>
+<p>并发是指<strong>两个或多个事件在同一时间间隔内发生</strong>。这些事件在宏观上是同时发生的，在微观上是交替发生的。</p>
+<p><span style="color:red">易混淆的概念——并行：两个或多个事件在同一时刻同时发生</span></p>
+</li>
+<li><p>共享</p>
+<p>共享即资源共享，是指系统中的资源内存中多个并发执行的进程共同使用。</p>
+<table>
+<thead>
+<tr>
+<th>两种资源共享方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>互斥共享方式</td>
+<td>系统中的某些资源，虽然可以提供给多个进程使用，<br><span style="color:red">但<strong>一个时间段内只允许一个进程访问该资源</strong></span></td>
+</tr>
+<tr>
+<td>同时共享方式</td>
+<td>系统中的某些资源，<br><span style="color:red"><strong>允许一个时间段内由多个进程“同时”对它们进行访问</strong></span></td>
+</tr>
+</tbody></table>
+<p>所谓的“同时”往往是宏观上的，而在微观上，这些进程可能是交替地对该资源进行访问的(即分时共享)</p>
+<p>例如：</p>
+<ul>
+<li><p>互斥共享方式：使用QQ和微信进行视频，但是同一个时间段内摄像头只能分配给其中一个进程</p>
+</li>
+<li><p>同时共享方式：使用QQ发送文件A，同时使用微信发送文件B。宏观上看，两边都在同时读取并发送文件，说明两个进程都在访问硬盘资源，从中读取数据。<strong>微观上看，两个进程是交替着访问硬盘的。</strong></p>
+</li>
+</ul>
+</li>
+<li><p>虚拟</p>
+<p>虚拟是指把一个屋里上的实体变成若干个逻辑上的对应物。物理实体（前者）是实际存在的，而逻辑上对应物（后者）是用户感受到的。</p>
+<table>
+<thead>
+<tr>
+<th>虚拟技术</th>
+<th>例如</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>空分复用技术</td>
+<td>虚拟存储器技术</td>
+<td></td>
+</tr>
+<tr>
+<td>时分复用技术</td>
+<td>虚拟处理器</td>
+<td>显然，如果失去了并发性，则一个时间段内系统中只需运行一道程序，那么就失去了实现虚拟性的意义了。因此，<span style="color:red"><strong>没有并发性，就谈不上虚拟性</strong></span></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>异步</p>
+<p>异步是指,在多道程序环境下，<strong>允许多个程序并发执行</strong>，但是由于资源有限，进程的执行不是一贯到底的，而是走走停停，以不可预知的速度向前推进，这就是进程的异步性。</p>
+<ul>
+<li>只有系统拥有并发性，才有可能导致异步性。</li>
+</ul>
+</li>
+</ol>
+<h2 id="操作系统的运行机制和体系结构"><a href="#操作系统的运行机制和体系结构" class="headerlink" title="操作系统的运行机制和体系结构"></a>操作系统的运行机制和体系结构</h2><h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>特权指令</td>
+<td>如内存清零指令（不允许用户程序使用）</td>
+</tr>
+<tr>
+<td>非特权指令</td>
+<td>如普通的运算指令</td>
+</tr>
+</tbody></table>
+<h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><table>
+<thead>
+<tr>
+<th>两种处理器状态</th>
+<th>(用程序状态字寄存器（PSW)中的某 标志位来标识当前处理器处于什么状 态。如0为用户态，1为核心态)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户态（目态）</td>
+<td>此时CPU只能执行非特权指令</td>
+</tr>
+<tr>
+<td>核心态（管态）</td>
+<td>特权指令、非特权指令都可执行</td>
+</tr>
+</tbody></table>
+<h3 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h3><table>
+<thead>
+<tr>
+<th>两种程序</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>内核程序</td>
+<td>操作系统的内核程序是系统的管理者，即可执行特权指令，也可以执行非特权指令，运行也在核心态</td>
+</tr>
+<tr>
+<td>应用程序</td>
+<td>为了保证系统能安全运行，普通应用程序只能执行费特权指令，运行在用户态</td>
+</tr>
+</tbody></table>
+<h3 id="操作系统的内核"><a href="#操作系统的内核" class="headerlink" title="操作系统的内核"></a>操作系统的内核</h3><p>由于内核划分功能的不同，内核分为大内核和微内核</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181514707.png"/>
+
+<ul>
+<li><p>大内核和微内核的优缺点</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181515691.png"/></li>
+</ul>
+<p>类比：</p>
+<ul>
+<li>操作系统的体系结构问题与企业的管理问题很相似。</li>
+<li>内核就是企业的管理层，负责一些重要的工作。只有管理层才能执行特权指令，普通员工只能执行非特权指令。用户态、核心态之间的切换相当于普通员工和管理层之间的工作交接</li>
+<li>大内核:企业初创时体量不大，管理层的人会负责大部分的事情。优点是效率高;缺点是组织结构混乱，难以维护。</li>
+<li>微内核:随着企业体量越来越大，管理层只负责最核心的一些工作。优点是组织结构清晰，方便维护;缺点是效率低。</li>
+</ul>
+<h2 id="中断和异常"><a href="#中断和异常" class="headerlink" title="中断和异常"></a>中断和异常</h2><h3 id="概念和作用"><a href="#概念和作用" class="headerlink" title="概念和作用"></a>概念和作用</h3><p><strong>中断</strong>是指计算机运行过程中，出现某些意外情况需主机干预时，机器能自动停止正在运行的程序并转入处理新情况的程序，处理完毕后又返回原被暂停的程序继续运行。</p>
+<ol>
+<li>当中断发生时，CPU立即进入核心态</li>
+<li>当中断发生后，当前运行的进程暂停运行，并由操作系统内核对中断进行处理。</li>
+<li>对于不同的中断信号，会进行不同的处理。</li>
+<li>有了中断，才能实现多道程序并发执行。</li>
+<li>“用户态→核心态”是通过中断实现的，<strong>并且中断是唯一途径</strong>。“核心态→用户态”的切换是通过执行一个特权指令，将程序状态字（ PSW）的标志位设置为 “用户态”。</li>
+</ol>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p> 中断型号的来源来自CPU内部称为内中断，外部称为外中断。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181520216.png"/>
+
+<h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><p>“系统调用”是操作系统提供给应用程序（程序员&#x2F;编程人员）使用的接口，可以理解为一种可供应用程序调用的特殊函数，应用程序可以发出系统调用请求来获得操作系统的服务。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181523855.png"/>
+
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>应用程序通过系统调用请求操作系统的服务。系统中的各种共享资源都由操作系统统一掌管，因此在用户程序中，凡是与资源有关的操作（如存储分配、I&#x2F;O操作、文件管理等），都必须通过系统调用的方式向操作系统提出服务请求，由操作系统代为完成。这样可以保证操作系统的稳定性和安全性，防止用户进行非法操作。</p>
+<h3 id="系统调用和库函数的区别"><a href="#系统调用和库函数的区别" class="headerlink" title="系统调用和库函数的区别"></a>系统调用和库函数的区别</h3><p>编程语言（C、JAVA）中里边有很多库函数，其实他们（不是所有的库函数）就是将系统调用封装起来，隐藏一些细节，使上层进行系统调用更加方便。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>系统调用发生在用户态，对系统调用的处理发生在核心态。</li>
+<li>执行陷入指令（自陷指令或访管指令）会处理内中断，使处理器（CPU）从用户态进行核心态。</li>
+</ul>
+<h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><h2 id="进程的定义，组成，组织方式，特征"><a href="#进程的定义，组成，组织方式，特征" class="headerlink" title="进程的定义，组成，组织方式，特征"></a>进程的定义，组成，组织方式，特征</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%80%83%E7%A0%94408/" rel="tag"># 考研408</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"># 计算机操作系统</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-3-%E4%BC%A0%E8%BE%93%E5%B1%82%E4%B8%8E%E5%BA%94%E7%94%A8%E5%B1%82/" rel="prev" title="计算机网络(3)-传输层与应用层">
+      <i class="fa fa-chevron-left"></i> 计算机网络(3)-传输层与应用层
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">计算机系统概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E7%9B%AE%E6%A0%87"><span class="nav-number">1.2.</span> <span class="nav-text">操作系统的功能和目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9B%9B%E4%B8%AA%E7%89%B9%E5%BE%81"><span class="nav-number">1.3.</span> <span class="nav-text">操作系统的四个特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.</span> <span class="nav-text">操作系统的运行机制和体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4"><span class="nav-number">1.4.1.</span> <span class="nav-text">指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU"><span class="nav-number">1.4.2.</span> <span class="nav-text">CPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.4.3.</span> <span class="nav-text">程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%86%85%E6%A0%B8"><span class="nav-number">1.4.4.</span> <span class="nav-text">操作系统的内核</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%92%8C%E5%BC%82%E5%B8%B8"><span class="nav-number">1.5.</span> <span class="nav-text">中断和异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%9C%E7%94%A8"><span class="nav-number">1.5.1.</span> <span class="nav-text">概念和作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">1.5.2.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">1.6.</span> <span class="nav-text">系统调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AB%E4%B9%89"><span class="nav-number">1.6.1.</span> <span class="nav-text">含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">1.6.2.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%92%8C%E5%BA%93%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.6.3.</span> <span class="nav-text">系统调用和库函数的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">1.6.4.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%8C%E7%BB%84%E6%88%90%EF%BC%8C%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F%EF%BC%8C%E7%89%B9%E5%BE%81"><span class="nav-number">2.1.</span> <span class="nav-text">进程的定义，组成，组织方式，特征</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MEIDE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MEIDE</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/meideblog/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/meideblog/velocity/velocity.min.js"></script>
+  <script src="/meideblog/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
