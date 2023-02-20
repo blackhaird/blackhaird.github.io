@@ -175,10 +175,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-02-18 13:27:36 / 修改时间：15:31:36" itemprop="dateCreated datePublished" datetime="2023-02-18T13:27:36+08:00">2023-02-18</time>
+              <time title="创建时间：2023-02-18 13:27:36" itemprop="dateCreated datePublished" datetime="2023-02-18T13:27:36+08:00">2023-02-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-20 20:54:17" itemprop="dateModified" datetime="2023-02-20T20:54:17+08:00">2023-02-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -364,12 +370,205 @@
 <img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181523855.png"/>
 
 <h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>应用程序通过系统调用请求操作系统的服务。系统中的各种共享资源都由操作系统统一掌管，因此在用户程序中，凡是与资源有关的操作（如存储分配、I&#x2F;O操作、文件管理等），都必须通过系统调用的方式向操作系统提出服务请求，由操作系统代为完成。这样可以保证操作系统的稳定性和安全性，防止用户进行非法操作。</p>
-<h3 id="系统调用和库函数的区别"><a href="#系统调用和库函数的区别" class="headerlink" title="系统调用和库函数的区别"></a>系统调用和库函数的区别</h3><p>编程语言（C、JAVA）中里边有很多库函数，其实他们（不是所有的库函数）就是将系统调用封装起来，隐藏一些细节，使上层进行系统调用更加方便。</p>
+<h3 id="系统调用和库函数的区别"><a href="#系统调用和库函数的区别" class="headerlink" title="系统调用和库函数的区别"></a><strong>系统调用和库函数的区别</strong></h3><p>编程语言（C、JAVA）中里边有很多库函数，其实他们（不是所有的库函数）就是将系统调用封装起来，隐藏一些细节，使上层进行系统调用更加方便。</p>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
 <li>系统调用发生在用户态，对系统调用的处理发生在核心态。</li>
 <li>执行陷入指令（自陷指令或访管指令）会处理内中断，使处理器（CPU）从用户态进行核心态。</li>
 </ul>
-<h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><h2 id="进程的定义，组成，组织方式，特征"><a href="#进程的定义，组成，组织方式，特征" class="headerlink" title="进程的定义，组成，组织方式，特征"></a>进程的定义，组成，组织方式，特征</h2>
+<h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><h2 id="进程的定义，组成，组织方式，特征"><a href="#进程的定义，组成，组织方式，特征" class="headerlink" title="进程的定义，组成，组织方式，特征"></a>进程的定义，组成，组织方式，特征</h2><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>程序：就是指令序列</p>
+<p>引入多道程序（CPU可以并发执行多个程序）之后，为了方便操作系统进行管理，引入了进程，进程实体的概念。</p>
+<p><strong>PCB，程序段，数据段三部分构成了进程实体（也叫作进程映像）</strong>。一般情况下，我们把进程实体简称为进程。</p>
+<p>例如，所谓创建进程，实质上是创建进程实体中的PCB;而撤销进程，实质上是撤销进程实体中的PCB.</p>
+<p><strong>PCB是进程存在的唯一标识。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201633291.png"/>
+
+
+
+<h3 id="进程的组织方式"><a href="#进程的组织方式" class="headerlink" title="进程的组织方式"></a>进程的组织方式</h3><p>在一个系统中，通常有数十、数百乃至数千个PCB。为了能对他们加以有效的管理，应该用适当的方式把这些PCB组织起来。<br>注: 进程的组成讨论的是一个进程内部由哪些部分构成的问题，而进程的组织讨论的是多个进程之间的组织方式问题。</p>
+<p>相当于java中的链表和数组。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201634493.png"/>
+
+<h3 id="进程的特征"><a href="#进程的特征" class="headerlink" title="进程的特征"></a>进程的特征</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201635642.png"/>
+
+
+
+<h2 id="进程的状态和转换"><a href="#进程的状态和转换" class="headerlink" title="进程的状态和转换"></a>进程的状态和转换</h2><h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><p>进程是程序的一次执行。在这个过程中，进程的状态会有各种变化。为了方便各个进程的管理，操作系统将进程划分为几个状态。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201638848.png"/>
+
+<p>除此之外，进程还有两种状态。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201640201.png"/>
+
+<h3 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201640665.png"/>
+
+<h2 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h2><h3 id="含义-1"><a href="#含义-1" class="headerlink" title="含义"></a>含义</h3><p>进程控制就是要实现进程状态转换。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p><strong>进程控制由原语实现。</strong>所谓原语，一般是指由若干条指令组成的程序段，用来实现某个特定功能，<strong>在执行过程中不可被中断</strong>。</p>
+<p>原语采用 “关中断指令” 和 “开中断指令” 来实现。 注意： 原语运行在核心态。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201648777.png"/>
+
+<p>那么原语是如何实现进程状态的转换呢？</p>
+<ol>
+<li>更新PCB中的信息（如修改进程状态标志、将运行环境保存到PCB、从PCB恢复运行环境)<br>a.所有的进程控制原语一定都会修改进程状态标志<br>b.剥夺当前运行进程的CPU使用权必然需要保存其运行环境<br>c.某进程开始运行前必然要恢复期运行环境</li>
+<li>将PCB插入合适的队列</li>
+<li>分配&#x2F;回收资源</li>
+</ol>
+<p>具体实现如图所示：</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201704327.png"/>
+
+
+
+<h2 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h2><h3 id="含义-2"><a href="#含义-2" class="headerlink" title="含义"></a>含义</h3><p>进程通信就是<strong>进程间的信息交换</strong></p>
+<p>为了保证安全，一个进程不能直接访问另一个进程的地址空间。</p>
+<p>操作系统提供了三种方法：共享存储，消息传递，管道通信。</p>
+<h3 id="共享存储，消息传递，管道通信。"><a href="#共享存储，消息传递，管道通信。" class="headerlink" title="共享存储，消息传递，管道通信。"></a>共享存储，消息传递，管道通信。</h3><ol>
+<li><p>共享存储</p>
+<p>基于数据结构的共享：比如共享空间里只能放一个长度为10的数组。这种共享方式速度慢、限制多，是一种<strong>低级通信</strong>方式<br><strong>基于存储区</strong>的共享：在内存中画出一块共享存储区，数据的形式、存放位置都由进程控制，而不是操作系统。相比之下，这种共享方式速度更快，是一种<strong>高级通信</strong>方式。</p>
+<p>两个进程对共享空间的<strong>访问</strong>必须是<strong>互斥</strong>的（互斥访问通过操作系统提供的工具实现）<br>操作系统只负责提供共享空间和同步互斥工具（如P、V操作）</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201843057.png"/>
+</li>
+<li><p>管道通信</p>
+<pre><code>1.管道只能采用半双工通信，某一时间段内只能实现单向的传输。如果要实现双向同时通信，则需要设置两个管道。
+
+2.各进程要互斥地访问管道。
+
+3.数据以字符流的形式写入管道，当管道写满时，写进程的write()系统调用将被阻塞，等待读进程将数据取走。当读进程将数据全部取后，管道变空，此时读进程的read()系统调用将被阻塞。
+</code></pre>
+<p>   4.<strong>如果没写满，就不允许读。如果没读空，就不允许写。</strong></p>
+<p>   5．数据一旦被读出，就从管道中被抛弃，这就意味着<strong>读进程最多只能有一个，否则可能会有读错数据的情况。</strong></p>
+</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201847528.png"/>
+
+<ol start="3">
+<li><p>消息传递</p>
+<p>进程间的数据交换以格式化的消息为单位。进程通过操作系统提供的“发送消息&#x2F;接收消息” 两个原语进行数据交换。</p>
+<p>类似于Http协议。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201849801.png"/></li>
+</ol>
+<h2 id="线程概念和多线程模型"><a href="#线程概念和多线程模型" class="headerlink" title="线程概念和多线程模型"></a>线程概念和多线程模型</h2><p>有的进程需要同时做很多事，例如用QQ来进行聊天，发送文件等，而传统的进程只能<strong>串行</strong>执行一系列程序。因此，引入“线程”，来增加并发度。</p>
+<ul>
+<li>可以把线程理解为轻量级的进程。</li>
+<li>线程是一个基本的CPU执行单元，也是程序执行流的最小单位。</li>
+<li>引入线程后，进程作为除CPU之外的系统资源的分配单元。</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201852799.png"/>
+
+<h3 id="线程分类"><a href="#线程分类" class="headerlink" title="线程分类"></a>线程分类</h3><ol>
+<li>用户级线程</li>
+</ol>
+<ul>
+<li>用户级线程由应用程序通过线程库实现。<strong>所有的线程管理工作都由应用程序负责（包括线程切换)</strong></li>
+<li>用户级线程中，线程切换可以在用户态下即可完成，<strong>无需操作系统干预。</strong></li>
+<li>在用户看来，是有多个线程。但是在操作系统内核看来，并意识不到线程的存在。（用户级线程对用户不透明，对操作系统透明)</li>
+<li>可以这样理解，“用户级线程”就是“从用户视角看能看到的线程”。</li>
+</ul>
+<ol start="2">
+<li>内核级线程</li>
+</ol>
+<ul>
+<li>内核级线程的管理工作由操作系统内核完成。线程调度、切换等工作都由内核负责，因此内核级线程的切换必然需要在核心态下才能完成。</li>
+<li>可以这样理解，“内核级线程”就是“从操作系统内核视角看能看到的线程”。</li>
+</ul>
+<p><strong>操作系统只“看得见”内核级线程，因此只有内核级线程才是处理机分配的单位。</strong></p>
+<h2 id="多线程模型"><a href="#多线程模型" class="headerlink" title="多线程模型"></a>多线程模型</h2><h3 id="多对1模型"><a href="#多对1模型" class="headerlink" title="多对1模型"></a>多对1模型</h3><ul>
+<li>多对一模型:多个用户及线程映射到一个内核级线程。每个用户进程只对应一个内核级线程。</li>
+<li>优点:用户级线程的切换在用户空间即可完成，不需要切换到核心态，<strong>线程管理的系统开销小，效率高</strong></li>
+<li>缺点:当一个用户级线程被阻塞后，整个进程都会被阻塞，并发度不高。<strong>多个线程不可在多核处理机上并行运行</strong></li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201913689.png"/>
+
+<h3 id="1对1模型"><a href="#1对1模型" class="headerlink" title="1对1模型"></a>1对1模型</h3><ul>
+<li>一对一模型:一个用户级线程映射到一个内核级线程。</li>
+<li>优点:当一个线程被阻塞后，别的线程还可以继续执行，并发能力强。<strong>多线程可在多核处理机上并行执行。</strong></li>
+<li>缺点:一个用户进程会占用多个内核级线程，线程切换由操作系统内核完成，需要切换到核心态，<strong>因此线程管理的成本高，开销大。</strong></li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201917778.png"/>
+
+<h3 id="多对多模型"><a href="#多对多模型" class="headerlink" title="多对多模型"></a>多对多模型</h3><ul>
+<li>多对多模型:n用户级线程映射到m个内核级线程(n &gt;&#x3D;m)。每个用户进程对应m个内核级线程。</li>
+<li>克服了多对一模型并发度不高的缺点，又克服了一对一模型中一个用户进程占用太多内核级线程，开销太大的缺点。</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201918142.png"/>
+
+<h2 id="处理机调度的概念和层次"><a href="#处理机调度的概念和层次" class="headerlink" title="处理机调度的概念和层次"></a>处理机调度的概念和层次</h2><p>在多道程序系统中，进程的数量往往是多于处理机的个数的，这样不可能同时并行地处理各个进程。</p>
+<p>处理机调度，就是从就绪队列中按照一定的算法选择一个进程并将处理机分配给它运行，以实现进程的并发执行。</p>
+<p>调度分为三个层次，分别为高级调度，中级调度，初级调度。</p>
+<h3 id="高级调度，中级调度，初级调度。"><a href="#高级调度，中级调度，初级调度。" class="headerlink" title="高级调度，中级调度，初级调度。"></a>高级调度，中级调度，初级调度。</h3><h4 id="1-高级调度"><a href="#1-高级调度" class="headerlink" title="1.高级调度"></a>1.高级调度</h4><ul>
+<li><p>由于内存空间有限，有时无法将用户提交的作业全部放入内存，因此就需要确定某种规则来决定将作业调入内存的顺序。</p>
+</li>
+<li><p>高级调度（作业调度)。按一定的原则从外存上处于后备队列的作业中挑选一个(或多个）作业，给他们分配内存等必要资源，并建立相应的进程（建立PCB)，以使它（们）获得竞争处理机的权利。</p>
+</li>
+<li><p><strong>高级调度是辅存（外存）与内存之间的调度</strong>。每个作业只调入一次，调出一次。作业调入时会建立相应的PCB，作业调出时才撤销PCB。<strong>高级调度主要是指调入的问题</strong>，因为只有调入的时机需要操作系统来确定，调出的时机必然是作业运行结束才调出。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201923361.png"/></li>
+</ul>
+<h4 id="2-中级调度"><a href="#2-中级调度" class="headerlink" title="2.中级调度"></a>2.中级调度</h4><ul>
+<li><p>引入了虚拟存储技术之后，可将暂时不能运行的进程调至外存等待。等它重新具备了运行条件且内存又稍有空闲时，再重新调入内存。<strong>这么做的目的是为了提高内存利用率和系统吞吐量</strong>。</p>
+</li>
+<li><p>暂时调到外存等待的进程状态为挂起状态。值得注意的是，PCB并不会一起调到外存，而是会常驻内存。PCB中会记录进程数据在外存中的存放位置，进程状态等信息，操作系统通过内存中的PCB来保持对各个进程的监控、管理。被挂起的进程PCB会被放到的挂起队列中。</p>
+</li>
+<li><p><strong>中级调度（内存调度），就是要决定将哪个处于挂起状态的进程重新调入内存。</strong></p>
+</li>
+<li><p>一个进程可能会被多次调出、调入内存，因此<strong>中级调度发生的频率要比高级调度更高。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201924752.png"/></li>
+</ul>
+<h5 id="补充知识：进程的七状态模型"><a href="#补充知识：进程的七状态模型" class="headerlink" title="补充知识：进程的七状态模型"></a>补充知识：进程的七状态模型</h5><ul>
+<li><p>暂时被调到外存等待的进程状态称为挂起状态。</p>
+</li>
+<li><p>挂起状态又可以进一步细分为就绪挂起，堵塞挂起两种状态。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201926432.png"/></li>
+</ul>
+<h4 id="3-低级调度"><a href="#3-低级调度" class="headerlink" title="3.低级调度"></a>3.低级调度</h4><ul>
+<li>低级调度（进程调度），其主要任务是按照某种方法和策略<strong>从就绪队列中选取一个进程，将处理机分配给它。</strong></li>
+<li>进程调度是操作系统中最基本的一种调度，在一般的操作系统中都必须配置进程调度。</li>
+<li>进程调度的频率很高，一般几十毫秒一次。</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302202014458.png"/>
+
+<h4 id="三种调度的联系和对比"><a href="#三种调度的联系和对比" class="headerlink" title="三种调度的联系和对比"></a>三种调度的联系和对比</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>要做什么</th>
+<th>调度发生在</th>
+<th>发生频率</th>
+<th>对进程状态的影响</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>高级调度（作业调度）</td>
+<td>按照某种规则，从后备队列中选择合适的作业将其调入内存，并为其创建进程</td>
+<td>外存-&gt;内存（面向作业）</td>
+<td>最低</td>
+<td>无-创建态-就绪态</td>
+</tr>
+<tr>
+<td>中级调度（内存调度）</td>
+<td>按照某种规则，从挂起队列中选择合适的进程将其数据调回内存</td>
+<td>外存-&gt;内存（面向进程）</td>
+<td>中等</td>
+<td>挂起态-就绪态（阻塞挂起-阻塞态）</td>
+</tr>
+<tr>
+<td>低级调度（进程调度）</td>
+<td>按照某种规则，从就绪队列中选择一个进程为其分配处理机</td>
+<td>内存-&gt;CPU</td>
+<td>最高</td>
+<td>就绪态-运行态</td>
+</tr>
+</tbody></table>
+<h2 id="进程调度的时机，切换过程和方式"><a href="#进程调度的时机，切换过程和方式" class="headerlink" title="进程调度的时机，切换过程和方式"></a>进程调度的时机，切换过程和方式</h2><h3 id="进程调度时机"><a href="#进程调度时机" class="headerlink" title="进程调度时机"></a>进程调度时机</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302202048883.png"/>
+
+<p>临界资源： 一个时间段内只允许一个进程使用的资源。各进程需要互斥的访问临界资源。</p>
+<p>临界区：访问临界资源的那段代码。</p>
+<p>内核程序临界区一般是用来访问某种内核数据结构的，比如进程的就绪队列。</p>
+<h3 id="进程调度的方式"><a href="#进程调度的方式" class="headerlink" title="进程调度的方式"></a>进程调度的方式</h3><ul>
+<li>非剥夺调度方式，又称非抢占方式。即，<strong>只允许进程主动放弃处理机</strong>。在运行过程中即便有更紧迫的任务到达，当前进程依然会继续使用处理机，直到该进程终止或主动要求进入阻塞态。</li>
+</ul>
+<p>优点：实现简单,系统开销小但是无法及时处理紧急任务，适合于早期的批处理系统</p>
+<ul>
+<li>剥夺调度方式，又称抢占方式。当一个进程正在处理机上执行时，如果有一个更重要或更紧迫的进程需要使用处理机，则立即暂停正在执行的进程，将处理机分配给更重要紧迫的那个进程。</li>
+</ul>
+<p>优点：可以优先处理更紧急的进程，也可实现让各进程按时间片轮流执行的功能（通过时钟中断）。适合于分时操作系统、实时操作系统</p>
+
       
     </div>
 
