@@ -53,8 +53,10 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201926432.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302202014458.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302202048883.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302251342602.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302251358421.png">
 <meta property="article:published_time" content="2023-02-18T05:27:36.000Z">
-<meta property="article:modified_time" content="2023-02-20T12:54:17.477Z">
+<meta property="article:modified_time" content="2023-02-25T06:09:02.758Z">
 <meta property="article:author" content="MEIDE">
 <meta property="article:tag" content="考研408">
 <meta property="article:tag" content="计算机操作系统">
@@ -215,7 +217,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-20 20:54:17" itemprop="dateModified" datetime="2023-02-20T20:54:17+08:00">2023-02-20</time>
+                <time title="修改时间：2023-02-25 14:09:02" itemprop="dateModified" datetime="2023-02-25T14:09:02+08:00">2023-02-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -600,6 +602,262 @@
 <li>剥夺调度方式，又称抢占方式。当一个进程正在处理机上执行时，如果有一个更重要或更紧迫的进程需要使用处理机，则立即暂停正在执行的进程，将处理机分配给更重要紧迫的那个进程。</li>
 </ul>
 <p>优点：可以优先处理更紧急的进程，也可实现让各进程按时间片轮流执行的功能（通过时钟中断）。适合于分时操作系统、实时操作系统</p>
+<p><strong>优点：</strong></p>
+<p>可以有限处理更紧急的进程，也可实现让哥进程按时间骗轮流执行的功能（通过时钟中断）。适合于分时操作系统、实时操作系统</p>
+<h3 id="进程的切换与过程"><a href="#进程的切换与过程" class="headerlink" title="进程的切换与过程"></a>进程的切换与过程</h3><p>“狭义的进程调度”与“进程切换”的区别:</p>
+<ul>
+<li><p>狭义的进程调度指的是从就绪队列中选中一个要运行的进程。(这个进程可以是刚刚被暂停执行的进程，也可能是另一个进程，后一种情况就需要进程切换）</p>
+</li>
+<li><p>进程切换是指一个进程让出处理机，由另一个进程占用处理机的过程。</p>
+</li>
+</ul>
+<p>广义的进程调度包含了选择一个进程和进程切换两个步骤</p>
+<p>进程切换的过程主要完成了:</p>
+<ul>
+<li>1.对原来运行进程各种数据的保存</li>
+<li>2.对新的进程各种数据的恢复(如:程序计数器、程序状态字、各种数据寄存器等处理机现场信息，这些信息一般保存在进程控制块)</li>
+</ul>
+<p>注意 : <strong>进程切换是有代价的</strong>，因此如果过于频繁的进行进程调度、切换，必然会使整个系统的效率降低，使系统大部分时间都花在了进程切换上，而真正用于执行进程的时间减少。</p>
+<h2 id="调度算法的评价指标"><a href="#调度算法的评价指标" class="headerlink" title="调度算法的评价指标"></a>调度算法的评价指标</h2><ul>
+<li>CPU利用率： CPU”忙碌”的时间占总时间的比例。</li>
+<li>系统吞吐量：单位时间内完成作业的数量。</li>
+</ul>
+<p>$$<br>系统吞吐量&#x3D;{总共完成了多少道作业\over总共花了多少时间}<br>$$</p>
+<ul>
+<li><p>周转时间：是指从作业被提交给系统开始，到作业完成为止的时间间隔。</p>
+<p><span style="color:red"><strong>周转时间&#x3D;作业完成时的时间-作业提交时间</strong></span></p>
+<p><span style="color:red"><strong>平均周转时间&#x3D;各作业周转时间之和&#x2F;作业数</strong></span></p>
+</li>
+</ul>
+<p>由于在周转时间相同的情况下，运行时间不同的作业，给用户的感觉是不一样的，所以提出了带权周转时间的概念。<br>$$<br>带权周转时间&#x3D;{作业周转时间\over作业实际运行的时间}&#x3D;{作业完成的时间-作业提交时间\over作业实际运行的时间}<br>$$</p>
+<p>$$<br>平均的带权周转时间&#x3D;{各个作业带权周转时间之和\over作业数}<br>$$</p>
+<ul>
+<li>等待时间：指进程&#x2F;作业处于等待处理机状态时间之和，等待时间越长，用户满意度越低。</li>
+</ul>
+<p>对于进程来说，等待时间就是指进程建立后等待被服务的时间之和，在等待I&#x2F;O完成的期间其实进程也是在被服务的，所以不计入等待时间。<br>对于作业来说，不仅要考虑建立进程后的等待时间，还要加上作业在外存后备队列中等待的时间。</p>
+<ul>
+<li>响应时间：指从用户提交请求到首次产生响应所用的时间。</li>
+</ul>
+<h2 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h2><h3 id="先来先服务，短作业优先，高响应必优先"><a href="#先来先服务，短作业优先，高响应必优先" class="headerlink" title="先来先服务，短作业优先，高响应必优先"></a>先来先服务，短作业优先，高响应必优先</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>英文</th>
+<th>算法思想与规则</th>
+<th>可抢占？</th>
+<th>优点</th>
+<th>缺点</th>
+<th>考虑到等待时间&amp;运行时间？</th>
+<th>会导致饥饿？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>先来先服务</td>
+<td>FCFS</td>
+<td>公平，先到先得</td>
+<td>非</td>
+<td>公平，实现简单</td>
+<td>对短作业不利</td>
+<td>有等待，无运行</td>
+<td>不</td>
+</tr>
+<tr>
+<td>短作业优先</td>
+<td>SJF&#x2F;SPF</td>
+<td>追求快<br />时间最短的先服务</td>
+<td>默认为非抢占式版本，也有SJF的抢占式版本最短剩余时间优先算法(SRTN)</td>
+<td>“最短的”平均等待&#x2F;周转时间</td>
+<td>对长作业不利，可能导致饥饿；难以做到真正的短时间优先</td>
+<td>有运行，无等待</td>
+<td>会</td>
+</tr>
+<tr>
+<td>高响应必优先</td>
+<td>HRRN</td>
+<td>作业&#x2F;进程的等待时间<br />计算<span style="color:red">响应比</span>,选择<span style="color:red">响应比最高的</span>作业&#x2F;进程优先</td>
+<td>非</td>
+<td>权衡折中，综合考虑等待时间和运行时间</td>
+<td></td>
+<td>都有</td>
+<td>不</td>
+</tr>
+</tbody></table>
+<p><span style="color:red">响应比</span> (响应比&gt;&#x3D;1) ：<br>$$<br>响应比&#x3D;{等待时间+要求服务时间\over要求服务时间}<br>$$<br>注:这几种算法主要关心对用户的公平性、平均周转时间、平均等待时间等评价系统整体性能的指标，但是不关心“响应时间”，也并不区分任务的紧急程度，因此对于用户来说，交互性很糟糕。<strong>因此这三种算法一般适合用于早期的批处理系统</strong>，当然，FCFS算法也常结合其他的算法使用，在现在也扮演着很重要的角色。</p>
+<h4 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h4><blockquote>
+<ol>
+<li><p>FCFS 由于在长作业过程中，后面的短作业需要等很长的时间，带权周转时间很大，对短作业用户体验不好。</p>
+</li>
+<li><p>FCFS 用于作业调度时，考虑的是那个作业先到达后备队列；用于进程调度时，考虑的是哪个进程先到达就绪队列</p>
+</li>
+<li><p>SJF 是用于作业调度，也可用于进程调度。用于进程调度时成为”短进程优先”(SPF，Shortest Process First)</p>
+</li>
+<li><p>SJF 和 SPF 是非抢占式算法，但是也有抢占式的版本–最短剩余时间优先算法(SRTN，Shortest Remaining Time Next)</p>
+</li>
+<li><p>SJF 对长作业不利，可能产生饥饿现象。另外，作业&#x2F;进程真正运行时间是由用户提供的，并不一定真实，不一定能做到真正的短作业优先</p>
+</li>
+<li><p>SJF 如果有源源不断地有短作业&#x2F;进程到来，可能使长作业&#x2F;进程长时间得不到服务，产生”饥饿”现象，如果一直得不到服务，则称为 饿死</p>
+</li>
+<li><p>HRRN 在每次调度室先计算各个作业&#x2F;进程的 响应比 ，选择响应比<span style="color:red">最高</span>的作业&#x2F;进程为其服务</p>
+</li>
+<li><ul>
+<li><p>HRRN 综合考虑了等待时间和运行时间（要求服务时间）</p>
+</li>
+<li><p>等待时间相同时，要求服务时间端的优先（SJF 的优点）</p>
+</li>
+<li><p>要求服务时间相同时，等待时间长的优先（FCFS的优点）</p>
+</li>
+<li><p>对于长作业来说，随着等待时间越来越久，其响应比也会越来越大，从而避免了长作业饥饿的问题</p>
+</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h3 id="时间片轮转调度，优先级调度算法，多级反馈队列调度算法"><a href="#时间片轮转调度，优先级调度算法，多级反馈队列调度算法" class="headerlink" title="时间片轮转调度，优先级调度算法，多级反馈队列调度算法"></a>时间片轮转调度，优先级调度算法，多级反馈队列调度算法</h3><h4 id="时间片轮转调度RR"><a href="#时间片轮转调度RR" class="headerlink" title="时间片轮转调度RR"></a>时间片轮转调度RR</h4><table>
+<thead>
+<tr>
+<th>时间片轮转调度<br />（RR，Round-Robin）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>算法思想</td>
+<td>公平地、轮流地为各个进程服务，让每个进程在一定时间间隔内都可以得到响应</td>
+</tr>
+<tr>
+<td>算法规则</td>
+<td>按照各进程到达就绪队列的顺序，轮流让各个进程执行一个<span style="color:red">时间片</span>（如100ms)。若进程未在一个时间片内执行完则剥夺处理机，将进程重新放到就绪队列队尾重新排队。</td>
+</tr>
+<tr>
+<td>用于作业&#x2F;进程调度</td>
+<td>用于进程调度（只有作业放入内存建立了相应的进程后，<br/>才能被分配处理机时间片）</td>
+</tr>
+<tr>
+<td>是否可抢占？</td>
+<td>若进程未能在时间片内运行完，将被强行剥夺处理机使权，因此时间片轮转调度算法属于抢占式的算法。由时钟装置发出时钟中断来通知CPU时间片已到</td>
+</tr>
+<tr>
+<td>优缺点</td>
+<td>优点：公平；响应快，适用于分时操作系统；<br />缺点：由于高频率的进程切换，因此有一定开销；不区分任务的紧急程度。</td>
+</tr>
+<tr>
+<td>是否会导致饥饿</td>
+<td>否</td>
+</tr>
+<tr>
+<td>补充</td>
+<td>时间片问题：<br />如果时间片太大，使得每个进程都可以在一个时间片内就完成，则时间片轮转调度算法退化为先来先服务调度算法，并且会增大进程响应时间。因此时间片不能太大。<br />另一方面，进程调度、切换是有时间代价的(保存、恢复运行环境)，因此如果时间片太小，会导致进程切换过于频繁，系统会花大量的时间来处理进程切换，从而导致实际用于进程执行的时间比例减少。可见时间片也不能太小。<br />一般来说，设计时间片要让切换进程的开销占比不超过1%。</td>
+</tr>
+</tbody></table>
+<h4 id="优先级调度算法"><a href="#优先级调度算法" class="headerlink" title="优先级调度算法"></a>优先级调度算法</h4><table>
+<thead>
+<tr>
+<th>优先级调度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>算法思想</td>
+<td>随着计算机的发展，特别是实时操作系统的出现，越来越多的应用场最需要根据任务的紧急程度来决定处理顺序</td>
+</tr>
+<tr>
+<td>算法规则</td>
+<td>调度时选择优先级最高的作业&#x2F;进程</td>
+</tr>
+<tr>
+<td>用于作业&#x2F;进程调度</td>
+<td>既可用于作业调度，也可用于进程调度。甚至还会用于在之后会学习的I&#x2F;O调度中</td>
+</tr>
+<tr>
+<td>是否可抢占？</td>
+<td>抢占式、非抢占式都有。做题时的区别在于：非抢占式只需在进程主动放弃处理机时进行调度即可，而抢占式还需任就绪队列变化时，检查是否会发生抢占。</td>
+</tr>
+<tr>
+<td>优缺点</td>
+<td>优点：用优先级区分紧总程度、重要程度，适用于实时操作系统。可灵活地调整对各种作业&#x2F;进程的偏好程度。<br />缺点：若源源不断地有高优先级进程到来，则可能导致饥饿</td>
+</tr>
+<tr>
+<td>是否会导致饥饿</td>
+<td>会</td>
+</tr>
+<tr>
+<td>补充</td>
+<td>如下图</td>
+</tr>
+</tbody></table>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302251342602.png"/>
+
+<h4 id="多级反馈队列调度算法"><a href="#多级反馈队列调度算法" class="headerlink" title="多级反馈队列调度算法"></a>多级反馈队列调度算法</h4><table>
+<thead>
+<tr>
+<th>多级反馈队列</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>算法思想</td>
+<td>对其他调度算法的折中权衡</td>
+</tr>
+<tr>
+<td>算法规则</td>
+<td>1. 设置多级就绪队列，各级队列优先级从高到低，时间片从小到大<br/>2. 新进程到达时先进入第1级队列，按FCFS原则排队等待被分配时间片，若用完时间片进程还未结束，则进程进入下一级队列队尾。如果此时已经是在最下级的队列，则重新放回该队列队尾<br/>3. 只有第k级队列为空时，才会为k+1级队头的进程分配时间片</td>
+</tr>
+<tr>
+<td>用于作业&#x2F;进程调度</td>
+<td>用于进程调度</td>
+</tr>
+<tr>
+<td>是否可抢占？</td>
+<td>抢占式算法。在k级队列的进程运行过程中，若更上级的队列（1~k-1级）中进入了一个新进程，则由于新进程处于优先级更高的队列中，因此新进程会抢占处理机，原来运行的进程放回 k级 队列队尾</td>
+</tr>
+<tr>
+<td>优缺点</td>
+<td>对各类型进程相对公平(FCFS的优点)：每个新到达的进程都可以很快就得到响应(RR的优点)；短进程只用较少的时间就可完成(SPF的优点)；不必实现估计进程的运行时间（避免用户作假）：可灵活地调整对各类进程的偏好程度，比如CPU密集型进程、&#x2F;O密集型进程（拓展：可以将因&#x2F;O而阻塞的进程重新放回原队列，这样&#x2F;O型进程就可以保持较高优先级)</td>
+</tr>
+<tr>
+<td>是否会导致饥饿</td>
+<td>会</td>
+</tr>
+<tr>
+<td>补充理解</td>
+<td>如下文</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>例题：各进程到达就绪队列的时间、需要的运行时间如下表所示。使用多级反馈队列调度算法，分析进程运行的过程。</p>
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>到达时间</th>
+<th>运行时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P1</td>
+<td>0</td>
+<td>8</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>5</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>P1(1) —— P2(1) —— P1(2) —— P2(1) —— P3(1) —— P2(2) —— P1(4) —— P1(1)</p>
+</blockquote>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302251358421.png"/>
+
+<p>设置多级就绪队列，各级队列<strong>优先级从高到低</strong>，<strong>时间片从小到大</strong></p>
+<p><span style="color:red">新进程</span>到达时<span style="color:red">先进入第1级队列</span>，按<span style="color:red">FCFS原则</span>排队等待被分配时间片。若用完时间片进程还<strong>未结束</strong>，则进程<strong>进入下一级</strong>队列队尾。如果此时<strong>己经在最下级</strong>的队列，则<strong>重新放回</strong>最下级队列队尾</p>
+<p>只有第<strong>k级队列为空</strong>时，才会<strong>为k+1级</strong>队头的进程<strong>分配时间片</strong><br><strong>被抢占处理机的进程重新放回原队列队尾</strong></p>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>比起早期的批处理操作系统来说，由于计算机造价大幅降低，因此之后出现的交互式操作系统（包括<strong>分时操作系统、实时操作系统</strong>等）更注重系统的响应时间、公平性、平衡性等指标。而这几种算法恰好也能较好地满足交互式系统的需求。因此<strong>这三种算法适合用于交互式系统。</strong>(比如UNIX使用的就是多级反馈队列调度算法)</p>
 
     </div>
 
@@ -681,7 +939,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">计算机系统概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E7%9B%AE%E6%A0%87"><span class="nav-number">1.2.</span> <span class="nav-text">操作系统的功能和目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9B%9B%E4%B8%AA%E7%89%B9%E5%BE%81"><span class="nav-number">1.3.</span> <span class="nav-text">操作系统的四个特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.</span> <span class="nav-text">操作系统的运行机制和体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4"><span class="nav-number">1.4.1.</span> <span class="nav-text">指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU"><span class="nav-number">1.4.2.</span> <span class="nav-text">CPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.4.3.</span> <span class="nav-text">程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%86%85%E6%A0%B8"><span class="nav-number">1.4.4.</span> <span class="nav-text">操作系统的内核</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%92%8C%E5%BC%82%E5%B8%B8"><span class="nav-number">1.5.</span> <span class="nav-text">中断和异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%9C%E7%94%A8"><span class="nav-number">1.5.1.</span> <span class="nav-text">概念和作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">1.5.2.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">1.6.</span> <span class="nav-text">系统调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AB%E4%B9%89"><span class="nav-number">1.6.1.</span> <span class="nav-text">含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">1.6.2.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%92%8C%E5%BA%93%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.6.3.</span> <span class="nav-text">系统调用和库函数的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">1.6.4.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%8C%E7%BB%84%E6%88%90%EF%BC%8C%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F%EF%BC%8C%E7%89%B9%E5%BE%81"><span class="nav-number">2.1.</span> <span class="nav-text">进程的定义，组成，组织方式，特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.2.</span> <span class="nav-text">进程的组织方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%89%B9%E5%BE%81"><span class="nav-number">2.1.3.</span> <span class="nav-text">进程的特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8C%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.2.</span> <span class="nav-text">进程的状态和转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81"><span class="nav-number">2.2.1.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.2.2.</span> <span class="nav-text">转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-number">2.3.</span> <span class="nav-text">进程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AB%E4%B9%89-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.3.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">2.4.</span> <span class="nav-text">进程通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AB%E4%B9%89-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8%EF%BC%8C%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%EF%BC%8C%E7%AE%A1%E9%81%93%E9%80%9A%E4%BF%A1%E3%80%82"><span class="nav-number">2.4.2.</span> <span class="nav-text">共享存储，消息传递，管道通信。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%A6%82%E5%BF%B5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.5.</span> <span class="nav-text">线程概念和多线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%88%86%E7%B1%BB"><span class="nav-number">2.5.1.</span> <span class="nav-text">线程分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.6.</span> <span class="nav-text">多线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%AF%B91%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.6.1.</span> <span class="nav-text">多对1模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E5%AF%B91%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.6.2.</span> <span class="nav-text">1对1模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%AF%B9%E5%A4%9A%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.6.3.</span> <span class="nav-text">多对多模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E5%B1%82%E6%AC%A1"><span class="nav-number">2.7.</span> <span class="nav-text">处理机调度的概念和层次</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E8%B0%83%E5%BA%A6%EF%BC%8C%E4%B8%AD%E7%BA%A7%E8%B0%83%E5%BA%A6%EF%BC%8C%E5%88%9D%E7%BA%A7%E8%B0%83%E5%BA%A6%E3%80%82"><span class="nav-number">2.7.1.</span> <span class="nav-text">高级调度，中级调度，初级调度。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%AB%98%E7%BA%A7%E8%B0%83%E5%BA%A6"><span class="nav-number">2.7.1.1.</span> <span class="nav-text">1.高级调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%AD%E7%BA%A7%E8%B0%83%E5%BA%A6"><span class="nav-number">2.7.1.2.</span> <span class="nav-text">2.中级调度</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%EF%BC%9A%E8%BF%9B%E7%A8%8B%E7%9A%84%E4%B8%83%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.7.1.2.1.</span> <span class="nav-text">补充知识：进程的七状态模型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BD%8E%E7%BA%A7%E8%B0%83%E5%BA%A6"><span class="nav-number">2.7.1.3.</span> <span class="nav-text">3.低级调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E8%B0%83%E5%BA%A6%E7%9A%84%E8%81%94%E7%B3%BB%E5%92%8C%E5%AF%B9%E6%AF%94"><span class="nav-number">2.7.1.4.</span> <span class="nav-text">三种调度的联系和对比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%9A%84%E6%97%B6%E6%9C%BA%EF%BC%8C%E5%88%87%E6%8D%A2%E8%BF%87%E7%A8%8B%E5%92%8C%E6%96%B9%E5%BC%8F"><span class="nav-number">2.8.</span> <span class="nav-text">进程调度的时机，切换过程和方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E6%97%B6%E6%9C%BA"><span class="nav-number">2.8.1.</span> <span class="nav-text">进程调度时机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">2.8.2.</span> <span class="nav-text">进程调度的方式</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">计算机系统概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E7%9B%AE%E6%A0%87"><span class="nav-number">1.2.</span> <span class="nav-text">操作系统的功能和目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9B%9B%E4%B8%AA%E7%89%B9%E5%BE%81"><span class="nav-number">1.3.</span> <span class="nav-text">操作系统的四个特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.</span> <span class="nav-text">操作系统的运行机制和体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4"><span class="nav-number">1.4.1.</span> <span class="nav-text">指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU"><span class="nav-number">1.4.2.</span> <span class="nav-text">CPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.4.3.</span> <span class="nav-text">程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%86%85%E6%A0%B8"><span class="nav-number">1.4.4.</span> <span class="nav-text">操作系统的内核</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E5%92%8C%E5%BC%82%E5%B8%B8"><span class="nav-number">1.5.</span> <span class="nav-text">中断和异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%9C%E7%94%A8"><span class="nav-number">1.5.1.</span> <span class="nav-text">概念和作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">1.5.2.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">1.6.</span> <span class="nav-text">系统调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AB%E4%B9%89"><span class="nav-number">1.6.1.</span> <span class="nav-text">含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">1.6.2.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%92%8C%E5%BA%93%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.6.3.</span> <span class="nav-text">系统调用和库函数的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">1.6.4.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%8C%E7%BB%84%E6%88%90%EF%BC%8C%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F%EF%BC%8C%E7%89%B9%E5%BE%81"><span class="nav-number">2.1.</span> <span class="nav-text">进程的定义，组成，组织方式，特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.2.</span> <span class="nav-text">进程的组织方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%89%B9%E5%BE%81"><span class="nav-number">2.1.3.</span> <span class="nav-text">进程的特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8C%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.2.</span> <span class="nav-text">进程的状态和转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81"><span class="nav-number">2.2.1.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.2.2.</span> <span class="nav-text">转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-number">2.3.</span> <span class="nav-text">进程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AB%E4%B9%89-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.3.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">2.4.</span> <span class="nav-text">进程通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AB%E4%B9%89-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8%EF%BC%8C%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%EF%BC%8C%E7%AE%A1%E9%81%93%E9%80%9A%E4%BF%A1%E3%80%82"><span class="nav-number">2.4.2.</span> <span class="nav-text">共享存储，消息传递，管道通信。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%A6%82%E5%BF%B5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.5.</span> <span class="nav-text">线程概念和多线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%88%86%E7%B1%BB"><span class="nav-number">2.5.1.</span> <span class="nav-text">线程分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.6.</span> <span class="nav-text">多线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%AF%B91%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.6.1.</span> <span class="nav-text">多对1模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E5%AF%B91%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.6.2.</span> <span class="nav-text">1对1模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%AF%B9%E5%A4%9A%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.6.3.</span> <span class="nav-text">多对多模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E5%B1%82%E6%AC%A1"><span class="nav-number">2.7.</span> <span class="nav-text">处理机调度的概念和层次</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E8%B0%83%E5%BA%A6%EF%BC%8C%E4%B8%AD%E7%BA%A7%E8%B0%83%E5%BA%A6%EF%BC%8C%E5%88%9D%E7%BA%A7%E8%B0%83%E5%BA%A6%E3%80%82"><span class="nav-number">2.7.1.</span> <span class="nav-text">高级调度，中级调度，初级调度。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%AB%98%E7%BA%A7%E8%B0%83%E5%BA%A6"><span class="nav-number">2.7.1.1.</span> <span class="nav-text">1.高级调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%AD%E7%BA%A7%E8%B0%83%E5%BA%A6"><span class="nav-number">2.7.1.2.</span> <span class="nav-text">2.中级调度</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%EF%BC%9A%E8%BF%9B%E7%A8%8B%E7%9A%84%E4%B8%83%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.7.1.2.1.</span> <span class="nav-text">补充知识：进程的七状态模型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BD%8E%E7%BA%A7%E8%B0%83%E5%BA%A6"><span class="nav-number">2.7.1.3.</span> <span class="nav-text">3.低级调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E8%B0%83%E5%BA%A6%E7%9A%84%E8%81%94%E7%B3%BB%E5%92%8C%E5%AF%B9%E6%AF%94"><span class="nav-number">2.7.1.4.</span> <span class="nav-text">三种调度的联系和对比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%9A%84%E6%97%B6%E6%9C%BA%EF%BC%8C%E5%88%87%E6%8D%A2%E8%BF%87%E7%A8%8B%E5%92%8C%E6%96%B9%E5%BC%8F"><span class="nav-number">2.8.</span> <span class="nav-text">进程调度的时机，切换过程和方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E6%97%B6%E6%9C%BA"><span class="nav-number">2.8.1.</span> <span class="nav-text">进程调度时机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">2.8.2.</span> <span class="nav-text">进程调度的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%88%87%E6%8D%A2%E4%B8%8E%E8%BF%87%E7%A8%8B"><span class="nav-number">2.8.3.</span> <span class="nav-text">进程的切换与过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="nav-number">2.9.</span> <span class="nav-text">调度算法的评价指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">2.10.</span> <span class="nav-text">调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%EF%BC%8C%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%EF%BC%8C%E9%AB%98%E5%93%8D%E5%BA%94%E5%BF%85%E4%BC%98%E5%85%88"><span class="nav-number">2.10.1.</span> <span class="nav-text">先来先服务，短作业优先，高响应必优先</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9A"><span class="nav-number">2.10.1.1.</span> <span class="nav-text">补充：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E8%B0%83%E5%BA%A6%EF%BC%8C%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%EF%BC%8C%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">2.10.2.</span> <span class="nav-text">时间片轮转调度，优先级调度算法，多级反馈队列调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E8%B0%83%E5%BA%A6RR"><span class="nav-number">2.10.2.1.</span> <span class="nav-text">时间片轮转调度RR</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">2.10.2.2.</span> <span class="nav-text">优先级调度算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">2.10.2.3.</span> <span class="nav-text">多级反馈队列调度算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.10.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
