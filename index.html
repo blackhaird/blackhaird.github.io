@@ -183,7 +183,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-25 14:09:02" itemprop="dateModified" datetime="2023-02-25T14:09:02+08:00">2023-02-25</time>
+                <time title="修改时间：2023-03-01 00:01:39" itemprop="dateModified" datetime="2023-03-01T00:01:39+08:00">2023-03-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -824,7 +824,33 @@
 <p>只有第<strong>k级队列为空</strong>时，才会<strong>为k+1级</strong>队头的进程<strong>分配时间片</strong><br><strong>被抢占处理机的进程重新放回原队列队尾</strong></p>
 </blockquote>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>比起早期的批处理操作系统来说，由于计算机造价大幅降低，因此之后出现的交互式操作系统（包括<strong>分时操作系统、实时操作系统</strong>等）更注重系统的响应时间、公平性、平衡性等指标。而这几种算法恰好也能较好地满足交互式系统的需求。因此<strong>这三种算法适合用于交互式系统。</strong>(比如UNIX使用的就是多级反馈队列调度算法)</p>
+<h3 id="进程同步与进程互斥"><a href="#进程同步与进程互斥" class="headerlink" title="进程同步与进程互斥"></a>进程同步与进程互斥</h3><h4 id="进程同步"><a href="#进程同步" class="headerlink" title="进程同步"></a>进程同步</h4><p>以下例子为管道通信为实例</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302282350043.png"/>
 
+<p>读进程和写进程并发地运行，由于并发必然导致异步性，因此“写数据”和“读数据”两个操作执行的先后顺序是不确定的。而实际应用中，又必须按照“写数据→读数据”的顺序来执行的。<strong>如何解决这种异步问题，就是“进程同步”所讨论的内容。</strong></p>
+<blockquote>
+<p>含义</p>
+</blockquote>
+<p>同步亦称直接制约关系，它是指为完成某种任务而建立的两个或多个进程，这些进程因为需要在某些位置上协调它们的工作次序而产生的制约关系。进程间的直接制约关系就是源于它们之间的相互合作。</p>
+<h4 id="进程互斥"><a href="#进程互斥" class="headerlink" title="进程互斥"></a>进程互斥</h4><ul>
+<li>我们把一个时间段内只允许一个进程使用的资源称为临界资源。</li>
+<li>许多物理设备（比如摄像头、打印机）都属于临界资源。此外还有许多变量、数据、内存缓冲区等都属于临界资源。</li>
+<li>对临界资源的访问，必须互斥地进行。互斥，亦称间接制约关系。</li>
+<li><strong>进程互斥指当一个进程访问某临界资源时，另一个想要访问该临界资源的进程必须等待。当前访问临界资源的进程访问结束，释放该资源之后，另一个进程才能去访问临界资源。</strong></li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302282351880.png"/>
+
+<p>对临界资源的互斥访问，可以在逻辑上分为如下四个部分:</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302282359512.png"/>
+
+<p>为了实现对临界资源的互斥访问，同时保证系统整体性能，需要遵循以下原则:</p>
+<ol>
+<li>空闲让进。临界区空闲时，可以允许一个请求进入临界区的进程立即进入临界区;</li>
+<li>忙则等待。当已有进程进入临界区时，其他试图进入临界区的进程必须等待;</li>
+<li>有限等待。对请求访问的进程，应保证能在有限时间内进入临界区（保证不会饥饿)</li>
+<li>让权等待。当进程不能进入临界区时，应立即释放处理机，防止进程忙等待。</li>
+</ol>
+<h3 id="进程互斥的软件实现方法"><a href="#进程互斥的软件实现方法" class="headerlink" title="进程互斥的软件实现方法"></a>进程互斥的软件实现方法</h3>
       
     </div>
 
