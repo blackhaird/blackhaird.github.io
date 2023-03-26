@@ -568,7 +568,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-12 12:59:04" itemprop="dateModified" datetime="2023-03-12T12:59:04+08:00">2023-03-12</time>
+                <time title="修改时间：2023-03-26 15:37:47" itemprop="dateModified" datetime="2023-03-26T15:37:47+08:00">2023-03-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1268,7 +1268,41 @@
 <li>Peterson算法用软件方法解决了<strong>进程互斥问题，遵循了空闲让进、忙则等待、有限等待</strong>三个原则，但是依然未遵循让权等待的原则。</li>
 <li>Peterson算法相较于之前三种软件解决方案来说，是最好的，但依然不够好。</li>
 </ul>
-<h3 id="进程互斥的硬件实现方法"><a href="#进程互斥的硬件实现方法" class="headerlink" title="进程互斥的硬件实现方法"></a>进程互斥的硬件实现方法</h3>
+<h3 id="进程互斥的硬件实现方法"><a href="#进程互斥的硬件实现方法" class="headerlink" title="进程互斥的硬件实现方法"></a>进程互斥的硬件实现方法</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303261516619.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303261516916.png"/>
+
+<blockquote>
+<p>关中断指令只对执行关中断指令的处理机有用</p>
+</blockquote>
+<h4 id="TestAndSet指令"><a href="#TestAndSet指令" class="headerlink" title="TestAndSet指令"></a>TestAndSet指令</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303261518026.png"/>
+
+<h4 id="Swap指令"><a href="#Swap指令" class="headerlink" title="Swap指令"></a>Swap指令</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303261518466.png"/>
+
+<h3 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h3><h4 id="进程互斥：锁"><a href="#进程互斥：锁" class="headerlink" title="进程互斥：锁"></a>进程互斥：锁</h4><h5 id="互斥锁-1"><a href="#互斥锁-1" class="headerlink" title="互斥锁"></a>互斥锁</h5><p>解决临界区最简单的工具就是互斥锁（mutexlock)。一个进程在进入临界区时应获得锁；在退出临界区时释放锁。函数acquire()获得锁，而函数release()释放锁。每个互斥锁有一个布尔变量available,表示锁是否可用。如果锁是可用的，调用acqiure()会成功，且锁不再可用。当一个进程试图获取不可用的锁时，会被阻塞，直到锁被释放。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">acquire()&#123;</span><br><span class="line">    <span class="keyword">while</span>(!available); <span class="comment">//忙等待</span></span><br><span class="line">    available = <span class="literal">false</span>; <span class="comment">//获得锁</span></span><br><span class="line">&#125;</span><br><span class="line">release()&#123;</span><br><span class="line">    available = <span class="literal">true</span>; <span class="comment">//释放锁</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>acquire()或release()的执行必须是原子操作，因此互斥锁通常采用硬件机制来实现。<br>互斥锁的主要缺点是忙等待，当有一个进程在临界区中，任何其他进程在进入临界区时必须连续循环调用acquire()。当多个进程共享同一CPU时，就浪费了CPU周期。因此，互斥锁通常用于多处理器系统，一个线程可以在一个处理器上等待，不影响其他线程的执行。</p>
+<p>需要连续循环忙等的互斥锁，都可称为<strong>自旋锁（</strong>spin lock)，如TSL指令、swap指令、单标志法 </p>
+<p>特性：</p>
+<ul>
+<li>需忙等，进程时间片用完才下处理机，违反“让权等待”</li>
+<li>优点：等待期间不用切换进程上下文，多处理器系统中，若上锁的时间短，则等待代价很低</li>
+<li>常用于多处理器系统，一个核忙等，其他核照常工作，并快速释放临界区</li>
+<li>不太适用于单处理机系统，忙等的过程中不可能解锁</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303261531895.png"/>
+
+<h3 id="信号量机制"><a href="#信号量机制" class="headerlink" title="信号量机制"></a>信号量机制</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303261532635.png"/>
+
+<p>进程互斥的四种软件实现方式（单标志法，双标志先检查，双标志后检查，Peterson算法）</p>
+<p>进程互斥的三种硬件实现方式（中断屏蔽方法，TS&#x2F;TSL指令，Swap&#x2F;XCHG指令）</p>
+<p>1.在双标志先检查法中，进去区的”检查“，”上锁“操作无法一气呵成，中间有可能先执行了检查就进行了进程切换，从而导致了两个进程有可能同时进入临界区的问题；</p>
+<p>2.所有的解决方案都无法实现”让权等待“</p>
+<blockquote>
+<p>其中单标志法，双标志先检查，双标志后检查都存在着比较严重的一些问题的隐患。Peterson算法还有后面的三种硬件实现方式其实问题都不大，但是这些方式也都无法解决”让权等待“原则</p>
+</blockquote>
+
       
     </div>
 
