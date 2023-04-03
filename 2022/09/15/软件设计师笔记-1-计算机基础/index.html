@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="[TOC] 计算机系统基础知识计算机系统硬件基本储存计算机系统是有软硬件组成 计算机的基本硬件系统是由：运算器、控制器、存储器、输入设备和输出设备5大部件组成。 运算器、控制器等部件被系统集成在一起统称为中央处理器单元（CPU）。CPU是硬件系统核心。 中央处理单元（CPU）中央处理器单元（CPU）是计算机系统的核心部件，他负责获取程序指令、对指令进行译码并加以执行 CPU的功能程序控制（控制器）">
+  <meta name="description" content="计算机系统基础知识 计算机系统硬件基本储存 中央处理单元（CPU） CPU的功能 程序控制（控制器） 操作控制（控制器） 时间控制（运算器） 数据处理（运算器）   运算器 运算器有两个主要功能： 运算器中各组成部件的功能： 算术逻辑单元ALU： 累加寄存器AC： 数据缓冲寄存器DR: 状态条件寄存器PSW：     控制器 控制器中各组成部件的功能： 指令寄存器IR： 程序计数器PC： 地址寄">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件设计师笔记(1)-计算机基础">
 <meta property="og:url" content="http://example.com/2022/09/15/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="MEIDE&#39;S BLOG">
-<meta property="og:description" content="[TOC] 计算机系统基础知识计算机系统硬件基本储存计算机系统是有软硬件组成 计算机的基本硬件系统是由：运算器、控制器、存储器、输入设备和输出设备5大部件组成。 运算器、控制器等部件被系统集成在一起统称为中央处理器单元（CPU）。CPU是硬件系统核心。 中央处理单元（CPU）中央处理器单元（CPU）是计算机系统的核心部件，他负责获取程序指令、对指令进行译码并加以执行 CPU的功能程序控制（控制器）">
+<meta property="og:description" content="计算机系统基础知识 计算机系统硬件基本储存 中央处理单元（CPU） CPU的功能 程序控制（控制器） 操作控制（控制器） 时间控制（运算器） 数据处理（运算器）   运算器 运算器有两个主要功能： 运算器中各组成部件的功能： 算术逻辑单元ALU： 累加寄存器AC： 数据缓冲寄存器DR: 状态条件寄存器PSW：     控制器 控制器中各组成部件的功能： 指令寄存器IR： 程序计数器PC： 地址寄">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202303010107673.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202303010118348.png">
@@ -43,10 +43,11 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202304031622459.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202304031622780.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202304031624209.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202304031627921.png">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/22/image-20220918151931192.png">
 <meta property="og:image" content="https://s1.imagehub.cc/images/2022/09/19/image-20220918154932132.png">
 <meta property="article:published_time" content="2022-09-15T13:18:54.000Z">
-<meta property="article:modified_time" content="2023-04-03T08:26:42.297Z">
+<meta property="article:modified_time" content="2023-04-03T08:42:29.874Z">
 <meta property="article:author" content="MEIDE">
 <meta property="article:tag" content="考试知识点">
 <meta property="article:tag" content="软考">
@@ -207,7 +208,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-03 16:26:42" itemprop="dateModified" datetime="2023-04-03T16:26:42+08:00">2023-04-03</time>
+                <time title="修改时间：2023-04-03 16:42:29" itemprop="dateModified" datetime="2023-04-03T16:42:29+08:00">2023-04-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,7 +231,131 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>[TOC]</p>
+        <ul>
+<li><a href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">计算机系统基础知识</a><ul>
+<li><a href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%A1%AC%E4%BB%B6%E5%9F%BA%E6%9C%AC%E5%82%A8%E5%AD%98">计算机系统硬件基本储存</a></li>
+<li><a href="#%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%8D%95%E5%85%83cpu">中央处理单元（CPU）</a><ul>
+<li><a href="#cpu%E7%9A%84%E5%8A%9F%E8%83%BD">CPU的功能</a><ul>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E6%8E%A7%E5%88%B6%E6%8E%A7%E5%88%B6%E5%99%A8">程序控制（控制器）</a></li>
+<li><a href="#%E6%93%8D%E4%BD%9C%E6%8E%A7%E5%88%B6%E6%8E%A7%E5%88%B6%E5%99%A8">操作控制（控制器）</a></li>
+<li><a href="#%E6%97%B6%E9%97%B4%E6%8E%A7%E5%88%B6%E8%BF%90%E7%AE%97%E5%99%A8">时间控制（运算器）</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E8%BF%90%E7%AE%97%E5%99%A8">数据处理（运算器）</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%90%E7%AE%97%E5%99%A8">运算器</a><ul>
+<li><a href="#%E8%BF%90%E7%AE%97%E5%99%A8%E6%9C%89%E4%B8%A4%E4%B8%AA%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD">运算器有两个主要功能：</a></li>
+<li><a href="#%E8%BF%90%E7%AE%97%E5%99%A8%E4%B8%AD%E5%90%84%E7%BB%84%E6%88%90%E9%83%A8%E4%BB%B6%E7%9A%84%E5%8A%9F%E8%83%BD">运算器中各组成部件的功能：</a><ul>
+<li><a href="#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83alu">算术逻辑单元ALU：</a></li>
+<li><a href="#%E7%B4%AF%E5%8A%A0%E5%AF%84%E5%AD%98%E5%99%A8ac">累加寄存器AC：</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%BC%93%E5%86%B2%E5%AF%84%E5%AD%98%E5%99%A8dr">数据缓冲寄存器DR:</a></li>
+<li><a href="#%E7%8A%B6%E6%80%81%E6%9D%A1%E4%BB%B6%E5%AF%84%E5%AD%98%E5%99%A8psw">状态条件寄存器PSW：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%8E%A7%E5%88%B6%E5%99%A8">控制器</a><ul>
+<li><a href="#%E6%8E%A7%E5%88%B6%E5%99%A8%E4%B8%AD%E5%90%84%E7%BB%84%E6%88%90%E9%83%A8%E4%BB%B6%E7%9A%84%E5%8A%9F%E8%83%BD">控制器中各组成部件的功能：</a><ul>
+<li><a href="#%E6%8C%87%E4%BB%A4%E5%AF%84%E5%AD%98%E5%99%A8ir">指令寄存器IR：</a></li>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8pc">程序计数器PC：</a></li>
+<li><a href="#%E5%9C%B0%E5%9D%80%E5%AF%84%E5%AD%98%E5%99%A8ar">地址寄存器AR:</a></li>
+<li><a href="#%E6%8C%87%E4%BB%A4%E8%AF%91%E7%A0%81%E5%99%A8id">指令译码器ID：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E6%9C%AC%E5%8D%95%E4%BD%8D">计算机基本单位</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA">数据的表示</a><ul>
+<li><a href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2">进制转换</a><ul>
+<li><a href="#r-10">R-&gt;10</a></li>
+<li><a href="#10-r">10-&gt;R</a></li>
+<li><a href="#2-8">2-&gt;8</a></li>
+<li><a href="#2-16">2-&gt;16</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%9B%E5%88%B6%E5%BE%97%E5%8A%A0%E5%87%8F%E6%B3%95">进制得加减法</a></li>
+<li><a href="#%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E7%A7%BB%E7%A0%81">原码，反码，补码，移码</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E8%8C%83%E5%9B%B4">数据表示范围</a></li>
+<li><a href="#%E6%B5%AE%E7%82%B9%E6%95%B0">浮点数</a><ul>
+<li><a href="#%E7%89%B9%E7%82%B9">特点</a></li>
+<li><a href="#%E8%BF%90%E7%AE%97%E8%BF%87%E7%A8%8B">运算过程</a></li>
+<li><a href="#%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F">存储格式</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#flynn%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%88%86%E7%B1%BB">Flynn计算机体系结构分类</a></li>
+<li><a href="#%E6%8C%87%E4%BB%A4%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">指令的基本概念</a></li>
+<li><a href="#%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F">寻址方式</a></li>
+<li><a href="#cisc%E4%B8%8Erisc">CISC与RISC</a></li>
+<li><a href="#%E6%B5%81%E6%B0%B4%E7%BA%BF">流水线</a><ul>
+<li><a href="#%E6%A6%82%E5%BF%B5">概念</a></li>
+<li><a href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F">流水线计算公式：</a></li>
+<li><a href="#%E8%B6%85%E6%A0%87%E9%87%8F%E6%B5%81%E6%B0%B4%E7%BA%BF">超标量流水线</a></li>
+<li><a href="#%E5%90%9E%E5%90%90%E7%8E%87%E8%AE%A1%E7%AE%97">吞吐率计算</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84">存储结构</a><ul>
+<li><a href="#cache">Cache</a><ul>
+<li><a href="#%E6%98%A0%E5%83%8F">映像</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E7%BC%96%E5%9D%80%E4%B8%8E%E8%AE%A1%E7%AE%97">编址与计算</a></li>
+<li><a href="#%E6%80%BB%E7%BA%BF">总线</a></li>
+<li><a href="#%E4%B8%B2%E8%81%94%E7%B3%BB%E7%BB%9F%E5%92%8C%E5%B9%B6%E8%81%94%E7%B3%BB%E7%BB%9F">串联系统和并联系统</a><ul>
+<li><a href="#n%E6%A8%A1%E6%B7%B7%E5%90%88%E7%B3%BB%E7%BB%9F">#N模混合系统</a><ul>
+<li><a href="#n%E6%A8%A1%E5%86%97%E4%BD%99%E7%B3%BB%E7%BB%9F">N模冗余系统</a></li>
+<li><a href="#%E6%B7%B7%E5%90%88%E7%B3%BB%E7%BB%9F">混合系统</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%A0%A1%E9%AA%8C%E7%A0%81">校验码</a><ul>
+<li><a href="#%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C">奇偶校验</a></li>
+<li><a href="#%E5%BE%AA%E7%8E%AF%E5%86%97%E4%BD%99%E6%A0%A1%E9%AA%8C%E7%A0%81crc">循环冗余校验码CRC</a></li>
+<li><a href="#%E6%B5%B7%E6%98%8E%E6%A0%A1%E9%AA%8C%E7%A0%81">海明校验码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%BE%8B%E9%A2%98">计算机基础知识例题</a><ul>
+<li><a href="#%E4%BE%8B%E9%A2%98">例题</a><ul>
+<li><a href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E9%A2%98">进制转换题</a><ul>
+<li><a href="#2015%E5%B9%B4%E4%B8%8B">①.2015年下</a></li>
+<li><a href="#2017%E5%B9%B4%E4%B8%8B">②.2017年下</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E7%AD%94%E6%A1%88">答案</a><ul>
+<li><a href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E9%A2%98-1">进制转换题</a><ul>
+<li><a href="#2015%E5%B9%B4%E4%B8%8B-1">①.2015年下</a></li>
+<li><a href="#2017%E5%B9%B4%E4%B8%8B-1">②.2017年下</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80">程序设计语言</a><ul>
+<li><a href="#%E4%BD%8E%E7%BA%A7%E8%AF%AD%E8%A8%80%E5%92%8C%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80">低级语言和高级语言</a></li>
+<li><a href="#%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E5%92%8C%E8%A7%A3%E9%87%8A%E7%A8%8B%E5%BA%8F">编译程序和解释程序</a><ul>
+<li><a href="#%E8%A7%A3%E9%87%8A%E5%99%A8">解释器:</a></li>
+<li><a href="#%E7%BC%96%E8%AF%91%E5%99%A8">编译器:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E6%88%90%E5%88%86">程序设计语言的数据成分</a><ul>
+<li><a href="#1%E5%B8%B8%E9%87%8F%E5%92%8C%E5%8F%98%E9%87%8F">1)常量和变量</a></li>
+<li><a href="#2%E5%85%A8%E5%B1%80%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E9%87%8F">2)全局量和局部量</a></li>
+<li><a href="#3%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">3)数据类型</a></li>
+</ul>
+</li>
+</ul>
 <h1 id="计算机系统基础知识"><a href="#计算机系统基础知识" class="headerlink" title="计算机系统基础知识"></a>计算机系统基础知识</h1><h2 id="计算机系统硬件基本储存"><a href="#计算机系统硬件基本储存" class="headerlink" title="计算机系统硬件基本储存"></a>计算机系统硬件基本储存</h2><p>计算机系统是有软硬件组成</p>
 <p><strong>计算机的基本硬件系统是由：运算器、控制器、存储器、输入设备和输出设备5大部件组成。</strong></p>
 <p>运算器、控制器等部件被系统集成在一起统称为中央处理器单元（CPU）。CPU是硬件系统核心。</p>
@@ -697,6 +822,9 @@
 <p>这个的意思就是指，先除两个数，然后将余数补在原数后面发送，数据除不尽即说明数据发生了错误</p>
 <h3 id="海明校验码"><a href="#海明校验码" class="headerlink" title="海明校验码"></a>海明校验码</h3><p><strong>海明校验，可检错，也可纠错。</strong><br>海明校验码的原理是：在有效信息位中加入几个校验位形成海明码使码距比较均匀地拉大，并把海明码的每个二进制位分配到几个奇偶校验组中，当某一位出错后，就会引起有关的几个校验位的值发生变化，这不但可以发现错误，还能指出错误的位置，为自动纠错提供了依据<br>$$<br>2^k−1≥n+k<br>$$</p>
 <p>这个式子的意思是，可以用来检验错误的数据个数( 2^k − 1 ) 要大于或者等于原数据位数（n）和校验位数（k）的和。显然在2^k中我们要留出一个数表示数据正确，所以我们用2^k−1来代表出错的位数。</p>
+<blockquote>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202304031627921.png"/>
+</blockquote>
 <h1 id="计算机基础知识例题"><a href="#计算机基础知识例题" class="headerlink" title="计算机基础知识例题"></a>计算机基础知识例题</h1><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="进制转换题"><a href="#进制转换题" class="headerlink" title="进制转换题"></a>进制转换题</h3><h4 id="①-2015年下"><a href="#①-2015年下" class="headerlink" title="①.2015年下"></a>①.2015年下</h4><img src="https://s1.imagehub.cc/images/2022/09/22/image-20220918151931192.png" alt="image-20220918151931192.png" border="0" />
 
 <h4 id="②-2017年下"><a href="#②-2017年下" class="headerlink" title="②.2017年下"></a>②.2017年下</h4><img src="https://s1.imagehub.cc/images/2022/09/19/image-20220918154932132.png" alt="image-20220918154932132.png" border="0" />
