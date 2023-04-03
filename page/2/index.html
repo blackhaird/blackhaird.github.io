@@ -2016,7 +2016,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-01 10:50:59" itemprop="dateModified" datetime="2023-03-01T10:50:59+08:00">2023-03-01</time>
+                <time title="修改时间：2023-04-03 16:26:42" itemprop="dateModified" datetime="2023-04-03T16:26:42+08:00">2023-04-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2443,13 +2443,14 @@
 <h4 id="映像"><a href="#映像" class="headerlink" title="映像"></a>映像</h4><ol>
 <li><p>直接相邻映像：硬件电路较简单，但冲突率高</p>
 <p>（0页只能放在0页中，重复的旧页将会被淘汰，所以冲突率高）</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202304031618100.png"/>
 </li>
 <li><p>全相联映像：电路难于设计和实现，只适合于小容量的cache，冲突率较低（cache里面的每一页，都会存储主存里的每一页）</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202304031619083.png"/>
 </li>
 <li><p>组相联映像：直接相联与全相联的折中</p>
 <p>（先分区后分组，0组放0组，组内随便放，对管理系统的消耗很大）</p>
-<p>![映像][fire]</p>
-</li>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202304031619329.png"/></li>
 </ol>
 <p>地址映像是将主存与Cache的存储空间划分为若干大小相同的页（称为块）。<br>例如，某机的主存容量为1GB,划分为2048页，每页512KB；Cache容量为8MB，划分为16页，每页512KB。 </p>
 <h2 id="编址与计算"><a href="#编址与计算" class="headerlink" title="编址与计算"></a>编址与计算</h2><p>存储单元<br>按字编址：存储体的存储单元是字存储单元，即最小寻址单位是一个字<br>按字节编址：存储体的存储单元是字节存储单元；即最小寻址单位是一个字节（Byte&#x3D;8位bit）。</p>
@@ -2464,9 +2465,16 @@
 </ol>
 <h2 id="串联系统和并联系统"><a href="#串联系统和并联系统" class="headerlink" title="串联系统和并联系统"></a>串联系统和并联系统</h2><p>一般求可靠性</p>
 <p>串联：可靠性*可靠性……</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202304031621834.png"/>
+
 <p>并联：1-（1-可靠性）*（1-可靠性）……</p>
-<p>![][image_2]</p>
-<h3 id="N模混合系统"><a href="#N模混合系统" class="headerlink" title="N模混合系统"></a>N模混合系统</h3><p>![][image_3]</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202304031621240.png"/>
+
+<h3 id="N模混合系统"><a href="#N模混合系统" class="headerlink" title="#N模混合系统"></a>#N模混合系统</h3><h4 id="N模冗余系统"><a href="#N模冗余系统" class="headerlink" title="N模冗余系统"></a>N模冗余系统</h4><p>1.该模型软硬界都有应用。面向一些高可靠性系统的要求时，需要提高系统的可靠性，我们就可以使用N模冗余系统的方式。<br>2.结构</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202304031622459.png"/>
+
+<h4 id="混合系统"><a href="#混合系统" class="headerlink" title="混合系统"></a>混合系统</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202304031622780.png"/>
+
 <h2 id="校验码"><a href="#校验码" class="headerlink" title="校验码"></a>校验码</h2><p><strong>码距：任何一种编码都由许多码字构成，任意两个码字之间最少变化的二进制位数就称为数据校验码的码距。</strong><br>例如，用4位二进制表示16种状态，则有16个不同的码字，此时码距为1。如0000与0001。（换几个码距就是几个）</p>
 <h3 id="奇偶校验"><a href="#奇偶校验" class="headerlink" title="奇偶校验"></a>奇偶校验</h3><p>奇偶校验码的编码方法是：由若干位有效信息（如一个字节）,再加上一个二进制位（校验位）组成校验码。</p>
 <ol>
@@ -2491,10 +2499,13 @@
 </li>
 </ol>
 <p>把接收到的CRC码用约定的生成多项式G(X)去除，如果正确，则余数为0;如果某一位出错，则余数不为0。不同的位数出错其余数不同，余数和出错位序号之间有惟一的对应关系。</p>
-<p>![image][image_4]</p>
+<blockquote>
+<p>例:原始报文为“11001010101”,其生成多项式为:”x4+x3+x+1”。对其进行CRC编码后的结果为? 11001010101<strong>0011</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/software_designer/202304031624209.png"/>
+</blockquote>
 <p>这个的意思就是指，先除两个数，然后将余数补在原数后面发送，数据除不尽即说明数据发生了错误</p>
-<p>![][image_5]</p>
-<h3 id="海明校验码"><a href="#海明校验码" class="headerlink" title="海明校验码"></a>海明校验码</h3><p><strong>海明校验，可检错，也可纠错。</strong><br>海明校验码的原理是：在有效信息位中加入几个校验位形成海明码使码距比较均匀地拉大，并把海明码的每个二进制位分配到几个奇偶校验组中，当某一位出错后，就会引起有关的几个校验位的值发生变化，这不但可以发现错误，还能指出错误的位置，为自动纠错提供了依据<br>$$<br>2^r\geq m+r+1<br>$$</p>
+<h3 id="海明校验码"><a href="#海明校验码" class="headerlink" title="海明校验码"></a>海明校验码</h3><p><strong>海明校验，可检错，也可纠错。</strong><br>海明校验码的原理是：在有效信息位中加入几个校验位形成海明码使码距比较均匀地拉大，并把海明码的每个二进制位分配到几个奇偶校验组中，当某一位出错后，就会引起有关的几个校验位的值发生变化，这不但可以发现错误，还能指出错误的位置，为自动纠错提供了依据<br>$$<br>2^k−1≥n+k<br>$$</p>
+<p>这个式子的意思是，可以用来检验错误的数据个数( 2^k − 1 ) 要大于或者等于原数据位数（n）和校验位数（k）的和。显然在2^k中我们要留出一个数表示数据正确，所以我们用2^k−1来代表出错的位数。</p>
 <h1 id="计算机基础知识例题"><a href="#计算机基础知识例题" class="headerlink" title="计算机基础知识例题"></a>计算机基础知识例题</h1><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="进制转换题"><a href="#进制转换题" class="headerlink" title="进制转换题"></a>进制转换题</h3><h4 id="①-2015年下"><a href="#①-2015年下" class="headerlink" title="①.2015年下"></a>①.2015年下</h4><img src="https://s1.imagehub.cc/images/2022/09/22/image-20220918151931192.png" alt="image-20220918151931192.png" border="0" />
 
 <h4 id="②-2017年下"><a href="#②-2017年下" class="headerlink" title="②.2017年下"></a>②.2017年下</h4><img src="https://s1.imagehub.cc/images/2022/09/19/image-20220918154932132.png" alt="image-20220918154932132.png" border="0" />
