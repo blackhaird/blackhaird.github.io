@@ -570,7 +570,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-06 13:26:51" itemprop="dateModified" datetime="2023-05-06T13:26:51+08:00">2023-05-06</time>
+                <time title="修改时间：2023-05-11 15:28:01" itemprop="dateModified" datetime="2023-05-11T15:28:01+08:00">2023-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1652,7 +1652,208 @@
 
 <p>绝对装入是在编译的时候就产生了绝对地址，或者说在程序员写程序的时候直接就写了绝对地址。这个地址转换是由编译器而不是操作系统完成的</p>
 <p>可重定位装入中地址转换的过程由装入程序负责进行，而装入程序也是操作系统的一部分</p>
-<h3 id="内存保护"><a href="#内存保护" class="headerlink" title="内存保护"></a>内存保护</h3>
+<h3 id="内存保护"><a href="#内存保护" class="headerlink" title="内存保护"></a>内存保护</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111342928.png"/>
+
+<h4 id="上下寄存器"><a href="#上下寄存器" class="headerlink" title="上下寄存器"></a>上下寄存器</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111342779.png"/>
+
+<h4 id="重定位寄存器"><a href="#重定位寄存器" class="headerlink" title="重定位寄存器"></a>重定位寄存器</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111343667.png"/>
+
+<h3 id="覆盖与交换"><a href="#覆盖与交换" class="headerlink" title="覆盖与交换"></a>覆盖与交换</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111344101.png"/>
+
+<h4 id="覆盖技术"><a href="#覆盖技术" class="headerlink" title="覆盖技术"></a>覆盖技术</h4><p>早期的计算机内存很小，比如IBM推出的第一台PC机最大只支持1MB大小的内存。因此经常会出现内存大小不够的情况。<br>后来人们引入了<strong>覆盖技术，用来解决“程小超过物理内存总和”的问题</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111346095.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111346097.png"/>
+
+<blockquote>
+<p>A这个模块会依次调用B模块和C模块。注意是依次调用，B模块和C模块只可能被A模块在不同的时间段调用，不可能是同时访问B和C这两个模块</p>
+</blockquote>
+<p>操作系统并不知道程序的调用结构，程序的调用结构必须由程序员显性地声明，操作系统根据程序员声明的调用结构&#x2F;覆盖结构完成自动覆盖</p>
+<h4 id="交换技术"><a href="#交换技术" class="headerlink" title="交换技术"></a>交换技术</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111350389.png"/>
+
+<p>第二章讲处理机调度的时候讲过一个处理机调度层次的概念，分为高级调度，中级调度和低级调度。其中中级调度就是为了实现交换技术而使用的一种调度策略</p>
+<p>换出外存的进程相关的PCB会保留在内存当中并且插入到挂起队列里</p>
+<p>为什么进程的PCB要常驻内存呢？因为进程被换出外存之后，必须要通过某种方式记录下进程到底是放在外存的什么位置，这个信息记录在对应的PCB当中，操作系统就可以根据PCB当中记录的这些信息对这些进程进行管理</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111350777.png"/>
+
+<p>一个本来处于就绪态的进程被换出外存，这个进程就处于就绪挂起态</p>
+<p>一个本来处于阻塞态的进程被换出外存，这个进程就处于阻塞挂起态</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111351844.png"/>
+
+<h3 id="连续分配管理方式"><a href="#连续分配管理方式" class="headerlink" title="连续分配管理方式"></a>连续分配管理方式</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111351402.png"/>
+
+<p>连续分配：指为用户进程分配的必须是一个连续的内存空间</p>
+<h4 id="单一连续分配"><a href="#单一连续分配" class="headerlink" title="单一连续分配"></a>单一连续分配</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111352995.png"/>
+
+<p>内存当中同一时刻只能有一道用户程序，它并不支持多道程序并发运行</p>
+<p>因为系统中只会运行一个用户程序，即使这个用户程序出问题了也只会影响用户程序本身，或者说即使这个用户程序越界损坏操作系统的数据，这个数据一般来说也可以通过重启计算机就可以很方便地进行修复，所以说采用单一连续分配的系统当中不一定采取内存保护</p>
+<h4 id="固定分区分配"><a href="#固定分区分配" class="headerlink" title="固定分区分配"></a>固定分区分配</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111353659.png"/>
+
+<p>分区大小相等：如果有一个比较大的进程进入的话，如果这些分区的大小都不能满足这个大进程的需求，那么这个大进程就不能被装入这个系统，或者说只能采用覆盖技术在逻辑上来拓展各个分区的大小，而这显然又会增加一些系统开销</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111354699.png"/>
+
+<h4 id="动态分区分配"><a href="#动态分区分配" class="headerlink" title="动态分区分配"></a>动态分区分配</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111354258.png"/>
+
+<h5 id="动态分区存在的问题"><a href="#动态分区存在的问题" class="headerlink" title="动态分区存在的问题"></a>动态分区存在的问题</h5><ol>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111359562.png"/>
+</li>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111400729.png"/>
+</li>
+<li><p>分区分配：<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111400169.png"/></p>
+</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111410550.png"/>
+
+<ol start="4">
+<li>分区回收：<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111411848.png"/></li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111414369.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111414421.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111415359.png"/>
+
+<h5 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h5><p>这几种情况本质上可以用一句话来进行总结：在进行内存分区回收的时候，如果说回收了之后发现有一些空闲分区是相邻的，那我们就需要把这些相邻的空闲分区全部合并</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111415841.png"/>
+
+<p>紧凑技术其实就是把各个进程挪位，把它们全部攒到一起，挪出一个更大的连续空闲区间</p>
+<p>动态重定位的方式最方便实现程序或者说进程在内存当中移动位置</p>
+<p>紧凑之后需要修改各个进程的起始地址，进程的起始地址信息一般存放在进程对应的PCB当中，当进程要上CPU运行之前会把进程的起始地址信息放到重定位寄存器（基址寄存器）里</p>
+<h3 id="动态分区分配算法"><a href="#动态分区分配算法" class="headerlink" title="动态分区分配算法"></a>动态分区分配算法</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111416487.png"/>
+
+<p>动态分区分配算法：在动态分区分配方式中， 当很多个空闲分区都能满足需求时，应该选择哪个分区进行分配？</p>
+<h4 id="首次适应算法"><a href="#首次适应算法" class="headerlink" title="首次适应算法"></a>首次适应算法</h4><p>算法思想：每次都从低地址开始查找，找到第一个能满足大小的空闲分区</p>
+<p>如何实现：空闲分区以地址递增的次序排列。每次分配内存时顺序查找空闲分区链（或空闲分区表），找到大小能满足要求的第一个空闲分区</p>
+<h4 id="最佳适应算法"><a href="#最佳适应算法" class="headerlink" title="最佳适应算法"></a>最佳适应算法</h4><p>算法思想：由于动态分区分配是一种连续分配方式，为各进程分配的空间必须是连续的一整片区域。因此为了保证当“大进程”到来时能有连续的大片空间，可以尽可能多地留下大片的空闲区，即优先使用更小的空闲区</p>
+<p>如何实现：空闲分区按容量递增次序链接。每次分配内存时顺序查找空闲分区链（或空闲分区表），找到大小能满足要求的第一个空闲分区</p>
+<p>缺点：每次都选最小的分区进行分配，会留下越来越多的，很小的，难以利用的内存块。因此这种方法会产生很多的外部碎片</p>
+<h4 id="最坏适应算法"><a href="#最坏适应算法" class="headerlink" title="最坏适应算法"></a>最坏适应算法</h4><p>又称 最大适应算法（Largest Fit）</p>
+<p>算法思想：为了解决最佳适应算法的问题——即留下太多难以利用的小碎片，可以在每次分配时优先使用最大的连续空闲区，这样分配后剩余的空闲区就不会太小，更方便使用</p>
+<p>如何实现：空闲分区按容量递减次序链接。每次分配内存时顺序查找空闲分区链（或空闲分区表），找到大小能满足要求的第一个空闲分区</p>
+<p>缺点：每次都选最大的分区进行分配，虽然可以让分配后留下的空闲区更大，更可用，但是这种方式会导致较大的连续空闲区被迅速用完。如果之后有”大进程“到达，就没有内存分区可用了</p>
+<h4 id="邻近适应算法"><a href="#邻近适应算法" class="headerlink" title="邻近适应算法"></a>邻近适应算法</h4><p>算法思想：首次适应算法每次都从链头开始查找的。这可能会导致低地址部分出现很多小的空闲分区，而每次分配查找时，都要经过这些分区，因此也增加了查找的开销。如果每次都从上次查找结束的位置开始检索，就能解决上述问题</p>
+<p>如何实现：空闲分区以地址递增的顺序排列（可排成一个循环链表）。每次分配内存时从上次查找结束的位置开始查找空闲分区链（或空闲分区表），找到大小能满足要求的第一个空闲分区</p>
+<h4 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h4><blockquote>
+<p>假如说此时系统当中的内存使用情况如下图所示，把这些空闲分区按照地址递增的次序依次进行排列，排成一个循环链表</p>
+<p>如果有一个需要5MB内存空间的进程到达，就从链头的位置开始查找直到找到合适的分区进行分配。同时更新链当中的结点，包括分区的大小，还有分区的起始地址</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111418851.png"/>
+
+<p>采用邻近适应算法和首次适应算法只需要按照地址递增的次序进行排列。所以即使这里内存分区的大小发生了一个比较大的变化，但是我们依然不需要像最佳适应算法和最坏适应算法一样可能要对整个链表进行重新排列，算法的开销会比较小</p>
+<p>接下来假如一个需要5MB内存空间的新进程到达，按照规则从上一次查找到的位置依次再往后查找即可。以后的过程都是类似的</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111419898.png"/>
+
+<p>首次适应算法每次都要从头查找，每次都需要检索低地址的小分区。但是这种规则也决定了当低地址部分有更小的分区可以满足需求时，会更有可能用到低地址部分的小分区，也会更有可能把高地址部分的大分区保留下来（最佳适应算法的优点）</p>
+<p>邻近适应算法的规则可能会导致无论低地址、高地址部分的空闲分区都有相同的概率被使用，也就导致了高地址部分的大分区更可能被使用，划分为小分区，最后导致无大分区可用（最大适应算法的缺点）</p>
+<p>综合来看，四种算法中，首次适应算法的效果反而更好</p>
+</blockquote>
+<h3 id="基本分页存储管理的概念"><a href="#基本分页存储管理的概念" class="headerlink" title="基本分页存储管理的概念"></a>基本分页存储管理的概念</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111420967.png"/>
+
+<p>非连续分配：为用户进程分配的可以是一些分散的内存空间</p>
+<h4 id="分页存储"><a href="#分页存储" class="headerlink" title="分页存储"></a>分页存储</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111420848.png"/>
+
+<p>内存里存放的无非就是各个进程的数据，包括进程的代码，进程的指令等等</p>
+<h4 id="页表——重要的数据结构"><a href="#页表——重要的数据结构" class="headerlink" title="页表——重要的数据结构"></a>页表——重要的数据结构</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111421980.png"/>
+
+<blockquote>
+<p>内存块就是页框(page flame)</p>
+</blockquote>
+<h4 id="问题1：每个页表项占多少字节"><a href="#问题1：每个页表项占多少字节" class="headerlink" title="问题1：每个页表项占多少字节"></a>问题1：每个页表项占多少字节</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111422216.png"/>
+
+<p>这里计算机分配存储空间是以字节为单位而不是以bit为单位，所以20bit至少要用3B来存储</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111428370.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111428490.png"/>
+
+<p>一个页表项在逻辑上是包含了页号和块号这两个信息，但是在物理上它只需要存放块号这个信息，只有块号需要占用存储空间</p>
+<h4 id="问题2：如何实现地址的转换"><a href="#问题2：如何实现地址的转换" class="headerlink" title="问题2：如何实现地址的转换"></a>问题2：如何实现地址的转换</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111431445.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111431771.png"/>
+
+<p>页内偏移量：相对于页面的起始位置而言的偏移量是多少</p>
+<h5 id="如何确定一个逻辑地址对应的页号，页内偏移量？"><a href="#如何确定一个逻辑地址对应的页号，页内偏移量？" class="headerlink" title="如何确定一个逻辑地址对应的页号，页内偏移量？"></a>如何确定一个逻辑地址对应的页号，页内偏移量？</h5><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111432887.png"/>
+
+<h4 id="逻辑地址结构"><a href="#逻辑地址结构" class="headerlink" title="逻辑地址结构"></a>逻辑地址结构</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111433183.png"/>
+
+<h3 id="基本地址变化机构"><a href="#基本地址变化机构" class="headerlink" title="基本地址变化机构"></a>基本地址变化机构</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111434511.png"/>
+
+<p>基本地址变换机构是基本分页存储管理中用于实现逻辑地址到物理地址转换的一组硬件机构</p>
+<h4 id="基本地址变换机构"><a href="#基本地址变换机构" class="headerlink" title="基本地址变换机构"></a>基本地址变换机构</h4><p>在分页存储管理当中如果要把逻辑地址转换成物理地址的话，总共需要做4件事：</p>
+<p>1.知道逻辑地址对应的页号</p>
+<p>2.知道逻辑地址对应的页内偏移量</p>
+<p>3.知道逻辑地址对应的页面在内存当中存放的位置到底是多少</p>
+<p>4.根据页面在内存当中的起始位置和页内偏移量就可以得到最终的物理地址</p>
+<p>基本地址变换机构可以借助进程的页表将逻辑地址转换为物理地址。通常会在系统中设置一个<strong>页表寄存器</strong>（PTR),<strong>存放页表在内存中的起始地址F和页表长度M</strong>。进程未执行时，页表的始址和页表长度放在**进程控制块（PCB)**中，当进程被调度时，操作系统内核会把它们放到页表寄存器中。</p>
+<blockquote>
+<p>注意：<strong>页面大小是2的整数幂</strong></p>
+<p>设页面大小为L,逻辑地址A到物理地址E的变换过程如下：</p>
+<p>操作系统会把内存分为系统区和用户区。系统区当中存放着操作系统对整个计算机软硬件进行管理的一些相关的数据结构，包括PCB</p>
+<p>如果一个进程被调度需要上处理机运行，进程切换相关的那些内核程序就会把这个进程的运行环境给恢复。这些进程运行环境相关的信息本来是保存在PCB当中的，内核程序会把这些信息放到相应的一系列寄存器当中，包括页表寄存器。另外程序计数器PC也是需要恢复的，PC指向这个进程下一条需要执行的指令的逻辑地址。接下来看怎么把这个逻辑地址转换成实际的物理地址，即CPU怎么在内存当中找到接下来要执行的这一条指令</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111437646.png"/>
+
+<p>采用分页存储管理方式的系统当中，逻辑地址结构肯定是固定不变的，在一个逻辑地址当中页号有多少位，页内偏移量有多少位操作系统都是知道的。所以只要知道了逻辑地址就可以很快地切分出页号和页内偏移量这两个部分</p>
+<p>接下来会对页号的合法性进行一个检查，越界就会抛出中断由中断处理程序进行处理</p>
+<blockquote>
+<p>一个进程的页表长度M指的是这个进程的页表当中有M个页表项，也就意味着这个进程的页面总共有M页</p>
+</blockquote>
+<p>如果页号是合法的，接下来会用这个页号和页表始址来进行计算，找到这个页号对应的页表项到底是多少</p>
+<p>页表当中的每一个页表项的长度是相同的。所以只要知道了页号，页表起始地址和每一个页表项的长度就可以算出我们想要访问的页号对应的页表项所存放的位置</p>
+<p>既然知道了存放的内存块号，就可以用内存块号结合页内偏移量得到最终的物理地址，然后就可以顺利地访问逻辑地址所对应的内存单元了</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111441369.png"/>
+</blockquote>
+<p>该过程的文字描述如下</p>
+<blockquote>
+<ol>
+<li><p>计算页号P和页内偏移量W（如果用十进制数手算，则 P&#x3D;A&#x2F;L，W&#x3D;A%L；但是在计算机实际运行时，逻辑地址结构是固定不变的，因此计算机硬件可以更快地得到二进制表示的页号，页内偏移量）</p>
+</li>
+<li><p>比较页号P和页表长度M，若P ≥ M P\ge M<em>P</em>≥<em>M</em>，则产生越界中断，否则继续执行。（注意：页号从0开始的，而页表长度至少是1，因此 P&#x3D;M 时也会越界）</p>
+</li>
+<li><p>页表中页号P对应的页表项地址 &#x3D; 页表起始地址F + 页号P * 页表项长度，取出该页表项内容b，即为内存块号。（注意区分页表项长度，页表长度，页面大小的区别。页表长度指的是这个页表中总共有几个页表项，即总共有几个页；页表项长度指的是每个页表项占多大的存储空间；页面大小指的是一个页面占多大的存储空间）</p>
+</li>
+<li><p>计算E&#x3D;b*L+W,用得到的物理地址E去访存。（如果内存块号、页面偏移量是用二进制表示的，那么把二者拼接起来就是最终的物理地址了）</p>
+</li>
+</ol>
+</blockquote>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111443343.png"/>
+
+<h4 id="对页表项大小的进一步探讨"><a href="#对页表项大小的进一步探讨" class="headerlink" title="对页表项大小的进一步探讨"></a>对页表项大小的进一步探讨</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111443247.png"/>
+
+<p>页表项不能跨页框存储</p>
+<p>如果说我们的这些页表项并不能装满整个页框的话，那在查找页表项的时候会造成一些麻烦</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111443524.png"/>
+
+<h3 id="快表"><a href="#快表" class="headerlink" title="快表"></a>快表</h3><p>快表，又称联想寄存器（TLB,translation lookaside buffer),是一种访问速度比内存快很多的高速缓存（TLB不是内存！),用来存放最近访问的页表项的副本，可以加速地址变换的速度。与此对应，内存中的页表常称为慢表。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111522029.png"/>
+
+<blockquote>
+<p>进程最先要访问的逻辑地址是(0，0)</p>
+<p>首先进行越界异常的检查，该页号需要和页表寄存器当中的页表长度对比</p>
+<p>接下来就会查询快表，由于快表此时的内容是空的，因此在快表中找不到页号为0对应的页表项，快表没有命中。接下来就不得不去访问内存当中存放的慢表，通过页表始址和页号计算出对应的页表项存放的位置</p>
+<p>查询完慢表之后就可以知道0号页面所存放的内存块号是600，再通过内存块号和页内偏移量就可以得到最终的物理地址，最后就可以访问这个逻辑地址所对应的内存单元了</p>
+<p>注意在访问了这个页表项之后同时也会把该页表项复制一份放到快表当中</p>
+<p>接下来要访问的逻辑地址是(0，4)</p>
+<p>同样地刚开始会进行越界异常的判断，发现没有越界</p>
+<p>接下来会根据页号来查询快表以确认这个页号所对应的页表项是否在快表当中，由于刚才已经复制到了快表当中，因此这次的查询就可以命中。系统可以直接知道0号页面存放的页面是600，所以接下来就不需要查询内存当中的慢表而是直接用内存块号和页内偏移量得到最终想要访问的物理地址然后进行访存</p>
+<p><strong>（0，0）前面指的是页号，后面指的是页内偏移量</strong></p>
+</blockquote>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111524247.png"/>
+
+<h4 id="引入快表后，地址的变换过程"><a href="#引入快表后，地址的变换过程" class="headerlink" title="引入快表后，地址的变换过程"></a>引入快表后，地址的变换过程</h4><blockquote>
+<ol>
+<li><p>CPU给出逻辑地址，由某个硬件算得页号、页内偏移量，将页号与快表中的所有页号进行比较</p>
+</li>
+<li><p>如果找到匹配的页号，说明要访问的页表项在快表中有副本，则直接从中取出该页对应的内存块号，再将内存块号与页内偏移量拼接形成物理地址，最后，访问该物理地址对应的内存单元。因此若快表命中，则访问某个逻辑地址仅需一次访存即可。</p>
+</li>
+<li><p>如果没有找到匹配的页号，则需要访问内存中的页表，找到对应页表项，得到页面存放的内存块号，再将内存块号与页内偏移量拼接形成物理地址，最后，访问该物理地址对应的内存单元。因若快表未命中，则访问某个逻辑地址需要两次访存（注意：在找到页表项后，应同时将其存入快表以便后面可能的再次访问。但若快表已满，则必须按照一定的算法对旧的页表项进行替换）</p>
+</li>
+</ol>
+<p>由于查询快表的速度比查询页表的速度快很多，因此只要快表命中，就可以节省很多时间。因为局部性原理，一般来说快表的命中率可以达到90%以上。</p>
+<p>例：某系统使用基本分页存储管理，并采用了具有快表的地址变换机构。访问一次快表耗时1us,访问一次内存耗时100us。若快表的命中率为90%,那么访问一个逻辑地址的平均耗时是多少？</p>
+<p>(1+100)*0.9+(1+100+100)*0.1&#x3D;111us</p>
+<p>有的系统支持快表和慢表同时查找，如果是这样，平均耗时应该是</p>
+<p>（1+100)*0.9+(100+100)*0.1&#x3D; 110.9us</p>
+<p>若未采用快表机制，则访问一个逻辑地址需要100+100&#x3D;200us<br>显然，引入快表机制后，访问一个逻辑地址的速度快多了。</p>
+</blockquote>
+
       
     </div>
 
