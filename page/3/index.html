@@ -152,6 +152,175 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/25/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/25/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">软件设计师笔记(2)-操作系统</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-25 16:50:22" itemprop="dateCreated datePublished" datetime="2022-09-25T16:50:22+08:00">2022-09-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-10 23:39:13" itemprop="dateModified" datetime="2022-12-10T23:39:13+08:00">2022-12-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="操作系统的笔记"><a href="#操作系统的笔记" class="headerlink" title="操作系统的笔记"></a>操作系统的笔记</h1><h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><h3 id="进程的概念与状态"><a href="#进程的概念与状态" class="headerlink" title="进程的概念与状态"></a>进程的概念与状态</h3><p>进程是程序在一个数据集合上运行的过程，它是系统进行资源分配和调度的一个独立单位。它由程序块、进程控制块（PCB)和数据块三部分组成。</p>
+<p><strong>进程与程序的区别：进程是程序的一次执行过程，没有程序就没有进程。</strong></p>
+<p>进程是动态，程序是静态</p>
+<p>程序是完成某个特定功能的一系列程序语句的集合，只要不被破坏，它就永远存在。程序是一个静态的概念，而进程是一个动态的概念，它由创建而产生，完成任务后因撤销而消亡；进程是系统进行资源分配和调度的独立单位，而程序不是。</p>
+<p>![][image1]</p>
+<h3 id="进程的同步与互斥"><a href="#进程的同步与互斥" class="headerlink" title="进程的同步与互斥"></a>进程的同步与互斥</h3><p>![][image2]</p>
+<p>同步：直接的制约关系，速度有差异。【李四到终点需要等待张三到达】</p>
+<p>互斥：间接制约关系，争夺临界资源。</p>
+<h4 id="PV操作"><a href="#PV操作" class="headerlink" title="PV操作"></a>PV操作</h4><p>临界资源：诸进程间需要互斥方式对其进行共享的资源，如打印机、磁带机等<br>临界区：每个进程中访问临界资源的<strong>那段代码称为临界区</strong><br>信号量：<strong>是一种特殊的变量</strong><br>P是荷兰语的Passeren,V是荷兰语的Verhoog.</p>
+<p>P操作就是申请资源操作，V就是释放资源操作。S就是信号量，若资源小于0，就需要进入阻塞队列。V操作资源数大于0就需要处理阻塞进程队列的资源。</p>
+<p>![][image3]</p>
+<h5 id="同步模型"><a href="#同步模型" class="headerlink" title="同步模型"></a>同步模型</h5><p>![][image4]</p>
+<h5 id="例题理解"><a href="#例题理解" class="headerlink" title="例题理解"></a>例题理解</h5><p>![][image5]</p>
+<p>答案:A,C</p>
+<p>![][image6]</p>
+<h3 id="死锁问题"><a href="#死锁问题" class="headerlink" title="死锁问题"></a>死锁问题</h3><p>进程管理是操作系统的核心，但如果设计不当，就会出现死锁的问题。如果一个进程在等待一件不可能发生的事，则进程就死锁了。而如果一个或多个进程产生死锁，就会造成系统死锁。</p>
+<p>下面例题</p>
+<p>![][image7]</p>
+<p>基于分配的所需的系统资源数少1，随后相加起来，如图即3*5+1&#x3D;16个系统资源</p>
+<h4 id="形成死锁的4个必要条件"><a href="#形成死锁的4个必要条件" class="headerlink" title="形成死锁的4个必要条件"></a>形成死锁的4个必要条件</h4><p>![image8][]</p>
+<p>有序资源分配法：需要多少系统资源给多少，比较浪费资源</p>
+<p>银行家算法：分配资源的原则</p>
+<ul>
+<li>当一个进程对资源的最大需求量不超过系统中的资源数时可以接纳该进程。</li>
+<li>进程可以分期请求资源，但请求的总数不能超过最大需求量。</li>
+<li>当系统现有的资源不能满足进程尚需资源数时，对进程的请求可以推迟分配，但总能使进程在有限的时间里得到资源。</li>
+</ul>
+<h4 id="银行家算法例子"><a href="#银行家算法例子" class="headerlink" title="银行家算法例子"></a>银行家算法例子</h4><p>![image9][]</p>
+<p>![image10][]</p>
+<h2 id="存储管理"><a href="#存储管理" class="headerlink" title="存储管理"></a>存储管理</h2><h3 id="页式存储"><a href="#页式存储" class="headerlink" title="页式存储"></a>页式存储</h3><p><strong>将程序与内存划分为同样大小的快，以页为单位将程序调入内存。</strong></p>
+<p>优点：利用率高，碎片小，分配及管理简单</p>
+<p>缺点：增加了系统开销；可能产生抖动现象</p>
+<p>![image11][]</p>
+<h3 id="段页式存储"><a href="#段页式存储" class="headerlink" title="段页式存储"></a>段页式存储</h3><p><strong>段式与页式的综合体，先分段，再分页，1个程序有若千个段，每个段中可以有若干页，每个页的大小相同，但每个段的大小不同。</strong></p>
+<p>![image12][]</p>
+<p>优点：空间浪费小，存储共享容易，存储保护容易，能动态连接</p>
+<p>缺点：由于管理软件的增加，复杂性和开销也随之增加，需要的硬件以及占用的内容也有所增加，使得执行速度大大下降</p>
+<h3 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h3><ul>
+<li>最优（Optimal,OPT)算法</li>
+<li>随机（RAND)算法</li>
+<li>√先进先出（FIFO)算法：有可能产生“抖动”。例如，432143543215序列，用3个页面，比4个缺页要少</li>
+<li>最近最少使用（LRU)算法：不会“抖动”，LRU的理论依据是“局部性原理”。</li>
+<li>时间局部性：刚被访问的内容，立即又被访问。</li>
+<li>空间局部性：刚被访问的内容，临近的空间很快被访问。</li>
+</ul>
+<h3 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h3><p>存取时间&#x3D;寻道时间+等待时间，寻道时间是指磁头移动到磁道所需的时间；等待时间为等待读写的扇区转到磁头下方所用的时间。</p>
+<h3 id="磁盘调度算法"><a href="#磁盘调度算法" class="headerlink" title="磁盘调度算法"></a>磁盘调度算法</h3><ul>
+<li>先来先服务（FCFS)</li>
+<li>最短寻道时间优先（SSTF)</li>
+<li>扫描算法（SCAN)</li>
+<li>循环扫描（CSCAN)算法</li>
+</ul>
+<h3 id="读取磁盘数据时间计算"><a href="#读取磁盘数据时间计算" class="headerlink" title="读取磁盘数据时间计算"></a>读取磁盘数据时间计算</h3><p>读取磁盘数据的时间应包括以下三个部分：</p>
+<ol>
+<li>找磁道的时间。</li>
+<li>找块（扇区）的时间，即旋转延迟时间。</li>
+<li>传输时间。</li>
+</ol>
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p><code>某磁盘磁头从一个磁道移至另一个磁道需要10ms,文件在磁盘上非连续存放，逻辑上相邻数据块的平均移动距离为10个磁道，每块的旋转延迟时及传输时间分别为100ms和2ms,则读取一个100块的文件需要__ms时间。</code></p>
+<p><code>A.10200 B.11000 C.11200 D.20200</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这种问题先计算磁道移动缩需要的延迟即10*10</span><br><span class="line">然后加上每块区域旋转的延迟时间+每个数据块传输的时间</span><br><span class="line">最后再乘以总的读取文件总数。即[(10*10)+100+2]*100</span><br></pre></td></tr></table></figure>
+
+<h2 id="作业管理"><a href="#作业管理" class="headerlink" title="作业管理"></a>作业管理</h2><h3 id="作业状态与作业管理"><a href="#作业状态与作业管理" class="headerlink" title="# 作业状态与作业管理"></a># 作业状态与作业管理</h3><p>![image13][]</p>
+<h3 id="作业的调度算法"><a href="#作业的调度算法" class="headerlink" title="作业的调度算法"></a>作业的调度算法</h3><ul>
+<li><p>先来先服务法：作业先来先执行</p>
+</li>
+<li><p>时间片轮转法：根据CPU的时间来核算</p>
+</li>
+<li><p>短作业优先法：执行执行时间最短的作业优先执行</p>
+</li>
+<li><p>最高优先权优先法：按照作业的优先权先后排列</p>
+</li>
+<li><p>高响应比优先法：根据响应比（作业的等待时间&#x2F;作业的执行时间）最高的优先执行</p>
+</li>
+</ul>
+<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><h3 id="索引文件结构"><a href="#索引文件结构" class="headerlink" title="索引文件结构"></a>索引文件结构</h3><p>![image14][]</p>
+<ul>
+<li>0-9：使用直接索引，每一个物理块为1k，也就是10k（0-10239）</li>
+<li>10：一级间接索引，存一页即1KB用4个存地址，即256个（1024&#x2F;4），256每个对应1K，即256K</li>
+<li>11：二级间接索引，256个乘以256个乘以256K 即64M</li>
+<li>12：三级间接索引，256乘以二级间接索引，即16G</li>
+</ul>
+<p>![image15][]</p>
+<h3 id="树形目录结构"><a href="#树形目录结构" class="headerlink" title="树形目录结构"></a>树形目录结构</h3><p>linux数据目录结构：&#x2F;</p>
+<p>就是文件夹目录，相对目录（不包括本身），绝对目录（从头写到尾）</p>
+<h3 id="空闲存储空间的管理"><a href="#空闲存储空间的管理" class="headerlink" title="空闲存储空间的管理"></a>空闲存储空间的管理</h3><p>位示图法：类似于电影院订票，可以清晰的看出</p>
+<h2 id="设备管理"><a href="#设备管理" class="headerlink" title="设备管理"></a>设备管理</h2><h3 id="数据传输控制方式"><a href="#数据传输控制方式" class="headerlink" title="数据传输控制方式"></a>数据传输控制方式</h3><p>（速度从低到高）</p>
+<ul>
+<li><strong>程序控制（查询）方式</strong>：分为无条件传送和程序查询方式两种。方法简单，硬件开销小，但I&#x2F;O能力不高，严重影响CPU的利用率</li>
+<li><strong>程序中断方式</strong>：与程序控制方式相比，中断方式因为CPU无需等待而提高了传输请求的响应速度。</li>
+<li><strong>DMA方式</strong>：DMA方式是为了在主存与外设之间实现高速、批量数据交换而设置的。DMA方式比程序控制方式与中断方式都高效（与CPU没关系，CPU只负责下指令）</li>
+<li><strong>通道方式</strong></li>
+<li><strong>I&#x2F;O处理机</strong></li>
+</ul>
+<h3 id="虚设备与SPOOLING技术"><a href="#虚设备与SPOOLING技术" class="headerlink" title="# 虚设备与SPOOLING技术"></a># 虚设备与SPOOLING技术</h3><p>排队式</p>
+<p>![image16][]</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/15/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3210,20 +3379,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
