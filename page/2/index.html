@@ -152,6 +152,809 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-2-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-2-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%B1%82/" class="post-title-link" itemprop="url">计算机网络(2)-数据链路层与网络层</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-11 14:32:53" itemprop="dateCreated datePublished" datetime="2022-12-11T14:32:53+08:00">2022-12-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-01 22:35:46" itemprop="dateModified" datetime="2023-02-01T22:35:46+08:00">2023-02-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><strong>结点</strong>：主机、路由器</p>
+<p><strong>链路</strong>：网络中两个结点之间的物理通道，链路的传输介质主要有双绞线、光纤和微波。分为有线链路、无线链路。</p>
+<p><strong>数据链路</strong>：网络中两个结点之间的逻辑通道，把实现控制数据传输协议的硬件和软件加到链路上就构成数据链路。</p>
+<p><strong>帧</strong>：链路层的协议数据单元，封装网络层数据报。</p>
+<p>数据链路层负责通过一条链路从一个结点向另一个物理链路直接相连的相邻结点传送数据报。（简单来说就是将网络层的数据报进行再次封装搬运给物理层</p>
+<p>数据链路层在物理层提供服务的基础上<strong>向网络层提供服务</strong>，其最基本的服务是将源自网络层来的数据可靠地传输到相邻节点的目标机网络层。<strong>其主要作用是加强物理层传输原始比特流的功能</strong>，将物理层提供的可能出错的物理连接改造成为逻辑上无差错的数据链路，使之对网络层表现为一条无差错的链路。</p>
+<h3 id="帧"><a href="#帧" class="headerlink" title="帧"></a>帧</h3><p>以太网规定，一组电信号构成一个数据包，叫做”帧”（Frame）。每一帧分成两个部分：<strong>标头（Head）和数据（Data）</strong>。<br>“标头”包含数据包的一些说明项，比如发送者、接受者、数据类型等等；”数据”则是数据包的具体内容。<br><strong>“标头”的长度，固定为18字节。”数据”的长度，最短为46字节，最长为1500字节。</strong>因此，整个<strong>”帧”最短为64字节，最长为1518字节</strong>。如果数据很长，就必须分割成多个帧进行发送。</p>
+<h3 id="MAC地址"><a href="#MAC地址" class="headerlink" title="MAC地址"></a>MAC地址</h3><p>以太网规定，连入网络的所有设备，都必须具有”网卡”接口。数据包必须是从一块网卡，传送到另一块网卡。网卡的地址，就是数据包的发送地址和接收地址，这叫做<strong>MAC地址</strong>。长度为6字节，共48比特，通常用十六进制表示法，地址的每个字节被表示为一对十六进制数</p>
+<p>每个适配器具有一个<strong>唯一的MAC地址</strong>，不随位置发生变化（就像人的身份证，而IP则像人的邮政地址）</p>
+<h3 id="广播的概念"><a href="#广播的概念" class="headerlink" title="广播的概念"></a>广播的概念</h3><p>其次，就算有了MAC地址，系统怎样才能把数据包准确送到接收方？<br>回答是以太网采用了一种很”原始”的方式，它不是把数据包准确送到接收方，而是向本网络内所有计算机发送，让每台计算机自己判断，是否为接收方。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121916196.png"/>
+
+<p>上图中，1号计算机向2号计算机发送一个数据包，同一个子网络的3号、4号、5号计算机都会收到这个包。它们读取这个包的”标头”，找到接收方的MAC地址，然后与自身的MAC地址相比较，如果两者相同，就接受这个包，做进一步处理，否则就丢弃这个包。这种发送方式就叫做”广播”（broadcasting）。</p>
+<h2 id="数据链路层的功能概述"><a href="#数据链路层的功能概述" class="headerlink" title="数据链路层的功能概述"></a>数据链路层的功能概述</h2><p>功能一：为网络层提供服务。无确认无连接服务，有确认无连接服务，有确认面向连接服务。有连接一定有确认！</p>
+<p>功能二：链路管理，即连接的建立、维持、释放（用于面向连接的服务）。</p>
+<p>功能三：组帧。</p>
+<p>功能四：流量控制。限制发送方哦~</p>
+<p>功能五：差错控制（帧错&#x2F;位错）。</p>
+<p>因为物理层可能会把数据弄丢，所以数据链路层需要进行一些设置来使得物理层可以可靠的传输数据</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121818959.png"/>
+
+<h2 id="ARP协议（地址解析协议）"><a href="#ARP协议（地址解析协议）" class="headerlink" title="ARP协议（地址解析协议）"></a>ARP协议（地址解析协议）</h2><p><strong>ARP协议</strong>：完成主机或路由器IP地址到MAC地址的映射【解决下一跳走哪的问题】（专门用于寻找MAC地址的协议）</p>
+<p>每个节点的ARP模块都在它的RAM中有一个ARP表，包含IP地址到MAC地址的映射关系，每个表项还包含TTL字段，表示表项过期时间（ARP表是自动创建的，如果某节点与子网断开连接，它的表项最终会从留在子网中的节点的表中删除。通常一个表项的过期时间是20分钟）</p>
+<p>主机向其ARP模块提供一个IP地址，ARP模块返回IP地址对应的MAC地址<br>（注释：在OSI七层模型中，ARP属于链路层模型，所以这里也先简单介绍一下，构建知识体系）</p>
+<h3 id="ARP协议使用过程："><a href="#ARP协议使用过程：" class="headerlink" title="ARP协议使用过程："></a>ARP协议使用过程：</h3><p>检查<strong>ARP高速缓存</strong>，有对应表项则写入<strong>MAC帧</strong>，没有则用目的MAC地址为<strong>FF-FF-FF-FF-FF</strong>的帧封装并<span style="color:red"><strong>广播ARP请求分组</strong></span>，<strong>同一局域网</strong>中所有主机都能收到该请求。目的主机收到请求后就会向源主机<span style="color:green"><strong>单播一个ARP响应分组</strong></span>，源主机收到后将此映射<strong>写入ARP缓存</strong>（10-20min更新一次）。</p>
+<h3 id="ARP协议4中典型情况："><a href="#ARP协议4中典型情况：" class="headerlink" title="ARP协议4中典型情况："></a>ARP协议4中典型情况：</h3><ol>
+<li>主机A发给<strong>本网络</strong>上的主机B：用ARP找到主机B的硬件地址；</li>
+<li>主机A发给<strong>另一网络</strong>上的主机B：用ARP找到本网络上一个路由器（网关）的硬件地址；</li>
+<li>路由器发给<strong>本网络</strong>的主机A：用ARP找到主机A的硬件地址；</li>
+<li>路由器发给<strong>另一网络</strong>的主机B：用ARP找到本网络上的一个路由器的硬件地址。</li>
+</ol>
+<h2 id="封装成帧、帧定界、帧同步"><a href="#封装成帧、帧定界、帧同步" class="headerlink" title="封装成帧、帧定界、帧同步"></a>封装成帧、帧定界、帧同步</h2><p><strong>透明传输</strong>就是为了防止<strong>特殊的数据无法正常传输</strong>的的情况的发生，比如说在封装成帧的过程中，可能出现数据中的某些标记符与开始&#x2F;结束标记符恰巧重复的情况，如果不加以处理，那么会导致无法判定帧的开始于结束。</p>
+<p><strong>封装成帧</strong>：就是在一段数据的前后部分添加<strong>首部和尾部</strong>，这样就构成了一个帧。接收端在收到物理层上交的比特流后，就能根据资许加控制信息，他们的一个重要作用：<strong>帧定界</strong>（确定赖的界限）。</p>
+<p><strong>帧同步</strong>：接收方应当能从接收到的二进制比特流中区分出帧的起始和终止。</p>
+<p><strong>组帧的四种方法</strong>：1.字符计数法，2.字符（节）填充法，3.零比特填充法，4.违规编码法。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121823925.png"/>
+
+<h2 id="透明传输的概念"><a href="#透明传输的概念" class="headerlink" title="透明传输的概念"></a>透明传输的概念</h2><p>透明传输：是<strong>指不管所传数据是什么样的比特组合，都应当能够在链路上传送</strong>。因此，链路层就“看不见”有什么妨碍数据的东西。</p>
+<p>当所传数据中的比特组合恰巧与某一个控制信息完全一样时，就必须采取适当的措施，使收方不会将这样的数据误认为是某种控制信息。这样才能保证数据链路层的传输是透明的。</p>
+<h2 id="透明传输的实现方法"><a href="#透明传输的实现方法" class="headerlink" title="透明传输的实现方法"></a>透明传输的实现方法</h2><h3 id="字符计数法"><a href="#字符计数法" class="headerlink" title="字符计数法"></a>字符计数法</h3><p>就是在帧的首部做计数，这个字符记录了当前帧有多少个字符。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">缺点：如果在某一个帧内，标记位后面的某个字节的数据丢失，那么会影响后面的帧</span><br><span class="line">比如3 1 1 和 4 2 2 2，如果前面的帧丢失变成 3 1，那么后面的4就会被补到前面变成 3 1 4导致错误</span><br></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121853613.png"/>
+
+
+
+<h3 id="字符填充法"><a href="#字符填充法" class="headerlink" title="字符填充法"></a>字符填充法</h3><p>就是加头加尾分别标记开始结束，和零比特填充法（见下）对比，<strong>开始和结束的对应的字符不一样</strong><br>但有可能出现数据内某段比特流数据正好<strong>与标记字段重复</strong>，从而导致误判断的情况</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121855920.png"/>
+
+<p><strong>解决方法：添加转义字符。即对于那些与标记字符重复的数据流，在它们的前面添加一段转义字符，这样接收方在解析帧时，看到这些转义字符就不会认为那些特殊的数据当成帧的开始&#x2F;结束了。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121902833.png"/>
+
+<h3 id="零比特填充法"><a href="#零比特填充法" class="headerlink" title="零比特填充法"></a>零比特填充法</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121902052.png"/>
+
+<h3 id="违规编码法"><a href="#违规编码法" class="headerlink" title="违规编码法"></a>违规编码法</h3><p>因为曼彻斯特编码不使用高-高，低-低来表示，所以如果使用高-高，低-低来表示帧起始和终止就<strong>不会与数据冲突</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121903762.png"/>
+
+
+
+<h2 id="差错控制"><a href="#差错控制" class="headerlink" title="差错控制"></a>差错控制</h2><h3 id="何为差错"><a href="#何为差错" class="headerlink" title="何为差错"></a>何为差错</h3><p>数据链路层的差错检测的是<strong>比特</strong>的错误<br>需要注意的是，即使采用差错检测比特，也还是可能有未检出比特差错的情况。<br>因此，主要是选择一个差错检测方案，使得这种事件发生的概率很小</p>
+<p>概括来说，传输中的差错都是由于噪声引起的。</p>
+<p><strong>全局性</strong> ：1.由于线路本身电气特性所产生的<strong>随机噪声</strong>（热噪声）,是信道固有的，随机存在的。<br>                    解决办法：提高信噪比来减少或避免干扰。（对传感器下手）</p>
+<p><strong>局部性</strong> ：2.外界特定的短暂原因所造成的<strong>冲击噪声</strong>，是产生差错的主要原因。<br>                    解决办法：通常利用编码技术来解决。</p>
+<p>链路层为网络层提供服务：<strong>无确认无连接服务，有确认无连接服务，有确认面向连接服务。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121906841.png"/>
+
+<h4 id="为什么要在数据链路层进行差错控制？"><a href="#为什么要在数据链路层进行差错控制？" class="headerlink" title="为什么要在数据链路层进行差错控制？"></a>为什么要在数据链路层进行差错控制？</h4><p>因为错误可以尽早发现，不会让一个错误的数据包发送了很长时间到达最终目的地之后才被发现，从而导致网络资源的浪费</p>
+<h3 id="检错编码（奇偶校验码，循环冗余码CRC）"><a href="#检错编码（奇偶校验码，循环冗余码CRC）" class="headerlink" title="检错编码（奇偶校验码，循环冗余码CRC）"></a>检错编码（奇偶校验码，循环冗余码CRC）</h3><h4 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h4><p>奇偶校验：只需包含1个附加比特。</p>
+<p>对于偶校验，选择一个值，使得所有比特中1出现偶数次。</p>
+<p>对于奇校验，选择一个值，使得所有比特中1出现奇数次。接收方通过检测1出现的次数判断是否出现差错。如果出现偶数个比特差错，则检验不出</p>
+<p><strong>缺点：只能检测出1，3，5，7…等等奇位数错误，检测成功率位50%</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121909365.png"/>
+
+
+
+<h4 id="循环冗余编码（CRC）"><a href="#循环冗余编码（CRC）" class="headerlink" title="循环冗余编码（CRC）"></a>循环冗余编码（CRC）</h4><p>发送方和接收方协商一个r+1比特的生成多项式(G)，要起其最高比特位为1。发送方通过在d比特的数据后附加r比特，使得整个(d+r)比特的值能够被G整除。接收方用G去除(d+r)比特，如果余数非0，则出现差错</p>
+<p>可能难以理解，这边举个实例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例：要发送的数据是1101011011,采用CRC校验，生成多项式是10011,那么最终发送的数据应该是？</span><br></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121919348.png"/>
+
+<p>进行异或算法：<strong>同0异1</strong></p>
+<p>TIPS：多项式N位，阶为N-1。</p>
+<p><strong>接收方收到数据后进行检测</strong></p>
+<p>把收到的每一个帧都除以同样的除数，然后检查得到的余数R。</p>
+<p>1.余数为0,判定这个帧没有差错，接受。</p>
+<p>2.余数为不为0,判定这个帧有差错（无法确定到位）,丢弃。FCS的生成以及接收端CRC检验都是由硬件实现，处理很迅速，因此不会延误数据的传输。</p>
+<p>在数据链路层仅仅使用循环穴余检验CRC差错检测技术，只能做到对帧的无差错接收，即“凡是接收端数据链路层接受的帧，我们都能以非常接近于1的概率认为这些帧在传输过程中没有产生差错”。接收端丢弃的帧虽然曾收到了，但是最终还是因为有差错被丢弃。“凡是接收端数据链路层接收的帧均无差错”。“可靠传输”：数据链路层发送端发送什么，接收端就收到什么。链路层使用CRC检验，能够实现无比特差错的传输，但这还不是可靠传输。</p>
+<h3 id="纠错编码（海明码）"><a href="#纠错编码（海明码）" class="headerlink" title="纠错编码（海明码）"></a>纠错编码（海明码）</h3><h4 id="第一步-确认校验码位数r"><a href="#第一步-确认校验码位数r" class="headerlink" title="第一步 确认校验码位数r"></a>第一步 确认校验码位数r</h4><p>海明码不等式：<br>$$<br>2^r \geq k+r+1 (r为冗余信息位，k为信息位)<br>$$</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">若要发送的数据：D=101101</span><br><span class="line">数据的位数k=6</span><br><span class="line">满足不等式的最小r为4,</span><br><span class="line">也就是D=101101的海明码应该有6+4=10位，</span><br><span class="line">其中原数据6位，效验码4位。</span><br></pre></td></tr></table></figure>
+
+<h4 id="第二步-确定校验码和数据的位置"><a href="#第二步-确定校验码和数据的位置" class="headerlink" title="第二步 确定校验码和数据的位置"></a>第二步 确定校验码和数据的位置</h4><p>注释：<br>1.为什么是10为数据位？因为4位校验码+6位信息位&#x3D;10位<br>2.校验码放到2的几次方的位置，其他的地方按顺序放已知的信息位</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121935057.png"/>
+
+<h4 id="第三步-求出校验码的值"><a href="#第三步-求出校验码的值" class="headerlink" title="第三步 求出校验码的值"></a>第三步 求出校验码的值</h4><p>注释</p>
+<ol>
+<li><p>先是通过二进制位确定有几位。本题中因为最大位10的二进制是1010，所以是4为，将其标注</p>
+</li>
+<li><p>然后从p1开始看，看p1的二进制位的数值和所有信息位的对应位置的数值是否相同，然后找出来这些位</p>
+</li>
+</ol>
+<p>这里有点难理解，这里以p1为例辅助理解，这里找出来的就是P1,D1,D2,D4,D5</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121937540.png"/>
+
+<p>然后计算异或值，比如说这里D1&#x3D;1,D2&#x3D;0,D4&#x3D;1,D5&#x3D;0,就是p1要同时和<strong>0</strong>,<strong>1</strong>，<strong>0</strong>,<strong>1</strong>进行异或之后得到0，为了标识我加粗原始计算数据<br>举例：<strong>0</strong>和<strong>1</strong>异或得1,1和<strong>0</strong>异或得1,1和<strong>1</strong>异或得0，那么p1和0异或得0，p1就是0了</p>
+<p>3.其他同理，按顺序计算出P2,P3,P4,然后填入表格</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121940537.png"/>
+
+<h4 id="第四步-检测并纠错"><a href="#第四步-检测并纠错" class="headerlink" title="第四步 检测并纠错"></a>第四步 检测并纠错</h4><p>就是和上面一样，将所有校验位进行运算，得出的结果的值就是错误的位</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121941617.png"/>
+
+<h2 id="数据链路层的流量控制和可靠传输"><a href="#数据链路层的流量控制和可靠传输" class="headerlink" title="数据链路层的流量控制和可靠传输"></a>数据链路层的流量控制和可靠传输</h2><p>流量控制是为了让传输过程中的发送速度和接受速度匹配，减少传输出错与资源浪费<br>可靠传输是发送端发送什么，接收端就要受到什么</p>
+<h3 id="停止等待协议（Stop-and-Wait）"><a href="#停止等待协议（Stop-and-Wait）" class="headerlink" title="停止等待协议（Stop-and-Wait）"></a>停止等待协议（Stop-and-Wait）</h3><p>除了比特出差错，底层信道还会出现丢包问题。为了实现流量控制。所以就需要有停止-等待协议</p>
+<p>注释：丢包-物理线路故障、设备故障、病毒攻击、路由信息<br>错误等原因，会导致数据包的丢失。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">虽然现在常用全双工通信方式，但为了讨论问题方便，仅考虑一方发送数据（发送方）,一方接收数据(接收方）。</span><br><span class="line"></span><br><span class="line">因为是在讨论可靠传输的原理，所以并不考虑数据是在哪一个层次上传送的。</span><br><span class="line"></span><br><span class="line">“停止-等待”就是每发送完一个分组就停止发送，等待对方确认，在收到确认后再发送下一个分组。</span><br></pre></td></tr></table></figure>
+
+<h4 id="停止等待协议—无差错情况"><a href="#停止等待协议—无差错情况" class="headerlink" title="停止等待协议—无差错情况"></a>停止等待协议—无差错情况</h4><p>注释：因为一次就一个，所以用0和1标记ack（确认序号）就行</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121944092.png"/>
+
+<h4 id="停止等待协议—有差错情况"><a href="#停止等待协议—有差错情况" class="headerlink" title="停止等待协议—有差错情况"></a>停止等待协议—有差错情况</h4><p>使用一个超时计时器，每发一帧就开始计时，设置时间略长于一个RTT（往返时延）。</p>
+<p>发送端发送数据开始，到发送端收到来自接收端的确认（接收端收到数据后便立即发送确认），总共经历的时延：<br>$$<br>RTT &#x3D; 传播时延*2+处理时间（有时可直接忽略）<br>$$<br><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121946606.png"/></p>
+<h5 id="ACK丢失"><a href="#ACK丢失" class="headerlink" title="ACK丢失"></a>ACK丢失</h5><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121947459.png"/>
+
+<h5 id="ACK迟到"><a href="#ACK迟到" class="headerlink" title="ACK迟到"></a>ACK迟到</h5><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121948655.png"/>
+
+<p>停止等待协议的特点</p>
+<ol>
+<li>简单</li>
+<li>信道利用率低。大部分时间数据都在路上，发送方很长时间闲置，资源浪费</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121949044.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121950756.png"/>
+
+<h3 id="后退N帧协议（GBN）"><a href="#后退N帧协议（GBN）" class="headerlink" title="后退N帧协议（GBN）"></a>后退N帧协议（GBN）</h3><p>因为停止等待协议太浪费时间了，所以尝试采用GBN，发送连续多个数据帧，以增大信道利用率</p>
+<p>注释：<br>累计确认：就是收到一个确认帧，那么<strong>它和它之前的所有帧</strong>都默认已收到，反之，如果某个确认帧没收到，那么<strong>它和它之后的所有帧</strong>都默认丢失（即使收到了也丢掉），进行重传</p>
+<h4 id="GBN发送方必须响应的三件事"><a href="#GBN发送方必须响应的三件事" class="headerlink" title="GBN发送方必须响应的三件事"></a>GBN发送方必须响应的三件事</h4><ol>
+<li><p>上层的调用</p>
+<p>上层要发送数据时，发送方先检查发送窗口是否已满，<strong>如果未满</strong>，则产生一个帧并将其发送；<strong>如果窗口已满</strong>，发送方只需将数据返回给上层，暗示上层窗口已满。上层等一会再发送。（实际实现中，发送方可以缓存这些数据，窗口不满时再发送帧）。</p>
+</li>
+<li><p>收到一个ACK</p>
+<p>GBN协议中，对n号帧的确认采用<strong>累积确认</strong>的方式，标明接收方已经收到n号帧和它之前的全部帧</p>
+</li>
+<li><p>超时时间</p>
+<p>协议的名字为后退N帧&#x2F;回退N帧，来源于出现丢失和时延过长帧时发送方的行为。就像在停等协议中一样，定时器将再次用于恢复数据帧或确认赖的丢失。如果出现超时，发送方重传所有已发送但未被确认的帧。</p>
+</li>
+</ol>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>此图发送2帧时丢失，<strong>所以接收方几首收到后面的帧也是直接丢弃并且发送最晚收到的有效帧1的ACK</strong>，</p>
+<p>直至2帧的超时重传机制被触发进行重传并得到ACK之后，接收方才会接受2帧以及后面的帧，</p>
+<p>如果所示，GBN的形式就像排队，接收端为所有帧“预定”了接收位置，如果接收端发送的数据因为某些原因没有接收到，即使收到了这一帧后面所有的帧，<strong>这些“排在后面的”帧也要被丢弃</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212121958226.png"/>
+
+<p>发送窗口不能无限大，与使用的编号的比特数有关，二进制表示。<br>很简单，就是1比特编号0和1,<br>同理2比特编号0-3，二进制表示就是00，01，10，11。<br>如果用1比特编号，却要4个窗口长度，那么窗口内数据编号都编不过来，直接乱套了<br>GBN的优缺点也显而易见，优点是相对于上面的停止等待协议，明显提高了信道利用率，缺点是因为重传机制的原因，导致已经收到数据却需要强行丢弃，进而造成浪费</p>
+<h3 id="选择重传协议（SR）"><a href="#选择重传协议（SR）" class="headerlink" title="选择重传协议（SR）"></a>选择重传协议（SR）</h3><p>吸取了GBN协议的教训，我们打算尝试只重传错误的帧，这样的话就不用浪费资源把已经收到的帧再重传一次了。</p>
+<p>在GBN中，仅有接收端有一个窗口来存放数据帧，在SR中，两者都有窗口了。</p>
+<p>和GBN的区别其实就是做了一个数据缓存，已经收到的帧不用扔了，等待之前因意外丢失的帧收到的时候确认即可，但是只能缓存窗口尺寸内的包含的帧（注释：缓存不可能无限大）</p>
+<p><strong>注释：2帧丢失之后仍然在发送，但是2帧丢失之后只是缓存，并没有移动窗口；它可以继续接受窗口范围内排在2帧后面的数据帧，直至最后2帧收到后一次性确认窗口内的所有已经收到的帧，再移动窗口。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122003758.png"/>
+
+<p>同样的，因为编号的问题，发送窗口不能无限大<br>当发送窗口最后和接受窗口<strong>大小相同</strong>时，利用率比较高</p>
+<h2 id="介质访问控制技术"><a href="#介质访问控制技术" class="headerlink" title="介质访问控制技术"></a>介质访问控制技术</h2><p>虽然使用一条共享信道，但是通过多路复用技术组合进行传输，提高了信道的利用率</p>
+<p>就是让节点之间的通信不会进行相互干扰</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122017412.png"/>
+
+<h3 id="频分多路复用FDM"><a href="#频分多路复用FDM" class="headerlink" title="频分多路复用FDM"></a>频分多路复用FDM</h3><p>用户在分配到一定的频带后，在通信过程中自始至终都占用这个频带。<strong>频分复用的所有用户在同样的时间占用不同的带宽（频率带宽）资源</strong></p>
+<p>充分利用传输介质带宽，<strong>系统效率较高</strong>；由于技术比较成熟，实现也比较<strong>容易</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122018650.png"/>
+
+<h3 id="时分多路复用TDM"><a href="#时分多路复用TDM" class="headerlink" title="时分多路复用TDM"></a>时分多路复用TDM</h3><p>将时间划分为一段段等长的时分复用帧（TDM帧）。每一个时分复用的用户在每一个TDM帧中占用固定序号的时隙，所有用户轮流占用信道。</p>
+<p>TDM的缺点就是利用率低，所以又衍生出了STDM</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122025593.png"/>
+
+<h3 id="统计时分复用STDM"><a href="#统计时分复用STDM" class="headerlink" title="统计时分复用STDM"></a>统计时分复用STDM</h3><p>STDM的原则是先到先走，满了就发，相对于TDM提高了利用率</p>
+<p>每一个STDM帧中的时隙数小于连接在集中器上的用户数。各用户有了数据就随时发往集中器的输入缓存，然后集中器按顺序依次扫描输入缓存，把缓存中的输入数据放入STDM帧中，一个STDM帧满了就发出。<strong>STDM帧不是固定分配时隙，而是按需动态分配时隙。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122028591.png"/>
+
+<h3 id="码分多路复用CDM"><a href="#码分多路复用CDM" class="headerlink" title="码分多路复用CDM"></a>码分多路复用CDM</h3><p>每个节点分配一种不同的编码，每个节点使用其唯一的编码来对发送的数据进行编码（如果精心选择编码，不同节点能同时传输）</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122029336.png"/>
+
+<h2 id="随机接入协议"><a href="#随机接入协议" class="headerlink" title="随机接入协议"></a>随机接入协议</h2><p>所有用户都可以随机发送信息，发送时可以占用全部带宽，理论上个人使用时比静态分配信道的速度更快</p>
+<h3 id="ALOHA协议"><a href="#ALOHA协议" class="headerlink" title="ALOHA协议"></a>ALOHA协议</h3><p>帧到达节点时，立刻传输。如果发生碰撞，节点将立即(在完全传输碰撞帧后)以概率p重传。否则，等待一个帧传输时间，再以概率p重传。信道有效传输速率实际不是R bps，而是时隙ALOHA的一半</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122033941.png"/>
+
+<p>时隙ALOHA协议<br>时间被划分为时隙，每个节点的时间同步，帧的传输只在时隙的开始时进行。如果发生碰撞，在下一个时隙开始时以概率p重传，否则等待一个时隙再以概率p重传…（信道有效传输速率实际不是R bps，而是0.37R bps）</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122033818.png"/>
+
+<h3 id="CSMA协议-载波侦听多路访问"><a href="#CSMA协议-载波侦听多路访问" class="headerlink" title="CSMA协议(载波侦听多路访问)"></a>CSMA协议(载波侦听多路访问)</h3><p><strong>CS</strong>：载波侦听&#x2F;监听，每一个站在发送数据之前要检测一下总线上是否有其他计算机在发送数据。</p>
+<p><code>当几个站同时在总线上发送数据时，总线上的信号电压摆动值将会增大（互相叠加）。当一个站检测到的信号电压摆动值超过一定门限值时，就认为总线上至少有两个站同时在发送数据，表明产生了碰撞，即发生了冲突。</code></p>
+<p><strong>MA</strong>：多点接入，表示许多计算机以多点接入的方式连接在一根总线上。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202212122040654.png"/>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1-坚持CSMA</td>
+<td>发送信息时监听信道，一空闲下来就立即传输，信道忙也一直监听，如果发送时冲突就等待随机时长之后再监听</td>
+<td>立即发送，利用率高</td>
+<td>如果多台设备同时监听，那么会发生冲突</td>
+</tr>
+<tr>
+<td>非坚持CSMA</td>
+<td>发送信息时监听信道，如果空闲就立即传输，信道忙就随机等待一段时间后再监听</td>
+<td>冲突发生的几率减少</td>
+<td>因为需要等待，所以利用率不高</td>
+</tr>
+<tr>
+<td>p-坚持CSMA</td>
+<td>发送信息时监听信道，空闲时以概率p进行传输，概率1-p不传输。信道忙就随机等待一段时间后再监听</td>
+<td>冲突减少的同时效率也比较高</td>
+<td>即使发生冲突也要坚持发送数据，资源被浪费</td>
+</tr>
+</tbody></table>
+<h3 id="CSMA-x2F-CD协议（载波监听多点接入-x2F-碰撞检测）"><a href="#CSMA-x2F-CD协议（载波监听多点接入-x2F-碰撞检测）" class="headerlink" title="CSMA&#x2F;CD协议（载波监听多点接入&#x2F;碰撞检测）"></a>CSMA&#x2F;CD协议（载波监听多点接入&#x2F;碰撞检测）</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>因为链路实际有长短，发送数据需要时间，这个时间内可能就被其他节点当成空闲状态导致发生碰撞。</p>
+<p>先侦听信道，如果没有其它节点在使用信道，则传输数据。但是有碰撞检测，如果发生碰撞，会停止传输剩下的数据，等待一个随机时间(通常比传输一帧短)后，再进行尝试。</p>
+<p>知道自己发生碰撞的最长时间是2τ（两倍的<strong>传播时延</strong>），就是一去一回</p>
+<p><strong>CS</strong>:载波侦听&#x2F;监听，每一个站在发送数据之前以及发送数据时都要检测一下总线上是否有其他计算机在发送数据</p>
+<p><strong>MA</strong>:多点接入，表示许多计算机以多点接入的方式连接在一根总线上。【总线型网络】</p>
+<p><strong>CD</strong>:碰撞检测（冲突检测）,“边发送边监听”，适配器边发送数据边检测信道上信号电压的变化情况，以便判断自己在发送数据时其他站是否也在发送数据。【半双工网络】</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301070108864.png"/>
+
+<p>帧的传输时延至少要两倍于信号在总线中的传播时延</p>
+<p>以太网规定最短帧长为64B,凡是长度小于64B的都是由于冲突而异常终止的无效帧<br>$$<br>帧长(bit)&#x2F;数据传输速率 \ge 2τ<br>$$</p>
+<p>$$<br>最小帧长&#x3D;总线传播时延<em>数据传输速率</em>2<br>$$</p>
+<p>$$<br>2τ*数据传输速率<br>$$</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301070108022.png"/>
+
+<h3 id="CSMA-x2F-CA协议（载波监听多点接入-x2F-碰撞避免）"><a href="#CSMA-x2F-CA协议（载波监听多点接入-x2F-碰撞避免）" class="headerlink" title="CSMA&#x2F;CA协议（载波监听多点接入&#x2F;碰撞避免）"></a>CSMA&#x2F;CA协议（载波监听多点接入&#x2F;碰撞避免）</h3><ul>
+<li>发送数据前，先检测信道是否空闲。</li>
+<li>空闲则发出RTS(request to send),RTS包括发射端的地址、接收端的地址、下一份数据将持续发送的时间等信息；信道忙则等待。</li>
+<li>接收端收到RTS后，将响应CTS(clear to send)。</li>
+<li>发送端收到CTS后，开始发送数据帧（同时预约信道：发送方告知其他站点自己要传多久数据）。</li>
+<li>接收端收到数据帧后，将用CRC来检验数据是否正确，正确则响应ACK帧。</li>
+<li>发送方收到ACK就可以进行下一个数据帧的发送，若没有则一直重传至规定重发次数为止（采用二进制指数退避算法来确定随机的推迟时间）。</li>
+</ul>
+<ol>
+<li>预约信道</li>
+<li>.ACK帧</li>
+<li>RTS&#x2F;CTS帧（可选）</li>
+</ol>
+<h4 id="CSMA-x2F-CD-与-CSMA-x2F-CA的区别"><a href="#CSMA-x2F-CD-与-CSMA-x2F-CA的区别" class="headerlink" title="CSMA&#x2F;CD 与 CSMA&#x2F;CA的区别"></a>CSMA&#x2F;CD 与 CSMA&#x2F;CA的区别</h4><p>相同点：</p>
+<p>CSMA&#x2F;CD与CSMA&#x2F;CA机制都从属于CSMA的思路，其核心是先听再说。换言之，两个在接入信道之前都须要 进行监听。当发现信道空闲后，才能进行接入。</p>
+<p>不同点：</p>
+<ol>
+<li><p>传输介质不同：CSMA&#x2F;CD用于总线式以太网【有线】，而CSMA&#x2F;CA用于无线局域网【无线】。</p>
+</li>
+<li><p>载波检测方式不同：因传输介质不同，CSMA&#x2F;CD与CSMA&#x2F;CA的检测方式也不同。CSMA&#x2F;CD通过电缆中电压的变化来检测，当数据发生碰撞时，电缆中的电压就会随着发生变化；而CSMA&#x2F;CA采用能量检测（ED)、载波检测（CS)和能量载波混合检测三种检测信道空闲的方式。</p>
+</li>
+<li><p>CSMA&#x2F;CD检测冲突，CSMA&#x2F;CA避免冲突，二者出现冲突后都会进行有上限的重传。</p>
+</li>
+</ol>
+<h2 id="轮询访问介质访问控制"><a href="#轮询访问介质访问控制" class="headerlink" title="轮询访问介质访问控制"></a>轮询访问介质访问控制</h2><p>主要包括两大类，一个是<strong>轮询协议</strong>，另一个是<strong>令牌传递协议</strong></p>
+<h3 id="轮询协议"><a href="#轮询协议" class="headerlink" title="轮询协议"></a>轮询协议</h3><p>即选出一个代表，由他控制所有的传输，但会存在以下问题</p>
+<ul>
+<li>轮询开销：在随着服务的节点越多，需要用于查询是否发送数据发送的数据帧也就越多，会造成一定开销</li>
+<li>等待延迟：就是因为这是轮流“邀请”，所以难免某个节点需要发送数据，但是主节点还在较远的需要里有需求的节点那边，导致需求得不到立即响应</li>
+<li>单点故障：很好理解，就是代表挂了</li>
+</ul>
+<h3 id="令牌传输协议"><a href="#令牌传输协议" class="headerlink" title="令牌传输协议"></a>令牌传输协议</h3><p>在节点之间没有收发数据的需求时，令牌在节点之间循环。</p>
+<p>发送数据的流程</p>
+<ol>
+<li>当一个节点需要时就可以获得这个令牌。然后修改这个令牌的状态（空闲-&gt;占用）</li>
+<li>再将令牌与数据帧结合，让其在节点构成的环之间流动</li>
+<li>不是目的地的节点收到令牌也不接受，直接略过，目标节点收到信息并复制一份到本地（传输完成），因为是个闭环，所以发送节点最后得到令牌</li>
+<li>最后，发送令牌的节点对令牌的内容进行检查，如果发现数据出错还要重新发一遍<br>问题基本和轮询协议相同</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301070107881.png"/>
+
+<h2 id="局域网"><a href="#局域网" class="headerlink" title="局域网"></a>局域网</h2><h3 id="局域网的概念"><a href="#局域网的概念" class="headerlink" title="局域网的概念"></a>局域网的概念</h3><p>局域网（Local Area Network):简称LAN,是指在某一区域内由多台计算机互联成的计算机组，使用广播信道。</p>
+<ol>
+<li><p>特点1：覆盖的地理范围较小，只在一个相对独立的局部范围内联，如一座或集中的建筑群内。</p>
+</li>
+<li><p>特点2：使用专门铺设的传输介质（双绞线、同轴电缆）进行联网，数据传输速率高（10Mb&#x2F;s~10Gb&#x2F;s)。</p>
+</li>
+<li><p>特点3：通信延迟时间短，误码率低，可靠性较高。</p>
+</li>
+<li><p>特点4：各站为平等关系，共享传输信道。</p>
+</li>
+<li><p>特点5：多采用分布式控制和广播式通信，能进行广播和组播。</p>
+</li>
+</ol>
+<p>决定局域网的主要要素为：网络拓扑，传输介质与介质访问控制方法。</p>
+<h3 id="局域网额网络拓扑结构"><a href="#局域网额网络拓扑结构" class="headerlink" title="局域网额网络拓扑结构"></a>局域网额网络拓扑结构</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301071403070.png"/>
+
+<h3 id="局域网的传播介质"><a href="#局域网的传播介质" class="headerlink" title="局域网的传播介质"></a>局域网的传播介质</h3><table>
+<thead>
+<tr>
+<th>局域网</th>
+<th>常用介质</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>有线局域网</td>
+<td>双绞线，同轴电缆，光纤</td>
+</tr>
+<tr>
+<td>无线局域网</td>
+<td>电磁波</td>
+</tr>
+</tbody></table>
+<h3 id="局域网介质访问方法"><a href="#局域网介质访问方法" class="headerlink" title="局域网介质访问方法"></a>局域网介质访问方法</h3><ol>
+<li>CSMA&#x2F;CD常用于<strong>总线型局域网</strong>，也用于树型网络</li>
+<li>令牌总线常用于<strong>总线型局域网</strong>，也用于树型网络它是把总线型或树型网络中的各个工作站按一定顺序如按接口地址大小排列形成一个逻辑环。只有令牌持有者才能控制总线，才有发送信息的权力。</li>
+<li>令牌环用于<strong>环形局域网</strong>，如令牌环网</li>
+</ol>
+<h3 id="局域网的分类"><a href="#局域网的分类" class="headerlink" title="局域网的分类"></a>局域网的分类</h3><ol>
+<li>以太网 以太网是应用最为广泛的局域网，包括标准以太网（10Mbps)、快速以太网（100Mbps)、千兆以太网（1000Mbps)和10G以太网，它们都符合IEEE802.3系列标准规范。逻辑拓扑总线型，物理拓扑是星型或拓展星型。使用CSMA&#x2F;CD.</li>
+<li>令牌环网物理上采用了星形拓扑结构，逻辑上是环形拓扑结构。已是“明日黄花”。</li>
+<li>FDDI网（Fiber Distributed Data Interface)物理上采用了双环拓扑结构，逻辑上是环形拓扑结构。</li>
+<li>ATM网（Asynchronous Transfer Mode)较新型的单元交换技术，使用53字节固定长度的单元进行交换。</li>
+<li>无线局域网（Wireless Local Area Network;WLAN)采用IEEE802.11标准。</li>
+</ol>
+<h3 id="IEEE802标准"><a href="#IEEE802标准" class="headerlink" title="IEEE802标准"></a>IEEE802标准</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301071409987.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301071408948.png"/>
+
+<h2 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h2><p>以太网（Ethernet)指的是由Xerox公司创建并由Xerox、Intel和DEC公司联合开发的<strong>基带总线局域网规范</strong>，是当今现有局域网采用的最通用的通信协议标准。以太网络使用<strong>CSMA&#x2F;CD(载波监听多路访问及冲突检测）</strong>技术。</p>
+<p>以太网在局域网各种技术中占统治性地位：</p>
+<ol>
+<li>造价低廉（以太网网卡不到100块）;</li>
+<li>是应用最广泛的局域网技术；</li>
+<li>比令牌环网、ATM网便宜，简单；</li>
+<li><strong>满足网络速率要求：10Mb&#x2F;s~10Gb&#x2F;s</strong></li>
+</ol>
+<h3 id="以太网两个标准："><a href="#以太网两个标准：" class="headerlink" title="以太网两个标准："></a>以太网两个标准：</h3><p>DIX EthernetV2:第一个局域网产品（以太网）规约。</p>
+<p>IEEE802.3:IEEE802委员会802.3工作组制定的第一个IEEE的以太网标准。（帧格式有一丢丢改动）</p>
+<h3 id="以太网提供无连接、不可靠的服务"><a href="#以太网提供无连接、不可靠的服务" class="headerlink" title="以太网提供无连接、不可靠的服务"></a>以太网提供无连接、不可靠的服务</h3><p>无连接：发送方和接收方之间无“握手过程”。</p>
+<p>不可靠：不对发送方的数据帧编号，接收方不向发送方进行确认，差错帧直接丢弃，差错纠正由高层负责。</p>
+<p>以太网只实现无差错接收，不实现可靠传输。</p>
+<h3 id="以太网的发展"><a href="#以太网的发展" class="headerlink" title="以太网的发展"></a>以太网的发展</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301071411204.png"/>
+
+<h3 id="以太网适配器和MAC地址"><a href="#以太网适配器和MAC地址" class="headerlink" title="以太网适配器和MAC地址"></a>以太网适配器和MAC地址</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301071412168.png"/>
+
+
+
+<h3 id="以太网MAC帧"><a href="#以太网MAC帧" class="headerlink" title="以太网MAC帧"></a>以太网MAC帧</h3><p>注释：</p>
+<ol>
+<li>这里的mac层指的是数据链路层</li>
+<li>之前说过数据链路层将上一层ip数据包加头加尾<br>头就是目标地址（6字节），源地址（6字节），类型（2字节）<br>尾就是FCS（帧检验序列），（4字节）</li>
+<li>前导码<strong>不是MAC帧的一部分</strong>，目的是使时钟同步</li>
+<li>为什么数据长度时46~1500？<br>因为有最小传输字节64字节，mac占用6+6+2+4&#x3D;18，所以数据最小为64-18&#x3D;46，1500则是规定的默认最大字节，没有理由</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301071413876.png"/>
+
+<h3 id="其他以太网"><a href="#其他以太网" class="headerlink" title="其他以太网"></a>其他以太网</h3><h4 id="10BASE-T以太网："><a href="#10BASE-T以太网：" class="headerlink" title="10BASE-T以太网："></a>10BASE-T以太网：</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301071414584.png"/>
+
+<h4 id="高速以太网"><a href="#高速以太网" class="headerlink" title="高速以太网"></a>高速以太网</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301071415991.png"/>
+
+
+
+<h2 id="无线局域网"><a href="#无线局域网" class="headerlink" title="无线局域网"></a>无线局域网</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301071415479.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301071415763.png"/>
+
+<h3 id="两种无线局域网"><a href="#两种无线局域网" class="headerlink" title="两种无线局域网"></a>两种无线局域网</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301071416831.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301071417439.png"/>
+
+<h2 id="广域网"><a href="#广域网" class="headerlink" title="广域网"></a>广域网</h2><p>广域网（WAN,WideAreaNetwork),通常跨接很大的物理范围，所覆盖的范围从几十公里到几千公里，它能连接多个城市或国家，或横跨几个洲并能提供远距离通信，形成国际性的远程网络。<br>广域网的通信子网主要使用分组交换技术。广域网的通信子网可以利用公用分组交换网、卫星通信网和无线分组交换网，它将分布在不同地区的局域网或计算机系统互连起来，达到资源共享的目的。如因特网（Interne是世界范围内最大的广域网。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301071418972.png"/>
+
+<h2 id="PPP协议（Point-to-Point-Protocol）"><a href="#PPP协议（Point-to-Point-Protocol）" class="headerlink" title="PPP协议（Point-to-Point Protocol）"></a>PPP协议（Point-to-Point Protocol）</h2><p>PPP协议是目前<strong>使用最广泛</strong>的数据链路层协议，拨号基本都是PPP协议<br>PPP协议<strong>仅支持全双工</strong>链路</p>
+<h3 id="PPP协议需要满足的要求"><a href="#PPP协议需要满足的要求" class="headerlink" title="PPP协议需要满足的要求"></a>PPP协议需要满足的要求</h3><ul>
+<li><strong>简单</strong>：对于链路层的帧，无需纠错，无需序号，无需流量控制。</li>
+<li><strong>封装成帧</strong>：帧定界符</li>
+<li><strong>透明传输</strong>：与帧定界符一样比特组合的数据应该如何处理：异步线路用字节填充，同步线路用比特填充。</li>
+<li><strong>多种网络层协议</strong>：封装的IP数据报可以采用多种协议。</li>
+<li><strong>多种类型链路</strong>：串行&#x2F;并行，同步&#x2F;异步，电&#x2F;光….</li>
+<li><strong>差错检测</strong>：错就丢弃。</li>
+<li><strong>检测连接状态</strong>：链路是否正常工作。</li>
+<li><strong>最大传送单元</strong>：数据部分最大长度MTU。</li>
+<li><strong>网络层地址协商</strong>：知道通信双方的网络层地址。</li>
+<li><strong>数据压缩协商</strong>：</li>
+</ul>
+<h3 id="PPP协议不需要满足的要求"><a href="#PPP协议不需要满足的要求" class="headerlink" title="PPP协议不需要满足的要求"></a>PPP协议不需要满足的要求</h3><ul>
+<li><strong>纠错</strong></li>
+<li><strong>流量控制</strong></li>
+<li><strong>序号</strong></li>
+<li><strong>不支持多点线路</strong></li>
+</ul>
+<h3 id="PPP协议组成成分以及功能"><a href="#PPP协议组成成分以及功能" class="headerlink" title="PPP协议组成成分以及功能"></a>PPP协议组成成分以及功能</h3><ol>
+<li>一个将IP数据报封装到串行链路（同步串行&#x2F;异步串行）的方法。</li>
+<li>链路控制协议LCP:建立并维护数据链路连接。<strong>身份验证</strong></li>
+<li>网络控制协议NCP:PPP支持多种网络层协议，每个不同的网络层协议都要一个相应的NCP来配置，为网络层协议建立和配置逻辑连接。</li>
+</ol>
+<h3 id="PPP协议的帧格式"><a href="#PPP协议的帧格式" class="headerlink" title="PPP协议的帧格式"></a>PPP协议的帧格式</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301081709387.png"/>
+
+<h2 id="HDLC协议（High-Level-Data-Link-Control）"><a href="#HDLC协议（High-Level-Data-Link-Control）" class="headerlink" title="HDLC协议（High-Level Data Link Control）"></a>HDLC协议（High-Level Data Link Control）</h2><p>高级数据链路控制（High-Level Data Link Control或简称HDLC),是一个在同步网上传输数据、面向比特的数据链路层协议，它是由国际标准化组织（ISO)根据IBM公司的SDLC(SynchronousData Link Control)协议扩展开发而成的.数据报文可透明传输，用于实现透明传输的“0比特插入法”易于硬件实现</p>
+<p><strong>采用全双工通信</strong></p>
+<p>所有帧采用<strong>CRC检验</strong>，对信息帧进行顺序<strong>编号</strong>，可防止漏收或重份，传输可靠性高。</p>
+<h3 id="HDLC的三种站"><a href="#HDLC的三种站" class="headerlink" title="HDLC的三种站"></a>HDLC的三种站</h3><ol>
+<li>主站的主要功能是发送命令（包括数据信息）帧、接收响应帧，并负责对整个链路的控制系统的初启流程的控制、差错检测或恢复等。</li>
+<li>从站的主要功能是接收由主站发来的命令帧，向主站发送响应帧，并且配合主站参与差错恢复等链路控制。</li>
+<li>复合站的主要功能是既能发送，又能接收命令帧和响应帧，并且负责整个链路的控制。</li>
+</ol>
+<h4 id="三种数据操作方式："><a href="#三种数据操作方式：" class="headerlink" title="三种数据操作方式："></a>三种数据操作方式：</h4><ol>
+<li>正常响应方式</li>
+<li>异步平衡方式</li>
+<li>异步响应方式</li>
+</ol>
+<h3 id="HDLC的帧格式"><a href="#HDLC的帧格式" class="headerlink" title="HDLC的帧格式"></a>HDLC的帧格式</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301081713486.png"/>
+
+<h2 id="PPP协议和HDLC协议对比"><a href="#PPP协议和HDLC协议对比" class="headerlink" title="PPP协议和HDLC协议对比"></a>PPP协议和HDLC<strong>协议对比</strong></h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301081713039.png"/>
+
+<h2 id="链路层设备"><a href="#链路层设备" class="headerlink" title="链路层设备"></a>链路层设备</h2><h3 id="网桥"><a href="#网桥" class="headerlink" title="网桥"></a>网桥</h3><p>使用网桥时，由于网桥会根据mac地址进行过滤，所以<strong>不会形成冲突域</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301081714389.png"/>
+
+<h4 id="两种网桥"><a href="#两种网桥" class="headerlink" title="两种网桥"></a>两种网桥</h4><h5 id="透明网桥"><a href="#透明网桥" class="headerlink" title="透明网桥"></a>透明网桥</h5><p>通过自学习来构建转发表。每一个通过网桥的数据包都会被记录下网桥收到数据时<strong>数据对应的地址</strong>和<strong>网桥自己的接口</strong>，通过许许多多的数据包的构造的缓存，网桥就可以知道哪个数据包在哪个接口，以后如果要穿数据包就知道要往哪个接口发送数据包了</p>
+<h5 id="原路由网桥"><a href="#原路由网桥" class="headerlink" title="原路由网桥"></a>原路由网桥</h5><p>在发送时，直接将最佳路径放到帧首部。那么网桥如何获得最佳路径？通过广播方式想目标地址发送广播，此时可能会经过不同路由产生不同的路径，目标地址收到后再将每一条路径都发一个响应帧给网桥，网桥经过对比就知道哪个接口最快了</p>
+<h3 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h3><p>网桥接口越来越多，网桥就变成了交换机<br>交换机的任务是接收入链路层帧并将它们转发到出链路<br>交换机自身对节点透明：某节点向另一节点寻址一个帧，顺利地将该帧发送进LAN，而不知道这个帧经过了某个交换机的接收与转发</p>
+<p>1）交换机转发与过滤<br>过滤：交换机决定一个帧是应该转发还是应该丢弃<br>转发：决定一个帧应该被导向哪个接口</p>
+<p>2）自学习(即插即用)<br>交换机表是自动、动态、自治地建立的，没有来自网络管理员或配置协议的任何干预。换句话说，交换机是自学习的<br>交换机表初始为空<br>源地址为DD-DD-DD-DD-DD-DD的帧从接口x到达时，如果不存在则新建一项；存在则更新当前时间<br>如果一段时间后，在x接口没有来自DD-DD-DD-DD-DD-DD的帧，则将该表项删除</p>
+<h4 id="直通式交换机"><a href="#直通式交换机" class="headerlink" title="直通式交换机"></a>直通式交换机</h4><p>查完目的地址（6B)就立刻转发。<br>延迟小，可靠性低，无法支持具有不同速率的端口的交换。</p>
+<h4 id="存储转发式交换机"><a href="#存储转发式交换机" class="headerlink" title="存储转发式交换机"></a>存储转发式交换机</h4><p>将帧放入高速缓存，并检查否正确，正确则转发，错误则丢弃。<br>延迟大，可靠性高，可以支持具有不同速率的端口的交换。</p>
+<h3 id="冲突域和广播域"><a href="#冲突域和广播域" class="headerlink" title="冲突域和广播域"></a>冲突域和广播域</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301081716097.png"/>
+
+<h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><table>
+<thead>
+<tr>
+<th>OSI参考模型</th>
+<th>各层次的传输单元</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用层</td>
+<td>报文</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>报文段</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>IP数据报，分组（如果IP数据报太大就切割成分组）</td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>帧</td>
+</tr>
+<tr>
+<td>物理层</td>
+<td>比特流</td>
+</tr>
+</tbody></table>
+<p>网络层的主要任务是把<strong>分组</strong>从源端传到目的端，为分组交换网上的不同主机提供通信服务。</p>
+<p>网络层的传输单位是*<strong>数据报</strong></p>
+<h2 id="路由选择与分组转发"><a href="#路由选择与分组转发" class="headerlink" title="路由选择与分组转发"></a>路由选择与分组转发</h2><p>路由器主要完成两个功能:是<code>路由选择 (确定哪一 条路径)</code>，二是<code>分组转发 (当一个分组 到达时所采取的动作)</code>。</p>
+<ul>
+<li>1)<strong>路由选择</strong>。指按照复杂的分布式算法，根据从各相邻路由器所得到的关于整个网络拓扑<br>的变化情况，动态地改变所选择的路由。</li>
+<li>2)分组转发。指路由器根据转发表将用户的IP数据报从合适的端口转发出去。</li>
+</ul>
+<p><code>路由表</code>是根据<code>路由选择算法</code>得出的，而<code>转发表</code>是从<code>路由表</code>得出的。<br><code>路由表</code>则需要对<code>网络拓扑变化的计算最优化</code>,<code>转发表</code>的结构应当使<code>查找过程最优化</code>。<br>在讨论路由选择的原理时，往往不去区分转发表和路由表，而是笼统地使用路由表一词。</p>
+<h2 id="异构网络互联"><a href="#异构网络互联" class="headerlink" title="异构网络互联"></a>异构网络互联</h2><p>所谓<code>异构网络互联</code>，是指将两个以上的不同的计算机网络，通过一定的方法， 用一种或多种通信处理设备(即中间设备)相互连接起来，以构成更大的网络系统。中间设备又称<code>中间系统</code>或<code>中继系统</code>。<br>根据所在的层次，<code>中继系统</code>分为以下4种:</p>
+<ul>
+<li>1)物理层中继系统:中继器，集线器(Hub)。</li>
+<li>2)数据链路层中继系统:网桥或交换机。</li>
+<li>3)网络层中继系统:路由器。</li>
+<li>4)网络层以上的中继系统:网关。</li>
+</ul>
+<h2 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h2><p><code>网络互联</code>通常是指用<code>路由器</code>进行网络互联和路由选择。<br><code>路由器</code>是一一台专用计算机，用于在互联网中进行&#96;路由选择。</p>
+<ul>
+<li>在通信子网中，因出现过量的分组而引起网络性能下降的现象称为<code>拥塞</code>。</li>
+<li><code>判断网络是否进入拥塞状态的方法</code>是，观察网络的<code>吞吐量与网络负载的关系</code>:如果随着<code>网络负载的增加</code>，<code>网络的吞吐量明显小于正常的吞吐量</code>，那么网络就可能已进入“<code>轻度拥塞”</code>状态;如果<code>网络的负载继续增大</code>，而网络的<code>吞吐量下降到零</code>，那么网络就可能已进入<code>死锁状态</code>。</li>
+<li><code>拥塞控制的作用是确保子网能够承载所达到的流量</code>，这是一一个全局性的过程，涉及各方面的行为:主机、路由器及路由器内部的转发处理过程等。单一地增加资源并不能解决拥塞。</li>
+<li><code>流量控制</code>和<code>拥塞控制</code>的<code>区别</code>:</li>
+<li>·<code>流量控制</code>往往是指在发送端和接收端之间的点对点通信量的控制。流量控制所要做的是抑制发送端发送数据的速率，以便使接收端来得及接收。</li>
+<li><code>拥塞控制</code>必须确保通信子网能够传送待传送的数据，是一一个全局性的问题，涉及网络中所有的主机、路由器及导致网络传输能力下降的所有因素。</li>
+<li><code>拥塞控制的方法有两种</code>:<br>1)·<code>开环控制</code>。在设计网络时事先将有关发生拥塞的因素考虑周到，力求网络在工作时不产生拥塞。这是一种<code>静态</code>的预防方法。一旦整个系统启动并运行，中途就不再需要修改。开环控制手段包括确定何时可接收新流量、何时可丢弃分组及丢弃哪些分组，确定何种调度决策等。所有这些手段的共性是，在做决定时不考虑当前网络的状态。<br>2)<code>闭环控制</code>。事先不考虑有关发生拥塞的各种因素，采用监测网络系统去监视，及时检测哪里发生了拥塞，然后将拥塞信息传到合适的地方，以便调整网络系统的运行，并解决出现的问题。闭环控制是基于反馈环路的概念，是一种<code>动态</code>的方法。</li>
+</ul>
+<h2 id="传输单元名词解析"><a href="#传输单元名词解析" class="headerlink" title="传输单元名词解析"></a>传输单元名词解析</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301081723792.png"/>
+
+<ul>
+<li>这里探讨的电路交换、报文交换、分组交换，我们可以把这三种交换方式的交换数据单位看成一个整体去理解，不要过分去细究以上几种传输单元名词与这三种交换方式的关系。</li>
+</ul>
+<h2 id="数据交换方式"><a href="#数据交换方式" class="headerlink" title="数据交换方式"></a>数据交换方式</h2><h3 id="电路交换"><a href="#电路交换" class="headerlink" title="电路交换"></a>电路交换</h3><p>就类似于打电话，两端建立起有效通路</p>
+<ul>
+<li>在进行数据传输前，两个结点之间必须先建立一条专用 (双方独占)的物理通信路径(由通信双方之间的交换设备和链路逐段连接而成)，该路径可能经过许多中间结点。这一路径在整个数据传输期间一直被独占，直到通信结束后才被释放。</li>
+<li>因此，电路交换技术分为三个阶段:<code>连接建立、数据传输和连接释放</code>。</li>
+<li>从通信资源的分配角度来看，“交换”就是按照某种方式动态地分配传输线路的资源。电路交换的关键点是，在数据传输的过程中，<code>用户始终占用端到端的固定传输带宽</code>。</li>
+</ul>
+<p>电路交换技术的<strong>优点如下</strong><br>1)<code>通信时延小</code>。由于通信线路为通信双方用户专用，数据直达，因此传输数据的时延非常小。当传输的数据量较大时，这-优点非常 明显。<br>2)<code>有序传输</code>。双方通信时按发送顺序传送数据，不存在失序问题。<br>3)<code>没有冲突</code>。不同的通信双方拥有不同的信道，不会出现争用物理信道的问题。<br>4)<code>适用范围广</code>。电路交换既适用于传输模拟信号，又适用于传输数字信号。<br>5)<code>实时性强</code>。通信双方之间的物理通路一旦建立， 双方就可以随时通信。<br>6)<code>控制简单</code>。电路交换的交换设备(交换机等)及控制均较简单。</p>
+<p>电路交换技术的<strong>缺点如下</strong><br>1)<code>建立连接时间长</code>。电路交换的平均连接建立时间对计算机通信来说太长。<br>2)<code>线路独占，使用效率低</code>。电路交换连接建立后，物理通路被通信双方独占，即使通信线<br>路空闲，也不能供其他用户使用，因而信道利用率低。<br>3)<code>灵活性差</code>。只要在通信双方建立的通路中的任何一点出了故障，就必须重新拨号建立新<br>的连接，这对十分紧急和重要的通信是很不利的。<br>4)<code>难以规格化</code>。电路交换时，数据直达，不同类型、不同规格、不同速率的终端很难相互<br>进行通信，也难以在通信过程中进行<code>差错控制</code>。</p>
+<p>注意，电路建立后，除源结点和目的结点外，电路上的任何结点都采取<code>“直通方式”</code>接收数<br>据和发送数据，即不会存在存储转发所耗费的时间。</p>
+<h3 id="报文交换"><a href="#报文交换" class="headerlink" title="报文交换"></a>报文交换</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301101259668.png"/>
+
+<ul>
+<li>数据交换的单位是报文，报文携带有源地址，目标地址，数据等信息。</li>
+<li><code>报文交换的主要特点是</code>：存储接受到的报文，判断其目标地址以选择路由，最后，在下一跳路由空闲时，将数据转发给下一跳路由。 中文名报文交换，外文名Message switching。</li>
+<li>报文交换技术的<code>优点</code>如下:<br>1)<code>无须建立连接</code>。报文交换不需要为通信双方预先建立一条专用的通信线路，不存在建立<br>连接时延，用户可以随时发送报文。<br>2)<code>动态分配线路</code>。当发送方把报文交给交换设备时，交换设备先存储整个报文，然后选择<br>一条合适的空闲线路，将报文发送出去。<br>3)<code>提高线路可靠性</code>。如果某条传输路径发生故障，那么可重新选择另一条路径传输数据，<br>因此提高了传输的可靠性。<br>4)<code>提高线路利用率</code>。通信双方不是固定占有一条通信线路，而是在不同的时间一段一段地<br>部分占有这条物理通道，因而大大提高了通信线路的利用率。<br>5)<code>提供多目标服务</code>。一个报文可以同时发送给多个目的地址，这在电路交换中是很难实现的。</li>
+<li>报文交换技术的<code>缺点</code>如下:<br>1)由于数据进入交换结点后要经历存储、转发这一过程，因此会引起<code>转发时延</code>(包括接收<br>报文、检验正确性、排队、发送时间等)。<br>2)报文交换对报文的大小没有限制，这就要求<code>网络结点需要有较大的缓存空间</code>。</li>
+</ul>
+<p>注意:报文交换主要使用在早期的电报通信网中，现在较少使用，通常被较先进的<strong>分组交换</strong>方式所取代。</p>
+<h3 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301101300956.png"/>
+
+<ul>
+<li>同报文交换一样，分组交换也采用存储转发方式，但解决了报文交换中大报文传输的问题。分组交换限制了每次传送的数据块大小的上限，把大的数据块划分为合理的小数据块，再加上一些必要的控制信息(如源地址、目的地址和编号信息等)，构成分组(Packet)。 网络结点根据控制信息把分组送到下一结点，下一结点接收到分组后，暂时保存并排队等待传输，然后根据分组控制信息选择它的下一个结点，直到到达目的结点。到达目地之后的数据分组再重新组合起来，形成一条完整的数据。</li>
+<li>分组交换的<code>优点</code>如下:<br>1)<code>无建立时延</code>。不需要为通信双方预先建立一条专用的通信线路，不存在连接建立时延，用户可随时发送分组。<br>2)<code>线路利用率高</code>。通信双方不是固定占有- -条通信线路，而是在不同的时间一-段一段地部分占有这条物理通路，因而大大提高了通信线路的利用率。<br>3)<code>简化了存储管理(相对于报文交换)</code>。因为分组的长度固定，相应的缓冲区的大小也固定，在交换结点中存储器的管理通常被简化为对缓冲区的管理，相对比较容易。<br>4)<code>加速传输</code>。分组是逐个传输的，可以使后-一个分组的存储操作与前一一个分组的转发操作并行，这种流水线方式减少了报文的传输时间。此外，传输一个分组所 需的缓冲区比传输一次报文所需的缓冲区小得多，这样因缓冲区不足而等待发送的概率及时间也必然少得多。<br>5)<code>减少了出错概率和重发数据量</code>。因为分组较短，其出错概率必然减小，所以每次重发的数据量也就大大减少，这样不仅提高了可靠性，也减少了传输时延。</li>
+<li>分组交换的<code>缺点</code>如下:<br>1)<code>存在传输时延</code>。尽管分组交换比报文交换的传输时延少，但相对于电路交换仍存在存储转发时延，而且其结点交换机必须具有更强的处理能力。<br>2)<code>需要传输额外的信息量</code>。每个小数据块都要加上源地址、目的地址和分组编号等信息，从而构成分组，因此使得传送的信息量增大了5%~10%，一定程度上降低了通信效率，增加了处理的时间，使控制复杂，时延增加。<br>3)<code>当分组交换采用数据报服务时，可能会出现失序、丢失或重复分组</code>，分组到达目的结点时，要对分组按编号进行排序等工作，因此很麻烦。若采用虚电路服务，虽无失序问题，但有呼叫建立、数据传输和虚电路释放三个过程。</li>
+<li><code>分组交换</code>根据其<code>通信子网向端点系统提供的服务</code>，还可进一步分为<code>面向连接的虚电路</code>方式和<br><code>无连接的数据报方式</code>。这两种服务方式都由网络层提供。要注意<code>数据报方式</code>和<code>虚电路方式</code>是<code>分组 交换的两种方式</code>。</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301101301443.png"/>
+
+<h4 id="数据报"><a href="#数据报" class="headerlink" title="数据报"></a>数据报</h4><p><strong>无连接</strong>：无连接服务：不事先为分组的传输确定传输路径，每个分组独立确定传输路径，不同分组传输路径可能不同。<br><strong>每个分组携带源和目的地址</strong><br><strong>路由器根据分组的目的地址转发分组</strong>：基于路由协议&#x2F;算法构建转发表；检索转发表；每个分组独立选路。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301101305131.png"/>
+
+<p>作为通信子网用户的端系统发送一个报文时，在端系统中实现的高层协议先把报文拆成若干带有<code>序号的数据单元</code>，并在网络层加上地址等控制信息后形成数据报分组(即网络层PDU)。<code>中 间结点存储分组</code>很短一段时间，找到<code>最佳的路由</code>后，尽快转发每个分组。不同的分组可以走不同的路径，也可以按·<code>不同的顺序到达目的结点</code>。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301101307025.png"/>
+
+<h4 id="虚电路"><a href="#虚电路" class="headerlink" title="虚电路"></a>虚电路</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301101308057.png"/>
+
+<ul>
+<li>在虚电路方式中，端系统每次建立虚电路时，选择一个未用过的<code>虚电路号</code>分配给该虛电路，以区别于本系统中的其他虚电路。在传送数据时，<code>每个数据分组不仅要有分组号、校验和等控制信息，还要有它要通过的虚电路号</code>，以区别于其他虚电路上的分组。在虚电路网络中的每个结点上都维持–张<code>虚电路表</code>，表中的每项记录了一个打开的虚电路的信息，包括在接收链路和发送链路上的虚电路号、前一结点和下一结点的标识。<code>数据的传输是双向进行的</code>，上述信息是在虚电路的建立过程中确定的。</li>
+<li><code>虚电路之所以是“虚”的，是因为这条电路不是专用的·</code>，每个结点到其他结点之间的链路可能同时有若干虚电路通过，也可能同时与多个结点之间建立虚电路。每条虚电路支持特定的两个端系统之间的数据传输，两个端系统之间也可以有多条虚电路为不同的进程服务，这些虚电路的实际路由可能相同也可能不同。</li>
+</ul>
+<h4 id="数据报服务和虛电路服务的比较"><a href="#数据报服务和虛电路服务的比较" class="headerlink" title="数据报服务和虛电路服务的比较"></a>数据报服务和虛电路服务的比较</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>数据报服务</th>
+<th>虚电路服务</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>连接的建立</td>
+<td>不需要</td>
+<td>必须有</td>
+</tr>
+<tr>
+<td>目的地址</td>
+<td>每个分组都有完整的目的地址</td>
+<td>仅在建立连接阶段使用，之后每个分组使用长度较短的虚电路号</td>
+</tr>
+<tr>
+<td>路由选择</td>
+<td>每个分组独立地进行路由选择和转发</td>
+<td>属于同一条虚电路的分组按照同一路由转发</td>
+</tr>
+<tr>
+<td>分组顺序</td>
+<td>不保证分组的有序到达</td>
+<td>保证分组的有序到达</td>
+</tr>
+<tr>
+<td>可靠性</td>
+<td>不保证可靠通信，可靠性由用户主机来保证</td>
+<td>可靠性由网络保证</td>
+</tr>
+<tr>
+<td>对网络故障的适应性</td>
+<td>出故障的结点丢失分组，其他分组的路径选择发生变化时可以正常传输</td>
+<td>所有经过故障结点的虚电路均不能正常工作</td>
+</tr>
+<tr>
+<td>差错处理和流量控制</td>
+<td>由用户主机进行流量控制，不保证数据报的可靠性</td>
+<td>可有分组交换网负责，也可由用户主机负责</td>
+</tr>
+</tbody></table>
+<h2 id="报文交换与分组交换的时间消耗比较"><a href="#报文交换与分组交换的时间消耗比较" class="headerlink" title="报文交换与分组交换的时间消耗比较"></a>报文交换与分组交换的时间消耗比较</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301122005748.png"/>
+
+<h2 id="电路交换、报文交换、分组交换的交换方式比较"><a href="#电路交换、报文交换、分组交换的交换方式比较" class="headerlink" title="电路交换、报文交换、分组交换的交换方式比较"></a>电路交换、报文交换、分组交换的交换方式比较</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301122006956.png"/>
+
+<h2 id="路由算法分类与路由表"><a href="#路由算法分类与路由表" class="headerlink" title="路由算法分类与路由表"></a>路由算法分类与路由表</h2><p><code>路由器转发分组</code>是通过<code>路由表</code>转发的，而<code>路由表</code>是通过<code>各种算法</code>得到的。从能否随网络的通<br>信量或拓扑自适应地进行调整变化来划分，<code>路由算法</code>可分为两大类：<code>静态路由与动态路由</code>。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301142205301.png"/>
+
+<h3 id="静态路由与动态路由"><a href="#静态路由与动态路由" class="headerlink" title="静态路由与动态路由"></a>静态路由与动态路由</h3><table>
+<thead>
+<tr>
+<th>路由算法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>静态路由算法（非自适应路由算法）</td>
+<td>管理员手工配置路由信息<br>简便、可靠，在负荷稳定、拓扑变化不大的网络中运行效果很好，广泛用于高度安全性的军事网络和较小的商业网络。<br />路由更新慢，不适用大型网络。</td>
+</tr>
+<tr>
+<td>动态路由算法（自适应路由算法）</td>
+<td>路由器间彼此交换信息，按照路由算法优化出路由表项。<br />路由更新快，适用大型网络，及时响应链路费用或网络拓扑变化。<br />算法复杂，增加网络负担。</td>
+</tr>
+</tbody></table>
+<h4 id="动态路由的两种算法：链路状态路由算法和距离向量路由算法"><a href="#动态路由的两种算法：链路状态路由算法和距离向量路由算法" class="headerlink" title="动态路由的两种算法：链路状态路由算法和距离向量路由算法"></a>动态路由的两种算法：链路状态路由算法和距离向量路由算法</h4><table>
+<thead>
+<tr>
+<th>动态路由算法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全局性</td>
+<td>链路状态路由算法OSPF<br />所有路由器掌握完整的网络拓扑和链路费用信息</td>
+</tr>
+<tr>
+<td>分散性</td>
+<td>距离向量路由算法RIP<br />路由器只掌握物理相连的邻居及链路费用</td>
+</tr>
+</tbody></table>
+<ul>
+<li>链路状态路由算法和距离向量路由算法的<code>比较</code></li>
+<li><code>在距离-向量路由算法中</code>，每个结点仅与它的直接<code>邻居</code>交谈，它为它的邻居提供从自己到网络中所有其他结点的最低费用估计。</li>
+<li><code>在链路状态路由算法中</code>，每个结点通过<code>广播</code>的方式与所有<code>其他结点</code>交谈，但它仅告诉它们与它直接相连的链路的费用。</li>
+<li>相较之下，距离-向量路由算法有可能遇到路由环路等问题。</li>
+</ul>
+<h3 id="层次路由"><a href="#层次路由" class="headerlink" title="层次路由"></a>层次路由</h3><p>(1)因特网规模很大出现一些问题和消耗</p>
+<p>(2)许多单位不想让外界知道自己的路由选择协议，但还想连入因特网</p>
+<p><strong>自治系统AS</strong>:在单一的技术管理下的一组路由器，而这些路由器使用一种AS内部的路由选择协议和共同的度量以确定分组在该AS内的路由，同时还使用一种AS之间的路由协议以确定在AS之间的路由。</p>
+<p>一个AS内的所有网络都属于一个行政单位来管辖，一个自治系统的所有路由器在本自治系统内都必须连通。</p>
+<table>
+<thead>
+<tr>
+<th>路由选择协议</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>内部网关协议IGP</td>
+<td>一个AS内使用的RIP、OSPF</td>
+</tr>
+<tr>
+<td>外部网关协议EGP</td>
+<td>AS之间使用的BGP</td>
+</tr>
+</tbody></table>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301161941137.png"/>
+
+<h2 id="IP组播"><a href="#IP组播" class="headerlink" title="IP组播"></a>IP组播</h2><h3 id="IP数据报的三种传输方式"><a href="#IP数据报的三种传输方式" class="headerlink" title="IP数据报的三种传输方式"></a>IP数据报的三种传输方式</h3><h4 id="单播"><a href="#单播" class="headerlink" title="单播"></a>单播</h4><p>一对一</p>
+<p>单播用于发送数据包到单个目的地，且每发送一份单播报文都使用一个单播IP地址作为目的地址。是一种点对点传输方式。</p>
+<h4 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h4><p>一对多</p>
+<p>广播是指发送数据包到同一广播域或子 网内的所有设备的一种数据传输方式， 是一种点对多点传输方式。</p>
+<h4 id="组播（多播）"><a href="#组播（多播）" class="headerlink" title="组播（多播）"></a>组播（多播）</h4><p>一对特定多</p>
+<p>当网络中的某些用户需要特定数据时，组播数据发送者仅发送一次数据，借助组播路由协议为组播数据包建立组播分发树，被传递的数据到达距离用户端尽可能近的节点后才开始复制和分发，是一种<strong>点对多点</strong>传输方式。</p>
+<ul>
+<li>为了能够支持像视频点播和视频会议这样的多媒体应用，网络必须实施某种有效的组播机制。</li>
+<li>使用多个单播传送来仿真组播总是可能的，但这会引起主机上大量的处理开销和网络上太多的交通量。</li>
+<li><code>人们所需要的组播机制是让源计算机一次发送的单个分组可以抵达用一个组地址标识的若干目标主机，并被它们正确接收</code>。</li>
+</ul>
+<p>组播提高了数据传送效率。减少了主干网出现拥塞的可能性。组播组中的主机可以是在同一《自不同的物理网络（如果有组播路由器的支持）。运行组播协议的路由器</p>
+<h3 id="IP组播地址"><a href="#IP组播地址" class="headerlink" title="IP组播地址"></a>IP组播地址</h3><p>如何才能发给同一组主机相同的数据呢？这就需要了解一下IP组播地址，他就是干这个的。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301161953518.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301161959346.png"/>
+
+<h3 id="IGMP协议与组播路由选择协议"><a href="#IGMP协议与组播路由选择协议" class="headerlink" title="IGMP协议与组播路由选择协议"></a>IGMP协议与组播路由选择协议</h3><h4 id="IGMP-国际组管理协议"><a href="#IGMP-国际组管理协议" class="headerlink" title="IGMP-国际组管理协议"></a>IGMP-国际组管理协议</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301161959297.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301162000044.png"/>
+
+<h4 id="IGMP工作的两个阶段"><a href="#IGMP工作的两个阶段" class="headerlink" title="IGMP工作的两个阶段"></a>IGMP工作的两个阶段</h4><ol>
+<li><p>某主机要加入组播组时，该主机向组播组的组播地址发送一个IGMP报文，声明自己要称为该组的成员。本地组播路由器收到IGMP报文后，要利用组播路由选择协议把这组成员关系发给因特网上的其他组播路由器。</p>
+</li>
+<li><p>本地组播路由器周期性探询本地局域网上的主机，以便知道这些主机是否还是组播组的成员。 只要有一个主机对某个组响应，那么组播路由器就认为这个组是活跃的；如果经过几次探询后没有一个主机 应，组播路由器就认为本网络上的没有此组播组的主机，因此就不再把这组的成员关系发给其他的组播路由器。</p>
+</li>
+</ol>
+<p>组播路由器知道的成员关系只是所连接的局域网中有无组播组的成员。</p>
+<h3 id="组播路由"><a href="#组播路由" class="headerlink" title="组播路由"></a>组播路由</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301162009778.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301162010848.png"/>
+
+<h3 id="组播路由选择选择协议常用的三种路由算法"><a href="#组播路由选择选择协议常用的三种路由算法" class="headerlink" title="组播路由选择选择协议常用的三种路由算法"></a>组播路由选择选择协议常用的三种路由算法</h3><ol>
+<li><p>基于链路状态的路由选择</p>
+</li>
+<li><p>基于距离-向量的路由选择</p>
+</li>
+<li><p>协议无关的组播（稀疏&#x2F;密集）</p>
+</li>
+</ol>
+<h2 id="移动IP"><a href="#移动IP" class="headerlink" title="移动IP"></a>移动IP</h2><ul>
+<li>支持移动性的因特网体系结构与协议共称为移动IP,它是为了满足移动结点(计算机、服务、网段等)在移动中保持其连接性而设计的。</li>
+<li>更确切地说，移动IP技术是指<code>移动结点以固定的网络IP地址实现跨越不同网段的漫游功能，并保证基于网络IP的网络权限在漫游过程中不发生任何改变。</code></li>
+<li>移动IP的目标是把分组自动地投递给移动结点。一个移动结点是把其连接点从一个网络或子网改变到另-一个网络或子网的主机。</li>
+<li>使用移动IP，<code>一个移动结点可以在不改变其IP地址的情况下改变其驻留位置。</code></li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301162013000.png"/>
+
+<h3 id="移动IP相关术语"><a href="#移动IP相关术语" class="headerlink" title="移动IP相关术语"></a>移动IP相关术语</h3><p>移动IP技术是移动结点（计算机&#x2F;服务器等）以固定的网络IP地址，实现跨越不同网段的漫游功能，并保证了基于网络IP的网络权限在漫游过程中不发生任何改变。</p>
+<ul>
+<li><strong>移动结点</strong>具有永久IP地址的移动设备。</li>
+<li><strong>归属代理（本地代理）</strong>一个移动结点拥有的就“居所”称为归属网络，在归属网络中代表移动节点执行移动管理功能的实体叫做归属代理。</li>
+<li><strong>外部代理（外地代理）</strong>在外部网络中帮助移动节点完成移动管理功能的实体称为外部代理。</li>
+<li><strong>永久地址（归属地址&#x2F;主地址）</strong>移动站点在归属网络中的原始地址。</li>
+<li><strong>转交地址（辅地址）</strong>移动站点在外部网络使用的临时地址。</li>
+</ul>
+<h3 id="移动IP通信过程"><a href="#移动IP通信过程" class="headerlink" title="移动IP通信过程"></a>移动IP通信过程</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301162016144.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301162016198.png"/>
+
+<h2 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301162018903.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301162018688.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301162019444.png"/>
+
+<h2 id="三个设备之间的区别"><a href="#三个设备之间的区别" class="headerlink" title="三个设备之间的区别"></a>三个设备之间的区别</h2><ul>
+<li>路由器可以互联两个不同网络层协议的网段。</li>
+<li>网桥可以互联两个物理层和链路层不同的网段。</li>
+<li>集线器不能互联两个物理层不同的网段。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>能否隔离冲突域</th>
+<th>能否隔离广播域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>物理层设备【傻瓜】<br />（中继器、集线器）</td>
+<td>否</td>
+<td>否</td>
+</tr>
+<tr>
+<td>链路层设备【路人】<br />（网桥、交换机）</td>
+<td>能</td>
+<td>否</td>
+</tr>
+<tr>
+<td>网络层设备【大佬】<br />（路由器）</td>
+<td>能</td>
+<td>能</td>
+</tr>
+</tbody></table>
+<h2 id="路由表与路由转发"><a href="#路由表与路由转发" class="headerlink" title="路由表与路由转发"></a>路由表与路由转发</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/img/202301162021091.png"/>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-1-%E6%A6%82%E8%BF%B0%E4%B8%8E%E7%89%A9%E7%90%86%E5%B1%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2490,248 +3293,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/02/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-3-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MEIDE">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MEIDE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/02/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-3-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">软件设计师笔记(3)-数据库系统</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-02 15:23:12" itemprop="dateCreated datePublished" datetime="2022-10-02T15:23:12+08:00">2022-10-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-06 13:35:22" itemprop="dateModified" datetime="2022-10-06T13:35:22+08:00">2022-10-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="数据库系统笔记"><a href="#数据库系统笔记" class="headerlink" title="数据库系统笔记"></a>数据库系统笔记</h1><p>红星为重点内容</p>
-<img src="https://s1.imagehub.cc/images/2022/10/02/imagedc3f88bea1530fb3.png" alt="imagedc3f88bea1530fb3.png" border="0" />
-
-<h2 id="三级模式"><a href="#三级模式" class="headerlink" title="三级模式"></a>三级模式</h2><p>这部分是涉及数据库理论</p>
-<img src="https://s1.imagehub.cc/images/2022/10/02/imageef6d4eff440dd8bf.png" alt="imageef6d4eff440dd8bf.png" border="0" />
-
-<table>
-<thead>
-<tr>
-<th>模式</th>
-<th>映射</th>
-<th>独立性</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>外模式&#x3D;&gt;模式</td>
-<td>概念模式映射</td>
-<td>逻辑独立性</td>
-</tr>
-<tr>
-<td>模式&#x3D;&gt;内模式</td>
-<td>内模式映射</td>
-<td>物理独立性</td>
-</tr>
-</tbody></table>
-<h2 id="数据库设计过程"><a href="#数据库设计过程" class="headerlink" title="数据库设计过程"></a>数据库设计过程</h2><img src="https://s1.imagehub.cc/images/2022/10/03/imagef42ae941c321613a.png" alt="imagef42ae941c321613a.png" border="0" />
-
-<ul>
-<li>数据流图：用来更好的表达需求说明书，表达数据的来源和输出。（下午题15）</li>
-<li>数据字典：补充数据流图的数据说明</li>
-<li>ER模型：(下午题15)</li>
-</ul>
-<h2 id="ER模型"><a href="#ER模型" class="headerlink" title="* ER模型"></a>* ER模型</h2><img src="https://s1.imagehub.cc/images/2022/10/02/image124636e20b94692b.png" alt="image124636e20b94692b.png" border="0" />
-
-<table>
-<thead>
-<tr>
-<th>图形</th>
-<th>表意</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>椭圆形</td>
-<td>属性</td>
-</tr>
-<tr>
-<td>矩形</td>
-<td>实体</td>
-</tr>
-<tr>
-<td>带两条竖线的矩形</td>
-<td>弱实体（连线需要特殊化，即—○—）</td>
-</tr>
-</tbody></table>
-<h3 id="1-1（1-1）"><a href="#1-1（1-1）" class="headerlink" title="1:1（1:1）"></a>1:1（1:1）</h3><img src="https://s1.imagehub.cc/images/2022/10/02/imageef01c1c392adade5.png" alt="imageef01c1c392adade5.png" border="0" />
-
-<h3 id="1-多（1-N）"><a href="#1-多（1-N）" class="headerlink" title="1:多（1:N）"></a>1:多（1:N）</h3><p>可以将联系 的属性合并到多的那一项去。</p>
-<img src="https://s1.imagehub.cc/images/2022/10/02/image1195e8b5884458e6.png" alt="image1195e8b5884458e6.png" border="0" />
-
-<h3 id="多-多（M-N）"><a href="#多-多（M-N）" class="headerlink" title="多:多（M:N）"></a>多:多（M:N）</h3><img src="https://s1.imagehub.cc/images/2022/10/02/image04b7f34855f2ae60.png" alt="image04b7f34855f2ae60.png" border="0" />
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="* 总结"></a>* 总结</h3><p>一个实体型转换为一个关系模式</p>
-<p>联系转关系模式：</p>
-<ul>
-<li><p>1:1联系：可将联系合并至任意一端的实体关系模式中。</p>
-</li>
-<li><p>1:n联系：可将联系合并至n端实体关系模式中。</p>
-</li>
-<li><p>m:n联系：联系必须单独转成关系模式。</p>
-</li>
-</ul>
-<p>三个以上实体间的一个多元联系</p>
-<h2 id="关系代数"><a href="#关系代数" class="headerlink" title="* 关系代数"></a>* 关系代数</h2><h3 id="并交差笛卡尔积"><a href="#并交差笛卡尔积" class="headerlink" title="并交差笛卡尔积"></a>并交差笛卡尔积</h3><img src="https://s1.imagehub.cc/images/2022/10/02/image51fddc043340f652.png" alt="image51fddc043340f652.png" border="0" />
-
-<img src="https://s1.imagehub.cc/images/2022/10/02/image360b2620e68f95b4.png" alt="image360b2620e68f95b4.png" border="0" />
-
-<h3 id="选择与投影"><a href="#选择与投影" class="headerlink" title="选择与投影"></a>选择与投影</h3><p>$$<br>π_{Sno,Sname}(σ_{Sno}&#x3D;1)(S1)<br>$$</p>
-<p>同</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select Sno,Sname from S1 where Sno = 1;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="自然连接"><a href="#自然连接" class="headerlink" title="自然连接"></a>自然连接</h3><p>去除重复字段，添加新的数据</p>
-<img src="https://s1.imagehub.cc/images/2022/10/03/image.png" alt="image.png" border="0" />
-
-<h2 id="规范化理论"><a href="#规范化理论" class="headerlink" title="规范化理论"></a>规范化理论</h2><img src="https://s1.imagehub.cc/images/2022/10/03/image069d2a5f5b4e885e.png" alt="image069d2a5f5b4e885e.png" border="0" />
-
-<p>规范化理论为了解决以下问题：</p>
-<ul>
-<li><p>数据冗余（只要有数据冗余就有以下问题）</p>
-</li>
-<li><p>修改异常</p>
-</li>
-<li><p>插入异常</p>
-</li>
-<li><p>删除异常</p>
-</li>
-</ul>
-<img src="https://s1.imagehub.cc/images/2022/10/06/imagef42ae941c321613a.png" alt="imagef42ae941c321613a.png" border="0" />
-
-<h3 id="候选键"><a href="#候选键" class="headerlink" title="* 候选键"></a>* 候选键</h3><p>候选键：唯一标识元祖，且无冗余（学号，姓名，年龄【学号可以推导出全部内容,所以学号是候选键，且候选键可以多个】）</p>
-<p>主键：从候选键中选取一个作为主键</p>
-<p>外键：其他关系的主键</p>
-<p>图示法求候选键</p>
-<p>1、将关系的函数依赖关系，用“有向图”的方式表示。</p>
-<p>2、找出入度为0的属性，并以该属性集合为起点，尝试追历有向图，若能正常遍历图中所有结点，则该属性集即为关系模式的候选键。</p>
-<p>3、若入度为0的属性集不能遍历图中所有结点，则需要尝试性的将一些中间结点（既有入度，也有出度的结点）并入入度为0的属性集中，直至该集合能追历所有结点，集合为候选键。</p>
-<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><img src="https://s1.imagehub.cc/images/2022/10/03/imagee1ccf0f1d776008a.png" alt="imagee1ccf0f1d776008a.png" border="0" />
-
-
-
-<h3 id="主属性和非主属性"><a href="#主属性和非主属性" class="headerlink" title="主属性和非主属性"></a>主属性和非主属性</h3><p>定义：组成候选码的属性就是主属性，其它的就是非主属性。</p>
-<h3 id="范式"><a href="#范式" class="headerlink" title="* 范式"></a>* 范式</h3><p> <strong>第一范式（1NF）：</strong>在关系模式R中，当且仅当所有域只包含原子值，即每个属性都是不可再分的数据项，则称关系模式R是第一范式。</p>
-<p> <strong>第二范式（2NF）：</strong>当且仅当关系模式R是第一范式（1NF)，且每一个非主属性完全依赖候选键（没有部分函数依赖）时，则称关系模式R是第二范式。<strong>会出现数据冗余，更新异常，插入异常，删除异常</strong>。需要将部分函数依赖拆分成多个表。</p>
-<p><strong>第三范式（3NF）：</strong>当且仅当关系模式R是第二范式（2NF),且R中<strong>没有非主属性传递依赖</strong>于候选键时，则称关系模式R是第三范式。<strong>会出现数据冗余，更新异常，插入异常，删除异常</strong>，将传递部分拆分成多个表。</p>
-<p><strong>BC范式（BCNF）：</strong>设R是一个关系模式，F是它的依赖集，<strong>R属于BCNF当且仅当其F中每个依赖的决定因素必定包含R的某个候选码（即不存在反推）。</strong></p>
-<img src="https://s1.imagehub.cc/images/2022/10/03/image4d407ac6a5486356.png" alt="image4d407ac6a5486356.png" border="0" />
-
-<h3 id="模式分解"><a href="#模式分解" class="headerlink" title="模式分解"></a>模式分解</h3><p>★保持函数依赖分解设数据库模式p&#x3D;(R1,R2,..,Rk)是关系模式R的一个分解，F是R上的函数依赖集，p中每个模式Ri上的FD集是Fi,如果（F1,F2,…，Fk)与F是等价的（即相互逻辑蕴涵）,那么称分解p保持FD.</p>
-<img src="https://s1.imagehub.cc/images/2022/10/03/imagedc9d2092dc696d60.png" alt="imagedc9d2092dc696d60.png" border="0" />
-
-<h4 id="有损-x2F-无损分解"><a href="#有损-x2F-无损分解" class="headerlink" title="有损&#x2F;无损分解"></a>有损&#x2F;无损分解</h4><p>有损分解：不能还原</p>
-<p>无损分解：可以还原</p>
-<p>无损联接分解：指将一个关系模式分解成若干个关系模式后，通过自然联接和投影等运算仍能还原到原来的关系模式</p>
-<h5 id="表格法"><a href="#表格法" class="headerlink" title="表格法"></a>表格法</h5><p>通过表格上下行的内容推导出表内元素的联系，补充主表的关系联系</p>
-<h5 id="公式法"><a href="#公式法" class="headerlink" title="公式法"></a>公式法</h5><img src="https://s1.imagehub.cc/images/2022/10/03/image015524832626db1a.png" alt="image015524832626db1a.png" border="0" />
-
-<h5 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h5><img src="https://s1.imagehub.cc/images/2022/10/03/imagef8a1cee87c8afcc0.png" alt="imagef8a1cee87c8afcc0.png" border="0" />
-
-<h2 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h2><h3 id="创表"><a href="#创表" class="headerlink" title="创表"></a>创表</h3><p>PRIMARY KEY(属性)：主键</p>
-<p>FOREIGN KEY (属性) REFERENCES 表(属性)：外键</p>
-<img src="https://s1.imagehub.cc/images/2022/10/03/image469bf869182b934d.png" alt="image469bf869182b934d.png" border="0" />
-
-<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><img src="https://s1.imagehub.cc/images/2022/10/03/imagef784deaef7b3b435.png" alt="imagef784deaef7b3b435.png" border="0" />
-
-<h3 id="修改与删除"><a href="#修改与删除" class="headerlink" title="修改与删除"></a>修改与删除</h3><img src="https://s1.imagehub.cc/images/2022/10/03/imagea61fba2ee0fd953f.png" alt="imagea61fba2ee0fd953f.png" border="0" />
-
-<h3 id="操作数据"><a href="#操作数据" class="headerlink" title="操作数据"></a>操作数据</h3><img src="https://s1.imagehub.cc/images/2022/10/03/image03c6bf46ffd5fff2.png" alt="image03c6bf46ffd5fff2.png" border="0" />
-
-<h2 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h2><img src="https://s1.imagehub.cc/images/2022/10/03/image49ca5cc96126b5d6.png" alt="image49ca5cc96126b5d6.png" border="0" />
-
-<h3 id="事务的特性："><a href="#事务的特性：" class="headerlink" title="事务的特性："></a>事务的特性：</h3><ul>
-<li>原子性</li>
-<li>一致性</li>
-<li>隔离性</li>
-<li>持续性</li>
-</ul>
-<h3 id="并发产生的问题："><a href="#并发产生的问题：" class="headerlink" title="并发产生的问题："></a>并发产生的问题：</h3><ul>
-<li>丢失更新</li>
-<li>不可重复读数据</li>
-<li>读“脏”数据</li>
-</ul>
-<img src="https://s1.imagehub.cc/images/2022/10/03/image240bfe51cc694074.png" alt="image240bfe51cc694074.png" border="0" />
-
-<h3 id="封锁协议："><a href="#封锁协议：" class="headerlink" title="封锁协议："></a>封锁协议：</h3><ul>
-<li>S锁：共享锁（任何人都可以加共享锁，但不能加排他锁）</li>
-<li>X锁：排他锁（加了排他锁全部都锁都失效）</li>
-<li>两段锁协议</li>
-</ul>
-<h3 id="死锁："><a href="#死锁：" class="headerlink" title="死锁："></a>死锁：</h3><ul>
-<li>预防</li>
-<li>死锁的解除</li>
-</ul>
-<h2 id="完整性约束"><a href="#完整性约束" class="headerlink" title="完整性约束"></a>完整性约束</h2><ul>
-<li>实体完整性约束（主键）</li>
-<li>参照完整性约束（外键）</li>
-<li>用户自定义完整性约束</li>
-<li>触发器（需要有脚本的支持）</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -2801,20 +3362,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -2845,7 +3406,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
