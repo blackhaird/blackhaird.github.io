@@ -152,6 +152,421 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/06/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-4-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/06/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-4-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/" class="post-title-link" itemprop="url">软件设计师笔记(4)-计算机网络与信息安全</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-06 13:34:49" itemprop="dateCreated datePublished" datetime="2022-10-06T13:34:49+08:00">2022-10-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-10 22:18:34" itemprop="dateModified" datetime="2022-10-10T22:18:34+08:00">2022-10-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="计算机网络于信息安全"><a href="#计算机网络于信息安全" class="headerlink" title="计算机网络于信息安全"></a>计算机网络于信息安全</h1><h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><img src="https://s1.imagehub.cc/images/2022/10/06/image536eda3da1d0c940.png" alt="image536eda3da1d0c940.png" border="0" />
+
+<h3 id="OSI-x2F-RM七层模型"><a href="#OSI-x2F-RM七层模型" class="headerlink" title="OSI&#x2F;RM七层模型"></a>OSI&#x2F;RM七层模型</h3><table>
+    <tr style="font-weight:bold">
+        <td>层次</td>
+        <td>名称</td>
+        <td>主要功能</td>
+        <td>主要设备及协议</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>应用层</td>
+        <td>实现具体的应用功能</td>
+        <td rowspan="3">POP3、FTP、HTTP、Telnet、SMTP、DHCP、TFTP、SNMP、DNS</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>表示层</td>
+        <td>数据的格式与表达、加密、压缩</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>会话层</td>
+        <td>建立、管理、和终止会话</td>
+    </tr>
+    <tr>
+    <td>4</td>
+    <td>传输层</td>
+    <td>端到端的连接(P2P) 《报文》</td>
+    <td>TCP、UDP</td>
+</tr>
+    <tr>
+    <td>3</td>
+    <td>网络层</td>
+    <td>分组传输和路由选择 《包》</td>
+    <td>三层交换机、路由器、<br/>ARP、RARP、ICMP、IGMP</td>
+</tr>
+    <tr>
+    <td>2</td>
+    <td>数据链路层</td>
+    <td>传送以帧为单位的信息 《帧》</td>
+    <td>网桥、交换机（多端口网桥）、网卡、<br/>PPTP、L2TP、SLIP、PPP</td>
+</tr>
+    <tr>
+    <td>1</td>
+    <td>物理层</td>
+    <td>二进制传输 《bit》</td>
+    <td>中继器、集线器（多端口中继器）</td>
+</tr>
+
+<h3 id="TCP-x2F-IP协议族"><a href="#TCP-x2F-IP协议族" class="headerlink" title="TCP&#x2F;IP协议族"></a>TCP&#x2F;IP协议族</h3><div style="color:blue;font-weight:bold">基于TCP（可靠的传输层协议）协议的协议族：</div>
+
+<ul>
+<li>POP3：<span style="color:blue">端口号 110</span>	收邮件协议，一旦接受网络，就把所有右键接受下来《耗费流量》</li>
+<li>FTP：<span style="color:blue">端口号 20&#x2F;21</span>	文件传输协议，控制端口为21，主动端口20，被动随意。</li>
+<li>HTTP：<span style="color:blue">端口号 80</span>	网站协议，如今使用HTTPS协议，端口号为443</li>
+<li>Telnet： <span style="color:blue">端口号 23</span>	远程访问协议</li>
+<li>SMTP： <span style="color:blue">端口号 25</span>	简单邮件传输协议</li>
+</ul>
+<div style="color:purple;font-weight:bold">基于UDP（不可靠的传输层协议）协议的协议族：</div>
+
+<ul>
+<li>DHCP：<span style="color:purple">端口号 67</span>	动态地址分配，自动分配IP地址</li>
+<li>TFTP：<span style="color:purple">端口号 69</span>	文件传输协议</li>
+<li>SNMP：<span style="color:purple">端口号 161</span>	网络管理协议</li>
+<li>DNS： <span style="color:purple">端口号 53</span>	域名解析协议，将域名解析IP地址</li>
+</ul>
+ <table>
+     <tr style="font-weight:bold">
+         <td style="color:red">所包含协议</td>
+         <td>TCP/IP模型</td>
+         <td>OSI七层模型</td>
+     </tr>
+     <tr>
+         <td rowspan="3">
+             <span style="color:blue">POP3|FTP|HTTP|Telnet|HTTP|SMTP</span><br>
+             <span style="color:red">NFS</span><br>
+             <span style="color:purple">DHCP|TFTP|SNMP|DNS</span>
+         </td>
+         <td rowspan="3">应用层</td>
+         <td>应用层</td>
+     </tr>
+     <tr>
+         <td>表示层</td>
+     </tr>
+     <tr>
+         <td>会话层</td>
+     </tr>
+     <tr>
+         <td>
+             <span style="color:blue">TCP:有线连接，三次握手（打电话）</span>
+             <br>
+             <span style="color:purple">UDP:无线链接，无需握手（发短信）</span></td>
+         <td>传输层</td>
+         <td>传输层</td>
+     </tr>
+     <tr>
+         <td style="color:red">
+             <span style="color:blue">IP|ICMP</span><br>
+             IGMP<br>
+             <span style="color:purple">ARP|RARP|</span>
+         </td>
+         <td>网际层</td>
+         <td>网络层</td>
+     </tr>
+     <tr>
+         <td rowspan="2" style="color:red">
+             <span style="color:blue">CSMA/CD:载波监听多路访问<span
+                 <br>
+             <span style="color:red">TokingRing:令牌访问</span>
+         </td>
+         <td rowspan="2">网络接口层</td>
+         <td>数据链路层</td>
+     </tr>
+     <tr>
+         <td>物理层</td>
+     </tr>
+ </table>
+
+<img src="https://s1.imagehub.cc/images/2022/10/06/image95f91e782fc4ec6b.png" alt="image95f91e782fc4ec6b.png" border="0" />
+
+<h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><p>目前使用的是IPV4 32位 </p>
+<img src="https://s1.imagehub.cc/images/2022/10/06/image4a5671debaffc81a.png" alt="image4a5671debaffc81a.png" border="0" />
+
+<h3 id="子网划分"><a href="#子网划分" class="headerlink" title="子网划分"></a>子网划分</h3><ol>
+<li><p>子网掩码</p>
+</li>
+<li><p>将一个网络划分成多个子网（取部分主机号当子网号）</p>
+</li>
+<li><p>将多个网络合并成一个大的网络（取部分网络号当主机号）</p>
+</li>
+</ol>
+<p>例1,将B类IP地址168.195.0.0划分成27个子网，子网掩码为多少？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">27&lt;2^5</span><br><span class="line">168.195.0.0转为二进制</span><br><span class="line">1010 1000 1100 0011 0000 0000 0000 0000</span><br><span class="line">也就是说现在需要向168.195.0.0借5位得</span><br><span class="line">1010 1000 1100 0011 1111 1000 0000 0000</span><br><span class="line">将前序所有变为1，即获得子网掩码</span><br><span class="line">1111 1111 1111 1111 1111 1000 0000 0000</span><br><span class="line">255.	  255.		248.	  0</span><br><span class="line">所以子网掩码为：255.255.248.0</span><br></pre></td></tr></table></figure>
+
+<p>例2,将B类IP地址168.195.0.0划分成若干子网，每个子网内有主机700台，则子网掩码为多少？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">需要700台</span><br><span class="line">2^5=512</span><br><span class="line">2^10=1024</span><br><span class="line">所以需要2^10-2=1024-2=1022位（减2因为是B类）</span><br><span class="line">因为B类有16位主机号</span><br><span class="line">所以2^16-2^10=2^6</span><br><span class="line">由此需要如上述借6位</span><br><span class="line">1010 1000 1100 0011 0000 0000 0000 0000</span><br><span class="line">1111 1111 1111 1111 1111 1100 0000 0000</span><br><span class="line">255.	  255.		252.	  0</span><br><span class="line">所以答案为255.255.252.0</span><br></pre></td></tr></table></figure>
+
+<h3 id="网络规划与设计"><a href="#网络规划与设计" class="headerlink" title="网络规划与设计"></a>网络规划与设计</h3><table>
+    <span>
+    <tr>
+        <td>需求分析</td>
+        <td>
+            网络功能要求
+            <br>网络性能要求<br>
+            网络运行环境要求<br>
+            网络的可扩充性和可维护性要求<br>
+        </td>
+    </tr>
+    <tr>
+        <td>网络规划原则</td>
+        <td>实用性原则<br>
+            开放性原则<br>
+            先进行原则
+        </td>
+    </tr>
+    <tr>
+        <td>网络设计与实施原则</td>
+        <td>可靠性原则<br>
+            安全性原则<br>
+            高效性原则<br>
+            可扩展性原则
+        </td>
+    </tr>
+    <tr>
+        <td>层次化网络设计(见下图）</td>
+        <td>核心层<br>
+            汇聚层<br>
+            接入层<br>
+        </td>
+    </tr>
+</table>
+
+<img src="https://s1.imagehub.cc/images/2022/10/06/image005f3b980b1ccacb.png" alt="image005f3b980b1ccacb.png" border="0" />
+
+<h3 id="计算机网络分类"><a href="#计算机网络分类" class="headerlink" title="计算机网络分类"></a>计算机网络分类</h3><h4 id="按分布范围分"><a href="#按分布范围分" class="headerlink" title="按分布范围分"></a>按分布范围分</h4><ul>
+<li>局域网（LAN）：无线局域网（WLAN，802.11，WI-FI）</li>
+<li>城域网（MAN）：无线城域网（WMAN，802.16，WiMax）</li>
+<li>广域网（WAN）：无线广域网（WWAN，3G&#x2F;4G）</li>
+<li>因特网：无线个任务（WPAN，802.15，Bluetooth）</li>
+</ul>
+<h4 id="按照拓扑结构分"><a href="#按照拓扑结构分" class="headerlink" title="按照拓扑结构分"></a>按照拓扑结构分</h4><ul>
+<li>总线型</li>
+<li>星型</li>
+<li>环形</li>
+</ul>
+<img src="https://s1.imagehub.cc/images/2022/10/06/image30067cc759293d2d.png" alt="image30067cc759293d2d.png" border="0" />
+
+<h3 id="网络接入技术"><a href="#网络接入技术" class="headerlink" title="网络接入技术"></a>网络接入技术</h3><h4 id="有线接入"><a href="#有线接入" class="headerlink" title="有线接入"></a>有线接入</h4><p>PSTN：公用交换电话网络</p>
+<p>DDN：数字数据网</p>
+<p>ISDN：综合业务数字网</p>
+<p><span style="color:red">ADSL：非对称数字用户线路</span></p>
+<p>HFC：同轴光纤技术</p>
+<h4 id="无线接入"><a href="#无线接入" class="headerlink" title="无线接入"></a>无线接入</h4><p>IEEE 802.11：WIFI</p>
+<p>IEEE 802.15：蓝牙Bluetooth</p>
+<p>IrDA：红外</p>
+<p>WAPI</p>
+<h4 id="3G"><a href="#3G" class="headerlink" title="3G"></a>3G</h4><p>WCDMA：联通</p>
+<p>CDMA2000：电信</p>
+<p>TD-SCDMA：移动</p>
+<p>WirelessMAN（802.16）（WiMAX）</p>
+<h4 id="4G"><a href="#4G" class="headerlink" title="4G"></a>4G</h4><p>FDD-LTE</p>
+<p>TD-LTE</p>
+<p>WirelessMAN（802.16m）（WiMAX）</p>
+<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><img src="https://s1.imagehub.cc/images/2022/10/06/image8219c273fbf57888.png" alt="image8219c273fbf57888.png" border="0" />
+
+
+
+<h2 id="信息安全"><a href="#信息安全" class="headerlink" title="信息安全"></a>信息安全</h2><img src="https://s1.imagehub.cc/images/2022/10/07/image.png" alt="image.png" border="0" />
+
+<h3 id="对称加密技术"><a href="#对称加密技术" class="headerlink" title="对称加密技术"></a>对称加密技术</h3><p>使用同一套秘钥<br>$$<br>K_e&#x3D;K_d<br>$$</p>
+<ul>
+<li>加密强度不高，但效率高效</li>
+<li>密钥分发困难</li>
+</ul>
+<p>常见对称秘钥加密算法：DES、3DES（三重DES）、RC-5、IDEA算法</p>
+<img src="https://s1.imagehub.cc/images/2022/10/07/imaged60a3862cdf4e261.png" alt="imaged60a3862cdf4e261.png" border="0" />
+
+<h3 id="非对称加密技术"><a href="#非对称加密技术" class="headerlink" title="非对称加密技术"></a>非对称加密技术</h3><p>加密和使用的不是同一套秘钥。密钥必须成对使用（公钥加密，相应的的私钥解密）</p>
+<p>使用接收方的公钥加密，使用接收方的私钥解密<br>$$<br>K_e ≠ K_d<br>$$</p>
+<p>特点：加密速度慢，但强度高</p>
+<p>常见非对称秘钥加密算法：RSA、ECC</p>
+<img src="https://s1.imagehub.cc/images/2022/10/07/imageeefd5f06393fda55.png" alt="imageeefd5f06393fda55.png" border="0" />
+
+<h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><p>为了证明文件的签发方。</p>
+<p>发送者用自己的私钥签发，接收者采用发送者的公钥作为验证。</p>
+<img src="https://s1.imagehub.cc/images/2022/10/10/imageb9fb441b60507e07.png" alt="imageb9fb441b60507e07.png" border="0" />
+
+<h3 id="消息摘要"><a href="#消息摘要" class="headerlink" title="消息摘要"></a>消息摘要</h3><p>数字摘要：由单向散列函数加密成固定长度的散列值。（不可逆的过程）</p>
+<p>常用的消息摘要算法有MD5，SHA等，市场上广泛使用的MD5，SHA算法的散列值分别为128和160位，由于SHA通常采用的密钥长度较长，因此安全性高于MD5。</p>
+<h3 id="PKI公钥体系"><a href="#PKI公钥体系" class="headerlink" title="# PKI公钥体系"></a># PKI公钥体系</h3><p>CA中心：管理公钥和私钥的注册和更新。</p>
+<h2 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h2><h3 id="各个网络层次的安全保障"><a href="#各个网络层次的安全保障" class="headerlink" title="各个网络层次的安全保障"></a>各个网络层次的安全保障</h3><table>
+    <tr>
+        <td>PGP</td>
+        <td>Https</td>
+        <td rowspan=4>SSL</td>
+        <td>应用层</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        
+<pre><code>    &lt;td&gt;表示层&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+    
+    &lt;td&gt;会话层&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;TLS&lt;/td&gt;
+    &lt;td&gt;SET&lt;/td&gt;
+    
+    &lt;td&gt;传输层&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;防火墙&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+    &lt;td&gt;IPSec&lt;/td&gt;
+    
+    &lt;td&gt;网络层&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;链路加密&lt;/td&gt;
+    &lt;td&gt;PPTP&lt;/td&gt;
+    &lt;td&gt;L2TP&lt;/td&gt;
+    
+    &lt;td&gt;数据链路层&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;隔离&lt;/td&gt;
+    &lt;td&gt;&lt;/td&gt;
+    &lt;td&gt;屏蔽&lt;/td&gt;
+    
+    &lt;td&gt;物理层&lt;/td&gt;
+&lt;/tr&gt;
+</code></pre>
+</table>
+
+<h3 id="主动攻击与被动攻击"><a href="#主动攻击与被动攻击" class="headerlink" title="主动攻击与被动攻击"></a>主动攻击与被动攻击</h3><table>
+    <tr>
+        <td rowspan=2>被动攻击</td>
+        <td rowspan=2>监听（保密性)</td>
+        <td>消息内容获取</td>
+    </tr>
+    <tr>
+        <td>业务流分析</td>
+    </tr>
+    <tr>
+        <td rowspan=3>主动攻击</td>
+        <td rowspan=3></td>
+        <td>中断（可用性）</td>
+    </tr>
+    <tr>
+        <td>篡改（完整性）</td>
+    </tr>
+    <tr>
+        <td>伪装（真实性）</td>
+    </tr>
+</table>
+
+<h3 id="Dos-拒绝服务-与DDos"><a href="#Dos-拒绝服务-与DDos" class="headerlink" title="Dos(拒绝服务)与DDos"></a>Dos(拒绝服务)与DDos</h3><p>服务器忙于处理傀儡机请求，无法接受其他请求</p>
+<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><table>
+    <tr>
+        <td rowspan="2">网络级</td>
+        <td>包过滤（只检查包，不检查内部内容）</td>
+        <td rowspan="2">
+            内部网络->屏蔽路由器--Internet
+        </td>
+    </tr>
+    <tr>
+        <td>状态检测（全部检测，开销大）</td>
+    </tr>
+    
+<pre><code>&lt;tr&gt;
+    &lt;td rowspan=&quot;3&quot;&gt;应用级&lt;/td&gt;
+    &lt;td&gt;双穴主机&lt;/td&gt;
+    &lt;td&gt;内部网络-&gt;双穴主机--Internet&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;屏蔽主机&lt;/td&gt;
+    &lt;td&gt;
+        &lt;img src=&quot;https://s1.imagehub.cc/images/2022/10/10/image63967402bfa7c5b6.png&quot; alt=&quot;image63967402bfa7c5b6.png&quot; border=&quot;0&quot; /&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;屏蔽子网&lt;/td&gt;
+    &lt;td&gt;&lt;img src=&quot;https://s1.imagehub.cc/images/2022/10/10/image4b8790680f981eeb.png&quot; alt=&quot;image4b8790680f981eeb.png&quot; border=&quot;0&quot; /&gt;&lt;br&gt;
+    &lt;img src=&quot;https://s1.imagehub.cc/images/2022/10/10/imageb61e3b4c1f369535.png&quot; alt=&quot;imageb61e3b4c1f369535.png&quot; border=&quot;0&quot; /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+</code></pre>
+</table>
+
+<h3 id="安全防范体系"><a href="#安全防范体系" class="headerlink" title="安全防范体系"></a>安全防范体系</h3><ol>
+<li><strong>物理环境的安全性：</strong>物理环境的安全性。包括通信线路、物理设备和机房的安全等。物理层的安全主要体现在通信线路的可靠性（线路备份、网管软件和传输介质）、软硬件设备的安全性（普换设备、拆卸设备、增加设备设备的备份、防灾害能力、防干扰能力、设备的运行环境（温度、湿度、烟尘）和不间断电源保障等。</li>
+<li>**操作系统的安全性:**主要表现在三个方面，一是操作系统本身的缺陷带来的不安全因素，主要括身份认证、访问控制和系统漏洞等；二是对操作系统的安全配置问题；三是病毒对操作系统的威助。</li>
+<li>**网络的安全性:**网络层的安全问题主要体现在计算机网络方面的安全性，包括网络层身份认证网络资源的访问控制、数据传输的保密与完整性、远程接入的安全、域名系统的安全、路由系统入侵检测的手段和网络设施防病毒等。</li>
+<li><strong>应用的安全性：</strong>由提供服务所采用的应用软件和数据的安全性产生，包括Web服务、电子邮件统和DNS等，此外，还包括病毒对系统的威胁。</li>
+<li><strong>管理的安全性：</strong>包括安全技术和设备的管理、安全管理制度、部门与人员的组织规制规则等。管理的制度化极大程度地影响着整个计算机网络的安全，严格的安全管理制度、明确的部门安全职划分与合理的人员角色配置，都可以在很大程度上降低其他层次的安全漏洞。</li>
+</ol>
+<h3 id="病毒"><a href="#病毒" class="headerlink" title="病毒"></a>病毒</h3><img src="https://s1.imagehub.cc/images/2022/10/10/imagecaa9de44d4cf99c2.png" alt="imagecaa9de44d4cf99c2.png" border="0" />
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/02/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-3-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3082,480 +3497,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/03/Go%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0%EF%BC%881%EF%BC%89-Go%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MEIDE">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MEIDE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/03/Go%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0%EF%BC%881%EF%BC%89-Go%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">Go的学习日记（1）- Go的基本语法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-03 13:26:38" itemprop="dateCreated datePublished" datetime="2022-08-03T13:26:38+08:00">2022-08-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-09 11:35:52" itemprop="dateModified" datetime="2022-08-09T11:35:52+08:00">2022-08-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="GO的学习日记（1）-Go的基本语法"><a href="#GO的学习日记（1）-Go的基本语法" class="headerlink" title="GO的学习日记（1）- Go的基本语法"></a>GO的学习日记（1）- Go的基本语法</h1><p>本文章基于C语言中文网学习整理而来</p>
-<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/golang/syntax/">http://c.biancheng.net/golang/syntax/</a></p>
-<h2 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//var name type</span></span><br><span class="line">var a <span class="type">int</span> = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<p>Go语言的基本类型有</p>
-<ul>
-<li>bool</li>
-<li>string</li>
-<li>int（int8、int16、int32、int64）</li>
-<li>uint（uint8、uint16、uint32、uint64、uintptr）</li>
-<li>byte（uint8别名）</li>
-<li>rune（int32的别名，代表一个Unicode码）</li>
-<li>float32、float64</li>
-<li>complex64、complex128</li>
-</ul>
-<p>声明变量时会自动赋予基于该类型的0值</p>
-<p>int 为 0，float 为 0.0，bool 为 false，string 为空字符串，指针为 nil 等。</p>
-<p>所有的内存在 Go 中都是经过初始化的。</p>
-<h3 id="批量声明与简短声明"><a href="#批量声明与简短声明" class="headerlink" title="批量声明与简短声明"></a>批量声明与简短声明</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//批量声明</span></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">    a <span class="type">int</span></span><br><span class="line">    b <span class="type">string</span></span><br><span class="line">    c []<span class="type">float32</span></span><br><span class="line">    d <span class="function"><span class="keyword">func</span><span class="params">()</span></span> <span class="type">bool</span></span><br><span class="line">    e <span class="keyword">struct</span>&#123;x <span class="type">int</span>&#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">//简短声明</span></span><br><span class="line">i,j := <span class="number">0</span>,<span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在标准格式基础上，如果将后面的的格式省略，编译器会自动推导变量的类型</span></span><br><span class="line"><span class="keyword">var</span> hp = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">第 1 和 2 行，右值为整型，attack 和 defence 变量的类型为 int。</span></span><br><span class="line"><span class="comment">第 3 行，表达式的右值中使用了 0.17。所以这里如果不指定 damageRate 变量的类型，Go语言编译器会将 damageRate 类型推导为 float64，我们这里不需要 float64 的精度，所以需要强制指定类型为 float32。</span></span><br><span class="line"><span class="comment">第 4 行，将 attack 和 defence 相减后的数值结果依然为整型，使用 float32() 将结果转换为 float32 类型，再与 float32 类型的 damageRate 相乘后，damage 类型也是 float32 类型。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> attack = <span class="number">40</span></span><br><span class="line"><span class="keyword">var</span> defence = <span class="number">20</span></span><br><span class="line"><span class="keyword">var</span> damageRate <span class="type">float32</span> = <span class="number">0.17</span></span><br><span class="line"><span class="keyword">var</span> damage = <span class="type">float32</span>(attack-defence) * damageRate</span><br><span class="line">fmt.Println(damage)</span><br><span class="line"><span class="comment">//3.4 [(40-20)*0.17]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="多重赋值与匿名变量"><a href="#多重赋值与匿名变量" class="headerlink" title="多重赋值与匿名变量"></a>多重赋值与匿名变量</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//go语言的多重赋值</span></span><br><span class="line"><span class="keyword">var</span> a <span class="type">int</span> = <span class="number">100</span></span><br><span class="line"><span class="keyword">var</span> b <span class="type">int</span> = <span class="number">200</span></span><br><span class="line">b, a = a, b</span><br><span class="line">fmt.Println(a, b)</span><br><span class="line"></span><br><span class="line"><span class="comment">//匿名变量：匿名变量不占用内存空间，不会分配内存。匿名变量与匿名变量之间也不会因为多次声明而无法使用。</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetData</span><span class="params">()</span></span> (<span class="type">int</span>, <span class="type">int</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">100</span>, <span class="number">200</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    a, _ := GetData()</span><br><span class="line">    _, b := GetData()</span><br><span class="line">    fmt.Println(a, b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="整形int"><a href="#整形int" class="headerlink" title="整形int"></a>整形int</h3><p>大多数情况下，我们只需要 int 一种整型即可，它可以用于循环计数器（for 循环中控制循环次数的变量）、数组和切片的索引，以及任何通用目的的整型运算符，通常 int 类型的处理速度也是最快的。</p>
-<p>用来表示 Unicode 字符的 rune 类型和 int32 类型是等价的，通常用于表示一个 Unicode 码点。这两个名称可以互换使用。同样，byte 和 uint8 也是等价类型，byte 类型一般用于强调数值是一个原始的数据而不是一个小的整数。</p>
-<p>最后，还有一种无符号的整数类型 uintptr，它没有指定具体的 bit 大小但是足以容纳指针。uintptr 类型只有在底层编程时才需要，特别是Go语言和C语言函数库或操作系统接口相交互的地方。</p>
-<p>尽管在某些特定的运行环境下 int、uint 和 uintptr 的大小可能相等，但是它们依然是不同的类型，比如 int 和 int32，虽然 int 类型的大小也可能是 32 bit，但是在需要把 int 类型当做 int32 类型使用的时候必须显示的对类型进行转换，反之亦然。</p>
-<h4 id="哪些情况下使用-int-和-uint"><a href="#哪些情况下使用-int-和-uint" class="headerlink" title="哪些情况下使用 int 和 uint"></a>哪些情况下使用 int 和 uint</h4><p>程序逻辑对整型范围没有特殊需求。例如，对象的长度使用内建 len() 函数返回，这个长度可以根据不同平台的字节长度进行变化。实际使用中，切片或 map 的元素数量等都可以用 int 来表示。</p>
-<p>反之，在二进制传输、读写文件的结构描述时，为了保持文件的结构不会受到不同编译目标平台字节长度的影响，不要使用 int 和 uint。</p>
-<h3 id="浮点型float"><a href="#浮点型float" class="headerlink" title="浮点型float"></a>浮点型float</h3><ul>
-<li>常量 math.MaxFloat32 表示 float32 能取到的最大数值，大约是 3.4e38；</li>
-<li>常量 math.MaxFloat64 表示 float64 能取到的最大数值，大约是 1.8e308；</li>
-<li>float32 和 float64 能表示的最小值分别为 1.4e-45 和 4.9e-324。</li>
-</ul>
-<p>一个 float32 类型的浮点数可以提供大约 <span style="color:red">6 个十进制数</span>的精度，而 float64 则可以提供约<span style="color:red"> 15 个十进制数</span>的精度，通常应该优先使用 float64 类型，因为 float32 类型的累计计算误差很容易扩散，并且 float32 能精确表示的正整数并不是很大。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f <span class="type">float32</span> = <span class="number">16777216</span> <span class="comment">// 1 &lt;&lt; 24</span></span><br><span class="line">fmt.Println(f == f+<span class="number">1</span>)    <span class="comment">// &quot;true&quot;!</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明规则</span></span><br><span class="line"><span class="keyword">const</span> e = <span class="number">.71828</span> <span class="comment">// 0.71828</span></span><br><span class="line"><span class="keyword">const</span> f = <span class="number">1.</span>     <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//很小或很大的数最好用科学计数法书写，通过 e 或 E 来指定指数部分：</span></span><br><span class="line"><span class="keyword">const</span> Avogadro = <span class="number">6.02214129e23</span>  <span class="comment">// 阿伏伽德罗常数</span></span><br><span class="line"><span class="keyword">const</span> Planck   = <span class="number">6.62606957e-34</span> <span class="comment">// 普朗克常数</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文字输出</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;%f\n&quot;</span>, math.Pi)</span><br><span class="line">    fmt.Printf(<span class="string">&quot;%.2f\n&quot;</span>, math.Pi)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">3.141593</span></span><br><span class="line"><span class="comment">3.14</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="语言复数"><a href="#语言复数" class="headerlink" title="语言复数"></a>语言复数</h3><p>在计算机中，复数是由两个浮点数表示的，其中一个表示实部（real），一个表示虚部（imag）。</p>
-<p>Go语言中复数的类型有两种，分别是 complex128（64 位实数和虚数）和 complex64（32 位实数和虚数），其中 complex128 为复数的默认类型。</p>
-<p>复数的值由三部分组成 RE + IMi，其中 RE 是实数部分，IM 是虚数部分，RE 和 IM 均为 float 类型，而最后的 i 是虚数单位。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name <span class="type">complex128</span> = <span class="built_in">complex</span>(x,y)</span><br></pre></td></tr></table></figure>
-
-<p>其中 name 为复数的变量名，complex128 为复数的类型，“&#x3D;”后面的 complex 为Go语言的内置函数用于为复数赋值，x、y 分别表示构成该复数的两个 float64 类型的数值，x 为实部，y 为虚部。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x <span class="type">complex128</span> = <span class="built_in">complex</span>(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// 1+2i</span></span><br><span class="line"><span class="keyword">var</span> y <span class="type">complex128</span> = <span class="built_in">complex</span>(<span class="number">3</span>, <span class="number">4</span>) <span class="comment">// 3+4i</span></span><br><span class="line">fmt.Println(x*y)                 <span class="comment">// &quot;(-5+10i)&quot;</span></span><br><span class="line">fmt.Println(<span class="built_in">real</span>(x*y))           <span class="comment">// &quot;-5&quot;</span></span><br><span class="line">fmt.Println(<span class="built_in">imag</span>(x*y))           <span class="comment">// &quot;10&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="布尔类型bool"><a href="#布尔类型bool" class="headerlink" title="布尔类型bool"></a>布尔类型bool</h3><p><code>&amp;&amp;</code>的优先级比<code>||</code>高（&amp;&amp; 对应逻辑乘法，|| 对应逻辑加法，乘法比加法优先级要高）</p>
-<p>Go语言并不会隐性转换布尔值为1&#x2F;0</p>
-<h3 id="字符串string"><a href="#字符串string" class="headerlink" title="字符串string"></a>字符串string</h3><p>一个字符串是一个不可改变的字节序列，字符串可以包含任意的数据，但是通常是用来包含可读的文本，字符串是 UTF-8 字符的一个序列（当字符为 ASCII 码表上的字符时则占用 1 个字节，其它字符根据需要占用 2-4 个字节）。</p>
-<p>UTF-8 是一种被广泛使用的编码格式，是文本文件的标准编码，其中包括 XML 和 JSON 在内也都使用该编码。由于该编码对占用字节长度的不定性，在Go语言中字符串也可能根据需要占用 1 至 4 个字节，这与其它编程语言如 <a target="_blank" rel="noopener" href="http://c.biancheng.net/cplus/">C++</a>、<a target="_blank" rel="noopener" href="http://c.biancheng.net/java/">Java</a> 或者 <a target="_blank" rel="noopener" href="http://c.biancheng.net/python/">Python</a> 不同（Java 始终使用 2 个字节）。Go语言这样做不仅减少了内存和硬盘空间占用，同时也不用像其它语言那样需要对使用 UTF-8 字符集的文本进行编码和解码。</p>
-<p>可以使用双引号<code>&quot;&quot;</code>来定义字符串，字符串中可以使用转义字符来实现换行、缩进等效果，常用的转义字符包括：</p>
-<ul>
-<li>\n：换行符</li>
-<li>\r：回车符</li>
-<li>\t：tab 键</li>
-<li>\u 或 \U：Unicode 字符</li>
-<li>\：反斜杠自身</li>
-</ul>
-<p>一般的比较运算符（&#x3D;&#x3D;、!&#x3D;、&lt;、&lt;&#x3D;、&gt;&#x3D;、&gt;）是通过在内存中按字节比较来实现字符串比较的，因此比较的结果是字符串自然编码的顺序。字符串所占的字节长度可以通过函数 len() 来获取，例如 len(str)。</p>
-<p>字符串的内容（纯字节）可以通过标准索引法来获取，在方括号<code>[ ]</code>内写入索引，索引从 0 开始计数：</p>
-<ul>
-<li>字符串 str 的第 1 个字节：str[0]</li>
-<li>第 i 个字节：str[i - 1]</li>
-<li>最后 1 个字节：str[len(str)-1]</li>
-</ul>
-<h4 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h4><p>两个字符串 s1 和 s2 可以通过 s :&#x3D; s1 + s2 拼接在一起。将 s2 追加到 s1 尾部并生成一个新的字符串 s。</p>
-<h4 id="定义多行字符串"><a href="#定义多行字符串" class="headerlink" title="定义多行字符串"></a>定义多行字符串</h4><p>在Go语言中，使用双引号书写字符串的方式是字符串常见表达方式之一，被称为字符串字面量（string literal），这种双引号字面量不能跨行，如果想要在源码中嵌入一个多行字符串时，就必须使用&#96;反引号，代码如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">`第一行</span></span><br><span class="line"><span class="string">第二行</span></span><br><span class="line"><span class="string">第三行</span></span><br><span class="line"><span class="string">\r\n</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line">fmt.Println(str)</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">第一行</span></span><br><span class="line"><span class="comment">第二行</span></span><br><span class="line"><span class="comment">第三行</span></span><br><span class="line"><span class="comment">\r\n</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<p>在这种方式下，反引号间换行将被作为字符串中的换行，但是所有的转义字符均无效，文本将会原样输出。</p>
-<h3 id="字符类型byte和rune"><a href="#字符类型byte和rune" class="headerlink" title="字符类型byte和rune"></a>字符类型byte和rune</h3><p>Go语言的字符有以下两种：</p>
-<ul>
-<li>一种是 uint8 类型，或者叫 byte 型，代表了 ASCII 码的一个字符。</li>
-<li>另一种是 rune 类型，代表一个 UTF-8 字符，当需要处理中文、日文或者其他复合字符时，则需要用到 rune 类型。rune 类型等价于 int32 类型。</li>
-</ul>
-<p>byte 类型是 uint8 的别名，对于只占用 1 个字节的传统 ASCII 编码的字符来说，完全没有问题，例如 var ch byte &#x3D; ‘A’，字符使用单引号括起来。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在 ASCII 码表中，A 的值是 65，使用 16 进制表示则为 41，所以下面的写法是等效的：</span></span><br><span class="line"><span class="keyword">var</span> ch <span class="type">byte</span> = <span class="number">65</span> 或 <span class="keyword">var</span> ch <span class="type">byte</span> = <span class="string">&#x27;\x41&#x27;</span></span><br><span class="line"><span class="comment">//（\x 总是紧跟着长度为 2 的 16 进制数）</span></span><br></pre></td></tr></table></figure>
-
-<p>Go语言同样支持 Unicode（UTF-8），因此字符同样称为 Unicode 代码点或者 runes，并在内存中使用 int 来表示。在文档中，一般使用格式 U+hhhh 来表示，其中 h 表示一个 16 进制数。</p>
-<p>在书写 Unicode 字符时，需要在 16 进制数之前加上前缀<code>\u</code>或者<code>\U</code>。因为 Unicode 至少占用 2 个字节，所以我们使用 int16 或者 int 类型来表示。如果需要使用到 4 字节，则使用<code>\u</code>前缀，如果需要使用到 8 个字节，则使用<code>\U</code>前缀。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ch <span class="type">int</span> = <span class="string">&#x27;\u0041&#x27;</span></span><br><span class="line"><span class="keyword">var</span> ch2 <span class="type">int</span> = <span class="string">&#x27;\u03B2&#x27;</span></span><br><span class="line"><span class="keyword">var</span> ch3 <span class="type">int</span> = <span class="string">&#x27;\U00101234&#x27;</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%d - %d - %d\n&quot;</span>, ch, ch2, ch3) <span class="comment">// integer</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%c - %c - %c\n&quot;</span>, ch, ch2, ch3) <span class="comment">// character</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%X - %X - %X\n&quot;</span>, ch, ch2, ch3) <span class="comment">// UTF-8 bytes</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%U - %U - %U&quot;</span>, ch, ch2, ch3)   <span class="comment">// UTF-8 code point</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">65 - 946 - 1053236</span></span><br><span class="line"><span class="comment">A - β - r</span></span><br><span class="line"><span class="comment">41 - 3B2 - 101234</span></span><br><span class="line"><span class="comment">U+0041 - U+03B2 - U+101234</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<p>格式化说明符<code>%c</code>用于表示字符，当和字符配合使用时，<code>%v</code>或<code>%d</code>会输出用于表示该字符的整数，<code>%U</code>输出格式为 U+hhhh 的字符串。</p>
-<p>Unicode 包中内置了一些用于测试字符的函数，这些函数的返回值都是一个布尔值，如下所示（其中 ch 代表字符）：</p>
-<ul>
-<li>判断是否为字母：unicode.IsLetter(ch)</li>
-<li>判断是否为数字：unicode.IsDigit(ch)</li>
-<li>判断是否为空白符号：unicode.IsSpace(ch)</li>
-</ul>
-<h4 id="UTF-8-和-Unicode-有何区别？"><a href="#UTF-8-和-Unicode-有何区别？" class="headerlink" title="UTF-8 和 Unicode 有何区别？"></a>UTF-8 和 Unicode 有何区别？</h4><p>Unicode 与 ASCII 类似，都是一种字符集。</p>
-<p>字符集为每个字符分配一个唯一的 ID，我们使用到的所有字符在 Unicode 字符集中都有一个唯一的 ID，例如上面例子中的 a 在 Unicode 与 ASCII 中的编码都是 97。汉字“你”在 Unicode 中的编码为 20320，在不同国家的字符集中，字符所对应的 ID 也会不同。而无论任何情况下，Unicode 中的字符的 ID 都是不会变化的。</p>
-<p>UTF-8 是编码规则，将 Unicode 中字符的 ID 以某种方式进行编码，UTF-8 的是一种变长编码规则，从 1 到 4 个字节不等。编码规则如下：</p>
-<ul>
-<li>0xxxxxx 表示文字符号 0～127，兼容 ASCII 字符集。</li>
-<li>从 128 到 0x10ffff 表示其他字符。</li>
-</ul>
-<p>根据这个规则，拉丁文语系的字符编码一般情况下每个字符占用一个字节，而中文每个字符占用 3 个字节。</p>
-<p>广义的 Unicode 指的是一个标准，它定义了字符集及编码规则，即 Unicode 字符集和 UTF-8、UTF-16 编码等。</p>
-<h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a := <span class="number">5.0</span></span><br><span class="line">b := <span class="type">int</span>(a)</span><br></pre></td></tr></table></figure>
-
-<p>当从一个取值范围较大的类型转换到取值范围较小的类型时（将 int32 转换为 int16 或将 float32 转换为 int），会发生精度丢失（截断）的情况。</p>
-<p>只有相同底层类型的变量之间可以进行相互转换（如将 int16 类型转换成 int32 类型），不同底层类型的变量相互转换时会引发编译错误（如将 bool 类型转换为 int 类型）</p>
-<p>16 位有符号整型的范围是 -32768～32767，而变量 a 的值 1047483647 不在这个范围内。1047483647 对应的十六进制为 0x3e6f54ff，转为 int16 类型后，长度缩短一半，也就是在十六进制上砍掉一半，变成 0x54ff，对应的十进制值为 21759。</p>
-<h2 id="Go语言指针"><a href="#Go语言指针" class="headerlink" title="Go语言指针"></a>Go语言指针</h2><p>Go语言为程序员提供了控制<a target="_blank" rel="noopener" href="http://c.biancheng.net/data_structure/">数据结构</a>指针的能力，但是，并不能进行指针运算。Go语言允许你控制特定集合的数据结构、分配的数量以及内存访问模式，这对于构建运行良好的系统是非常重要的。指针对于性能的影响不言而喻，如果你想要做系统编程、操作系统或者网络应用，指针更是不可或缺的一部分。</p>
-<p>指针（pointer）在Go语言中可以被拆分为两个核心概念：</p>
-<ul>
-<li><strong>类型指针</strong>，允许对这个指针类型的数据进行修改，传递数据可以直接使用指针，而无须拷贝数据，类型指针不能进行偏移和运算。</li>
-<li><strong>切片</strong>，由指向起始元素的原始指针、元素数量和容量组成。</li>
-</ul>
-<p>受益于这样的约束和拆分，Go语言的指针类型变量即拥有指针高效访问的特点，又不会发生指针偏移，从而避免了非法修改关键性数据的问题。同时，垃圾回收也比较容易对不会发生偏移的指针进行检索和回收。</p>
-<p>切片比原始指针具备更强大的特性，而且更为安全。切片在发生越界时，运行时会报出宕机，并打出堆栈，而原始指针只会崩溃。</p>
-<h3 id="认识指针地址和指针类型"><a href="#认识指针地址和指针类型" class="headerlink" title="认识指针地址和指针类型"></a>认识指针地址和指针类型</h3><p>一个指针变量可以指向任何一个值的内存地址，它所指向的值的内存地址在 32 和 64 位机器上分别占用 <strong>4</strong>  或 <strong>8</strong>  个字节，占用字节的大小与所指向的值的大小无关。当一个指针被定义后没有分配到任何变量时，它的默认值为 nil。指针变量通常缩写为 ptr。</p>
-<p>每个变量在运行时都拥有一个地址，这个地址代表变量在内存中的位置。Go语言中使用在变量名前面添加<code>&amp;</code>操作符（前缀）来获取变量的内存地址（取地址操作），格式如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ptr := &amp;v</span><br></pre></td></tr></table></figure>
-
-<p>其中 v 代表被取地址的变量，变量 v 的地址使用变量 ptr 进行接收，ptr 的类型为<code>*T</code>，称做 T 的指针类型，<code>*</code>代表指针。</p>
-<p>当使用<code>&amp;</code>操作符对普通变量进行取地址操作并得到变量的指针后，可以对指针使用<code>*</code>操作符，也就是指针取值。</p>
-<p><code>*</code>操作符作为右值时，意义是取指针的值，作为左值时，也就是放在赋值操作符的左边时，表示 a 指针指向的变量。其实归纳起来，<code>*</code>操作符的根本意义就是操作指针指向的变量。当操作在右值时，就是取指向变量的值，当操作在左值时，就是将值设置给指向的变量。</p>
-<p>如果在 swap() 函数中交换操作的是指针值，会发生什么情况？可以参考下面代码：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">swap</span><span class="params">(a, b *<span class="type">int</span>)</span></span> &#123;</span><br><span class="line">    b, a = a, b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    x, y := <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">    swap(&amp;x, &amp;y)</span><br><span class="line">    fmt.Println(x, y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1 2</span></span><br></pre></td></tr></table></figure>
-
-<p>结果表明，交换是不成功的。上面代码中的 swap() 函数交换的是 a 和 b 的地址，在交换完毕后，a 和 b 的变量值确实被交换。但和 a、b 关联的两个变量并没有实际关联。这就像写有两座房子的卡片放在桌上一字摊开，交换两座房子的卡片后并不会对两座房子有任何影响。</p>
-<h3 id="创建指针的另一种方法——new-函数"><a href="#创建指针的另一种方法——new-函数" class="headerlink" title="创建指针的另一种方法——new() 函数"></a>创建指针的另一种方法——new() 函数</h3><p>Go语言还提供了另外一种方法来创建指针变量</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str := <span class="built_in">new</span>(<span class="type">string</span>)</span><br><span class="line">*str = <span class="string">&quot;Go语言教程&quot;</span></span><br><span class="line">fmt.Println(*str)</span><br></pre></td></tr></table></figure>
-
-<p>new() 函数可以创建一个对应类型的指针，创建过程会分配内存，被创建的指针指向默认值。</p>
-<h2 id="语言变量的生命周期"><a href="#语言变量的生命周期" class="headerlink" title="语言变量的生命周期"></a>语言变量的生命周期</h2><p>变量的生命周期指的是在程序运行期间变量有效存在的时间间隔。</p>
-<p>变量的生命周期与<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/4032.html">变量的作用域</a>有着不可分割的联系：</p>
-<ul>
-<li>全局变量：它的生命周期和整个程序的运行周期是一致的；</li>
-<li>局部变量：它的生命周期则是动态的，从创建这个变量的声明语句开始，到这个变量不再被引用为止；</li>
-<li>形式参数和函数返回值：它们都属于局部变量，在函数被调用的时候创建，函数调用结束后被销毁。</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> t := <span class="number">0.0</span>; t &lt; cycles*<span class="number">2</span>*math.Pi; t += res &#123;</span><br><span class="line">    x := math.Sin(t)</span><br><span class="line">    y := math.Sin(t*freq + phase)</span><br><span class="line">    img.SetColorIndex(</span><br><span class="line">        size+<span class="type">int</span>(x*size+<span class="number">0.5</span>), size+<span class="type">int</span>(y*size+<span class="number">0.5</span>),</span><br><span class="line">        blackIndex, <span class="comment">// 最后插入的逗号不会导致编译错误，这是Go编译器的一个特性</span></span><br><span class="line">    )               <span class="comment">// 小括号另起一行缩进，和大括号的风格保存一致</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面代码中，在每次循环的开始会创建临时变量 t，然后在每次循环迭代中创建临时变量 x 和 y。临时变量 x、y 存放在栈中，随着函数执行结束（执行遇到最后一个<code>&#125;</code>），释放其内存。</p>
-<h3 id="堆和栈的区别"><a href="#堆和栈的区别" class="headerlink" title="堆和栈的区别"></a>堆和栈的区别</h3><ul>
-<li>堆（heap）：堆是用于存放进程执行中被动态分配的内存段。它的大小并不固定，可动态扩张或缩减。当进程调用 malloc 等函数分配内存时，新分配的内存就被动态加入到堆上（堆被扩张）。当利用 free 等函数释放内存时，被释放的内存从堆中被剔除（堆被缩减）；</li>
-<li>栈(stack)：栈又称堆栈， 用来存放程序暂时创建的局部变量，也就是我们函数的大括号<code>&#123; &#125;</code>中定义的局部变量。</li>
-</ul>
-<p>在程序的编译阶段，编译器会根据实际情况自动选择在栈或者堆上分配局部变量的存储空间，不论使用 var 还是 new 关键字声明变量都不会影响编译器的选择。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> global *<span class="type">int</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> x <span class="type">int</span></span><br><span class="line">    x = <span class="number">1</span></span><br><span class="line">    global = &amp;x</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">g</span><span class="params">()</span></span> &#123;</span><br><span class="line">    y := <span class="built_in">new</span>(<span class="type">int</span>)</span><br><span class="line">    *y = <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上述代码中，函数 f 里的变量 x 必须在堆上分配，因为它在函数退出后依然可以通过包一级的 global 变量找到，虽然它是在函数内部定义的。用Go语言的术语说，<strong>这个局部变量 x 从函数 f 中逃逸了。</strong></p>
-<p>相反，当函数 g 返回时，变量 <em>y 不再被使用，也就是说可以马上被回收的。因此，</em>y 并没有从函数 g 中逃逸，编译器可以选择在栈上分配 *y 的存储空间，也可以选择在堆上分配，然后由Go语言的 GC（垃圾回收机制）回收这个变量的内存空间。</p>
-<p>在实际的开发中，并不需要刻意的实现变量的逃逸行为，因为逃逸的变量需要额外分配内存，同时对性能的优化可能会产生细微的影响。</p>
-<p>虽然Go语言能够帮助我们完成对内存的分配和释放，但是为了能够开发出高性能的应用我们任然需要了解变量的声明周期。例如，如果将局部变量赋值给全局变量，将会阻止 GC 对这个局部变量的回收，导致不必要的内存占用，从而影响程序的性能。</p>
-<h2 id="常量声明"><a href="#常量声明" class="headerlink" title="常量声明"></a>常量声明</h2><p>声明规则与变量声明一致</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const pi = 3.14159</span><br></pre></td></tr></table></figure>
-
-<p>Go语言中的常量使用关键字 const 定义，用于存储不会改变的数据，常量是在编译时被创建的，即使定义在函数内部也是如此，并且只能是<strong>布尔型、数字型（整数型、浮点型和复数）和字符串型。</strong>由于编译时的限制，定义常量的表达式必须为能被编译器求值的常量表达式。</p>
-<p>常量的值必须是能够在编译时就能够确定的，可以在其赋值表达式中涉及计算过程，但是所有用于计算的值必须在编译期间就能获得。</p>
-<ul>
-<li>正确的做法：const c1 &#x3D; 2&#x2F;3</li>
-<li>错误的做法：const c2 &#x3D; getNumber() &#x2F;&#x2F; 引发构建错误: getNumber() 用做值</li>
-</ul>
-<p>所有常量的运算都可以在编译期完成，这样不仅可以减少运行时的工作，也方便其他代码的编译优化，当操作数是常量时，一些运行时的错误也可以在编译时被发现，例如整数除零、字符串索引越界、任何导致无效浮点数的操作等。</p>
-<p>因为它们的值是在编译期就确定的，因此常量可以是构成类型的一部分，例如用于指定数组类型的长度：</p>
-<p>如果是批量声明的常量，除了第一个外其它的常量右边的初始化表达式都可以省略，如果省略初始化表达式则表示使用前面常量的初始化表达式，对应的常量类型也是一样的。例如：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    b</span><br><span class="line">    c = <span class="number">2</span></span><br><span class="line">    d</span><br><span class="line">)</span><br><span class="line">fmt.Println(a, b, c, d) </span><br><span class="line"><span class="comment">// &quot;1 1 2 2&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="iota常量生成器"><a href="#iota常量生成器" class="headerlink" title="iota常量生成器"></a>iota常量生成器</h3><p>常量声明可以使用 iota 常量生成器初始化，它用于生成一组以相似规则初始化的常量，但是不用每行都写一遍初始化表达式。在一个 const 声明语句中，在第一个声明的常量所在的行，iota 将会被置为 0，然后在每一个有常量声明的行加一。</p>
-<p>【示例 1】首先定义一个 Weekday 命名类型，然后为一周的每天定义了一个常量，从周日 0 开始。在其它编程语言中，这种类型一般被称为枚举类型。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Weekday <span class="type">int</span></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">    Sunday Weekday = <span class="literal">iota</span></span><br><span class="line">    Monday</span><br><span class="line">    Tuesday</span><br><span class="line">    Wednesday</span><br><span class="line">    Thursday</span><br><span class="line">    Friday</span><br><span class="line">    Saturday</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>周日将对应 0，周一为 1，以此类推。</p>
-<h3 id="无类型常量"><a href="#无类型常量" class="headerlink" title="无类型常量"></a>无类型常量</h3><p>Go语言的常量有个不同寻常之处。虽然一个常量可以有任意一个确定的基础类型，例如 int 或 float64，或者是类似 time.Duration 这样的基础类型，但是许多常量并没有一个明确的基础类型。</p>
-<p>编译器为这些没有明确的基础类型的数字常量提供比基础类型更高精度的算术运算，可以认为至少有 256bit 的运算精度。这里有六种未明确类型的常量类型，分别是无类型的布尔型、无类型的整数、无类型的字符、无类型的浮点数、无类型的复数、无类型的字符串。</p>
-<p>通过延迟明确常量的具体类型，不仅可以提供更高的运算精度，而且可以直接用于更多的表达式而不需要显式的类型转换。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x <span class="type">float32</span> = math.Pi</span><br><span class="line"><span class="keyword">var</span> y <span class="type">float64</span> = math.Pi</span><br><span class="line"><span class="keyword">var</span> z <span class="type">complex128</span> = math.Pi</span><br></pre></td></tr></table></figure>
-
-<p>如果 math.Pi 被确定为特定类型，比如 float64，那么结果精度可能会不一样，同时对于需要 float32 或 complex128 类型值的地方则需要一个明确的强制类型转换：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Pi64 <span class="type">float64</span> = math.Pi</span><br><span class="line"><span class="keyword">var</span> x <span class="type">float32</span> = <span class="type">float32</span>(Pi64)</span><br><span class="line"><span class="keyword">var</span> y <span class="type">float64</span> = Pi64</span><br><span class="line"><span class="keyword">var</span> z <span class="type">complex128</span> = <span class="type">complex128</span>(Pi64)</span><br></pre></td></tr></table></figure>
-
-<p>对于常量面值，不同的写法可能会对应不同的类型。例如 0、0.0、0i 和 \u0000 虽然有着相同的常量值，但是它们分别对应无类型的整数、无类型的浮点数、无类型的复数和无类型的字符等不同的常量类型。同样，true 和 false 也是无类型的布尔类型，字符串面值常量是无类型的字符串类型。</p>
-<h2 id="type关键字（类型别名）"><a href="#type关键字（类型别名）" class="headerlink" title="type关键字（类型别名）"></a>type关键字（类型别名）</h2><p>类型别名是 Go 1.9 版本添加的新功能，主要用于解决代码升级、迁移中存在的类型兼容性问题。在 C&#x2F;<a target="_blank" rel="noopener" href="http://c.biancheng.net/cplus/">C++</a> 语言中，代码重构升级可以使用宏快速定义一段新的代码，Go语言中没有选择加入宏，而是解决了重构中最麻烦的类型名变更问题。</p>
-<p>在 Go 1.9 版本之前定义内建类型的代码是这样写的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type byte uint8</span><br><span class="line">type rune int32</span><br></pre></td></tr></table></figure>
-
-<p>而在 Go 1.9 版本之后变为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type byte = uint8</span><br><span class="line">type rune = int32</span><br></pre></td></tr></table></figure>
-
-<p>这个修改就是配合类型别名而进行的修改。</p>
-<h3 id="区分类型别名与类型定义"><a href="#区分类型别名与类型定义" class="headerlink" title="区分类型别名与类型定义"></a>区分类型别名与类型定义</h3><p>定义类型别名的写法为：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> TypeAlias = Type</span><br></pre></td></tr></table></figure>
-
-<p>类型别名规定：TypeAlias 只是 Type 的别名，本质上 TypeAlias 与 Type 是同一个类型，就像一个孩子小时候有小名、乳名，上学后用学名，英语老师又会给他起英文名，但这些名字都指的是他本人。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">// 将NewInt定义为int类型</span></span><br><span class="line"><span class="keyword">type</span> NewInt <span class="type">int</span></span><br><span class="line"><span class="comment">// 将int取一个别名叫IntAlias</span></span><br><span class="line"><span class="keyword">type</span> IntAlias = <span class="type">int</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 将a声明为NewInt类型</span></span><br><span class="line">    <span class="keyword">var</span> a NewInt</span><br><span class="line">    <span class="comment">// 查看a的类型名</span></span><br><span class="line">    fmt.Printf(<span class="string">&quot;a type: %T\n&quot;</span>, a)</span><br><span class="line">    <span class="comment">// 将a2声明为IntAlias类型</span></span><br><span class="line">    <span class="keyword">var</span> a2 IntAlias</span><br><span class="line">    <span class="comment">// 查看a2的类型名</span></span><br><span class="line">    fmt.Printf(<span class="string">&quot;a2 type: %T\n&quot;</span>, a2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">a type: main.NewInt</span></span><br><span class="line"><span class="comment">a2 type: int</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>type NewInt int </code>，将 NewInt 定义为 int 类型，这是常见的定义类型的方法，通过 type 关键字的定义，NewInt 会形成一种新的类型，NewInt 本身依然具备 int 类型的特性。</li>
-<li><code>type IntAlias = int</code>，将 IntAlias 设置为 int 的一个别名，使用 IntAlias 与 int 等效。</li>
-<li><code>var a NewInt</code>，将 a 声明为 NewInt 类型，此时若打印，则 a 的值为 0。</li>
-<li><code>fmt.Printf(&quot;a type: %T\n&quot;, a)</code>，使用<code>%T</code>格式化参数，打印变量 a 本身的类型。</li>
-<li><code>var a2 IntAlias</code>，将 a2 声明为 IntAlias 类型，此时打印 a2 的值为 0。</li>
-<li><code>fmt.Printf(&quot;a2 type: %T\n&quot;, a2)</code>，打印 a2 变量的类型。</li>
-</ul>
-<p>结果显示 a 的类型是 main.NewInt，表示 main 包下定义的 NewInt 类型，a2 类型是 int，IntAlias 类型只会在代码中存在，编译完成时，不会有 IntAlias 类型。</p>
-<h3 id="非本地类型不能定义方法"><a href="#非本地类型不能定义方法" class="headerlink" title="非本地类型不能定义方法"></a>非本地类型不能定义方法</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">// 定义time.Duration的别名为MyDuration</span></span><br><span class="line"><span class="keyword">type</span> MyDuration = time.Duration</span><br><span class="line"><span class="comment">// 为MyDuration添加一个函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m MyDuration)</span></span> EasySet(a <span class="type">string</span>) &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>编译上面代码报错，信息如下：</p>
-<p><code>cannot define new methods on non-local type time.Duration</code></p>
-<p>编译器提示：不能在一个非本地的类型 time.Duration 上定义新方法，非本地类型指的就是 time.Duration 不是在 main 包中定义的，而是在 time 包中定义的，与 main 包不在同一个包中，因此不能为不在一个包中的类型定义方法。</p>
-<p>解决这个问题有下面两种方法：</p>
-<ul>
-<li>将第<code>type MyDuration = time.Duration</code>修改为<code>type MyDuration time.Duration</code>，也就是将 <code>MyDuration</code> 从别名改为类型；</li>
-<li>将 MyDuration 的别名定义放在 time 包中</li>
-</ul>
-<h3 id="在结构体成员嵌入时使用别名"><a href="#在结构体成员嵌入时使用别名" class="headerlink" title="在结构体成员嵌入时使用别名"></a>在结构体成员嵌入时使用别名</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;reflect&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">// 定义商标结构</span></span><br><span class="line"><span class="keyword">type</span> Brand <span class="keyword">struct</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 为商标结构添加Show()方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t Brand)</span></span> Show() &#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 为Brand定义一个别名FakeBrand</span></span><br><span class="line"><span class="keyword">type</span> FakeBrand = Brand</span><br><span class="line"><span class="comment">// 定义车辆结构</span></span><br><span class="line"><span class="keyword">type</span> Vehicle <span class="keyword">struct</span> &#123;</span><br><span class="line">    <span class="comment">// 嵌入两个结构</span></span><br><span class="line">    FakeBrand</span><br><span class="line">    Brand</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 声明变量a为车辆类型</span></span><br><span class="line">    <span class="keyword">var</span> a Vehicle</span><br><span class="line">   </span><br><span class="line">    <span class="comment">// 指定调用FakeBrand的Show</span></span><br><span class="line">    a.FakeBrand.Show()</span><br><span class="line">    <span class="comment">// 取a的类型反射对象</span></span><br><span class="line">    ta := reflect.TypeOf(a)</span><br><span class="line">    <span class="comment">// 遍历a的所有成员</span></span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; ta.NumField(); i++ &#123;</span><br><span class="line">        <span class="comment">// a的成员信息</span></span><br><span class="line">        f := ta.Field(i)</span><br><span class="line">        <span class="comment">// 打印成员的字段名和类型</span></span><br><span class="line">        fmt.Printf(<span class="string">&quot;FieldName: %v, FieldType: %v\n&quot;</span>, f.Name, f.Type.</span><br><span class="line">            Name())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FieldName: FakeBrand, FieldType: Brand</span><br><span class="line">FieldName: Brand, FieldType: Brand</span><br></pre></td></tr></table></figure>
-
-<p>代码说明如下：</p>
-<ul>
-<li><code>type Brand struct</code>，定义商标结构。</li>
-<li><code>func (t Brand) Show()</code>，为商标结构添加 Show() 方法。</li>
-<li><code>type FakeBrand = Brand</code>，为 Brand 定义一个别名 FakeBrand。</li>
-<li><code>type Vehicle struct&#123;FakeBrand Brand&#125;</code>，定义车辆结构 Vehicle，嵌入 FakeBrand 和 Brand 结构。</li>
-<li><code>var a Vehicle</code>，将 Vechicle 实例化为 a。</li>
-<li><code>a.FakeBrand.Show()</code>，显式调用 Vehicle 中 FakeBrand 的 Show() 方法。</li>
-<li><code>ta := reflect.TypeOf(a)</code>，使用反射取变量 a 的反射类型对象，以查看其成员类型。</li>
-<li>遍历 a 的结构体成员。</li>
-<li><code>fmt.Printf(&quot;FieldName: %v, FieldType: %v\n&quot;, f.Name, f.Type.</code>，打印 Vehicle 类型所有成员的信息。</li>
-</ul>
-<p>这个例子中，FakeBrand 是 Brand 的一个别名，在 Vehicle 中嵌入 FakeBrand 和 Brand 并不意味着嵌入两个 Brand，FakeBrand 的类型会以名字的方式保留在 Vehicle 的成员中。</p>
-<p>如果尝试将第 33 行改为：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.Show()</span><br></pre></td></tr></table></figure>
-
-<p>编译器将发生报错：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ambiguous selector a.Show</span><br></pre></td></tr></table></figure>
-
-<p>在调用 Show() 方法时，因为两个类型都有 Show() 方法，会发生歧义，证明 FakeBrand 的本质确实是 Brand 类型。</p>
-<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><p>标识符是指Go语言对各种变量、方法、函数等命名时使用的字符序列，标识符由若干个字母、下划线<code>_</code>、和数字组成，且第一个字符必须是字母。通俗的讲就是凡可以自己定义的名称都可以叫做标识符。</p>
-<p>下划线<code>_</code>是一个特殊的标识符，称为空白标识符，它可以像其他标识符那样用于变量的声明或赋值（任何类型都可以赋值给它），但任何赋给这个标识符的值都将被抛弃，因此这些值不能在后续的代码中使用，也不可以使用<code>_</code>作为变量对其它变量进行赋值或运算。</p>
-<p>在使用标识符之前必须进行声明，声明一个标识符就是将这个标识符与常量、类型、变量、函数或者代码包绑定在一起。在同一个代码块内标识符的名称不能重复。</p>
-<p>标识符的命名需要遵守以下规则：</p>
-<ul>
-<li>由 26 个英文字母、0~9、<code>_</code>组成；</li>
-<li>不能以数字开头，例如 var 1num int 是错误的；</li>
-<li>Go语言中严格区分大小写；</li>
-<li>标识符不能包含空格；</li>
-<li>不能以系统保留关键字作为标识符，比如 break，if 等等。</li>
-</ul>
-<p>命名标识符时还需要注意以下几点：</p>
-<ul>
-<li>标识符的命名要尽量采取简短且有意义；</li>
-<li>不能和标准库中的包名重复；</li>
-<li>为变量、函数、常量命名时采用驼峰命名法，例如 stuName、getVal；</li>
-</ul>
-<p>当然Go语言中的变量、函数、常量名称的首字母也可以大写，如果首字母大写，则表示它可以被其它的包访问（类似于 <a target="_blank" rel="noopener" href="http://c.biancheng.net/java/">Java</a> 中的 public）；如果首字母小写，则表示它只能在本包中使用 (类似于 Java 中 private）。</p>
-<p>在Go语言中还存在着一些特殊的标识符，叫做预定义标识符，如下表所示：</p>
-<table>
-<thead>
-<tr>
-<th>append</th>
-<th>bool</th>
-<th>byte</th>
-<th>cap</th>
-<th>close</th>
-<th>complex</th>
-<th>complex64</th>
-<th>complex128</th>
-<th>uint16</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>copy</td>
-<td>false</td>
-<td>float32</td>
-<td>float64</td>
-<td>imag</td>
-<td>int</td>
-<td>int8</td>
-<td>int16</td>
-<td>uint32</td>
-</tr>
-<tr>
-<td>int32</td>
-<td>int64</td>
-<td>iota</td>
-<td>len</td>
-<td>make</td>
-<td>new</td>
-<td>nil</td>
-<td>panic</td>
-<td>uint64</td>
-</tr>
-<tr>
-<td>print</td>
-<td>println</td>
-<td>real</td>
-<td>recover</td>
-<td>string</td>
-<td>true</td>
-<td>uint</td>
-<td>uint8</td>
-<td>uintptr</td>
-</tr>
-</tbody></table>
-<p>预定义标识符一共有 36 个，主要包含Go语言中的基础数据类型和内置函数，这些预定义标识符也不可以当做标识符来使用。</p>
-<h2 id="运算优先级"><a href="#运算优先级" class="headerlink" title="运算优先级"></a>运算优先级</h2><table>
-<thead>
-<tr>
-<th>优先级</th>
-<th>分类</th>
-<th>运算符</th>
-<th>结合性</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>逗号运算符</td>
-<td>,</td>
-<td>从左到右</td>
-</tr>
-<tr>
-<td>2</td>
-<td>赋值运算符</td>
-<td>&#x3D;、+&#x3D;、-&#x3D;、*&#x3D;、&#x2F;&#x3D;、 %&#x3D;、 &gt;&#x3D;、 &lt;&lt;&#x3D;、&amp;&#x3D;、^&#x3D;、|&#x3D;</td>
-<td>从右到左</td>
-</tr>
-<tr>
-<td>3</td>
-<td>逻辑或</td>
-<td>||</td>
-<td>从左到右</td>
-</tr>
-<tr>
-<td>4</td>
-<td>逻辑与</td>
-<td>&amp;&amp;</td>
-<td>从左到右</td>
-</tr>
-<tr>
-<td>5</td>
-<td>按位或</td>
-<td>|</td>
-<td>从左到右</td>
-</tr>
-<tr>
-<td>6</td>
-<td>按位异或</td>
-<td>^</td>
-<td>从左到右</td>
-</tr>
-<tr>
-<td>7</td>
-<td>按位与</td>
-<td>&amp;</td>
-<td>从左到右</td>
-</tr>
-<tr>
-<td>8</td>
-<td>相等&#x2F;不等</td>
-<td>&#x3D;&#x3D;、!&#x3D;</td>
-<td>从左到右</td>
-</tr>
-<tr>
-<td>9</td>
-<td>关系运算符</td>
-<td>&lt;、&lt;&#x3D;、&gt;、&gt;&#x3D;</td>
-<td>从左到右</td>
-</tr>
-<tr>
-<td>10</td>
-<td>位移运算符</td>
-<td>&lt;&lt;、&gt;&gt;</td>
-<td>从左到右</td>
-</tr>
-<tr>
-<td>11</td>
-<td>加法&#x2F;减法</td>
-<td>+、-</td>
-<td>从左到右</td>
-</tr>
-<tr>
-<td>12</td>
-<td>乘法&#x2F;除法&#x2F;取余</td>
-<td>*（乘号）、&#x2F;、%</td>
-<td>从左到右</td>
-</tr>
-<tr>
-<td>13</td>
-<td>单目运算符</td>
-<td>!、*（指针）、&amp; 、++、–、+（正号）、-（负号）</td>
-<td>从右到左</td>
-</tr>
-<tr>
-<td>14</td>
-<td>后缀运算符</td>
-<td>( )、[ ]、-&gt;</td>
-<td>从左到右</td>
-</tr>
-</tbody></table>
-<p>注意：优先级值越大，表示优先级越高。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -3621,7 +3566,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -3634,7 +3579,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

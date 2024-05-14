@@ -856,6 +856,334 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/10/Mysql%E9%9D%A2%E8%AF%95%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/05/10/Mysql%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-title-link" itemprop="url">MYSQL面试题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-05-10 13:26:38" itemprop="dateCreated datePublished" datetime="2024-05-10T13:26:38+08:00">2024-05-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-15 01:03:48" itemprop="dateModified" datetime="2024-05-15T01:03:48+08:00">2024-05-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><h2 id="数据库的三范式"><a href="#数据库的三范式" class="headerlink" title="数据库的三范式"></a>数据库的三范式</h2><p>第一范式：列不可再分</p>
+<p>第二范式：行可以唯一区分，主键约束</p>
+<p>第三范式：表的非主属性不能依赖</p>
+<p>与其他表的非主属性外键约束且三大范式是一级一级依赖的，第二范式建立在第一范式上，第三范式建立第一第二范式上。</p>
+<h2 id="MYSQL数据库引擎"><a href="#MYSQL数据库引擎" class="headerlink" title="MYSQL数据库引擎"></a>MYSQL数据库引擎</h2><p>mysql 常用引擎包括：MYISAM、Innodb、Memory、MERGE</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202405131951060.png"/>
+
+<ul>
+<li>MYISAM：<strong>全表锁</strong>，拥有较高的执行速度，<strong>不支持事务，不支持外键</strong>，并发性能差，占用空间相对较小，<strong>对事务完整性没有要求</strong>，以select、insert 为主的应用基本上可以使用这引擎</li>
+<li>Innodb：<strong>行级锁</strong>，提供了具有提交、<strong>回滚和崩溃回复能力的事务安全，支持自动增长列</strong>，<strong>支持外键约束</strong>，并发能力强，占用空间是MYISAM 的2.5 倍，处理效率相对会差一些</li>
+<li>Memory：全表锁，存储在内容中，速度快，<strong>但会占用和数据量成正比的内存空间</strong>且<strong>数据在mysql 重启时会丢失，默认使用HASH 索引</strong>，检索效率非常高，但<strong>不适用于精确查找</strong>，主要用于那些内容变化不频繁的代码表</li>
+<li>MERGE：是一组MYISAM 表的组合</li>
+</ul>
+<h3 id="InnoDB-与-MyISAM-的区别"><a href="#InnoDB-与-MyISAM-的区别" class="headerlink" title="InnoDB 与 MyISAM 的区别"></a>InnoDB 与 MyISAM 的区别</h3><ol>
+<li>InnoDB 支持事务，MyISAM 不支持，对于InnoDB 每一条SQL 语言都默认封装成事务，自<br>动提交，这样会影响速度，所以最好把多条SQL 语言放在begin 和commit 之间，组成一<br>个事务；</li>
+<li>InnoDB 支持外键，而MyISAM 不支持。对一个包含外键的InnoDB 表转为MYISAM 会失败；</li>
+<li>InnoDB 是聚集索引，数据文件是和索引绑在一起的，必须有主键，通过主键索引效率很高。<br>但是辅助索引需要两次查询，先查询到主键，然后再通过主键查询到数据。因此，主键不应<br>该过大，因为主键太大，其他索引也都会很大。而MyISAM 是非聚集索引，数据文件是分<br>离的， 索引保存的是数据文件的指针。主键索引和辅助索引是独立的。</li>
+<li>InnoDB 不保存表的具体行数，执行select count(*) from table 时需要全表扫描。而MyISAM<br>用一个变量保存了整个表的行数，执行上述语句时只需要读出该变量即可，速度很快；</li>
+<li>Innodb 不支持全文索引，而MyISAM 支持全文索引，查询效率上MyISAM 要高；</li>
+</ol>
+<h2 id="数据库的事务"><a href="#数据库的事务" class="headerlink" title="数据库的事务"></a>数据库的事务</h2><p>什么是事务？ 多条 sql 语句，要么全部成功，要么全部失败。</p>
+<p>事务的特征：数据库事务特征：</p>
+<ul>
+<li>原子性：组成一个事务的多个数据库操作是一个不可分割的原子单元，只有所有操作都成功， 整个事务才会提交。任何一个操作失败，已经执行的任何操作都必须撤销，让数据库返回初始状态。</li>
+<li>一致性：事务操作成功后，数据库所处的状态和它的业务规则是一致的。即数据不会被破坏。如A 转账100 元给B，不管操作是否成功，A 和B 的账户总额是不变的。</li>
+<li>隔离性：在并发数据操作时，不同的事务拥有各自的数据空间，它们的操作不会对彼此产生干扰</li>
+<li>持久性：一旦事务提交成功，事务中的所有操作都必须持久化到数据库中。</li>
+</ul>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
+<li>官方介绍索引是帮助MySQL 高效获取数据的数据结构。更通俗地说，数据库索引好比是一本书前面的目录，能加快数据库的查询速度。</li>
+<li>一般来说索引本身也很大，不可能全部存储在内存中，因此索引往往是存储在磁盘上的文件中的（可能存储在单独的索引文件中，也可能和数据一起存储在数据文件中）。</li>
+<li>我们通常所说的索引，包括聚集索引、覆盖索引、组合索引、前缀索引、唯一索引等，没有特别说明，默认都是使用树结构组织（多路搜索树，并不一定是二叉的）的索引。</li>
+</ul>
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><ol>
+<li>查询语句中不要使用select *</li>
+<li>尽量减少子查询，使用关联查询（left join,right join,inner join）替代</li>
+<li>减少使用IN 或者NOT IN ，使用exists ，not exists 或者关联查询语句替代</li>
+<li>or 的查询尽量用union 或者union all 代替（在确认没有重复数据或者不用剔除重复数据时， union all 会更好）</li>
+<li>应尽量避免在where 子句中使用！&#x3D;或〈〉操作符，<strong>否则将引擎放弃使用索引而进行全表扫描。</strong></li>
+<li>应尽量避免在where 子句中对字段进行null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如： select id from t where num is null 可以在num 上设置默认值0，确保表中num列没有null 值，然后这样查询： select id from t where num&#x3D;0</li>
+</ol>
+<h2 id="drop、delete与truncate的区别"><a href="#drop、delete与truncate的区别" class="headerlink" title="drop、delete与truncate的区别"></a>drop、delete与truncate的区别</h2><p>delete 和truncate 只删除<strong>表的数据不删除表的结构</strong></p>
+<p>速度一般来说： drop&gt; truncate &gt;delete</p>
+<p>delete 语句是dml，这个操作会放到rollback segement 中，事务提交之后才生效； 如果有相应的trigger，执行的时候将被触发. </p>
+<p>truncate,drop 是ddl, 操作立即生效，原数据不放到rollback segment 中，不能回滚. 操作不触发trigger.</p>
+<h2 id="试图"><a href="#试图" class="headerlink" title="试图"></a>试图</h2><p>视图是一种虚拟的表，具有和物理表相同的功能。可以对视图进行增，改，查，操作，视图通常是有一个表或者多个表的行或列的子集。对视图的修改不影响基本表。它使得我们获取数据更容易， 相比多表查询。</p>
+<h2 id="内连接、左外连接、右外连接"><a href="#内连接、左外连接、右外连接" class="headerlink" title="内连接、左外连接、右外连接"></a>内连接、左外连接、右外连接</h2><ul>
+<li><strong>内连接（Inner Join）：</strong>匹配2 张表中相关联的记录。</li>
+<li><strong>左外连接（Left Outer Join）：</strong>除了匹配2 张表中相关联的记录外，还会匹配左表中剩余的记录，<strong>右表中未匹配到的字段用NULL 表示。</strong></li>
+<li><strong>右外连接（Right Outer Join）：</strong>除了匹配2 张表中相关联的记录外，还会匹配右表中剩余的记录，<strong>左表中未匹配到的字段用NULL 表示。</strong>在判定左表和右表时，<strong>要根据表名出现在Outer Join 的左右位置关系。</strong></li>
+</ul>
+<h2 id="并发事务带来的问题"><a href="#并发事务带来的问题" class="headerlink" title="并发事务带来的问题"></a>并发事务带来的问题</h2><p>在典型的应用程序中，多个事务并发运行，经常会操作相同的数据来完成各自的任务（多个用户对同一数据进行操作）。并发虽然是必须的，但可能会导致以下的问题。</p>
+<p><strong>脏读（Dirty read ）：</strong> 当一个事务正在访问数据并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另外一个事务也访问了这个数据，然后使用了这个数据。因为这个数据是还没有提交的数据，那么另外一个事务读到的这个数据是“脏数据” ，依据“脏数据”所做的操作可能是不正确的。</p>
+<p><strong>丢失修改（ Lost to modify）：</strong> 指在一个事务读取一个数据时，另外一个事务也访问了该数据，那么在第一个事务中修改了这个数据后，第二个事务也修改了这个数据。这样第一个事务内的修改结果就被丢失，因此称为丢失修改。例如：事务1 读取某表中的数据A&#x3D;20，事务2 也读取A&#x3D;20，事务1 修改A&#x3D;A-1，事务2 也修改A&#x3D;A-1，最终结果A&#x3D;19，事务1 的修改被丢失。</p>
+<p><strong>不可重复读（Unrepeatableread)：</strong>指在一个事务内多次读同一数据。在这个事务还没有结束时，另一个事务也访问该数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改导致第一个事务两次读取的数据可能不太一样。这就发生了在一个事务内两次读到的数据是不一样的情况，因此称为不可重复读。</p>
+<p>**幻读（Phantom read):**幻读与不可重复读类似。它发生在一个事务（T1)读取了几行数据，接着另一个并发事务（T2)插入了一些数据时。在随后的查询中，第一个事务（T1)就会发现多了一些原本不存在的记录，就好像发生了幻觉一样，所以称为幻读。</p>
+<p>不可重复读和幻读区别：<br>不可重复读的重点是修改比如多次读取一条记录发现其中某些列的值被修改，幻读的重点在于新增或者删除比如多次读取一条记录发现记录增多或减少了</p>
+<h2 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h2><h3 id="SQL标准定义了四个隔离级别"><a href="#SQL标准定义了四个隔离级别" class="headerlink" title="SQL标准定义了四个隔离级别"></a>SQL标准定义了四个隔离级别</h3><ul>
+<li>READ-UNCOMMITTED(读取未提交）:最低的隔离级别，允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读。</li>
+<li>READ-COMMITTED(读取已提交）:允许读取并发事务已经提交的数据，可以阻止重读，但是幻读或不可重复读仍有可能发生。</li>
+<li>REPEATABLE-READ(可重复读）:对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止重读和不可重复读，但幻读仍有可能发生。</li>
+<li>SERIALIZABLE(可串行化）:最高的隔离级别，完全服从ACID的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止空读、不可重复读以及幻读。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>READ-UNCOMMITTED</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>READ-COMMITTED</td>
+<td>×</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>REPEATABLE-READ</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>SERIALIZABLE</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody></table>
+<p>存储引擎的默认支持的隔离级别是 REPEATABLE-READ(可重读）。</p>
+<p>这里需要注意的是：与SQL标准不同的地方在于InnoDB存储引擎在</p>
+<p>REPEATABLE-READ(可重读）事务隔离级别下使用的是Next-Key Lock锁算法，因此可以避免幻读的产生，这与其他数据库系统（如SQLServer)是不同的。所以说InnoDB存储引擎的默认支持的隔离级别是</p>
+<p>REPEATABLE-READ(可重读）已经可以完全保证事务的隔离性要求，即达到了SQL标准的SERIALIZABLE(可串行化）隔离级别。因为隔离级别越低，事务请求的锁越少，所以大部分数据库系统的隔离级别都是</p>
+<p>READ-COMMITTED(读取提交内容）,但是你要知道的是InnoDB存储引擎默认使用REPEAaTABLE-READ(可重读）并不会有任何性能损失。</p>
+<p>InnoDB存储引擎在分布式事务的情况下一般会用到SERIALIZABLE(可串行化）隔离级别。</p>
+<h2 id="大表优化"><a href="#大表优化" class="headerlink" title="大表优化"></a>大表优化</h2><p>当MySQL 单表记录数过大时，数据库的CRUD 性能会明显下降，一些常见的优化</p>
+<p>措施如下：</p>
+<h3 id="限定数据的范围"><a href="#限定数据的范围" class="headerlink" title="限定数据的范围"></a>限定数据的范围</h3><p>务必禁止不带任何限制数据范围条件的查询语句。比如：我们当用户在查询订单历史的时候，我们可以控制在一个月的范围内；</p>
+<h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><p>经典的数据库拆分方案，主库负责写，从库负责读；</p>
+<h3 id="垂直分区"><a href="#垂直分区" class="headerlink" title="垂直分区"></a>垂直分区</h3><p>根据数据库里面数据表的相关性进行拆分。例如，用户表中既有用户的登录信息又有用户的基本信息，可以将用户表拆分成两个单独的表，甚至放到单独的库做分库。</p>
+<p>简单来说垂直拆分是指数据表列的拆分，<strong>把一张列比较多的表拆分为多张表</strong>。</p>
+<ul>
+<li><strong>垂直拆分的优点：</strong>可以使得列数据变小，在查询时减少读取的Block数，减少1&#x2F;0次数。此外，垂直分区可以简化表的结构，易于维护。</li>
+<li><strong>垂直拆分的缺点：</strong>主键会出现允余，需要管理穴余列，并会引起Join操作，可以通过在应用层 进行Join来解决。此外，垂直分区会让事务变得更加复杂；</li>
+</ul>
+<h3 id="水平分区"><a href="#水平分区" class="headerlink" title="水平分区"></a>水平分区</h3><p><strong>保持数据表结构不变，通过某种策略存储数据分片。这样每一组数据分散到不同的表或者库中，达到了分布式的目的。水平拆分可以支撑非常大的数据量。</strong></p>
+<p>水平拆分是指数据表行的拆分，表的行数超过200 万行时，就会变慢，这时可以把一张的表的数据拆成多张表来存放。举个例子：我们可以将用户信息表拆分成多个用户信息表，这样就可以避免单一表数据量过大对性能造成影响。</p>
+<p>水平拆分可以支持非常大的数据量。需要注意的一点是：分表仅仅是解决了单一表数据过大的问题，但由于表的数据还是在同一台机器上，其实对于提升MySQL 并发能力没有什么意义，所以<strong>水平拆分最好分库</strong>。</p>
+<blockquote>
+<p>水平拆分能够支持非常大的数据量存储，应用端改造也少，但分片事务难以解决，跨节点Join性能较差，逻辑复杂。《Java 工程师修炼之道》的作者推荐尽量不要对数据进行分片，因为拆分会带来逻辑、部署、运维的各种复杂度，一般的数据表在优化得当的情况下支撑千万以下的数据量是没有太大问题的。如果实在要分片，尽量选择客户端分片架构，这样可以减少一次和中间件的网络I&#x2F;O。</p>
+</blockquote>
+<p>下面补充一下数据库分片的两种常见方案：</p>
+<p>客户端代理：分片逻辑在应用端，封装在jar包中，通过修改或者封装JDBC层来实现。当当网的Sharding-JDBC、阿里的TDDL是两种比较常用的实现。</p>
+<p>中间件代理：在应用和数据中间加了一个代理层。分片逻辑统一维护在中间件服务中。我们现在谈的Mycat、360的Atlas、网易的DDB等等都是这种架构的实现。</p>
+<h2 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h2><h3 id="分库分表之后，-id主键如何处理"><a href="#分库分表之后，-id主键如何处理" class="headerlink" title="分库分表之后， id主键如何处理"></a>分库分表之后， id主键如何处理</h3><p>因为要是分成多个表之后，每个表都是从1 开始累加，这样是不对的，我们需要一个全局唯一的id 来支持</p>
+<p>生成全局id 有下面这几种方式：</p>
+<ul>
+<li><p>UUID:不适合作为主键，因为太长了，并且无序不可读，查询效率低。比较适合用于生成一的名字的标示比如文件的名字。</p>
+</li>
+<li><p>数据库自增id：两台数据库分别设置不同步长，生成不重复ID的策略来实现高可用。这种方式生成的id有序，但是需要独立部署数据库实例，成本高，还会有性能瓶颈。</p>
+</li>
+<li><p>利用redis生成id：性能比较好，灵活方便，不依赖于数据库。但是，引入了新的组件造成系统更加复杂，可用性降低，编码更加复杂，增加了系统成本。</p>
+</li>
+<li><p>Twitter的snowflake算法：Github地址：</p>
+</li>
+<li><p>美团的分布式生成系统：Leaf 是美团开源的分布式ID 生成器，能保证全局唯一性、趋势递增、单调递增、信息安全，里面也提到了几种分布式方案的对比，但也需要依赖关系数据库、Zookeeper 等中间件。</p>
+</li>
+</ul>
+<h2 id="SQL执行顺序"><a href="#SQL执行顺序" class="headerlink" title="SQL执行顺序"></a>SQL执行顺序</h2><ol>
+<li><p>取得链接，使用到MySQL 中的连接器。</p>
+</li>
+<li><p>查询缓存，key 为SQL 语句，value 为查询结果，如果查到就直接返回。不建议使用次缓存， 在MySQL 8.0 版本已经将查询缓存删除，也就是说MySQL 8.0 版本后不存在此功能。</p>
+</li>
+<li><p>分析器，分为词法分析和语法分析。此阶段只是做一些SQL 解析，语法校验。所以一般语法错误在此阶段。</p>
+</li>
+<li><p>优化器，是在表里有多个索引的时候，决定使用哪个索引；或者一个语句中存在多表关联的时候（join），决定各个表的连接顺序。</p>
+</li>
+<li><p>执行器，通过分析器让SQL 知道你要干啥，通过优化器知道该怎么做，于是开始执行语句。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">执行语句的时候还要判断是否具备此权限，没有权限就直接返回提示没有权限的错误；有权限则打开表，根据表的引擎定义，去使用这个引擎提供的接口，获取这个表的第一行，判断id 是否等于1。如果是，直接返回；如果不是继续调用引擎接口去下一行，重复相同的判断，直到取到这个表的最后一行，最后返回。</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="索引-1"><a href="#索引-1" class="headerlink" title="索引"></a>索引</h2><h3 id="索引优缺点"><a href="#索引优缺点" class="headerlink" title="索引优缺点"></a>索引优缺点</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202405142210161.png"/>
+
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>提高数据的检索速度，降低数据库IO成本：使用索引的意义就是通过缩小表中需要查询的记录的数目从而加快搜索的速度</li>
+<li>降低数据排序的成本，降低CPU消耗：索引之所以查的快，是因为先将数据排好序，若该字段正好需要排序，则正好降低了排序的成本</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li><p>占用存储空间：素引实际上也是一张表，记录了主键与索引字段，一般以索引文件的形式存储在磁盘上</p>
+</li>
+<li><p>降低更新表的速度：表的数据发生了变化，对应的索引也需要一起变更从而减低的更新速度。否则索引指向的物理数据可能不对，这也是素引失效的原因</p>
+</li>
+</ul>
+<h2 id="MySQL中varchar与char的区别？varchar-30-中的30代表的含义？"><a href="#MySQL中varchar与char的区别？varchar-30-中的30代表的含义？" class="headerlink" title="MySQL中varchar与char的区别？varchar(30)中的30代表的含义？"></a>MySQL中varchar与char的区别？varchar(30)中的30代表的含义？</h2><p>varchar与char的区别，char是一种固定长度的类型，varchar则是一种可变长度的类型。</p>
+<p>varchar(30)中30的涵义最多存放30个字符。varchar(30)和（130)存储hello所占空间一样，但后者在排序时会消耗更多内存，因为ORDER BY col 采用 fixed_length 计算col长度（memory引擎也一样）。</p>
+<p>对效率要求高用char,对空间使用要求高用varchar。</p>
+<h2 id="int-11-中的11代表什么含义？"><a href="#int-11-中的11代表什么含义？" class="headerlink" title="int(11)中的11代表什么含义？"></a>int(11)中的11代表什么含义？</h2><p>int(11)中的11,不影响字段存储的范围，只影响展示效果</p>
+<h2 id="为什么-SELECT-COUNT-FROM-table在InnoDB比-MylSAM-慢？"><a href="#为什么-SELECT-COUNT-FROM-table在InnoDB比-MylSAM-慢？" class="headerlink" title="为什么 SELECT COUNT(*)FROM table在InnoDB比 MylSAM 慢？"></a>为什么 SELECT COUNT(*)FROM table在InnoDB比 MylSAM 慢？</h2><p>对于SELECT COUNT(*) FROM table语句，在没有WHERE条件的情况下，InnoDB比MyISAM可能会慢很多，尤其在大表的情况下。因为，InnoDB是去实时统计结果，会全表扫描；而MyISAM内部维持了一个计数器，预存了结果，所以直接返回即可。</p>
+<h2 id="InnoDB与MyISAM区别？"><a href="#InnoDB与MyISAM区别？" class="headerlink" title="InnoDB与MyISAM区别？"></a>InnoDB与MyISAM区别？</h2><ul>
+<li><p>在MySQL5.1及之前的版本中，MyISAM是默认的存储引擎，而在MySQL5.5版本以后<br>默认使用InnoDB存储引擎。</p>
+</li>
+<li><p>MyISAM不支持行级锁，换句话说，MyISAM会对整张表加锁，而不是针对行。同时，MyISAM不支持事务和外键。MyISAM可被压缩，存储空间较小，而且MyISAM在筛选大量数据时非常快。</p>
+</li>
+<li><p>InnoDB是事务型引擎，当事务异常提交时，会被回滚。同时，InnoDB支持行锁。此外，InnoDB需要更多存储空间，会在内存中建立其专用的缓冲池用于高速缓冲数据和索引。<br>InnoDB支持自动崩溃恢复特性。</p>
+</li>
+</ul>
+<p>建议：一般情况下，个人建议优先选择InnoDB存储引擎，并且尽量不要将InnoDB与MyISAM混合使用。</p>
+<h2 id="MySQL索引类型"><a href="#MySQL索引类型" class="headerlink" title="MySQL索引类型"></a>MySQL索引类型</h2><h3 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h3><p>索引列中的值必须是唯一的，不允许有空值。</p>
+<h3 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h3><p>MySQL 中基本索引类型，没有什么限制，允许在定义索引的列中插入重复值和空值。</p>
+<h3 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h3><p>索引列中的值必须是唯一的，但是允许为空值。</p>
+<h3 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h3><p>只能在文本类型CHAR,VARCHAR,TEXT 类型字段上创建全文索引。字段长度比较大时，如果创建<br>普通索引，在进行like 模糊查询时效率比较低，这时可以创建全文索引。MyISAM 和InnoDB<br>中都可以使用全文索引。</p>
+<h3 id="空间索引"><a href="#空间索引" class="headerlink" title="空间索引"></a>空间索引</h3><p>MySQL 在5.7 之后的版本支持了空间索引，而且支持OpenGIS 几何数据模型。MySQL 在空间索<br>引这方面遵循OpenGIS 几何数据模型规则。</p>
+<h3 id="前缀索引"><a href="#前缀索引" class="headerlink" title="前缀索引"></a>前缀索引</h3><p>在文本类型如CHAR,VARCHAR,TEXT 类列上创建索引时，可以指定索引列的长度，但是数值类型<br>不能指定。</p>
+<p>其他（按照索引列数量分类）</p>
+<ol>
+<li>单列索引</li>
+<li>组合索引<br>组合索引的使用，需要遵循最左前缀匹配原则（最左匹配原则） 。一般情况下在条件允许的<br>情况下使用组合索引替代多个单列索引使用。</li>
+</ol>
+<h3 id="什么时候不要使用索引"><a href="#什么时候不要使用索引" class="headerlink" title="什么时候不要使用索引"></a>什么时候不要使用索引</h3><ol>
+<li>经常增删改的列不要建立索引；</li>
+<li>有大量重复的列不建立索引；</li>
+<li>表记录太少不要建立索引。</li>
+</ol>
+<h3 id="主键与索引有什么区别？"><a href="#主键与索引有什么区别？" class="headerlink" title="主键与索引有什么区别？"></a>主键与索引有什么区别？</h3><p>主键一定会创建一个唯一索引，但是有唯一索引的列不一定是主键；<br>主键不允许为空值，唯一索引列允许空值；<br>一个表只能有一个主键，但是可以有多个唯一索引；<br>主键可以被<strong>其他表引用为外键，唯一索引</strong>列不可以；<br>主键是一种约束，而唯一索引是一种索引，是表的冗余数据结构，两者有本</p>
+<h2 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h2><p>多版本并发控制（MVCC&#x3D;Multi-Version Concurrency Control），是一种用来解决读- 写冲突的无锁并发控制。也就是为事务分配单向增长的时间戳，为每个修改保存一个版本。版本与事务时间戳关联，读操作只读该事务开始前的数据库的快照（复制了一份数据）。这样在读操作不用阻塞写操作，写操作不用阻塞读操作的同时，避免了脏读和不可重复读。</p>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>在并发读写数据库时，可以做到在读操作时不用阻塞写操作，写操作也不用阻塞读操作，提高了数据库并发读写的性能。同时还可以解决脏读、幻读、不可重复读等事务隔离问题，但不能解决更新丢失问题。</p>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>MVCC 的目的就是多版本并发控制，在数据库中的实现，就是为了解决读写冲突，它的实现原理<br>主要是依赖记录中的3 个隐式字段、undo 日志、Read View 来实现的。</p>
+<h2 id="数据库的锁"><a href="#数据库的锁" class="headerlink" title="数据库的锁"></a>数据库的锁</h2><ol>
+<li>共享锁：不堵塞，多个用户可以同一时刻读取同一个资源，相互之间没有影响。</li>
+<li>排他锁：一个写操作阻塞其他的读锁和写锁，这样可以只允许一个用户进行写入，防止其他<br>  用户读取正在写入的资源。</li>
+<li>表锁：系统开销最小，会锁定整张表，MyISAM 使用表锁。</li>
+<li>行锁：容易出现死锁，发生冲突概率低，并发高，InnoDB 支持行锁（必须有索引才能实现，<br>  否则会自动锁全表，那么就不是行锁了）。</li>
+</ol>
+<h3 id="悲观锁和乐观锁"><a href="#悲观锁和乐观锁" class="headerlink" title="悲观锁和乐观锁"></a>悲观锁和乐观锁</h3><h4 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h4><p>在悲观锁的情况下，为了保证事务的隔离性，就需要一致性锁定。读取数据时给加锁，其他事务无<br>法修改这些数据。修改删除数据时也要加锁，其他事务无法读取这些数据。</p>
+<h4 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h4><p>相对悲观锁而言，乐观锁机制采取了更加宽松的加锁机制。悲观锁大多数情况下依靠数据库的锁<br>机制实现，以保证操作最大程度的独占性。但随之而来的就是数据库性能的大量开销，特别是对<br>长事务而言，这样的开销往往无法承受。</p>
+<p>乐观锁，大多是基于数据版本（Version）记录机制<br>实现。何谓数据版本？即为数据增加一个版本标识，在基于数据库表的版本解决方案中，一般是<br>通过为数据库表增加一个“version”字段来实现。读取出数据时，将此版本号一同读出，之后更新<br>时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行比<br>对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。</p>
+<h3 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h3><p>MySQL 行锁只能加在索引上，如果操作不走索引，就会升级为表锁。因为InnoDB 的行锁 是加在索引上的，如果不走索引，自然就没法使用行锁了，原因是InnoDB 是将primary key index 和相关的行数据共同放在B+ 树的叶节点。InnoDB 一定会有一个primary key ，secondary index 查找的时候，也是通过找到对应的primary ，再找对应的数据行。</p>
+<p>当非唯一索引上记录数超过一定数量时，行锁也会升级为表锁。测试发现当非唯一索引相同的内容不少于整个表记录的二分之一时会升级为表锁。因为当非唯一索引相同的内容达到整个记录的二分之一时，索引需要的性能比全文检索还要大，查询语句优化时会选择不走索引，造成索引失效，行锁自然就会升级为表锁。</p>
+<h3 id="避免死锁"><a href="#避免死锁" class="headerlink" title="避免死锁"></a>避免死锁</h3><ol>
+<li>设置获取锁的超时时间，至少能保证最差情况下，可以退出程序，不至于一直等待导致死锁；</li>
+<li>设置按照同一顺序访问资源，类似于串行执行；</li>
+<li>避免事务中的用户交叉；</li>
+<li>保持事务简短并在一个批处理中；</li>
+<li>使用低隔离级别；</li>
+<li>使用绑定链接。</li>
+</ol>
+<h2 id="如何做到高可用方案？"><a href="#如何做到高可用方案？" class="headerlink" title="如何做到高可用方案？"></a>如何做到高可用方案？</h2><p>MySQL 高可用，意味着不能一台MySQL 出了问题，就不能访问了。</p>
+<ol>
+<li>MySQL 高可用：分库分表，通过MyCat 连接多个MySQL</li>
+<li>MyCat 也得高可用：Haproxy，连接多个MyCat</li>
+<li>Haproxy 也得高可用：通过keepalived 辅助Haproxy</li>
+</ol>
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h2 id="为了应对多请求缓存数据，缓解mysql压力而诞生"><a href="#为了应对多请求缓存数据，缓解mysql压力而诞生" class="headerlink" title="为了应对多请求缓存数据，缓解mysql压力而诞生"></a>为了应对多请求缓存数据，缓解mysql压力而诞生</h2><p>Redis主要数据存在内存中，通过设置超时时间来解决Redis在内存内数据不断膨胀问题<br>当内存压力太大时，通过随机算法删除内容释放空间（随机算法）<br>当超期数据太久于内存中未删除，遇到请求查询超期键值，则会立即删除该数据（被动触发，惰性删除）</p>
+<h2 id="内存淘汰策略"><a href="#内存淘汰策略" class="headerlink" title="内存淘汰策略"></a>内存淘汰策略</h2><p>①noeviction：返回错误，不会删除任何键值<br>②allkeys-lru：使用LRU算法删除最近最少使用的键值<br>③volatile-lru：使用LRU算法从设置了过期时间的键集合中删除最近最少使用的键值<br>④allkeys-random:从所有key随机删］除<br>⑤volatile-random：从设置了过期时间的键的集合中随机删除<br>⑥volat计e-ttl：从设置了过期时间的键中删除剩余时间最短的键<br>⑦volatile・lfu：从配置了过期时间的键中删除使用频率最少的键<br>⑧allkeys-lfu:从所有键中删除使用频率最少的键</p>
+<h2 id="缓存击穿-缓存雪崩"><a href="#缓存击穿-缓存雪崩" class="headerlink" title="缓存击穿 缓存雪崩"></a>缓存击穿 缓存雪崩</h2><p>mysql被多次申请查询返回空数据从而使得redis无法缓存（缓存穿透&#x2F;缓存击穿）<br>mysql因为（大量）redis数据丢失或者数据删除导致大量请求涌向mysql导致mysql处理不过来请求（缓存雪崩）<br>解决方法：过期时间均匀分布+热点数据永不过期</p>
+<h2 id="持久化-RDB-AOF"><a href="#持久化-RDB-AOF" class="headerlink" title="持久化 RDB AOF"></a>持久化 RDB AOF</h2><h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3><p>redis因为出错导致丢失数据（需要通过持久化存储）<br>RDB：将全部遍历写入二进制连续文件rdb (周期性备份)<br>为了防止大量重复备份，redis提供了save配置参数解决问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">save 900 1 #900秒 内有一个写入即备份（由子进程进行）</span><br></pre></td></tr></table></figure>
+
+<p>RDB数据不一致问题:因为数据库都是分钟级的，这种周期性备份还是容易丢数据</p>
+<h3 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h3><p>AOF持久化:类似mysql的binlog，将写入操作记录下来，保存操作的数据会先写入缓冲区AOF_BUF (会存放SET SAOO RPUSH等)</p>
+<p>AOF重写，为了防止AOF缓存数据过大问题：指令合并（子进程进行）</p>
+<p>但是子进程进行会导致AOF重写数据不一致。所以需要将指令存放AOF_REWRITE_BUF缓冲区，将重写进程启动后的命令写入缓冲区，运行完毕回写进去</p>
+<h3 id="主从节点"><a href="#主从节点" class="headerlink" title="主从节点"></a>主从节点</h3><p>为了防止Redis多次崩溃<br>主从：主节点主要负责写入数据，从节点主要负责读数据，做好数据同步，读写分离 提高性能。主节点崩了从节点就顶上（高可用集群）</p>
+<ul>
+<li>数据同步：若主节点生成的RDB文件同步期间又收到修改命令也会一并发给从节点</li>
+<li>命令传播：若主节点有数据写入、删除、修改命令也会挨个发给从节点</li>
+<li>版本控制：主节点发给从节点的数据会发送一份给缓存区，若从节点掉线了，从缓冲区的偏移量起发送同步数据</li>
+</ul>
+<h3 id="哨兵机制"><a href="#哨兵机制" class="headerlink" title="哨兵机制"></a>哨兵机制</h3><p>哨兵：专门有几个节点负责当管理员，不负责写入，当节点掉线时，由哨兵选择一个从节点顶上主节点<br>    每隔10s哨兵都需要发送info命令问候主节点情况（有多少从节点）<br>    每隔1s ping命令问候全部节点，若出现节点掉线则启动故障转移。这时发现的哨兵认定主观下线，会问候其他哨兵，当少服从多数认为下线，则认定客观下线。具体需要多少个哨兵认定，可以自己定义。<br>    故障转移：选个新的主节点，让其他从节点从新主节点那同步数据，再把原来的主节点改为从节点<br>    新主节点选择标准：给不同节点设置优先级，配置高的的优先级越高，与断开节点链接越短的，复制偏移越高的。</p>
+<h3 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h3><p>为了防止数据量过大（由于之前全都全量复制）</p>
+<p>集群：合并大服务器</p>
+<p>新节点加入问题：新节点加入必须由集群内某一节点发送MEET请求后，新节点回应PONG请求，再由集群内节点发送PING请求（类似TCP三次握手）</p>
+<p>数据分配：数据量公平问题：划分16384个哈希桶（槽位Slot）由程序员分配每个集群节点负责的槽位量。数据读写时对数据进行哈希运算，存入对应到槽位。每次计算存入节点会通知集群内所有节点。使用二进制通知，负责的槽位为1，共2048字节。（这样会导致存入数据需要遍历查看存入数据需要是哪个redis节点负责。）由此 新建一个大数组来存储每个槽位由哪个节点负责。（数据索引）</p>
+<p>需要每个槽位都有节点负责，集群才能正确上线。</p>
+<p>数据读写时候，集群节点会先检查数据是否由自己负责，否则会发送MOVED错误给请求端，使其去寻找正确节点（发送槽号，IP，端口）自动运行，无须调用</p>
+<p>为了防止节点掉线，从节点会充当集群内节点的Backup</p>
+<h2 id="Redis实现消息队列"><a href="#Redis实现消息队列" class="headerlink" title="Redis实现消息队列"></a>Redis实现消息队列</h2><p>一般使用list结构作为队列，rpush生产消息，1pop消费消息。当1pop没有消息的时候，要适当<br>sleep一会再重试。</p>
+<ul>
+<li>面试官可能会问可不可以不用sleep呢？list还有个指令吸pop,在没有消息的时候，它会<br>阻塞住直到消息到来。</li>
+<li>面试官可能还问能不能生产一次消费多次呢？使用pub&#x2F;sub主题订阅者模式，可以实现<br>1:N的消息队列。</li>
+<li>面试官可能还问pub&#x2F;sub有什么缺点？在消费者下线的情况下，生产的消息会丢失，得使<br>用专业的消息队列如rabbit MQ等</li>
+<li>Redis 如何实现延时队列：使用SortedSet 拿时间戳做Score</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/13/%E8%80%83%E7%A0%94%E6%94%BF%E6%B2%BB%E5%A4%8D%E4%B9%A0-1-%E9%A9%AC%E5%8E%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -4775,667 +5103,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MEIDE">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MEIDE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">数据库原理知识点总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-12-20 16:28:28 / 修改时间：18:15:53" itemprop="dateCreated datePublished" datetime="2022-12-20T16:28:28+08:00">2022-12-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E8%AF%95/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">数据库原理</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h1><h2 id="数据库系统概述"><a href="#数据库系统概述" class="headerlink" title="数据库系统概述"></a>数据库系统概述</h2><p><strong>数据库技术</strong>是信息系统的核心和基础</p>
-<h3 id="四个基本概念"><a href="#四个基本概念" class="headerlink" title="四个基本概念"></a>四个基本概念</h3><p>数据库的4个基本概念：</p>
-<ol>
-<li><p>数据（data）:数据库中存储的基本对象</p>
-</li>
-<li><p>数据库（DataBase、DB）:<strong>长期存储在计算机内、有组织的、可共享的大量数据的集合</strong></p>
-</li>
-<li><p>数据库管理系统（DataBase Management System、DBMS）:科学地<strong>组织</strong>和<strong>存储</strong>数据、高效地<strong>获取</strong>和<strong>维护</strong>数据。</p>
-<ol>
-<li><p>数据定义功能（DDL）</p>
-</li>
-<li><p>数据组织、存储和管理 </p>
-</li>
-<li><p>数据操纵功能（DML）</p>
-</li>
-<li><p>数据库的事物管理和运行管理 </p>
-</li>
-<li><p>数据库的建立和维护功能</p>
-</li>
-</ol>
-</li>
-<li><p>数据库系统（DataBase System 、DBS）:</p>
-<ul>
-<li><p>数据库</p>
-</li>
-<li><p>数据库管理系统</p>
-</li>
-<li><p>应用程序</p>
-</li>
-<li><p>数据库管理员</p>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="数据库技术的产生和发展"><a href="#数据库技术的产生和发展" class="headerlink" title="数据库技术的产生和发展"></a>数据库技术的产生和发展</h3><p>数据管理：对数据进行<strong>分类、组织、编码、存储、检索和维护</strong></p>
-<p>数据管理技术的发展过程：</p>
-<ul>
-<li><strong>人工管理阶段</strong>（<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%89%B9%E5%A4%84%E7%90%86&spm=1001.2101.3001.7020">批处理</a>，20世纪50年代中之前）</li>
-<li><strong>文件系统阶段</strong>（联机实时处理、批处理，20世纪50年代末—60年代中）</li>
-<li><strong>数据库系统阶段</strong>（联机实时处理、分布处理、批处理，20世纪60年代末—现在）</li>
-</ul>
-<h3 id="数据库系统的特点"><a href="#数据库系统的特点" class="headerlink" title="数据库系统的特点"></a>数据库系统的特点</h3><ol>
-<li>数据结构化</li>
-<li>数据的共享性高、冗余度低且易扩充</li>
-<li>数据独立性高 </li>
-<li>数据由数据库管理系统统一管理和控制</li>
-</ol>
-<p>数据的最小存取单位是<strong>数据项</strong>，用<strong>数据模型</strong>来描述</p>
-<h4 id="数据库的三级模式与两层映像"><a href="#数据库的三级模式与两层映像" class="headerlink" title="数据库的三级模式与两层映像"></a><strong>数据库的三级模式与两层映像</strong></h4><p><strong>内模式</strong>：对应于物理层数据抽象，它是数据的物理结构和存储方式的描述，是数据在数据库内部的表示方式。</p>
-<p><strong>模式</strong>：对应于逻辑层数据抽象，它是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图。</p>
-<p><strong>外模式</strong>：对应于视图层数据抽象，它是数据库用户能够看见和使用的局部数据的逻辑结构和特征的描述。</p>
-<p>为了能够在系统内部实现3个抽象层次的数据之间的联系和转换，数据库管理系统提出了两层映像：外模式&#x2F;模式映像，模式&#x2F;内模式映像。正是这两层映像保证了数据库中的数据具有较高的逻辑独立性和物理独立性。</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>描述</th>
-<th>映像</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>逻辑独立性</strong></td>
-<td>是指用户的应用程序与数据库的逻辑结构是相互独立的，数据的逻辑结构改变了，应用程序不用改变</td>
-<td>外模式&#x2F;模式映像</td>
-</tr>
-<tr>
-<td><strong>物理独立性</strong></td>
-<td>是指用户的应用程序与数据库的物理存储是相互独立的，当数据的物理存储改变了，应用程序不用改变</td>
-<td>模式&#x2F;内模式映像</td>
-</tr>
-</tbody></table>
-<p><strong>数据管理系统提供的数据控制功能</strong>：</p>
-<ol>
-<li>数据的安全性保护</li>
-<li>数据的完整性保护</li>
-<li>并发控制</li>
-<li>数据库恢复</li>
-</ol>
-<p>数据的安全性保护：保护数据以防止不合法的使用造成数据的泄密和破坏</p>
-<p>数据的完整性保护：保护数据的正确性、有效性和相容性</p>
-<h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><p>常用的数据模型：层次模型、网状模型、关系模型、面向对象数据模型、对象关系数据模型、半结构化数据模型</p>
-<h3 id="数据模型分类"><a href="#数据模型分类" class="headerlink" title="数据模型分类"></a>数据模型分类</h3><p>概念模型：也称信息模型，用于数据库设计，E-R模型、OO模型</p>
-<p>逻辑模型：层次模型、网状模型、<strong>关系模型</strong>、面向对象数据模型、对象关系数据数据模型、半结构化数据模型。DBMS实现</p>
-<p>物理模型：用来描述数据的物理存储结构和存储方式、在磁盘或磁带上的存储方式和存取方法</p>
-<h3 id="概念模型"><a href="#概念模型" class="headerlink" title="概念模型"></a>概念模型</h3><p>表示方法：<strong>实体—联系方法</strong> <strong>：E-R图</strong> E-R方法也称为E-R模型</p>
-<p>实体：客观存在并可相互区别的事物称为实体</p>
-<p>属性：实体所具有的某一特性称为属性</p>
-<p><span style="color:red"><strong>码：唯一标识实体的属性集称为 码</strong></span></p>
-<p><strong>实体之间的联系</strong>：<strong>一对一、一对多、多对多</strong></p>
-<p>用<strong>E-R图</strong>来描述现实世界的概念模型</p>
-<h3 id="数据模型的组成要素"><a href="#数据模型的组成要素" class="headerlink" title="数据模型的组成要素"></a>数据模型的组成要素</h3><ol>
-<li><p>数据结构：描述数据库的组成对象，以及对象之间的联系，<strong>对系统静态特性的描述</strong></p>
-</li>
-<li><p>数据操作：对数据库中各种对象的实例允许执行的<strong>操作的集合</strong>，包括<strong>操作</strong>及有关的<strong>操作规则</strong>，<strong>对系统动态特性的描述</strong></p>
-<p>数据操作的类型：<strong>查询</strong>，<strong>更新</strong>（插入、删除、修改）</p>
-</li>
-<li><p>数据的完整性约束条件</p>
-</li>
-</ol>
-<h3 id="层次模型"><a href="#层次模型" class="headerlink" title="层次模型"></a>层次模型</h3><p>层次模型用<strong>树形结构</strong>来表示各类实体以及实体间的联系， 典型代表：IMS</p>
-<p>特点：只能直接处理一对多的实体联系</p>
-<table>
-<thead>
-<tr>
-<th>优缺点</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>优点</td>
-<td>（1）数据结构比较简单清晰 <br>（2）查询效率高，性能优于关系模型 ，不低于网状模型（3）提供良好的完整性支持</td>
-</tr>
-<tr>
-<td>缺点</td>
-<td>（1）多对多联系表示不自然 <br>（2）插入和删除限制多 <br>（3）查询子女结点必须通过双亲节点 <br>（4）层次命令趋于程序化</td>
-</tr>
-</tbody></table>
-<h3 id="网状模型"><a href="#网状模型" class="headerlink" title="网状模型"></a>网状模型</h3><p>网状数据库系统采用<strong>网状模型</strong>作为数据库的组织方式，典型代表：DBTG（亦称CODASYL系统）</p>
-<p>层次模型是网状模型的一个特例，用网状模型<strong>间接</strong>表示多对多联系（将多对多联系直接分解成一对多联系）</p>
-<table>
-<thead>
-<tr>
-<th>优缺点</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>优点</td>
-<td>（1）更为直观地描述现实世界，如一个结点可以有多个双亲 <br>（2）具有良好的性能，存取效率较高</td>
-</tr>
-<tr>
-<td>缺点</td>
-<td>（1）结构复杂 <br>（2）DDL、DML语言复杂 <br>（3）记录之间联系是通过存取路径实现，用户必须了解系统结构的细节</td>
-</tr>
-</tbody></table>
-<h3 id="关系模型"><a href="#关系模型" class="headerlink" title="*关系模型"></a>*关系模型</h3><p>关系数据库系统采用<strong>关系模型</strong>作为数据的组织方式</p>
-<p>用户观点下，关系模型中数据的逻辑结构是一张<strong>二维表</strong>，它由行和列组成</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>关系</td>
-<td>一个关系对应通常说的一张表</td>
-</tr>
-<tr>
-<td>元组</td>
-<td>表中的一行即为一个元组</td>
-</tr>
-<tr>
-<td>属性</td>
-<td>表中的一列即为一个属性</td>
-</tr>
-<tr>
-<td><strong>码</strong></td>
-<td><strong>唯一标识实体的属性集称为码</strong></td>
-</tr>
-<tr>
-<td><strong>主码</strong></td>
-<td><strong>也称码键，表中的某个属性组，它可以唯一确定一个元组</strong></td>
-</tr>
-<tr>
-<td>域</td>
-<td>是一组具有相同数据类型的值的集合，属性的取值范围来自某个域</td>
-</tr>
-<tr>
-<td>分量</td>
-<td>元组中的一个属性值</td>
-</tr>
-</tbody></table>
-<p>数据操作是集合操作，操作对象和操作结果都是<strong>关系</strong></p>
-<h4 id="关系模式：对关系的描述"><a href="#关系模式：对关系的描述" class="headerlink" title="关系模式：对关系的描述"></a><strong>关系模式：对关系的描述</strong></h4><p>关系必须是规范化的：关系的每一个分量必须是一个不可分的数据项，<strong>不允许表中还有表</strong></p>
-<p>关系的完整性约束：</p>
-<ol>
-<li><strong>实体完整性</strong></li>
-<li><strong>参照完整性</strong></li>
-<li><strong>用户定义完整性</strong></li>
-</ol>
-<p><strong>优点：</strong></p>
-<ol>
-<li><p>建立在严格的数学概念的基础上</p>
-</li>
-<li><p>概念单一（实体和各类联系都用关系表示，对数据的检索结果也是关系）</p>
-</li>
-<li><p>关系模型的存取路径对用户透明（更高的数据独立性，更好的安全保密性，简化程序员的工作和数据库开发建立的工作）</p>
-</li>
-</ol>
-<p><strong>缺点：</strong></p>
-<ol>
-<li>存取路径对用户透明，查询效率往往不如格式化数据模型 </li>
-<li>为提高性能，需对用户的查询请求进行优化，增加开发数据库管理系统的难度</li>
-</ol>
-<h2 id="数据库系统的结构"><a href="#数据库系统的结构" class="headerlink" title="数据库系统的结构"></a>数据库系统的结构</h2><p>数据库系统通常采用<strong>三级模式</strong>结构，数据库系统内部的系统结构</p>
-<p>最终用户角度：（1）单用户结构 （2）主从式结构 （3）分布式结构 （4）客户—服务器结构 （5）浏览器—应用服务器 &#x2F; 数据库服务器多层结构</p>
-<h3 id="数据库系统模式的概念"><a href="#数据库系统模式的概念" class="headerlink" title="数据库系统模式的概念"></a>数据库系统模式的概念</h3><p>型：对某一类数据的结构和属性的说明</p>
-<p>值：是型的一个具体赋值</p>
-<p><strong>模式：数据库逻辑结构和特征的描述</strong></p>
-<p>实例：模式的一个具体值</p>
-<h3 id="数据库系统的三级模式结构"><a href="#数据库系统的三级模式结构" class="headerlink" title="数据库系统的三级模式结构"></a>数据库系统的三级模式结构</h3><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>外模式（子模式）</strong></td>
-<td>数据库用户使用的<strong>局部</strong>数据的逻辑结构和特征的描述，数据库用户的数据视图<br><strong>一个数据库可以有多个外模式</strong><br /><strong>模式与外模式：</strong>一对多，外模式通常是模式的子集<br /><strong>外模式与应用：</strong>一对多，一个应用程序中只能使用一个外模式<br />用途：（1）保护数据库安全性 （2）每个用户只能看见和访问所对应的外模式中的数据</td>
-</tr>
-<tr>
-<td><strong>模式</strong></td>
-<td>数据库中全体数据的<strong>逻辑结构和特征</strong>的描述，所有用户的公共数据视图<br><strong>一个数据库只有一个模式</strong></td>
-</tr>
-<tr>
-<td><strong>内模式（存储模式）</strong></td>
-<td>数据物理结构和存储方式的描述，数据在数据库内部的表示方式<br /><strong>一个数据库只有一个内模式</strong></td>
-</tr>
-</tbody></table>
-<h3 id="数据库的二级映像功能与数据独立性"><a href="#数据库的二级映像功能与数据独立性" class="headerlink" title="数据库的二级映像功能与数据独立性"></a>数据库的二级映像功能与数据独立性</h3><p>为了能够在系统内部实现3个抽象层次的数据之间的联系和转换，数据库管理系统提出了两层映像：外模式&#x2F;模式映像，模式&#x2F;内模式映像。正是这两层映像保证了数据库中的数据具有较高的逻辑独立性和物理独立性。</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>描述</th>
-<th>映像</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>逻辑独立性</strong></td>
-<td>每一个外模式，数据库系统都有一个外模式 &#x2F; 模式映像，定义外模式与模式之间的对应关系<br>是指用户的应用程序与数据库的逻辑结构是相互独立的，数据的逻辑结构改变了，应用程序不用改变</td>
-<td>外模式&#x2F;模式映像</td>
-</tr>
-<tr>
-<td><strong>物理独立性</strong></td>
-<td>定义数据全局逻辑结构与存储结构之间的对应关系<br />数据库中模式 &#x2F; 内模式映像是<strong>唯一的</strong><br />是指用户的应用程序与数据库的物理存储是相互独立的，当数据的物理存储改变了，应用程序不用改变</td>
-<td>模式&#x2F;内模式映像</td>
-</tr>
-</tbody></table>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="数据库系统的组成"><a href="#数据库系统的组成" class="headerlink" title="数据库系统的组成"></a>数据库系统的组成</h2><p>（1）数据库 （2）数据库管理系统 （3）应用程序 （4）数据库管理员 （5）硬件平台及数据库 （6）软件 （7）人员</p>
-<h1 id="第二章-关系数据库"><a href="#第二章-关系数据库" class="headerlink" title="第二章 关系数据库"></a>第二章 关系数据库</h1><h2 id="关系数据结构及形式化定义"><a href="#关系数据结构及形式化定义" class="headerlink" title="关系数据结构及形式化定义"></a>关系数据结构及形式化定义</h2><h3 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h3><p>单一的数据结构：关系，逻辑结构：二维表</p>
-<p>域：一组具有相同数据类型的值的集合</p>
-<p>笛卡尔积：可表示为一张二维表，表中的每列对应一个域</p>
-<p><strong>关系：笛卡尔积的有限子集</strong></p>
-<p><strong>码：唯一标识实体的属性集称为码</strong></p>
-<p><strong>主码：表中的某个属性组，它可以唯一确定一个元组</strong></p>
-<hr>
-
-<p>一个关系的候选码可以有多个，但主码只能有一个</p>
-<p>（1）候选码：<strong>若关系中的某一属性组的值能唯一地标识一个元组</strong>，则称该属性组为候选码。简单的情况：候选码只包含一个属性</p>
-<p>（2）全码：关系模式的所有属性组是这个关系模式的候选码，称为全码</p>
-<p>（3）主码：若一个关系有多个候选码，则选定其中一个为主码</p>
-<p>（4）主属性：候选码的诸属性称为主属性。不包含在任何候选码中的属性称为非主属性或非码属性</p>
-<p>（5）三类关系：</p>
-<hr>
-
-<p>1.基本关系（基本表或基表）：实际存在的表，实际存储数据的逻辑表示</p>
-<p>2.查询表：查询结果对应的表</p>
-<p>3.视图表：由基本表或其他视图表导出的表，是虚表，不对应实际存储的数据</p>
-<h3 id="关系模式"><a href="#关系模式" class="headerlink" title="关系模式"></a>关系模式</h3><p>关系模式是型，关系是值，关系模式是对关系的描述：1.元组集合的结构 2.完整性约束条件</p>
-<p>关系模式可以形式化地表示为：R (U,D,DOM,F)</p>
-<p>R：关系名，U：组成该关系的属性名集合，D：U中属性所来自的域 DOM：属性向域的映像集合 F：属性间数据的依赖关系的集合</p>
-<p>关系模式是对关系的描述，静态的稳定的</p>
-<p>关系是关系模式在某一时刻的状态或内容，动态的、随时间不断变化的</p>
-<h3 id="关系数据库"><a href="#关系数据库" class="headerlink" title="关系数据库"></a>关系数据库</h3><p>在一个给定的应用领域中，所有关系的集合构成一个关系数据库</p>
-<h3 id="关系模型和存储结构"><a href="#关系模型和存储结构" class="headerlink" title="关系模型和存储结构"></a>关系模型和存储结构</h3><p>关系数据库的物理组织：交给操作系统 or 申请若干个大文件</p>
-<h2 id="关系操作"><a href="#关系操作" class="headerlink" title="关系操作"></a>关系操作</h2><p><strong>查询操作：选择、投影、连接、除、并、差、交、笛卡尔积</strong></p>
-<p><span style="color:red">5种基本操作：<strong>选择、投影、并、差、笛卡尔积</strong></span></p>
-<p>更新操作：插入、删除、修改</p>
-<p>关系操作特点：操作的对象和结果都是集合，<strong>一次一集合</strong>的方式</p>
-<p>关系代数是一种抽象的查询语言，它用对关系的运算来表达查询，运算对象和运算结果都是<strong>关系</strong></p>
-<p><strong>关系代数中的连接操作是由选择和笛卡尔积操作组合而成</strong></p>
-<h2 id="关系模型中的三类完整性约束"><a href="#关系模型中的三类完整性约束" class="headerlink" title="*关系模型中的三类完整性约束"></a>*关系模型中的三类完整性约束</h2><p>关系代数语言：用<strong>对关系的运算</strong>来表达查询要求 ISBL</p>
-<p>关系演算语言：用<strong>谓词</strong>来表达查询要求（元组关系演算语言和域关系演算语言） APLHA QUEL</p>
-<p>具有关系代数和关系演算双重特点的语言：SQL（Structured Query Language）结构化查询语言</p>
-<p>关系模型必须满足的完整性约束条件称为关系的两个<strong>不变性</strong>，应该由关系系统自动支持</p>
-<h3 id="实体完整性"><a href="#实体完整性" class="headerlink" title="实体完整性"></a>实体完整性</h3><p>实体完整性规则：若属性A是基本关系R的主属性，则属性A不能取空值</p>
-<p>例如：选修（学号，课程号，成绩）</p>
-<p>“学号，课程号”为主码，这两个属性都不能取空值</p>
-<p>关系模型中以主码作为唯一标识符，<strong>主码中的属性即主属性不能取空值</strong></p>
-<h3 id="参照完整性"><a href="#参照完整性" class="headerlink" title="参照完整性"></a>参照完整性</h3><p>定义：指如果属性（或属性组）F是关系R的外码，且对应了关系S的主码K（R和S可以是同一个关系），那么对于R中的每个元组中的F上的值，必须满足：<br>（1） 要么F取空值<br>（2） 要么等于S中某个元组的主码的值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">例：</span><br><span class="line">	学生（学号，姓名）</span><br><span class="line">	课程（课程号，课程名）</span><br><span class="line">	选修（学号，课程号，成绩）</span><br></pre></td></tr></table></figure>
-
-<p>选修表中的学号就称为选修表的一个外码，它对应的是学生表中的学号。</p>
-<p>并且称选修关系为<code>参照关系</code>，而学生关系为<code>被参照关系</code>。</p>
-<p>显然，在选修关系中的学号，必须是学生表里真正存在的学号，且选修表里的课程号，也必须是课程表里真正存在的课程号。这就是参照完整性的一个典型表现了。</p>
-<p>参照完整性规则的说明：</p>
-<ul>
-<li>关系R和S不一定是不同的关系</li>
-<li>目标关系S的主码Ks 和参照关系的外码F必须定义在同一个（或一组）域上</li>
-<li>外码并不一定要与相应的主码同名</li>
-</ul>
-<h3 id="用户定义的完整性"><a href="#用户定义的完整性" class="headerlink" title="用户定义的完整性"></a>用户定义的完整性</h3><p>针对某一具体关系数据库的约束条件，反映某一具体应用所设计的数据必须满足的语义要求</p>
-<h2 id="关系代数"><a href="#关系代数" class="headerlink" title="*关系代数"></a>*关系代数</h2><p>更具体的请看：<a target="_blank" rel="noopener" href="https://blog.csdn.net/dreaming_coder/article/details/108043502">https://blog.csdn.net/dreaming_coder/article/details/108043502</a></p>
-<p>关系代数是一种抽象的查询语言，它用对关系的运算来表达查询，运算对象和运算结果都是<strong>关系</strong></p>
-<p>关系代数的运算符</p>
-<p>（1）集合运算符（从行的角度进行）：并 差 交 笛卡尔积</p>
-<p>（2）专门的关系运算符（涉及行和列）： 选择 投影 连接 除</p>
-<p>选择 σ：从行的角度进行的运算</p>
-<p>投影 π：从列的角度进行运算，不仅消除某些列，而且还可能取消某些元组（避免重复行）</p>
-<p>连接：1.等值连接 2.自然连接</p>
-<p><strong>一般的连接操作都是从行的角度进行运算。自然连接还需要取消重复列，所以是同时从行和列的角度进行运算</strong></p>
-<p>自然连接是一种特殊的等值连接：1.两个关系中进行比较的分量必须是相同的属性组 2.在结果中把重复的属性列去掉</p>
-<p>外连接：把悬浮元组也保存在结果关系中，而在其他属性上填空值，就叫外连接</p>
-<p>除运算：同时从行和列角度进行运算</p>
-<h3 id="例如"><a href="#例如" class="headerlink" title="例如"></a>例如</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select sname,rating from s where s.id = c.studentid and rating&gt;60;</span><br></pre></td></tr></table></figure>
-
-
-<p>$$<br>π_{sname , rating} (σ_{rating&gt;60}(s⋈c ))<br>$$</p>
-<h1 id="第三章-SQL"><a href="#第三章-SQL" class="headerlink" title="第三章 SQL"></a>第三章 SQL</h1><p>SQL：结构化查询语言，关系数据库的标准语言</p>
-<p>SQL可分为<strong>数据定义、数据查询、数据更新、数据控制</strong>四大部分</p>
-<p>SQL特点：（1）综合统一 （2）高度非过程化 （3）面向<strong>集合</strong>的操作方式 （4）独立的语言 嵌入式语言 （5）语言简洁，易学易用</p>
-<p>数据查询：SELECT</p>
-<p>数据定义：CREATE、DROP、ALTER</p>
-<p>数据操纵：INSERT、UPDATE、DELETE</p>
-<p>数据控制：GRANT、REVOKE</p>
-<p>基本表、存储文件、视图</p>
-<h2 id="数据定义"><a href="#数据定义" class="headerlink" title="数据定义"></a>数据定义</h2><p>模式（CREATE SCHEMA，DROP SCHEMA）</p>
-<p>表（CREATE TABLE，DROP TABLE，ALTER TABLE）</p>
-<p>视图（CREATE VIEW， DROP VIEW）</p>
-<p>索引（CREATE INDEX， DROP INDEX，ALTER INDEX）</p>
-<h3 id="模式的定义与删除"><a href="#模式的定义与删除" class="headerlink" title="模式的定义与删除"></a>模式的定义与删除</h3><p>定义模式实际上定义了一个命名空间</p>
-<p>定义模式：CREATE SCHEMA &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt;[&lt;表定义子句&gt;|&lt;视图定义子句&gt;|&lt;授权定义子句&gt;]</p>
-<p>删除模式：DROP SCHEMA &lt;模式名&gt; &lt;CASCADE|RESTRICT&gt;</p>
-<h3 id="基本表的定义、删除与修改"><a href="#基本表的定义、删除与修改" class="headerlink" title="基本表的定义、删除与修改"></a>基本表的定义、删除与修改</h3><p>定义基本表：CREATE TABLE</p>
-<p>SQL中域的概念用<strong>数据类型</strong>来实现</p>
-<p>每一个基本表都属于一个模式，一个模式包含多个基本表</p>
-<p>设置搜索路径：SET search_path TO “S-T”,PUBLIC;</p>
-<p>修改：ALTER TABLE （ADD、 DROP COLUMN、DROP CONSTRAINT、 ALTER COLUMN）</p>
-<p>删除：DROP TABLE &lt;表名&gt; [RESTRICT|CASCADE]</p>
-<h3 id="索引的建立与删除"><a href="#索引的建立与删除" class="headerlink" title="索引的建立与删除"></a>索引的建立与删除</h3><p>建立索引的目的：加快查询速度</p>
-<p>B+树索引具有动态平衡的优点，HASH索引具有查找速度快的特点</p>
-<p>用户建立索引，系统维护、使用索引</p>
-<p>建立：CREATE [UNIQUE] [CLUSTER] INDEX &lt;索引名&gt;</p>
-<p>修改：ALTER INDEX &lt;旧索引名&gt; RENAME TO &lt;新索引名&gt;</p>
-<p>删除：DROP INDEX &lt;索引名&gt;</p>
-<h3 id="数据字典"><a href="#数据字典" class="headerlink" title="数据字典"></a>数据字典</h3><p>记录数据库中所有定义信息：关系模式、视图、索引、完整性约束、各类用户对数据库的操作权限、统计信息</p>
-<p>关系数据库管理系统在执行SQL的数据定义语句时，实际上就是在更新<strong>数据字典</strong>中的相应信息</p>
-<h2 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h2><p>SELECT FROM WHERE GROUP BY HAVING ORDER BY</p>
-<h3 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h3><p>（1）选择表中的若干列</p>
-<p>查询经过计算的值：使用列<strong>别名</strong>改变查询结果的列标题</p>
-<p>（2）选择表中的若干元组</p>
-<p>DISTINCT 去掉重复的行</p>
-<p>比较大小 确定范围 确定集合 字符匹配 涉及空值的查询 多重条件查询</p>
-<p>%：任意长度的字符串</p>
-<p>_：任意单个字符</p>
-<p>（3）ORDER BY子句</p>
-<p>可以按一个或多个属性列排序</p>
-<p>（4）聚集函数</p>
-<p>COUNT、SUM、AVG、MAX、MIN</p>
-<p>（5）GROUP BY子句</p>
-<p>HAVING必须在GROUP BY里面，而WHERE是整个查询的结果</p>
-<p><strong>WHERE子句是不能用聚集函数作为条件表达式</strong></p>
-<p><strong>HAVING短语与WHERE子句作用对象不同</strong>，WHERE子句作用与基表或视图，从中选择满足条件的元组，HAVING短语作用于组，从中选择满足条件的组</p>
-<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><p>连接查询：同时涉及两个以上的表的查询</p>
-<p>（1）等值与非等值连接</p>
-<p>连接操作的执行过程：嵌套循环法、排序合并法、索引连接</p>
-<p>（2）自身连接</p>
-<p>一个表与其自己进行连接</p>
-<p>（3）外连接</p>
-<p>左外连接，保留左边的内容</p>
-<p>（4）多表连接</p>
-<p>多表连接：两个以上的表进行连接</p>
-<h3 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h3><p>一个SELECT-FROM-WHERE子句称为一个查询块</p>
-<p>将一个查询块嵌套在另一个查询块的WHERE子句或HAVING短语的条件中的查询称为嵌套查询</p>
-<p>SQL语言允许多层嵌套查询，子查询不能使用ORDER BY子句</p>
-<p>不相关子查询 相关子查询</p>
-<p>（1）带有IN谓词的子查询</p>
-<p>（2）带有比较运算符的子查询</p>
-<p>（3）带有ANY（SOME）或ALL谓词的子查询</p>
-<p>使用ANY或ALL谓词时必须同时使用比较运算</p>
-<p>（4）带有EXISTS谓词的子查询</p>
-<p>不返回如何数据，只产生逻辑值</p>
-<h3 id="集合查询"><a href="#集合查询" class="headerlink" title="集合查询"></a>集合查询</h3><p>并操作、交操作、差操作</p>
-<h3 id="基于派生表的查询"><a href="#基于派生表的查询" class="headerlink" title="基于派生表的查询"></a>基于派生表的查询</h3><p>如果子查询中没有聚集函数，派生表可以不指定属性列</p>
-<h2 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><p>（1）插入元组</p>
-<p>INSERT INTO &lt;表名&gt; VALUES</p>
-<p>（2）插入子查询结果</p>
-<p>INSERT INTO &lt;表名&gt; 子查询</p>
-<p>实体完整性、参照完整性、用户定义的完整性（NOT NULL约束，UNIQUE约束，值域约束）</p>
-<h3 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h3><p>（1）修改某一个元组的值</p>
-<p>（2）修改多个元组的值</p>
-<p>（3）带子查询的修改语句</p>
-<p>实体完整性、主码不允许修改、用户定义的完整性（NOT NULL约束，UNIQUE约束，值域约束）</p>
-<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><p>（1）删除某一个元组的值</p>
-<p>（2）删除多个元组的值</p>
-<p>（3）带子查询的删除语句</p>
-<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>虚表，是一个或几个基本表（或视图）导出的表</p>
-<p>只存放视图的定义，不存放视图对应的数据</p>
-<p>基表中的数据发生变化 ，从视图中查询出的数据也随之改变</p>
-<h3 id="定义视图"><a href="#定义视图" class="headerlink" title="定义视图"></a>定义视图</h3><p>（1）建立视图</p>
-<p>CREATE VIEW xxx AS xxx [WITH CHECK OPTION];</p>
-<p>基于多个基表的视图、基于视图的视图、带表达式的视图、分组视图</p>
-<p>（2）删除视图</p>
-<p>DROP VIEW &lt;视图名&gt; [CASCADE]</p>
-<h3 id="查询视图"><a href="#查询视图" class="headerlink" title="查询视图"></a>查询视图</h3><p>视图消解法</p>
-<h3 id="更新视图"><a href="#更新视图" class="headerlink" title="更新视图"></a>更新视图</h3><p>允许对<strong>行列子集视图</strong>进行更新</p>
-<p>对其他类型视图的更新不同系统由不同限制</p>
-<h3 id="视图的作用"><a href="#视图的作用" class="headerlink" title="视图的作用"></a>视图的作用</h3><p>视图能够<strong>简化</strong>用户操作</p>
-<p>视图使用户能以<strong>多种角度</strong>看待同一数据</p>
-<p>视图对重构数据库提供了一定的逻辑独立性</p>
-<p>视图能够对机密数据提供安全保护</p>
-<p>适当利用视图可以更清晰的表达查询</p>
-<h1 id="第四章-数据库安全性"><a href="#第四章-数据库安全性" class="headerlink" title="第四章 数据库安全性"></a>第四章 数据库安全性</h1><p>数据库的安全性是指保护数据库以防止不合法使用所造成的<strong>数据泄漏、更改或破坏</strong></p>
-<h2 id="数据库安全性概述"><a href="#数据库安全性概述" class="headerlink" title="数据库安全性概述"></a>数据库安全性概述</h2><h3 id="数据库的不安全因素"><a href="#数据库的不安全因素" class="headerlink" title="数据库的不安全因素"></a>数据库的不安全因素</h3><p>（1）非授权用户对数据库的恶意存取和破坏</p>
-<p>（2）数据库中重要或敏感的数据被泄漏</p>
-<p>（3）安全环境的脆弱性</p>
-<h3 id="安全标准简介"><a href="#安全标准简介" class="headerlink" title="安全标准简介"></a>安全标准简介</h3><p>（1）TCSEC标准：安全策略，责任，保证，文档</p>
-<p>D级 最小保护，C1 自主安全保护，C2 受控的存取保护（自主存取控制）</p>
-<p>B1 标记安全保护（强制存取控制）， B2 结构化保护， B3 安全域， A1 验证设计</p>
-<p>（2）CC标准</p>
-<h2 id="数据安全性控制"><a href="#数据安全性控制" class="headerlink" title="数据安全性控制"></a>数据安全性控制</h2><p>数据库安全控制的常用方法：<strong>用户标识和鉴定、存取控制、视图、审计、数据加密</strong></p>
-<h3 id="用户身份鉴别"><a href="#用户身份鉴别" class="headerlink" title="用户身份鉴别"></a>用户身份鉴别</h3><p>静态口令鉴别：密码</p>
-<p>动态口令鉴别：验证码，一次一密</p>
-<p>生物特征鉴别：指纹，眼角膜，FaceID</p>
-<p>智能卡鉴别</p>
-<h3 id="存取控制"><a href="#存取控制" class="headerlink" title="存取控制"></a>存取控制</h3><p>自主存取控制 C2</p>
-<p>强制存取控制 B1</p>
-<h3 id="自主存取控制方法"><a href="#自主存取控制方法" class="headerlink" title="自主存取控制方法"></a>自主存取控制方法</h3><p>通过SQL的GRANT语句和REVOKE语句实现</p>
-<p>用户权限组成：数据对象和操作类型</p>
-<p>定义存取权限称为<strong>授权</strong></p>
-<p>关系数据库系统中存取控制对象：</p>
-<p>（1）数据库模式</p>
-<p>模式（CREATE SCHEMA）基本表（CREATE TABLE ，ALTER TABLE） 视图（CREATE VIEW） 索引（CREATE INDEX）</p>
-<p>（2）数据</p>
-<p>基本表和视图（SELECT INSERT UPDATE DELETE REFERENCES ALL PRIVILEGES）</p>
-<p>属性列（SELECT INSERT UPDATE REFERENCES ALL PRIVILEGES）</p>
-<h3 id="授权：授予与回收"><a href="#授权：授予与回收" class="headerlink" title="授权：授予与回收"></a>授权：授予与回收</h3><p>GRANT：将对指定操作对象的指定操作权限授予指定的用户</p>
-<p>不允许循环授权</p>
-<p>REVOKE：收回权限</p>
-<h3 id="数据库角色"><a href="#数据库角色" class="headerlink" title="数据库角色"></a>数据库角色</h3><p>数据库角色：被命名的一组与数据库操作相关的权限</p>
-<h3 id="强制存取控制方法"><a href="#强制存取控制方法" class="headerlink" title="强制存取控制方法"></a>强制存取控制方法</h3><p>在强制存取控制中，数据库管理系统所管理的全部实体被分为主体和客体两大类</p>
-<p>主体是系统中的活动实体，客体是系统中的被动实体，受主体操纵</p>
-<p>敏感度标记：<strong>绝密（TS）&gt;&#x3D; 机密（S）&gt;&#x3D; 可信（C）&gt;&#x3D; 公开（P）</strong></p>
-<p>主体的敏感度标记称为许可证级别，客体的敏感度标记称为密级</p>
-<p>强制存取控制规则</p>
-<p>（1）主体的许可证级别大于或等于客体的密级时，该主体才能<strong>读</strong>取相应的客体</p>
-<p>（2）主体的许可证级别小于或等于客体的密级时，该主体才能<strong>写</strong>相应的客体</p>
-<p>实现强制存取控制首先要实现自主存取控制</p>
-<h2 id="视图机制"><a href="#视图机制" class="headerlink" title="视图机制"></a>视图机制</h2><p>把要保密的数据对无权存取这些数据的用户隐藏起来，对数据提供一定程度的安全保护，间接地实现支持存取谓词的用户权限定义</p>
-<h2 id="审计"><a href="#审计" class="headerlink" title="审计"></a>审计</h2><p>审计：启用一个专用的审计日志，将用户对数据库的所有操作记录在上面，审计员利用审计日志，监控数据库中的各种行为，找到非法存取数据的人、时间和内容</p>
-<p>用户级审计、系统级审计</p>
-<h2 id="数据加密"><a href="#数据加密" class="headerlink" title="数据加密"></a>数据加密</h2><p>数据加密是防止数据库中数据在<strong>存储和传输</strong>中失密的有效手段</p>
-<p>加密方法：存储加密和传输加密</p>
-<h2 id="其他安全性"><a href="#其他安全性" class="headerlink" title="其他安全性"></a>其他安全性</h2><p>推理控制、隐蔽信道、数据隐私保护</p>
-<h1 id="第五章-数据完整性"><a href="#第五章-数据完整性" class="headerlink" title="第五章 数据完整性"></a>第五章 数据完整性</h1><p><strong>数据库的完整性：保护数据的正确性、有效性和相容性</strong></p>
-<p>为维护数据库的完整性。数据库管理系统必须：（1）提供定义完整性约束条件的机制 （2）提供完整性检查的方法 （3）违约处理</p>
-<h2 id="实体完整性-1"><a href="#实体完整性-1" class="headerlink" title="实体完整性"></a>实体完整性</h2><p>实体完整性定义：关系模型的实体完整性，单属性构成的码：列级约束条件，表级约束条件，多个属性构成的码：表级约束条件</p>
-<p>全表扫描，建立<strong>索引</strong>加快速度 B+树索引</p>
-<h2 id="参照完整性-1"><a href="#参照完整性-1" class="headerlink" title="参照完整性"></a>参照完整性</h2><p>FOREIGN KEY短语定义外码，REFERENCES短语指明这些外码参照表的哪些主码</p>
-<p>违约处理：拒绝执行、级联操作、设置为空值</p>
-<h2 id="用户定义的完整性-1"><a href="#用户定义的完整性-1" class="headerlink" title="用户定义的完整性"></a>用户定义的完整性</h2><p>用户定义完整性：针对某一具体应用的数据必须满足的语义要求</p>
-<p>（1）属性上的约束条件：列值非空，列值唯一，检查列值是否满足一个条件表达式</p>
-<p>（2）元组上的约束条件：CHECK短语定义元组上的约束条件，即元组级的限制</p>
-<h2 id="完整性约束命名字句"><a href="#完整性约束命名字句" class="headerlink" title="完整性约束命名字句"></a>完整性约束命名字句</h2><p>CONSTRAINT &lt;完整性约束条件名&gt; &lt;完整性约束条件&gt;</p>
-<p>&lt;完整性约束条件&gt;包括NOT NULL、UNIQUE、PRIMARY KEY短语、FOREIGN KEY短语、CHECK短语等</p>
-<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>通过声明性断言来指定更具一般性的约束</p>
-<p>CREATE ASSERTION &lt;断言名&gt; &lt;CHECK子句&gt;</p>
-<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>CREATE TRIGGER</p>
-<p>触发器又叫做<strong>事件-条件-动作</strong>规则</p>
-<p>触发器由触发事件激活</p>
-<p>执行顺序：（1）执行该表上的BEFORE触发器 （2）激活触发器的SQL语句 （3）执行该表上的AFTER触发器</p>
-<p>DROP TRIGGER &lt;触发器名&gt; ON &lt;表名&gt;</p>
-<h1 id="第六章-关系数据理论"><a href="#第六章-关系数据理论" class="headerlink" title="第六章 关系数据理论"></a>第六章 关系数据理论</h1><p>关系数据库逻辑设计—关系数据库的规范化理论</p>
-<p><strong>第一范式（1NF）：每个分量必须是不可分开的数据项</strong>，无重复的列</p>
-<p>数据依赖是一个关系内部属性与属性之间的一种约束关系，可分为<strong>函数依赖</strong>和<strong>多值依赖</strong></p>
-<p><strong>数据冗余、更新异常、插入异常、删除异常</strong></p>
-<p>原因：由存在于模式中的某些数据依赖引起</p>
-<p>解决方法：用规范化理论改造关系模式来消除不合适的数据依赖（分解）</p>
-<h2 id="规范化"><a href="#规范化" class="headerlink" title="规范化"></a>规范化</h2><h3 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h3><p><strong>X函数确定Y，Y函数依赖于X，记作X—&gt;Y</strong></p>
-<p>函数依赖是指关系模式R的所有关系实例均要满足的约束条件，是语义范畴的概念</p>
-<p>X—&gt;Y，但 Y 不属于 X，则称X—&gt;Y是<strong>非平凡的函数依赖</strong></p>
-<p>X—&gt;Y，但 Y 属于 X（Y是X的子集），则称X—&gt;Y是<strong>平凡的函数依赖</strong>，平凡函数依赖必成立</p>
-<p>若X—&gt;Y，则X称为这个函数依赖的<strong>决定因素</strong></p>
-<ol>
-<li>**完全函数依赖 **</li>
-<li><strong>部分函数依赖</strong></li>
-<li><strong>传递函数依赖</strong></li>
-</ol>
-<h3 id="码"><a href="#码" class="headerlink" title="码"></a>码</h3><ol>
-<li>候选码 </li>
-<li>主码 </li>
-<li>主属性 </li>
-<li>非主属性 </li>
-<li>全码 </li>
-<li>外码</li>
-</ol>
-<h3 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h3><p>范式是符合某一级别的关系模式的集合</p>
-<p><strong>1NF 包含 2NF 包含 3NF 包含 BCNF 包含 4NF 包含 5NF</strong></p>
-<p>一个低一级范式的关系模式，通过<strong>模式分解</strong>可以转换为若干个高一级范式的关系模式的集合，这种过程就叫<strong>规范化</strong></p>
-<p>关系数据库的规范化理论是数据库逻辑设计的工具，规范化实质上是概念的单一化</p>
-<p>一个关系模式不属于2NF，会产生插入异常、删除异常、修改复杂的问题</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>第二范式（2NF）</strong></td>
-<td><strong>关系模式R属于1NF，并且每一个非主属性都完全函数依赖于任何一个候选码（即不存在非主属性部分函数依赖于候选码），则R属于2NF</strong></td>
-</tr>
-<tr>
-<td><strong>第三范式（3NF）</strong></td>
-<td><strong>关系模式R&lt;U,F&gt;属于1NF，若R中不存在非主属性Z对码X的传递函数依赖，则称R&lt;U,F&gt;属于3NF</strong></td>
-</tr>
-<tr>
-<td><strong>BCNF</strong></td>
-<td><strong>在关系模式R&lt;U,F&gt;中，如果每一个决定属性集都包含候选码，则R属于BCNF</strong></td>
-</tr>
-</tbody></table>
-<p>关系模式的规范化：一个低一级范式的关系模式，通过<strong>模式分解</strong>可以转换为若干个高一级范式的关系模式集合</p>
-<h4 id="关系数据库的规范化是数据库逻辑设计的工具"><a href="#关系数据库的规范化是数据库逻辑设计的工具" class="headerlink" title="关系数据库的规范化是数据库逻辑设计的工具"></a>关系数据库的规范化是数据库逻辑设计的工具</h4><p>1NF—&gt;2NF：消除非主属性对码的部分函数依赖</p>
-<p>2NF—&gt;3NF：消除非主属性对码的传递函数依赖</p>
-<p>3NF—&gt;BCNF：消除主属性对码的部分和传递函数依赖</p>
-<p>BCNF—&gt;4NF：消除非平凡且非函数依赖的多值依赖</p>
-<p>1NF—&gt;BCNF：消除决定因素非码的非平凡函数依赖</p>
-<p>不能说规范化程度越高的关系模式就越好</p>
-<h1 id="第七章-数据库设计"><a href="#第七章-数据库设计" class="headerlink" title="第七章 数据库设计"></a>第七章 数据库设计</h1><p>需求分析和概念设计独立于任何数据库管理系统，逻辑设计和物理设计与选用的数据库管理系统密切相关</p>
-<p>需求分析阶段：综合各个用户的应用需求</p>
-<p>概念设计阶段：<strong>概念模式</strong>（信息时间模型），用E-R图来描述</p>
-<p>逻辑设计阶段：<strong>逻辑模式、外模式</strong></p>
-<p>物理设计阶段：<strong>内模式</strong></p>
-<p>在逻辑设计阶段将E-R图转换成具体的数据库产品支持的数据模型如关系模式，形成数据库<strong>逻辑模式</strong></p>
-<p>根据用户处理的要求，安全性的考虑，在基本表的基础上再建立必要的视图，形成数据的<strong>外模式</strong></p>
-<p>在物理设计阶段根据DBMS特点和处理的需要，进行物理存储安排，设计索引，形成数据库<strong>内模式</strong></p>
-<h3 id="数据库设计的基本步骤"><a href="#数据库设计的基本步骤" class="headerlink" title="数据库设计的基本步骤"></a>数据库设计的基本步骤</h3><p><strong>需求分析、概念结构设计、逻辑结构设计、物理结构设计、数据库实施、数据库运行和维护</strong></p>
-<p>需求分析和概念结构设计独立于任何数据库管理系统</p>
-<p>逻辑设计和物理设计与选用的数据库管理系统密切相关</p>
-<h3 id="数据库设计过程中的各级模式"><a href="#数据库设计过程中的各级模式" class="headerlink" title="数据库设计过程中的各级模式"></a>数据库设计过程中的各级模式</h3><p>需求分析：综合各个用户的应用需求</p>
-<p>概念设计阶段：E-R图</p>
-<p>逻辑设计阶段：逻辑模式 外模式</p>
-<p>物理设计阶段：内模式</p>
-<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>需求分析就是分析用户的需求</p>
-<p>分析方法：结构化分析方法</p>
-<p>数据字典是关于数据库中的数据描述，即元数据</p>
-<p>数据字典的内容：数据项、数据结构、数据流、数据存储、处理过程</p>
-<h2 id="概念结构设计"><a href="#概念结构设计" class="headerlink" title="概念结构设计"></a>概念结构设计</h2><h3 id="7-3-1-概念模型"><a href="#7-3-1-概念模型" class="headerlink" title="7.3.1 概念模型"></a>7.3.1 概念模型</h3><p>描述概念模型的工具 E-R模型</p>
-<h3 id="7-3-2-E-R模型"><a href="#7-3-2-E-R模型" class="headerlink" title="7.3.2 E-R模型"></a>7.3.2 E-R模型</h3><p>实体之间的联系：一对一（1:1）、一对多（1:n）、多对多（m:n）</p>
-<p>联系的度：参与联系的实体型的数目</p>
-<p>E-R图提供了表示实体型、属性和联系的方法</p>
-<h3 id="7-3-3-概念结构设计"><a href="#7-3-3-概念结构设计" class="headerlink" title="7.3.3 概念结构设计"></a>7.3.3 概念结构设计</h3><p>两条准则：（1）属性必须是不可分的数据项，不能包含其他属性 （2）属性不能与其他实体具有联系，即E-R图中所表示的联系是实体之间的联系</p>
-<p>E-R图的集成一般需要两步</p>
-<p>（1）合并</p>
-<p>子系统E-R图之间的冲突主要有三类：属性冲突、命名冲突、结构冲突</p>
-<p>（2）修改和重构</p>
-<h2 id="逻辑结构设计"><a href="#逻辑结构设计" class="headerlink" title="逻辑结构设计"></a>逻辑结构设计</h2><h3 id="7-4-1-E-R图向关系模型的转换"><a href="#7-4-1-E-R图向关系模型的转换" class="headerlink" title="7.4.1 E-R图向关系模型的转换"></a>7.4.1 E-R图向关系模型的转换</h3><p>（1）1:1联系转换为一个独立的关系模式</p>
-<p>（2）1:1联系与任意一端合并</p>
-<p>（3）1:n联系可以转换为一个独立的关系模式，也可以与n端对应的关系模式合并</p>
-<p>（4）一个m:n联系转换为一个关系模式，取m，n端的码作为独立关系的组合码，再加自有属性</p>
-<p>（5）三个或三个以上实体间的一个<strong>多元联系</strong>转换为一个关系模式</p>
-<p>（6）具有相同码的关系模式可合并</p>
-<h3 id="7-4-2-数据模型的优化"><a href="#7-4-2-数据模型的优化" class="headerlink" title="7.4.2 数据模型的优化"></a>7.4.2 数据模型的优化</h3><p>无通用规则，数据库逻辑设计的结果不是唯一的</p>
-<h3 id="7-4-3-设计用户子模式"><a href="#7-4-3-设计用户子模式" class="headerlink" title="7.4.3 设计用户子模式"></a>7.4.3 设计用户子模式</h3><p>（1）使用更符合用户习惯的别名 （2）针对不同级别的用户定义不同的视图，以保证系统的安全性 （3）简化用户对系统的使用</p>
-<h2 id="物理结构设计"><a href="#物理结构设计" class="headerlink" title="物理结构设计"></a>物理结构设计</h2><p>数据库在物理设备上的<strong>存储结构与存取方法</strong>称为数据库的物理结构，它依赖于选定的数据库管理系统</p>
-<p>数据库管理系统常用存取方法：B+树索引存取方法、Hash索引存取方法、聚簇存取方法</p>
-<p>确定数据库物理结构主要确定数据的<strong>存放位置</strong>和<strong>存储结构</strong></p>
-<p>确定数据的存放位置和存储结构要综合考虑<strong>存取时间、存储空间利用率和维护代价</strong></p>
-<h1 id="单元测试笔记"><a href="#单元测试笔记" class="headerlink" title="单元测试笔记"></a>单元测试笔记</h1><h2 id="单元测试2"><a href="#单元测试2" class="headerlink" title="单元测试2"></a>单元测试2</h2><p>关系代数中的连接操作是由<strong>选择和笛卡尔积</strong>操作组合而成</p>
-<p>关系数据模型的基本数据结构是<strong>关系</strong></p>
-<p>关系R中能唯一标识一个元组的是它的 <strong>主码、全码、候选码</strong></p>
-<p>关系是动态的、随时间变化的，关系模式是静态的、稳定的</p>
-<h2 id="单元测试4"><a href="#单元测试4" class="headerlink" title="单元测试4"></a>单元测试4</h2><p>安全性控制的防范对象是<strong>非法用户</strong>，防止他们对数据库数据的存取</p>
-<p>数据库安全审计系统提供了一种<strong>事后检查</strong>的安全机制。</p>
-<p>在数据库的安全性控制中，授权对象的约束粒度越小，授权子系统就越灵活</p>
-<h2 id="单元测试5"><a href="#单元测试5" class="headerlink" title="单元测试5"></a>单元测试5</h2><p>实体完整性规则检查的内容包括：检查主码值是否唯一,如果不唯一就拒绝插入或修改，检查主码的各个属性值是否为空,只要有一个为空就拒绝插入或修改</p>
-<p>触发器只能定义在基本表上</p>
-<h2 id="单元测试6"><a href="#单元测试6" class="headerlink" title="单元测试6"></a>单元测试6</h2><p>算法：按以下步骤求候选键：<br>1.只在FD右部出现的属性，不属于候选码;<br>2.只在FD左部出现的属性，一定存在于某候选码当中;<br>3.外部属性一定存在于任何候选码当中;<br>4.其他属性逐个与2,3的属性组合，求属性闭包，直至X的闭包等于U,若等于U,则X为候选码</p>
-<p>关系模式R的整个属性组是码,则R满足的最高范式至少是<strong>3NF</strong></p>
-<p>关系规范化中的删除异常是指<strong>不该删除的数据被删除</strong></p>
-<p>关系数据库的规范化理论主要解决的问题是<strong>如何构造合适的数据逻辑结构</strong></p>
-<p>在关系数据库设计中,设计关系模式是数据库设计中<strong>逻辑结构设计阶段</strong>的任务</p>
-<h1 id="刷题"><a href="#刷题" class="headerlink" title="刷题"></a>刷题</h1><p>子模式（外模式）DDL用来描述数据库的局部逻辑结构</p>
-<p>SQL中的视图提高了数据库系统的安全性</p>
-<p>候选码：若关系中的某一属性组的值能够唯一确定一个元组，则该属性组为候选码</p>
-<p>主码：若一个关系有多个候选码，选定一个作为主码</p>
-<p>外码：设关系R的一个属性组F，F不是关系R的主码，若F与关系S的主码相对应，则称F是关系R的外码</p>
-<p>一个关系的候选码可以有多个，但主码只有一个</p>
-<p>每一个实体对应一个关系模式</p>
-<p>每个m：n联系对应一个关系模式</p>
-<p>概念结构设计的方法有四种：自顶向下、自底向上、逐步扩张、混合策略</p>
-<p>设计步骤：（1）进行数据抽象，设计局部E-R模型，即设计局部示图 （2）集成各局部E-R模型，形成全局E-R模型，即视图的集成</p>
-<p>在数据库中，产生数据不一致的根本原因是未对数据进行完整性控制</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -5501,7 +5172,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -5514,7 +5185,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
