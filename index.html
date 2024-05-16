@@ -505,6 +505,334 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/10/Mysql%E9%9D%A2%E8%AF%95%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/05/10/Mysql%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-title-link" itemprop="url">MYSQL面试题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-05-10 13:26:38" itemprop="dateCreated datePublished" datetime="2024-05-10T13:26:38+08:00">2024-05-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-05-15 01:03:48" itemprop="dateModified" datetime="2024-05-15T01:03:48+08:00">2024-05-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><h2 id="数据库的三范式"><a href="#数据库的三范式" class="headerlink" title="数据库的三范式"></a>数据库的三范式</h2><p>第一范式：列不可再分</p>
+<p>第二范式：行可以唯一区分，主键约束</p>
+<p>第三范式：表的非主属性不能依赖</p>
+<p>与其他表的非主属性外键约束且三大范式是一级一级依赖的，第二范式建立在第一范式上，第三范式建立第一第二范式上。</p>
+<h2 id="MYSQL数据库引擎"><a href="#MYSQL数据库引擎" class="headerlink" title="MYSQL数据库引擎"></a>MYSQL数据库引擎</h2><p>mysql 常用引擎包括：MYISAM、Innodb、Memory、MERGE</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202405131951060.png"/>
+
+<ul>
+<li>MYISAM：<strong>全表锁</strong>，拥有较高的执行速度，<strong>不支持事务，不支持外键</strong>，并发性能差，占用空间相对较小，<strong>对事务完整性没有要求</strong>，以select、insert 为主的应用基本上可以使用这引擎</li>
+<li>Innodb：<strong>行级锁</strong>，提供了具有提交、<strong>回滚和崩溃回复能力的事务安全，支持自动增长列</strong>，<strong>支持外键约束</strong>，并发能力强，占用空间是MYISAM 的2.5 倍，处理效率相对会差一些</li>
+<li>Memory：全表锁，存储在内容中，速度快，<strong>但会占用和数据量成正比的内存空间</strong>且<strong>数据在mysql 重启时会丢失，默认使用HASH 索引</strong>，检索效率非常高，但<strong>不适用于精确查找</strong>，主要用于那些内容变化不频繁的代码表</li>
+<li>MERGE：是一组MYISAM 表的组合</li>
+</ul>
+<h3 id="InnoDB-与-MyISAM-的区别"><a href="#InnoDB-与-MyISAM-的区别" class="headerlink" title="InnoDB 与 MyISAM 的区别"></a>InnoDB 与 MyISAM 的区别</h3><ol>
+<li>InnoDB 支持事务，MyISAM 不支持，对于InnoDB 每一条SQL 语言都默认封装成事务，自<br>动提交，这样会影响速度，所以最好把多条SQL 语言放在begin 和commit 之间，组成一<br>个事务；</li>
+<li>InnoDB 支持外键，而MyISAM 不支持。对一个包含外键的InnoDB 表转为MYISAM 会失败；</li>
+<li>InnoDB 是聚集索引，数据文件是和索引绑在一起的，必须有主键，通过主键索引效率很高。<br>但是辅助索引需要两次查询，先查询到主键，然后再通过主键查询到数据。因此，主键不应<br>该过大，因为主键太大，其他索引也都会很大。而MyISAM 是非聚集索引，数据文件是分<br>离的， 索引保存的是数据文件的指针。主键索引和辅助索引是独立的。</li>
+<li>InnoDB 不保存表的具体行数，执行select count(*) from table 时需要全表扫描。而MyISAM<br>用一个变量保存了整个表的行数，执行上述语句时只需要读出该变量即可，速度很快；</li>
+<li>Innodb 不支持全文索引，而MyISAM 支持全文索引，查询效率上MyISAM 要高；</li>
+</ol>
+<h2 id="数据库的事务"><a href="#数据库的事务" class="headerlink" title="数据库的事务"></a>数据库的事务</h2><p>什么是事务？ 多条 sql 语句，要么全部成功，要么全部失败。</p>
+<p>事务的特征：数据库事务特征：</p>
+<ul>
+<li>原子性：组成一个事务的多个数据库操作是一个不可分割的原子单元，只有所有操作都成功， 整个事务才会提交。任何一个操作失败，已经执行的任何操作都必须撤销，让数据库返回初始状态。</li>
+<li>一致性：事务操作成功后，数据库所处的状态和它的业务规则是一致的。即数据不会被破坏。如A 转账100 元给B，不管操作是否成功，A 和B 的账户总额是不变的。</li>
+<li>隔离性：在并发数据操作时，不同的事务拥有各自的数据空间，它们的操作不会对彼此产生干扰</li>
+<li>持久性：一旦事务提交成功，事务中的所有操作都必须持久化到数据库中。</li>
+</ul>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
+<li>官方介绍索引是帮助MySQL 高效获取数据的数据结构。更通俗地说，数据库索引好比是一本书前面的目录，能加快数据库的查询速度。</li>
+<li>一般来说索引本身也很大，不可能全部存储在内存中，因此索引往往是存储在磁盘上的文件中的（可能存储在单独的索引文件中，也可能和数据一起存储在数据文件中）。</li>
+<li>我们通常所说的索引，包括聚集索引、覆盖索引、组合索引、前缀索引、唯一索引等，没有特别说明，默认都是使用树结构组织（多路搜索树，并不一定是二叉的）的索引。</li>
+</ul>
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><ol>
+<li>查询语句中不要使用select *</li>
+<li>尽量减少子查询，使用关联查询（left join,right join,inner join）替代</li>
+<li>减少使用IN 或者NOT IN ，使用exists ，not exists 或者关联查询语句替代</li>
+<li>or 的查询尽量用union 或者union all 代替（在确认没有重复数据或者不用剔除重复数据时， union all 会更好）</li>
+<li>应尽量避免在where 子句中使用！&#x3D;或〈〉操作符，<strong>否则将引擎放弃使用索引而进行全表扫描。</strong></li>
+<li>应尽量避免在where 子句中对字段进行null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如： select id from t where num is null 可以在num 上设置默认值0，确保表中num列没有null 值，然后这样查询： select id from t where num&#x3D;0</li>
+</ol>
+<h2 id="drop、delete与truncate的区别"><a href="#drop、delete与truncate的区别" class="headerlink" title="drop、delete与truncate的区别"></a>drop、delete与truncate的区别</h2><p>delete 和truncate 只删除<strong>表的数据不删除表的结构</strong></p>
+<p>速度一般来说： drop&gt; truncate &gt;delete</p>
+<p>delete 语句是dml，这个操作会放到rollback segement 中，事务提交之后才生效； 如果有相应的trigger，执行的时候将被触发. </p>
+<p>truncate,drop 是ddl, 操作立即生效，原数据不放到rollback segment 中，不能回滚. 操作不触发trigger.</p>
+<h2 id="试图"><a href="#试图" class="headerlink" title="试图"></a>试图</h2><p>视图是一种虚拟的表，具有和物理表相同的功能。可以对视图进行增，改，查，操作，视图通常是有一个表或者多个表的行或列的子集。对视图的修改不影响基本表。它使得我们获取数据更容易， 相比多表查询。</p>
+<h2 id="内连接、左外连接、右外连接"><a href="#内连接、左外连接、右外连接" class="headerlink" title="内连接、左外连接、右外连接"></a>内连接、左外连接、右外连接</h2><ul>
+<li><strong>内连接（Inner Join）：</strong>匹配2 张表中相关联的记录。</li>
+<li><strong>左外连接（Left Outer Join）：</strong>除了匹配2 张表中相关联的记录外，还会匹配左表中剩余的记录，<strong>右表中未匹配到的字段用NULL 表示。</strong></li>
+<li><strong>右外连接（Right Outer Join）：</strong>除了匹配2 张表中相关联的记录外，还会匹配右表中剩余的记录，<strong>左表中未匹配到的字段用NULL 表示。</strong>在判定左表和右表时，<strong>要根据表名出现在Outer Join 的左右位置关系。</strong></li>
+</ul>
+<h2 id="并发事务带来的问题"><a href="#并发事务带来的问题" class="headerlink" title="并发事务带来的问题"></a>并发事务带来的问题</h2><p>在典型的应用程序中，多个事务并发运行，经常会操作相同的数据来完成各自的任务（多个用户对同一数据进行操作）。并发虽然是必须的，但可能会导致以下的问题。</p>
+<p><strong>脏读（Dirty read ）：</strong> 当一个事务正在访问数据并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另外一个事务也访问了这个数据，然后使用了这个数据。因为这个数据是还没有提交的数据，那么另外一个事务读到的这个数据是“脏数据” ，依据“脏数据”所做的操作可能是不正确的。</p>
+<p><strong>丢失修改（ Lost to modify）：</strong> 指在一个事务读取一个数据时，另外一个事务也访问了该数据，那么在第一个事务中修改了这个数据后，第二个事务也修改了这个数据。这样第一个事务内的修改结果就被丢失，因此称为丢失修改。例如：事务1 读取某表中的数据A&#x3D;20，事务2 也读取A&#x3D;20，事务1 修改A&#x3D;A-1，事务2 也修改A&#x3D;A-1，最终结果A&#x3D;19，事务1 的修改被丢失。</p>
+<p><strong>不可重复读（Unrepeatableread)：</strong>指在一个事务内多次读同一数据。在这个事务还没有结束时，另一个事务也访问该数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改导致第一个事务两次读取的数据可能不太一样。这就发生了在一个事务内两次读到的数据是不一样的情况，因此称为不可重复读。</p>
+<p>**幻读（Phantom read):**幻读与不可重复读类似。它发生在一个事务（T1)读取了几行数据，接着另一个并发事务（T2)插入了一些数据时。在随后的查询中，第一个事务（T1)就会发现多了一些原本不存在的记录，就好像发生了幻觉一样，所以称为幻读。</p>
+<p>不可重复读和幻读区别：<br>不可重复读的重点是修改比如多次读取一条记录发现其中某些列的值被修改，幻读的重点在于新增或者删除比如多次读取一条记录发现记录增多或减少了</p>
+<h2 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h2><h3 id="SQL标准定义了四个隔离级别"><a href="#SQL标准定义了四个隔离级别" class="headerlink" title="SQL标准定义了四个隔离级别"></a>SQL标准定义了四个隔离级别</h3><ul>
+<li>READ-UNCOMMITTED(读取未提交）:最低的隔离级别，允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读。</li>
+<li>READ-COMMITTED(读取已提交）:允许读取并发事务已经提交的数据，可以阻止重读，但是幻读或不可重复读仍有可能发生。</li>
+<li>REPEATABLE-READ(可重复读）:对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止重读和不可重复读，但幻读仍有可能发生。</li>
+<li>SERIALIZABLE(可串行化）:最高的隔离级别，完全服从ACID的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止空读、不可重复读以及幻读。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>READ-UNCOMMITTED</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>READ-COMMITTED</td>
+<td>×</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>REPEATABLE-READ</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>SERIALIZABLE</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody></table>
+<p>存储引擎的默认支持的隔离级别是 REPEATABLE-READ(可重读）。</p>
+<p>这里需要注意的是：与SQL标准不同的地方在于InnoDB存储引擎在</p>
+<p>REPEATABLE-READ(可重读）事务隔离级别下使用的是Next-Key Lock锁算法，因此可以避免幻读的产生，这与其他数据库系统（如SQLServer)是不同的。所以说InnoDB存储引擎的默认支持的隔离级别是</p>
+<p>REPEATABLE-READ(可重读）已经可以完全保证事务的隔离性要求，即达到了SQL标准的SERIALIZABLE(可串行化）隔离级别。因为隔离级别越低，事务请求的锁越少，所以大部分数据库系统的隔离级别都是</p>
+<p>READ-COMMITTED(读取提交内容）,但是你要知道的是InnoDB存储引擎默认使用REPEAaTABLE-READ(可重读）并不会有任何性能损失。</p>
+<p>InnoDB存储引擎在分布式事务的情况下一般会用到SERIALIZABLE(可串行化）隔离级别。</p>
+<h2 id="大表优化"><a href="#大表优化" class="headerlink" title="大表优化"></a>大表优化</h2><p>当MySQL 单表记录数过大时，数据库的CRUD 性能会明显下降，一些常见的优化</p>
+<p>措施如下：</p>
+<h3 id="限定数据的范围"><a href="#限定数据的范围" class="headerlink" title="限定数据的范围"></a>限定数据的范围</h3><p>务必禁止不带任何限制数据范围条件的查询语句。比如：我们当用户在查询订单历史的时候，我们可以控制在一个月的范围内；</p>
+<h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><p>经典的数据库拆分方案，主库负责写，从库负责读；</p>
+<h3 id="垂直分区"><a href="#垂直分区" class="headerlink" title="垂直分区"></a>垂直分区</h3><p>根据数据库里面数据表的相关性进行拆分。例如，用户表中既有用户的登录信息又有用户的基本信息，可以将用户表拆分成两个单独的表，甚至放到单独的库做分库。</p>
+<p>简单来说垂直拆分是指数据表列的拆分，<strong>把一张列比较多的表拆分为多张表</strong>。</p>
+<ul>
+<li><strong>垂直拆分的优点：</strong>可以使得列数据变小，在查询时减少读取的Block数，减少1&#x2F;0次数。此外，垂直分区可以简化表的结构，易于维护。</li>
+<li><strong>垂直拆分的缺点：</strong>主键会出现允余，需要管理穴余列，并会引起Join操作，可以通过在应用层 进行Join来解决。此外，垂直分区会让事务变得更加复杂；</li>
+</ul>
+<h3 id="水平分区"><a href="#水平分区" class="headerlink" title="水平分区"></a>水平分区</h3><p><strong>保持数据表结构不变，通过某种策略存储数据分片。这样每一组数据分散到不同的表或者库中，达到了分布式的目的。水平拆分可以支撑非常大的数据量。</strong></p>
+<p>水平拆分是指数据表行的拆分，表的行数超过200 万行时，就会变慢，这时可以把一张的表的数据拆成多张表来存放。举个例子：我们可以将用户信息表拆分成多个用户信息表，这样就可以避免单一表数据量过大对性能造成影响。</p>
+<p>水平拆分可以支持非常大的数据量。需要注意的一点是：分表仅仅是解决了单一表数据过大的问题，但由于表的数据还是在同一台机器上，其实对于提升MySQL 并发能力没有什么意义，所以<strong>水平拆分最好分库</strong>。</p>
+<blockquote>
+<p>水平拆分能够支持非常大的数据量存储，应用端改造也少，但分片事务难以解决，跨节点Join性能较差，逻辑复杂。《Java 工程师修炼之道》的作者推荐尽量不要对数据进行分片，因为拆分会带来逻辑、部署、运维的各种复杂度，一般的数据表在优化得当的情况下支撑千万以下的数据量是没有太大问题的。如果实在要分片，尽量选择客户端分片架构，这样可以减少一次和中间件的网络I&#x2F;O。</p>
+</blockquote>
+<p>下面补充一下数据库分片的两种常见方案：</p>
+<p>客户端代理：分片逻辑在应用端，封装在jar包中，通过修改或者封装JDBC层来实现。当当网的Sharding-JDBC、阿里的TDDL是两种比较常用的实现。</p>
+<p>中间件代理：在应用和数据中间加了一个代理层。分片逻辑统一维护在中间件服务中。我们现在谈的Mycat、360的Atlas、网易的DDB等等都是这种架构的实现。</p>
+<h2 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h2><h3 id="分库分表之后，-id主键如何处理"><a href="#分库分表之后，-id主键如何处理" class="headerlink" title="分库分表之后， id主键如何处理"></a>分库分表之后， id主键如何处理</h3><p>因为要是分成多个表之后，每个表都是从1 开始累加，这样是不对的，我们需要一个全局唯一的id 来支持</p>
+<p>生成全局id 有下面这几种方式：</p>
+<ul>
+<li><p>UUID:不适合作为主键，因为太长了，并且无序不可读，查询效率低。比较适合用于生成一的名字的标示比如文件的名字。</p>
+</li>
+<li><p>数据库自增id：两台数据库分别设置不同步长，生成不重复ID的策略来实现高可用。这种方式生成的id有序，但是需要独立部署数据库实例，成本高，还会有性能瓶颈。</p>
+</li>
+<li><p>利用redis生成id：性能比较好，灵活方便，不依赖于数据库。但是，引入了新的组件造成系统更加复杂，可用性降低，编码更加复杂，增加了系统成本。</p>
+</li>
+<li><p>Twitter的snowflake算法：Github地址：</p>
+</li>
+<li><p>美团的分布式生成系统：Leaf 是美团开源的分布式ID 生成器，能保证全局唯一性、趋势递增、单调递增、信息安全，里面也提到了几种分布式方案的对比，但也需要依赖关系数据库、Zookeeper 等中间件。</p>
+</li>
+</ul>
+<h2 id="SQL执行顺序"><a href="#SQL执行顺序" class="headerlink" title="SQL执行顺序"></a>SQL执行顺序</h2><ol>
+<li><p>取得链接，使用到MySQL 中的连接器。</p>
+</li>
+<li><p>查询缓存，key 为SQL 语句，value 为查询结果，如果查到就直接返回。不建议使用次缓存， 在MySQL 8.0 版本已经将查询缓存删除，也就是说MySQL 8.0 版本后不存在此功能。</p>
+</li>
+<li><p>分析器，分为词法分析和语法分析。此阶段只是做一些SQL 解析，语法校验。所以一般语法错误在此阶段。</p>
+</li>
+<li><p>优化器，是在表里有多个索引的时候，决定使用哪个索引；或者一个语句中存在多表关联的时候（join），决定各个表的连接顺序。</p>
+</li>
+<li><p>执行器，通过分析器让SQL 知道你要干啥，通过优化器知道该怎么做，于是开始执行语句。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">执行语句的时候还要判断是否具备此权限，没有权限就直接返回提示没有权限的错误；有权限则打开表，根据表的引擎定义，去使用这个引擎提供的接口，获取这个表的第一行，判断id 是否等于1。如果是，直接返回；如果不是继续调用引擎接口去下一行，重复相同的判断，直到取到这个表的最后一行，最后返回。</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="索引-1"><a href="#索引-1" class="headerlink" title="索引"></a>索引</h2><h3 id="索引优缺点"><a href="#索引优缺点" class="headerlink" title="索引优缺点"></a>索引优缺点</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202405142210161.png"/>
+
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>提高数据的检索速度，降低数据库IO成本：使用索引的意义就是通过缩小表中需要查询的记录的数目从而加快搜索的速度</li>
+<li>降低数据排序的成本，降低CPU消耗：索引之所以查的快，是因为先将数据排好序，若该字段正好需要排序，则正好降低了排序的成本</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li><p>占用存储空间：素引实际上也是一张表，记录了主键与索引字段，一般以索引文件的形式存储在磁盘上</p>
+</li>
+<li><p>降低更新表的速度：表的数据发生了变化，对应的索引也需要一起变更从而减低的更新速度。否则索引指向的物理数据可能不对，这也是素引失效的原因</p>
+</li>
+</ul>
+<h2 id="MySQL中varchar与char的区别？varchar-30-中的30代表的含义？"><a href="#MySQL中varchar与char的区别？varchar-30-中的30代表的含义？" class="headerlink" title="MySQL中varchar与char的区别？varchar(30)中的30代表的含义？"></a>MySQL中varchar与char的区别？varchar(30)中的30代表的含义？</h2><p>varchar与char的区别，char是一种固定长度的类型，varchar则是一种可变长度的类型。</p>
+<p>varchar(30)中30的涵义最多存放30个字符。varchar(30)和（130)存储hello所占空间一样，但后者在排序时会消耗更多内存，因为ORDER BY col 采用 fixed_length 计算col长度（memory引擎也一样）。</p>
+<p>对效率要求高用char,对空间使用要求高用varchar。</p>
+<h2 id="int-11-中的11代表什么含义？"><a href="#int-11-中的11代表什么含义？" class="headerlink" title="int(11)中的11代表什么含义？"></a>int(11)中的11代表什么含义？</h2><p>int(11)中的11,不影响字段存储的范围，只影响展示效果</p>
+<h2 id="为什么-SELECT-COUNT-FROM-table在InnoDB比-MylSAM-慢？"><a href="#为什么-SELECT-COUNT-FROM-table在InnoDB比-MylSAM-慢？" class="headerlink" title="为什么 SELECT COUNT(*)FROM table在InnoDB比 MylSAM 慢？"></a>为什么 SELECT COUNT(*)FROM table在InnoDB比 MylSAM 慢？</h2><p>对于SELECT COUNT(*) FROM table语句，在没有WHERE条件的情况下，InnoDB比MyISAM可能会慢很多，尤其在大表的情况下。因为，InnoDB是去实时统计结果，会全表扫描；而MyISAM内部维持了一个计数器，预存了结果，所以直接返回即可。</p>
+<h2 id="InnoDB与MyISAM区别？"><a href="#InnoDB与MyISAM区别？" class="headerlink" title="InnoDB与MyISAM区别？"></a>InnoDB与MyISAM区别？</h2><ul>
+<li><p>在MySQL5.1及之前的版本中，MyISAM是默认的存储引擎，而在MySQL5.5版本以后<br>默认使用InnoDB存储引擎。</p>
+</li>
+<li><p>MyISAM不支持行级锁，换句话说，MyISAM会对整张表加锁，而不是针对行。同时，MyISAM不支持事务和外键。MyISAM可被压缩，存储空间较小，而且MyISAM在筛选大量数据时非常快。</p>
+</li>
+<li><p>InnoDB是事务型引擎，当事务异常提交时，会被回滚。同时，InnoDB支持行锁。此外，InnoDB需要更多存储空间，会在内存中建立其专用的缓冲池用于高速缓冲数据和索引。<br>InnoDB支持自动崩溃恢复特性。</p>
+</li>
+</ul>
+<p>建议：一般情况下，个人建议优先选择InnoDB存储引擎，并且尽量不要将InnoDB与MyISAM混合使用。</p>
+<h2 id="MySQL索引类型"><a href="#MySQL索引类型" class="headerlink" title="MySQL索引类型"></a>MySQL索引类型</h2><h3 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h3><p>索引列中的值必须是唯一的，不允许有空值。</p>
+<h3 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h3><p>MySQL 中基本索引类型，没有什么限制，允许在定义索引的列中插入重复值和空值。</p>
+<h3 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h3><p>索引列中的值必须是唯一的，但是允许为空值。</p>
+<h3 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h3><p>只能在文本类型CHAR,VARCHAR,TEXT 类型字段上创建全文索引。字段长度比较大时，如果创建<br>普通索引，在进行like 模糊查询时效率比较低，这时可以创建全文索引。MyISAM 和InnoDB<br>中都可以使用全文索引。</p>
+<h3 id="空间索引"><a href="#空间索引" class="headerlink" title="空间索引"></a>空间索引</h3><p>MySQL 在5.7 之后的版本支持了空间索引，而且支持OpenGIS 几何数据模型。MySQL 在空间索<br>引这方面遵循OpenGIS 几何数据模型规则。</p>
+<h3 id="前缀索引"><a href="#前缀索引" class="headerlink" title="前缀索引"></a>前缀索引</h3><p>在文本类型如CHAR,VARCHAR,TEXT 类列上创建索引时，可以指定索引列的长度，但是数值类型<br>不能指定。</p>
+<p>其他（按照索引列数量分类）</p>
+<ol>
+<li>单列索引</li>
+<li>组合索引<br>组合索引的使用，需要遵循最左前缀匹配原则（最左匹配原则） 。一般情况下在条件允许的<br>情况下使用组合索引替代多个单列索引使用。</li>
+</ol>
+<h3 id="什么时候不要使用索引"><a href="#什么时候不要使用索引" class="headerlink" title="什么时候不要使用索引"></a>什么时候不要使用索引</h3><ol>
+<li>经常增删改的列不要建立索引；</li>
+<li>有大量重复的列不建立索引；</li>
+<li>表记录太少不要建立索引。</li>
+</ol>
+<h3 id="主键与索引有什么区别？"><a href="#主键与索引有什么区别？" class="headerlink" title="主键与索引有什么区别？"></a>主键与索引有什么区别？</h3><p>主键一定会创建一个唯一索引，但是有唯一索引的列不一定是主键；<br>主键不允许为空值，唯一索引列允许空值；<br>一个表只能有一个主键，但是可以有多个唯一索引；<br>主键可以被<strong>其他表引用为外键，唯一索引</strong>列不可以；<br>主键是一种约束，而唯一索引是一种索引，是表的冗余数据结构，两者有本</p>
+<h2 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h2><p>多版本并发控制（MVCC&#x3D;Multi-Version Concurrency Control），是一种用来解决读- 写冲突的无锁并发控制。也就是为事务分配单向增长的时间戳，为每个修改保存一个版本。版本与事务时间戳关联，读操作只读该事务开始前的数据库的快照（复制了一份数据）。这样在读操作不用阻塞写操作，写操作不用阻塞读操作的同时，避免了脏读和不可重复读。</p>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>在并发读写数据库时，可以做到在读操作时不用阻塞写操作，写操作也不用阻塞读操作，提高了数据库并发读写的性能。同时还可以解决脏读、幻读、不可重复读等事务隔离问题，但不能解决更新丢失问题。</p>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>MVCC 的目的就是多版本并发控制，在数据库中的实现，就是为了解决读写冲突，它的实现原理<br>主要是依赖记录中的3 个隐式字段、undo 日志、Read View 来实现的。</p>
+<h2 id="数据库的锁"><a href="#数据库的锁" class="headerlink" title="数据库的锁"></a>数据库的锁</h2><ol>
+<li>共享锁：不堵塞，多个用户可以同一时刻读取同一个资源，相互之间没有影响。</li>
+<li>排他锁：一个写操作阻塞其他的读锁和写锁，这样可以只允许一个用户进行写入，防止其他<br>  用户读取正在写入的资源。</li>
+<li>表锁：系统开销最小，会锁定整张表，MyISAM 使用表锁。</li>
+<li>行锁：容易出现死锁，发生冲突概率低，并发高，InnoDB 支持行锁（必须有索引才能实现，<br>  否则会自动锁全表，那么就不是行锁了）。</li>
+</ol>
+<h3 id="悲观锁和乐观锁"><a href="#悲观锁和乐观锁" class="headerlink" title="悲观锁和乐观锁"></a>悲观锁和乐观锁</h3><h4 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h4><p>在悲观锁的情况下，为了保证事务的隔离性，就需要一致性锁定。读取数据时给加锁，其他事务无<br>法修改这些数据。修改删除数据时也要加锁，其他事务无法读取这些数据。</p>
+<h4 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h4><p>相对悲观锁而言，乐观锁机制采取了更加宽松的加锁机制。悲观锁大多数情况下依靠数据库的锁<br>机制实现，以保证操作最大程度的独占性。但随之而来的就是数据库性能的大量开销，特别是对<br>长事务而言，这样的开销往往无法承受。</p>
+<p>乐观锁，大多是基于数据版本（Version）记录机制<br>实现。何谓数据版本？即为数据增加一个版本标识，在基于数据库表的版本解决方案中，一般是<br>通过为数据库表增加一个“version”字段来实现。读取出数据时，将此版本号一同读出，之后更新<br>时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行比<br>对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。</p>
+<h3 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h3><p>MySQL 行锁只能加在索引上，如果操作不走索引，就会升级为表锁。因为InnoDB 的行锁 是加在索引上的，如果不走索引，自然就没法使用行锁了，原因是InnoDB 是将primary key index 和相关的行数据共同放在B+ 树的叶节点。InnoDB 一定会有一个primary key ，secondary index 查找的时候，也是通过找到对应的primary ，再找对应的数据行。</p>
+<p>当非唯一索引上记录数超过一定数量时，行锁也会升级为表锁。测试发现当非唯一索引相同的内容不少于整个表记录的二分之一时会升级为表锁。因为当非唯一索引相同的内容达到整个记录的二分之一时，索引需要的性能比全文检索还要大，查询语句优化时会选择不走索引，造成索引失效，行锁自然就会升级为表锁。</p>
+<h3 id="避免死锁"><a href="#避免死锁" class="headerlink" title="避免死锁"></a>避免死锁</h3><ol>
+<li>设置获取锁的超时时间，至少能保证最差情况下，可以退出程序，不至于一直等待导致死锁；</li>
+<li>设置按照同一顺序访问资源，类似于串行执行；</li>
+<li>避免事务中的用户交叉；</li>
+<li>保持事务简短并在一个批处理中；</li>
+<li>使用低隔离级别；</li>
+<li>使用绑定链接。</li>
+</ol>
+<h2 id="如何做到高可用方案？"><a href="#如何做到高可用方案？" class="headerlink" title="如何做到高可用方案？"></a>如何做到高可用方案？</h2><p>MySQL 高可用，意味着不能一台MySQL 出了问题，就不能访问了。</p>
+<ol>
+<li>MySQL 高可用：分库分表，通过MyCat 连接多个MySQL</li>
+<li>MyCat 也得高可用：Haproxy，连接多个MyCat</li>
+<li>Haproxy 也得高可用：通过keepalived 辅助Haproxy</li>
+</ol>
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h2 id="为了应对多请求缓存数据，缓解mysql压力而诞生"><a href="#为了应对多请求缓存数据，缓解mysql压力而诞生" class="headerlink" title="为了应对多请求缓存数据，缓解mysql压力而诞生"></a>为了应对多请求缓存数据，缓解mysql压力而诞生</h2><p>Redis主要数据存在内存中，通过设置超时时间来解决Redis在内存内数据不断膨胀问题<br>当内存压力太大时，通过随机算法删除内容释放空间（随机算法）<br>当超期数据太久于内存中未删除，遇到请求查询超期键值，则会立即删除该数据（被动触发，惰性删除）</p>
+<h2 id="内存淘汰策略"><a href="#内存淘汰策略" class="headerlink" title="内存淘汰策略"></a>内存淘汰策略</h2><p>①noeviction：返回错误，不会删除任何键值<br>②allkeys-lru：使用LRU算法删除最近最少使用的键值<br>③volatile-lru：使用LRU算法从设置了过期时间的键集合中删除最近最少使用的键值<br>④allkeys-random:从所有key随机删］除<br>⑤volatile-random：从设置了过期时间的键的集合中随机删除<br>⑥volat计e-ttl：从设置了过期时间的键中删除剩余时间最短的键<br>⑦volatile・lfu：从配置了过期时间的键中删除使用频率最少的键<br>⑧allkeys-lfu:从所有键中删除使用频率最少的键</p>
+<h2 id="缓存击穿-缓存雪崩"><a href="#缓存击穿-缓存雪崩" class="headerlink" title="缓存击穿 缓存雪崩"></a>缓存击穿 缓存雪崩</h2><p>mysql被多次申请查询返回空数据从而使得redis无法缓存（缓存穿透&#x2F;缓存击穿）<br>mysql因为（大量）redis数据丢失或者数据删除导致大量请求涌向mysql导致mysql处理不过来请求（缓存雪崩）<br>解决方法：过期时间均匀分布+热点数据永不过期</p>
+<h2 id="持久化-RDB-AOF"><a href="#持久化-RDB-AOF" class="headerlink" title="持久化 RDB AOF"></a>持久化 RDB AOF</h2><h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3><p>redis因为出错导致丢失数据（需要通过持久化存储）<br>RDB：将全部遍历写入二进制连续文件rdb (周期性备份)<br>为了防止大量重复备份，redis提供了save配置参数解决问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">save 900 1 #900秒 内有一个写入即备份（由子进程进行）</span><br></pre></td></tr></table></figure>
+
+<p>RDB数据不一致问题:因为数据库都是分钟级的，这种周期性备份还是容易丢数据</p>
+<h3 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h3><p>AOF持久化:类似mysql的binlog，将写入操作记录下来，保存操作的数据会先写入缓冲区AOF_BUF (会存放SET SAOO RPUSH等)</p>
+<p>AOF重写，为了防止AOF缓存数据过大问题：指令合并（子进程进行）</p>
+<p>但是子进程进行会导致AOF重写数据不一致。所以需要将指令存放AOF_REWRITE_BUF缓冲区，将重写进程启动后的命令写入缓冲区，运行完毕回写进去</p>
+<h3 id="主从节点"><a href="#主从节点" class="headerlink" title="主从节点"></a>主从节点</h3><p>为了防止Redis多次崩溃<br>主从：主节点主要负责写入数据，从节点主要负责读数据，做好数据同步，读写分离 提高性能。主节点崩了从节点就顶上（高可用集群）</p>
+<ul>
+<li>数据同步：若主节点生成的RDB文件同步期间又收到修改命令也会一并发给从节点</li>
+<li>命令传播：若主节点有数据写入、删除、修改命令也会挨个发给从节点</li>
+<li>版本控制：主节点发给从节点的数据会发送一份给缓存区，若从节点掉线了，从缓冲区的偏移量起发送同步数据</li>
+</ul>
+<h3 id="哨兵机制"><a href="#哨兵机制" class="headerlink" title="哨兵机制"></a>哨兵机制</h3><p>哨兵：专门有几个节点负责当管理员，不负责写入，当节点掉线时，由哨兵选择一个从节点顶上主节点<br>    每隔10s哨兵都需要发送info命令问候主节点情况（有多少从节点）<br>    每隔1s ping命令问候全部节点，若出现节点掉线则启动故障转移。这时发现的哨兵认定主观下线，会问候其他哨兵，当少服从多数认为下线，则认定客观下线。具体需要多少个哨兵认定，可以自己定义。<br>    故障转移：选个新的主节点，让其他从节点从新主节点那同步数据，再把原来的主节点改为从节点<br>    新主节点选择标准：给不同节点设置优先级，配置高的的优先级越高，与断开节点链接越短的，复制偏移越高的。</p>
+<h3 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h3><p>为了防止数据量过大（由于之前全都全量复制）</p>
+<p>集群：合并大服务器</p>
+<p>新节点加入问题：新节点加入必须由集群内某一节点发送MEET请求后，新节点回应PONG请求，再由集群内节点发送PING请求（类似TCP三次握手）</p>
+<p>数据分配：数据量公平问题：划分16384个哈希桶（槽位Slot）由程序员分配每个集群节点负责的槽位量。数据读写时对数据进行哈希运算，存入对应到槽位。每次计算存入节点会通知集群内所有节点。使用二进制通知，负责的槽位为1，共2048字节。（这样会导致存入数据需要遍历查看存入数据需要是哪个redis节点负责。）由此 新建一个大数组来存储每个槽位由哪个节点负责。（数据索引）</p>
+<p>需要每个槽位都有节点负责，集群才能正确上线。</p>
+<p>数据读写时候，集群节点会先检查数据是否由自己负责，否则会发送MOVED错误给请求端，使其去寻找正确节点（发送槽号，IP，端口）自动运行，无须调用</p>
+<p>为了防止节点掉线，从节点会充当集群内节点的Backup</p>
+<h2 id="Redis实现消息队列"><a href="#Redis实现消息队列" class="headerlink" title="Redis实现消息队列"></a>Redis实现消息队列</h2><p>一般使用list结构作为队列，rpush生产消息，1pop消费消息。当1pop没有消息的时候，要适当<br>sleep一会再重试。</p>
+<ul>
+<li>面试官可能会问可不可以不用sleep呢？list还有个指令吸pop,在没有消息的时候，它会<br>阻塞住直到消息到来。</li>
+<li>面试官可能还问能不能生产一次消费多次呢？使用pub&#x2F;sub主题订阅者模式，可以实现<br>1:N的消息队列。</li>
+<li>面试官可能还问pub&#x2F;sub有什么缺点？在消费者下线的情况下，生产的消息会丢失，得使<br>用专业的消息队列如rabbit MQ等</li>
+<li>Redis 如何实现延时队列：使用SortedSet 拿时间戳做Score</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/10/java%E9%9D%A2%E8%AF%95%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1189,334 +1517,6 @@
 </ol>
 <img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202405120020479.png"/>
 
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/10/Mysql%E9%9D%A2%E8%AF%95%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MEIDE">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MEIDE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/05/10/Mysql%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-title-link" itemprop="url">MYSQL面试题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-05-10 13:26:38" itemprop="dateCreated datePublished" datetime="2024-05-10T13:26:38+08:00">2024-05-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-15 01:03:48" itemprop="dateModified" datetime="2024-05-15T01:03:48+08:00">2024-05-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><h2 id="数据库的三范式"><a href="#数据库的三范式" class="headerlink" title="数据库的三范式"></a>数据库的三范式</h2><p>第一范式：列不可再分</p>
-<p>第二范式：行可以唯一区分，主键约束</p>
-<p>第三范式：表的非主属性不能依赖</p>
-<p>与其他表的非主属性外键约束且三大范式是一级一级依赖的，第二范式建立在第一范式上，第三范式建立第一第二范式上。</p>
-<h2 id="MYSQL数据库引擎"><a href="#MYSQL数据库引擎" class="headerlink" title="MYSQL数据库引擎"></a>MYSQL数据库引擎</h2><p>mysql 常用引擎包括：MYISAM、Innodb、Memory、MERGE</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202405131951060.png"/>
-
-<ul>
-<li>MYISAM：<strong>全表锁</strong>，拥有较高的执行速度，<strong>不支持事务，不支持外键</strong>，并发性能差，占用空间相对较小，<strong>对事务完整性没有要求</strong>，以select、insert 为主的应用基本上可以使用这引擎</li>
-<li>Innodb：<strong>行级锁</strong>，提供了具有提交、<strong>回滚和崩溃回复能力的事务安全，支持自动增长列</strong>，<strong>支持外键约束</strong>，并发能力强，占用空间是MYISAM 的2.5 倍，处理效率相对会差一些</li>
-<li>Memory：全表锁，存储在内容中，速度快，<strong>但会占用和数据量成正比的内存空间</strong>且<strong>数据在mysql 重启时会丢失，默认使用HASH 索引</strong>，检索效率非常高，但<strong>不适用于精确查找</strong>，主要用于那些内容变化不频繁的代码表</li>
-<li>MERGE：是一组MYISAM 表的组合</li>
-</ul>
-<h3 id="InnoDB-与-MyISAM-的区别"><a href="#InnoDB-与-MyISAM-的区别" class="headerlink" title="InnoDB 与 MyISAM 的区别"></a>InnoDB 与 MyISAM 的区别</h3><ol>
-<li>InnoDB 支持事务，MyISAM 不支持，对于InnoDB 每一条SQL 语言都默认封装成事务，自<br>动提交，这样会影响速度，所以最好把多条SQL 语言放在begin 和commit 之间，组成一<br>个事务；</li>
-<li>InnoDB 支持外键，而MyISAM 不支持。对一个包含外键的InnoDB 表转为MYISAM 会失败；</li>
-<li>InnoDB 是聚集索引，数据文件是和索引绑在一起的，必须有主键，通过主键索引效率很高。<br>但是辅助索引需要两次查询，先查询到主键，然后再通过主键查询到数据。因此，主键不应<br>该过大，因为主键太大，其他索引也都会很大。而MyISAM 是非聚集索引，数据文件是分<br>离的， 索引保存的是数据文件的指针。主键索引和辅助索引是独立的。</li>
-<li>InnoDB 不保存表的具体行数，执行select count(*) from table 时需要全表扫描。而MyISAM<br>用一个变量保存了整个表的行数，执行上述语句时只需要读出该变量即可，速度很快；</li>
-<li>Innodb 不支持全文索引，而MyISAM 支持全文索引，查询效率上MyISAM 要高；</li>
-</ol>
-<h2 id="数据库的事务"><a href="#数据库的事务" class="headerlink" title="数据库的事务"></a>数据库的事务</h2><p>什么是事务？ 多条 sql 语句，要么全部成功，要么全部失败。</p>
-<p>事务的特征：数据库事务特征：</p>
-<ul>
-<li>原子性：组成一个事务的多个数据库操作是一个不可分割的原子单元，只有所有操作都成功， 整个事务才会提交。任何一个操作失败，已经执行的任何操作都必须撤销，让数据库返回初始状态。</li>
-<li>一致性：事务操作成功后，数据库所处的状态和它的业务规则是一致的。即数据不会被破坏。如A 转账100 元给B，不管操作是否成功，A 和B 的账户总额是不变的。</li>
-<li>隔离性：在并发数据操作时，不同的事务拥有各自的数据空间，它们的操作不会对彼此产生干扰</li>
-<li>持久性：一旦事务提交成功，事务中的所有操作都必须持久化到数据库中。</li>
-</ul>
-<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
-<li>官方介绍索引是帮助MySQL 高效获取数据的数据结构。更通俗地说，数据库索引好比是一本书前面的目录，能加快数据库的查询速度。</li>
-<li>一般来说索引本身也很大，不可能全部存储在内存中，因此索引往往是存储在磁盘上的文件中的（可能存储在单独的索引文件中，也可能和数据一起存储在数据文件中）。</li>
-<li>我们通常所说的索引，包括聚集索引、覆盖索引、组合索引、前缀索引、唯一索引等，没有特别说明，默认都是使用树结构组织（多路搜索树，并不一定是二叉的）的索引。</li>
-</ul>
-<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><ol>
-<li>查询语句中不要使用select *</li>
-<li>尽量减少子查询，使用关联查询（left join,right join,inner join）替代</li>
-<li>减少使用IN 或者NOT IN ，使用exists ，not exists 或者关联查询语句替代</li>
-<li>or 的查询尽量用union 或者union all 代替（在确认没有重复数据或者不用剔除重复数据时， union all 会更好）</li>
-<li>应尽量避免在where 子句中使用！&#x3D;或〈〉操作符，<strong>否则将引擎放弃使用索引而进行全表扫描。</strong></li>
-<li>应尽量避免在where 子句中对字段进行null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如： select id from t where num is null 可以在num 上设置默认值0，确保表中num列没有null 值，然后这样查询： select id from t where num&#x3D;0</li>
-</ol>
-<h2 id="drop、delete与truncate的区别"><a href="#drop、delete与truncate的区别" class="headerlink" title="drop、delete与truncate的区别"></a>drop、delete与truncate的区别</h2><p>delete 和truncate 只删除<strong>表的数据不删除表的结构</strong></p>
-<p>速度一般来说： drop&gt; truncate &gt;delete</p>
-<p>delete 语句是dml，这个操作会放到rollback segement 中，事务提交之后才生效； 如果有相应的trigger，执行的时候将被触发. </p>
-<p>truncate,drop 是ddl, 操作立即生效，原数据不放到rollback segment 中，不能回滚. 操作不触发trigger.</p>
-<h2 id="试图"><a href="#试图" class="headerlink" title="试图"></a>试图</h2><p>视图是一种虚拟的表，具有和物理表相同的功能。可以对视图进行增，改，查，操作，视图通常是有一个表或者多个表的行或列的子集。对视图的修改不影响基本表。它使得我们获取数据更容易， 相比多表查询。</p>
-<h2 id="内连接、左外连接、右外连接"><a href="#内连接、左外连接、右外连接" class="headerlink" title="内连接、左外连接、右外连接"></a>内连接、左外连接、右外连接</h2><ul>
-<li><strong>内连接（Inner Join）：</strong>匹配2 张表中相关联的记录。</li>
-<li><strong>左外连接（Left Outer Join）：</strong>除了匹配2 张表中相关联的记录外，还会匹配左表中剩余的记录，<strong>右表中未匹配到的字段用NULL 表示。</strong></li>
-<li><strong>右外连接（Right Outer Join）：</strong>除了匹配2 张表中相关联的记录外，还会匹配右表中剩余的记录，<strong>左表中未匹配到的字段用NULL 表示。</strong>在判定左表和右表时，<strong>要根据表名出现在Outer Join 的左右位置关系。</strong></li>
-</ul>
-<h2 id="并发事务带来的问题"><a href="#并发事务带来的问题" class="headerlink" title="并发事务带来的问题"></a>并发事务带来的问题</h2><p>在典型的应用程序中，多个事务并发运行，经常会操作相同的数据来完成各自的任务（多个用户对同一数据进行操作）。并发虽然是必须的，但可能会导致以下的问题。</p>
-<p><strong>脏读（Dirty read ）：</strong> 当一个事务正在访问数据并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另外一个事务也访问了这个数据，然后使用了这个数据。因为这个数据是还没有提交的数据，那么另外一个事务读到的这个数据是“脏数据” ，依据“脏数据”所做的操作可能是不正确的。</p>
-<p><strong>丢失修改（ Lost to modify）：</strong> 指在一个事务读取一个数据时，另外一个事务也访问了该数据，那么在第一个事务中修改了这个数据后，第二个事务也修改了这个数据。这样第一个事务内的修改结果就被丢失，因此称为丢失修改。例如：事务1 读取某表中的数据A&#x3D;20，事务2 也读取A&#x3D;20，事务1 修改A&#x3D;A-1，事务2 也修改A&#x3D;A-1，最终结果A&#x3D;19，事务1 的修改被丢失。</p>
-<p><strong>不可重复读（Unrepeatableread)：</strong>指在一个事务内多次读同一数据。在这个事务还没有结束时，另一个事务也访问该数据。那么，在第一个事务中的两次读数据之间，由于第二个事务的修改导致第一个事务两次读取的数据可能不太一样。这就发生了在一个事务内两次读到的数据是不一样的情况，因此称为不可重复读。</p>
-<p>**幻读（Phantom read):**幻读与不可重复读类似。它发生在一个事务（T1)读取了几行数据，接着另一个并发事务（T2)插入了一些数据时。在随后的查询中，第一个事务（T1)就会发现多了一些原本不存在的记录，就好像发生了幻觉一样，所以称为幻读。</p>
-<p>不可重复读和幻读区别：<br>不可重复读的重点是修改比如多次读取一条记录发现其中某些列的值被修改，幻读的重点在于新增或者删除比如多次读取一条记录发现记录增多或减少了</p>
-<h2 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h2><h3 id="SQL标准定义了四个隔离级别"><a href="#SQL标准定义了四个隔离级别" class="headerlink" title="SQL标准定义了四个隔离级别"></a>SQL标准定义了四个隔离级别</h3><ul>
-<li>READ-UNCOMMITTED(读取未提交）:最低的隔离级别，允许读取尚未提交的数据变更，可能会导致脏读、幻读或不可重复读。</li>
-<li>READ-COMMITTED(读取已提交）:允许读取并发事务已经提交的数据，可以阻止重读，但是幻读或不可重复读仍有可能发生。</li>
-<li>REPEATABLE-READ(可重复读）:对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止重读和不可重复读，但幻读仍有可能发生。</li>
-<li>SERIALIZABLE(可串行化）:最高的隔离级别，完全服从ACID的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，该级别可以防止空读、不可重复读以及幻读。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>隔离级别</th>
-<th>脏读</th>
-<th>不可重复读</th>
-<th>幻读</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>READ-UNCOMMITTED</td>
-<td>√</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>READ-COMMITTED</td>
-<td>×</td>
-<td>√</td>
-<td>√</td>
-</tr>
-<tr>
-<td>REPEATABLE-READ</td>
-<td>×</td>
-<td>×</td>
-<td>√</td>
-</tr>
-<tr>
-<td>SERIALIZABLE</td>
-<td>×</td>
-<td>×</td>
-<td>×</td>
-</tr>
-</tbody></table>
-<p>存储引擎的默认支持的隔离级别是 REPEATABLE-READ(可重读）。</p>
-<p>这里需要注意的是：与SQL标准不同的地方在于InnoDB存储引擎在</p>
-<p>REPEATABLE-READ(可重读）事务隔离级别下使用的是Next-Key Lock锁算法，因此可以避免幻读的产生，这与其他数据库系统（如SQLServer)是不同的。所以说InnoDB存储引擎的默认支持的隔离级别是</p>
-<p>REPEATABLE-READ(可重读）已经可以完全保证事务的隔离性要求，即达到了SQL标准的SERIALIZABLE(可串行化）隔离级别。因为隔离级别越低，事务请求的锁越少，所以大部分数据库系统的隔离级别都是</p>
-<p>READ-COMMITTED(读取提交内容）,但是你要知道的是InnoDB存储引擎默认使用REPEAaTABLE-READ(可重读）并不会有任何性能损失。</p>
-<p>InnoDB存储引擎在分布式事务的情况下一般会用到SERIALIZABLE(可串行化）隔离级别。</p>
-<h2 id="大表优化"><a href="#大表优化" class="headerlink" title="大表优化"></a>大表优化</h2><p>当MySQL 单表记录数过大时，数据库的CRUD 性能会明显下降，一些常见的优化</p>
-<p>措施如下：</p>
-<h3 id="限定数据的范围"><a href="#限定数据的范围" class="headerlink" title="限定数据的范围"></a>限定数据的范围</h3><p>务必禁止不带任何限制数据范围条件的查询语句。比如：我们当用户在查询订单历史的时候，我们可以控制在一个月的范围内；</p>
-<h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><p>经典的数据库拆分方案，主库负责写，从库负责读；</p>
-<h3 id="垂直分区"><a href="#垂直分区" class="headerlink" title="垂直分区"></a>垂直分区</h3><p>根据数据库里面数据表的相关性进行拆分。例如，用户表中既有用户的登录信息又有用户的基本信息，可以将用户表拆分成两个单独的表，甚至放到单独的库做分库。</p>
-<p>简单来说垂直拆分是指数据表列的拆分，<strong>把一张列比较多的表拆分为多张表</strong>。</p>
-<ul>
-<li><strong>垂直拆分的优点：</strong>可以使得列数据变小，在查询时减少读取的Block数，减少1&#x2F;0次数。此外，垂直分区可以简化表的结构，易于维护。</li>
-<li><strong>垂直拆分的缺点：</strong>主键会出现允余，需要管理穴余列，并会引起Join操作，可以通过在应用层 进行Join来解决。此外，垂直分区会让事务变得更加复杂；</li>
-</ul>
-<h3 id="水平分区"><a href="#水平分区" class="headerlink" title="水平分区"></a>水平分区</h3><p><strong>保持数据表结构不变，通过某种策略存储数据分片。这样每一组数据分散到不同的表或者库中，达到了分布式的目的。水平拆分可以支撑非常大的数据量。</strong></p>
-<p>水平拆分是指数据表行的拆分，表的行数超过200 万行时，就会变慢，这时可以把一张的表的数据拆成多张表来存放。举个例子：我们可以将用户信息表拆分成多个用户信息表，这样就可以避免单一表数据量过大对性能造成影响。</p>
-<p>水平拆分可以支持非常大的数据量。需要注意的一点是：分表仅仅是解决了单一表数据过大的问题，但由于表的数据还是在同一台机器上，其实对于提升MySQL 并发能力没有什么意义，所以<strong>水平拆分最好分库</strong>。</p>
-<blockquote>
-<p>水平拆分能够支持非常大的数据量存储，应用端改造也少，但分片事务难以解决，跨节点Join性能较差，逻辑复杂。《Java 工程师修炼之道》的作者推荐尽量不要对数据进行分片，因为拆分会带来逻辑、部署、运维的各种复杂度，一般的数据表在优化得当的情况下支撑千万以下的数据量是没有太大问题的。如果实在要分片，尽量选择客户端分片架构，这样可以减少一次和中间件的网络I&#x2F;O。</p>
-</blockquote>
-<p>下面补充一下数据库分片的两种常见方案：</p>
-<p>客户端代理：分片逻辑在应用端，封装在jar包中，通过修改或者封装JDBC层来实现。当当网的Sharding-JDBC、阿里的TDDL是两种比较常用的实现。</p>
-<p>中间件代理：在应用和数据中间加了一个代理层。分片逻辑统一维护在中间件服务中。我们现在谈的Mycat、360的Atlas、网易的DDB等等都是这种架构的实现。</p>
-<h2 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h2><h3 id="分库分表之后，-id主键如何处理"><a href="#分库分表之后，-id主键如何处理" class="headerlink" title="分库分表之后， id主键如何处理"></a>分库分表之后， id主键如何处理</h3><p>因为要是分成多个表之后，每个表都是从1 开始累加，这样是不对的，我们需要一个全局唯一的id 来支持</p>
-<p>生成全局id 有下面这几种方式：</p>
-<ul>
-<li><p>UUID:不适合作为主键，因为太长了，并且无序不可读，查询效率低。比较适合用于生成一的名字的标示比如文件的名字。</p>
-</li>
-<li><p>数据库自增id：两台数据库分别设置不同步长，生成不重复ID的策略来实现高可用。这种方式生成的id有序，但是需要独立部署数据库实例，成本高，还会有性能瓶颈。</p>
-</li>
-<li><p>利用redis生成id：性能比较好，灵活方便，不依赖于数据库。但是，引入了新的组件造成系统更加复杂，可用性降低，编码更加复杂，增加了系统成本。</p>
-</li>
-<li><p>Twitter的snowflake算法：Github地址：</p>
-</li>
-<li><p>美团的分布式生成系统：Leaf 是美团开源的分布式ID 生成器，能保证全局唯一性、趋势递增、单调递增、信息安全，里面也提到了几种分布式方案的对比，但也需要依赖关系数据库、Zookeeper 等中间件。</p>
-</li>
-</ul>
-<h2 id="SQL执行顺序"><a href="#SQL执行顺序" class="headerlink" title="SQL执行顺序"></a>SQL执行顺序</h2><ol>
-<li><p>取得链接，使用到MySQL 中的连接器。</p>
-</li>
-<li><p>查询缓存，key 为SQL 语句，value 为查询结果，如果查到就直接返回。不建议使用次缓存， 在MySQL 8.0 版本已经将查询缓存删除，也就是说MySQL 8.0 版本后不存在此功能。</p>
-</li>
-<li><p>分析器，分为词法分析和语法分析。此阶段只是做一些SQL 解析，语法校验。所以一般语法错误在此阶段。</p>
-</li>
-<li><p>优化器，是在表里有多个索引的时候，决定使用哪个索引；或者一个语句中存在多表关联的时候（join），决定各个表的连接顺序。</p>
-</li>
-<li><p>执行器，通过分析器让SQL 知道你要干啥，通过优化器知道该怎么做，于是开始执行语句。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">执行语句的时候还要判断是否具备此权限，没有权限就直接返回提示没有权限的错误；有权限则打开表，根据表的引擎定义，去使用这个引擎提供的接口，获取这个表的第一行，判断id 是否等于1。如果是，直接返回；如果不是继续调用引擎接口去下一行，重复相同的判断，直到取到这个表的最后一行，最后返回。</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="索引-1"><a href="#索引-1" class="headerlink" title="索引"></a>索引</h2><h3 id="索引优缺点"><a href="#索引优缺点" class="headerlink" title="索引优缺点"></a>索引优缺点</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202405142210161.png"/>
-
-<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
-<li>提高数据的检索速度，降低数据库IO成本：使用索引的意义就是通过缩小表中需要查询的记录的数目从而加快搜索的速度</li>
-<li>降低数据排序的成本，降低CPU消耗：索引之所以查的快，是因为先将数据排好序，若该字段正好需要排序，则正好降低了排序的成本</li>
-</ul>
-<p>缺点</p>
-<ul>
-<li><p>占用存储空间：素引实际上也是一张表，记录了主键与索引字段，一般以索引文件的形式存储在磁盘上</p>
-</li>
-<li><p>降低更新表的速度：表的数据发生了变化，对应的索引也需要一起变更从而减低的更新速度。否则索引指向的物理数据可能不对，这也是素引失效的原因</p>
-</li>
-</ul>
-<h2 id="MySQL中varchar与char的区别？varchar-30-中的30代表的含义？"><a href="#MySQL中varchar与char的区别？varchar-30-中的30代表的含义？" class="headerlink" title="MySQL中varchar与char的区别？varchar(30)中的30代表的含义？"></a>MySQL中varchar与char的区别？varchar(30)中的30代表的含义？</h2><p>varchar与char的区别，char是一种固定长度的类型，varchar则是一种可变长度的类型。</p>
-<p>varchar(30)中30的涵义最多存放30个字符。varchar(30)和（130)存储hello所占空间一样，但后者在排序时会消耗更多内存，因为ORDER BY col 采用 fixed_length 计算col长度（memory引擎也一样）。</p>
-<p>对效率要求高用char,对空间使用要求高用varchar。</p>
-<h2 id="int-11-中的11代表什么含义？"><a href="#int-11-中的11代表什么含义？" class="headerlink" title="int(11)中的11代表什么含义？"></a>int(11)中的11代表什么含义？</h2><p>int(11)中的11,不影响字段存储的范围，只影响展示效果</p>
-<h2 id="为什么-SELECT-COUNT-FROM-table在InnoDB比-MylSAM-慢？"><a href="#为什么-SELECT-COUNT-FROM-table在InnoDB比-MylSAM-慢？" class="headerlink" title="为什么 SELECT COUNT(*)FROM table在InnoDB比 MylSAM 慢？"></a>为什么 SELECT COUNT(*)FROM table在InnoDB比 MylSAM 慢？</h2><p>对于SELECT COUNT(*) FROM table语句，在没有WHERE条件的情况下，InnoDB比MyISAM可能会慢很多，尤其在大表的情况下。因为，InnoDB是去实时统计结果，会全表扫描；而MyISAM内部维持了一个计数器，预存了结果，所以直接返回即可。</p>
-<h2 id="InnoDB与MyISAM区别？"><a href="#InnoDB与MyISAM区别？" class="headerlink" title="InnoDB与MyISAM区别？"></a>InnoDB与MyISAM区别？</h2><ul>
-<li><p>在MySQL5.1及之前的版本中，MyISAM是默认的存储引擎，而在MySQL5.5版本以后<br>默认使用InnoDB存储引擎。</p>
-</li>
-<li><p>MyISAM不支持行级锁，换句话说，MyISAM会对整张表加锁，而不是针对行。同时，MyISAM不支持事务和外键。MyISAM可被压缩，存储空间较小，而且MyISAM在筛选大量数据时非常快。</p>
-</li>
-<li><p>InnoDB是事务型引擎，当事务异常提交时，会被回滚。同时，InnoDB支持行锁。此外，InnoDB需要更多存储空间，会在内存中建立其专用的缓冲池用于高速缓冲数据和索引。<br>InnoDB支持自动崩溃恢复特性。</p>
-</li>
-</ul>
-<p>建议：一般情况下，个人建议优先选择InnoDB存储引擎，并且尽量不要将InnoDB与MyISAM混合使用。</p>
-<h2 id="MySQL索引类型"><a href="#MySQL索引类型" class="headerlink" title="MySQL索引类型"></a>MySQL索引类型</h2><h3 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h3><p>索引列中的值必须是唯一的，不允许有空值。</p>
-<h3 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h3><p>MySQL 中基本索引类型，没有什么限制，允许在定义索引的列中插入重复值和空值。</p>
-<h3 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h3><p>索引列中的值必须是唯一的，但是允许为空值。</p>
-<h3 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h3><p>只能在文本类型CHAR,VARCHAR,TEXT 类型字段上创建全文索引。字段长度比较大时，如果创建<br>普通索引，在进行like 模糊查询时效率比较低，这时可以创建全文索引。MyISAM 和InnoDB<br>中都可以使用全文索引。</p>
-<h3 id="空间索引"><a href="#空间索引" class="headerlink" title="空间索引"></a>空间索引</h3><p>MySQL 在5.7 之后的版本支持了空间索引，而且支持OpenGIS 几何数据模型。MySQL 在空间索<br>引这方面遵循OpenGIS 几何数据模型规则。</p>
-<h3 id="前缀索引"><a href="#前缀索引" class="headerlink" title="前缀索引"></a>前缀索引</h3><p>在文本类型如CHAR,VARCHAR,TEXT 类列上创建索引时，可以指定索引列的长度，但是数值类型<br>不能指定。</p>
-<p>其他（按照索引列数量分类）</p>
-<ol>
-<li>单列索引</li>
-<li>组合索引<br>组合索引的使用，需要遵循最左前缀匹配原则（最左匹配原则） 。一般情况下在条件允许的<br>情况下使用组合索引替代多个单列索引使用。</li>
-</ol>
-<h3 id="什么时候不要使用索引"><a href="#什么时候不要使用索引" class="headerlink" title="什么时候不要使用索引"></a>什么时候不要使用索引</h3><ol>
-<li>经常增删改的列不要建立索引；</li>
-<li>有大量重复的列不建立索引；</li>
-<li>表记录太少不要建立索引。</li>
-</ol>
-<h3 id="主键与索引有什么区别？"><a href="#主键与索引有什么区别？" class="headerlink" title="主键与索引有什么区别？"></a>主键与索引有什么区别？</h3><p>主键一定会创建一个唯一索引，但是有唯一索引的列不一定是主键；<br>主键不允许为空值，唯一索引列允许空值；<br>一个表只能有一个主键，但是可以有多个唯一索引；<br>主键可以被<strong>其他表引用为外键，唯一索引</strong>列不可以；<br>主键是一种约束，而唯一索引是一种索引，是表的冗余数据结构，两者有本</p>
-<h2 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h2><p>多版本并发控制（MVCC&#x3D;Multi-Version Concurrency Control），是一种用来解决读- 写冲突的无锁并发控制。也就是为事务分配单向增长的时间戳，为每个修改保存一个版本。版本与事务时间戳关联，读操作只读该事务开始前的数据库的快照（复制了一份数据）。这样在读操作不用阻塞写操作，写操作不用阻塞读操作的同时，避免了脏读和不可重复读。</p>
-<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>在并发读写数据库时，可以做到在读操作时不用阻塞写操作，写操作也不用阻塞读操作，提高了数据库并发读写的性能。同时还可以解决脏读、幻读、不可重复读等事务隔离问题，但不能解决更新丢失问题。</p>
-<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>MVCC 的目的就是多版本并发控制，在数据库中的实现，就是为了解决读写冲突，它的实现原理<br>主要是依赖记录中的3 个隐式字段、undo 日志、Read View 来实现的。</p>
-<h2 id="数据库的锁"><a href="#数据库的锁" class="headerlink" title="数据库的锁"></a>数据库的锁</h2><ol>
-<li>共享锁：不堵塞，多个用户可以同一时刻读取同一个资源，相互之间没有影响。</li>
-<li>排他锁：一个写操作阻塞其他的读锁和写锁，这样可以只允许一个用户进行写入，防止其他<br>  用户读取正在写入的资源。</li>
-<li>表锁：系统开销最小，会锁定整张表，MyISAM 使用表锁。</li>
-<li>行锁：容易出现死锁，发生冲突概率低，并发高，InnoDB 支持行锁（必须有索引才能实现，<br>  否则会自动锁全表，那么就不是行锁了）。</li>
-</ol>
-<h3 id="悲观锁和乐观锁"><a href="#悲观锁和乐观锁" class="headerlink" title="悲观锁和乐观锁"></a>悲观锁和乐观锁</h3><h4 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h4><p>在悲观锁的情况下，为了保证事务的隔离性，就需要一致性锁定。读取数据时给加锁，其他事务无<br>法修改这些数据。修改删除数据时也要加锁，其他事务无法读取这些数据。</p>
-<h4 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h4><p>相对悲观锁而言，乐观锁机制采取了更加宽松的加锁机制。悲观锁大多数情况下依靠数据库的锁<br>机制实现，以保证操作最大程度的独占性。但随之而来的就是数据库性能的大量开销，特别是对<br>长事务而言，这样的开销往往无法承受。</p>
-<p>乐观锁，大多是基于数据版本（Version）记录机制<br>实现。何谓数据版本？即为数据增加一个版本标识，在基于数据库表的版本解决方案中，一般是<br>通过为数据库表增加一个“version”字段来实现。读取出数据时，将此版本号一同读出，之后更新<br>时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行比<br>对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。</p>
-<h3 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h3><p>MySQL 行锁只能加在索引上，如果操作不走索引，就会升级为表锁。因为InnoDB 的行锁 是加在索引上的，如果不走索引，自然就没法使用行锁了，原因是InnoDB 是将primary key index 和相关的行数据共同放在B+ 树的叶节点。InnoDB 一定会有一个primary key ，secondary index 查找的时候，也是通过找到对应的primary ，再找对应的数据行。</p>
-<p>当非唯一索引上记录数超过一定数量时，行锁也会升级为表锁。测试发现当非唯一索引相同的内容不少于整个表记录的二分之一时会升级为表锁。因为当非唯一索引相同的内容达到整个记录的二分之一时，索引需要的性能比全文检索还要大，查询语句优化时会选择不走索引，造成索引失效，行锁自然就会升级为表锁。</p>
-<h3 id="避免死锁"><a href="#避免死锁" class="headerlink" title="避免死锁"></a>避免死锁</h3><ol>
-<li>设置获取锁的超时时间，至少能保证最差情况下，可以退出程序，不至于一直等待导致死锁；</li>
-<li>设置按照同一顺序访问资源，类似于串行执行；</li>
-<li>避免事务中的用户交叉；</li>
-<li>保持事务简短并在一个批处理中；</li>
-<li>使用低隔离级别；</li>
-<li>使用绑定链接。</li>
-</ol>
-<h2 id="如何做到高可用方案？"><a href="#如何做到高可用方案？" class="headerlink" title="如何做到高可用方案？"></a>如何做到高可用方案？</h2><p>MySQL 高可用，意味着不能一台MySQL 出了问题，就不能访问了。</p>
-<ol>
-<li>MySQL 高可用：分库分表，通过MyCat 连接多个MySQL</li>
-<li>MyCat 也得高可用：Haproxy，连接多个MyCat</li>
-<li>Haproxy 也得高可用：通过keepalived 辅助Haproxy</li>
-</ol>
-<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h2 id="为了应对多请求缓存数据，缓解mysql压力而诞生"><a href="#为了应对多请求缓存数据，缓解mysql压力而诞生" class="headerlink" title="为了应对多请求缓存数据，缓解mysql压力而诞生"></a>为了应对多请求缓存数据，缓解mysql压力而诞生</h2><p>Redis主要数据存在内存中，通过设置超时时间来解决Redis在内存内数据不断膨胀问题<br>当内存压力太大时，通过随机算法删除内容释放空间（随机算法）<br>当超期数据太久于内存中未删除，遇到请求查询超期键值，则会立即删除该数据（被动触发，惰性删除）</p>
-<h2 id="内存淘汰策略"><a href="#内存淘汰策略" class="headerlink" title="内存淘汰策略"></a>内存淘汰策略</h2><p>①noeviction：返回错误，不会删除任何键值<br>②allkeys-lru：使用LRU算法删除最近最少使用的键值<br>③volatile-lru：使用LRU算法从设置了过期时间的键集合中删除最近最少使用的键值<br>④allkeys-random:从所有key随机删］除<br>⑤volatile-random：从设置了过期时间的键的集合中随机删除<br>⑥volat计e-ttl：从设置了过期时间的键中删除剩余时间最短的键<br>⑦volatile・lfu：从配置了过期时间的键中删除使用频率最少的键<br>⑧allkeys-lfu:从所有键中删除使用频率最少的键</p>
-<h2 id="缓存击穿-缓存雪崩"><a href="#缓存击穿-缓存雪崩" class="headerlink" title="缓存击穿 缓存雪崩"></a>缓存击穿 缓存雪崩</h2><p>mysql被多次申请查询返回空数据从而使得redis无法缓存（缓存穿透&#x2F;缓存击穿）<br>mysql因为（大量）redis数据丢失或者数据删除导致大量请求涌向mysql导致mysql处理不过来请求（缓存雪崩）<br>解决方法：过期时间均匀分布+热点数据永不过期</p>
-<h2 id="持久化-RDB-AOF"><a href="#持久化-RDB-AOF" class="headerlink" title="持久化 RDB AOF"></a>持久化 RDB AOF</h2><h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3><p>redis因为出错导致丢失数据（需要通过持久化存储）<br>RDB：将全部遍历写入二进制连续文件rdb (周期性备份)<br>为了防止大量重复备份，redis提供了save配置参数解决问题</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">save 900 1 #900秒 内有一个写入即备份（由子进程进行）</span><br></pre></td></tr></table></figure>
-
-<p>RDB数据不一致问题:因为数据库都是分钟级的，这种周期性备份还是容易丢数据</p>
-<h3 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h3><p>AOF持久化:类似mysql的binlog，将写入操作记录下来，保存操作的数据会先写入缓冲区AOF_BUF (会存放SET SAOO RPUSH等)</p>
-<p>AOF重写，为了防止AOF缓存数据过大问题：指令合并（子进程进行）</p>
-<p>但是子进程进行会导致AOF重写数据不一致。所以需要将指令存放AOF_REWRITE_BUF缓冲区，将重写进程启动后的命令写入缓冲区，运行完毕回写进去</p>
-<h3 id="主从节点"><a href="#主从节点" class="headerlink" title="主从节点"></a>主从节点</h3><p>为了防止Redis多次崩溃<br>主从：主节点主要负责写入数据，从节点主要负责读数据，做好数据同步，读写分离 提高性能。主节点崩了从节点就顶上（高可用集群）</p>
-<ul>
-<li>数据同步：若主节点生成的RDB文件同步期间又收到修改命令也会一并发给从节点</li>
-<li>命令传播：若主节点有数据写入、删除、修改命令也会挨个发给从节点</li>
-<li>版本控制：主节点发给从节点的数据会发送一份给缓存区，若从节点掉线了，从缓冲区的偏移量起发送同步数据</li>
-</ul>
-<h3 id="哨兵机制"><a href="#哨兵机制" class="headerlink" title="哨兵机制"></a>哨兵机制</h3><p>哨兵：专门有几个节点负责当管理员，不负责写入，当节点掉线时，由哨兵选择一个从节点顶上主节点<br>    每隔10s哨兵都需要发送info命令问候主节点情况（有多少从节点）<br>    每隔1s ping命令问候全部节点，若出现节点掉线则启动故障转移。这时发现的哨兵认定主观下线，会问候其他哨兵，当少服从多数认为下线，则认定客观下线。具体需要多少个哨兵认定，可以自己定义。<br>    故障转移：选个新的主节点，让其他从节点从新主节点那同步数据，再把原来的主节点改为从节点<br>    新主节点选择标准：给不同节点设置优先级，配置高的的优先级越高，与断开节点链接越短的，复制偏移越高的。</p>
-<h3 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h3><p>为了防止数据量过大（由于之前全都全量复制）</p>
-<p>集群：合并大服务器</p>
-<p>新节点加入问题：新节点加入必须由集群内某一节点发送MEET请求后，新节点回应PONG请求，再由集群内节点发送PING请求（类似TCP三次握手）</p>
-<p>数据分配：数据量公平问题：划分16384个哈希桶（槽位Slot）由程序员分配每个集群节点负责的槽位量。数据读写时对数据进行哈希运算，存入对应到槽位。每次计算存入节点会通知集群内所有节点。使用二进制通知，负责的槽位为1，共2048字节。（这样会导致存入数据需要遍历查看存入数据需要是哪个redis节点负责。）由此 新建一个大数组来存储每个槽位由哪个节点负责。（数据索引）</p>
-<p>需要每个槽位都有节点负责，集群才能正确上线。</p>
-<p>数据读写时候，集群节点会先检查数据是否由自己负责，否则会发送MOVED错误给请求端，使其去寻找正确节点（发送槽号，IP，端口）自动运行，无须调用</p>
-<p>为了防止节点掉线，从节点会充当集群内节点的Backup</p>
-<h2 id="Redis实现消息队列"><a href="#Redis实现消息队列" class="headerlink" title="Redis实现消息队列"></a>Redis实现消息队列</h2><p>一般使用list结构作为队列，rpush生产消息，1pop消费消息。当1pop没有消息的时候，要适当<br>sleep一会再重试。</p>
-<ul>
-<li>面试官可能会问可不可以不用sleep呢？list还有个指令吸pop,在没有消息的时候，它会<br>阻塞住直到消息到来。</li>
-<li>面试官可能还问能不能生产一次消费多次呢？使用pub&#x2F;sub主题订阅者模式，可以实现<br>1:N的消息队列。</li>
-<li>面试官可能还问pub&#x2F;sub有什么缺点？在消费者下线的情况下，生产的消息会丢失，得使<br>用专业的消息队列如rabbit MQ等</li>
-<li>Redis 如何实现延时队列：使用SortedSet 拿时间戳做Score</li>
-</ul>
 
       
     </div>
