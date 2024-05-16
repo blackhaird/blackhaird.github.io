@@ -152,6 +152,413 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/10/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-5-%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/10/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-5-%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">软件设计师笔记(5)-系统开发基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-10 22:18:04" itemprop="dateCreated datePublished" datetime="2022-10-10T22:18:04+08:00">2022-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-13 22:38:15" itemprop="dateModified" datetime="2022-10-13T22:38:15+08:00">2022-10-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="系统开发基础"><a href="#系统开发基础" class="headerlink" title="系统开发基础"></a>系统开发基础</h1><img src="https://s1.imagehub.cc/images/2022/10/10/imagec7b2c307d463c0ab.png" alt="imagec7b2c307d463c0ab.png" border="0" />
+
+<h2 id="软件开发模型"><a href="#软件开发模型" class="headerlink" title="软件开发模型"></a>软件开发模型</h2><h3 id="瀑布模型"><a href="#瀑布模型" class="headerlink" title="瀑布模型"></a>瀑布模型</h3><p>以线性的顺序将软件开发的过程分成好几个阶段。</p>
+<p>其中的软件设计分为概要设计，详细设计</p>
+<ul>
+<li><p>瀑布模型的优点：</p>
+</li>
+<li><ul>
+<li>为项目提供了按阶段划分的检查点</li>
+<li>当前一个阶段完成后，只需要去关注后续阶段</li>
+<li>它提供了一个模板，这个模板使得分析、设计、编码、测试和支持的方法可以在该模板下有一个共同的指导</li>
+</ul>
+</li>
+<li><p>瀑布模型的缺点：</p>
+</li>
+<li><ul>
+<li>各个阶段之间产生大量的文档，极大地增加了工作量</li>
+<li>由于开发模型是线型的，用户只有等到整个过程的末期才能见到开发结果，从而增加了开发风险</li>
+<li>不适应用户需求的变化，并且在需求分析阶段不可能完全获取</li>
+<li>在软件开发前期未发现的错误传到后面的开发活动中时，可能会扩散，进而可能会导致整个软件项目开发失败</li>
+</ul>
+</li>
+<li><p>所以，瀑布模型适用于需求明确或很少变更的项目</p>
+</li>
+</ul>
+<img src="https://s1.imagehub.cc/images/2022/10/12/image6451f5d9b57ac033.png" alt="image6451f5d9b57ac033.png" border="0" />
+
+<h3 id="V模型"><a href="#V模型" class="headerlink" title="V模型"></a>V模型</h3><p>是瀑布模型的升级版本，以重视测试为基础。</p>
+<p>在单元测试中，主要是对编码进行测试，以详细设计说明书为基础，以此类推。最终的验收测试是以用户为基准的测试。</p>
+<p>缺点及将测试放在了编码之后。</p>
+<img src="https://s1.imagehub.cc/images/2022/10/13/image9705510f35aa9bc4.png" alt="image9705510f35aa9bc4.png" border="0" />
+
+<h3 id="喷泉模型"><a href="#喷泉模型" class="headerlink" title="喷泉模型"></a>喷泉模型</h3><p>专门用于面向对象的模型</p>
+<ul>
+<li>是一种以用户需求为动力，以对象为驱动地模型，主要用于描述面向对象的软件开发过程，该模型认为软件开发过程自下而上的，各阶段是相互迭代和无间隙的。</li>
+<li>无间隙是指在开发活动中，分析、设计和编码之间不存在明显的边界</li>
+</ul>
+<img src="https://s1.imagehub.cc/images/2022/10/13/imagec3e726ed4e502615.png" alt="imagec3e726ed4e502615.png" border="0" />
+
+<h3 id="原型化模型"><a href="#原型化模型" class="headerlink" title="原型化模型"></a>原型化模型</h3><ul>
+<li><p>快速原型是利用原型辅助软件开发的一种新思想</p>
+</li>
+<li><p>经过简单快速分析，快速建造一个可以运行的软件原型，以便理解和澄清问题，使开发人员与用户达成共识，最终在确定的用户需求基础上开发客户满意的软件产品</p>
+</li>
+<li><p>原型可以为三类：</p>
+</li>
+<li><ul>
+<li>探索型原型：主要用于需求分析阶段，目的是要弄清用户的需求，并探索各种方案的可行性。它主要针对开发目标模糊，用户与开发人员对项目都缺乏经验的情况，通过对原型的开发来明确用户的需求</li>
+<li>实验型原型：主要用于设计阶段，考核实现方案是否合适，能否实现。对于大型系统，若对设计方案心中没有把握时，可通过这种原型来证实设计方案的正确性</li>
+<li>演化型原型：主要用于及早向用户提交一个原型系统，该原型系统或者包含系统的框架，或者包含系统的主要功能，在得到用户的认可后，将原型系统不断扩充演变为最终的软件系统</li>
+</ul>
+</li>
+<li><p>它将原型的思想扩展到软件开发的全过程</p>
+</li>
+</ul>
+<h3 id="演化模型"><a href="#演化模型" class="headerlink" title="演化模型"></a>演化模型</h3><ul>
+<li><p>也称为变换模型，根据用户的基本需求，通过快速分析构造出一个初始可运行版本(原型)，然后根据用户在使用原型的过程中提出的意见和建议对原型进行改进，获得原型的新版本。重复这一过程，最终可得到令用户满意的软件产品</p>
+</li>
+<li><p>快速原型模型时“抛弃式”的，演化模型是“渐进式”原型方法。演化模型特别适用于对软件需求缺乏准确认识的情况</p>
+</li>
+<li><p>演化模型的优点：</p>
+</li>
+<li><ul>
+<li>很早就可以验证是否符合产品需求</li>
+<li>风险管理可以在早期就获得项目进程数据，可据此对后续的开发进度作出比较切实的估算，增加项目成功的机率</li>
+<li>经验教训能反馈于本产品的下一个循环过程，提高质量效率</li>
+<li>心理上，开发人员早日见到产品的雏形，是一种鼓舞</li>
+<li>使用户可以在新的一批功能开发测试后，立即参加验证，以便提供非常有价值的反馈</li>
+</ul>
+</li>
+<li><p>演化模型的缺点</p>
+</li>
+<li><ul>
+<li>产品需求在一开始并不安全弄清楚的话，会给总体设计带来困难及削弱产品设计的完整性，并影像产品性能的优化</li>
+<li>如果缺乏严格的过程管理，这个生命周期模型可能退化为一种原始的无计划的“试 - 错 - 改”模式</li>
+<li>用户接触开发中的尚未测试稳定的功能，可能对用户产生负面的影响</li>
+</ul>
+</li>
+</ul>
+<h3 id="螺旋模型"><a href="#螺旋模型" class="headerlink" title="螺旋模型"></a>螺旋模型</h3><ul>
+<li><p>将瀑布模型和演化模型相结合，综合了两者的优点，并增加了风险分析。它以原型为基础，沿着螺线自内向外旋转，每旋转一圈都要经过制订计划、风险分析、实施工程及客户评价等活动，并开发原型的一个新版本。经过若干次螺旋上升的过程，得到最终的系统</p>
+</li>
+<li><p>螺旋模型的优点：</p>
+</li>
+<li><ul>
+<li>设计上灵活，可以在项目的各个阶段进行变更</li>
+<li>以小的分段来构建大型系统，使成本计算变得简单容易</li>
+<li>客户始终参与每个阶段的开发，保证了项目不偏离正确方向</li>
+<li>随着项目推进，客户始终掌握项目的最新信息，从而能够和管理层有效地交互</li>
+</ul>
+</li>
+<li><p>螺旋模型地缺点：</p>
+</li>
+<li><ul>
+<li>需要具有相当丰富地风险评估经验和专门知识，如果未能够及时标识风险，势必造成重大损失</li>
+<li>过多地迭代次数会增加开发成本，延迟提交时间</li>
+</ul>
+</li>
+<li><img src="https://s1.imagehub.cc/images/2022/10/13/imageab3de0d2f7aa2b58.png" alt="imageab3de0d2f7aa2b58.png" border="0" /></li>
+</ul>
+<h3 id="统一过程-UP-x2F-RUP"><a href="#统一过程-UP-x2F-RUP" class="headerlink" title="统一过程**(UP&#x2F;RUP)**"></a>统一过程**(UP&#x2F;RUP)**</h3><ul>
+<li><p>是一个通用过程框架，可以用于种类广泛的软件系统、不同的应用领域、不同的组织类型、不同的性能水平和不同的项目规模</p>
+</li>
+<li><p>UP是基于构件的，软件系统建模时，UP使用的时UML</p>
+</li>
+<li><p>与其他软件过程相比，UP具有三个显著的特点：</p>
+</li>
+<li><ul>
+<li>用例驱动</li>
+<li>以体系结构为中心</li>
+<li>迭代和增量</li>
+</ul>
+</li>
+<li><p>UP中的软件过程在时间上被分解为四个阶段：</p>
+</li>
+<li><ul>
+<li>初始阶段</li>
+<li>细化阶段</li>
+<li>构建阶段</li>
+<li>交付阶段</li>
+</ul>
+</li>
+<li><p>每个阶段结束时都要安排一次技术评审，以确定这个阶段的目标是否已经达到</p>
+</li>
+</ul>
+<img src="https://s1.imagehub.cc/images/2022/10/13/image531c0a7b2d7ad4b8.png" alt="image531c0a7b2d7ad4b8.png" border="0" />
+
+<h3 id="敏捷方法"><a href="#敏捷方法" class="headerlink" title="敏捷方法"></a>敏捷方法</h3><ul>
+<li><p>敏捷开发更强调程序员团队与业务专家之间的紧密协作、面对面沟通、频繁交付新的软件版本、紧凑而自我组织型的团队、能够和好的适应需求变化的代码编写和团队组织方法，也更注重人的作用</p>
+</li>
+<li><p>常见的敏捷开发方法：</p>
+</li>
+<li><ul>
+<li>极限编程(XP)：<strong>费用严格控制方法</strong></li>
+<li>自适应软件开发（ASD）：<strong>猜测、合作和学习</strong></li>
+<li>开放式源码：<strong>异地开发</strong></li>
+<li>水晶方法：<strong>用最少的纪律约束</strong></li>
+<li>FDD（功用驱动开发）：<strong>首席带类程序员（大佬带小弟）</strong></li>
+<li>scrum（并列争球法）：<strong>定义重复人员去解决重复方法</strong></li>
+</ul>
+</li>
+<li><p>从开发者的角度，主要的关注点：</p>
+</li>
+<li><ul>
+<li>短平快会议</li>
+<li>小版本发布</li>
+<li>较少的文档</li>
+<li>合作为重</li>
+<li>客户直接参与</li>
+<li>自动化测试</li>
+<li>适应性计划调整</li>
+<li>结对编程</li>
+</ul>
+</li>
+<li><p>从管理者的角度，主要的关注点</p>
+</li>
+<li><ul>
+<li>测试驱动开发</li>
+<li>持续集成</li>
+<li>重构</li>
+</ul>
+</li>
+</ul>
+<img src="https://s1.imagehub.cc/images/2022/10/13/imagee030755ceb94562b.png" alt="imagee030755ceb94562b.png" border="0" />
+
+<h2 id="软件测试"><a href="#软件测试" class="headerlink" title="软件测试"></a>软件测试</h2><h3 id="动态测试"><a href="#动态测试" class="headerlink" title="动态测试"></a>动态测试</h3><table>
+    <tr>
+        <td rowspan="4">黑盒测试法</td>
+        <td>等价类划分</td>
+    </tr>
+    <tr>
+        <td>边界值分析</td>
+    </tr>
+    <tr>
+        <td>错误推测</td>
+    </tr>
+    <tr>
+        <td>因果图</td>
+    </tr>
+    <tr>
+        <td rowspan="5">等价类划分</td>
+        <td>语句覆盖</td>
+    </tr>
+    <tr>
+        <td>判定覆盖</td>
+    </tr>
+    <tr>
+        <td>条件覆盖</td>
+    </tr>
+    <tr>
+        <td>条件判定覆盖</td>
+    </tr>
+    <tr>
+        <td>边路径覆盖</td>
+    </tr>
+    <tr>
+        <td>灰盒测试法</td>
+    </tr>
+</table>
+
+<h4 id="等价类划分"><a href="#等价类划分" class="headerlink" title="等价类划分"></a>等价类划分</h4><ul>
+<li>确定无效与有效等价类</li>
+<li>设计用例尽可能多的覆盖有效类</li>
+<li>设计用例只覆盖一个无效类</li>
+</ul>
+<h4 id="边界值分析"><a href="#边界值分析" class="headerlink" title="边界值分析"></a>边界值分析</h4><ul>
+<li>处理边界情况时最容易出错</li>
+<li>选取的测试数据应该恰好等于，稍小于或者稍大于边界值</li>
+</ul>
+<h3 id="静态测试"><a href="#静态测试" class="headerlink" title="静态测试"></a>静态测试</h3><table>
+    <tr>
+        <td>桌前检查</td>
+    </tr>
+    <tr>
+        <td>代码审查</td>
+    </tr>
+    <tr>
+        <td>代码走查</td>
+    </tr>
+</table>
+
+<h3 id="V模型的测试内容"><a href="#V模型的测试内容" class="headerlink" title="V模型的测试内容"></a>V模型的测试内容</h3><img src="https://s1.imagehub.cc/images/2022/10/13/image08e843d56a4ba6e7.png" alt="image08e843d56a4ba6e7.png" border="0" />
+
+<h3 id="McCabe复杂度（环路复杂度）"><a href="#McCabe复杂度（环路复杂度）" class="headerlink" title="McCabe复杂度（环路复杂度）"></a>McCabe复杂度（环路复杂度）</h3><p>计算有向图的环路复杂度公式为：<br>$$<br>V(G)&#x3D;m-n+2&#x3D;边数-点数+2<br>$$<br>其中V（G）是有向图G中的环路个数，m是G中的有向弧数，n是G中的节点数</p>
+<p>即说明需要多少测试用例。</p>
+<img src="https://s1.imagehub.cc/images/2022/10/13/image8364a49d3e207969.png" alt="image8364a49d3e207969.png" border="0" />
+
+<h2 id="软件维护"><a href="#软件维护" class="headerlink" title="软件维护"></a>软件维护</h2><table>
+    <tr>
+        <td rowspan=3>可维护性因素决定</td>
+        <td>可理解性</td>
+    </tr>
+    <tr>
+        <td>可测试性</td>
+    </tr>
+    <tr>
+        <td>可修改性</td>
+    </tr>
+    <tr>
+        <td rowspan=4>软件维护类型</td>
+        <td>改正性维护（25%）</td>
+    </tr>
+    <tr>
+        <td>适应性维护（20%）</td>
+    </tr>
+    <tr>
+        <td>预防性维护（5%）</td>
+    </tr>
+    <tr>
+        <td>完善性维护<span style="color:red">（50%）</span></td>
+    </tr>
+</table>
+
+<p><strong>适应性维护</strong>，指使应用软件适应信息技术变化和管理需求变化而进行的修改。企业的外部市场环境和管理需求的不断变化也使得各级管理人员不断提出新的信息需求。</p>
+<p><strong>完善性维护</strong>。扩充功能和改善性能而进行的修改。对已有的软件系统增加一些在系统分析和设计阶段中没有规定的功能与性能特征。</p>
+<h2 id="软件文档"><a href="#软件文档" class="headerlink" title="软件文档"></a>软件文档</h2><h3 id="开发文档"><a href="#开发文档" class="headerlink" title="开发文档"></a>开发文档</h3><ul>
+<li>可行性研究和项目任务书</li>
+<li>需求规格说明</li>
+<li>功能规格说明</li>
+<li>设计规格说明（包括程序和数据规格说明）</li>
+<li>开发计划</li>
+<li>软件集成和测试计划</li>
+<li>质量保证计划、标准、进度</li>
+<li>安全和测试信息</li>
+</ul>
+<h3 id="产品文档（用户）"><a href="#产品文档（用户）" class="headerlink" title="产品文档（用户）"></a>产品文档（用户）</h3><ul>
+<li>培训手册</li>
+<li>参考手册和用户指南</li>
+<li>软件支持手册</li>
+<li>产品手册和信息广告</li>
+</ul>
+<h3 id="管理文档"><a href="#管理文档" class="headerlink" title="管理文档"></a>管理文档</h3><ul>
+<li>开发过程的每个阶段的进度和进程变更的记录</li>
+<li>软件变更情况的记录</li>
+<li>相对于开发的判定记录</li>
+<li>职责定义</li>
+</ul>
+<h2 id="外部和内部质量"><a href="#外部和内部质量" class="headerlink" title="外部和内部质量"></a>外部和内部质量</h2><table>
+    <tr>
+        <td>功能性</td>
+        <td>混合性<br>准确性<br>互操作性<br>安全保密性<br></td>
+        <td>功能性的依从性</td>
+    </tr>
+    <tr>
+        <td>可靠性</td>
+        <td>成熟性<br>容错性<br>易恢复性</td>
+        <td>可靠性的依从性</td>
+    </tr>
+    <tr>
+        <td>*易用性</td>
+        <td>易理解性<br>易学性<br>易操作性<br>吸引性</td>
+        <td>易用性的依从性</td>
+    </tr>
+    <tr>
+        <td>效率</td>
+        <td>时间特性<br>资源利用性</td>
+        <td>效率依从性</td>
+    </tr>
+    <tr>
+        <td>维护性</td>
+        <td>易分析性<br>易改变性<br>稳定性<br>易测试性</td>
+        <td>维护性的依从性</td>
+    </tr>
+    <tr>
+        <td>可移植性</td>
+        <td>适应性<br>易安装性<br>共存性<br>易替换性</td>
+        <td>可移植性的依从性</td>
+    </tr>
+</table>
+
+<h2 id="软件过程改进CMMI"><a href="#软件过程改进CMMI" class="headerlink" title="软件过程改进CMMI"></a>软件过程改进CMMI</h2><img src="https://s1.imagehub.cc/images/2022/10/13/image7dbcac9b39815f92.png" alt="image7dbcac9b39815f92.png" border="0" />
+
+<h2 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h2><p>风险暖光度（Risk Exposure):计算方法是风险出现的概率乘以风险可能造成的损失。</p>
+<img src="https://s1.imagehub.cc/images/2022/10/13/imagedd08f005c92e45bd.png" alt="imagedd08f005c92e45bd.png" border="0" />
+
+
+
+<h3 id="九大知识领域"><a href="#九大知识领域" class="headerlink" title="九大知识领域"></a>九大知识领域</h3><ol>
+<li>范围管理</li>
+<li><span style="color:red">时间管理</span></li>
+<li>成本管理</li>
+<li>质量管理</li>
+<li>人力资源管理</li>
+<li>沟通管理</li>
+<li><span style="color:red">风险管理</span></li>
+<li>采购管理</li>
+<li>整体管理</li>
+</ol>
+<h4 id="时间管理-关键路径法"><a href="#时间管理-关键路径法" class="headerlink" title="时间管理-关键路径法"></a>时间管理-关键路径法</h4><p>关键路径法是在制订进度计划时使用的一种进度网络分析技术，关路线法沿着项目进度网络路线进行正向与反向分析，从而计算出所有计划活动理论上的最早开始与完成日期、最迟开始与完成日期，不考虑任何资源限制。<br>总时差（松驰时间）：在不延误总工期的前提下，该活动的机动时间活动的总时差等于该活动最迟完成时间与最早完成时间之差，或该活动最迟开始时间与最早开始时间之差。</p>
+<h4 id="前导图法（单代号网络图，PDM）"><a href="#前导图法（单代号网络图，PDM）" class="headerlink" title="前导图法（单代号网络图，PDM）"></a>前导图法（单代号网络图，PDM）</h4><p>求工期最长的那条路</p>
+<img src="https://s1.imagehub.cc/images/2022/10/13/image9eec0c4475edda45.png" alt="image9eec0c4475edda45.png" border="0" />
+
+<h4 id="箭线图法（双代号网络图，ADM）"><a href="#箭线图法（双代号网络图，ADM）" class="headerlink" title="箭线图法（双代号网络图，ADM）"></a>箭线图法（双代号网络图，ADM）</h4><img src="https://s1.imagehub.cc/images/2022/10/13/imagea34e95fb362eece5.png" alt="imagea34e95fb362eece5.png" border="0" />
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/06/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-4-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3381,122 +3788,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/04/Mysql%E7%9F%A5%E8%AF%86%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MEIDE">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MEIDE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/04/Mysql%E7%9F%A5%E8%AF%86%E7%82%B9/" class="post-title-link" itemprop="url">Mysql知识点</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-04 01:26:20" itemprop="dateCreated datePublished" datetime="2022-08-04T01:26:20+08:00">2022-08-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-05 14:03:59" itemprop="dateModified" datetime="2022-08-05T14:03:59+08:00">2022-08-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Mysql面试点整理"><a href="#Mysql面试点整理" class="headerlink" title="Mysql面试点整理"></a>Mysql面试点整理</h1><p>内容取自《程序员大彬》</p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/VSsbUKEnILu1TbPjfwH8EA">https://mp.weixin.qq.com/s/VSsbUKEnILu1TbPjfwH8EA</a></p>
-<h2 id="事务的四大特性"><a href="#事务的四大特性" class="headerlink" title="事务的四大特性"></a>事务的四大特性</h2><p><strong>事务特性ACID</strong>：<strong>原子性</strong>（<code>Atomicity</code>）、<strong>一致性</strong>（<code>Consistency</code>）、<strong>隔离性</strong>（<code>Isolation</code>）、<strong>持久性</strong>（<code>Durability</code>）。</p>
-<ul>
-<li><strong>原子性</strong>是指事务包含的所有操作要么全部成功，要么全部失败回滚。</li>
-<li><strong>一致性</strong>是指一个事务执行之前和执行之后都必须处于一致性状态。比如a与b账户共有1000块，两人之间转账之后无论成功还是失败，它们的账户总和还是1000。</li>
-<li><strong>隔离性</strong>。跟隔离级别相关，如<code>read committed</code>，一个事务只能读到已经提交的修改。</li>
-<li><strong>持久性</strong>是指一个事务一旦被提交了，那么对数据库中的数据的改变就是永久性的，即便是在数据库系统遇到故障的情况下也不会丢失提交事务的操作。</li>
-</ul>
-<h2 id="事务隔离级别有哪些？"><a href="#事务隔离级别有哪些？" class="headerlink" title="事务隔离级别有哪些？"></a>事务隔离级别有哪些？</h2><p>先了解下几个概念：脏读、不可重复读、幻读。</p>
-<ul>
-<li><strong>脏读</strong>是指在一个事务处理过程里读取了另一个未提交的事务中的数据。</li>
-<li><strong>不可重读</strong>是指在对于数据库中的某行记录，一个事务范围内多次查询却返回了不同的数据值，这是由于在查询间隔，另一个事务修改了数据并提交了。</li>
-<li><strong>幻读</strong>是当某个事务在读取某个范围内的记录时，另外一个事务又在该范围内插入了新的记录，当之前的事务再次读取该范围的记录时，会产生幻行，就像产生幻觉一样，这就是发生了幻读。</li>
-</ul>
-<p><strong>不可重复读和脏读的区别</strong>是，脏读是某一事务读取了另一个事务未提交的脏数据，而不可重复读则是读取了前一事务提交的数据。</p>
-<p>幻读和不可重复读都是读取了另一条已经提交的事务，不同的是不可重复读的重点是修改，幻读的重点在于新增或者删除。</p>
-<p>事务隔离就是为了解决上面提到的脏读、不可重复读、幻读这几个问题。</p>
-<p>MySQL数据库为我们提供的四种隔离级别：</p>
-<ul>
-<li><strong>Serializable</strong> (串行化)：通过强制事务排序，使之不可能相互冲突，从而解决幻读问题。</li>
-<li><strong>Repeatable read</strong> (可重复读)：MySQL的默认事务隔离级别，它确保同一事务的多个实例在并发读取数据时，会看到同样的数据行，解决了不可重复读的问题。</li>
-<li><strong>Read committed</strong> (读已提交)：一个事务只能看见已经提交事务所做的改变。可避免脏读的发生。</li>
-<li><strong>Read uncommitted</strong> (读未提交)：所有事务都可以看到其他未提交事务的执行结果。</li>
-</ul>
-<p>查看隔离级别：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select @@transaction_isolation;</span><br></pre></td></tr></table></figure>
-
-<p>设置隔离级别：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set session transaction isolation level read uncommitted;</span><br></pre></td></tr></table></figure>
-
-<h2 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h2><p>索引是存储引擎用于提高数据库表的访问速度的一种<strong>数据结构</strong>。</p>
-<h2 id="索引的优缺点？"><a href="#索引的优缺点？" class="headerlink" title="索引的优缺点？"></a>索引的优缺点？</h2><p><strong>优点：</strong></p>
-<ul>
-<li><strong>加快数据查找的速度</strong></li>
-<li>为用来排序或者是分组的字段添加索引，可以<strong>加快分组和排序的速度</strong></li>
-<li><strong>加快表与表之间连接的速度</strong></li>
-</ul>
-<p><strong>缺点：</strong></p>
-<ul>
-<li>建立索引需要<strong>占用物理空间</strong></li>
-<li>会降低表的增删改的效率，因为每次对表记录进行增删改，需要进行<strong>动态维护索引</strong>，导致增删改时间变长</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3566,20 +3857,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
