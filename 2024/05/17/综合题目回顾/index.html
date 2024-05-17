@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/meideblog/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="JAVA面试题str.substring(4,7)String str &#x3D; “WellcomToThunderSoft”; System.out.println(str.substring(4,7)): 运行后的结果 在Java中，substring方法用于提取字符串中的一部分。这个方法接受两个参数：开始索引（包含）和结束索引（不包含）。根据您提供的代码： 12String str &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MYSQL面试题">
+<meta property="og:url" content="http://example.com/2024/05/17/%E7%BB%BC%E5%90%88%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE/index.html">
+<meta property="og:site_name" content="MEIDE&#39;S BLOG">
+<meta property="og:description" content="JAVA面试题str.substring(4,7)String str &#x3D; “WellcomToThunderSoft”; System.out.println(str.substring(4,7)): 运行后的结果 在Java中，substring方法用于提取字符串中的一部分。这个方法接受两个参数：开始索引（包含）和结束索引（不包含）。根据您提供的代码： 12String str &#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-17T05:26:38.000Z">
+<meta property="article:modified_time" content="2024-05-17T07:10:22.633Z">
+<meta property="article:author" content="MEIDE">
+<meta property="article:tag" content="面试题">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2024/05/17/%E7%BB%BC%E5%90%88%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MYSQL面试题 | MEIDE'S BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MEIDE'S BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/17/%E7%BB%BC%E5%90%88%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MYSQL面试题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-05-17 13:26:38 / 修改时间：15:10:22" itemprop="dateCreated datePublished" datetime="2024-05-17T13:26:38+08:00">2024-05-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="JAVA面试题"><a href="#JAVA面试题" class="headerlink" title="JAVA面试题"></a>JAVA面试题</h1><h3 id="str-substring-4-7"><a href="#str-substring-4-7" class="headerlink" title="str.substring(4,7)"></a>str.substring(4,7)</h3><p>String str &#x3D; “WellcomToThunderSoft”; System.out.println(str.substring(4,7)): 运行后的结果</p>
+<p>在Java中，<code>substring</code>方法用于提取字符串中的一部分。这个方法接受两个参数：开始索引（包含）和结束索引（不包含）。根据您提供的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;WellcomToThunderSoft&quot;</span>;</span><br><span class="line">System.out.println(str.substring(<span class="number">4</span>,<span class="number">7</span>));</span><br></pre></td></tr></table></figure>
+
+<p><code>str.substring(4,7)</code> 将会从索引4开始提取，到索引7结束，但不包括索引7。在字符串 <code>&quot;WellcomToThunderSoft&quot;</code> 中，索引4是字符 <code>&#39;o&#39;</code>，索引7是字符 <code>&#39;T&#39;</code>。</p>
+<p>所以，<code>str.substring(4,7)</code> 的结果将是 <code>&quot;com&quot;</code>，这是从索引4到6的字符。如果您运行这段代码，控制台上打印出来的结果应该是 <code>com</code>。</p>
+<h3 id="类及类成员的访问控制符"><a href="#类及类成员的访问控制符" class="headerlink" title="类及类成员的访问控制符"></a>类及类成员的访问控制符</h3><p>在Java中，类及类成员的访问控制符共有四种，它们分别是：</p>
+<ol>
+<li><strong>public</strong>：公共的，被声明为public的成员可以在任何类中都能被访问到。这包括类、成员变量、方法，以及内部类。通过操作该类的对象，可以随意访问public成员。被public修饰的成员也能被所有的子类继承下来。</li>
+<li><strong>protected</strong>：受保护的，受到该类所在的包所保护。被protected修饰的成员会被位于同一package中的所有类访问到。同时，被protected修饰的成员也能被该类的所有子类继承下来。</li>
+<li><strong>default</strong>（也称为friendly）：默认的，同一package中的所有类都能访问。被default修饰的成员只能被该类所在同一个package中的子类所继承下来。</li>
+<li><strong>private</strong>：私有的，只能在当前类中被访问。被private修饰的成员，包括成员变量和方法，不能被其他类或派生类访问。</li>
+</ol>
+<h3 id="new关键字"><a href="#new关键字" class="headerlink" title="new关键字"></a>new关键字</h3><p>下面关于new关键字的表述错误的是（) </p>
+<p>A.new关键字在生成一个对象时会为对象开辟内存空间 </p>
+<p>B.new关键字在生成一个对象时会调用类的构造方法 </p>
+<p>C.new关键字在生成一个对象时会将生成的对象的地址返回 </p>
+<p>D.Java中只能通过new关键字来生成一个对象</p>
+<blockquote>
+<p>Java中只能通过new关键字来生成一个对象</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/LOL_toulan/article/details/89212383">这个说法是不正确的。虽然<code>new</code>关键字是Java中最常用的方式来创建对象，它确实会为对象分配内存空间、调用构造方法，并返回对象的内存地址，但Java中还有其他方式可以创建对象。例如，可以通过类的<code>clone()</code>方法来创建对象，或者使用反射（Reflection）中的<code>Class.newInstance()</code>方法来创建对象。这些方法也可以在运行时动态地创建对象和分配内存</a></p>
+</blockquote>
+<p>选项A、B和C描述的都是<code>new</code>关键字的正确行为：</p>
+<ul>
+<li><code>new</code>关键字在生成一个对象时会为对象开辟内存空间。</li>
+<li><code>new</code>关键字在生成一个对象时会调用类的构造方法。</li>
+<li>new&#96;关键字在生成一个对象时会将生成的对象的地址返回。</li>
+</ul>
+<h3 id="Set类元素排序"><a href="#Set类元素排序" class="headerlink" title="Set类元素排序"></a>Set类元素排序</h3><p>下面哪个Set类是按元素排好序的？() A.HashSet B.TreeSet C.LinkedHashSet D.AbstractSet</p>
+<p>在Java中，按元素排好序的Set类是：</p>
+<p>B. <strong>TreeSet</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_54162653/article/details/117771885"><code>TreeSet</code>实现了<code>SortedSet</code>接口，可以确保集合元素处于排序状态。它使用元素的自然顺序或者根据创建<code>TreeSet</code>时提供的<code>Comparator</code>进行排序</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_54162653/article/details/117771885">1</a>。这意味着，如果你插入可比较的对象（例如数字、字符串等），<code>TreeSet</code>会按照升序来保存它们。</p>
+<p>其他选项的说明如下：</p>
+<ul>
+<li>A. <strong>HashSet</strong> 不保证集合的迭代顺序；它的元素实际上是无序的。</li>
+<li>C. <strong>LinkedHashSet</strong> 维护着元素插入的顺序，但不是按自然顺序排序。</li>
+<li>D. <strong>AbstractSet</strong> 是<code>Set</code>接口的骨架实现，它本身并不提供排序功能。</li>
+</ul>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>以下关于异常的说法正确的是（) </p>
+<p>A.如果一个方法申明将抛出某个异常，它就必须真的抛出那个异常 </p>
+<p>B.可能抛出系统异常的方法是不需要申明异常的 </p>
+<p>C.在catch子句中匹配异常是一种精确匹配 </p>
+<p>D.一旦出现异常，程序运行就终止了</p>
+<p>在Java中，关于异常的正确说法是：</p>
+<p>B. 可能抛出系统异常的方法是不需要声明异常的</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">这是正确的，因为在Java中，由系统异常（也称为未检查异常或运行时异常）引起的错误通常是由程序逻辑错误引起的，如<code>NullPointerException</code>或<code>ArrayIndexOutOfBoundsException</code>。这些异常是<code>RuntimeException</code>的子类，它们不需要在方法签名中声明，也不强制要求调用者处理这些异常</a><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">1</a><a target="_blank" rel="noopener" href="https://javabetter.cn/exception/gailan.html">2</a>。</p>
+<p>C. 在catch子句中匹配异常是一种精确匹配</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">这也是正确的。在Java的异常处理中，<code>catch</code>子句会根据异常类型进行匹配。如果抛出的异常与<code>catch</code>子句中指定的异常类型相匹配，那么该<code>catch</code>子句将会执行。如果不匹配，它会继续寻找下一个匹配的<code>catch</code>子句</a><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">1</a><a target="_blank" rel="noopener" href="https://javabetter.cn/exception/gailan.html">2</a>。</p>
+<p>选项A和D的说法是不正确的：</p>
+<p>A. 如果一个方法声明将抛出某个异常，它就必须真的抛出那个异常</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">这是不正确的。方法可以声明抛出一个或多个异常，但这并不意味着它必须抛出这些异常。声明仅表示该方法可能会抛出这些异常，调用者应该准备好处理它们</a><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">1</a><a target="_blank" rel="noopener" href="https://javabetter.cn/exception/gailan.html">2</a>。</p>
+<p>D. 一旦出现异常，程序运行就终止了</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">这也是不正确的。在Java中，如果异常被捕获并且有适当的处理，程序可以继续执行。只有当异常未被捕获时，程序才会终止</a><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">1</a><a target="_blank" rel="noopener" href="https://javabetter.cn/exception/gailan.html">2</a>。</p>
+<h3 id="JDK中常用包"><a href="#JDK中常用包" class="headerlink" title="JDK中常用包"></a>JDK中常用包</h3><p>JDK中常用包有（) )A.java.io ○ B.java.net )C.以上都是 D.java.lang</p>
+<p>在JDK中，常用的包包括：</p>
+<ul>
+<li>A. <strong>java.io</strong>：这个包包含了用于数据流、序列化和文件系统的类。</li>
+<li>B. <strong>java.net</strong>：这个包包含了用于网络编程的类，如URL、Sockets等。</li>
+<li>D. <strong>java.lang</strong>：这个包是Java编程语言的核心类库，包含了基本的类和接口，如<code>String</code>、<code>Math</code>、<code>System</code>等。</li>
+</ul>
+<h3 id="广播错误"><a href="#广播错误" class="headerlink" title="广播错误"></a>广播错误</h3><p>下列关于广播错误的是（) </p>
+<p>A.abortBroadcast0可以中断所有的广播 ○ </p>
+<p>B.相同优先级下动态注册比静态注册更早接收有序广播 )</p>
+<p>C.广播的注册方式分为静态和动态 </p>
+<p>D.广播的发送方式分为有序和无序</p>
+<p>在Android中，关于广播的错误表述是：</p>
+<p>A. <strong>abortBroadcast()</strong> 可以中断所有的广播</p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1881789">这个说法是不正确的。<code>abortBroadcast()</code> 方法只能用于中断有序广播（Ordered Broadcasts），而无法中断无序广播（Normal Broadcasts）或系统广播</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1881789">1</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/caoqijia123/article/details/92800075">2</a><a target="_blank" rel="noopener" href="https://bing.com/search?q=Android+abortBroadcast+%E4%B8%AD%E6%96%AD%E6%89%80%E6%9C%89%E5%B9%BF%E6%92%AD">3</a><a target="_blank" rel="noopener" href="https://wenku.csdn.net/answer/15d039836ba945babd4b4337d2ea86e6">。有序广播是按照接收者的优先级顺序来传递的，而且前面的接收者可以通过调用<code>abortBroadcast()</code>来阻止后续的接收者接收到这个广播</a><a target="_blank" rel="noopener" href="https://wenku.csdn.net/answer/15d039836ba945babd4b4337d2ea86e6">4</a>。</p>
+<p>选项B、C和D描述的都是广播的正确特性：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/380066272">B<strong>相同优先级下动态注册比静态注册更早接收有序广播</strong>：这是正确的，当两个接收者的优先级相同时，动态注册的接收者会比静态注册的接收者先接收到有序广播</a><a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/380066272">5</a><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_16213419/10404199">6</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42182599/article/details/137680583">C<strong>广播的注册方式分为静态和动态</strong>：这是正确的，广播接收者可以通过静态注册（在<code>AndroidManifest.xml</code>中声明）或动态注册（在代码中调用<code>registerReceiver()</code>方法）来接收广播</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42182599/article/details/137680583">7</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/fancynthia/article/details/124359900">8</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_49095721/article/details/109448148">D<strong>广播的发送方式分为有序和无序</strong>：这也是正确的，广播可以以有序广播的方式发送，也可以以无序广播的方式发送</a><a target="_blank" rel="noopener" href="https://bing.com/search?q=Android+%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C%E5%92%8C%E9%9D%99%E6%80%81%E6%B3%A8%E5%86%8C%E6%8E%A5%E6%94%B6%E6%9C%89%E5%BA%8F%E5%B9%BF%E6%92%AD%E7%9A%84%E5%85%88%E5%90%8E%E9%A1%BA%E5%BA%8F">9</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_49095721/article/details/109448148">10</a>。</li>
+</ul>
+<h3 id="进程优先级"><a href="#进程优先级" class="headerlink" title="进程优先级"></a>进程优先级</h3><p>下列那些进程的优先级最高（) A.后台进程 B.服务进程 C.前台进程 D.可见进程</p>
+<p>在Android系统中，进程的优先级从高到低排序如下：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ly0724ok/article/details/117533723"><strong>前台进程</strong> (Foreground process): 这些进程包含用户正在交互的Activity或与之绑定的Service，以及执行特定操作如<code>onReceive()</code>方法的BroadcastReceiver。前台进程通常不会因为内存不足而被系统杀死</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/ly0724ok/article/details/117533723">1</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ly0724ok/article/details/117533723"><strong>可见进程</strong> (Visible process): 这些进程不包含任何前台组件，但用户仍然可以在屏幕上看到它们。例如，一个Activity在调用了<code>onPause()</code>但还没有调用<code>onStop()</code>时，它仍然对用户可见。这些进程通常也不会被系统杀死，除非是为了保证所有前台进程的运行而不得不杀死可见进程</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/ly0724ok/article/details/117533723">1</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ly0724ok/article/details/117533723"><strong>服务进程</strong> (Service process): 这些进程正在运行一个通过<code>startService()</code>启动的Service。例如，后台播放音乐或后台下载数据的Service属于服务进程</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/ly0724ok/article/details/117533723">1</a>。</li>
+<li><strong>后台进程</strong> (Background process): 这些进程包含用户不可见的Activity（例如，用户离开了Activity，导致<code>onStop()</code>被调用）。后台进程不直接影响</li>
+</ol>
+<h3 id="synchronized和Lock"><a href="#synchronized和Lock" class="headerlink" title="synchronized和Lock"></a>synchronized和Lock</h3><p>下面关于synchronized和Lock描述错误的是（)</p>
+<p> A.通过Lock可以知道有没有成功获取锁，而synchronized却无法办到 )</p>
+<p>B.synchronized只能给代码块加锁；而lock可以给类、方法、代码块加锁 )</p>
+<p>C.synchronized不需要手动获取锁和释放锁，发生异常会自动释放锁，不会造成死锁 </p>
+<p>D.lock需要自己加锁和释放锁，如果使用不当没有unLock()去释放锁就会造成死锁</p>
+<blockquote>
+<p>Synchronized 是Java 并发编程中很重要的关键字，另外一个很重要的是 volatile。Syncronized 的目的是一次只允许一个线程进入由他修饰的代码段，从而允许他们进行自我保护。Synchronized 很像生活中的锁例子，进入由Synchronized 保护的代码区首先需要获取 Synchronized 这把锁，其他线程想要执行必须进行等待。Synchronized 锁住的代码区域执行完成后需要把锁归还，也就是释放锁，这样才能够让其他线程使用。</p>
+<p>Lock 是 Java并发编程中很重要的一个接口，它要比 Synchronized 关键字更能直译”锁”的概念，Lock需要手动加锁和手动解锁，一般通过 lock.lock() 方法来进行加锁， 通过 lock.unlock() 方法进行解锁。与 Lock 关联密切的锁有 ReetrantLock 和 ReadWriteLock。</p>
+<p>ReetrantLock 实现了Lock接口，它是一个可重入锁，内部定义了公平锁与非公平锁。</p>
+<p>ReadWriteLock 一个用来获取读锁，一个用来获取写锁。也就是说将文件的读写操作分开，分成2个锁来分配给线程，从而使得多个线程可以同时进行读操作。ReentrantReadWirteLock实现了ReadWirteLock接口，并未实现Lock接口。</p>
+<p>Synchronzied 和 Lock 的主要区别如下：</p>
+<ul>
+<li><strong>存在层面</strong>：Syncronized 是Java 中的一个关键字，存在于 JVM 层面，Lock 是 Java 中的一个接口</li>
+<li><strong>锁的释放条件</strong>：1. 获取锁的线程执行完同步代码后，自动释放；2. 线程发生异常时，JVM会让线程释放锁；Lock 必须在 finally 关键字中释放锁，不然容易造成线程死锁</li>
+<li><strong>锁的获取</strong>: 在 Syncronized 中，假设线程 A 获得锁，B 线程等待。如果 A 发生阻塞，那么 B 会一直等待。在 Lock 中，会分情况而定，Lock 中有尝试获取锁的方法，如果尝试获取到锁，则不用一直等待</li>
+<li><strong>锁的状态</strong>：Synchronized 无法判断锁的状态，Lock 则可以判断</li>
+<li><strong>锁的类型</strong>：Synchronized 是可重入，不可中断，非公平锁；Lock 锁则是 可重入，可判断，可公平锁</li>
+<li><strong>锁的性能</strong>：Synchronized 适用于少量同步的情况下，性能开销比较大。Lock 锁适用于大量同步阶段：</li>
+<li>Lock 锁可以提高多个线程进行读的效率(使用 readWriteLock)</li>
+<li>在竞争不是很激烈的情况下，Synchronized的性能要优于ReetrantLock，但是在资源竞争很激烈的情况下，Synchronized的性能会下降几十倍，但是ReetrantLock的性能能维持常态；</li>
+<li>ReetrantLock 提供了多样化的同步，比如有时间限制的同步，可以被Interrupt的同步（synchronized的同步是不能Interrupt的）等。</li>
+</ul>
+</blockquote>
+<p>在Java中，关于<code>synchronized</code>和<code>Lock</code>的描述中错误的是：1</p>
+<p>B. synchronized只能给代码块加锁；而lock可以给类、方法、代码块加锁</p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">这个说法是不正确的。<code>synchronized</code>关键字不仅可以用来给代码块加锁，还可以用来给整个方法加锁。当<code>synchronized</code>修饰一个方法时，这个方法就是同步方法，意味着一次只能有一个线程进入该方法。而<code>Lock</code>是一个接口，提供了比<code>synchronized</code>关键字更细粒度的锁操作，但它本身不能直接用来给类或方法加锁</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">1</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/622760822">2</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/drrzh/article/details/119519455">3</a>。</p>
+<p>其他选项的描述是正确的：</p>
+<ul>
+<li>A. <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">通过<code>Lock</code>可以知道有没有成功获取锁，而<code>synchronized</code>却无法办到。<code>Lock</code>接口提供了<code>tryLock()</code>方法，可以用来尝试获取锁，如果获取成功则返回<code>true</code>，否则返回<code>false</code></a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">1</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/622760822">2</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">C<code>synchronized</code>不需要手动获取锁和释放锁，发生异常会自动释放锁，不会造成死锁。这是<code>synchronized</code>的一个特性，它确保在发生异常时锁会被释放，从而避免死锁的发生</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">1</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/622760822">2</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">D<code>Lock</code>需要自己加锁和释放锁，如果使用不当没有<code>unlock()</code>去释放锁就会造成死锁。这是<code>Lock</code>的使用方式，需要程序员显式地进行锁的管理</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">1</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/622760822">2</a>。</li>
+</ul>
+<h3 id="集合对象的线程安全"><a href="#集合对象的线程安全" class="headerlink" title="集合对象的线程安全"></a>集合对象的线程安全</h3><p>以下集合对象中哪几个是线程安全的（) </p>
+<p>A.Hashtable </p>
+<p>B.Vector </p>
+<p>C.LinkedList </p>
+<p>D.ArrayList</p>
+<p>在Java中，线程安全的集合对象意味着它们可以在多线程环境中安全地进行读写操作，而不会出现数据不一致或者竞态条件的问题。根据我的搜索结果，以下是线程安全的集合对象：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">A、<strong>Hashtable</strong>：它是一个早期的键值对集合类，使用<code>synchronized</code>方法来保证线程安全</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">1</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">B、<strong>Vector</strong>：它是一个动态数组，其所有操作都是线程安全的，因为它的方法都是同步的</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">1</a>。</li>
+</ul>
+<p>而选项C和D：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">C、<strong>LinkedList</strong>：它不是线程安全的，因为它的方法不是同步的</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">1</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">D、<strong>ArrayList</strong>：它也不是线程安全的，同样因为它的方法不是同步的</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">1</a>。</li>
+</ul>
+<h3 id="方法没有返回值"><a href="#方法没有返回值" class="headerlink" title="方法没有返回值"></a>方法没有返回值</h3><p>如果类的方法没有返回值，该方法的返回值类型应当是abstract。</p>
+<p><strong>Void</strong></p>
+<h3 id="构建方法"><a href="#构建方法" class="headerlink" title="构建方法"></a>构建方法</h3><p>关于默认构造方法的创建，陈述正确的是（) </p>
+<p>A.只有当前类没有其他构造方法时，编译器才会创建默认构造方法</p>
+<p> B.默认构造方法调用父类的无参数构造方法 </p>
+<p>C.如果一个类缺少无参数构造方法，但有其他的构造方法，编译器会创建一个默认构造方法 </p>
+<p>D.默认构造方法初始化方法变量 E.默认构造方法初始化类中声明的实例变量</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45804632/article/details/120643936">A<strong>只有当前类没有其他构造方法时，编译器才会创建默认构造方法</strong>：这是正确的。如果一个类没有显式地声明任何构造方法，编译器会自动为该类生成一个默认的无参构造方法</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45804632/article/details/120643936">1</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2335482">2</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/NYfor2017/article/details/104724282">B<strong>默认构造方法调用父类的无参数构造方法</strong>：这也是正确的。在Java中，子类的构造方法默认会调用父类的无参数构造方法，除非通过<code>super</code>关键字显式地调用了父类的其他构造方法</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/NYfor2017/article/details/104724282">3</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45804632/article/details/120643936">C<strong>如果一个类缺少无参数构造方法，但有其他的构造方法，编译器会创建一个默认构造方法</strong>：这是错误的。如果类中已经定义了至少一个构造方法（无论是有参还是无参），编译器不会自动提供默认的无参构造方法</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45804632/article/details/120643936">1</a>。</p>
+<p>D. <strong>默认构造方法初始化方法变量</strong>：这个说法是不准确的。构造方法通常用于初始化实例变量，而不是方法变量（局部变量）。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39064700/article/details/81036913">E<strong>默认构造方法初始化类中声明的实例变量</strong>：这是部分正确的。默认构造方法会对类中的实例变量进行默认初始化，例如将整型变量初始化为0，对象引用初始化为<code>null</code>等。但如果类中的实例变量在声明时已经被初始化，或者在实例初始化代码块中被初始化，那么默认构造方法将不会改变这些初始化值</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39064700/article/details/81036913">4</a>。</p>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>可唯一确定一棵二叉树的是（) </p>
+<p>A.给定一棵二叉树的先序和中序遍历序列 </p>
+<p>B.给定先序、中序和后序遍历序列中的任意一个即可 </p>
+<p>C.给定一棵二叉树的先序和后序遍历序列 </p>
+<p>D.给定一棵二叉树的后序和中序遍历序列</p>
+<p>在二叉树的遍历中，要唯一确定一棵二叉树的结构，需要两种遍历序列，其中一种必须是中序遍历。这是因为中序遍历能够确定根节点在树中的位置，从而区分左右子树。因此，可以唯一确定一棵二叉树的遍历序列组合是：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zzy_nic/article/details/119550296">A<strong>先序遍历和中序遍历</strong>：先序遍历确定根节点，中序遍历区分左右子树</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/zzy_nic/article/details/119550296">1</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zzy_nic/article/details/119550296">D<strong>后序遍历和中序遍历</strong>：后序遍历确定根节点，中序遍历区分左右子树</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/zzy_nic/article/details/119550296">1</a>。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/533935579">给定先序、中序和后序遍历序列中的任意一个是不足以唯一确定一棵二叉树的结构的，因为没有中序遍历序列，我们无法确定根节点的位置。同样，先序和后序遍历序列的组合也不能唯一确定一棵二叉树，除非是在特殊情况下，比如二叉树是满二叉树</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/533935579">2</a>。</p>
+<h3 id="创建对象的方式"><a href="#创建对象的方式" class="headerlink" title="创建对象的方式"></a>创建对象的方式</h3><p>java中创建对象的方式由哪些</p>
+<p> ①采用new </p>
+<p>②通过反射 </p>
+<p>③采用clone </p>
+<p>④通过序列化机制</p>
+<ol>
+<li><p><strong>采用new关键字</strong>：这是最常见和最直接的创建对象的方式。通过使用<code>new</code>关键字，然后调用类的构造器来创建对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyClass obj = new MyClass();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>通过反射</strong>：Java反射API允许程序在运行时访问、检查和操作类的对象。通过反射，你可以动态地创建对象和调用方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; clazz = Class.forName(&quot;包名.MyClass&quot;);</span><br><span class="line">Object obj = clazz.newInstance(); // 或者 clazz.getDeclaredConstructor().newInstance();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>采用clone</strong>：如果一个类实现了<code>java.lang.Cloneable</code>接口，那么可以通过克隆一个已存在的对象来创建一个新的对象。这需要类提供一个<code>protected</code>的<code>clone()</code>方法，该方法通常是从<code>java.lang.Object</code>继承的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyClass original = new MyClass();</span><br><span class="line">MyClass cloned = original.clone();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>通过序列化机制</strong>：Java的序列化机制允许你将对象的状态保存到磁盘或网络中，之后可以恢复该状态并重新创建一个对象。这通常涉及到实现<code>java.io.Serializable</code>接口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    FileInputStream fis = new FileInputStream(&quot;ObjectDataFile.obj&quot;);</span><br><span class="line">    ObjectInputStream ois = new ObjectInputStream(fis);</span><br><span class="line">    MyClass obj = (MyClass) ois.readObject();</span><br><span class="line">    ois.close();</span><br><span class="line">    fis.close();</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用反序列化</strong>：与序列化相对，反序列化是在读取入一个序列化对象的过程，通常也涉及到实现<code>java.io.Serializable</code>接口。</p>
+</li>
+<li><p><strong>使用类加载器</strong>：Java类加载器负责加载类文件，它也可以用于创建类的对象。虽然这不是直接创建对象的方式，但它是创建对象背后的机制。</p>
+</li>
+<li><p><strong>使用框架和容器</strong>：例如使用Spring框架的依赖注入，或者使用EJB容器来管理企业JavaBean（EJB）。</p>
+</li>
+<li><p><strong>使用反例模式（如工厂模式、单例模式等）</strong>：在设计模式中，经常通过工厂方法或单例模式来控制对象的创建过程。</p>
+</li>
+</ol>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>已知如下代码，哪些说法是正确的（)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123; </span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">B</span> <span class="keyword">extends</span> <span class="title class_">A</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> A.类B的构造器应该调用super0 </p>
+<p>B.类B的构造器应该调用this0 </p>
+<p>C.类B的构造器应该是没有参数 </p>
+<p>D.类B的构造器应该是public</p>
+<p>Java中，如果子类的构造器没有显式地调用一个超类的构造器或者同一个类中的另一个构造器，那么默认情况下，子类的构造器的第一句隐式地调用超类的无参构造器（<code>super()</code>）。如果超类中没有无参构造器，那么子类的构造器必须通过<code>super</code>关键字显式地调用超类中存在的其他构造器。</p>
+<p>根据您提供的代码，<code>class A</code> 中有一个构造器 <code>A()</code>，而 <code>class B</code> 是 <code>class A</code> 的子类。但是，您提供的 <code>class B</code> 代码不完整，我们无法看到 <code>class B</code> 的构造器的具体实现。假设 <code>class B</code> 没有显式地定义任何构造器，那么：</p>
+<p>A. **类B的构造器应该调用super()**：这是正确的。如果 <code>class B</code> 的构造器没有显式调用 <code>this()</code> 或 <code>super()</code>，它将隐式地调用 <code>super()</code>，即 <code>A</code> 类的无参构造器。</p>
+<p>B. **类B的构造器应该调用this()**：这是错误的，除非 <code>class B</code> 中有多个构造器，并且一个构造器想要调用同一个类中的另一个构造器。</p>
+<p>C. <strong>类B的构造器应该是没有参数</strong>：这是正确的，如果 <code>class B</code> 的构造器没有显式地定义任何参数。</p>
+<p>D. <strong>类B的构造器应该是public</strong>：这是正确的，除非 <code>class B</code> 的构造器被声明为其他访问级别（如 <code>private</code> 或 <code>protected</code>），或者没有显式地指定访问级别。在Java中，如果不显式指定构造器的访问级别，默认情况下它是与类相同的访问级别。如果 <code>class B</code> 没有指定访问级别，那么它的构造器是 <code>package-private</code>（包访问权限），这意味着只有同一包内的其他类可以访问它。</p>
+<h3 id="Collection接口"><a href="#Collection接口" class="headerlink" title="Collection接口"></a>Collection接口</h3><p>以下哪些继承自Collection接口 A.Map B.List C.Set D.Array</p>
+<p>在Java中，<code>Collection</code> 接口是所有集合类型（如列表、集合和队列）的根接口。以下是继承自 <code>Collection</code> 接口的类型：</p>
+<p>A. <strong>Map</strong> - 错误。<code>Map</code> 提供了一个映射，其中每个键最多只能映射到一个值，它不是继承自 <code>Collection</code> 接口的，而是继承自 <code>java.util.Map</code> 接口。</p>
+<p>B. <strong>List</strong> - 正确。<code>List</code> 是一个有序的集合，可以包含重复的元素。<code>List</code> 继承自 <code>Collection</code> 接口。</p>
+<p>C. <strong>Set</strong> - 正确。<code>Set</code> 是一个不允许重复的集合。<code>Set</code> 同样继承自 <code>Collection</code> 接口。</p>
+<p>D. <strong>Array</strong> - 错误。数组（Array）并不是继承自 <code>Collection</code> 接口。数组是一种基本的数据结构，用于存储固定数量的元素，它不是 <code>Collection</code> 框架的一部分。</p>
+<p>因此，正确的说法是 B 和 C。<code>List</code> 和 <code>Set</code> 都是 <code>Collection</code> 接口的直接继承者。</p>
+<h3 id="equals-和-x3D-x3D"><a href="#equals-和-x3D-x3D" class="headerlink" title="equals 和 &#x3D;&#x3D;"></a>equals 和 &#x3D;&#x3D;</h3><p>已知</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String a=<span class="string">&quot;a&quot;</span>,</span><br><span class="line">String b=<span class="string">&quot;b&quot;</span>,</span><br><span class="line">String c=a+b,</span><br><span class="line">String d=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;ab&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>以下操作结果为true的是 () </p>
+<p>A.c&#x3D;&#x3D;d </p>
+<p>B.c.equals(d) </p>
+<p>C.a+b&#x3D;&#x3D;c </p>
+<p>D.(a+b).equals(c)</p>
+<p>A. <code>c == d</code> - 这个表达式检查 <code>c</code> 和 <code>d</code> 是否引用同一个对象。由于 <code>c</code> 是通过 <code>a + b</code> 直接连接两个字符串字面量得到的，它可能是一个指向字符串常量池中 “ab” 的引用。而 <code>d</code> 是通过 <code>new String(&quot;ab&quot;)</code> 创建的，它创建了一个新的对象，即使内容相同，它也与 <code>c</code> 不是同一个对象。因此，这个表达式的结果通常是 <code>false</code>。</p>
+<p>B. <code>c.equals(d)</code> - 这个表达式使用 <code>equals()</code> 方法来比较 <code>c</code> 和 <code>d</code> 的内容。由于 <code>c</code> 和 <code>d</code> 包含相同的字符序列 “ab”，所以这个方法将返回 <code>true</code>。</p>
+<p>C. <code>a + b == c</code> - 这个表达式检查 <code>a + b</code> 的结果是否与 <code>c</code> 是同一个对象。由于 <code>c</code> 是通过 <code>a + b</code> 创建的，它们引用的是同一个对象。因此，这个表达式的结果为 <code>true</code>。</p>
+<p>D. <code>(a + b).equals(c)</code> - 这个表达式首先计算 <code>(a + b)</code>，它将产生 “ab”，然后调用 <code>equals(c)</code> 来比较这个结果与 <code>c</code> 的内容。由于 <code>c</code> 就是 “ab”，所以 <code>(a + b)</code> 与 <code>c</code> 的内容相同，<code>equals()</code> 方法将返回 <code>true</code>。</p>
+<p>因此，正确的选项是：</p>
+<p>C. <code>a + b == c</code> D. <code>(a + b).equals(c)</code></p>
+<p>选项 B 也是正确的，因为 <code>c.equals(d)</code> 比较的是内容，而不是引用。所以，正确的选项是 B、C 和 D。</p>
+<h3 id="默认构造方法"><a href="#默认构造方法" class="headerlink" title="默认构造方法"></a>默认构造方法</h3><p>关于默认构造方法的创建，陈述正确的是（) </p>
+<p>A.只有当前类没有其他构造方法时，编译器才会创建默认构造方法 </p>
+<p>B.默认构造方法调用父类的无参数构造方法 </p>
+<p>C.如果一个类缺少无参数构造方法，但有其他的构造方法，编译器会创建一个默认构造方法</p>
+<p> D.默认构造方法初始化方法变量</p>
+<p> E.默认构造方法初始化类中声明的实例变量</p>
+<p>A. <strong>错误</strong>。即使类中有其他构造方法，编译器也会为这个类提供一个默认的无参数构造方法，除非显式地定义了构造方法。</p>
+<p>B. <strong>正确</strong>。默认构造方法会隐式地调用其父类（超类）的无参数构造方法，除非在子类的构造方法中通过 <code>super()</code> 或 <code>this()</code> 显式地调用了其他构造方法。</p>
+<p>C. <strong>错误</strong>。如果一个类定义了自己的构造方法，编译器不会提供默认的无参数构造方法。只有当类中没有任何构造方法时，编译器才会提供一个。</p>
+<p>D. <strong>错误</strong>。默认构造方法不会特别初始化方法变量。方法变量（局部变量）需要在方法内部显式初始化。</p>
+<p>E. <strong>错误</strong>。默认构造方法会按照变量的类型进行初始化。对于对象引用，初始化为 <code>null</code>；对于数值类型，如 <code>int</code>，会初始化为 <code>0</code>；对于布尔类型，会初始化为 <code>false</code>。但是，这并不是通过构造方法完成的，而是在对象创建时自动完成的。</p>
+<p>因此，正确的陈述是 B。默认构造方法会调用父类的无参数构造方法。其他选项都是错误的。</p>
+<h3 id="Java序列化"><a href="#Java序列化" class="headerlink" title="Java序列化"></a>Java序列化</h3><p>Java序列化是指把Java对象转换为字节序列的过程；Java反序列化是指把字节序列复为Java对象的过程。</p>
+<p><strong>Java序列化</strong>：</p>
+<ul>
+<li>序列化是指将对象的状态信息转换为可以被存储（例如保存到磁盘上）或传输（通过网络发送到另一台计算机）的字节序列的过程。</li>
+</ul>
+<h3 id="InputStream类和OutputStream"><a href="#InputStream类和OutputStream" class="headerlink" title="InputStream类和OutputStream"></a>InputStream类和OutputStream</h3><p>InputStream类和OutputStream类是所有二进制I&#x2F;O的根类。</p>
+<ol>
+<li><strong>InputStream类</strong>：<ul>
+<li><code>InputStream</code> 是Java中用于表示可以读取原始字节数据的所有类的根类。它属于 <code>java.io</code> 包。</li>
+<li><code>InputStream</code> 提供了一些基本的方法，如 &#96;read()&#96;&#96;，用于从类派生的输入流中读取数据。</li>
+</ul>
+</li>
+<li><strong>OutputStream类</strong>：<ul>
+<li><code>OutputStream</code> 是Java中用于表示可以写入原始字节数据的所有类的根类。它也属于 <code>java.io</code> 包。</li>
+<li><code>OutputStream</code> 提供了一些基本的方法，如 <code>write()</code>，用于向类派生的输出流中写入数据。</li>
+</ul>
+</li>
+</ol>
+<p>这两个类是Java I&#x2F;O流层次结构中的基类，但它们是专门用于二进制数据的输入和输出。对于字符数据的输入和输出，Java 提供了 <code>Reader</code> 和 <code>Writer</code> 类作为相应的根类。</p>
+<h3 id="session-setAttribute"><a href="#session-setAttribute" class="headerlink" title="session.setAttribute"></a>session.setAttribute</h3><p>要在session对象中保存属性，可以使用session.setAttribute(“key”,”value”)语句</p>
+<p>在Java的Servlet API中，<code>session</code> 对象用于在多个页面请求或访问中存储用户的信息。<code>session.setAttribute()</code> 方法用于将属性存储在会话（session）中。</p>
+<p>以下是 <code>session.setAttribute()</code> 方法的用法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> request.getSession(<span class="literal">true</span>); <span class="comment">// 或 request.getSession();</span></span><br><span class="line">session.setAttribute(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第一个参数是属性的名称，它应该是一个字符串。</li>
+<li>第二个参数是属性的值，它可以是任何对象。</li>
+</ul>
+<p>当您想要在用户的整个会话期间存储信息时，可以使用会话属性。例如，您可以存储用户的偏好设置、购物车内容或用户的身份验证信息。</p>
+<h3 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h3><p>abstract 只能存在于抽象类或接口中.</p>
+<ul>
+<li><strong>抽象类</strong>：使用 <code>abstract</code> 关键字声明，可以包含抽象方法和具体方法。</li>
+<li><strong>接口</strong>：在Java 8之前，接口只包含抽象方法。从Java 8开始，接口也可以包含带有默认实现的默认方法和静态方法。</li>
+</ul>
+<p>除了抽象类和接口，<code>abstract</code> 关键字还可以用于：</p>
+<ul>
+<li><strong>抽象方法</strong>：即使在没有使用 <code>abstract</code> 关键字声明的类中，也可以有抽象方法（没有方法体的方法），这将隐式地使该类成为抽象类。</li>
+<li><strong>局部抽象类</strong>：在一些特定的上下文中，如匿名类和 lambda 表达式，可以有局部的抽象实体，但这些不是完整的抽象类定义。</li>
+</ul>
+<p>总结来说，<code>abstract</code> 关键字主要用于声明抽象类和接口，但它也与抽象方法相关联。</p>
+<h3 id="HashMap和Hashtable"><a href="#HashMap和Hashtable" class="headerlink" title="HashMap和Hashtable"></a>HashMap和Hashtable</h3><p>HashMap允许key和value为null,而Hashtable不允许</p>
+<p><code>HashMap</code> 和 <code>Hashtable</code> 都是基于哈希表的键值对集合，它们在Java中用于存储映射关系，但它们在处理空键（null keys）和空值（null values）时的行为有所不同：</p>
+<ol>
+<li><strong>HashMap</strong>：<ul>
+<li>允许一个空键（null key），但只能有一个，因为键是用来计算哈希码并确定对象存储位置的。</li>
+<li>允许多个空值（null values），即可以有多个键映射到空值。</li>
+</ul>
+</li>
+<li><strong>Hashtable</strong>：<ul>
+<li>不允许空键（null key）。尝试将空键插入 <code>Hashtable</code> 将抛出 <code>NullPointerException</code>。</li>
+<li>同样不允许空值（null values）。尝试将空值插入 <code>Hashtable</code> 也会抛出 <code>NullPointerException</code>。</li>
+</ul>
+</li>
+</ol>
+<p>这个差异是 <code>HashMap</code> 和 <code>Hashtable</code> 在设计上的一个关键区别，也是为什么在某些情况下，开发者可能更倾向于使用 <code>HashMap</code>，因为它提供了更大的灵活性。</p>
+<p>此外，<code>Hashtable</code> 是线程安全的，它的所有方法都是同步的，而 <code>HashMap</code> 不是线程安全的。在单线程环境下，<code>HashMap</code> 通常提供更好的性能，但在多线程环境下，如果没有采取额外的同步措施，使用 <code>HashMap</code> 可能会导致数据不一致。在需要线程安全的哈希映射时，可以考虑使用 <code>Collections.synchronizedMap()</code> 将 <code>HashMap</code> 包装为线程安全，或者使用 <code>ConcurrentHashMap</code>，它是专为并发环境设计的哈希表。</p>
+<h3 id="一个接口可以继承其他接口。"><a href="#一个接口可以继承其他接口。" class="headerlink" title="一个接口可以继承其他接口。"></a>一个接口可以继承其他接口。</h3><p>在Java中，接口可以继承一个或多个其他接口。这种机制允许创建接口的层次结构，其中更具体的接口可以继承一个或多个更通用的接口。</p>
+<p>当一个接口继承另一个接口时，它继承了父接口中定义的所有方法（从Java 8开始，也包括默认方法和静态方法）。实现该接口的类必须提供所有继承方法的实现。</p>
+<p>下面是一个接口继承其他接口的例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public interface InterfaceOne &#123;</span><br><span class="line">    void methodOne();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface InterfaceTwo &#123;</span><br><span class="line">    void methodTwo();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface ExtendedInterface extends InterfaceOne, InterfaceTwo &#123;</span><br><span class="line">    void methodThree();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>ExtendedInterface</code> 继承了 <code>InterfaceOne</code> 和 <code>InterfaceTwo</code>。因此，实现 <code>ExtendedInterface</code> 的任何类都必须提供 <code>methodOne()</code>、<code>methodTwo()</code> 和 <code>methodThree()</code> 的实现。</p>
+<p>接口继承提供了一种方法来创建一个接口的组合，这可以用于实现多继承的效果，而在Java中类是不能多继承的。接口继承是Java实现多态和抽象化的一种强大工具。</p>
+<h1 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h1><h3 id="保存activity数据"><a href="#保存activity数据" class="headerlink" title="保存activity数据"></a>保存activity数据</h3><p>下列方法可以保存activity数据的是（) </p>
+<p>A.onSavelnstanceState O </p>
+<p>B.onDestory O </p>
+<p>C. onRestorelnstanceState </p>
+<p>D.onNewlnstance</p>
+<p>在Android开发中，用于保存Activity数据的方法是：</p>
+<p>A. <strong>onSaveInstanceState</strong></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1661080">这个方法在Activity可能被系统销毁前被调用，用于保存Activity的状态。它通过传递一个Bundle对象，允许开发者将需要保存的状态以键值对的形式存储起来。如果Activity确实被系统销毁，这些状态信息可以在Activity重建时恢复</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1661080">1</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/carson_ho/article/details/107242189">2</a>。</p>
+<p>C. <strong>onRestoreInstanceState</strong></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1661080">这个方法与<code>onSaveInstanceState</code>配合使用，在Activity被重新创建后，可以通过这个方法恢复之前保存的状态。它通常在<code>onStart</code>之后<code>onResume</code>之前被调用</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1661080">1</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/carson_ho/article/details/107242189">2</a>。</p>
+<p>选项B和D不是用于保存Activity数据的方法：</p>
+<ul>
+<li>B. <strong>onDestroy</strong> 是在Activity即将被销毁时调用的，用于执行清理工作，而不是保存数据。</li>
+<li>D. <strong>onNewInstance</strong> 并不是一个标准的Android生命周期方法。</li>
+</ul>
+<h3 id="启动Activity"><a href="#启动Activity" class="headerlink" title="启动Activity()"></a>启动Activity()</h3><p>以下那些方法可以启动Activity() </p>
+<p>A.getActivity.next() </p>
+<p>B.startActivityForResult()</p>
+<p>C.getActivity.show()</p>
+<p>D.startActivity()</p>
+<p>在Android中，可以用来启动Activity的方法是：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cyqx/p/10927458.html">B**startActivityForResult()**：这个方法不仅可以启动一个Activity，还可以在Activity执行完毕后返回结果给调用者</a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cyqx/p/10927458.html">1</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cyqx/p/10927458.html">D**startActivity()**：这是最常用的方法来启动一个新的Activity</a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cyqx/p/10927458.html">1</a>。</li>
+</ul>
+<p>选项A和C不是标准的Android方法来启动Activity。<code>getActivity()</code>通常用于Fragment中获取与之关联的Activity的实例，而不是用来启动新的Activity。<code>next()</code>和<code>show()</code>也不是用于启动Activity的方法。</p>
+<h1 id="代码题"><a href="#代码题" class="headerlink" title="代码题"></a>代码题</h1><h3 id="继承-1"><a href="#继承-1" class="headerlink" title="继承"></a>继承</h3><p>下面代码输出结果是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">    Base() &#123;</span><br><span class="line">        System.out.print(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Alpha</span> <span class="keyword">extends</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Alpha</span>(); <span class="comment">// 创建Alpha类的实例，会打印出&quot;test&quot;</span></span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Base</span>();  <span class="comment">// 创建Base类的实例，也会打印出&quot;test&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是因为当创建<code>Alpha</code>类的实例时，它的构造器会隐式地调用父类<code>Base</code>的构造器，打印出第一个”test”。紧接着，当直接创建<code>Base</code>类的实例时，它的构造器再次被调用，打印出第二个”test”。</p>
+<p>但是，您的代码中有一些语法错误，我已经为您纠正了这些错误。下面是修正后的代码：</p>
+<h3 id="List-声明"><a href="#List-声明" class="headerlink" title="List 声明"></a>List 声明</h3><p>在如下代码中，list扩充了（)次 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ArrayList</span> <span class="variable">list</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>(<span class="number">20</span>); </span><br></pre></td></tr></table></figure>
+
+<p>A.0 B.2 C.1 D.3</p>
+<p><a target="_blank" rel="noopener" href="https://cloud.baidu.com/article/3311861">在Java中，<code>ArrayList</code>的扩容机制是当添加元素时，如果集合中元素的数量超过了当前的容量，<code>ArrayList</code>会进行扩容。扩容的新容量通常是旧容量的1.5倍</a><a target="_blank" rel="noopener" href="https://cloud.baidu.com/article/3311861">1</a>。</p>
+<p>对于您的问题，由于您已经用初始容量20创建了<code>ArrayList</code>，除非添加的元素数量超过了20，否则<code>ArrayList</code>不会进行扩容。因此，如果在<code>list</code>中添加的元素数量没有超过20个，那么<code>list</code>将不会扩充。</p>
+<p>如下代码： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Super</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">getLength</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Sub</span> <span class="keyword">extends</span> <span class="title class_">Super</span> &#123;</span><br><span class="line">    <span class="comment">// 此处应该返回Integer类型，以匹配Super类中的返回类型</span></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">getLength</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">5</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Super</span> <span class="variable">sooper</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Super</span>();</span><br><span class="line">        <span class="type">Sub</span> <span class="variable">sub</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Sub</span>();</span><br><span class="line">        <span class="comment">// 正确调用toString()方法</span></span><br><span class="line">        System.out.println(sooper.getLength().toString() + <span class="string">&quot;,&quot;</span> +</span><br><span class="line">                           sub.getLength().toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出是（)</p>
+<p><strong>重写返回的数据类型必须一致</strong></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14694852/can-overridden-methods-differ-in-return-type">在Java中，方法重写（Overriding）时，子类方法的返回类型应该是父类方法返回类型的子类型，这被称为协变返回类型。但是，基本数据类型（如<code>Integer</code>和<code>Long</code>）不支持协变返回类型，因为它们不是类类型，而是原始数据类型</a><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14694852/can-overridden-methods-differ-in-return-type">1</a><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14519797/overriding-a-method-with-different-return-types-in-java">2</a><a target="_blank" rel="noopener" href="https://www.sparkcodehub.com/java/overriding">3</a>。</p>
+<p>在您提供的代码中，<code>Sub</code>类试图重写<code>Super</code>类的<code>getLength()</code>方法，并改变返回类型从<code>Integer</code>到<code>Long</code>。这是不允许的，因为<code>Integer</code>和<code>Long</code>都是包装类，它们分别封装了<code>int</code>和<code>long</code>原始数据类型，而且它们之间没有继承关系。</p>
+<p>因此，这段代码会导致编译错误，而不是成功执行并输出结果。如果您尝试编译这段代码，您将会收到一个错误，指出<code>Sub</code>类中的<code>getLength()</code>方法不能重写<code>Super</code>类中的<code>getLength()</code>方法。</p>
+<p>为了让代码正确编译，子类<code>Sub</code>中的方法必须有与父类<code>Super</code>中的方法相同的返回类型<code>Integer</code>，或者是<code>Integer</code>的子类型（如果<code>Integer</code>有子类型的话）。但是在这种情况下，由于我们是在处理包装类，所以返回类型必须保持一致。</p>
+<p>请注意，代码中还有一些其他的小错误，例如方法名<code>getLenght</code>应该是<code>getLength</code>，并且在<code>main</code>方法的打印语句中，<code>toString0</code>应该是<code>toString()</code>。这里是修正后的代码示例：</p>
+<h3 id="异常-1"><a href="#异常-1" class="headerlink" title="异常"></a>异常</h3><p>下面代码会抛出什么异常 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> Map&lt;Integer, String&gt; map ;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;</span><br><span class="line">        map.put(<span class="number">1</span>, <span class="string">&quot;A&quot;</span>);</span><br><span class="line">        System.out.println(map.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码中，<code>map</code>是一个静态的<code>Map</code>对象，但是它没有被初始化，即没有分配内存空间。当尝试使用<code>map.put(1,&quot;A&quot;)</code>向<code>map</code>中添加元素时，由于<code>map</code>是<code>null</code>，这将会导致<code>NullPointerException</code>异常。</p>
+<h3 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h3><p>如下代码 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10.</span> <span class="keyword">public</span> Object <span class="title function_">m</span><span class="params">()</span>&#123; </span><br><span class="line"><span class="number">11.</span> <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Float</span>(<span class="number">3.14F</span>); </span><br><span class="line"><span class="number">12.</span> Object [] oa = <span class="keyword">new</span> <span class="title class_">Object</span>[<span class="number">1</span>]; </span><br><span class="line"><span class="number">13.</span> oa[<span class="number">0</span>]=o; </span><br><span class="line"><span class="number">14.</span> o=<span class="literal">null</span>; </span><br><span class="line"><span class="number">15.</span> oa[<span class="number">0</span>]=<span class="literal">null</span>; </span><br><span class="line"><span class="number">16.</span> print<span class="string">&#x27;return 0&#x27;</span>; <span class="number">17.</span>&#125; </span><br></pre></td></tr></table></figure>
+
+<p>当Float对象在第11行被创建后，什么时候能够被垃圾回收 </p>
+<p>A.13行以后 )B.14行以后 C.15行以后 D.16行以后</p>
+<p>在Java中，一个对象可以被垃圾回收（GC）的前提是该对象不再被任何活动的引用所引用。在您提供的代码中，<code>Float</code>对象最初被引用变量<code>o</code>引用，然后在第13行，这个引用被赋值给<code>oa</code>数组的第一个元素。在第14行，变量<code>o</code>被赋值为<code>null</code>，但此时<code>Float</code>对象仍然被<code>oa</code>数组中的引用所持有，因此它还不能被垃圾回收。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/feiying0canglang/article/details/121030668">直到第15行，<code>oa</code>数组的第一个元素也被赋值为<code>null</code>，这时<code>Float</code>对象不再有任何活动引用指向它，因此它现在可以被垃圾回收。但请注意，这并不意味着对象立即被回收，只是它现在<strong>可以</strong>被回收。实际的回收时机取决于GC算法和GC运行的具体时机</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/feiying0canglang/article/details/121030668">1</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/658949296">2</a>。</p>
+<h3 id="变量的访问权限"><a href="#变量的访问权限" class="headerlink" title="变量的访问权限"></a>变量的访问权限</h3><p>已知如下代码： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123; </span><br><span class="line">    <span class="keyword">private</span> <span class="type">float</span> <span class="variable">f</span> <span class="operator">=</span> <span class="number">1.0f</span>; </span><br><span class="line">    <span class="type">int</span> m=<span class="number">12</span>; </span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> n=<span class="number">1</span>; </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">Test</span> <span class="variable">t</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test</span> ( )  ; <span class="comment">// Check point </span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p> 在代码中“Check point”处替换为哪些语句是合法的0 A.Test.n; B.this.n; C.t.f: D.Test.m;</p>
+<p>在Java中，合法的语句是那些遵循语法规则并且在语境中有意义的语句。在“Check point”处，我们需要考虑静态上下文（因为<code>main</code>方法是静态的）和变量的访问权限。以下是对每个选项的分析：</p>
+<p>A. <code>Test.n;</code> - 这是一个合法的语句，因为<code>n</code>是<code>Test</code>类的静态变量，可以通过类名直接访问。</p>
+<p>B. <code>this.n;</code> - 这是不合法的语句，因为<code>this</code>关键字在静态上下文中没有意义，不能在<code>main</code>方法中使用。</p>
+<p>C. <code>t.f;</code> - 这是一个合法的语句，因为<code>f</code>是<code>Test</code>类的实例变量，可以通过实例<code>t</code>访问。</p>
+<p>D. <code>Test.m;</code> - 这是不合法的语句，因为<code>m</code>是一个实例变量，不能通过类名直接访问，必须通过类的实例来访问。</p>
+<h3 id="Bean"><a href="#Bean" class="headerlink" title="Bean"></a>Bean</h3><p>现有一个数据类Bean,</p>
+<p>打印getA()的结果会显示那个值（) </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Bean</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">float</span> a; </span><br><span class="line">    <span class="keyword">public</span> <span class="type">float</span> <span class="title function_">getA</span><span class="params">()</span>&#123; </span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，由于没有对<code>Bean</code>实例的变量<code>a</code>进行赋值，所以打印<code>getA()</code>的结果将会是<code>0.0</code>。</p>
+<h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><p>按照学生平均成绩（avg_grade)将students表中的数据检索出来， 下面SQL语句正确的是（) </p>
+<p>A.SELECT*FROM students ORDER BY avg_grade DESC *</p>
+<p><em>B.SELECT</em>FROM students ORDER by avg_grade ASC </p>
+<p>C.SELECT*FROM students ORDER BY avg_grade *</p>
+<p>D.SELECT*FROM students GROUP BY avg_grade ASC</p>
+<p>在SQL中，如果您想要根据学生的平均成绩<code>avg_grade</code>对<code>students</code>表中的数据进行排序，您可以使用<code>ORDER BY</code>子句。这个子句可以指定排序的列和排序的方向（升序ASC或降序DESC）。没有指定方向时，默认是升序。</p>
+<p>选项A和B都是正确的，它们分别表示：</p>
+<ul>
+<li>A. <strong>按平均成绩降序排列</strong>：<code>SELECT * FROM students ORDER BY avg_grade DESC</code></li>
+<li>B. <strong>按平均成绩升序排列</strong>：<code>SELECT * FROM students ORDER BY avg_grade ASC</code></li>
+</ul>
+<p>选项C也是有效的，但它没有明确指出排序的方向，因此默认为升序：</p>
+<ul>
+<li>C. <strong>按平均成绩升序排列</strong>（默认）：<code>SELECT * FROM students ORDER BY avg_grade</code></li>
+</ul>
+<p>选项D使用了<code>GROUP BY</code>子句，这通常用于聚合函数（如COUNT, MAX, MIN, SUM, AVG等）的情况，而不是用于排序，所以它不适用于这个查询：</p>
+<ul>
+<li>D. <strong>错误的使用了GROUP BY</strong>：<code>SELECT * FROM students GROUP BY avg_grade ASC</code></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag"># 面试题</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/05/15/Spring%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="prev" title="Spring面试题">
+      <i class="fa fa-chevron-left"></i> Spring面试题
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">JAVA面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#str-substring-4-7"><span class="nav-number">1.0.1.</span> <span class="nav-text">str.substring(4,7)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%8F%8A%E7%B1%BB%E6%88%90%E5%91%98%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%AC%A6"><span class="nav-number">1.0.2.</span> <span class="nav-text">类及类成员的访问控制符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.0.3.</span> <span class="nav-text">new关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set%E7%B1%BB%E5%85%83%E7%B4%A0%E6%8E%92%E5%BA%8F"><span class="nav-number">1.0.4.</span> <span class="nav-text">Set类元素排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8"><span class="nav-number">1.0.5.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%8C%85"><span class="nav-number">1.0.6.</span> <span class="nav-text">JDK中常用包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BF%E6%92%AD%E9%94%99%E8%AF%AF"><span class="nav-number">1.0.7.</span> <span class="nav-text">广播错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">1.0.8.</span> <span class="nav-text">进程优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized%E5%92%8CLock"><span class="nav-number">1.0.9.</span> <span class="nav-text">synchronized和Lock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><span class="nav-number">1.0.10.</span> <span class="nav-text">集合对象的线程安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E6%B2%A1%E6%9C%89%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">1.0.11.</span> <span class="nav-text">方法没有返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.12.</span> <span class="nav-text">构建方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">1.0.13.</span> <span class="nav-text">二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">1.0.14.</span> <span class="nav-text">创建对象的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-number">1.0.15.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.0.16.</span> <span class="nav-text">Collection接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#equals-%E5%92%8C-x3D-x3D"><span class="nav-number">1.0.17.</span> <span class="nav-text">equals 和 &#x3D;&#x3D;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.18.</span> <span class="nav-text">默认构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">1.0.19.</span> <span class="nav-text">Java序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InputStream%E7%B1%BB%E5%92%8COutputStream"><span class="nav-number">1.0.20.</span> <span class="nav-text">InputStream类和OutputStream</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session-setAttribute"><span class="nav-number">1.0.21.</span> <span class="nav-text">session.setAttribute</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#abstract"><span class="nav-number">1.0.22.</span> <span class="nav-text">abstract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap%E5%92%8CHashtable"><span class="nav-number">1.0.23.</span> <span class="nav-text">HashMap和Hashtable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E6%8E%A5%E5%8F%A3%E5%8F%AF%E4%BB%A5%E7%BB%A7%E6%89%BF%E5%85%B6%E4%BB%96%E6%8E%A5%E5%8F%A3%E3%80%82"><span class="nav-number">1.0.24.</span> <span class="nav-text">一个接口可以继承其他接口。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android"><span class="nav-number">2.</span> <span class="nav-text">Android</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%9D%E5%AD%98activity%E6%95%B0%E6%8D%AE"><span class="nav-number">2.0.1.</span> <span class="nav-text">保存activity数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8Activity"><span class="nav-number">2.0.2.</span> <span class="nav-text">启动Activity()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">代码题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF-1"><span class="nav-number">3.0.1.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List-%E5%A3%B0%E6%98%8E"><span class="nav-number">3.0.2.</span> <span class="nav-text">List 声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8-1"><span class="nav-number">3.0.3.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-number">3.0.4.</span> <span class="nav-text">垃圾回收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90"><span class="nav-number">3.0.5.</span> <span class="nav-text">变量的访问权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean"><span class="nav-number">3.0.6.</span> <span class="nav-text">Bean</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MYSQL"><span class="nav-number">4.</span> <span class="nav-text">MYSQL</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MEIDE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MEIDE</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/meideblog/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/meideblog/velocity/velocity.min.js"></script>
+  <script src="/meideblog/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

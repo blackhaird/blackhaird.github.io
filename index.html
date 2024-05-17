@@ -152,6 +152,459 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/17/%E7%BB%BC%E5%90%88%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/05/17/%E7%BB%BC%E5%90%88%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE/" class="post-title-link" itemprop="url">MYSQL面试题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-05-17 13:26:38 / 修改时间：15:10:22" itemprop="dateCreated datePublished" datetime="2024-05-17T13:26:38+08:00">2024-05-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JAVA面试题"><a href="#JAVA面试题" class="headerlink" title="JAVA面试题"></a>JAVA面试题</h1><h3 id="str-substring-4-7"><a href="#str-substring-4-7" class="headerlink" title="str.substring(4,7)"></a>str.substring(4,7)</h3><p>String str &#x3D; “WellcomToThunderSoft”; System.out.println(str.substring(4,7)): 运行后的结果</p>
+<p>在Java中，<code>substring</code>方法用于提取字符串中的一部分。这个方法接受两个参数：开始索引（包含）和结束索引（不包含）。根据您提供的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;WellcomToThunderSoft&quot;</span>;</span><br><span class="line">System.out.println(str.substring(<span class="number">4</span>,<span class="number">7</span>));</span><br></pre></td></tr></table></figure>
+
+<p><code>str.substring(4,7)</code> 将会从索引4开始提取，到索引7结束，但不包括索引7。在字符串 <code>&quot;WellcomToThunderSoft&quot;</code> 中，索引4是字符 <code>&#39;o&#39;</code>，索引7是字符 <code>&#39;T&#39;</code>。</p>
+<p>所以，<code>str.substring(4,7)</code> 的结果将是 <code>&quot;com&quot;</code>，这是从索引4到6的字符。如果您运行这段代码，控制台上打印出来的结果应该是 <code>com</code>。</p>
+<h3 id="类及类成员的访问控制符"><a href="#类及类成员的访问控制符" class="headerlink" title="类及类成员的访问控制符"></a>类及类成员的访问控制符</h3><p>在Java中，类及类成员的访问控制符共有四种，它们分别是：</p>
+<ol>
+<li><strong>public</strong>：公共的，被声明为public的成员可以在任何类中都能被访问到。这包括类、成员变量、方法，以及内部类。通过操作该类的对象，可以随意访问public成员。被public修饰的成员也能被所有的子类继承下来。</li>
+<li><strong>protected</strong>：受保护的，受到该类所在的包所保护。被protected修饰的成员会被位于同一package中的所有类访问到。同时，被protected修饰的成员也能被该类的所有子类继承下来。</li>
+<li><strong>default</strong>（也称为friendly）：默认的，同一package中的所有类都能访问。被default修饰的成员只能被该类所在同一个package中的子类所继承下来。</li>
+<li><strong>private</strong>：私有的，只能在当前类中被访问。被private修饰的成员，包括成员变量和方法，不能被其他类或派生类访问。</li>
+</ol>
+<h3 id="new关键字"><a href="#new关键字" class="headerlink" title="new关键字"></a>new关键字</h3><p>下面关于new关键字的表述错误的是（) </p>
+<p>A.new关键字在生成一个对象时会为对象开辟内存空间 </p>
+<p>B.new关键字在生成一个对象时会调用类的构造方法 </p>
+<p>C.new关键字在生成一个对象时会将生成的对象的地址返回 </p>
+<p>D.Java中只能通过new关键字来生成一个对象</p>
+<blockquote>
+<p>Java中只能通过new关键字来生成一个对象</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/LOL_toulan/article/details/89212383">这个说法是不正确的。虽然<code>new</code>关键字是Java中最常用的方式来创建对象，它确实会为对象分配内存空间、调用构造方法，并返回对象的内存地址，但Java中还有其他方式可以创建对象。例如，可以通过类的<code>clone()</code>方法来创建对象，或者使用反射（Reflection）中的<code>Class.newInstance()</code>方法来创建对象。这些方法也可以在运行时动态地创建对象和分配内存</a></p>
+</blockquote>
+<p>选项A、B和C描述的都是<code>new</code>关键字的正确行为：</p>
+<ul>
+<li><code>new</code>关键字在生成一个对象时会为对象开辟内存空间。</li>
+<li><code>new</code>关键字在生成一个对象时会调用类的构造方法。</li>
+<li>new&#96;关键字在生成一个对象时会将生成的对象的地址返回。</li>
+</ul>
+<h3 id="Set类元素排序"><a href="#Set类元素排序" class="headerlink" title="Set类元素排序"></a>Set类元素排序</h3><p>下面哪个Set类是按元素排好序的？() A.HashSet B.TreeSet C.LinkedHashSet D.AbstractSet</p>
+<p>在Java中，按元素排好序的Set类是：</p>
+<p>B. <strong>TreeSet</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_54162653/article/details/117771885"><code>TreeSet</code>实现了<code>SortedSet</code>接口，可以确保集合元素处于排序状态。它使用元素的自然顺序或者根据创建<code>TreeSet</code>时提供的<code>Comparator</code>进行排序</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_54162653/article/details/117771885">1</a>。这意味着，如果你插入可比较的对象（例如数字、字符串等），<code>TreeSet</code>会按照升序来保存它们。</p>
+<p>其他选项的说明如下：</p>
+<ul>
+<li>A. <strong>HashSet</strong> 不保证集合的迭代顺序；它的元素实际上是无序的。</li>
+<li>C. <strong>LinkedHashSet</strong> 维护着元素插入的顺序，但不是按自然顺序排序。</li>
+<li>D. <strong>AbstractSet</strong> 是<code>Set</code>接口的骨架实现，它本身并不提供排序功能。</li>
+</ul>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>以下关于异常的说法正确的是（) </p>
+<p>A.如果一个方法申明将抛出某个异常，它就必须真的抛出那个异常 </p>
+<p>B.可能抛出系统异常的方法是不需要申明异常的 </p>
+<p>C.在catch子句中匹配异常是一种精确匹配 </p>
+<p>D.一旦出现异常，程序运行就终止了</p>
+<p>在Java中，关于异常的正确说法是：</p>
+<p>B. 可能抛出系统异常的方法是不需要声明异常的</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">这是正确的，因为在Java中，由系统异常（也称为未检查异常或运行时异常）引起的错误通常是由程序逻辑错误引起的，如<code>NullPointerException</code>或<code>ArrayIndexOutOfBoundsException</code>。这些异常是<code>RuntimeException</code>的子类，它们不需要在方法签名中声明，也不强制要求调用者处理这些异常</a><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">1</a><a target="_blank" rel="noopener" href="https://javabetter.cn/exception/gailan.html">2</a>。</p>
+<p>C. 在catch子句中匹配异常是一种精确匹配</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">这也是正确的。在Java的异常处理中，<code>catch</code>子句会根据异常类型进行匹配。如果抛出的异常与<code>catch</code>子句中指定的异常类型相匹配，那么该<code>catch</code>子句将会执行。如果不匹配，它会继续寻找下一个匹配的<code>catch</code>子句</a><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">1</a><a target="_blank" rel="noopener" href="https://javabetter.cn/exception/gailan.html">2</a>。</p>
+<p>选项A和D的说法是不正确的：</p>
+<p>A. 如果一个方法声明将抛出某个异常，它就必须真的抛出那个异常</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">这是不正确的。方法可以声明抛出一个或多个异常，但这并不意味着它必须抛出这些异常。声明仅表示该方法可能会抛出这些异常，调用者应该准备好处理它们</a><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">1</a><a target="_blank" rel="noopener" href="https://javabetter.cn/exception/gailan.html">2</a>。</p>
+<p>D. 一旦出现异常，程序运行就终止了</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">这也是不正确的。在Java中，如果异常被捕获并且有适当的处理，程序可以继续执行。只有当异常未被捕获时，程序才会终止</a><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-exceptions.html">1</a><a target="_blank" rel="noopener" href="https://javabetter.cn/exception/gailan.html">2</a>。</p>
+<h3 id="JDK中常用包"><a href="#JDK中常用包" class="headerlink" title="JDK中常用包"></a>JDK中常用包</h3><p>JDK中常用包有（) )A.java.io ○ B.java.net )C.以上都是 D.java.lang</p>
+<p>在JDK中，常用的包包括：</p>
+<ul>
+<li>A. <strong>java.io</strong>：这个包包含了用于数据流、序列化和文件系统的类。</li>
+<li>B. <strong>java.net</strong>：这个包包含了用于网络编程的类，如URL、Sockets等。</li>
+<li>D. <strong>java.lang</strong>：这个包是Java编程语言的核心类库，包含了基本的类和接口，如<code>String</code>、<code>Math</code>、<code>System</code>等。</li>
+</ul>
+<h3 id="广播错误"><a href="#广播错误" class="headerlink" title="广播错误"></a>广播错误</h3><p>下列关于广播错误的是（) </p>
+<p>A.abortBroadcast0可以中断所有的广播 ○ </p>
+<p>B.相同优先级下动态注册比静态注册更早接收有序广播 )</p>
+<p>C.广播的注册方式分为静态和动态 </p>
+<p>D.广播的发送方式分为有序和无序</p>
+<p>在Android中，关于广播的错误表述是：</p>
+<p>A. <strong>abortBroadcast()</strong> 可以中断所有的广播</p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1881789">这个说法是不正确的。<code>abortBroadcast()</code> 方法只能用于中断有序广播（Ordered Broadcasts），而无法中断无序广播（Normal Broadcasts）或系统广播</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1881789">1</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/caoqijia123/article/details/92800075">2</a><a target="_blank" rel="noopener" href="https://bing.com/search?q=Android+abortBroadcast+%E4%B8%AD%E6%96%AD%E6%89%80%E6%9C%89%E5%B9%BF%E6%92%AD">3</a><a target="_blank" rel="noopener" href="https://wenku.csdn.net/answer/15d039836ba945babd4b4337d2ea86e6">。有序广播是按照接收者的优先级顺序来传递的，而且前面的接收者可以通过调用<code>abortBroadcast()</code>来阻止后续的接收者接收到这个广播</a><a target="_blank" rel="noopener" href="https://wenku.csdn.net/answer/15d039836ba945babd4b4337d2ea86e6">4</a>。</p>
+<p>选项B、C和D描述的都是广播的正确特性：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/380066272">B<strong>相同优先级下动态注册比静态注册更早接收有序广播</strong>：这是正确的，当两个接收者的优先级相同时，动态注册的接收者会比静态注册的接收者先接收到有序广播</a><a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/380066272">5</a><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_16213419/10404199">6</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42182599/article/details/137680583">C<strong>广播的注册方式分为静态和动态</strong>：这是正确的，广播接收者可以通过静态注册（在<code>AndroidManifest.xml</code>中声明）或动态注册（在代码中调用<code>registerReceiver()</code>方法）来接收广播</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42182599/article/details/137680583">7</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/fancynthia/article/details/124359900">8</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_49095721/article/details/109448148">D<strong>广播的发送方式分为有序和无序</strong>：这也是正确的，广播可以以有序广播的方式发送，也可以以无序广播的方式发送</a><a target="_blank" rel="noopener" href="https://bing.com/search?q=Android+%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C%E5%92%8C%E9%9D%99%E6%80%81%E6%B3%A8%E5%86%8C%E6%8E%A5%E6%94%B6%E6%9C%89%E5%BA%8F%E5%B9%BF%E6%92%AD%E7%9A%84%E5%85%88%E5%90%8E%E9%A1%BA%E5%BA%8F">9</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_49095721/article/details/109448148">10</a>。</li>
+</ul>
+<h3 id="进程优先级"><a href="#进程优先级" class="headerlink" title="进程优先级"></a>进程优先级</h3><p>下列那些进程的优先级最高（) A.后台进程 B.服务进程 C.前台进程 D.可见进程</p>
+<p>在Android系统中，进程的优先级从高到低排序如下：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ly0724ok/article/details/117533723"><strong>前台进程</strong> (Foreground process): 这些进程包含用户正在交互的Activity或与之绑定的Service，以及执行特定操作如<code>onReceive()</code>方法的BroadcastReceiver。前台进程通常不会因为内存不足而被系统杀死</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/ly0724ok/article/details/117533723">1</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ly0724ok/article/details/117533723"><strong>可见进程</strong> (Visible process): 这些进程不包含任何前台组件，但用户仍然可以在屏幕上看到它们。例如，一个Activity在调用了<code>onPause()</code>但还没有调用<code>onStop()</code>时，它仍然对用户可见。这些进程通常也不会被系统杀死，除非是为了保证所有前台进程的运行而不得不杀死可见进程</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/ly0724ok/article/details/117533723">1</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ly0724ok/article/details/117533723"><strong>服务进程</strong> (Service process): 这些进程正在运行一个通过<code>startService()</code>启动的Service。例如，后台播放音乐或后台下载数据的Service属于服务进程</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/ly0724ok/article/details/117533723">1</a>。</li>
+<li><strong>后台进程</strong> (Background process): 这些进程包含用户不可见的Activity（例如，用户离开了Activity，导致<code>onStop()</code>被调用）。后台进程不直接影响</li>
+</ol>
+<h3 id="synchronized和Lock"><a href="#synchronized和Lock" class="headerlink" title="synchronized和Lock"></a>synchronized和Lock</h3><p>下面关于synchronized和Lock描述错误的是（)</p>
+<p> A.通过Lock可以知道有没有成功获取锁，而synchronized却无法办到 )</p>
+<p>B.synchronized只能给代码块加锁；而lock可以给类、方法、代码块加锁 )</p>
+<p>C.synchronized不需要手动获取锁和释放锁，发生异常会自动释放锁，不会造成死锁 </p>
+<p>D.lock需要自己加锁和释放锁，如果使用不当没有unLock()去释放锁就会造成死锁</p>
+<blockquote>
+<p>Synchronized 是Java 并发编程中很重要的关键字，另外一个很重要的是 volatile。Syncronized 的目的是一次只允许一个线程进入由他修饰的代码段，从而允许他们进行自我保护。Synchronized 很像生活中的锁例子，进入由Synchronized 保护的代码区首先需要获取 Synchronized 这把锁，其他线程想要执行必须进行等待。Synchronized 锁住的代码区域执行完成后需要把锁归还，也就是释放锁，这样才能够让其他线程使用。</p>
+<p>Lock 是 Java并发编程中很重要的一个接口，它要比 Synchronized 关键字更能直译”锁”的概念，Lock需要手动加锁和手动解锁，一般通过 lock.lock() 方法来进行加锁， 通过 lock.unlock() 方法进行解锁。与 Lock 关联密切的锁有 ReetrantLock 和 ReadWriteLock。</p>
+<p>ReetrantLock 实现了Lock接口，它是一个可重入锁，内部定义了公平锁与非公平锁。</p>
+<p>ReadWriteLock 一个用来获取读锁，一个用来获取写锁。也就是说将文件的读写操作分开，分成2个锁来分配给线程，从而使得多个线程可以同时进行读操作。ReentrantReadWirteLock实现了ReadWirteLock接口，并未实现Lock接口。</p>
+<p>Synchronzied 和 Lock 的主要区别如下：</p>
+<ul>
+<li><strong>存在层面</strong>：Syncronized 是Java 中的一个关键字，存在于 JVM 层面，Lock 是 Java 中的一个接口</li>
+<li><strong>锁的释放条件</strong>：1. 获取锁的线程执行完同步代码后，自动释放；2. 线程发生异常时，JVM会让线程释放锁；Lock 必须在 finally 关键字中释放锁，不然容易造成线程死锁</li>
+<li><strong>锁的获取</strong>: 在 Syncronized 中，假设线程 A 获得锁，B 线程等待。如果 A 发生阻塞，那么 B 会一直等待。在 Lock 中，会分情况而定，Lock 中有尝试获取锁的方法，如果尝试获取到锁，则不用一直等待</li>
+<li><strong>锁的状态</strong>：Synchronized 无法判断锁的状态，Lock 则可以判断</li>
+<li><strong>锁的类型</strong>：Synchronized 是可重入，不可中断，非公平锁；Lock 锁则是 可重入，可判断，可公平锁</li>
+<li><strong>锁的性能</strong>：Synchronized 适用于少量同步的情况下，性能开销比较大。Lock 锁适用于大量同步阶段：</li>
+<li>Lock 锁可以提高多个线程进行读的效率(使用 readWriteLock)</li>
+<li>在竞争不是很激烈的情况下，Synchronized的性能要优于ReetrantLock，但是在资源竞争很激烈的情况下，Synchronized的性能会下降几十倍，但是ReetrantLock的性能能维持常态；</li>
+<li>ReetrantLock 提供了多样化的同步，比如有时间限制的同步，可以被Interrupt的同步（synchronized的同步是不能Interrupt的）等。</li>
+</ul>
+</blockquote>
+<p>在Java中，关于<code>synchronized</code>和<code>Lock</code>的描述中错误的是：1</p>
+<p>B. synchronized只能给代码块加锁；而lock可以给类、方法、代码块加锁</p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">这个说法是不正确的。<code>synchronized</code>关键字不仅可以用来给代码块加锁，还可以用来给整个方法加锁。当<code>synchronized</code>修饰一个方法时，这个方法就是同步方法，意味着一次只能有一个线程进入该方法。而<code>Lock</code>是一个接口，提供了比<code>synchronized</code>关键字更细粒度的锁操作，但它本身不能直接用来给类或方法加锁</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">1</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/622760822">2</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/drrzh/article/details/119519455">3</a>。</p>
+<p>其他选项的描述是正确的：</p>
+<ul>
+<li>A. <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">通过<code>Lock</code>可以知道有没有成功获取锁，而<code>synchronized</code>却无法办到。<code>Lock</code>接口提供了<code>tryLock()</code>方法，可以用来尝试获取锁，如果获取成功则返回<code>true</code>，否则返回<code>false</code></a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">1</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/622760822">2</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">C<code>synchronized</code>不需要手动获取锁和释放锁，发生异常会自动释放锁，不会造成死锁。这是<code>synchronized</code>的一个特性，它确保在发生异常时锁会被释放，从而避免死锁的发生</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">1</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/622760822">2</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">D<code>Lock</code>需要自己加锁和释放锁，如果使用不当没有<code>unlock()</code>去释放锁就会造成死锁。这是<code>Lock</code>的使用方式，需要程序员显式地进行锁的管理</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1497476">1</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/622760822">2</a>。</li>
+</ul>
+<h3 id="集合对象的线程安全"><a href="#集合对象的线程安全" class="headerlink" title="集合对象的线程安全"></a>集合对象的线程安全</h3><p>以下集合对象中哪几个是线程安全的（) </p>
+<p>A.Hashtable </p>
+<p>B.Vector </p>
+<p>C.LinkedList </p>
+<p>D.ArrayList</p>
+<p>在Java中，线程安全的集合对象意味着它们可以在多线程环境中安全地进行读写操作，而不会出现数据不一致或者竞态条件的问题。根据我的搜索结果，以下是线程安全的集合对象：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">A、<strong>Hashtable</strong>：它是一个早期的键值对集合类，使用<code>synchronized</code>方法来保证线程安全</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">1</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">B、<strong>Vector</strong>：它是一个动态数组，其所有操作都是线程安全的，因为它的方法都是同步的</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">1</a>。</li>
+</ul>
+<p>而选项C和D：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">C、<strong>LinkedList</strong>：它不是线程安全的，因为它的方法不是同步的</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">1</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">D、<strong>ArrayList</strong>：它也不是线程安全的，同样因为它的方法不是同步的</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/627192919">1</a>。</li>
+</ul>
+<h3 id="方法没有返回值"><a href="#方法没有返回值" class="headerlink" title="方法没有返回值"></a>方法没有返回值</h3><p>如果类的方法没有返回值，该方法的返回值类型应当是abstract。</p>
+<p><strong>Void</strong></p>
+<h3 id="构建方法"><a href="#构建方法" class="headerlink" title="构建方法"></a>构建方法</h3><p>关于默认构造方法的创建，陈述正确的是（) </p>
+<p>A.只有当前类没有其他构造方法时，编译器才会创建默认构造方法</p>
+<p> B.默认构造方法调用父类的无参数构造方法 </p>
+<p>C.如果一个类缺少无参数构造方法，但有其他的构造方法，编译器会创建一个默认构造方法 </p>
+<p>D.默认构造方法初始化方法变量 E.默认构造方法初始化类中声明的实例变量</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45804632/article/details/120643936">A<strong>只有当前类没有其他构造方法时，编译器才会创建默认构造方法</strong>：这是正确的。如果一个类没有显式地声明任何构造方法，编译器会自动为该类生成一个默认的无参构造方法</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45804632/article/details/120643936">1</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2335482">2</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/NYfor2017/article/details/104724282">B<strong>默认构造方法调用父类的无参数构造方法</strong>：这也是正确的。在Java中，子类的构造方法默认会调用父类的无参数构造方法，除非通过<code>super</code>关键字显式地调用了父类的其他构造方法</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/NYfor2017/article/details/104724282">3</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45804632/article/details/120643936">C<strong>如果一个类缺少无参数构造方法，但有其他的构造方法，编译器会创建一个默认构造方法</strong>：这是错误的。如果类中已经定义了至少一个构造方法（无论是有参还是无参），编译器不会自动提供默认的无参构造方法</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45804632/article/details/120643936">1</a>。</p>
+<p>D. <strong>默认构造方法初始化方法变量</strong>：这个说法是不准确的。构造方法通常用于初始化实例变量，而不是方法变量（局部变量）。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39064700/article/details/81036913">E<strong>默认构造方法初始化类中声明的实例变量</strong>：这是部分正确的。默认构造方法会对类中的实例变量进行默认初始化，例如将整型变量初始化为0，对象引用初始化为<code>null</code>等。但如果类中的实例变量在声明时已经被初始化，或者在实例初始化代码块中被初始化，那么默认构造方法将不会改变这些初始化值</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39064700/article/details/81036913">4</a>。</p>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>可唯一确定一棵二叉树的是（) </p>
+<p>A.给定一棵二叉树的先序和中序遍历序列 </p>
+<p>B.给定先序、中序和后序遍历序列中的任意一个即可 </p>
+<p>C.给定一棵二叉树的先序和后序遍历序列 </p>
+<p>D.给定一棵二叉树的后序和中序遍历序列</p>
+<p>在二叉树的遍历中，要唯一确定一棵二叉树的结构，需要两种遍历序列，其中一种必须是中序遍历。这是因为中序遍历能够确定根节点在树中的位置，从而区分左右子树。因此，可以唯一确定一棵二叉树的遍历序列组合是：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zzy_nic/article/details/119550296">A<strong>先序遍历和中序遍历</strong>：先序遍历确定根节点，中序遍历区分左右子树</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/zzy_nic/article/details/119550296">1</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zzy_nic/article/details/119550296">D<strong>后序遍历和中序遍历</strong>：后序遍历确定根节点，中序遍历区分左右子树</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/zzy_nic/article/details/119550296">1</a>。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/533935579">给定先序、中序和后序遍历序列中的任意一个是不足以唯一确定一棵二叉树的结构的，因为没有中序遍历序列，我们无法确定根节点的位置。同样，先序和后序遍历序列的组合也不能唯一确定一棵二叉树，除非是在特殊情况下，比如二叉树是满二叉树</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/533935579">2</a>。</p>
+<h3 id="创建对象的方式"><a href="#创建对象的方式" class="headerlink" title="创建对象的方式"></a>创建对象的方式</h3><p>java中创建对象的方式由哪些</p>
+<p> ①采用new </p>
+<p>②通过反射 </p>
+<p>③采用clone </p>
+<p>④通过序列化机制</p>
+<ol>
+<li><p><strong>采用new关键字</strong>：这是最常见和最直接的创建对象的方式。通过使用<code>new</code>关键字，然后调用类的构造器来创建对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyClass obj = new MyClass();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>通过反射</strong>：Java反射API允许程序在运行时访问、检查和操作类的对象。通过反射，你可以动态地创建对象和调用方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; clazz = Class.forName(&quot;包名.MyClass&quot;);</span><br><span class="line">Object obj = clazz.newInstance(); // 或者 clazz.getDeclaredConstructor().newInstance();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>采用clone</strong>：如果一个类实现了<code>java.lang.Cloneable</code>接口，那么可以通过克隆一个已存在的对象来创建一个新的对象。这需要类提供一个<code>protected</code>的<code>clone()</code>方法，该方法通常是从<code>java.lang.Object</code>继承的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyClass original = new MyClass();</span><br><span class="line">MyClass cloned = original.clone();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>通过序列化机制</strong>：Java的序列化机制允许你将对象的状态保存到磁盘或网络中，之后可以恢复该状态并重新创建一个对象。这通常涉及到实现<code>java.io.Serializable</code>接口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    FileInputStream fis = new FileInputStream(&quot;ObjectDataFile.obj&quot;);</span><br><span class="line">    ObjectInputStream ois = new ObjectInputStream(fis);</span><br><span class="line">    MyClass obj = (MyClass) ois.readObject();</span><br><span class="line">    ois.close();</span><br><span class="line">    fis.close();</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用反序列化</strong>：与序列化相对，反序列化是在读取入一个序列化对象的过程，通常也涉及到实现<code>java.io.Serializable</code>接口。</p>
+</li>
+<li><p><strong>使用类加载器</strong>：Java类加载器负责加载类文件，它也可以用于创建类的对象。虽然这不是直接创建对象的方式，但它是创建对象背后的机制。</p>
+</li>
+<li><p><strong>使用框架和容器</strong>：例如使用Spring框架的依赖注入，或者使用EJB容器来管理企业JavaBean（EJB）。</p>
+</li>
+<li><p><strong>使用反例模式（如工厂模式、单例模式等）</strong>：在设计模式中，经常通过工厂方法或单例模式来控制对象的创建过程。</p>
+</li>
+</ol>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>已知如下代码，哪些说法是正确的（)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123; </span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">B</span> <span class="keyword">extends</span> <span class="title class_">A</span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> A.类B的构造器应该调用super0 </p>
+<p>B.类B的构造器应该调用this0 </p>
+<p>C.类B的构造器应该是没有参数 </p>
+<p>D.类B的构造器应该是public</p>
+<p>Java中，如果子类的构造器没有显式地调用一个超类的构造器或者同一个类中的另一个构造器，那么默认情况下，子类的构造器的第一句隐式地调用超类的无参构造器（<code>super()</code>）。如果超类中没有无参构造器，那么子类的构造器必须通过<code>super</code>关键字显式地调用超类中存在的其他构造器。</p>
+<p>根据您提供的代码，<code>class A</code> 中有一个构造器 <code>A()</code>，而 <code>class B</code> 是 <code>class A</code> 的子类。但是，您提供的 <code>class B</code> 代码不完整，我们无法看到 <code>class B</code> 的构造器的具体实现。假设 <code>class B</code> 没有显式地定义任何构造器，那么：</p>
+<p>A. **类B的构造器应该调用super()**：这是正确的。如果 <code>class B</code> 的构造器没有显式调用 <code>this()</code> 或 <code>super()</code>，它将隐式地调用 <code>super()</code>，即 <code>A</code> 类的无参构造器。</p>
+<p>B. **类B的构造器应该调用this()**：这是错误的，除非 <code>class B</code> 中有多个构造器，并且一个构造器想要调用同一个类中的另一个构造器。</p>
+<p>C. <strong>类B的构造器应该是没有参数</strong>：这是正确的，如果 <code>class B</code> 的构造器没有显式地定义任何参数。</p>
+<p>D. <strong>类B的构造器应该是public</strong>：这是正确的，除非 <code>class B</code> 的构造器被声明为其他访问级别（如 <code>private</code> 或 <code>protected</code>），或者没有显式地指定访问级别。在Java中，如果不显式指定构造器的访问级别，默认情况下它是与类相同的访问级别。如果 <code>class B</code> 没有指定访问级别，那么它的构造器是 <code>package-private</code>（包访问权限），这意味着只有同一包内的其他类可以访问它。</p>
+<h3 id="Collection接口"><a href="#Collection接口" class="headerlink" title="Collection接口"></a>Collection接口</h3><p>以下哪些继承自Collection接口 A.Map B.List C.Set D.Array</p>
+<p>在Java中，<code>Collection</code> 接口是所有集合类型（如列表、集合和队列）的根接口。以下是继承自 <code>Collection</code> 接口的类型：</p>
+<p>A. <strong>Map</strong> - 错误。<code>Map</code> 提供了一个映射，其中每个键最多只能映射到一个值，它不是继承自 <code>Collection</code> 接口的，而是继承自 <code>java.util.Map</code> 接口。</p>
+<p>B. <strong>List</strong> - 正确。<code>List</code> 是一个有序的集合，可以包含重复的元素。<code>List</code> 继承自 <code>Collection</code> 接口。</p>
+<p>C. <strong>Set</strong> - 正确。<code>Set</code> 是一个不允许重复的集合。<code>Set</code> 同样继承自 <code>Collection</code> 接口。</p>
+<p>D. <strong>Array</strong> - 错误。数组（Array）并不是继承自 <code>Collection</code> 接口。数组是一种基本的数据结构，用于存储固定数量的元素，它不是 <code>Collection</code> 框架的一部分。</p>
+<p>因此，正确的说法是 B 和 C。<code>List</code> 和 <code>Set</code> 都是 <code>Collection</code> 接口的直接继承者。</p>
+<h3 id="equals-和-x3D-x3D"><a href="#equals-和-x3D-x3D" class="headerlink" title="equals 和 &#x3D;&#x3D;"></a>equals 和 &#x3D;&#x3D;</h3><p>已知</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String a=<span class="string">&quot;a&quot;</span>,</span><br><span class="line">String b=<span class="string">&quot;b&quot;</span>,</span><br><span class="line">String c=a+b,</span><br><span class="line">String d=<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;ab&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>以下操作结果为true的是 () </p>
+<p>A.c&#x3D;&#x3D;d </p>
+<p>B.c.equals(d) </p>
+<p>C.a+b&#x3D;&#x3D;c </p>
+<p>D.(a+b).equals(c)</p>
+<p>A. <code>c == d</code> - 这个表达式检查 <code>c</code> 和 <code>d</code> 是否引用同一个对象。由于 <code>c</code> 是通过 <code>a + b</code> 直接连接两个字符串字面量得到的，它可能是一个指向字符串常量池中 “ab” 的引用。而 <code>d</code> 是通过 <code>new String(&quot;ab&quot;)</code> 创建的，它创建了一个新的对象，即使内容相同，它也与 <code>c</code> 不是同一个对象。因此，这个表达式的结果通常是 <code>false</code>。</p>
+<p>B. <code>c.equals(d)</code> - 这个表达式使用 <code>equals()</code> 方法来比较 <code>c</code> 和 <code>d</code> 的内容。由于 <code>c</code> 和 <code>d</code> 包含相同的字符序列 “ab”，所以这个方法将返回 <code>true</code>。</p>
+<p>C. <code>a + b == c</code> - 这个表达式检查 <code>a + b</code> 的结果是否与 <code>c</code> 是同一个对象。由于 <code>c</code> 是通过 <code>a + b</code> 创建的，它们引用的是同一个对象。因此，这个表达式的结果为 <code>true</code>。</p>
+<p>D. <code>(a + b).equals(c)</code> - 这个表达式首先计算 <code>(a + b)</code>，它将产生 “ab”，然后调用 <code>equals(c)</code> 来比较这个结果与 <code>c</code> 的内容。由于 <code>c</code> 就是 “ab”，所以 <code>(a + b)</code> 与 <code>c</code> 的内容相同，<code>equals()</code> 方法将返回 <code>true</code>。</p>
+<p>因此，正确的选项是：</p>
+<p>C. <code>a + b == c</code> D. <code>(a + b).equals(c)</code></p>
+<p>选项 B 也是正确的，因为 <code>c.equals(d)</code> 比较的是内容，而不是引用。所以，正确的选项是 B、C 和 D。</p>
+<h3 id="默认构造方法"><a href="#默认构造方法" class="headerlink" title="默认构造方法"></a>默认构造方法</h3><p>关于默认构造方法的创建，陈述正确的是（) </p>
+<p>A.只有当前类没有其他构造方法时，编译器才会创建默认构造方法 </p>
+<p>B.默认构造方法调用父类的无参数构造方法 </p>
+<p>C.如果一个类缺少无参数构造方法，但有其他的构造方法，编译器会创建一个默认构造方法</p>
+<p> D.默认构造方法初始化方法变量</p>
+<p> E.默认构造方法初始化类中声明的实例变量</p>
+<p>A. <strong>错误</strong>。即使类中有其他构造方法，编译器也会为这个类提供一个默认的无参数构造方法，除非显式地定义了构造方法。</p>
+<p>B. <strong>正确</strong>。默认构造方法会隐式地调用其父类（超类）的无参数构造方法，除非在子类的构造方法中通过 <code>super()</code> 或 <code>this()</code> 显式地调用了其他构造方法。</p>
+<p>C. <strong>错误</strong>。如果一个类定义了自己的构造方法，编译器不会提供默认的无参数构造方法。只有当类中没有任何构造方法时，编译器才会提供一个。</p>
+<p>D. <strong>错误</strong>。默认构造方法不会特别初始化方法变量。方法变量（局部变量）需要在方法内部显式初始化。</p>
+<p>E. <strong>错误</strong>。默认构造方法会按照变量的类型进行初始化。对于对象引用，初始化为 <code>null</code>；对于数值类型，如 <code>int</code>，会初始化为 <code>0</code>；对于布尔类型，会初始化为 <code>false</code>。但是，这并不是通过构造方法完成的，而是在对象创建时自动完成的。</p>
+<p>因此，正确的陈述是 B。默认构造方法会调用父类的无参数构造方法。其他选项都是错误的。</p>
+<h3 id="Java序列化"><a href="#Java序列化" class="headerlink" title="Java序列化"></a>Java序列化</h3><p>Java序列化是指把Java对象转换为字节序列的过程；Java反序列化是指把字节序列复为Java对象的过程。</p>
+<p><strong>Java序列化</strong>：</p>
+<ul>
+<li>序列化是指将对象的状态信息转换为可以被存储（例如保存到磁盘上）或传输（通过网络发送到另一台计算机）的字节序列的过程。</li>
+</ul>
+<h3 id="InputStream类和OutputStream"><a href="#InputStream类和OutputStream" class="headerlink" title="InputStream类和OutputStream"></a>InputStream类和OutputStream</h3><p>InputStream类和OutputStream类是所有二进制I&#x2F;O的根类。</p>
+<ol>
+<li><strong>InputStream类</strong>：<ul>
+<li><code>InputStream</code> 是Java中用于表示可以读取原始字节数据的所有类的根类。它属于 <code>java.io</code> 包。</li>
+<li><code>InputStream</code> 提供了一些基本的方法，如 &#96;read()&#96;&#96;，用于从类派生的输入流中读取数据。</li>
+</ul>
+</li>
+<li><strong>OutputStream类</strong>：<ul>
+<li><code>OutputStream</code> 是Java中用于表示可以写入原始字节数据的所有类的根类。它也属于 <code>java.io</code> 包。</li>
+<li><code>OutputStream</code> 提供了一些基本的方法，如 <code>write()</code>，用于向类派生的输出流中写入数据。</li>
+</ul>
+</li>
+</ol>
+<p>这两个类是Java I&#x2F;O流层次结构中的基类，但它们是专门用于二进制数据的输入和输出。对于字符数据的输入和输出，Java 提供了 <code>Reader</code> 和 <code>Writer</code> 类作为相应的根类。</p>
+<h3 id="session-setAttribute"><a href="#session-setAttribute" class="headerlink" title="session.setAttribute"></a>session.setAttribute</h3><p>要在session对象中保存属性，可以使用session.setAttribute(“key”,”value”)语句</p>
+<p>在Java的Servlet API中，<code>session</code> 对象用于在多个页面请求或访问中存储用户的信息。<code>session.setAttribute()</code> 方法用于将属性存储在会话（session）中。</p>
+<p>以下是 <code>session.setAttribute()</code> 方法的用法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> request.getSession(<span class="literal">true</span>); <span class="comment">// 或 request.getSession();</span></span><br><span class="line">session.setAttribute(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>第一个参数是属性的名称，它应该是一个字符串。</li>
+<li>第二个参数是属性的值，它可以是任何对象。</li>
+</ul>
+<p>当您想要在用户的整个会话期间存储信息时，可以使用会话属性。例如，您可以存储用户的偏好设置、购物车内容或用户的身份验证信息。</p>
+<h3 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h3><p>abstract 只能存在于抽象类或接口中.</p>
+<ul>
+<li><strong>抽象类</strong>：使用 <code>abstract</code> 关键字声明，可以包含抽象方法和具体方法。</li>
+<li><strong>接口</strong>：在Java 8之前，接口只包含抽象方法。从Java 8开始，接口也可以包含带有默认实现的默认方法和静态方法。</li>
+</ul>
+<p>除了抽象类和接口，<code>abstract</code> 关键字还可以用于：</p>
+<ul>
+<li><strong>抽象方法</strong>：即使在没有使用 <code>abstract</code> 关键字声明的类中，也可以有抽象方法（没有方法体的方法），这将隐式地使该类成为抽象类。</li>
+<li><strong>局部抽象类</strong>：在一些特定的上下文中，如匿名类和 lambda 表达式，可以有局部的抽象实体，但这些不是完整的抽象类定义。</li>
+</ul>
+<p>总结来说，<code>abstract</code> 关键字主要用于声明抽象类和接口，但它也与抽象方法相关联。</p>
+<h3 id="HashMap和Hashtable"><a href="#HashMap和Hashtable" class="headerlink" title="HashMap和Hashtable"></a>HashMap和Hashtable</h3><p>HashMap允许key和value为null,而Hashtable不允许</p>
+<p><code>HashMap</code> 和 <code>Hashtable</code> 都是基于哈希表的键值对集合，它们在Java中用于存储映射关系，但它们在处理空键（null keys）和空值（null values）时的行为有所不同：</p>
+<ol>
+<li><strong>HashMap</strong>：<ul>
+<li>允许一个空键（null key），但只能有一个，因为键是用来计算哈希码并确定对象存储位置的。</li>
+<li>允许多个空值（null values），即可以有多个键映射到空值。</li>
+</ul>
+</li>
+<li><strong>Hashtable</strong>：<ul>
+<li>不允许空键（null key）。尝试将空键插入 <code>Hashtable</code> 将抛出 <code>NullPointerException</code>。</li>
+<li>同样不允许空值（null values）。尝试将空值插入 <code>Hashtable</code> 也会抛出 <code>NullPointerException</code>。</li>
+</ul>
+</li>
+</ol>
+<p>这个差异是 <code>HashMap</code> 和 <code>Hashtable</code> 在设计上的一个关键区别，也是为什么在某些情况下，开发者可能更倾向于使用 <code>HashMap</code>，因为它提供了更大的灵活性。</p>
+<p>此外，<code>Hashtable</code> 是线程安全的，它的所有方法都是同步的，而 <code>HashMap</code> 不是线程安全的。在单线程环境下，<code>HashMap</code> 通常提供更好的性能，但在多线程环境下，如果没有采取额外的同步措施，使用 <code>HashMap</code> 可能会导致数据不一致。在需要线程安全的哈希映射时，可以考虑使用 <code>Collections.synchronizedMap()</code> 将 <code>HashMap</code> 包装为线程安全，或者使用 <code>ConcurrentHashMap</code>，它是专为并发环境设计的哈希表。</p>
+<h3 id="一个接口可以继承其他接口。"><a href="#一个接口可以继承其他接口。" class="headerlink" title="一个接口可以继承其他接口。"></a>一个接口可以继承其他接口。</h3><p>在Java中，接口可以继承一个或多个其他接口。这种机制允许创建接口的层次结构，其中更具体的接口可以继承一个或多个更通用的接口。</p>
+<p>当一个接口继承另一个接口时，它继承了父接口中定义的所有方法（从Java 8开始，也包括默认方法和静态方法）。实现该接口的类必须提供所有继承方法的实现。</p>
+<p>下面是一个接口继承其他接口的例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public interface InterfaceOne &#123;</span><br><span class="line">    void methodOne();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface InterfaceTwo &#123;</span><br><span class="line">    void methodTwo();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface ExtendedInterface extends InterfaceOne, InterfaceTwo &#123;</span><br><span class="line">    void methodThree();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>ExtendedInterface</code> 继承了 <code>InterfaceOne</code> 和 <code>InterfaceTwo</code>。因此，实现 <code>ExtendedInterface</code> 的任何类都必须提供 <code>methodOne()</code>、<code>methodTwo()</code> 和 <code>methodThree()</code> 的实现。</p>
+<p>接口继承提供了一种方法来创建一个接口的组合，这可以用于实现多继承的效果，而在Java中类是不能多继承的。接口继承是Java实现多态和抽象化的一种强大工具。</p>
+<h1 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h1><h3 id="保存activity数据"><a href="#保存activity数据" class="headerlink" title="保存activity数据"></a>保存activity数据</h3><p>下列方法可以保存activity数据的是（) </p>
+<p>A.onSavelnstanceState O </p>
+<p>B.onDestory O </p>
+<p>C. onRestorelnstanceState </p>
+<p>D.onNewlnstance</p>
+<p>在Android开发中，用于保存Activity数据的方法是：</p>
+<p>A. <strong>onSaveInstanceState</strong></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1661080">这个方法在Activity可能被系统销毁前被调用，用于保存Activity的状态。它通过传递一个Bundle对象，允许开发者将需要保存的状态以键值对的形式存储起来。如果Activity确实被系统销毁，这些状态信息可以在Activity重建时恢复</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1661080">1</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/carson_ho/article/details/107242189">2</a>。</p>
+<p>C. <strong>onRestoreInstanceState</strong></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1661080">这个方法与<code>onSaveInstanceState</code>配合使用，在Activity被重新创建后，可以通过这个方法恢复之前保存的状态。它通常在<code>onStart</code>之后<code>onResume</code>之前被调用</a><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1661080">1</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/carson_ho/article/details/107242189">2</a>。</p>
+<p>选项B和D不是用于保存Activity数据的方法：</p>
+<ul>
+<li>B. <strong>onDestroy</strong> 是在Activity即将被销毁时调用的，用于执行清理工作，而不是保存数据。</li>
+<li>D. <strong>onNewInstance</strong> 并不是一个标准的Android生命周期方法。</li>
+</ul>
+<h3 id="启动Activity"><a href="#启动Activity" class="headerlink" title="启动Activity()"></a>启动Activity()</h3><p>以下那些方法可以启动Activity() </p>
+<p>A.getActivity.next() </p>
+<p>B.startActivityForResult()</p>
+<p>C.getActivity.show()</p>
+<p>D.startActivity()</p>
+<p>在Android中，可以用来启动Activity的方法是：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cyqx/p/10927458.html">B**startActivityForResult()**：这个方法不仅可以启动一个Activity，还可以在Activity执行完毕后返回结果给调用者</a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cyqx/p/10927458.html">1</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cyqx/p/10927458.html">D**startActivity()**：这是最常用的方法来启动一个新的Activity</a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cyqx/p/10927458.html">1</a>。</li>
+</ul>
+<p>选项A和C不是标准的Android方法来启动Activity。<code>getActivity()</code>通常用于Fragment中获取与之关联的Activity的实例，而不是用来启动新的Activity。<code>next()</code>和<code>show()</code>也不是用于启动Activity的方法。</p>
+<h1 id="代码题"><a href="#代码题" class="headerlink" title="代码题"></a>代码题</h1><h3 id="继承-1"><a href="#继承-1" class="headerlink" title="继承"></a>继承</h3><p>下面代码输出结果是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">    Base() &#123;</span><br><span class="line">        System.out.print(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Alpha</span> <span class="keyword">extends</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Alpha</span>(); <span class="comment">// 创建Alpha类的实例，会打印出&quot;test&quot;</span></span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Base</span>();  <span class="comment">// 创建Base类的实例，也会打印出&quot;test&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是因为当创建<code>Alpha</code>类的实例时，它的构造器会隐式地调用父类<code>Base</code>的构造器，打印出第一个”test”。紧接着，当直接创建<code>Base</code>类的实例时，它的构造器再次被调用，打印出第二个”test”。</p>
+<p>但是，您的代码中有一些语法错误，我已经为您纠正了这些错误。下面是修正后的代码：</p>
+<h3 id="List-声明"><a href="#List-声明" class="headerlink" title="List 声明"></a>List 声明</h3><p>在如下代码中，list扩充了（)次 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ArrayList</span> <span class="variable">list</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>(<span class="number">20</span>); </span><br></pre></td></tr></table></figure>
+
+<p>A.0 B.2 C.1 D.3</p>
+<p><a target="_blank" rel="noopener" href="https://cloud.baidu.com/article/3311861">在Java中，<code>ArrayList</code>的扩容机制是当添加元素时，如果集合中元素的数量超过了当前的容量，<code>ArrayList</code>会进行扩容。扩容的新容量通常是旧容量的1.5倍</a><a target="_blank" rel="noopener" href="https://cloud.baidu.com/article/3311861">1</a>。</p>
+<p>对于您的问题，由于您已经用初始容量20创建了<code>ArrayList</code>，除非添加的元素数量超过了20，否则<code>ArrayList</code>不会进行扩容。因此，如果在<code>list</code>中添加的元素数量没有超过20个，那么<code>list</code>将不会扩充。</p>
+<p>如下代码： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Super</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">getLength</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Sub</span> <span class="keyword">extends</span> <span class="title class_">Super</span> &#123;</span><br><span class="line">    <span class="comment">// 此处应该返回Integer类型，以匹配Super类中的返回类型</span></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">getLength</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Integer</span>(<span class="number">5</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Super</span> <span class="variable">sooper</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Super</span>();</span><br><span class="line">        <span class="type">Sub</span> <span class="variable">sub</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Sub</span>();</span><br><span class="line">        <span class="comment">// 正确调用toString()方法</span></span><br><span class="line">        System.out.println(sooper.getLength().toString() + <span class="string">&quot;,&quot;</span> +</span><br><span class="line">                           sub.getLength().toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出是（)</p>
+<p><strong>重写返回的数据类型必须一致</strong></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14694852/can-overridden-methods-differ-in-return-type">在Java中，方法重写（Overriding）时，子类方法的返回类型应该是父类方法返回类型的子类型，这被称为协变返回类型。但是，基本数据类型（如<code>Integer</code>和<code>Long</code>）不支持协变返回类型，因为它们不是类类型，而是原始数据类型</a><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14694852/can-overridden-methods-differ-in-return-type">1</a><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14519797/overriding-a-method-with-different-return-types-in-java">2</a><a target="_blank" rel="noopener" href="https://www.sparkcodehub.com/java/overriding">3</a>。</p>
+<p>在您提供的代码中，<code>Sub</code>类试图重写<code>Super</code>类的<code>getLength()</code>方法，并改变返回类型从<code>Integer</code>到<code>Long</code>。这是不允许的，因为<code>Integer</code>和<code>Long</code>都是包装类，它们分别封装了<code>int</code>和<code>long</code>原始数据类型，而且它们之间没有继承关系。</p>
+<p>因此，这段代码会导致编译错误，而不是成功执行并输出结果。如果您尝试编译这段代码，您将会收到一个错误，指出<code>Sub</code>类中的<code>getLength()</code>方法不能重写<code>Super</code>类中的<code>getLength()</code>方法。</p>
+<p>为了让代码正确编译，子类<code>Sub</code>中的方法必须有与父类<code>Super</code>中的方法相同的返回类型<code>Integer</code>，或者是<code>Integer</code>的子类型（如果<code>Integer</code>有子类型的话）。但是在这种情况下，由于我们是在处理包装类，所以返回类型必须保持一致。</p>
+<p>请注意，代码中还有一些其他的小错误，例如方法名<code>getLenght</code>应该是<code>getLength</code>，并且在<code>main</code>方法的打印语句中，<code>toString0</code>应该是<code>toString()</code>。这里是修正后的代码示例：</p>
+<h3 id="异常-1"><a href="#异常-1" class="headerlink" title="异常"></a>异常</h3><p>下面代码会抛出什么异常 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> Map&lt;Integer, String&gt; map ;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;</span><br><span class="line">        map.put(<span class="number">1</span>, <span class="string">&quot;A&quot;</span>);</span><br><span class="line">        System.out.println(map.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码中，<code>map</code>是一个静态的<code>Map</code>对象，但是它没有被初始化，即没有分配内存空间。当尝试使用<code>map.put(1,&quot;A&quot;)</code>向<code>map</code>中添加元素时，由于<code>map</code>是<code>null</code>，这将会导致<code>NullPointerException</code>异常。</p>
+<h3 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h3><p>如下代码 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10.</span> <span class="keyword">public</span> Object <span class="title function_">m</span><span class="params">()</span>&#123; </span><br><span class="line"><span class="number">11.</span> <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Float</span>(<span class="number">3.14F</span>); </span><br><span class="line"><span class="number">12.</span> Object [] oa = <span class="keyword">new</span> <span class="title class_">Object</span>[<span class="number">1</span>]; </span><br><span class="line"><span class="number">13.</span> oa[<span class="number">0</span>]=o; </span><br><span class="line"><span class="number">14.</span> o=<span class="literal">null</span>; </span><br><span class="line"><span class="number">15.</span> oa[<span class="number">0</span>]=<span class="literal">null</span>; </span><br><span class="line"><span class="number">16.</span> print<span class="string">&#x27;return 0&#x27;</span>; <span class="number">17.</span>&#125; </span><br></pre></td></tr></table></figure>
+
+<p>当Float对象在第11行被创建后，什么时候能够被垃圾回收 </p>
+<p>A.13行以后 )B.14行以后 C.15行以后 D.16行以后</p>
+<p>在Java中，一个对象可以被垃圾回收（GC）的前提是该对象不再被任何活动的引用所引用。在您提供的代码中，<code>Float</code>对象最初被引用变量<code>o</code>引用，然后在第13行，这个引用被赋值给<code>oa</code>数组的第一个元素。在第14行，变量<code>o</code>被赋值为<code>null</code>，但此时<code>Float</code>对象仍然被<code>oa</code>数组中的引用所持有，因此它还不能被垃圾回收。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/feiying0canglang/article/details/121030668">直到第15行，<code>oa</code>数组的第一个元素也被赋值为<code>null</code>，这时<code>Float</code>对象不再有任何活动引用指向它，因此它现在可以被垃圾回收。但请注意，这并不意味着对象立即被回收，只是它现在<strong>可以</strong>被回收。实际的回收时机取决于GC算法和GC运行的具体时机</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/feiying0canglang/article/details/121030668">1</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/658949296">2</a>。</p>
+<h3 id="变量的访问权限"><a href="#变量的访问权限" class="headerlink" title="变量的访问权限"></a>变量的访问权限</h3><p>已知如下代码： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123; </span><br><span class="line">    <span class="keyword">private</span> <span class="type">float</span> <span class="variable">f</span> <span class="operator">=</span> <span class="number">1.0f</span>; </span><br><span class="line">    <span class="type">int</span> m=<span class="number">12</span>; </span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> n=<span class="number">1</span>; </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">Test</span> <span class="variable">t</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test</span> ( )  ; <span class="comment">// Check point </span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p> 在代码中“Check point”处替换为哪些语句是合法的0 A.Test.n; B.this.n; C.t.f: D.Test.m;</p>
+<p>在Java中，合法的语句是那些遵循语法规则并且在语境中有意义的语句。在“Check point”处，我们需要考虑静态上下文（因为<code>main</code>方法是静态的）和变量的访问权限。以下是对每个选项的分析：</p>
+<p>A. <code>Test.n;</code> - 这是一个合法的语句，因为<code>n</code>是<code>Test</code>类的静态变量，可以通过类名直接访问。</p>
+<p>B. <code>this.n;</code> - 这是不合法的语句，因为<code>this</code>关键字在静态上下文中没有意义，不能在<code>main</code>方法中使用。</p>
+<p>C. <code>t.f;</code> - 这是一个合法的语句，因为<code>f</code>是<code>Test</code>类的实例变量，可以通过实例<code>t</code>访问。</p>
+<p>D. <code>Test.m;</code> - 这是不合法的语句，因为<code>m</code>是一个实例变量，不能通过类名直接访问，必须通过类的实例来访问。</p>
+<h3 id="Bean"><a href="#Bean" class="headerlink" title="Bean"></a>Bean</h3><p>现有一个数据类Bean,</p>
+<p>打印getA()的结果会显示那个值（) </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Bean</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">float</span> a; </span><br><span class="line">    <span class="keyword">public</span> <span class="type">float</span> <span class="title function_">getA</span><span class="params">()</span>&#123; </span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，由于没有对<code>Bean</code>实例的变量<code>a</code>进行赋值，所以打印<code>getA()</code>的结果将会是<code>0.0</code>。</p>
+<h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><p>按照学生平均成绩（avg_grade)将students表中的数据检索出来， 下面SQL语句正确的是（) </p>
+<p>A.SELECT*FROM students ORDER BY avg_grade DESC *</p>
+<p><em>B.SELECT</em>FROM students ORDER by avg_grade ASC </p>
+<p>C.SELECT*FROM students ORDER BY avg_grade *</p>
+<p>D.SELECT*FROM students GROUP BY avg_grade ASC</p>
+<p>在SQL中，如果您想要根据学生的平均成绩<code>avg_grade</code>对<code>students</code>表中的数据进行排序，您可以使用<code>ORDER BY</code>子句。这个子句可以指定排序的列和排序的方向（升序ASC或降序DESC）。没有指定方向时，默认是升序。</p>
+<p>选项A和B都是正确的，它们分别表示：</p>
+<ul>
+<li>A. <strong>按平均成绩降序排列</strong>：<code>SELECT * FROM students ORDER BY avg_grade DESC</code></li>
+<li>B. <strong>按平均成绩升序排列</strong>：<code>SELECT * FROM students ORDER BY avg_grade ASC</code></li>
+</ul>
+<p>选项C也是有效的，但它没有明确指出排序的方向，因此默认为升序：</p>
+<ul>
+<li>C. <strong>按平均成绩升序排列</strong>（默认）：<code>SELECT * FROM students ORDER BY avg_grade</code></li>
+</ul>
+<p>选项D使用了<code>GROUP BY</code>子句，这通常用于聚合函数（如COUNT, MAX, MIN, SUM, AVG等）的情况，而不是用于排序，所以它不适用于这个查询：</p>
+<ul>
+<li>D. <strong>错误的使用了GROUP BY</strong>：<code>SELECT * FROM students GROUP BY avg_grade ASC</code></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/15/Spring%E9%9D%A2%E8%AF%95%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3350,1340 +3803,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MEIDE">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MEIDE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">计算机操作系统</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-18 13:27:36" itemprop="dateCreated datePublished" datetime="2023-02-18T13:27:36+08:00">2023-02-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-12 00:49:42" itemprop="dateModified" datetime="2023-05-12T00:49:42+08:00">2023-05-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">计算操作系统</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
-<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
-<li><a href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0">计算机系统概述</a><ul>
-<li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li>
-<li><a href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E7%9B%AE%E6%A0%87">操作系统的功能和目标</a></li>
-<li><a href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9B%9B%E4%B8%AA%E7%89%B9%E5%BE%81">操作系统的四个特征</a></li>
-<li><a href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E5%92%8C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84">操作系统的运行机制和体系结构</a><ul>
-<li><a href="#%E6%8C%87%E4%BB%A4">指令</a></li>
-<li><a href="#cpu">CPU</a></li>
-<li><a href="#%E7%A8%8B%E5%BA%8F">程序</a></li>
-<li><a href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%86%85%E6%A0%B8">操作系统的内核</a></li>
-</ul>
-</li>
-<li><a href="#%E4%B8%AD%E6%96%AD%E5%92%8C%E5%BC%82%E5%B8%B8">中断和异常</a><ul>
-<li><a href="#%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%9C%E7%94%A8">概念和作用</a></li>
-<li><a href="#%E5%88%86%E7%B1%BB">分类</a></li>
-</ul>
-</li>
-<li><a href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8">系统调用</a><ul>
-<li><a href="#%E5%90%AB%E4%B9%89">含义</a></li>
-<li><a href="#%E4%BD%9C%E7%94%A8">作用</a></li>
-<li><a href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%92%8C%E5%BA%93%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB"><strong>系统调用和库函数的区别</strong></a></li>
-<li><a href="#%E5%85%B6%E4%BB%96">其他</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86">进程管理</a><ul>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%AE%9A%E4%B9%89%E7%BB%84%E6%88%90%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F%E7%89%B9%E5%BE%81">进程的定义，组成，组织方式，特征</a><ul>
-<li><a href="#%E8%BF%9B%E7%A8%8B">进程</a></li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F">进程的组织方式</a></li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%89%B9%E5%BE%81">进程的特征</a></li>
-</ul>
-</li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81%E5%92%8C%E8%BD%AC%E6%8D%A2">进程的状态和转换</a><ul>
-<li><a href="#%E7%8A%B6%E6%80%81">状态</a></li>
-<li><a href="#%E8%BD%AC%E6%8D%A2">转换</a></li>
-</ul>
-</li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6">进程控制</a><ul>
-<li><a href="#%E5%90%AB%E4%B9%89-1">含义</a></li>
-<li><a href="#%E5%AE%9E%E7%8E%B0">实现</a></li>
-<li><a href="#%E7%9B%B8%E5%85%B3%E5%8E%9F%E8%AF%AD">相关原语</a></li>
-</ul>
-</li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1">进程通信</a><ul>
-<li><a href="#%E5%90%AB%E4%B9%89-2">含义</a></li>
-<li><a href="#%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E7%AE%A1%E9%81%93%E9%80%9A%E4%BF%A1">共享存储，消息传递，管道通信。</a></li>
-</ul>
-</li>
-<li><a href="#%E7%BA%BF%E7%A8%8B%E6%A6%82%E5%BF%B5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B">线程概念和多线程模型</a><ul>
-<li><a href="#%E7%BA%BF%E7%A8%8B%E5%88%86%E7%B1%BB">线程分类</a></li>
-<li><a href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B">多线程模型</a><ul>
-<li><a href="#%E5%A4%9A%E5%AF%B91%E6%A8%A1%E5%9E%8B">多对1模型</a></li>
-<li><a href="#1%E5%AF%B91%E6%A8%A1%E5%9E%8B">1对1模型</a></li>
-<li><a href="#%E5%A4%9A%E5%AF%B9%E5%A4%9A%E6%A8%A1%E5%9E%8B">多对多模型</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E5%B1%82%E6%AC%A1">处理机调度的概念和层次</a><ul>
-<li><a href="#%E9%AB%98%E7%BA%A7%E8%B0%83%E5%BA%A6%E4%B8%AD%E7%BA%A7%E8%B0%83%E5%BA%A6%E5%88%9D%E7%BA%A7%E8%B0%83%E5%BA%A6">高级调度，中级调度，初级调度。</a><ul>
-<li><a href="#1%E9%AB%98%E7%BA%A7%E8%B0%83%E5%BA%A6">1.高级调度</a></li>
-<li><a href="#2%E4%B8%AD%E7%BA%A7%E8%B0%83%E5%BA%A6">2.中级调度</a><ul>
-<li><a href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E8%BF%9B%E7%A8%8B%E7%9A%84%E4%B8%83%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B">补充知识：进程的七状态模型</a></li>
-</ul>
-</li>
-<li><a href="#3%E4%BD%8E%E7%BA%A7%E8%B0%83%E5%BA%A6">3.低级调度</a></li>
-<li><a href="#%E4%B8%89%E7%A7%8D%E8%B0%83%E5%BA%A6%E7%9A%84%E8%81%94%E7%B3%BB%E5%92%8C%E5%AF%B9%E6%AF%94">三种调度的联系和对比</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%9A%84%E6%97%B6%E6%9C%BA%E5%88%87%E6%8D%A2%E8%BF%87%E7%A8%8B%E5%92%8C%E6%96%B9%E5%BC%8F">进程调度的时机，切换过程和方式</a><ul>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E6%97%B6%E6%9C%BA">进程调度时机</a></li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%9A%84%E6%96%B9%E5%BC%8F">进程调度的方式</a></li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%88%87%E6%8D%A2%E4%B8%8E%E8%BF%87%E7%A8%8B">进程的切换与过程</a></li>
-</ul>
-</li>
-<li><a href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87">调度算法的评价指标</a></li>
-<li><a href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95">调度算法</a><ul>
-<li><a href="#%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88%E9%AB%98%E5%93%8D%E5%BA%94%E5%BF%85%E4%BC%98%E5%85%88">先来先服务，短作业优先，高响应必优先</a><ul>
-<li><a href="#%E8%A1%A5%E5%85%85">补充：</a></li>
-</ul>
-</li>
-<li><a href="#%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E8%B0%83%E5%BA%A6%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95">时间片轮转调度，优先级调度算法，多级反馈队列调度算法</a><ul>
-<li><a href="#%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E8%B0%83%E5%BA%A6rr">时间片轮转调度RR</a></li>
-<li><a href="#%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95">优先级调度算法</a></li>
-<li><a href="#%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95">多级反馈队列调度算法</a></li>
-<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
-</ul>
-</li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5%E4%B8%8E%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5">进程同步与进程互斥</a><ul>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5">进程同步</a></li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5">进程互斥</a></li>
-</ul>
-</li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95">进程互斥的软件实现方法</a><ul>
-<li><a href="#%E5%8D%95%E6%A0%87%E5%BF%97%E6%B3%95">单标志法</a></li>
-<li><a href="#%E5%8F%8C%E6%A0%87%E5%BF%97%E5%85%88%E6%A3%80%E6%9F%A5%E6%B3%95">双标志先检查法</a></li>
-<li><a href="#%E5%8F%8C%E6%A0%87%E5%BF%97%E5%90%8E%E6%A3%80%E6%9F%A5%E6%B3%95">双标志后检查法</a></li>
-<li><a href="#peterson%E7%AE%97%E6%B3%95">Peterson算法</a></li>
-</ul>
-</li>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5%E7%9A%84%E7%A1%AC%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95">进程互斥的硬件实现方法</a><ul>
-<li><a href="#testandset%E6%8C%87%E4%BB%A4">TestAndSet指令</a></li>
-<li><a href="#swap%E6%8C%87%E4%BB%A4">Swap指令</a></li>
-</ul>
-</li>
-<li><a href="#%E4%BA%92%E6%96%A5%E9%94%81">互斥锁</a><ul>
-<li><a href="#%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5%E9%94%81">进程互斥：锁</a><ul>
-<li><a href="#%E4%BA%92%E6%96%A5%E9%94%81-1">互斥锁</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6">信号量机制</a><ul>
-<li><a href="#%E6%95%B4%E5%BD%A2%E4%BF%A1%E5%8F%B7%E9%87%8F">整形信号量</a></li>
-<li><a href="#%E8%AE%B0%E5%BD%95%E5%9E%8B%E4%BF%A1%E5%8F%B7%E9%87%8F">记录型信号量</a></li>
-<li><a href="#%E7%94%A8%E4%BF%A1%E5%8F%B7%E9%87%8F%E5%AE%9E%E7%8E%B0%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5%E5%90%8C%E6%AD%A5%E5%89%8D%E9%A9%B1%E5%85%B3%E7%B3%BB">用信号量实现进程互斥，同步，前驱关系</a><ul>
-<li><a href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5">信号量机制实现进程互斥</a></li>
-<li><a href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5">信号量机制实现进程同步</a></li>
-<li><a href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%89%8D%E9%A9%B1%E5%85%B3%E7%B3%BB">信号量机制实现前驱关系</a></li>
-</ul>
-</li>
-<li><a href="#%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98">生产者——消费者问题</a></li>
-<li><a href="#%E5%A4%9A%E7%94%9F%E4%BA%A7%E8%80%85%E5%A4%9A%E6%B6%88%E8%B4%B9%E8%80%85">多生产者——多消费者</a></li>
-<li><a href="#%E5%90%B8%E7%83%9F%E8%80%85%E9%97%AE%E9%A2%98">吸烟者问题</a></li>
-<li><a href="#%E8%AF%BB%E8%80%85%E5%86%99%E8%80%85%E9%97%AE%E9%A2%98">读者——写者问题</a></li>
-<li><a href="#%E5%93%B2%E5%AD%A6%E5%AE%B6%E5%90%83%E9%A5%AD">哲学家吃饭</a></li>
-<li><a href="#%E7%AE%A1%E7%A8%8B">管程</a><ul>
-<li><a href="#java%E4%B8%AD%E7%B1%BB%E4%BC%BC%E4%BA%8E%E7%AE%A1%E7%A8%8B%E7%9A%84%E6%9C%BA%E5%88%B6%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F">java中类似于管程的机制（单例模式）</a></li>
-</ul>
-</li>
-<li><a href="#%E6%AD%BB%E9%94%81">死锁</a><ul>
-<li><a href="#%E6%AD%BB%E9%94%81%E9%A5%A5%E9%A5%BF%E6%AD%BB%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%8C%BA%E5%88%AB">死锁，饥饿，死循环的区别</a></li>
-<li><a href="#%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6">死锁产生的必要条件</a></li>
-<li><a href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%8F%91%E7%94%9F%E6%AD%BB%E9%94%81">什么时候会发生死锁</a></li>
-<li><a href="#%E6%AD%BB%E9%94%81%E7%9A%84%E5%A4%84%E7%90%86%E7%AD%96%E7%95%A5">死锁的处理策略</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="计算机系统概述"><a href="#计算机系统概述" class="headerlink" title="计算机系统概述"></a>计算机系统概述</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>操作系统（Operating Ststem， OS）是指控制和管理整个计算机系统的硬件和软件资源，并合理地组织调度计算机的工作和资源的分配，以提供给用户和其他软件方便的接口和环境，它是计算机系统中最基本的系统软件。</p>
-<h2 id="操作系统的功能和目标"><a href="#操作系统的功能和目标" class="headerlink" title="操作系统的功能和目标"></a>操作系统的功能和目标</h2><ol>
-<li><p>作为系统资源的管理者</p>
-<ul>
-<li><p>文件管理</p>
-</li>
-<li><p>内存管理</p>
-</li>
-<li><p>处理及（CPU）管理</p>
-</li>
-<li><p>设备（计算机硬件，例如摄像头）管理</p>
-</li>
-</ul>
-</li>
-<li><p>作为用户和计算机硬件之间的接口</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181513303.png"/>
-
-
-</li>
-<li><p>对硬件机器的扩展</p>
-</li>
-</ol>
-<h2 id="操作系统的四个特征"><a href="#操作系统的四个特征" class="headerlink" title="操作系统的四个特征"></a>操作系统的四个特征</h2><ol>
-<li><p>并发</p>
-<p>并发是指<strong>两个或多个事件在同一时间间隔内发生</strong>。这些事件在宏观上是同时发生的，在微观上是交替发生的。</p>
-<p><span style="color:red">易混淆的概念——并行：两个或多个事件在同一时刻同时发生</span></p>
-</li>
-<li><p>共享</p>
-<p>共享即资源共享，是指系统中的资源内存中多个并发执行的进程共同使用。</p>
-<table>
-<thead>
-<tr>
-<th>两种资源共享方式</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>互斥共享方式</td>
-<td>系统中的某些资源，虽然可以提供给多个进程使用，<br><span style="color:red">但<strong>一个时间段内只允许一个进程访问该资源</strong></span></td>
-</tr>
-<tr>
-<td>同时共享方式</td>
-<td>系统中的某些资源，<br><span style="color:red"><strong>允许一个时间段内由多个进程“同时”对它们进行访问</strong></span></td>
-</tr>
-</tbody></table>
-<p>所谓的“同时”往往是宏观上的，而在微观上，这些进程可能是交替地对该资源进行访问的(即分时共享)</p>
-<p>例如：</p>
-<ul>
-<li><p>互斥共享方式：使用QQ和微信进行视频，但是同一个时间段内摄像头只能分配给其中一个进程</p>
-</li>
-<li><p>同时共享方式：使用QQ发送文件A，同时使用微信发送文件B。宏观上看，两边都在同时读取并发送文件，说明两个进程都在访问硬盘资源，从中读取数据。<strong>微观上看，两个进程是交替着访问硬盘的。</strong></p>
-</li>
-</ul>
-</li>
-<li><p>虚拟</p>
-<p>虚拟是指把一个屋里上的实体变成若干个逻辑上的对应物。物理实体（前者）是实际存在的，而逻辑上对应物（后者）是用户感受到的。</p>
-<table>
-<thead>
-<tr>
-<th>虚拟技术</th>
-<th>例如</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>空分复用技术</td>
-<td>虚拟存储器技术</td>
-<td></td>
-</tr>
-<tr>
-<td>时分复用技术</td>
-<td>虚拟处理器</td>
-<td>显然，如果失去了并发性，则一个时间段内系统中只需运行一道程序，那么就失去了实现虚拟性的意义了。因此，<span style="color:red"><strong>没有并发性，就谈不上虚拟性</strong></span></td>
-</tr>
-</tbody></table>
-</li>
-<li><p>异步</p>
-<p>异步是指,在多道程序环境下，<strong>允许多个程序并发执行</strong>，但是由于资源有限，进程的执行不是一贯到底的，而是走走停停，以不可预知的速度向前推进，这就是进程的异步性。</p>
-<ul>
-<li>只有系统拥有并发性，才有可能导致异步性。</li>
-</ul>
-</li>
-</ol>
-<h2 id="操作系统的运行机制和体系结构"><a href="#操作系统的运行机制和体系结构" class="headerlink" title="操作系统的运行机制和体系结构"></a>操作系统的运行机制和体系结构</h2><h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><table>
-<thead>
-<tr>
-<th>指令</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>特权指令</td>
-<td>如内存清零指令（不允许用户程序使用）</td>
-</tr>
-<tr>
-<td>非特权指令</td>
-<td>如普通的运算指令</td>
-</tr>
-</tbody></table>
-<h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><table>
-<thead>
-<tr>
-<th>两种处理器状态</th>
-<th>(用程序状态字寄存器（PSW)中的某 标志位来标识当前处理器处于什么状 态。如0为用户态，1为核心态)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>用户态（目态）</td>
-<td>此时CPU只能执行非特权指令</td>
-</tr>
-<tr>
-<td>核心态（管态）</td>
-<td>特权指令、非特权指令都可执行</td>
-</tr>
-</tbody></table>
-<h3 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h3><table>
-<thead>
-<tr>
-<th>两种程序</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>内核程序</td>
-<td>操作系统的内核程序是系统的管理者，即可执行特权指令，也可以执行非特权指令，运行也在核心态</td>
-</tr>
-<tr>
-<td>应用程序</td>
-<td>为了保证系统能安全运行，普通应用程序只能执行费特权指令，运行在用户态</td>
-</tr>
-</tbody></table>
-<h3 id="操作系统的内核"><a href="#操作系统的内核" class="headerlink" title="操作系统的内核"></a>操作系统的内核</h3><p>由于内核划分功能的不同，内核分为大内核和微内核</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181514707.png"/>
-
-<ul>
-<li><p>大内核和微内核的优缺点</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181515691.png"/></li>
-</ul>
-<p>类比：</p>
-<ul>
-<li>操作系统的体系结构问题与企业的管理问题很相似。</li>
-<li>内核就是企业的管理层，负责一些重要的工作。只有管理层才能执行特权指令，普通员工只能执行非特权指令。用户态、核心态之间的切换相当于普通员工和管理层之间的工作交接</li>
-<li>大内核:企业初创时体量不大，管理层的人会负责大部分的事情。优点是效率高;缺点是组织结构混乱，难以维护。</li>
-<li>微内核:随着企业体量越来越大，管理层只负责最核心的一些工作。优点是组织结构清晰，方便维护;缺点是效率低。</li>
-</ul>
-<h2 id="中断和异常"><a href="#中断和异常" class="headerlink" title="中断和异常"></a>中断和异常</h2><h3 id="概念和作用"><a href="#概念和作用" class="headerlink" title="概念和作用"></a>概念和作用</h3><p><strong>中断</strong>是指计算机运行过程中，出现某些意外情况需主机干预时，机器能自动停止正在运行的程序并转入处理新情况的程序，处理完毕后又返回原被暂停的程序继续运行。</p>
-<ol>
-<li>当中断发生时，CPU立即进入核心态</li>
-<li>当中断发生后，当前运行的进程暂停运行，并由操作系统内核对中断进行处理。</li>
-<li>对于不同的中断信号，会进行不同的处理。</li>
-<li>有了中断，才能实现多道程序并发执行。</li>
-<li>“用户态→核心态”是通过中断实现的，<strong>并且中断是唯一途径</strong>。“核心态→用户态”的切换是通过执行一个特权指令，将程序状态字（ PSW）的标志位设置为 “用户态”。</li>
-</ol>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p> 中断型号的来源来自CPU内部称为内中断，外部称为外中断。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181520216.png"/>
-
-<h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><p>“系统调用”是操作系统提供给应用程序（程序员&#x2F;编程人员）使用的接口，可以理解为一种可供应用程序调用的特殊函数，应用程序可以发出系统调用请求来获得操作系统的服务。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302181523855.png"/>
-
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>应用程序通过系统调用请求操作系统的服务。系统中的各种共享资源都由操作系统统一掌管，因此在用户程序中，凡是与资源有关的操作（如存储分配、I&#x2F;O操作、文件管理等），都必须通过系统调用的方式向操作系统提出服务请求，由操作系统代为完成。这样可以保证操作系统的稳定性和安全性，防止用户进行非法操作。</p>
-<h3 id="系统调用和库函数的区别"><a href="#系统调用和库函数的区别" class="headerlink" title="系统调用和库函数的区别"></a><strong>系统调用和库函数的区别</strong></h3><p>编程语言（C、JAVA）中里边有很多库函数，其实他们（不是所有的库函数）就是将系统调用封装起来，隐藏一些细节，使上层进行系统调用更加方便。</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
-<li>系统调用发生在用户态，对系统调用的处理发生在核心态。</li>
-<li>执行陷入指令（自陷指令或访管指令）会处理内中断，使处理器（CPU）从用户态进行核心态。</li>
-</ul>
-<h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><h2 id="进程的定义，组成，组织方式，特征"><a href="#进程的定义，组成，组织方式，特征" class="headerlink" title="进程的定义，组成，组织方式，特征"></a>进程的定义，组成，组织方式，特征</h2><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>程序：就是指令序列</p>
-<p>引入多道程序（CPU可以并发执行多个程序）之后，为了方便操作系统进行管理，引入了进程，进程实体的概念。</p>
-<p><strong>PCB，程序段，数据段三部分构成了进程实体（也叫作进程映像）</strong>。一般情况下，我们把进程实体简称为进程。</p>
-<p>例如，所谓创建进程，实质上是创建进程实体中的PCB;而撤销进程，实质上是撤销进程实体中的PCB.</p>
-<p><strong>PCB是进程存在的唯一标识。</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201633291.png"/>
-
-
-
-<h3 id="进程的组织方式"><a href="#进程的组织方式" class="headerlink" title="进程的组织方式"></a>进程的组织方式</h3><p>在一个系统中，通常有数十、数百乃至数千个PCB。为了能对他们加以有效的管理，应该用适当的方式把这些PCB组织起来。<br>注: 进程的组成讨论的是一个进程内部由哪些部分构成的问题，而进程的组织讨论的是多个进程之间的组织方式问题。</p>
-<p>相当于java中的链表和数组。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201634493.png"/>
-
-<h3 id="进程的特征"><a href="#进程的特征" class="headerlink" title="进程的特征"></a>进程的特征</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201635642.png"/>
-
-
-
-<h2 id="进程的状态和转换"><a href="#进程的状态和转换" class="headerlink" title="进程的状态和转换"></a>进程的状态和转换</h2><h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><p>进程是程序的一次执行。在这个过程中，进程的状态会有各种变化。为了方便各个进程的管理，操作系统将进程划分为几个状态。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201638848.png"/>
-
-<p>除此之外，进程还有两种状态。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201640201.png"/>
-
-<h3 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201640665.png"/>
-
-<blockquote>
-<p>注意：<strong>不能由阻塞态直接转换为运行态也不能由就绪态直接转换为阻塞态</strong>（因为进入阻塞态是进程主动请求的，必然需要进程在运行时才能发出这种请求）</p>
-</blockquote>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303121229670.png"/>
-
-<h2 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h2><h3 id="含义-1"><a href="#含义-1" class="headerlink" title="含义"></a>含义</h3><p>进程控制就是要<strong>实现进程状态转换</strong>。</p>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p><strong>进程控制由原语实现。</strong>所谓原语，一般是指由若干条指令组成的程序段，用来实现某个特定功能，<strong>在执行过程中不可被中断</strong>。</p>
-<p>原语采用 “关中断指令” 和 “开中断指令” 来实现。 <strong>关&#x2F;开中断指令的权限非常大，必然是只允许在核心态下执行的特权指令</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201648777.png"/>
-
-<p>那么原语是如何实现进程状态的转换呢？</p>
-<ol>
-<li>更新PCB中的信息（如修改进程状态标志、将运行环境保存到PCB、从PCB恢复运行环境)<br>a.所有的进程控制原语一定都会修改进程状态标志<br>b.剥夺当前运行进程的CPU使用权必然需要保存其运行环境<br>c.某进程开始运行前必然要恢复期运行环境</li>
-<li>将PCB插入合适的队列</li>
-<li>分配&#x2F;回收资源</li>
-</ol>
-<p>具体实现如图所示：</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201704327.png"/>
-
-<h3 id="相关原语"><a href="#相关原语" class="headerlink" title="相关原语"></a>相关原语</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303121237633.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303121238008.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303121239248.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303121240249.png"/>
-
-<h2 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h2><h3 id="含义-2"><a href="#含义-2" class="headerlink" title="含义"></a>含义</h3><p>进程通信就是<strong>进程间的信息交换</strong></p>
-<p>为了保证安全，一个进程不能直接访问另一个进程的地址空间。</p>
-<p>操作系统提供了三种方法：共享存储，消息传递，管道通信。</p>
-<h3 id="共享存储，消息传递，管道通信。"><a href="#共享存储，消息传递，管道通信。" class="headerlink" title="共享存储，消息传递，管道通信。"></a>共享存储，消息传递，管道通信。</h3><ol>
-<li><p>共享存储</p>
-<p>基于数据结构的共享：比如共享空间里只能放一个长度为10的数组。这种共享方式速度慢、限制多，是一种<strong>低级通信</strong>方式<br><strong>基于存储区</strong>的共享：在内存中画出一块共享存储区，数据的形式、存放位置都由进程控制，而不是操作系统。相比之下，这种共享方式速度更快，是一种<strong>高级通信</strong>方式。</p>
-<p>两个进程对共享空间的<strong>访问</strong>必须是<strong>互斥</strong>的（互斥访问通过操作系统提供的工具实现）<br>操作系统只负责提供共享空间和同步互斥工具（如P、V操作）</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201843057.png"/>
-</li>
-<li><p>管道通信</p>
-</li>
-</ol>
-<blockquote>
-<p>1.管道只能采用半双工通信，某一时间段内只能实现单向的传输。如果要实现双向同时通信，则需要设置两个管道。</p>
-<p>2.各进程要互斥地访问管道。</p>
-<p>3.数据以字符流的形式写入管道，当管道<strong>写满时</strong>，写进程的write()系统调用将被阻塞，等待读进程将数据取走。当读进程将数据全部取后，管道变空，此时读进程的read()系统调用将被阻塞。</p>
-<p>4.<strong>如果没写满，就不允许读。如果没读空，就不允许写。</strong></p>
-<p>5．数据一旦被读出，就从管道中被抛弃，这就意味着<strong>读进程最多只能有一个，否则可能会有读错数据的情况。</strong></p>
-</blockquote>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201847528.png"/>
-
-<ol start="3">
-<li><p>消息传递</p>
-<p>进程间的数据交换以格式化的消息为单位。进程通过操作系统提供的“发送消息&#x2F;接收消息” 两个原语进行数据交换。</p>
-<p>类似于Http协议。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201849801.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303121248665.png"/></li>
-</ol>
-<h2 id="线程概念和多线程模型"><a href="#线程概念和多线程模型" class="headerlink" title="线程概念和多线程模型"></a>线程概念和多线程模型</h2><p>有的进程需要同时做很多事，例如用QQ来进行聊天，发送文件等，而传统的进程只能<strong>串行</strong>执行一系列程序。因此，引入“线程”，来增加并发度。</p>
-<ul>
-<li>可以把线程理解为轻量级的进程。</li>
-<li>线程是一个基本的CPU执行单元，也是程序执行流的最小单位。</li>
-<li>引入线程后，进程作为除CPU之外的系统资源的分配单元。</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201852799.png"/><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303121252713.png"/><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303121253934.png"/></p>
-<h3 id="线程分类"><a href="#线程分类" class="headerlink" title="线程分类"></a>线程分类</h3><ol>
-<li>用户级线程</li>
-</ol>
-<ul>
-<li>用户级线程由应用程序通过线程库实现。<strong>所有的线程管理工作都由应用程序负责（包括线程切换)</strong></li>
-<li>用户级线程中，线程切换可以在用户态下即可完成，<strong>无需操作系统干预。</strong></li>
-<li>在用户看来，是有多个线程。但是在操作系统内核看来，并意识不到线程的存在。（用户级线程对用户不透明，对操作系统透明)</li>
-<li>可以这样理解，“用户级线程”就是“从用户视角看能看到的线程”。</li>
-</ul>
-<ol start="2">
-<li>内核级线程</li>
-</ol>
-<ul>
-<li>内核级线程的管理工作由操作系统内核完成。线程调度、切换等工作都由内核负责，因此内核级线程的切换必然需要在核心态下才能完成。</li>
-<li>可以这样理解，“内核级线程”就是“从操作系统内核视角看能看到的线程”。</li>
-</ul>
-<p><strong>操作系统只“看得见”内核级线程，因此只有内核级线程才是处理机分配的单位。</strong></p>
-<h3 id="多线程模型"><a href="#多线程模型" class="headerlink" title="多线程模型"></a>多线程模型</h3><h4 id="多对1模型"><a href="#多对1模型" class="headerlink" title="多对1模型"></a>多对1模型</h4><ul>
-<li>多对一模型:多个用户及线程映射到一个内核级线程。每个用户进程只对应一个内核级线程。</li>
-<li>优点:用户级线程的切换在用户空间即可完成，不需要切换到核心态，<strong>线程管理的系统开销小，效率高</strong></li>
-<li>缺点:当一个用户级线程被阻塞后，整个进程都会被阻塞，并发度不高。<strong>多个线程不可在多核处理机上并行运行</strong></li>
-</ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201913689.png"/>
-
-<h4 id="1对1模型"><a href="#1对1模型" class="headerlink" title="1对1模型"></a>1对1模型</h4><ul>
-<li>一对一模型:一个用户级线程映射到一个内核级线程。</li>
-<li>优点:当一个线程被阻塞后，别的线程还可以继续执行，并发能力强。<strong>多线程可在多核处理机上并行执行。</strong></li>
-<li>缺点:一个用户进程会占用多个内核级线程，线程切换由操作系统内核完成，需要切换到核心态，<strong>因此线程管理的成本高，开销大。</strong></li>
-</ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201917778.png"/>
-
-<h4 id="多对多模型"><a href="#多对多模型" class="headerlink" title="多对多模型"></a>多对多模型</h4><ul>
-<li>多对多模型:n用户级线程映射到m个内核级线程(n &gt;&#x3D;m)。每个用户进程对应m个内核级线程。</li>
-<li>克服了多对一模型并发度不高的缺点，又克服了一对一模型中一个用户进程占用太多内核级线程，开销太大的缺点。</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201918142.png"/><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303121258062.png"/></p>
-<h2 id="处理机调度的概念和层次"><a href="#处理机调度的概念和层次" class="headerlink" title="处理机调度的概念和层次"></a>处理机调度的概念和层次</h2><p>在多道程序系统中，进程的数量往往是多于处理机的个数的，这样不可能同时并行地处理各个进程。</p>
-<p>处理机调度，就是从就绪队列中按照一定的算法选择一个进程并将处理机分配给它运行，以实现进程的并发执行。</p>
-<p>调度分为三个层次，分别为高级调度，中级调度，初级调度。</p>
-<h3 id="高级调度，中级调度，初级调度。"><a href="#高级调度，中级调度，初级调度。" class="headerlink" title="高级调度，中级调度，初级调度。"></a>高级调度，中级调度，初级调度。</h3><h4 id="1-高级调度"><a href="#1-高级调度" class="headerlink" title="1.高级调度"></a>1.高级调度</h4><ul>
-<li><p>由于内存空间有限，有时无法将用户提交的作业全部放入内存，因此就需要确定某种规则来决定将作业调入内存的顺序。</p>
-</li>
-<li><p>高级调度（作业调度)。按一定的原则从外存上处于后备队列的作业中挑选一个(或多个）作业，给他们分配内存等必要资源，并建立相应的进程（建立PCB)，以使它（们）获得竞争处理机的权利。</p>
-</li>
-<li><p><strong>高级调度是辅存（外存）与内存之间的调度</strong>。每个作业只调入一次，调出一次。作业调入时会建立相应的PCB，作业调出时才撤销PCB。<strong>高级调度主要是指调入的问题</strong>，因为只有调入的时机需要操作系统来确定，调出的时机必然是作业运行结束才调出。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201923361.png"/></li>
-</ul>
-<h4 id="2-中级调度"><a href="#2-中级调度" class="headerlink" title="2.中级调度"></a>2.中级调度</h4><ul>
-<li><p>引入了虚拟存储技术之后，可将暂时不能运行的进程调至外存等待。等它重新具备了运行条件且内存又稍有空闲时，再重新调入内存。<strong>这么做的目的是为了提高内存利用率和系统吞吐量</strong>。</p>
-</li>
-<li><p>暂时调到外存等待的进程状态为挂起状态。值得注意的是，PCB并不会一起调到外存，而是会常驻内存。PCB中会记录进程数据在外存中的存放位置，进程状态等信息，操作系统通过内存中的PCB来保持对各个进程的监控、管理。被挂起的进程PCB会被放到的挂起队列中。</p>
-</li>
-<li><p><strong>中级调度（内存调度），就是要决定将哪个处于挂起状态的进程重新调入内存。</strong></p>
-</li>
-<li><p>一个进程可能会被多次调出、调入内存，因此<strong>中级调度发生的频率要比高级调度更高。</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201924752.png"/></li>
-</ul>
-<h5 id="补充知识：进程的七状态模型"><a href="#补充知识：进程的七状态模型" class="headerlink" title="补充知识：进程的七状态模型"></a>补充知识：进程的七状态模型</h5><ul>
-<li><p>暂时被调到外存等待的进程状态称为挂起状态。</p>
-</li>
-<li><p>挂起状态又可以进一步细分为就绪挂起，堵塞挂起两种状态。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302201926432.png"/></li>
-</ul>
-<h4 id="3-低级调度"><a href="#3-低级调度" class="headerlink" title="3.低级调度"></a>3.低级调度</h4><ul>
-<li>低级调度（进程调度），其主要任务是按照某种方法和策略<strong>从就绪队列中选取一个进程，将处理机分配给它。</strong></li>
-<li>进程调度是操作系统中最基本的一种调度，在一般的操作系统中都必须配置进程调度。</li>
-<li>进程调度的频率很高，一般几十毫秒一次。</li>
-</ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302202014458.png"/>
-
-<h4 id="三种调度的联系和对比"><a href="#三种调度的联系和对比" class="headerlink" title="三种调度的联系和对比"></a>三种调度的联系和对比</h4><table>
-<thead>
-<tr>
-<th></th>
-<th>要做什么</th>
-<th>调度发生在</th>
-<th>发生频率</th>
-<th>对进程状态的影响</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>高级调度（作业调度）</td>
-<td>按照某种规则，从后备队列中选择合适的作业将其调入内存，并为其创建进程</td>
-<td>外存-&gt;内存（面向作业）</td>
-<td>最低</td>
-<td>无-创建态-就绪态</td>
-</tr>
-<tr>
-<td>中级调度（内存调度）</td>
-<td>按照某种规则，从挂起队列中选择合适的进程将其数据调回内存</td>
-<td>外存-&gt;内存（面向进程）</td>
-<td>中等</td>
-<td>挂起态-就绪态（阻塞挂起-阻塞态）</td>
-</tr>
-<tr>
-<td>低级调度（进程调度）</td>
-<td>按照某种规则，从就绪队列中选择一个进程为其分配处理机</td>
-<td>内存-&gt;CPU</td>
-<td>最高</td>
-<td>就绪态-运行态</td>
-</tr>
-</tbody></table>
-<h2 id="进程调度的时机，切换过程和方式"><a href="#进程调度的时机，切换过程和方式" class="headerlink" title="进程调度的时机，切换过程和方式"></a>进程调度的时机，切换过程和方式</h2><h3 id="进程调度时机"><a href="#进程调度时机" class="headerlink" title="进程调度时机"></a>进程调度时机</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302202048883.png"/>
-
-<p>临界资源： 一个时间段内只允许一个进程使用的资源。各进程需要互斥的访问临界资源。</p>
-<p>临界区：访问临界资源的那段代码。</p>
-<p>内核程序临界区一般是用来访问某种内核数据结构的，比如进程的就绪队列。</p>
-<h3 id="进程调度的方式"><a href="#进程调度的方式" class="headerlink" title="进程调度的方式"></a>进程调度的方式</h3><ul>
-<li>非剥夺调度方式，又称非抢占方式。即，<strong>只允许进程主动放弃处理机</strong>。在运行过程中即便有更紧迫的任务到达，当前进程依然会继续使用处理机，直到该进程终止或主动要求进入阻塞态。</li>
-</ul>
-<p>优点：实现简单,系统开销小但是无法及时处理紧急任务，适合于早期的批处理系统</p>
-<ul>
-<li>剥夺调度方式，又称抢占方式。当一个进程正在处理机上执行时，如果有一个更重要或更紧迫的进程需要使用处理机，则立即暂停正在执行的进程，将处理机分配给更重要紧迫的那个进程。</li>
-</ul>
-<p>优点：可以优先处理更紧急的进程，也可实现让各进程按时间片轮流执行的功能（通过时钟中断）。适合于分时操作系统、实时操作系统</p>
-<p><strong>优点：</strong></p>
-<p>可以有限处理更紧急的进程，也可实现让哥进程按时间骗轮流执行的功能（通过时钟中断）。适合于分时操作系统、实时操作系统</p>
-<h3 id="进程的切换与过程"><a href="#进程的切换与过程" class="headerlink" title="进程的切换与过程"></a>进程的切换与过程</h3><p>“狭义的进程调度”与“进程切换”的区别:</p>
-<ul>
-<li><p>狭义的进程调度指的是从就绪队列中选中一个要运行的进程。(这个进程可以是刚刚被暂停执行的进程，也可能是另一个进程，后一种情况就需要进程切换）</p>
-</li>
-<li><p>进程切换是指一个进程让出处理机，由另一个进程占用处理机的过程。</p>
-</li>
-</ul>
-<p>广义的进程调度包含了选择一个进程和进程切换两个步骤</p>
-<p>进程切换的过程主要完成了:</p>
-<ul>
-<li>1.对原来运行进程各种数据的保存</li>
-<li>2.对新的进程各种数据的恢复(如:程序计数器、程序状态字、各种数据寄存器等处理机现场信息，这些信息一般保存在进程控制块)</li>
-</ul>
-<p>注意 : <strong>进程切换是有代价的</strong>，因此如果过于频繁的进行进程调度、切换，必然会使整个系统的效率降低，使系统大部分时间都花在了进程切换上，而真正用于执行进程的时间减少。</p>
-<h2 id="调度算法的评价指标"><a href="#调度算法的评价指标" class="headerlink" title="调度算法的评价指标"></a>调度算法的评价指标</h2><ul>
-<li>CPU利用率： CPU”忙碌”的时间占总时间的比例。</li>
-<li>系统吞吐量：单位时间内完成作业的数量。</li>
-</ul>
-<p>$$<br>系统吞吐量&#x3D;{总共完成了多少道作业\over总共花了多少时间}<br>$$</p>
-<ul>
-<li><p>周转时间：是指从作业被提交给系统开始，到作业完成为止的时间间隔。</p>
-<p><span style="color:red"><strong>周转时间&#x3D;作业完成时的时间-作业提交时间</strong></span></p>
-<p><span style="color:red"><strong>平均周转时间&#x3D;各作业周转时间之和&#x2F;作业数</strong></span></p>
-</li>
-</ul>
-<p>由于在周转时间相同的情况下，运行时间不同的作业，给用户的感觉是不一样的，所以提出了带权周转时间的概念。<br>$$<br>带权周转时间&#x3D;{作业周转时间\over作业实际运行的时间}&#x3D;{作业完成的时间-作业提交时间\over作业实际运行的时间}<br>$$</p>
-<p>$$<br>平均的带权周转时间&#x3D;{各个作业带权周转时间之和\over作业数}<br>$$</p>
-<ul>
-<li>等待时间：指进程&#x2F;作业处于等待处理机状态时间之和，等待时间越长，用户满意度越低。</li>
-</ul>
-<p>对于进程来说，等待时间就是指进程建立后等待被服务的时间之和，在等待I&#x2F;O完成的期间其实进程也是在被服务的，所以不计入等待时间。<br>对于作业来说，不仅要考虑建立进程后的等待时间，还要加上作业在外存后备队列中等待的时间。</p>
-<ul>
-<li>响应时间：指从用户提交请求到首次产生响应所用的时间。</li>
-</ul>
-<h2 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h2><h3 id="先来先服务，短作业优先，高响应必优先"><a href="#先来先服务，短作业优先，高响应必优先" class="headerlink" title="先来先服务，短作业优先，高响应必优先"></a>先来先服务，短作业优先，高响应必优先</h3><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>英文</th>
-<th>算法思想与规则</th>
-<th>可抢占？</th>
-<th>优点</th>
-<th>缺点</th>
-<th>考虑到等待时间&amp;运行时间？</th>
-<th>会导致饥饿？</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>先来先服务</td>
-<td>FCFS</td>
-<td>公平，先到先得</td>
-<td>非</td>
-<td>公平，实现简单</td>
-<td>对短作业不利</td>
-<td>有等待，无运行</td>
-<td>不</td>
-</tr>
-<tr>
-<td>短作业优先</td>
-<td>SJF&#x2F;SPF</td>
-<td>追求快<br />时间最短的先服务</td>
-<td>默认为非抢占式版本，也有SJF的抢占式版本最短剩余时间优先算法(SRTN)</td>
-<td>“最短的”平均等待&#x2F;周转时间</td>
-<td>对长作业不利，可能导致饥饿；难以做到真正的短时间优先</td>
-<td>有运行，无等待</td>
-<td>会</td>
-</tr>
-<tr>
-<td>高响应必优先</td>
-<td>HRRN</td>
-<td>作业&#x2F;进程的等待时间<br />计算<span style="color:red">响应比</span>,选择<span style="color:red">响应比最高的</span>作业&#x2F;进程优先</td>
-<td>非</td>
-<td>权衡折中，综合考虑等待时间和运行时间</td>
-<td></td>
-<td>都有</td>
-<td>不</td>
-</tr>
-</tbody></table>
-<p><span style="color:red">响应比</span> (响应比&gt;&#x3D;1) ：<br>$$<br>响应比&#x3D;{等待时间+要求服务时间\over要求服务时间}<br>$$<br>注:这几种算法主要关心对用户的公平性、平均周转时间、平均等待时间等评价系统整体性能的指标，但是不关心“响应时间”，也并不区分任务的紧急程度，因此对于用户来说，交互性很糟糕。<strong>因此这三种算法一般适合用于早期的批处理系统</strong>，当然，FCFS算法也常结合其他的算法使用，在现在也扮演着很重要的角色。</p>
-<h4 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h4><blockquote>
-<ol>
-<li><p>FCFS 由于在长作业过程中，后面的短作业需要等很长的时间，带权周转时间很大，对短作业用户体验不好。</p>
-</li>
-<li><p>FCFS 用于作业调度时，考虑的是那个作业先到达后备队列；用于进程调度时，考虑的是哪个进程先到达就绪队列</p>
-</li>
-<li><p>SJF 是用于作业调度，也可用于进程调度。用于进程调度时成为”短进程优先”(SPF，Shortest Process First)</p>
-</li>
-<li><p>SJF 和 SPF 是非抢占式算法，但是也有抢占式的版本–最短剩余时间优先算法(SRTN，Shortest Remaining Time Next)</p>
-</li>
-<li><p>SJF 对长作业不利，可能产生饥饿现象。另外，作业&#x2F;进程真正运行时间是由用户提供的，并不一定真实，不一定能做到真正的短作业优先</p>
-</li>
-<li><p>SJF 如果有源源不断地有短作业&#x2F;进程到来，可能使长作业&#x2F;进程长时间得不到服务，产生”饥饿”现象，如果一直得不到服务，则称为 饿死</p>
-</li>
-<li><p>HRRN 在每次调度室先计算各个作业&#x2F;进程的 响应比 ，选择响应比<span style="color:red">最高</span>的作业&#x2F;进程为其服务</p>
-</li>
-<li><ul>
-<li><p>HRRN 综合考虑了等待时间和运行时间（要求服务时间）</p>
-</li>
-<li><p>等待时间相同时，要求服务时间端的优先（SJF 的优点）</p>
-</li>
-<li><p>要求服务时间相同时，等待时间长的优先（FCFS的优点）</p>
-</li>
-<li><p>对于长作业来说，随着等待时间越来越久，其响应比也会越来越大，从而避免了长作业饥饿的问题</p>
-</li>
-</ul>
-</li>
-</ol>
-</blockquote>
-<h3 id="时间片轮转调度，优先级调度算法，多级反馈队列调度算法"><a href="#时间片轮转调度，优先级调度算法，多级反馈队列调度算法" class="headerlink" title="时间片轮转调度，优先级调度算法，多级反馈队列调度算法"></a>时间片轮转调度，优先级调度算法，多级反馈队列调度算法</h3><h4 id="时间片轮转调度RR"><a href="#时间片轮转调度RR" class="headerlink" title="时间片轮转调度RR"></a>时间片轮转调度RR</h4><table>
-<thead>
-<tr>
-<th>时间片轮转调度<br />（RR，Round-Robin）</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>算法思想</td>
-<td>公平地、轮流地为各个进程服务，让每个进程在一定时间间隔内都可以得到响应</td>
-</tr>
-<tr>
-<td>算法规则</td>
-<td>按照各进程到达就绪队列的顺序，轮流让各个进程执行一个<span style="color:red">时间片</span>（如100ms)。若进程未在一个时间片内执行完则剥夺处理机，将进程重新放到就绪队列队尾重新排队。</td>
-</tr>
-<tr>
-<td>用于作业&#x2F;进程调度</td>
-<td>用于进程调度（只有作业放入内存建立了相应的进程后，<br/>才能被分配处理机时间片）</td>
-</tr>
-<tr>
-<td>是否可抢占？</td>
-<td>若进程未能在时间片内运行完，将被强行剥夺处理机使权，因此时间片轮转调度算法属于抢占式的算法。由时钟装置发出时钟中断来通知CPU时间片已到</td>
-</tr>
-<tr>
-<td>优缺点</td>
-<td>优点：公平；响应快，适用于分时操作系统；<br />缺点：由于高频率的进程切换，因此有一定开销；不区分任务的紧急程度。</td>
-</tr>
-<tr>
-<td>是否会导致饥饿</td>
-<td>否</td>
-</tr>
-<tr>
-<td>补充</td>
-<td>时间片问题：<br />如果时间片太大，使得每个进程都可以在一个时间片内就完成，则时间片轮转调度算法退化为先来先服务调度算法，并且会增大进程响应时间。因此时间片不能太大。<br />另一方面，进程调度、切换是有时间代价的(保存、恢复运行环境)，因此如果时间片太小，会导致进程切换过于频繁，系统会花大量的时间来处理进程切换，从而导致实际用于进程执行的时间比例减少。可见时间片也不能太小。<br />一般来说，设计时间片要让切换进程的开销占比不超过1%。</td>
-</tr>
-</tbody></table>
-<h4 id="优先级调度算法"><a href="#优先级调度算法" class="headerlink" title="优先级调度算法"></a>优先级调度算法</h4><table>
-<thead>
-<tr>
-<th>优先级调度</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>算法思想</td>
-<td>随着计算机的发展，特别是实时操作系统的出现，越来越多的应用场最需要根据任务的紧急程度来决定处理顺序</td>
-</tr>
-<tr>
-<td>算法规则</td>
-<td>调度时选择优先级最高的作业&#x2F;进程</td>
-</tr>
-<tr>
-<td>用于作业&#x2F;进程调度</td>
-<td>既可用于作业调度，也可用于进程调度。甚至还会用于在之后会学习的I&#x2F;O调度中</td>
-</tr>
-<tr>
-<td>是否可抢占？</td>
-<td>抢占式、非抢占式都有。做题时的区别在于：非抢占式只需在进程主动放弃处理机时进行调度即可，而抢占式还需任就绪队列变化时，检查是否会发生抢占。</td>
-</tr>
-<tr>
-<td>优缺点</td>
-<td>优点：用优先级区分紧总程度、重要程度，适用于实时操作系统。可灵活地调整对各种作业&#x2F;进程的偏好程度。<br />缺点：若源源不断地有高优先级进程到来，则可能导致饥饿</td>
-</tr>
-<tr>
-<td>是否会导致饥饿</td>
-<td>会</td>
-</tr>
-<tr>
-<td>补充</td>
-<td>如下图</td>
-</tr>
-</tbody></table>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302251342602.png"/>
-
-<h4 id="多级反馈队列调度算法"><a href="#多级反馈队列调度算法" class="headerlink" title="多级反馈队列调度算法"></a>多级反馈队列调度算法</h4><table>
-<thead>
-<tr>
-<th>多级反馈队列</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>算法思想</td>
-<td>对其他调度算法的折中权衡</td>
-</tr>
-<tr>
-<td>算法规则</td>
-<td>1. 设置多级就绪队列，各级队列优先级从高到低，时间片从小到大<br/>2. 新进程到达时先进入第1级队列，按FCFS原则排队等待被分配时间片，若用完时间片进程还未结束，则进程进入下一级队列队尾。如果此时已经是在最下级的队列，则重新放回该队列队尾<br/>3. 只有第k级队列为空时，才会为k+1级队头的进程分配时间片</td>
-</tr>
-<tr>
-<td>用于作业&#x2F;进程调度</td>
-<td>用于进程调度</td>
-</tr>
-<tr>
-<td>是否可抢占？</td>
-<td>抢占式算法。在k级队列的进程运行过程中，若更上级的队列（1~k-1级）中进入了一个新进程，则由于新进程处于优先级更高的队列中，因此新进程会抢占处理机，原来运行的进程放回 k级 队列队尾</td>
-</tr>
-<tr>
-<td>优缺点</td>
-<td>对各类型进程相对公平(FCFS的优点)：每个新到达的进程都可以很快就得到响应(RR的优点)；短进程只用较少的时间就可完成(SPF的优点)；不必实现估计进程的运行时间（避免用户作假）：可灵活地调整对各类进程的偏好程度，比如CPU密集型进程、&#x2F;O密集型进程（拓展：可以将因&#x2F;O而阻塞的进程重新放回原队列，这样&#x2F;O型进程就可以保持较高优先级)</td>
-</tr>
-<tr>
-<td>是否会导致饥饿</td>
-<td>会</td>
-</tr>
-<tr>
-<td>补充理解</td>
-<td>如下文</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>例题：各进程到达就绪队列的时间、需要的运行时间如下表所示。使用多级反馈队列调度算法，分析进程运行的过程。</p>
-<table>
-<thead>
-<tr>
-<th>进程</th>
-<th>到达时间</th>
-<th>运行时间</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>P1</td>
-<td>0</td>
-<td>8</td>
-</tr>
-<tr>
-<td>P2</td>
-<td>1</td>
-<td>4</td>
-</tr>
-<tr>
-<td>P3</td>
-<td>5</td>
-<td>1</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>P1(1) —— P2(1) —— P1(2) —— P2(1) —— P3(1) —— P2(2) —— P1(4) —— P1(1)</p>
-</blockquote>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302251358421.png"/>
-
-<p>设置多级就绪队列，各级队列<strong>优先级从高到低</strong>，<strong>时间片从小到大</strong></p>
-<p><span style="color:red">新进程</span>到达时<span style="color:red">先进入第1级队列</span>，按<span style="color:red">FCFS原则</span>排队等待被分配时间片。若用完时间片进程还<strong>未结束</strong>，则进程<strong>进入下一级</strong>队列队尾。如果此时<strong>己经在最下级</strong>的队列，则<strong>重新放回</strong>最下级队列队尾</p>
-<p>只有第<strong>k级队列为空</strong>时，才会<strong>为k+1级</strong>队头的进程<strong>分配时间片</strong><br><strong>被抢占处理机的进程重新放回原队列队尾</strong></p>
-</blockquote>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>比起早期的批处理操作系统来说，由于计算机造价大幅降低，因此之后出现的交互式操作系统（包括<strong>分时操作系统、实时操作系统</strong>等）更注重系统的响应时间、公平性、平衡性等指标。而这几种算法恰好也能较好地满足交互式系统的需求。因此<strong>这三种算法适合用于交互式系统。</strong>(比如UNIX使用的就是多级反馈队列调度算法)</p>
-<h3 id="进程同步与进程互斥"><a href="#进程同步与进程互斥" class="headerlink" title="进程同步与进程互斥"></a>进程同步与进程互斥</h3><h4 id="进程同步"><a href="#进程同步" class="headerlink" title="进程同步"></a>进程同步</h4><p>以下例子为管道通信为实例</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302282350043.png"/>
-
-<p>读进程和写进程并发地运行，由于并发必然导致异步性，因此“写数据”和“读数据”两个操作执行的先后顺序是不确定的。而实际应用中，又必须按照“写数据→读数据”的顺序来执行的。<strong>如何解决这种异步问题，就是“进程同步”所讨论的内容。</strong></p>
-<blockquote>
-<p>含义</p>
-</blockquote>
-<p>同步亦称直接制约关系，它是指为完成某种任务而建立的两个或多个进程，这些进程因为需要在某些位置上协调它们的工作次序而产生的制约关系。进程间的直接制约关系就是源于它们之间的相互合作。</p>
-<h4 id="进程互斥"><a href="#进程互斥" class="headerlink" title="进程互斥"></a>进程互斥</h4><ul>
-<li>我们把一个时间段内只允许一个进程使用的资源称为临界资源。</li>
-<li>许多物理设备（比如摄像头、打印机）都属于临界资源。此外还有许多变量、数据、内存缓冲区等都属于临界资源。</li>
-<li>对临界资源的访问，必须互斥地进行。互斥，亦称间接制约关系。</li>
-<li><strong>进程互斥指当一个进程访问某临界资源时，另一个想要访问该临界资源的进程必须等待。当前访问临界资源的进程访问结束，释放该资源之后，另一个进程才能去访问临界资源。</strong></li>
-</ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302282351880.png"/>
-
-<p>对临界资源的互斥访问，可以在逻辑上分为如下四个部分:</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202302282359512.png"/>
-
-<p>为了实现对临界资源的互斥访问，同时保证系统整体性能，需要遵循以下原则:</p>
-<ol>
-<li>空闲让进。临界区空闲时，可以允许一个请求进入临界区的进程立即进入临界区;</li>
-<li>忙则等待。当已有进程进入临界区时，其他试图进入临界区的进程必须等待;</li>
-<li>有限等待。对请求访问的进程，应保证能在有限时间内进入临界区（保证不会饥饿)</li>
-<li>让权等待。当进程不能进入临界区时，应立即释放处理机，防止进程忙等待。</li>
-</ol>
-<h3 id="进程互斥的软件实现方法"><a href="#进程互斥的软件实现方法" class="headerlink" title="进程互斥的软件实现方法"></a>进程互斥的软件实现方法</h3><h4 id="单标志法"><a href="#单标志法" class="headerlink" title="单标志法"></a>单标志法</h4><p>算法思想:每个进程在访问完临界区后会把使用临界区的权限转交给另一个进程。也就是说<strong>每个进程进入临界区的权限只能被另一个进程赋予</strong>。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303091148134.png"/>
-
-<blockquote>
-<p>turn的初值为0，即刚开始只允许0号进程进入临界区。<br>若P1先上处理机运行，则会一直卡在⑤。直到P1的时间片用完，发生调度，切换 P0上处理机运行。代码①不会卡住P0，P0可以正常访问临界区，在 P0访问临界区期间即时切换回P1，P1依然会卡在⑤。只有P0在退出区将turn改为1后，P1才能进入临界区。<br>因此，<strong>该算法可以实现“同一时刻最多只允许一个进程访问临界区”</strong></p>
-<p>turn表示当前允许进入临界区的进程号，而只有当前允许进入临界区的进程在访问了临界区之后，才会修改turn的值。</p>
-<p>也就是说，对于临界区的访问，一定是按P0→P1→P0→P1→…这样轮流访问。这种必须“轮流访问”带来的问题是，如果此时允许进入临界区的进程是P0，而P0一直不访问临界区，那么虽然此时临界区空闲，但是并不允许P1访问。<br>因此，<strong>单标志法存在的主要问题是:违背“空闲让进”原则。</strong></p>
-</blockquote>
-<h4 id="双标志先检查法"><a href="#双标志先检查法" class="headerlink" title="双标志先检查法"></a>双标志先检查法</h4><p>算法思想:设置一个布尔型数组flag[]，数组中各个元素用来标记各进程想进入临界区的意愿，比如“flag[0] &#x3D;ture”意味着0号进程 P0现在想要进入临界区。每个进程在进入临界区之前先检查当前有没有别的进程想进入临界区，如果没有，则把自身对应的标志flag[li]设为true，之后开始访问临界区。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303091154224.png"/>
-
-<p>若按照①⑤②⑥③⑦…的顺序执行，P0和P1将会同时访问临界区。因此，<strong>双标志先检查法的主要问题是:违反“忙则等待”原则。</strong><br>原因在于，进入区的“检查”和“上锁”两个处理不是一气呵成的。“检查”后，“上锁”前可能发生进程切换。</p>
-<h4 id="双标志后检查法"><a href="#双标志后检查法" class="headerlink" title="双标志后检查法"></a>双标志后检查法</h4><p>算法思想：双标志先检查法的改版。前一个算法的问题是先“检查”后“上锁”，但是这两个操作又无法一气呵成，因此导致了两个进程同时进入临界区的问题。因此，人们又想到先“上锁”后“检查”的方法，来避免上述问题。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303091158727.png"/>
-
-<p>若按照①⑤②⑥…的顺序执行，P0和P1将都无法进入临界区因此，双标志后检查法虽然解决了“忙则等待”的问题，但是又违背了“空闲让进”和“有限等待”原则，会因各进程都长期无法访问临界资源而产生“饥饿”现象。两个进程都争着想进入临界区，但是谁也不让谁，最后谁都无法进入临界区。</p>
-<h4 id="Peterson算法"><a href="#Peterson算法" class="headerlink" title="Peterson算法"></a>Peterson算法</h4><p>算法思想:双标志后检查法中，两个进程都争着想进入临界区，但是谁也不让谁，最后谁都无法进入临界区。Gary L.Peterson想到了一种方法，<strong>如果双方都争着想进入临界区，那可以让进程尝试“孔融让梨”，主动让对方先使用临界区。</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303091200387.png"/>
-
-<ul>
-<li>Peterson算法用软件方法解决了<strong>进程互斥问题，遵循了空闲让进、忙则等待、有限等待</strong>三个原则，但是依然未遵循让权等待的原则。</li>
-<li>Peterson算法相较于之前三种软件解决方案来说，是最好的，但依然不够好。</li>
-</ul>
-<h3 id="进程互斥的硬件实现方法"><a href="#进程互斥的硬件实现方法" class="headerlink" title="进程互斥的硬件实现方法"></a>进程互斥的硬件实现方法</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303261516619.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303261516916.png"/>
-
-<blockquote>
-<p>关中断指令只对执行关中断指令的处理机有用</p>
-</blockquote>
-<h4 id="TestAndSet指令"><a href="#TestAndSet指令" class="headerlink" title="TestAndSet指令"></a>TestAndSet指令</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303261518026.png"/>
-
-<h4 id="Swap指令"><a href="#Swap指令" class="headerlink" title="Swap指令"></a>Swap指令</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303261518466.png"/>
-
-<h3 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h3><h4 id="进程互斥：锁"><a href="#进程互斥：锁" class="headerlink" title="进程互斥：锁"></a>进程互斥：锁</h4><h5 id="互斥锁-1"><a href="#互斥锁-1" class="headerlink" title="互斥锁"></a>互斥锁</h5><p>解决临界区最简单的工具就是互斥锁（mutexlock)。一个进程在进入临界区时应获得锁；在退出临界区时释放锁。函数acquire()获得锁，而函数release()释放锁。每个互斥锁有一个布尔变量available,表示锁是否可用。如果锁是可用的，调用acqiure()会成功，且锁不再可用。当一个进程试图获取不可用的锁时，会被阻塞，直到锁被释放。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">acquire()&#123;</span><br><span class="line">    <span class="keyword">while</span>(!available); <span class="comment">//忙等待</span></span><br><span class="line">    available = <span class="literal">false</span>; <span class="comment">//获得锁</span></span><br><span class="line">&#125;</span><br><span class="line">release()&#123;</span><br><span class="line">    available = <span class="literal">true</span>; <span class="comment">//释放锁</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>acquire()或release()的执行必须是原子操作，因此互斥锁通常采用硬件机制来实现。<br>互斥锁的主要缺点是忙等待，当有一个进程在临界区中，任何其他进程在进入临界区时必须连续循环调用acquire()。当多个进程共享同一CPU时，就浪费了CPU周期。因此，互斥锁通常用于多处理器系统，一个线程可以在一个处理器上等待，不影响其他线程的执行。</p>
-<p>需要连续循环忙等的互斥锁，都可称为<strong>自旋锁（</strong>spin lock)，如TSL指令、swap指令、单标志法 </p>
-<p>特性：</p>
-<ul>
-<li>需忙等，进程时间片用完才下处理机，违反“让权等待”</li>
-<li>优点：等待期间不用切换进程上下文，多处理器系统中，若上锁的时间短，则等待代价很低</li>
-<li>常用于多处理器系统，一个核忙等，其他核照常工作，并快速释放临界区</li>
-<li>不太适用于单处理机系统，忙等的过程中不可能解锁</li>
-</ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303261531895.png"/>
-
-<h2 id="信号量机制"><a href="#信号量机制" class="headerlink" title="信号量机制"></a>信号量机制</h2><ul>
-<li>用户进程可以通过使用操作系统提供的<strong>一对原语</strong>来对信号量进行操作，从而很方便的实现了进程互斥、进程同步。</li>
-<li><strong>信号量其实就是一个变量（可以是一个整数，也可以是更复杂的记录型变量)，</strong>可以用一个信号量来表示系统中某种资源的数量，比如:系统中只有一台打印机，就可以设置一个初值为1的信号量。</li>
-<li>原语是一种特殊的程序段，其执行只能一气呵成，不可被中断。原语是由关中断&#x2F;开中断指令实现的。</li>
-<li>一对原语: wait(S)原语和 signal(S)原语，可以把原语理解为我们自己写的函数，函数名分别为 wait和 signal，括号里的信号量s其实就是函数调用时传入的一个参数。</li>
-<li>wait、signal原语常简称为P、V操作（来自荷兰语proberen和 verhogen)。因此，做题的时候常把wait(S)、 signal(S)两个操作分别写为P(S)、V(S)。</li>
-</ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202303261532635.png"/>
-
-<p>进程互斥的四种软件实现方式（单标志法，双标志先检查，双标志后检查，Peterson算法）</p>
-<p>进程互斥的三种硬件实现方式（中断屏蔽方法，TS&#x2F;TSL指令，Swap&#x2F;XCHG指令）</p>
-<p>1.在双标志先检查法中，进去区的”检查“，”上锁“操作无法一气呵成，中间有可能先执行了检查就进行了进程切换，从而导致了两个进程有可能同时进入临界区的问题；</p>
-<p>2.所有的解决方案都无法实现”让权等待“</p>
-<blockquote>
-<p>其中单标志法，双标志先检查，双标志后检查都存在着比较严重的一些问题的隐患。Peterson算法还有后面的三种硬件实现方式其实问题都不大，但是这些方式也都无法解决”让权等待“原则</p>
-</blockquote>
-<h3 id="整形信号量"><a href="#整形信号量" class="headerlink" title="整形信号量"></a>整形信号量</h3><p>用一个整数型的变量作为信号量，用来表示系统中某种资源的数量。</p>
-<p>与普通整数变量的区别：对信号量的操作只有三种，初始化，P操作，V操作。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072113564.png"/>
-
-<h3 id="记录型信号量"><a href="#记录型信号量" class="headerlink" title="记录型信号量"></a>记录型信号量</h3><p>整型信号量的缺陷是存在“忙等”问题，因此人们又提出了“记录型信号量”，即用<strong>记录型数据结构表示的信号量</strong>。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072114497.png"/>
-
-<h3 id="用信号量实现进程互斥，同步，前驱关系"><a href="#用信号量实现进程互斥，同步，前驱关系" class="headerlink" title="用信号量实现进程互斥，同步，前驱关系"></a>用信号量实现进程互斥，同步，前驱关系</h3><h4 id="信号量机制实现进程互斥"><a href="#信号量机制实现进程互斥" class="headerlink" title="信号量机制实现进程互斥"></a>信号量机制实现进程互斥</h4><ol>
-<li>分析并发进程的关键活动，划定临界区（如:对临界资源打印机的访问就应放在临界区)</li>
-<li>设置互斥信号量mutex，初值为1</li>
-<li>在临界区之前执行P(mutex)</li>
-<li>在临界区之后执行V(mutex)</li>
-</ol>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072115578.png"/>
-
-<p>注意： 对不同的临界资源（如摄像头，打印机）需要设置不同的互斥信号量。</p>
-<p><strong>P、V操作必须成对出现。缺少P(mutex)就不能保证临界资源的互斥访问。缺少V(mutex)会导致资源永不被释放，等待进程永不被唤醒。</strong></p>
-<h4 id="信号量机制实现进程同步"><a href="#信号量机制实现进程同步" class="headerlink" title="信号量机制实现进程同步"></a>信号量机制实现进程同步</h4><p>进程同步：要让各并发进程按要求有序的进行。</p>
-<ol>
-<li>分析什么地方需要实现“同步关系”，即必须保证“一前一后”执行的两个操作（或两句代码)</li>
-<li>设置同步信号量s,初始为0</li>
-<li>在“前操作”之后执行v(S)</li>
-<li>在“后操作”之前执行P(S)</li>
-</ol>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072117802.png"/>
-
-<h4 id="信号量机制实现前驱关系"><a href="#信号量机制实现前驱关系" class="headerlink" title="信号量机制实现前驱关系"></a>信号量机制实现前驱关系</h4><p>进程P1中有句代码S1，P2中有句代码S2 …P… P6中有句代码S6。这些代码要求按如下前驱图所示的顺序来执行:<br>其实每一对前驱关系都是一个进程同步问题（需要保证一前一后的操作)，因此，</p>
-<ol>
-<li>要为每一对前驱关系各设置一个同步变量</li>
-<li>在“前操作”之后对相应的同步变量执行V操作</li>
-<li>在“后操作”之前对相应的同步变量执行Р操作</li>
-</ol>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072118787.png"/>
-
-<h3 id="生产者——消费者问题"><a href="#生产者——消费者问题" class="headerlink" title="生产者——消费者问题"></a>生产者——消费者问题</h3><p>系统中有一组生产者进程和一组消费者进程，生产者进程每次生产一个产品放入缓冲区，消费者进程每次从缓冲区中取出一个产品并使用。(注:这里的“产品”理解为某种数据)</p>
-<ul>
-<li>生产者、消费者共享一个初始为空、大小为n的缓冲区。</li>
-<li>只有缓冲区没满时，生产者才能把产品放入缓冲区，否则必须等待。</li>
-<li>只有缓冲区不空时，消费者才能从中取出产品，否则必须等待。</li>
-<li>缓冲区是临界资源，各进程必须互斥地访问。</li>
-</ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072119845.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072119979.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072119956.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072119961.png"/>
-
-<h3 id="多生产者——多消费者"><a href="#多生产者——多消费者" class="headerlink" title="多生产者——多消费者"></a>多生产者——多消费者</h3><p>桌子上有一只盘子，每次只能向其中放入一个水果。爸爸专向盘子中放苹果，妈妈专向盘子中放橘子，儿子专等着吃盘子中的橘子，女儿专等着吃盘子中的苹果。只有盘子空时，爸爸或妈妈才可向盘子中放一个水果。仅当盘子中有自己需要的水果时，儿子或女儿可以从盘子中取出水果。用PV操作实现上述过程。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072123688.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072123924.png"/>
-
-<p>问题：可不可以不使用问题信号量？</p>
-<p>结论:即使不设置专门的互斥变量mutex，也不会出现多个进程同时访问盘子的现象</p>
-<p>原因在于:本题中的缓冲区大小为1，在任何时刻，apple、orange、plate三个同步信号量中最多只有一个是1。因此在任何时刻,最多只有一个进程的P操作不会被阻塞，并顺利地进入临界区…</p>
-<p>如果盘子（缓冲区）数量为2，可能会出现两个进程同时访问缓冲区的情况，有可能导致两个进程写入缓冲区的数据相互覆盖的情况。</p>
-<ol>
-<li>在生产者-消费者问题中，如果缓冲区大小为1，那么有可能不需要设置互斥信号量就可以实现互斥访问缓冲区的功能。当然，这不是绝对的，要具体问题具体分析。</li>
-<li>建议:在考试中如果来不及仔细分析，可以加上互斥信号量，保证各进程一定会互斥地访问缓冲区。但需要注意的是，实现互斥的P操作一定要在实现同步的P操作之后，否则可能引起“死锁”。</li>
-</ol>
-<h3 id="吸烟者问题"><a href="#吸烟者问题" class="headerlink" title="吸烟者问题"></a>吸烟者问题</h3><p>假设一个系统有三个抽烟者进程和一个供应者进程。每个抽烟者不停地卷烟并抽掉它，但是要卷起并抽掉一支烟，抽烟者需要有三种材料:烟草、纸和胶水。三个抽烟者中，第一个拥有烟草、第二个拥有纸、第三个拥有胶水。供应者进程无限地提供三种材料，供应者每次将两种材料放桌子上，拥有剩下那种材料的抽烟者卷一根烟并抽掉它，并给供应者进程一个信号告诉完成了，供应者就会放另外两种材料再桌上，这个过程一直重复(让三个抽烟者轮流地抽烟)。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072124996.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072124492.png"/>
-
-<h3 id="读者——写者问题"><a href="#读者——写者问题" class="headerlink" title="读者——写者问题"></a>读者——写者问题</h3><p>有读者和写者两组并发进程，共享一个文件，当两个或两个以上的读进程同时访问共享数据时不会产生副作用，但若某个写进程和其他进程（读进程或写进程）同时访问共享数据时则可能导致数据不一致的错误。因此要求:</p>
-<p>①允许多个读者可以同时对文件执行读操作;</p>
-<p>②只允许一个写者往文件中写信息;</p>
-<p>③任一写者在完成写操作之前不允许其他读者或写者工作;</p>
-<p>④写者执行写操作前，应让已有的读者和写者全部退出。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072125799.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072125176.png"/>
-
-<ul>
-<li>潜在的问题：只要读进程还在读，写进程就要一直堵塞等待，可能会饿死。因此在这种算法中，读进程优先。下面来实现“ 先来先服务”算法，这样就不会导致写进程饿死。</li>
-</ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072125944.png"/>
-
-<p>读者-写者问题为我们解决复杂的互斥问题提供了一个参考思路。<br>其核心思想在于<strong>设置了一个计数器count用来记录当前正在访问共享文件的读进程数</strong>。我们可以用count的值来判断当前进入的进程是否是第一个&#x2F;最后一个读进程，从而做出不同的处理。<br>另外，对count变量的检查和赋值不能一气呵成导致了一些错误，<strong>如果需要实现“一气呵成”，自然应该想到用互斥信号量。</strong><br>最后，还要认真体会我们是如何解决“写进程饥饿”问题的。</p>
-<h3 id="哲学家吃饭"><a href="#哲学家吃饭" class="headerlink" title="哲学家吃饭"></a>哲学家吃饭</h3><p>一张圆桌上坐着5名哲学家，每两个哲学家之间的桌上摆一根筷子，桌子的中间是一碗米饭。哲学家们倾注毕生的精力用于思考和进餐，哲学家在思考时，并不影响他人。只有当哲学家饥饿时，才试图拿起左、右两根筷子（一根一根地拿起)。如果筷子已在他人手上，则需等待。饥饿的哲学家只有同时拿起两根筷子才可以开始进餐，当进餐完毕后，放下筷子继续思考。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072126626.png"/>
-
-<p>1.关系分析。系统中有5个哲学家进程，5位哲学家与左右邻居对其中间筷子的访问是互斥关系。</p>
-<p>2.整理思路。这个问题中只有互斥关系，但与之前遇到的问题不同的是，每个哲学家进程需要同时持有两个临界资源才能开始吃饭。如何避免临界资源分配不当造成的死锁现象，是哲学家问题的精髓。<br>3.信号量设置。定义互斥信号量数组chopstick[5]&#x3D;{1,1,1,1,1}，用于实现对5个筷子的互斥访问。并对哲学家按0~4编号，哲学家i左边的筷子编号为i，右边的筷子编号为(i+1)%5。</p>
-<blockquote>
-<p>以下方式会出现死锁问题</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072126279.png"/>
-</blockquote>
-<p>①可以对哲学家进程施加一些限制条件，比如最多允许四个哲学家同时进餐。这样可以保证至少有一个哲学家是可以拿到左右两只筷子的</p>
-<p>②要求奇数号哲学家先拿左边的筷子，然后再拿右边的筷子，而偶数号哲学家刚好相反。用这种方法可以保证如果相邻的两个奇偶号哲学家都想吃饭，那么只会有其中一个可以拿起第一只筷子，另一个会直接阻塞。这就避免了占有一支后再等待另一只的情况。</p>
-<p>③仅当一个哲学家左右两支筷子都可用时才允许他抓起筷子。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072127517.png"/>
-
-<h3 id="管程"><a href="#管程" class="headerlink" title="管程"></a>管程</h3><p><strong>管程相当于对临界区资源进行抽象而编写的一个类。</strong></p>
-<p>管程是一种特殊的软件模块，有这些部分组成:</p>
-<p>1.局部于管程的共享数据结构说明; （一个类）</p>
-<p>2.对该数据结构进行操作的一组过程; （类中的方法）</p>
-<p>3．对局部于管程的共享数据设置初始值的语句; （类中的变量）</p>
-<p>4.管程有一个名字。 （类名）</p>
-<p>管程的基本特征:</p>
-<p>1．局部于管程的数据只能被局部于管程的过程所访问; （类中变量有自己的作用范围）</p>
-<p>**2.一个进程只有通过调用管程内的过程才能进入管程访问共享数据; ** <strong>这种互斥特性是由编译器来实现的。</strong></p>
-<p><strong>3．每次仅允许一个进程在管程内执行某个内部过程。</strong></p>
-<blockquote>
-<h4 id="java中类似于管程的机制（单例模式）"><a href="#java中类似于管程的机制（单例模式）" class="headerlink" title="java中类似于管程的机制（单例模式）"></a>java中类似于管程的机制（单例模式）</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072128379.png"/>
-</blockquote>
-<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>在并发环境下，各进程因竞争资源而造成的一种互相等待对方手里的资源，导致各进程都阻塞，都无法向前推进的现象，就是“死锁“。</p>
-<p>发生死锁后若无外力干涉,这些进程都将无法向前推进。</p>
-<h4 id="死锁，饥饿，死循环的区别"><a href="#死锁，饥饿，死循环的区别" class="headerlink" title="死锁，饥饿，死循环的区别"></a>死锁，饥饿，死循环的区别</h4><ul>
-<li>死锁:各进程互相等待对方手里的资源，导致各进程都阻塞，无法向前推进的现象。</li>
-<li>饥饿:由于长期得不到想要的资源，某进程无法向前推进的现象。比如:在短进程优先（SPF）算法中，若有源源不断的短进程到来，则长进程将一直得不到处理机，从而发生长进程“饥饿”。</li>
-<li>死循环:某进程执行过程中一直跳不出某个循环的现象。有时是因为程序逻辑bug 导致的，有时是程序员故意设计的。</li>
-</ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072129588.png"/>
-
-<h4 id="死锁产生的必要条件"><a href="#死锁产生的必要条件" class="headerlink" title="死锁产生的必要条件"></a>死锁产生的必要条件</h4><p>产生死锁必须同时满足一下四个条件，只要其中任一条件不成立，死锁就不会发生。</p>
-<ul>
-<li><strong>互斥条件</strong>：只有对必须互斥使用的资源的争抢才会导致死锁(如哲学家的筷子、打印机设备）。像内存、扬声器这样可以同时让多个进程使用的资源是不会导致死锁的(因为进程不用阻塞等待这种资源）。</li>
-<li><strong>不剥夺条件</strong>：进程所获得的资源在未使用完之前，不能由其他进程强行夺走，只能主动释放。</li>
-<li><strong>请求 和 保持条件</strong>：进程已经保持了至少一个资源，但又提出了新的资源请求，而该资源又被其他进程占有，此时请求进程被阻塞，但又对自己已有的资源保持不放。</li>
-<li><strong>循环等待条件</strong>：存在一种进程资源的循环等待链，链中的每一个进程已获得的资源同时被下一个进程所请求。</li>
-</ul>
-<p>注意 : 发生死锁时一定有循环等待 , 但是发生循环等待时未必死锁（<strong>循环等待是死锁的必要不充分条件</strong>)</p>
-<p>如果同类资源数大于1，则即使有循环等待，也未必发生死锁。但如果系统中每类资源都只有一个，那循环等待就是死锁的充分必要条件了</p>
-<h4 id="什么时候会发生死锁"><a href="#什么时候会发生死锁" class="headerlink" title="什么时候会发生死锁"></a>什么时候会发生死锁</h4><ol>
-<li><strong>对系统资源的竞争</strong>。各进程对不可剥夺的资源（如打印机）的竞争可能引起死锁，对可剥夺的资源(CPU)的竞争是不会引起死锁的</li>
-<li><strong>进程推进顺序非法</strong>。请求和释放资源的顺序不当，也同样会导致死锁。例如，并发执行的进程P1、P2分别申请并占有了资源R1、R2，之后进程p1又紧接着申请资源R2，而进程p2又申请资源R1,两者会因为申请的资源被对方占有而阻塞，从而发生死锁。</li>
-<li><strong>信号量的使用不当也会造成死锁</strong>。如生产者-消费者问题中，如果实现互斥的P操作在实现同步的P操作之前，就有可能导致死锁。(可以把互斥信号量、同步信号量也看做是一种抽象的系统资源)</li>
-</ol>
-<p>总之，对不可剥夺资源的不合理分配，可能导致死锁。</p>
-<h4 id="死锁的处理策略"><a href="#死锁的处理策略" class="headerlink" title="死锁的处理策略"></a>死锁的处理策略</h4><ol>
-<li>预防死锁。破坏死锁产生的四个必要条件中的一个或几个。</li>
-<li>避免死锁。用某种方法防止系统进入不安全状态，从而避免死锁（银行家算法)</li>
-<li>死锁的检测和解除。允许死锁的发生，不过操作系统会负责检测出死锁的发生，然后采取某种措施解除死锁。</li>
-</ol>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304072130399.png"/>
-
-<h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305061307159.png"/>
-
-<p><strong>内存是用于存放数据的硬件。程序执行前需要先放到内存中才能被CPU处理。</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304081538138.png"/>
-
-<h2 id="相对地址和绝对地址"><a href="#相对地址和绝对地址" class="headerlink" title="相对地址和绝对地址"></a>相对地址和绝对地址</h2><p><strong>编译时产生的指令只关心“相对地址”，实际放入内存中时再想办法根据起始位置得到“绝对地址”。</strong><br>编译时只需确定变量x存放的相对地址是100（也就是说相对于进程在内存中的起始地址而言的地址）。CPU 想要找到x在内存中的实际存放位置，只需要用进程的起始地址+100即可。</p>
-<p><strong>相对地址又称逻辑地址，绝对地址又称物理地址。</strong></p>
-<h2 id="三种装入模式"><a href="#三种装入模式" class="headerlink" title="三种装入模式"></a>三种装入模式</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305061302897.png"/>
-
-<h3 id="绝对装入"><a href="#绝对装入" class="headerlink" title="绝对装入"></a>绝对装入</h3><p>这种方式的灵活性很差，只适用于单道程序环境，早期还没有操作系统的阶段使用的就是这种方式</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305061316431.png"/>
-
-<h3 id="可重定位装入"><a href="#可重定位装入" class="headerlink" title="可重定位装入"></a>可重定位装入</h3><p>这种方式的特点是我们给这个作业&#x2F;进程分配的这些地址空间必须是连续的，并且这个作业必须一次全部装入内存</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305061317740.png"/>
-
-<h3 id="动态运行时装入"><a href="#动态运行时装入" class="headerlink" title="动态运行时装入"></a>动态运行时装入</h3><p>CPU在对一个内存地址进行访问的时候会把逻辑地址和重定位寄存器当中存放的起始地址进行相加得到最终可以访问的地址</p>
-<p>想让进程的数据在运行过程当中发生移动是很方便的，只需要修改重定位寄存器的值就可以</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305061317519.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305061317630.png"/>
-
-<h2 id="程序运行逻辑"><a href="#程序运行逻辑" class="headerlink" title="程序运行逻辑"></a>程序运行逻辑</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202304081539943.png"/>
-
-<p>这些目标模块文件当中已经包含了这些代码所对应的那些指令，而这些指令的编址都是逻辑地址。每一个模块的逻辑地址编址都是相互独立的，都从0开始</p>
-<p>链接把这些目标模块组装起来形成一个完整的装入模块</p>
-<p>在链接这一步，除了我们自己编写的这些目标模块需要链接以外，还需要把它们所调用到的一些库函数（如printf）也链接起来</p>
-<h3 id="程序运行前—静态连接"><a href="#程序运行前—静态连接" class="headerlink" title="程序运行前—静态连接"></a>程序运行前—静态连接</h3><p>就是我们刚才所提到的这种方式，在形成装入模块之后就确定了这个装入模块的完整的逻辑地址</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305061319738.png"/>
-
-<h3 id="装入时—动态连接"><a href="#装入时—动态连接" class="headerlink" title="装入时—动态连接"></a>装入时—动态连接</h3><p>采用这种方式的话，这个进程的完整的逻辑地址是一边装入一边形成的</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305061320350.png"/>
-
-<h3 id="运行时—动态连接"><a href="#运行时—动态连接" class="headerlink" title="运行时—动态连接"></a>运行时—动态连接</h3><p>需要用到某一个模块的时候再把它调入内存，装入的同时进行链接</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305061321161.png"/>
-
-<h2 id="内存管理的概念"><a href="#内存管理的概念" class="headerlink" title="内存管理的概念"></a>内存管理的概念</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305061321531.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305061323512.png"/>
-
-<p>操作系统作为系统资源的管理者，当然也需要对内存进行管理，要管些什么呢？</p>
-<ol>
-<li><p>操作系统负责内存空间的分配与回收</p>
-</li>
-<li><p>操作系统需要提供某种技术从逻辑上对内存空间进行扩充</p>
-</li>
-<li><p>操作系统需要提供地址转换功能，负责程序的<strong>逻辑地址与物理地址的转换</strong></p>
-</li>
-</ol>
-<h3 id="地址转换"><a href="#地址转换" class="headerlink" title="地址转换"></a>地址转换</h3><p>为了使编程更方便，程序员写程序时应该只需要关注指令、数据的逻辑地址。而<strong>逻辑地址到物理地的转换</strong>（这个过程称为<strong>地址重定位</strong>）应该由操作系统负责，这样就保证了程序员写程序时不需要关注物理内存的实际情况。 </p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305061326837.png"/>
-
-<p>绝对装入是在编译的时候就产生了绝对地址，或者说在程序员写程序的时候直接就写了绝对地址。这个地址转换是由编译器而不是操作系统完成的</p>
-<p>可重定位装入中地址转换的过程由装入程序负责进行，而装入程序也是操作系统的一部分</p>
-<h3 id="内存保护"><a href="#内存保护" class="headerlink" title="内存保护"></a>内存保护</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111342928.png"/>
-
-<h4 id="上下寄存器"><a href="#上下寄存器" class="headerlink" title="上下寄存器"></a>上下寄存器</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111342779.png"/>
-
-<h4 id="重定位寄存器"><a href="#重定位寄存器" class="headerlink" title="重定位寄存器"></a>重定位寄存器</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111343667.png"/>
-
-<h3 id="覆盖与交换"><a href="#覆盖与交换" class="headerlink" title="覆盖与交换"></a>覆盖与交换</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111344101.png"/>
-
-<h4 id="覆盖技术"><a href="#覆盖技术" class="headerlink" title="覆盖技术"></a>覆盖技术</h4><p>早期的计算机内存很小，比如IBM推出的第一台PC机最大只支持1MB大小的内存。因此经常会出现内存大小不够的情况。<br>后来人们引入了<strong>覆盖技术，用来解决“程小超过物理内存总和”的问题</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111346095.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111346097.png"/>
-
-<blockquote>
-<p>A这个模块会依次调用B模块和C模块。注意是依次调用，B模块和C模块只可能被A模块在不同的时间段调用，不可能是同时访问B和C这两个模块</p>
-</blockquote>
-<p>操作系统并不知道程序的调用结构，程序的调用结构必须由程序员显性地声明，操作系统根据程序员声明的调用结构&#x2F;覆盖结构完成自动覆盖</p>
-<h4 id="交换技术"><a href="#交换技术" class="headerlink" title="交换技术"></a>交换技术</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111350389.png"/>
-
-<p>第二章讲处理机调度的时候讲过一个处理机调度层次的概念，分为高级调度，中级调度和低级调度。其中中级调度就是为了实现交换技术而使用的一种调度策略</p>
-<p>换出外存的进程相关的PCB会保留在内存当中并且插入到挂起队列里</p>
-<p>为什么进程的PCB要常驻内存呢？因为进程被换出外存之后，必须要通过某种方式记录下进程到底是放在外存的什么位置，这个信息记录在对应的PCB当中，操作系统就可以根据PCB当中记录的这些信息对这些进程进行管理</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111350777.png"/>
-
-<p>一个本来处于就绪态的进程被换出外存，这个进程就处于就绪挂起态</p>
-<p>一个本来处于阻塞态的进程被换出外存，这个进程就处于阻塞挂起态</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111351844.png"/>
-
-<h3 id="连续分配管理方式"><a href="#连续分配管理方式" class="headerlink" title="连续分配管理方式"></a>连续分配管理方式</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111351402.png"/>
-
-<p>连续分配：指为用户进程分配的必须是一个连续的内存空间</p>
-<h4 id="单一连续分配"><a href="#单一连续分配" class="headerlink" title="单一连续分配"></a>单一连续分配</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111352995.png"/>
-
-<p>内存当中同一时刻只能有一道用户程序，它并不支持多道程序并发运行</p>
-<p>因为系统中只会运行一个用户程序，即使这个用户程序出问题了也只会影响用户程序本身，或者说即使这个用户程序越界损坏操作系统的数据，这个数据一般来说也可以通过重启计算机就可以很方便地进行修复，所以说采用单一连续分配的系统当中不一定采取内存保护</p>
-<h4 id="固定分区分配"><a href="#固定分区分配" class="headerlink" title="固定分区分配"></a>固定分区分配</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111353659.png"/>
-
-<p>分区大小相等：如果有一个比较大的进程进入的话，如果这些分区的大小都不能满足这个大进程的需求，那么这个大进程就不能被装入这个系统，或者说只能采用覆盖技术在逻辑上来拓展各个分区的大小，而这显然又会增加一些系统开销</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111354699.png"/>
-
-<h4 id="动态分区分配"><a href="#动态分区分配" class="headerlink" title="动态分区分配"></a>动态分区分配</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111354258.png"/>
-
-<h5 id="动态分区存在的问题"><a href="#动态分区存在的问题" class="headerlink" title="动态分区存在的问题"></a>动态分区存在的问题</h5><ol>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111359562.png"/>
-</li>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111400729.png"/>
-</li>
-<li><p>分区分配：<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111400169.png"/></p>
-</li>
-</ol>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111410550.png"/>
-
-<ol start="4">
-<li>分区回收：<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111411848.png"/></li>
-</ol>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111414369.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111414421.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111415359.png"/>
-
-<h5 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h5><p>这几种情况本质上可以用一句话来进行总结：在进行内存分区回收的时候，如果说回收了之后发现有一些空闲分区是相邻的，那我们就需要把这些相邻的空闲分区全部合并</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111415841.png"/>
-
-<p>紧凑技术其实就是把各个进程挪位，把它们全部攒到一起，挪出一个更大的连续空闲区间</p>
-<p>动态重定位的方式最方便实现程序或者说进程在内存当中移动位置</p>
-<p>紧凑之后需要修改各个进程的起始地址，进程的起始地址信息一般存放在进程对应的PCB当中，当进程要上CPU运行之前会把进程的起始地址信息放到重定位寄存器（基址寄存器）里</p>
-<h3 id="动态分区分配算法"><a href="#动态分区分配算法" class="headerlink" title="动态分区分配算法"></a>动态分区分配算法</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111416487.png"/>
-
-<p>动态分区分配算法：在动态分区分配方式中， 当很多个空闲分区都能满足需求时，应该选择哪个分区进行分配？</p>
-<h4 id="首次适应算法"><a href="#首次适应算法" class="headerlink" title="首次适应算法"></a>首次适应算法</h4><p>算法思想：每次都从低地址开始查找，找到第一个能满足大小的空闲分区</p>
-<p>如何实现：空闲分区以地址递增的次序排列。每次分配内存时顺序查找空闲分区链（或空闲分区表），找到大小能满足要求的第一个空闲分区</p>
-<h4 id="最佳适应算法"><a href="#最佳适应算法" class="headerlink" title="最佳适应算法"></a>最佳适应算法</h4><p>算法思想：由于动态分区分配是一种连续分配方式，为各进程分配的空间必须是连续的一整片区域。因此为了保证当“大进程”到来时能有连续的大片空间，可以尽可能多地留下大片的空闲区，即优先使用更小的空闲区</p>
-<p>如何实现：空闲分区按容量递增次序链接。每次分配内存时顺序查找空闲分区链（或空闲分区表），找到大小能满足要求的第一个空闲分区</p>
-<p>缺点：每次都选最小的分区进行分配，会留下越来越多的，很小的，难以利用的内存块。因此这种方法会产生很多的外部碎片</p>
-<h4 id="最坏适应算法"><a href="#最坏适应算法" class="headerlink" title="最坏适应算法"></a>最坏适应算法</h4><p>又称 最大适应算法（Largest Fit）</p>
-<p>算法思想：为了解决最佳适应算法的问题——即留下太多难以利用的小碎片，可以在每次分配时优先使用最大的连续空闲区，这样分配后剩余的空闲区就不会太小，更方便使用</p>
-<p>如何实现：空闲分区按容量递减次序链接。每次分配内存时顺序查找空闲分区链（或空闲分区表），找到大小能满足要求的第一个空闲分区</p>
-<p>缺点：每次都选最大的分区进行分配，虽然可以让分配后留下的空闲区更大，更可用，但是这种方式会导致较大的连续空闲区被迅速用完。如果之后有”大进程“到达，就没有内存分区可用了</p>
-<h4 id="邻近适应算法"><a href="#邻近适应算法" class="headerlink" title="邻近适应算法"></a>邻近适应算法</h4><p>算法思想：首次适应算法每次都从链头开始查找的。这可能会导致低地址部分出现很多小的空闲分区，而每次分配查找时，都要经过这些分区，因此也增加了查找的开销。如果每次都从上次查找结束的位置开始检索，就能解决上述问题</p>
-<p>如何实现：空闲分区以地址递增的顺序排列（可排成一个循环链表）。每次分配内存时从上次查找结束的位置开始查找空闲分区链（或空闲分区表），找到大小能满足要求的第一个空闲分区</p>
-<h4 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h4><blockquote>
-<p>假如说此时系统当中的内存使用情况如下图所示，把这些空闲分区按照地址递增的次序依次进行排列，排成一个循环链表</p>
-<p>如果有一个需要5MB内存空间的进程到达，就从链头的位置开始查找直到找到合适的分区进行分配。同时更新链当中的结点，包括分区的大小，还有分区的起始地址</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111418851.png"/>
-
-<p>采用邻近适应算法和首次适应算法只需要按照地址递增的次序进行排列。所以即使这里内存分区的大小发生了一个比较大的变化，但是我们依然不需要像最佳适应算法和最坏适应算法一样可能要对整个链表进行重新排列，算法的开销会比较小</p>
-<p>接下来假如一个需要5MB内存空间的新进程到达，按照规则从上一次查找到的位置依次再往后查找即可。以后的过程都是类似的</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111419898.png"/>
-
-<p>首次适应算法每次都要从头查找，每次都需要检索低地址的小分区。但是这种规则也决定了当低地址部分有更小的分区可以满足需求时，会更有可能用到低地址部分的小分区，也会更有可能把高地址部分的大分区保留下来（最佳适应算法的优点）</p>
-<p>邻近适应算法的规则可能会导致无论低地址、高地址部分的空闲分区都有相同的概率被使用，也就导致了高地址部分的大分区更可能被使用，划分为小分区，最后导致无大分区可用（最大适应算法的缺点）</p>
-<p>综合来看，四种算法中，首次适应算法的效果反而更好</p>
-</blockquote>
-<h3 id="基本分页存储管理的概念"><a href="#基本分页存储管理的概念" class="headerlink" title="基本分页存储管理的概念"></a>基本分页存储管理的概念</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111420967.png"/>
-
-<p>非连续分配：为用户进程分配的可以是一些分散的内存空间</p>
-<h4 id="分页存储"><a href="#分页存储" class="headerlink" title="分页存储"></a>分页存储</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111420848.png"/>
-
-<p>内存里存放的无非就是各个进程的数据，包括进程的代码，进程的指令等等</p>
-<h4 id="页表——重要的数据结构"><a href="#页表——重要的数据结构" class="headerlink" title="页表——重要的数据结构"></a>页表——重要的数据结构</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111421980.png"/>
-
-<blockquote>
-<p>内存块就是页框(page flame)</p>
-</blockquote>
-<h4 id="问题1：每个页表项占多少字节"><a href="#问题1：每个页表项占多少字节" class="headerlink" title="问题1：每个页表项占多少字节"></a>问题1：每个页表项占多少字节</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111422216.png"/>
-
-<p>这里计算机分配存储空间是以字节为单位而不是以bit为单位，所以20bit至少要用3B来存储</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111428370.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111428490.png"/>
-
-<p>一个页表项在逻辑上是包含了页号和块号这两个信息，但是在物理上它只需要存放块号这个信息，只有块号需要占用存储空间</p>
-<h4 id="问题2：如何实现地址的转换"><a href="#问题2：如何实现地址的转换" class="headerlink" title="问题2：如何实现地址的转换"></a>问题2：如何实现地址的转换</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111431445.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111431771.png"/>
-
-<p>页内偏移量：相对于页面的起始位置而言的偏移量是多少</p>
-<h5 id="如何确定一个逻辑地址对应的页号，页内偏移量？"><a href="#如何确定一个逻辑地址对应的页号，页内偏移量？" class="headerlink" title="如何确定一个逻辑地址对应的页号，页内偏移量？"></a>如何确定一个逻辑地址对应的页号，页内偏移量？</h5><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111432887.png"/>
-
-<h4 id="逻辑地址结构"><a href="#逻辑地址结构" class="headerlink" title="逻辑地址结构"></a>逻辑地址结构</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111433183.png"/>
-
-<h3 id="基本地址变化机构"><a href="#基本地址变化机构" class="headerlink" title="基本地址变化机构"></a>基本地址变化机构</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111434511.png"/>
-
-<p>基本地址变换机构是基本分页存储管理中用于实现逻辑地址到物理地址转换的一组硬件机构</p>
-<h4 id="基本地址变换机构"><a href="#基本地址变换机构" class="headerlink" title="基本地址变换机构"></a>基本地址变换机构</h4><p>在分页存储管理当中如果要把逻辑地址转换成物理地址的话，总共需要做4件事：</p>
-<p>1.知道逻辑地址对应的页号</p>
-<p>2.知道逻辑地址对应的页内偏移量</p>
-<p>3.知道逻辑地址对应的页面在内存当中存放的位置到底是多少</p>
-<p>4.根据页面在内存当中的起始位置和页内偏移量就可以得到最终的物理地址</p>
-<p>基本地址变换机构可以借助进程的页表将逻辑地址转换为物理地址。通常会在系统中设置一个<strong>页表寄存器</strong>（PTR),<strong>存放页表在内存中的起始地址F和页表长度M</strong>。进程未执行时，页表的始址和页表长度放在**进程控制块（PCB)**中，当进程被调度时，操作系统内核会把它们放到页表寄存器中。</p>
-<blockquote>
-<p>注意：<strong>页面大小是2的整数幂</strong></p>
-<p>设页面大小为L,逻辑地址A到物理地址E的变换过程如下：</p>
-<p>操作系统会把内存分为系统区和用户区。系统区当中存放着操作系统对整个计算机软硬件进行管理的一些相关的数据结构，包括PCB</p>
-<p>如果一个进程被调度需要上处理机运行，进程切换相关的那些内核程序就会把这个进程的运行环境给恢复。这些进程运行环境相关的信息本来是保存在PCB当中的，内核程序会把这些信息放到相应的一系列寄存器当中，包括页表寄存器。另外程序计数器PC也是需要恢复的，PC指向这个进程下一条需要执行的指令的逻辑地址。接下来看怎么把这个逻辑地址转换成实际的物理地址，即CPU怎么在内存当中找到接下来要执行的这一条指令</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111437646.png"/>
-
-<p>采用分页存储管理方式的系统当中，逻辑地址结构肯定是固定不变的，在一个逻辑地址当中页号有多少位，页内偏移量有多少位操作系统都是知道的。所以只要知道了逻辑地址就可以很快地切分出页号和页内偏移量这两个部分</p>
-<p>接下来会对页号的合法性进行一个检查，越界就会抛出中断由中断处理程序进行处理</p>
-<blockquote>
-<p>一个进程的页表长度M指的是这个进程的页表当中有M个页表项，也就意味着这个进程的页面总共有M页</p>
-</blockquote>
-<p>如果页号是合法的，接下来会用这个页号和页表始址来进行计算，找到这个页号对应的页表项到底是多少</p>
-<p>页表当中的每一个页表项的长度是相同的。所以只要知道了页号，页表起始地址和每一个页表项的长度就可以算出我们想要访问的页号对应的页表项所存放的位置</p>
-<p>既然知道了存放的内存块号，就可以用内存块号结合页内偏移量得到最终的物理地址，然后就可以顺利地访问逻辑地址所对应的内存单元了</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111441369.png"/>
-</blockquote>
-<p>该过程的文字描述如下</p>
-<blockquote>
-<ol>
-<li><p>计算页号P和页内偏移量W（如果用十进制数手算，则 P&#x3D;A&#x2F;L，W&#x3D;A%L；但是在计算机实际运行时，逻辑地址结构是固定不变的，因此计算机硬件可以更快地得到二进制表示的页号，页内偏移量）</p>
-</li>
-<li><p>比较页号P和页表长度M，若P ≥ M P\ge M<em>P</em>≥<em>M</em>，则产生越界中断，否则继续执行。（注意：页号从0开始的，而页表长度至少是1，因此 P&#x3D;M 时也会越界）</p>
-</li>
-<li><p>页表中页号P对应的页表项地址 &#x3D; 页表起始地址F + 页号P * 页表项长度，取出该页表项内容b，即为内存块号。（注意区分页表项长度，页表长度，页面大小的区别。页表长度指的是这个页表中总共有几个页表项，即总共有几个页；页表项长度指的是每个页表项占多大的存储空间；页面大小指的是一个页面占多大的存储空间）</p>
-</li>
-<li><p>计算E&#x3D;b*L+W,用得到的物理地址E去访存。（如果内存块号、页面偏移量是用二进制表示的，那么把二者拼接起来就是最终的物理地址了）</p>
-</li>
-</ol>
-</blockquote>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111443343.png"/>
-
-<h4 id="对页表项大小的进一步探讨"><a href="#对页表项大小的进一步探讨" class="headerlink" title="对页表项大小的进一步探讨"></a>对页表项大小的进一步探讨</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111443247.png"/>
-
-<p>页表项不能跨页框存储</p>
-<p>如果说我们的这些页表项并不能装满整个页框的话，那在查找页表项的时候会造成一些麻烦</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111443524.png"/>
-
-<h3 id="快表"><a href="#快表" class="headerlink" title="快表"></a>快表</h3><p>快表，又称联想寄存器（TLB,translation lookaside buffer),是一种访问速度比内存快很多的高速缓存（TLB不是内存！),用来存放最近访问的页表项的副本，可以加速地址变换的速度。与此对应，内存中的页表常称为慢表。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111522029.png"/>
-
-<blockquote>
-<p>进程最先要访问的逻辑地址是(0，0)</p>
-<p>首先进行越界异常的检查，该页号需要和页表寄存器当中的页表长度对比</p>
-<p>接下来就会查询快表，由于快表此时的内容是空的，因此在快表中找不到页号为0对应的页表项，快表没有命中。接下来就不得不去访问内存当中存放的慢表，通过页表始址和页号计算出对应的页表项存放的位置</p>
-<p>查询完慢表之后就可以知道0号页面所存放的内存块号是600，再通过内存块号和页内偏移量就可以得到最终的物理地址，最后就可以访问这个逻辑地址所对应的内存单元了</p>
-<p>注意在访问了这个页表项之后同时也会把该页表项复制一份放到快表当中</p>
-<p>接下来要访问的逻辑地址是(0，4)</p>
-<p>同样地刚开始会进行越界异常的判断，发现没有越界</p>
-<p>接下来会根据页号来查询快表以确认这个页号所对应的页表项是否在快表当中，由于刚才已经复制到了快表当中，因此这次的查询就可以命中。系统可以直接知道0号页面存放的页面是600，所以接下来就不需要查询内存当中的慢表而是直接用内存块号和页内偏移量得到最终想要访问的物理地址然后进行访存</p>
-<p><strong>（0，0）前面指的是页号，后面指的是页内偏移量</strong></p>
-</blockquote>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111524247.png"/>
-
-<h4 id="引入快表后，地址的变换过程"><a href="#引入快表后，地址的变换过程" class="headerlink" title="引入快表后，地址的变换过程"></a>引入快表后，地址的变换过程</h4><blockquote>
-<ol>
-<li><p>CPU给出逻辑地址，由某个硬件算得页号、页内偏移量，将页号与快表中的所有页号进行比较</p>
-</li>
-<li><p>如果找到匹配的页号，说明要访问的页表项在快表中有副本，则直接从中取出该页对应的内存块号，再将内存块号与页内偏移量拼接形成物理地址，最后，访问该物理地址对应的内存单元。因此若快表命中，则访问某个逻辑地址仅需一次访存即可。</p>
-</li>
-<li><p>如果没有找到匹配的页号，则需要访问内存中的页表，找到对应页表项，得到页面存放的内存块号，再将内存块号与页内偏移量拼接形成物理地址，最后，访问该物理地址对应的内存单元。因若快表未命中，则访问某个逻辑地址需要两次访存（注意：在找到页表项后，应同时将其存入快表以便后面可能的再次访问。但若快表已满，则必须按照一定的算法对旧的页表项进行替换）</p>
-</li>
-</ol>
-<p>由于查询快表的速度比查询页表的速度快很多，因此只要快表命中，就可以节省很多时间。因为局部性原理，一般来说快表的命中率可以达到90%以上。</p>
-<p>例：某系统使用基本分页存储管理，并采用了具有快表的地址变换机构。访问一次快表耗时1us,访问一次内存耗时100us。若快表的命中率为90%,那么访问一个逻辑地址的平均耗时是多少？</p>
-<p>(1+100)*0.9+(1+100+100)*0.1&#x3D;111us</p>
-<p>有的系统支持快表和慢表同时查找，如果是这样，平均耗时应该是</p>
-<p>（1+100)*0.9+(100+100)*0.1&#x3D; 110.9us</p>
-<p>若未采用快表机制，则访问一个逻辑地址需要100+100&#x3D;200us<br>显然，引入快表机制后，访问一个逻辑地址的速度快多了。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_system/202305111528656.png"/>
-</blockquote>
-<h4 id="局部性原理"><a href="#局部性原理" class="headerlink" title="局部性原理"></a>局部性原理</h4>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -4753,7 +3872,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
