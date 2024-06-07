@@ -152,6 +152,244 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/07/golang%E9%9D%A2%E8%AF%95%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/06/07/golang%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-title-link" itemprop="url">golang面试题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-06-07 21:15:39" itemprop="dateCreated datePublished" datetime="2024-06-07T21:15:39+08:00">2024-06-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-06-08 00:50:09" itemprop="dateModified" datetime="2024-06-08T00:50:09+08:00">2024-06-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Golang面试题"><a href="#Golang面试题" class="headerlink" title="Golang面试题"></a>Golang面试题</h1><h2 id="进程、线程、协程"><a href="#进程、线程、协程" class="headerlink" title="进程、线程、协程"></a>进程、线程、协程</h2><p>进程：资源分配和<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=CPU&spm=1001.2101.3001.7020">CPU</a>调度的基本单位</p>
+<p>线程：CPU调度的基本单位，线程除了有一些自己的必要的堆栈空间之外，其它的资源都是共享的线程中的，共享的资源包括：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.所有线程共享相同的虚拟地址空间，即它们可以访问同样的代码段、数据段和堆栈段。</span><br><span class="line">2.文件描述符：进程打开的文件描述符是进程级别的资源，所以同一个进程中的线程可以共享打开的文件描述符，这意味着它们可以同时读写同一个文件。</span><br><span class="line">3.全局变量：全局变量是进程级别的变量，因此可以被同一个进程中的所有线程访问和修改。</span><br><span class="line">4.静态变量：静态变量也是进程级别的变量，在同一个进程中的线程之间共享内存空间。</span><br><span class="line">5.进程ID、进程组ID</span><br></pre></td></tr></table></figure>
+
+<p>独占的资源：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、线程ID</span><br><span class="line">2、寄存器组的值</span><br><span class="line">3、线程堆栈</span><br><span class="line">4、错误返回码</span><br><span class="line">5、信号屏蔽码</span><br><span class="line">6、线程的优先级</span><br></pre></td></tr></table></figure>
+
+<p>协程：用户态的线程，可以通过用户程序创建、删除。协程切换时不需要切换内核态。</p>
+<p>协程与线程的区别：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.线程是操作系统的概念，而协程是程序级的概念。线程由操作系统调度执行，每个线程都有自己的执行上下文，包括程序计数器、寄存器等。而协程由程序自身控制。</span><br><span class="line">2.多个线程之间通过切换执行的方式实现并发。线程切换时需要保存和恢复上下文，涉及到上下文切换的开销。而协程切换时不需要操作系统的介入，只需要保存和恢复自身的上下文，切换开销较小。</span><br><span class="line">3.线程是抢占式的并发，即操作系统可以随时剥夺一个线程的执行权。而协程是合作式的并发，协程的执行权由程序自身决定，只有当协程主动让出执行权时，其他协程才会得到执行机会。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>线程的优点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.创建一个新线程的代价要比创建一个新进程小的多</span><br><span class="line">2.线程之间的切换相较于进程之间的切换需要操作系统做的工作很少</span><br><span class="line">3.线程占用的资源要比进程少很多</span><br><span class="line">4.能充分利用多处理器的可并行数量</span><br><span class="line">5.等待慢速 IO操作结束以后，程序可以执行其他的计算任务</span><br></pre></td></tr></table></figure>
+
+<p>缺点：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.性能损失（ 一个计算密集型线程是很少被外部事件阻塞的，无法和其他线程共享同一个处理器，当计算密集型的线程的数量比可用的处理器多，那么就有可能有很大的性能损失，这里的性能损失是指增加了额外的同步和调度开销，二可用资源不变。）</span><br><span class="line">2.健壮性降低（线程之间是缺乏保护性的。在一个多线程程序里，因为时间上分配的细微差距或者是共享了一些不应该共享的变量而造成不良影响的可能影响是很大的。）</span><br><span class="line">3.缺乏访问控制（ 因为进程是访问控制的基本粒度，在一个线程中调用某些OS函数会对整个进程造成影响 。）</span><br><span class="line">4.编程难度提高（编写和 调试一个多线程程序比单线程困难的多。）</span><br></pre></td></tr></table></figure>
+
+<p>有栈协程和无栈协程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">有栈协程：把局部变量放入到新开的空间上，golang的实现，类似于内核态线程的实现，不同协程间切换还是要切换对应的栈上下文，只是不用陷入内核</span><br><span class="line"></span><br><span class="line">无栈协程：直接把局部变量放入系统栈上，js、c++、rust那种await、async实现，主要原理就是闭包+异步，换句话说，其实就是协程的上下文都放到公共内存中，协程切换时，使用状态机来切换，就不用切换对应的上下文了，因为都在堆里的。比有栈协程都要轻量许多。</span><br></pre></td></tr></table></figure>
+
+<h1 id="基础部分"><a href="#基础部分" class="headerlink" title="基础部分"></a>基础部分</h1><h2 id="值类型和引用类型"><a href="#值类型和引用类型" class="headerlink" title="值类型和引用类型"></a>值类型和引用类型</h2><h3 id="值类型："><a href="#值类型：" class="headerlink" title="值类型："></a><strong>值类型</strong>：</h3><ul>
+<li>包括基本数据类型，如<code>int</code>、<code>float</code>、<code>bool</code>、<code>string</code>。</li>
+<li>也包括复合数据类型，如数组和结构体（struct）。</li>
+<li>变量直接存储值。</li>
+<li>内存通常在栈上分配，栈在函数调用完毕后会被释放。</li>
+</ul>
+<h3 id="引用类型："><a href="#引用类型：" class="headerlink" title="引用类型："></a><strong>引用类型</strong>：</h3><ul>
+<li>包括 切片（Slice）、映射（Map）、通道（Channel）和接口（Interface）。</li>
+<li>变量存储的是指向实际数据的引用。</li>
+<li>内存分配在堆上，生命周期由垃圾收集器管理。</li>
+</ul>
+<h3 id="内存分配中的堆和栈："><a href="#内存分配中的堆和栈：" class="headerlink" title="内存分配中的堆和栈："></a>内存分配中的堆和栈：</h3><ul>
+<li><code>栈</code>（操作系统）：由操作系统自动分配释放 ，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。</li>
+<li><code>堆</code>（操作系统）： 一般由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收，分配方式倒是类似于链表。</li>
+</ul>
+<h2 id="值传递-和-引用传递"><a href="#值传递-和-引用传递" class="headerlink" title="值传递 和 (引用传递)"></a>值传递 和 (引用传递)</h2><p>Go里面没有<code>引用传递</code>，Go语言是<code>值传递</code></p>
+<ul>
+<li>值传递：指在调用函数时将实际参数复制一份传递到函数中，这样在函数中如果对参数进行修改，将不会影响到实际参数。</li>
+<li>引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中对参数所进行的修改，将影响到实际参数。</li>
+</ul>
+<p>在 Go 语言中，<strong>函数的参数传递只有值传递</strong>，而且传递的实参都是原始数据的一份拷贝。如果拷贝的内容是值类型的，那么在函数中就无法修改原始数据；如果拷贝的内容是指针（或者可以理解为引用类型 <code>map</code>、<code>chan</code> 等），那么就可以在函数中修改原始数据，这里是拷贝了<strong>指针</strong>，传递的是<strong>指针副本</strong>，也就是值传递，只是看起来像引用传递</p>
+<h2 id="golang-中-make-和-new-的区别？"><a href="#golang-中-make-和-new-的区别？" class="headerlink" title="golang 中 make 和 new 的区别？"></a>golang 中 make 和 new 的区别？</h2><p>在Go语言中，<code>make</code>和<code>new</code>都是用于内存分配的内建函数，但它们在分配内存和初始化内存方面有所不同：</p>
+<ol>
+<li>分配内存的区别：<ul>
+<li><code>new</code>可以分配<strong>任意类型的内存</strong>，并返回<strong>一个指向该类型的指针</strong>。</li>
+<li><code>make</code><strong>专门用于分配<code>slice</code>、<code>map</code>和<code>channel</code>这三种内建类型</strong>，并返回<strong>一个引用类型本身</strong>。</li>
+</ul>
+</li>
+<li>初始化的区别：<ul>
+<li><code>new</code>分配内存后，对于值类型，分配的是<strong>零值填充的内存空间</strong>，可直接使用。而对于引用类型，虽然也会分配内存并返回一个指向该内存的指针，但这块内存代表的是定义的那个引用类型，它的零值是<code>nil</code>，需要进一步初始化。例如 new(int) 之后，对应内存空间会有一个0；而<code>new(map[string]int)</code>，对应内存空间是nil，而不是<code>&#123;&quot;&quot;:0&#125;</code></li>
+<li><code>make</code>分配内存后，内存会被初始化，即分配的是有初始值的内存空间。</li>
+</ul>
+</li>
+<li>返回类型的区别：<ul>
+<li><code>new</code>返回的是<strong>指针类型</strong>。</li>
+<li><code>make</code>返回的是与<strong>参数相同类型的值</strong>，而不是指针。</li>
+</ul>
+</li>
+<li>语法上的区别：<ul>
+<li><code>new</code>的语法是 <code>func new(Type) *Type</code>。</li>
+<li><code>make</code>的语法是 <code>func make(t Type, size ...IntegerType) Type</code>。</li>
+</ul>
+</li>
+</ol>
+<h2 id="数组和切片的区别"><a href="#数组和切片的区别" class="headerlink" title="数组和切片的区别"></a>数组和切片的区别</h2><ol>
+<li>类型：<ul>
+<li>数组是值类型，这意味着当你将<strong>一个数组赋值给另一个数组时，实际上是创建了数组的一个副本</strong>。因此，<strong>数组在函数参数传递时可能会导致性能问题，因为需要复制整个数组</strong>。</li>
+<li>切片是<strong>引用类型</strong>，当你将一个切片赋值给另一个切片时，<strong>两个切片会引用同一个底层数组</strong>。这意味着对其中<strong>一个切片的修改也会影响到另一个切片</strong>。同理当切片作为函数参数传递修改时，<strong>会影响原数据</strong>。</li>
+</ul>
+</li>
+<li>长度和容量：<ul>
+<li>数组的长度是固定的，它在声明时就被确定，并且数组的每个元素类型必须相同。数组的长度是其类型的一部分，<strong>因此<code>[3]int</code>和<code>[4]int</code>是不同的类型</strong>。</li>
+<li><strong>切片的长度是动态的</strong>，可以在运行时改变。<strong>切片还有一个容量属性，</strong>它表示切片底层数组中剩余的元素个数。<strong>切片的长度可以大于或等于其容量</strong>。</li>
+</ul>
+</li>
+<li>底层数据结构：<ul>
+<li><strong>数组是一组固定长度的元素序列，它的底层就是数组本身</strong>。</li>
+<li>切片的底层是一个数组，<strong>切片是对数组的抽象和封装</strong>，提供了更加灵活的操作方式。切片包含了指向底层<strong>数组的指针、长度和容量等属性</strong>。</li>
+</ul>
+</li>
+</ol>
+<h2 id="for-range-，元素地址会发生变化吗"><a href="#for-range-，元素地址会发生变化吗" class="headerlink" title="for range ，元素地址会发生变化吗"></a>for range ，元素地址会发生变化吗</h2><p> 在 for a,b :&#x3D; range c 遍历中，</p>
+<p> a 和 b 在内存中只会存在一份，即之后每次循环时遍历到的数据都是以值覆盖的方式赋给 a 和 b，并且a，b 的<strong>内存地址始终不变</strong>。由于有这个特性，<strong>for 循环里面如果开协程做并发</strong>，<strong>不要直接把 a 或者 b 的地址传给协程</strong>。</p>
+<ul>
+<li>解决办法：在每次循环时，创建一个临时变量传给协程。</li>
+</ul>
+<h2 id="go-defer，多个-defer-的顺序，defer-在什么时机会修改返回值？"><a href="#go-defer，多个-defer-的顺序，defer-在什么时机会修改返回值？" class="headerlink" title="go defer，多个 defer 的顺序，defer 在什么时机会修改返回值？"></a>go defer，多个 defer 的顺序，defer 在什么时机会修改返回值？</h2><p>作用：defer延迟函数，释放资源，收尾工作；如释放锁，关闭文件，关闭链接；捕获panic;</p>
+<p>避坑指南：<strong>defer函数紧跟在资源打开后面，否则defer可能得不到执行，导致内存泄露。</strong></p>
+<p>多个 defer 调用顺序是 <strong>LIFO（后入先出）</strong>，<strong>defer后的操作可以理解为压入栈中</strong></p>
+<p>defer，return，return value（函数返回值） 执行顺序：首先return，其次return value，最后defer。defer可以修改函数最终返回值，修改时机：<strong>有名返回值或者函数返回指针</strong></p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Cassie_zkq/article/details/108567205">Go语言defer用法大总结</a></p>
+<p>defer是Go语言中的一个关键字（延迟调用），一般用于释放资源和连接、关闭文件、释放锁等。和defer类似的有java的finally和C++的析构函数，这些语句一般是一定会执行的（某些特殊情况后文会提到），不过析构函数析构的是对象，而defer后面一般跟函数或方法。</p>
+<p>所有的defer语句会放入栈中，在入栈的时候会进行相关的值拷贝（也就是下面的“对应的参数会实时解析”）。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> whatever [<span class="number">5</span>]<span class="keyword">struct</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i := <span class="keyword">range</span> whatever &#123;</span><br><span class="line">        <span class="keyword">defer</span> fmt.Println(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">4</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">2</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="defer声明时，对应的参数会实时解析"><a href="#defer声明时，对应的参数会实时解析" class="headerlink" title="defer声明时，对应的参数会实时解析"></a>defer声明时，对应的参数会实时解析</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	i := <span class="number">1</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;i =&quot;</span>, i)</span><br><span class="line">	<span class="keyword">defer</span> fmt.Print(i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">i = 1</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//defer后面的语句最后才会执行，后面会讲当defer存在时return的执行逻辑。辨析：defer后面跟无参函数、有参函数和方法：</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test</span><span class="params">(a <span class="type">int</span>)</span></span> &#123;<span class="comment">//无返回值函数</span></span><br><span class="line">	<span class="keyword">defer</span> fmt.Println(<span class="string">&quot;1、a =&quot;</span>, a) <span class="comment">//方法</span></span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">(v <span class="type">int</span>)</span></span> &#123; fmt.Println(<span class="string">&quot;2、a =&quot;</span>, v)&#125; (a) <span class="comment">//有参函数</span></span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123; fmt.Println(<span class="string">&quot;3、a =&quot;</span>, a)&#125; () <span class="comment">//无参函数</span></span><br><span class="line">	a++</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	test(<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">3、a = 2</span></span><br><span class="line"><span class="comment">2、a = 1</span></span><br><span class="line"><span class="comment">1、a = 1</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>解释：<br>方法中的参数a，有参函数中的参数v，会请求参数，直接把参数代入，所以输出的都是1。</p>
+<p>a++变成2之后，3个defer语句以后声明先执行的顺序执行，无参函数中使用的a现在已经是2了，故输出2。</p>
+<h3 id="可读取函数返回值（return返回机制）"><a href="#可读取函数返回值（return返回机制）" class="headerlink" title="可读取函数返回值（return返回机制）"></a>可读取函数返回值（return返回机制）</h3><p>defer、return、返回值三者的执行逻辑应该是：</p>
+<ol>
+<li>return最先执行，return负责将结果写入返回值中；</li>
+<li>接着defer开始执行一些收尾工作；</li>
+<li>最后函数携带<strong>当前返回值</strong>（可能和最初的返回值不相同）退出。</li>
+</ol>
+<p><strong>当defer语句放在return后面时，就不会被执行。</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">a</span><span class="params">()</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">var</span> i <span class="type">int</span></span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		i++</span><br><span class="line">		fmt.Println(<span class="string">&quot;defer2:&quot;</span>, i) </span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		i++</span><br><span class="line">		fmt.Println(<span class="string">&quot;defer1:&quot;</span>, i) </span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;return:&quot;</span>, a()) </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">defer1: 1</span></span><br><span class="line"><span class="comment">defer2: 2</span></span><br><span class="line"><span class="comment">return: 0</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>解释：<br>返回值由变量 i 赋值，相当于 返回值&#x3D;i&#x3D;0。</p>
+<p>第二个defer中 i++ &#x3D; 1， </p>
+<p>第一个defer中 i++ &#x3D; 2，所以最终i的值是2。</p>
+<p>但是返回值已经被赋值了，即使后续修改i也不会影响返回值。最终返回值返回，所以main中打印0。</p>
+<h3 id="函数返回值为地址"><a href="#函数返回值为地址" class="headerlink" title="函数返回值为地址"></a>函数返回值为地址</h3><p>此时的返回值是一个指针（地址），</p>
+<p>这个指针&#x3D;&amp;i，相当于指向变量i所在的地址，</p>
+<p>两个defer语句都对i进行了修改，</p>
+<p>那么返回值指向的地址的内容也发生了改变，所以最终的返回值是2。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">c</span><span class="params">()</span></span> *<span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">var</span> i <span class="type">int</span></span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		i++</span><br><span class="line">		fmt.Println(<span class="string">&quot;defer2:&quot;</span>, i)</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		i++</span><br><span class="line">		fmt.Println(<span class="string">&quot;defer1:&quot;</span>, i)</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> &amp;i</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;return:&quot;</span>, *(c()))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">defer1: 1</span></span><br><span class="line"><span class="comment">defer2: 2</span></span><br><span class="line"><span class="comment">return: 2</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//最初返回值r的值是1，虽然defer语句中函数的参数名也叫r（这里我记作r’），但传参的时候相当于r‘=r（值传递），函数内的语句相当于r’=r‘+5，所以返回值r并没有被修改，最终的返回值仍是1。</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">()</span></span> (r <span class="type">int</span>) &#123;</span><br><span class="line">    <span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">(r <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">          r = r + <span class="number">5</span></span><br><span class="line">    &#125;(r)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="defer与闭包"><a href="#defer与闭包" class="headerlink" title="defer与闭包"></a>defer与闭包</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Test <span class="keyword">struct</span> &#123;</span><br><span class="line">	name <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *Test)</span></span> pp() &#123;</span><br><span class="line">	fmt.Println(t.name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	ts := []Test&#123;&#123;<span class="string">&quot;a&quot;</span>&#125;, &#123;<span class="string">&quot;b&quot;</span>&#125;, &#123;<span class="string">&quot;c&quot;</span>&#125;&#125;</span><br><span class="line">	<span class="keyword">for</span> _, t := <span class="keyword">range</span> ts &#123;</span><br><span class="line">		<span class="keyword">defer</span> t.pp()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">c</span></span><br><span class="line"><span class="comment">c</span></span><br><span class="line"><span class="comment">c</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>解释：<br>for结束时t.name&#x3D;“c”，接下来执行的那些defer语句中用到的t.name的值均为”c“。</p>
+<p>修改代码为：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Test <span class="keyword">struct</span> &#123;</span><br><span class="line">	name <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">pp</span><span class="params">(t Test)</span></span> &#123;</span><br><span class="line">	fmt.Println(t.name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	ts := []Test&#123;&#123;<span class="string">&quot;a&quot;</span>&#125;, &#123;<span class="string">&quot;b&quot;</span>&#125;, &#123;<span class="string">&quot;c&quot;</span>&#125;&#125;</span><br><span class="line">	<span class="keyword">for</span> _, t := <span class="keyword">range</span> ts &#123;</span><br><span class="line">		<span class="keyword">defer</span> pp(t)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">c</span></span><br><span class="line"><span class="comment">b</span></span><br><span class="line"><span class="comment">a</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>defer语句中的参数会实时解析，所以在碰到defer语句的时候就把该时的t代入了。</p>
+<p>再次修改代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Test <span class="keyword">struct</span> &#123;</span><br><span class="line">	name <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t *Test)</span></span> pp() &#123;</span><br><span class="line">	fmt.Println(t.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	ts := []Test&#123;&#123;<span class="string">&quot;a&quot;</span>&#125;, &#123;<span class="string">&quot;b&quot;</span>&#125;, &#123;<span class="string">&quot;c&quot;</span>&#125;&#125;</span><br><span class="line">	<span class="keyword">for</span> _, t := <span class="keyword">range</span> ts &#123;</span><br><span class="line">		tt := t</span><br><span class="line">		<span class="built_in">println</span>(&amp;tt)</span><br><span class="line">		<span class="keyword">defer</span> tt.pp()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">0xc000010200</span></span><br><span class="line"><span class="comment">0xc000010210</span></span><br><span class="line"><span class="comment">0xc000010220</span></span><br><span class="line"><span class="comment">c</span></span><br><span class="line"><span class="comment">b</span></span><br><span class="line"><span class="comment">a</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>解释：</p>
+<p>:&#x3D;用来声明并赋值，连续使用2次a:&#x3D;1就会报错，</p>
+<p>但是在for循环内，可以看出每次tt:&#x3D;t时，tt的地址都不同，说明他们是不同的变量，所以并不会报错。</p>
+<p>每次都有一个<strong>新的变量</strong>tt:&#x3D;t，所以每次在执行defer语句时，对应的tt不是同一个（for循环中实际上生成了3个不同的tt），所以输出的结果也不相同。</p>
+<h3 id="defer用于关闭文件和互斥锁"><a href="#defer用于关闭文件和互斥锁" class="headerlink" title="defer用于关闭文件和互斥锁"></a>defer用于关闭文件和互斥锁</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">unc ReadFile(filename <span class="type">string</span>) ([]<span class="type">byte</span>, <span class="type">error</span>) &#123;</span><br><span class="line">    f, err := os.Open(filename)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">defer</span> f.<span class="built_in">close</span>()</span><br><span class="line">    <span class="keyword">return</span> ReadAll()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="“解除”对所在函数的依赖"><a href="#“解除”对所在函数的依赖" class="headerlink" title="“解除”对所在函数的依赖"></a>“解除”对所在函数的依赖</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;time&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">	username <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *User)</span></span> Close() &#123;</span><br><span class="line">	fmt.Println(this.username, <span class="string">&quot;Closed !!!&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	u1 := &amp;User&#123;<span class="string">&quot;jack&quot;</span>&#125;</span><br><span class="line">	<span class="keyword">defer</span> u1.Close()</span><br><span class="line">	u2 := &amp;User&#123;<span class="string">&quot;lily&quot;</span>&#125;</span><br><span class="line">	<span class="keyword">defer</span> u2.Close()</span><br><span class="line">	time.Sleep(<span class="number">10</span> * time.Second)</span><br><span class="line">	fmt.Println(<span class="string">&quot;Done !&quot;</span>)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Done !</span></span><br><span class="line"><span class="comment">lily Closed !!!</span></span><br><span class="line"><span class="comment">jack Closed !!!</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>解释：<br>defer后面跟无参函数，u1.Close()和u2.Close()要等sleep和fmt.Println(“Done !”)之后才可以执行，</p>
+<p>也就是在函数最终返回之前执行。</p>
+<p>修改代码为：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;time&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">	username <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *User)</span></span> Close() &#123;</span><br><span class="line">	fmt.Println(this.username, <span class="string">&quot;Closed !!!&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">(u *User)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> u.Close()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	u1 := &amp;User&#123;<span class="string">&quot;jack&quot;</span>&#125;</span><br><span class="line">	f(u1)</span><br><span class="line">	u2 := &amp;User&#123;<span class="string">&quot;lily&quot;</span>&#125;</span><br><span class="line">	<span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123; <span class="keyword">defer</span> u2.Close() &#125;()</span><br><span class="line"></span><br><span class="line">	time.Sleep(<span class="number">10</span> * time.Second)</span><br><span class="line">	fmt.Println(<span class="string">&quot;Done !&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">jack Closed !!!</span></span><br><span class="line"><span class="comment">lily Closed !!!</span></span><br><span class="line"><span class="comment">Done !</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>这样的使用方式，似乎不太合理，但却有存在的必要性。</p>
+<p>大多数情况下，可以用于 u1,u2 之类非常消耗内存，或者cpu，其后执行时间过程且没有太多关联的情况。</p>
+<p>既保留了defer的功能特性，也满足范围精确控制的条件！</p>
+<h3 id="defer与panic"><a href="#defer与panic" class="headerlink" title="defer与panic"></a>defer与panic</h3><p>在panic语句后面的defer语句不被执行</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">panicDefer</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="built_in">panic</span>(<span class="string">&quot;panic&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> fmt.Println(<span class="string">&quot;defer after panic&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">panic: panic</span><br><span class="line">goroutine 1 [running]:</span><br><span class="line">main.panicDefer()</span><br><span class="line">    E:/godemo/testdefer.go:17 +0x39</span><br><span class="line">main.main()</span><br><span class="line">    E:/godemo/testdefer.go:13 +0x20</span><br><span class="line">Process finished with exit code 2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可以看到 defer 语句没有执行。<br>（2）在panic语句前的defer语句会被执行</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">deferPanic</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">defer</span> fmt.Println(<span class="string">&quot;defer before panic&quot;</span>)</span><br><span class="line">    <span class="built_in">panic</span>(<span class="string">&quot;panic&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">1234</span></span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">defer before panic</span><br><span class="line">panic: panic</span><br><span class="line">goroutine 1 [running]:</span><br><span class="line">main.deferPanic()</span><br><span class="line">    E:/godemo/testdefer.go:19 +0x95</span><br><span class="line">main.main()</span><br><span class="line">    E:/godemo/testdefer.go:14 +0x20</span><br><span class="line">Process finished with exit code 2</span><br></pre></td></tr></table></figure>
+
+<p>defer 语句输出了内容。<br>Go中的panic类似其它语言中的抛出异常，panic后面的代码不再执行(panic语句前面的defer语句会被执行)。</p>
+<h3 id="调用os-Exit时defer不会被执行"><a href="#调用os-Exit时defer不会被执行" class="headerlink" title="调用os.Exit时defer不会被执行"></a>调用os.Exit时defer不会被执行</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">deferExit</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;defer&quot;</span>)</span><br><span class="line">    &#125;()</span><br><span class="line">    os.Exit(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>当调用os.Exit()方法退出程序时，defer并不会被执行，上面的defer并不会输出。</p>
+<h3 id="uint-类型溢出问题"><a href="#uint-类型溢出问题" class="headerlink" title="uint 类型溢出问题"></a><code>uint </code>类型溢出问题</h3><p>超过最大存储值，例如<code>uint8</code>最大是255</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a uint8 = 255</span><br><span class="line">var b uint8 = 1</span><br><span class="line">a + b` 发生溢出， 结果为`0</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/05/17/%E7%BB%BC%E5%90%88%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -175,10 +413,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-05-17 13:26:38 / 修改时间：15:15:15" itemprop="dateCreated datePublished" datetime="2024-05-17T13:26:38+08:00">2024-05-17</time>
+              <time title="创建时间：2024-05-17 13:26:38" itemprop="dateCreated datePublished" datetime="2024-05-17T13:26:38+08:00">2024-05-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-06-03 11:41:04" itemprop="dateModified" datetime="2024-06-03T11:41:04+08:00">2024-06-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -586,6 +830,15 @@
 <ul>
 <li>D. <strong>错误的使用了GROUP BY</strong>：<code>SELECT * FROM students GROUP BY avg_grade ASC</code></li>
 </ul>
+<h1 id="Mybatis-x2F-Mybatis-plus"><a href="#Mybatis-x2F-Mybatis-plus" class="headerlink" title="Mybatis&#x2F;Mybatis-plus"></a>Mybatis&#x2F;Mybatis-plus</h1><h3 id="Mybatis分页的实现方式"><a href="#Mybatis分页的实现方式" class="headerlink" title="Mybatis分页的实现方式"></a>Mybatis分页的实现方式</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38377803/article/details/114092155"><strong>配置分页插件</strong>：在配置类中添加分页插件</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyBatisConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MybatisPlusInterceptor <span class="title function_">paginationInterceptor</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">MybatisPlusInterceptor</span> <span class="variable">interceptor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisPlusInterceptor</span>();</span><br><span class="line">        <span class="type">PaginationInnerInterceptor</span> <span class="variable">paginationInnerInterceptor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PaginationInnerInterceptor</span>();</span><br><span class="line">        paginationInnerInterceptor.setOverflow(<span class="literal">true</span>);</span><br><span class="line">        paginationInnerInterceptor.setMaxLimit(<span class="number">100L</span>);</span><br><span class="line">        interceptor.addInnerInterceptor(paginationInnerInterceptor);</span><br><span class="line">        <span class="keyword">return</span> interceptor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38377803/article/details/114092155"><strong>使用分页查询</strong>：在Controller或Service层中，使用<code>Page</code>对象进行分页查询</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Page&lt;User&gt; page = <span class="keyword">new</span> <span class="title class_">Page</span>&lt;&gt;(<span class="number">1</span>, <span class="number">5</span>);</span><br><span class="line">IPage&lt;User&gt; userIPage = userMapper.selectPage(page, <span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Map-常用函数"><a href="#Map-常用函数" class="headerlink" title="Map 常用函数"></a>Map 常用函数</h3><p>put</p>
+<p>get</p>
+<p>remove</p>
 
       
     </div>
@@ -3533,276 +3786,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/01/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MEIDE">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MEIDE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/03/01/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/" class="post-title-link" itemprop="url">英语语法学习笔记(1)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-03-01 12:24:51 / 修改时间：13:48:00" itemprop="dateCreated datePublished" datetime="2023-03-01T12:24:51+08:00">2023-03-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E8%AF%95/%E8%8B%B1%E8%AF%AD%E8%AF%AD%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">英语语法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="语法概论"><a href="#语法概论" class="headerlink" title="语法概论"></a>语法概论</h1><h2 id="词类"><a href="#词类" class="headerlink" title="词类"></a>词类</h2><h3 id="实词"><a href="#实词" class="headerlink" title="实词"></a>实词</h3><table>
-<thead>
-<tr>
-<th>词类</th>
-<th>名称全称</th>
-<th>全程简称</th>
-<th>作用</th>
-<th>句子成分</th>
-<th>列词</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>名词</td>
-<td>Noun</td>
-<td>n.</td>
-<td>表示人或事物的名称</td>
-<td>主、宾、表、同位语、补足语、定语</td>
-<td>Lily、childhood</td>
-</tr>
-<tr>
-<td>代词</td>
-<td>pronoun</td>
-<td>pron.</td>
-<td>代替名词、数词等</td>
-<td>主、宾、表、同位语、定语</td>
-<td>I、we、none</td>
-</tr>
-<tr>
-<td>数词</td>
-<td>Numeral</td>
-<td>num.</td>
-<td>表示数目或顺序</td>
-<td>主、宾、表、同位语、定语</td>
-<td>one、ninth</td>
-</tr>
-<tr>
-<td>形容词</td>
-<td>Adjective</td>
-<td>adj.</td>
-<td>表示事物的特种</td>
-<td>主、定、状、补足语</td>
-<td>effective、popular</td>
-</tr>
-<tr>
-<td>副词</td>
-<td>Adverb</td>
-<td>adv.</td>
-<td>表示行为或状态特征（修饰动词）</td>
-<td>状语、表语、补足语、定语</td>
-<td>curiously、bravely</td>
-</tr>
-<tr>
-<td>动词</td>
-<td>Verb</td>
-<td>v.</td>
-<td>表示动词或状态</td>
-<td>谓语</td>
-<td>absorb、devote</td>
-</tr>
-</tbody></table>
-<h3 id="虚词"><a href="#虚词" class="headerlink" title="虚词"></a>虚词</h3><table>
-<thead>
-<tr>
-<th>词类</th>
-<th>名称全称</th>
-<th>全程简称</th>
-<th>作用</th>
-<th>句子成分</th>
-<th>列词</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>冠词</td>
-<td>Article</td>
-<td>art.</td>
-<td>用在名词前，起限定作用</td>
-<td></td>
-<td>a、an、the</td>
-</tr>
-<tr>
-<td>介词</td>
-<td>Preposition</td>
-<td>prep.</td>
-<td>用在名词、代词等前，说明与其他词的关系</td>
-<td></td>
-<td>in、before、beyond</td>
-</tr>
-<tr>
-<td>连词</td>
-<td>Conjunction</td>
-<td>conj.</td>
-<td>用来连接词与词、短语与短语或句子与句子</td>
-<td></td>
-<td>and、when、until、if、once</td>
-</tr>
-<tr>
-<td>感叹词</td>
-<td>Interjection</td>
-<td>interj.</td>
-<td>表示说话时的感情或语气</td>
-<td></td>
-<td>oh、ah、aha、hurrah</td>
-</tr>
-</tbody></table>
-<h2 id="句子成分"><a href="#句子成分" class="headerlink" title="句子成分"></a>句子成分</h2><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>名称(英)</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>主语</td>
-<td>Subject</td>
-<td>一句话的中心</td>
-</tr>
-<tr>
-<td>谓语</td>
-<td>Predicate</td>
-<td>主语的主要情况，即表示动作，也可表示状态</td>
-</tr>
-<tr>
-<td>宾语</td>
-<td>Object</td>
-<td>动作的承受者或动作针对的对象</td>
-</tr>
-<tr>
-<td>表语</td>
-<td>Predicative</td>
-<td>主语的身份、性质、特征、状态等、和系动词一起构成谓语<br />【Life is not <strong>all roses</strong>】</td>
-</tr>
-<tr>
-<td>定语</td>
-<td>Attribute</td>
-<td>修饰名词、代词等</td>
-</tr>
-<tr>
-<td>状语</td>
-<td>Adverbial</td>
-<td>修辞动词、形容词、副词等</td>
-</tr>
-</tbody></table>
-<h2 id="短语与从句"><a href="#短语与从句" class="headerlink" title="短语与从句"></a>短语与从句</h2><h3 id="短语"><a href="#短语" class="headerlink" title="短语"></a>短语</h3><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>动词短语</td>
-<td></td>
-</tr>
-<tr>
-<td>不定式短语</td>
-<td></td>
-</tr>
-<tr>
-<td>动名词短语</td>
-<td></td>
-</tr>
-<tr>
-<td>分词短语</td>
-<td></td>
-</tr>
-<tr>
-<td>分词短语</td>
-<td></td>
-</tr>
-<tr>
-<td>介词短语</td>
-<td></td>
-</tr>
-<tr>
-<td>名词短语</td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id="从句"><a href="#从句" class="headerlink" title="从句"></a>从句</h3><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>名词性从句</td>
-<td></td>
-</tr>
-<tr>
-<td>状语从句</td>
-<td></td>
-</tr>
-<tr>
-<td>定语从句</td>
-<td></td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3872,7 +3855,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -3885,7 +3868,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
