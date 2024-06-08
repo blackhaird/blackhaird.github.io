@@ -183,7 +183,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-09 01:22:36" itemprop="dateModified" datetime="2024-06-09T01:22:36+08:00">2024-06-09</time>
+                <time title="修改时间：2024-06-09 01:34:23" itemprop="dateModified" datetime="2024-06-09T01:34:23+08:00">2024-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -733,8 +733,44 @@
 
 
 </li>
-<li></li>
+<li><p><strong>原子操作（Atomic）</strong>: 虽然不是传统意义上的锁，但 <code>sync/atomic</code> 包提供了原子操作，如原子增加、减少、交换和比较交换等，可用于实现无锁数据结构和细粒度的同步控制，这些操作在硬件层面上保证了并发安全。</p>
+</li>
 </ol>
+<p>请注意，Go 语言的并发设计鼓励使用 channels（通道）进行通信来代替共享内存，但以上锁机制在某些场景下仍然是必要的，例如实现传统的锁模式或者对现有 C&#x2F;C++ 库进行封装时。</p>
+<h4 id="Go-如何实现原子操作？"><a href="#Go-如何实现原子操作？" class="headerlink" title="Go 如何实现原子操作？"></a>Go 如何实现原子操作？</h4><p>原子操作就是不可中断的操作，外界是看不到原子操作的中间状态，要么看到原子操作已经完成，要么看到原子操作已经结束。在某个值的原子操作执行的过程中，CPU 绝对不会再去执行其他针对该值的操作，那么其他操作也是原子操作。</p>
+<p>在 Go 语言中，原子操作通过 <code>sync/atomic</code> 包来实现。<code>sync/atomic</code> 包提供了对整型值、指针以及其他一些类型进行原子操作的支持，这些操作在多线程或多 Goroutine 环境下是线程安全的，即在操作过程中不会被打断，保证了操作的完整性。</p>
+<p>以下是一些 <code>sync/atomic</code> 包提供的原子操作函数示例：</p>
+<ol>
+<li>整数类型的原子操作：<ul>
+<li><code>SwapInt32/64</code>：交换（替换）一个 32&#x2F;64 位整数变量的值，返回旧值。</li>
+<li><code>CompareAndSwapInt32/64</code>：比较并交换，只有当当前值等于预期值时才将整数变量设置为新值，返回旧值。</li>
+<li><code>AddInt32/64</code>：原子地将指定值加到整数变量上，并返回新的值。</li>
+<li><code>LoadInt32/64</code>：原子地读取整数变量的值。</li>
+<li><code>StoreInt32/64</code>：原子地将值存储到整数变量中。</li>
+</ul>
+</li>
+<li>指针类型的原子操作：<ul>
+<li><code>SwapPointer</code>：交换指针变量的值，返回旧值。</li>
+<li><code>CompareAndSwapPointer</code>：比较并交换指针变量的值。</li>
+</ul>
+</li>
+<li>其他类型：<ul>
+<li>对于无符号整数类型（<code>uint32</code>、<code>uint64</code>）和 <code>uintptr</code> 类型也有类似的原子操作。</li>
+<li><code>AtomicXXX</code> 函数家族还提供了对 <code>bool</code> 类型、<code>Value</code> 类型（用于封装任意类型，通过接口实现）的原子操作支持。</li>
+</ul>
+</li>
+</ol>
+<h2 id="悲观锁、乐观锁是什么？Mutex-是悲观锁还是乐观锁？"><a href="#悲观锁、乐观锁是什么？Mutex-是悲观锁还是乐观锁？" class="headerlink" title="悲观锁、乐观锁是什么？Mutex 是悲观锁还是乐观锁？"></a>悲观锁、乐观锁是什么？<code>Mutex</code> 是悲观锁还是乐观锁？</h2><p>悲观锁和乐观锁是处理数据并发访问的两种不同策略：</p>
+<ul>
+<li><strong>悲观锁</strong>：假设数据经常发生冲突，因此在数据处理前<strong>先进行加锁</strong>。传统的关系型数据库通常使用这种类型的锁，如行锁、表锁等。它确保了操作的原子性、一致性、隔离性和持久性，<strong>但可能会降低并发性能，因为其他线程必须等待锁被释放才能访问数据。</strong></li>
+<li><strong>乐观锁</strong>：假设数据通常不会发生冲突，因此不会在数据处理一开始就加锁，而是<strong>在数据提交更新时检查是否有冲突</strong>。<strong>如果有冲突，则重新尝试或返回错误信息。</strong>这种方式在冲突少的情况下能提高吞吐量，<strong>适用于读多写少的场景</strong>。</li>
+</ul>
+<p>具体到Go语言中，<code>sync.Mutex</code>是一种典型的<strong>悲观锁</strong>实现，它在多个goroutine访问共享资源时强制加锁，确保同一时间只有一个goroutine能够访问该资源。而atomic包中的函数则提供了一种乐观锁的实现方式，它们通常在无冲突或冲突较少的情况下表现得更为高效。</p>
+<h3 id="Mutex-有几种模式？"><a href="#Mutex-有几种模式？" class="headerlink" title="Mutex 有几种模式？"></a>Mutex 有几种模式？</h3><ul>
+<li><strong>正常模式（Normal Mode）</strong>：这是 Mutex 的默认模式。在这个模式下，当一个 goroutine 试图获取锁时，<strong>会先自旋几次尝试通过原子操作获取锁。如果在自旋过程中未能获取到锁，该 goroutine 将进入等待队列，</strong>按照<strong>先入先出（FIFO）</strong>的顺序排队等待。然而，当锁被释放时，排在队列首位的等待者并不总是能立即获得锁，<strong>它还需要与后续进入的正在自旋的 goroutine 竞争锁的所有权。</strong></li>
+<li><strong>饥饿模式（Starvation Mode）</strong>：当一个 goroutine 等待获取锁的时间超过一定阈值（例如 1ms），<strong>它会将 Mutex 切换到饥饿模式</strong>。在这种模式下，锁的所有权会直接从解锁的 goroutine 传递给等待队列中排在最前面的 goroutine，而不是让新来的 goroutine 竞争获取，<strong>这样可以防止长时间等待的 goroutine 饥饿。</strong></li>
+</ul>
+<p>此外，Mutex 还具有适应能力，能够根据当前的使用情况自动切换模式。如果持有锁的 goroutine 的总等待时间小于一定的阈值（如 1ms），或者等待队列为空，Mutex 会被置于正常模式。这种设计旨在在保持高性能的同时，减少长时间等待的风险。</p>
 
       
     </div>
