@@ -183,7 +183,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-08 00:50:09" itemprop="dateModified" datetime="2024-06-08T00:50:09+08:00">2024-06-08</time>
+                <time title="修改时间：2024-06-09 01:22:36" itemprop="dateModified" datetime="2024-06-09T01:22:36+08:00">2024-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -210,7 +210,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Golang面试题"><a href="#Golang面试题" class="headerlink" title="Golang面试题"></a>Golang面试题</h1><h2 id="进程、线程、协程"><a href="#进程、线程、协程" class="headerlink" title="进程、线程、协程"></a>进程、线程、协程</h2><p>进程：资源分配和<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=CPU&spm=1001.2101.3001.7020">CPU</a>调度的基本单位</p>
+          <h1 id="Golang面试题"><a href="#Golang面试题" class="headerlink" title="Golang面试题"></a>Golang面试题</h1><h2 id="进程、线程、协程"><a href="#进程、线程、协程" class="headerlink" title="进程、线程、协程"></a>进程、线程、协程</h2><p>总结来说，进程侧重于资源隔离，线程侧重于共享资源并发执行，协程则是在单个进程内的轻量级并发，具有更低的切换开销和更高的灵活性。</p>
+<p>进程：资源分配和<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=CPU&spm=1001.2101.3001.7020">CPU</a>调度的基本单位</p>
 <p>线程：CPU调度的基本单位，线程除了有一些自己的必要的堆栈空间之外，其它的资源都是共享的线程中的，共享的资源包括：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.所有线程共享相同的虚拟地址空间，即它们可以访问同样的代码段、数据段和堆栈段。</span><br><span class="line">2.文件描述符：进程打开的文件描述符是进程级别的资源，所以同一个进程中的线程可以共享打开的文件描述符，这意味着它们可以同时读写同一个文件。</span><br><span class="line">3.全局变量：全局变量是进程级别的变量，因此可以被同一个进程中的所有线程访问和修改。</span><br><span class="line">4.静态变量：静态变量也是进程级别的变量，在同一个进程中的线程之间共享内存空间。</span><br><span class="line">5.进程ID、进程组ID</span><br></pre></td></tr></table></figure>
 
@@ -370,8 +371,371 @@
 <h3 id="调用os-Exit时defer不会被执行"><a href="#调用os-Exit时defer不会被执行" class="headerlink" title="调用os.Exit时defer不会被执行"></a>调用os.Exit时defer不会被执行</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">deferExit</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;defer&quot;</span>)</span><br><span class="line">    &#125;()</span><br><span class="line">    os.Exit(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>当调用os.Exit()方法退出程序时，defer并不会被执行，上面的defer并不会输出。</p>
-<h3 id="uint-类型溢出问题"><a href="#uint-类型溢出问题" class="headerlink" title="uint 类型溢出问题"></a><code>uint </code>类型溢出问题</h3><p>超过最大存储值，例如<code>uint8</code>最大是255</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="uint-类型溢出问题"><a href="#uint-类型溢出问题" class="headerlink" title="uint 类型溢出问题"></a><code>uint </code>类型溢出问题</h4><p>超过最大存储值，例如<code>uint8</code>最大是255</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a uint8 = 255</span><br><span class="line">var b uint8 = 1</span><br><span class="line">a + b` 发生溢出， 结果为`0</span><br></pre></td></tr></table></figure>
+
+<h4 id="rune-类型"><a href="#rune-类型" class="headerlink" title="rune 类型"></a>rune 类型</h4><p><strong><code>rune</code>类型是Go语言中用于表示<code>Unicode</code>字符的整数类型，它是<code>int32</code>的别名。</strong></p>
+<p>用于表示一个 Unicode 码点（Unicode Code Point）。Unicode 码点是Unicode标准中为每个字符分配的唯一整数，它可以涵盖世界上几乎所有的字符和符号。</p>
+<p>Go 语言中的 <code>rune</code> 主要是为了方便处理UTF-8编码的文本，特别是多字节字符，比如中文、日文、韩文等非ASCII字符。在UTF-8编码下，单个字符可能由1到4个字节组成，而一个 <code>rune</code> 能够容纳任何有效的Unicode码点，确保能够完整地表示所有这些字符。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">s := <span class="string">&quot;你好，世界！&quot;</span></span><br><span class="line">runes := []<span class="type">rune</span>(s)</span><br><span class="line"><span class="comment">// 对 runes 进行遍历或操作</span></span><br><span class="line"><span class="keyword">for</span> i, r := <span class="keyword">range</span> runes &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;索引: %d, 字符: %c, Unicode 编码: %U\n&quot;</span>, i, r, r)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">索引: 0, 字符: 你, Unicode 编码: U+4F60</span></span><br><span class="line"><span class="comment">索引: 1, 字符: 好, Unicode 编码: U+597D</span></span><br><span class="line"><span class="comment">索引: 2, 字符: ，, Unicode 编码: U+FF0C</span></span><br><span class="line"><span class="comment">索引: 3, 字符: 世, Unicode 编码: U+4E16</span></span><br><span class="line"><span class="comment">索引: 4, 字符: 界, Unicode 编码: U+754C</span></span><br><span class="line"><span class="comment">索引: 5, 字符: ！, Unicode 编码: U+FF01</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="int类型"><a href="#int类型" class="headerlink" title="int类型"></a><code>int</code>类型</h4><p>go语言中的int的大小是和操作系统位数相关的，如果是32位操作系统，int类型的大小就是4字节。如果是64位操作系统，int类型的大小就是8个字节。</p>
+<h3 id="golang-中解析-tag-是怎么实现的？反射原理是什么？-中高级题目"><a href="#golang-中解析-tag-是怎么实现的？反射原理是什么？-中高级题目" class="headerlink" title="golang 中解析 tag 是怎么实现的？反射原理是什么？(中高级题目)"></a>golang 中解析 tag 是怎么实现的？反射原理是什么？(中高级题目)</h3><p><strong>Tag 实现流程概要：</strong></p>
+<ol>
+<li>获取结构体类型的反射对象。</li>
+<li>遍历结构体的所有字段。</li>
+<li>对于每个字段，调用 <code>StructField.Tag.Get()</code> 方法并传入想要获取的 tag 键名，比如 <code>&quot;json&quot;</code> 或 <code>&quot;xml&quot;</code>。</li>
+<li>返回并处理 tag 中的值。</li>
+</ol>
+<p><strong>反射的原理，基于接口来实现：</strong></p>
+<p>在Go语言中，所有的类型都实现了空接口<code>interface&#123;&#125;</code>，这使得它们都可以被转换为反射类型<code>Type</code>和反射值<code>Value</code>。反射过程涉及到几个步骤：</p>
+<ol>
+<li><strong>类型转换</strong>：将普通类型隐式转换为接口类型。这个转换过程是自动进行的，当一个变量被赋值给接口类型的值时，就会进行这个转换。</li>
+<li><strong>获取反射对象</strong>：通过转换得到的接口值，可以调用标准库<code>reflect</code>包中的函数来获取对应的反射类型<code>Type</code>和反射值<code>Value</code>。</li>
+<li><strong>操作反射对象</strong>：通过反射类型和反射值，可以获取到原始类型的各种信息，包括字段、方法、标签等，并且可以对这些信息进行读取和修改操作。</li>
+</ol>
+<h3 id="Golang-调用函数传入结构体时，应该传值还是指针？"><a href="#Golang-调用函数传入结构体时，应该传值还是指针？" class="headerlink" title="Golang 调用函数传入结构体时，应该传值还是指针？"></a>Golang 调用函数传入结构体时，应该传值还是指针？</h3><p>分情况：</p>
+<ol>
+<li><strong>结构体的大小：</strong>如果结构体非常大，使用<strong>指针传递会更有效率</strong>，因为这样只会复制指针值（一般是8字节），而不是复制整个结构体。<strong>如果结构体小</strong>，值传递和指针传递的性能差异可能可以忽略不计。</li>
+<li><strong>是否需要修改原始结构体</strong>：如果你需要在函数中<strong>修改原始结构体</strong>，你应该使用指针传递。如果你使用值传递，<strong>函数会接收结构体的一个副本</strong>，你在函数中对结构体的修改不会影响到原始的结构体。</li>
+</ol>
+<h3 id="slice"><a href="#slice" class="headerlink" title="slice"></a>slice</h3><p><strong>Go语言中的slice是一个结构体，包含指针、长度和容量三个部分</strong>。它的特性包括：</p>
+<ul>
+<li><strong>指针</strong>：Slice包含一个指针，该指针指向底层数组，即实际存储数据的数组。</li>
+<li>**长度<code>len</code>**：Slice的长度表示当前Slice使用到的元素个数。</li>
+<li>**容量<code>cap</code>**：Slice的容量表示底层数组的大小，也就是Slice可以扩展的最大长度。</li>
+<li><strong>动态性</strong>：Slice是<strong>灵活的，其长度可以改变</strong>，不像数组那样固定。</li>
+<li><strong>传递效率</strong>：作为函数参数时，<strong>Slice传递的是引用，而不是像数组那样传递副本</strong>，这使得Slice在函数调用中更加高效。</li>
+</ul>
+<p>在使用Slice时，需要注意以下几点：</p>
+<ul>
+<li>Slice可以通过内置的<code>make</code>、<code>new</code>函数或直接对数组进行切片操作来创建。</li>
+<li>修改Slice的元素会影响到底层数组，反之亦然。</li>
+<li>当Slice的容量大于其长度时，可以通过append等操作来扩展Slice的长度，而不会改变底层数组的大小。</li>
+<li>当Slice的长度达到容量时，再次进行append操作将会导致底层数组的重新分配和复制，这可能会影响性能。</li>
+</ul>
+<h3 id="select"><a href="#select" class="headerlink" title="select"></a>select</h3><p>Go语言中的<code>select</code>语句是一种多路复用的控制结构，它用于同时处理多个通道（channel）上的事件。其底层数据结构和特性如下：</p>
+<ol>
+<li><strong>数据结构</strong>：<code>select</code>的底层实现与操作系统中的I&#x2F;O多路复用机制类似，如<code>poll</code>和<code>epoll</code>。在Go语言中，<code>select</code>用于监听通道的发送和接收操作，当通道准备好进行相应的操作时，会触发<code>select</code>中对应的<code>case</code>分支执行。</li>
+<li>特性：<ul>
+<li><strong>通道操作</strong>：<code>select</code>语句只能用于通道操作，而且是单协程操作，每个<code>case</code>必须是单个通道发送或接收的操作。</li>
+<li><strong>非抢占式</strong>：<code>select</code>语句会监听所有指定的通道上的操作，一旦其中一个通道准备好，就会执行相应的代码块。这与<code>switch</code>语句的顺序执行不同，<code>select</code>的<code>case</code>执行顺序是随机的。</li>
+<li><strong>避免死锁</strong>：在使用<code>select</code>时需要注意避免死锁的情况，例如至少要有一个通道准备好，否则<code>select</code>会阻塞，直至有一个通道已准备好为止。如果存在<code>default</code>分支，那么<code>select</code>就不会阻塞，而是执行<code>default</code>分支，但<code>default</code>会略影响性能。</li>
+<li><strong>超时控制</strong>：<code>select</code>可以配合<code>default</code>分支实现超时控制，如果在指定的时间内没有任何通道准备好，<code>default</code>分支会被执行。</li>
+<li><strong>无穿透执行</strong>：<code>select</code>语句中没有类似<code>switch</code>中的<code>fallthrough</code>用法，即执行完一个<code>case</code>后不会继续执行下一个<code>case</code>。</li>
+</ul>
+</li>
+</ol>
+<h3 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h3><p>每个 defer 语句都对应一个<code>_defer</code> 实例，多个实例使用指针连接起来形成一个单连表，保存在 <code>goroutine</code> 数据结构中，每次插入<code>_defer</code> 实例，均插入到链表的头部，函数结束再一次从头部取出，从而形成后进先出的效果。</p>
+<p><strong>defer 的规则总结</strong>：</p>
+<ul>
+<li>延迟函数的参数是 defer 语句出现的时候就已经确定了的。</li>
+<li>延迟函数执行按照后进先出的顺序执行，即先出现的 defer 最后执行。</li>
+<li>延迟函数可能操作主函数的返回值。</li>
+<li>建议申请资源后立即使用 defer 关闭资源。</li>
+</ul>
+<h3 id="单引号，双引号，反引号的区别"><a href="#单引号，双引号，反引号的区别" class="headerlink" title="单引号，双引号，反引号的区别"></a>单引号，双引号，反引号的区别</h3><p><strong>单引号</strong>，表示<code>byte</code>类型或<code>rune</code>类型，对应 <code>uint8</code>和<code>int32</code>类型，默认是 <code>rune</code> 类型。<code>byte</code>用来强调数据是<code>raw data</code>，而不是数字；而<code>rune</code>用来表示<code>Unicode</code>的<code>code point</code>。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> v <span class="type">rune</span> = <span class="string">&#x27;你&#x27;</span></span><br><span class="line">	<span class="keyword">var</span> v1 <span class="type">rune</span> = <span class="string">&#x27;k&#x27;</span></span><br><span class="line">	<span class="keyword">var</span> v2 <span class="type">byte</span> = <span class="string">&#x27;k&#x27;</span></span><br><span class="line">	fmt.Println(v, v1, v2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">20320 107 107</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>双引号</strong>，里面可以是单个字符也可以是字符串，对应<code>string</code>类型，实际上是字符数组。可以用索引号访问某字节，也可以用<code>len()</code>函数来获取字符串所占的字节长度。双引号里的字符串可以转义，但是不能换行，可以利用<code>\n</code>来实现换行。</p>
+<p><strong>反引号</strong>中的字符串表示其原生的意思，里面的内容不会被转义，可以换行。</p>
+<h3 id="Go-支持默认参数或可选参数吗？"><a href="#Go-支持默认参数或可选参数吗？" class="headerlink" title="Go 支持默认参数或可选参数吗？"></a>Go 支持默认参数或可选参数吗？</h3><p>不支持。但是可以利用结构体参数，或者<code>...</code>传入参数切片数组。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个函数可以传入任意数量的整型参数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sum</span><span class="params">(nums ...<span class="type">int</span>)</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构体打印时，-v-和-v-的区别"><a href="#结构体打印时，-v-和-v-的区别" class="headerlink" title="结构体打印时，%v 和 %+v 的区别"></a>结构体打印时，<code>%v</code> 和 <code>%+v</code> 的区别</h3><p><code>%v</code>输出结构体各成员的值；</p>
+<p><code>%+v</code>输出结构体各成员的<strong>名称</strong>和<strong>值</strong>；</p>
+<p><code>%#v</code>输出结构体名称和结构体各成员的名称和值</p>
+<h3 id="Go-语言中如何表示枚举值"><a href="#Go-语言中如何表示枚举值" class="headerlink" title="Go 语言中如何表示枚举值"></a>Go 语言中如何表示枚举值</h3><ul>
+<li>使用常量定义枚举值</li>
+<li>使用自定义类型定义枚举</li>
+<li>使用 <code>iota</code> 自增枚举值</li>
+</ul>
+<h3 id="空-struct-的用途"><a href="#空-struct-的用途" class="headerlink" title="空 struct{} 的用途"></a>空 struct{} 的用途</h3><p>在Go语言中，空的 <code>struct &#123;&#125;</code> 类型通常被用作占位符或者信号。它不占用任何内存空间，也不包含任何字段，可以避免任何多余的内存分配。</p>
+<ol>
+<li><p>实现集合类型：Go语言本身没有直接的集合类型（类似于Set），但我们可以使用map来替代，例如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type Set map[int]struct&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Map的key是不允许重复的，这和Set集合性质相符，再将struct{}作为Value，即可用Map实现Set。</li>
+</ul>
+</li>
+<li><p><strong>实现空通道</strong>：在Go的并发编程中，我们经常会遇到<strong>通知型channel</strong>，它们不需要传递任何数据，只是用于协调Goroutine的运行。这种情况下，使用空结构体作为通道元素类型非常合适，因为它不会增加额外的内存开销。</p>
+</li>
+<li><p><strong>实现方法接收者</strong>：有时我们需要使用结构体类型的变量作为方法接收者，但结构体本身不包含任何字段属性。这种情况下，使用空结构体作为接收者是比较合适的，因为它不会占用额外的内存空间。</p>
+</li>
+</ol>
+<h1 id="MAP"><a href="#MAP" class="headerlink" title="MAP"></a>MAP</h1><h3 id="Map相关"><a href="#Map相关" class="headerlink" title="Map相关"></a>Map相关</h3><h4 id="map-使用需要注意点"><a href="#map-使用需要注意点" class="headerlink" title="map 使用需要注意点"></a>map 使用需要注意点</h4><ol>
+<li><strong>初始化</strong>：在使用map之前，需要先进行初始化，否则会导致编译错误。初始化一个map可以使用字面量语法，如<code>m := make(map[string]int)</code>或<code>m := map[string]int&#123;&#125;</code>。</li>
+<li><strong>并发安全</strong>：在高并发场景下，<strong>应当考虑使用<code>sync.Map</code>或者其他并发安全措施来保护map，因为原生的map类型不是并发安全的。</strong></li>
+<li><strong>删除和添加操作</strong>：频繁的删除和添加元素会导致哈希表的频繁重建，这可能会影响程序的性能。因此，在设计数据结构时，应尽量避免在map中频繁地进行这些操作。</li>
+<li><strong>迭代效率</strong>：遍历大的map可能很慢，尤其是在map结构发生变化时。如果需要遍历map，应尽量在map结构稳定时进行，以提高迭代效率。</li>
+<li><strong>作为集合使用</strong>：由于Go语言中没有内置的集合类型，map经常被用作集合。当使用map作为集合时，<strong>通常不需要关心值，只需要键即可</strong>。</li>
+</ol>
+<h4 id="map并发安全"><a href="#map并发安全" class="headerlink" title="map并发安全"></a>map并发安全</h4><p>在Go语言中，内置的map类型<strong>并非并发安全</strong>。</p>
+<ol>
+<li><strong>读写冲突</strong>：当有多个<code>goroutine</code>同时对同一个map进行读写操作时，可能会发生冲突，导致程序崩溃或者数据不一致。</li>
+<li><strong>写操作的广义定义</strong>：在map的并发操作中，“写”不仅仅是指插入新的键值对，还包括更新或删除已有的键值对。</li>
+<li><strong>并发读安全</strong>：虽然map支持多个<code>goroutine</code>同时进行读取操作，但是在涉及到写操作时，就需要特别小心。</li>
+<li><strong>性能优化场景</strong>：官方文档提到，在某些特定的场景下，如键值对只被写入一次但多次读取，或者多个<code>goroutine</code>读写不同的键集合时，原生map的性能可能优于使用<code>Mutex</code>或<code>RWMutex</code>的情况。</li>
+<li>解决方案：<ul>
+<li>如果需要在并发环境中使用map，可以考虑使用sync包中的<code>sync.Map</code>，它是一个并发安全的map实现。</li>
+<li>可以使用读写锁（如<code>sync.RWMutex</code>）来保护对map的访问。</li>
+</ul>
+</li>
+</ol>
+<h4 id="map-循环是有序的还是无序的"><a href="#map-循环是有序的还是无序的" class="headerlink" title="map 循环是有序的还是无序的"></a>map 循环是有序的还是无序的</h4><p> <strong>无序的</strong></p>
+<ul>
+<li><strong>哈希函数</strong>：map使用哈希函数来计算键的存储位置，这个过程是无序的。</li>
+<li><strong>内部结构</strong>：map的内部结构是一系列桶（bucket），每个桶是一个链表，链表中的元素是无序的。</li>
+<li><strong>随机化</strong>：Go语言的map在迭代时会生成一个随机数作为遍历的起始位置，这是为了防止哈希碰撞攻击，并且确保每次迭代的顺序都是不同的。</li>
+</ul>
+<h4 id="map-中删除一个-key，它的内存会释放么？"><a href="#map-中删除一个-key，它的内存会释放么？" class="headerlink" title="map 中删除一个 key，它的内存会释放么？"></a>map 中删除一个 key，它的内存会释放么？</h4><p> <strong>不会立即释放</strong>。</p>
+<p>在Go语言中，当你从map中删除一个键值对时，该操作并不会立即释放掉这个键值对所占用内存。这是因为map的底层实现是由若干个<code>bmap</code>（桶）构成的，桶只会扩容，不会缩容 ，map内存空间本身并不会立即归还给操作系统。</p>
+<p><strong>如果删除的元素是值类型，如int、float、bool、string以及数组和struct，这些类型的内存通常不会自动释放。如果删除的元素是引用类型，如切片、映射和通道等，虽然它们所指向的实际数据结构可能会被释放，但map中的键值对所占用的内存同样不会立即释放。</strong></p>
+<p>总的来说，Go语言的垃圾收集器会在合适的时机回收未使用的内存。这意味着，即使从map中删除了元素，内存也可能不会立即得到释放，而是等待下一次垃圾收集周期进行处理。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhw21w/article/details/129434340">参考教程</a></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406081522409.png"/>
+
+
+
+<h4 id="nil-map-和空-map-有何不同"><a href="#nil-map-和空-map-有何不同" class="headerlink" title="nil map 和空 map 有何不同"></a>nil map 和空 map 有何不同</h4><p><strong>nil map是指未初始化的map，而空map是指已初始化但不含任何键值对的map</strong>。具体区别表现在以下几个方面：</p>
+<ol>
+<li><strong>初始化状态</strong>：<ul>
+<li><strong>nil map</strong>：是指map变量被声明但未被初始化，此时它的值是nil。</li>
+<li><strong>空map</strong>：是指map已被初始化，但没有包含任何键值对，即它的长度为0。</li>
+</ul>
+</li>
+<li><strong>内存分配</strong>：<ul>
+<li><strong>nil map</strong>：由于未初始化，所以不会为map分配实际的内存空间。</li>
+<li><strong>空map</strong>：虽然不包含任何元素，但是已经分配了哈希表所需的内存空间。</li>
+</ul>
+</li>
+<li><strong>操作限制</strong>：<ul>
+<li><strong>nil map</strong>：不能进行任何map的操作，如添加、删除或读取键值对，否则会引发panic。</li>
+<li><strong>空map</strong>：可以进行正常的map操作，包括添加、删除和读取键值对</li>
+</ul>
+</li>
+</ol>
+<h4 id="map-的数据结构是什么？是怎么实现扩容"><a href="#map-的数据结构是什么？是怎么实现扩容" class="headerlink" title="map 的数据结构是什么？是怎么实现扩容"></a>map 的数据结构是什么？是怎么实现扩容</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhw21w/article/details/129434340">详细讲解</a></p>
+<p><strong>Go语言中的map使用哈希表（<code>hmap</code>）作为其数据结构，并且采用渐进式的方式进行扩容</strong>。</p>
+<p>Go语言的map是一种高效的键值对集合类型，它的底层实现是哈希表（<code>hmap</code>）。哈希表由多个桶（<code>buckets</code>）组成，每个桶用来存储具有相同哈希值的键值对。当map需要存储更多的元素时，就会触发扩容操作。这个过程涉及到以下关键步骤：</p>
+<ul>
+<li><strong>重新分配内存</strong>：在扩容时，Go会为哈希表分配一个新的、更大的内存区域。</li>
+<li><strong>渐进式搬迁</strong>：由于一次性搬迁大量的键值对会严重影响性能，Go map采用了渐进式搬迁的策略。这意味着在每次扩容时，只有部分数据会被迁移到新的内存地址。</li>
+<li><strong>控制搬迁数量</strong>：为了减少扩容对性能的影响，每次搬迁的键值对数量是有限的，通常最多只会搬迁2个桶。</li>
+<li><strong>保持数据访问</strong>：在扩容过程中，旧的桶（oldbuckets）仍然保持可用状态，以便在搬迁过程中可以继续访问和修改数据。</li>
+<li><strong>哈希冲突处理</strong>：为了解决哈希冲突的问题，Go map使用了拉链法，即在同一个桶内通过链表来存储具有相同哈希值的键值对。</li>
+</ul>
+<h4 id="golang-哪些类型不可以作为map-key"><a href="#golang-哪些类型不可以作为map-key" class="headerlink" title="golang 哪些类型不可以作为map key"></a>golang 哪些类型不可以作为map key</h4><p>任何可比较（comparable）和相等（equal）的类型都可以作为map的键。</p>
+<p>注意，<strong>空接口（interface{}）可以作为map的键</strong>，但需要谨慎使用，因为它可以包含任何类型的值。</p>
+<p><strong>不能作为map key 的类型包括：</strong></p>
+<ul>
+<li>slices</li>
+<li>maps</li>
+<li>functions</li>
+</ul>
+<h4 id="Map赋值和复制"><a href="#Map赋值和复制" class="headerlink" title="Map赋值和复制"></a>Map赋值和复制</h4><p>当你把一个map赋值给另一个map时，<strong>实际上是复制了原map的引用，而不是复制了整个map的内容。这意味着新旧两个map共享相同的底层数据结构，修改其中一个map会影响到另一个。</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ma := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]any)</span><br><span class="line">ma[<span class="string">&quot;one&quot;</span>] = <span class="string">&quot;hello&quot;</span></span><br><span class="line">mb := ma</span><br><span class="line">mb[<span class="string">&quot;two&quot;</span>] = <span class="string">&quot;world&quot;</span></span><br><span class="line">fmt.Println(ma)</span><br><span class="line"><span class="comment">// 输出：map[one:hello two:world]</span></span><br><span class="line"><span class="comment">// 表示修改mb会影响ma</span></span><br></pre></td></tr></table></figure>
+
+<p>如果要复制一个完全独立的副本，需要遍历目标Map来创建。</p>
+<h3 id="context相关"><a href="#context相关" class="headerlink" title="context相关"></a>context相关</h3><h4 id="context-结构是什么样的？context-使用场景和用途"><a href="#context-结构是什么样的？context-使用场景和用途" class="headerlink" title="context 结构是什么样的？context 使用场景和用途"></a>context 结构是什么样的？context 使用场景和用途</h4><p> <code>context.Context</code> 是 <code>Golang</code> 中用于<strong>处理并发编程的上下文控制</strong>，<strong>提供了截止日期、取消信号和请求相关值的传递机制</strong>。它的结构定义包括以下几个关键方法：</p>
+<ol>
+<li><strong>Deadline</strong>: 此方法返回一个截止日期和一个布尔值，表示上下文是否设置了截止日期。</li>
+<li><strong>Done</strong>: 这是一个通道，当上下文被取消或超时时，会向该通道发送一个信号。</li>
+<li><strong>Err</strong>: 该方法返回上下文中发生的错误。</li>
+<li><strong>Value</strong>: 这个函数用于存储和检索与上下文相关的键值对，是实现共享数据存储的地方，是协程安全的</li>
+</ol>
+<p><strong>其主要的应用 ：</strong></p>
+<p>1：上下文控制，2：多个 <code>goroutine</code> 之间的数据交互等，3：超时控制：到某个时间点超时，过多久超时。</p>
+<h4 id="context-Context-结构的核心特征"><a href="#context-Context-结构的核心特征" class="headerlink" title="context.Context 结构的核心特征"></a><code>context.Context</code> 结构的核心特征</h4><ol>
+<li>Context 的创建：<ul>
+<li>使用 <code>context.Background()</code> 创建一个顶级上下文，<strong>没有特定的取消信号和截止时间。</strong></li>
+<li>使用 <code>context.TODO()</code> 创建一个临时上下文，<strong>通常用于表明代码路径尚未完成，需要后续填充适当的上下文。</strong></li>
+<li>使用 <code>context.WithCancel(parentCtx)</code> <strong>创建一个可以从父上下文中派生出来的新上下文，并带有可主动取消的功能。</strong></li>
+<li>使用 <code>context.WithDeadline(parentCtx, deadline)</code> <strong>创建一个在指定截止时间到达时自动取消的上下文。</strong></li>
+<li>使用 <code>context.WithTimeout(parentCtx, timeout)</code> <strong>创建一个在指定超时时间过后自动取消的上下文。</strong></li>
+<li>使用 <code>context.WithValue(parentCtx, key, value)</code> <strong>创建一个携带键值对的上下文，用于传递请求级别信息。</strong></li>
+</ul>
+</li>
+<li>Context 的传递：<ul>
+<li><strong>Context 应该作为参数传递给可能长时间运行或涉及到 Goroutine 启动的函数，以便在适当的时候能够取消操作或传播相关信息。</strong></li>
+</ul>
+</li>
+<li>取消通知：<ul>
+<li>通过调用 <code>ctx.Done()</code> 方法可以获得一个只读的 channel，当上下文被取消时，该 channel 会被关闭。</li>
+<li>通过检查 <code>&lt;-ctx.Done()</code> 可以得知上下文是否已被取消，这是一种非阻塞的方式检测取消信号。</li>
+</ul>
+</li>
+<li>截止时间：<ul>
+<li>可以通过 <code>ctx.Deadline()</code> 查询上下文的截止时间，如果没有设定则返回 <code>time.Time&#123;&#125;</code>（零值）。</li>
+</ul>
+</li>
+<li>Context 的取消：<ul>
+<li>创建子上下文时获得的取消函数（如 <code>cancelFunc</code>）可用于主动取消上下文及所有从该上下文衍生出的子上下文。</li>
+</ul>
+</li>
+</ol>
+<h3 id="channel-相关"><a href="#channel-相关" class="headerlink" title="channel 相关"></a>channel 相关</h3><p>channel(通道)用于goroutine(协程)之间的通信。它提供了一种在不同协程之间传递数据的机制。channel是一种类型安全的、阻塞的、先进先出（FIFO）的数据结构，确保发送的数据按照发送的顺序接收。Go语言提供通过通信来共享内存，而不是通过共享内存来通信</p>
+<h4 id="channel-是否线程安全？"><a href="#channel-是否线程安全？" class="headerlink" title="channel 是否线程安全？"></a>channel 是否线程安全？</h4><ul>
+<li><strong>Channel 的线程安全性</strong>：channel 是线程安全的，这意味着多个 goroutine 可以同时对同一个 channel 进行读写操作，而不会产生数据竞争或冲突。这是因为 channel 在内部实现了必要的同步机制，如互斥锁，来确保对数据的访问是原子化的和同步的。</li>
+<li><strong>Channel 的操作</strong>：在使用 channel 时，你可以利用 <code>for range</code> 循环来持续地从 channel 中读取数据，直到它被关闭。这种方式比手动使用锁来控制数据的访问要简单和高效得多。</li>
+</ul>
+<h4 id="go-channel-的底层实现原理-（数据结构）"><a href="#go-channel-的底层实现原理-（数据结构）" class="headerlink" title="go channel 的底层实现原理 （数据结构）"></a>go channel 的底层实现原理 （数据结构）</h4><p>Go 内部对 channel 的实现采用了名为hchan的结构体。包含了如下几个重要的字段：</p>
+<p>结构体包含了如下几个重要的字段：</p>
+<ul>
+<li><code>elemtype</code>: 存储 channel 中元素的数据类型信息。</li>
+<li><code>buf</code>: 一个指向存储 channel 数据的数组的指针，用于实现缓冲 channel。</li>
+<li><code>elemsize</code>: 元素的大小（以字节为单位）。</li>
+<li><code>closed</code>: 标志位，指示 channel 是否已经被关闭。</li>
+<li><code>recvx</code> 和 <code>sendx</code>：分别代表接收和发送索引，用于记录下一个接收和发送的位置。</li>
+<li><code>recvq</code> 和 <code>sendq</code>：分别指向等待接收和发送的 goroutine 队列，当 channel 满或者空时，相应的 goroutine 会进入相应队列等待。</li>
+<li><code>lock</code>：互斥锁，用于保证对 channel 内部数据结构的同步访问。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> hchan <span class="keyword">struct</span> &#123;</span><br><span class="line">  qcount   <span class="type">uint</span>           <span class="comment">// 循环数组中的元素数量，长度</span></span><br><span class="line">  dataqsiz <span class="type">uint</span>           <span class="comment">// 循环数组的大小，容量</span></span><br><span class="line">    </span><br><span class="line">  <span class="comment">// channel分为无缓冲和有缓冲channel两种</span></span><br><span class="line">  <span class="comment">// 有缓冲的channel使用ring buffer（环形缓冲区）来缓存写入的数据，本质是循环数组</span></span><br><span class="line">  <span class="comment">// 为什么是循环数组？普通数组容量固定、更适合指定的空间，且弹出元素时，元素需要全部前移</span></span><br><span class="line">  buf      unsafe.Pointer <span class="comment">// 指向底层循环数组的指针（环形缓冲区）</span></span><br><span class="line">  elemsize <span class="type">uint16</span>         <span class="comment">// 元素的大小</span></span><br><span class="line">  closed   <span class="type">uint32</span>         <span class="comment">// 是否关闭的标志，0：未关闭，1：已关闭</span></span><br><span class="line">  elemtype *_type <span class="comment">// channel中的元素类型</span></span><br><span class="line">    </span><br><span class="line">  <span class="comment">// 当下标超过数组容量后会回到第一个位置，所以需要有两个字段记录当前读和当前写的下标位置</span></span><br><span class="line">  sendx    <span class="type">uint</span>   <span class="comment">// 下一次写的位置</span></span><br><span class="line">  recvx    <span class="type">uint</span>   <span class="comment">// 下一次读的位置</span></span><br><span class="line">    </span><br><span class="line">  <span class="comment">// 尝试读/写channel时被阻塞的goroutine</span></span><br><span class="line">  recvq    waitq  <span class="comment">// 读等待队列</span></span><br><span class="line">  sendq    waitq  <span class="comment">// 写等待队列</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 互斥锁，保证读写channel时的并发安全问题</span></span><br><span class="line">  lock mutex</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406082034686.png"/>
+
+<h4 id="同步机制"><a href="#同步机制" class="headerlink" title="同步机制"></a>同步机制</h4><ul>
+<li>无缓冲 channel：发送和接收操作都是同步的，也就是说，发送操作会阻塞，直到有接收者准备好；同样地，接收操作也会阻塞，直到有发送者发送数据。</li>
+<li>有缓冲 channel：在缓冲区未满的情况下，发送操作可以立即完成；同理，在缓冲区非空的情况下，接收操作也可以立即完成。当缓冲区已满或空时，channel 的同步机制会启用等待队列，将 goroutine 插入到相应队列中，直至满足发送或接收条件。</li>
+</ul>
+<h4 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h4><ul>
+<li>Go runtime 在创建 channel 时会分配一块内存来存储元素，并根据 channel 的缓冲大小调整这块内存的大小。</li>
+<li>在进行数据传输时，runtime 会确保 goroutine 间的同步，并通过 CAS（Compare and Swap）等原子操作来更新 channel 内部的状态，从而实现线程安全的数据交换。</li>
+</ul>
+<h4 id="调度策略"><a href="#调度策略" class="headerlink" title="调度策略"></a>调度策略</h4><ul>
+<li>Go 的运行时调度器密切关注 channel 上的活动，当一个 goroutine 因为 channel 操作被阻塞时，调度器会将该 goroutine 放入等待队列，并唤醒另一个可能已经准备好的 goroutine 继续执行。</li>
+</ul>
+<h4 id="nil-channel、关闭的-channel、有数据的-channel，再进行读、写、关闭会怎么样"><a href="#nil-channel、关闭的-channel、有数据的-channel，再进行读、写、关闭会怎么样" class="headerlink" title="nil channel、关闭的 channel、有数据的 channel，再进行读、写、关闭会怎么样"></a>nil channel、关闭的 channel、有数据的 channel，再进行读、写、关闭会怎么样</h4><p>针对 Go 语言中的 channel，在不同状态下（nil、已关闭、有数据）进行读、写、关闭操作会有以下表现：</p>
+<ol>
+<li><h4 id="nil-channel："><a href="#nil-channel：" class="headerlink" title="nil channel："></a><strong>nil channel</strong>：</h4><ul>
+<li>读取：尝试从 nil channel 读取数据会<strong>导致永远阻塞</strong>，除非通过另一个 goroutine 向其发送数据或关闭 channel。</li>
+<li>写入：向 nil channel 发送数据也会造成永远阻塞，必须先创建并初始化 channel 才能进行发送操作。</li>
+<li>关闭：试图关闭 nil channel 会直接导致 panic 错误。</li>
+</ul>
+</li>
+<li><p><strong>已关闭的 channel</strong>：</p>
+<ul>
+<li>读取：从已关闭的 channel 读取数据，如果 channel 中还有剩余数据，那么会成功读取并返回数据；当 channel 中所有数据都被读取完毕时，<strong>再次读取会返回对应类型的零值</strong>，并且 <code>ok</code> 标志位为 <code>false</code>，<strong>表示 channel 已关闭且无数据可读。</strong></li>
+<li>写入：向已关闭的 channel 发送数据会导致 <strong>panic 错误</strong>。</li>
+<li>关闭：<strong>对已关闭的 channel 再次调用 close 操作也是非法的，会导致 panic 错误。</strong></li>
+</ul>
+</li>
+<li><p><strong>有数据的 channel</strong>：</p>
+<ul>
+<li>读取：如果有数据，从 channel 中读取数据会成功，返回数据值，且 <code>ok</code> 标志位为 <code>true</code>。</li>
+<li>写入：如果 channel 是非缓冲的（无缓冲 channel），只有当有接收方正在读取数据时才能成功发送；如果是缓冲的 channel，只要缓冲未满就能成功发送数据。</li>
+<li>关闭：可以关闭有数据的 channel，关闭后不能再向其发送数据，但仍然可以从 channel 中读取剩余数据，直到数据被完全读取完。</li>
+</ul>
+</li>
+</ol>
+<p>总结：</p>
+<ul>
+<li>无论是 nil channel 还是已关闭的 channel，都不能进行写入操作。</li>
+<li>对 nil channel 进行读取和关闭操作会导致阻塞或 panic。</li>
+<li>对已关闭的 channel 进行读取取决于是否有剩余数据，写入和关闭都会导致 panic。</li>
+<li>有数据的 channel 可以正常进行读写操作，关闭后不再接受新的数据，但仍能读取旧数据，直到清空。</li>
+</ul>
+<h4 id="向-channel-发送数据和从-channel-读数据的流程"><a href="#向-channel-发送数据和从-channel-读数据的流程" class="headerlink" title="向 channel 发送数据和从 channel 读数据的流程"></a>向 channel 发送数据和从 channel 读数据的流程</h4><ol>
+<li>向channel发送数据：<ul>
+<li>首先，检查channel中是否有空间存放数据。对于带缓冲的channel，如果缓冲区未满，则可以直接将数据存入缓冲区；如果缓冲区已满，则发送方会被阻塞，直到接收方从channel中读取数据并释放缓冲区空间。对于不带缓冲的channel，发送方会立即被阻塞，直到接收方准备好接收数据。</li>
+<li>当有空间可以存放数据时，发送方将数据存入channel，此时数据被视为已发送但尚未被接收。</li>
+<li>如果channel在发送数据后被关闭，那么发送操作会立即返回，不再阻塞。</li>
+</ul>
+</li>
+<li>从channel读取数据：<ul>
+<li>首先，检查channel中是否有数据可供读取。对于带缓冲的channel，如果缓冲区不为空，则可以直接从中读取数据；如果缓冲区为空，则接收方会被阻塞，直到发送方将数据发送到channel中。对于不带缓冲的channel，接收方会立即被阻塞，直到发送方将数据发送到channel中。</li>
+<li>当有数据可供读取时，接收方从channel中取出数据，此时数据被视为已接收但尚未被处理。</li>
+<li>如果channel在读取数据后被关闭，那么接收操作会立即返回，不再阻塞。</li>
+</ul>
+</li>
+</ol>
+<h3 id="GPM调度模型"><a href="#GPM调度模型" class="headerlink" title="GPM调度模型"></a>GPM调度模型</h3><h4 id="什么是GPM调度模型"><a href="#什么是GPM调度模型" class="headerlink" title="什么是GPM调度模型?"></a>什么是GPM调度模型?</h4><p>Go 语言的 GPM 调度模型是 Go 运行时特有的并发调度模型，用于管理和调度 Goroutines（Go 语言的轻量级线程）。</p>
+<p>GPM 模型由三部分组成：Goroutine（G）、M（Machine）、和 P（Processor）。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Geffin/article/details/113996403">实战参考</a></p>
+<ul>
+<li><strong>G</strong>: 表示 Goroutine，每个 Goroutine 对应一个 G 结构体，G 存储 Goroutine 的运行堆栈、状态以及任务函数，可重用。G 并非执行体，<strong>每个 G 需要绑定到 P 才能被调度执行</strong>。</li>
+<li><strong>P</strong>: Processor，表示逻辑处理器， 对 G 来说，P 相当于 CPU 核，G 只有绑定到 P(在 P 的 local runq 中)才能被调度。对 M 来说，P 提供了相关的执行环境(Context)，如内存分配状态(mcache)，任务队列(G)等，P 的数量决定了系统内最大可并行的 G 的数量（前提：物理 CPU 核数 &gt;&#x3D; P 的数量），P 的数量由用户设置的 GOMAXPROCS 决定，但是不论 GOMAXPROCS 设置为多大，P 的数量最大为 256。</li>
+<li><strong>M</strong>: Machine，OS 线程抽象，代表着真正执行计算的资源，在绑定有效的 P 后，进入 schedule 循环；而 schedule 循环的机制大致是从 Global 队列、P 的 Local 队列以及 wait 队列中获取 G，切换到 G 的执行栈上并执行 G 的函数，调用 goexit 做清理工作并回到 M，如此反复。M 并不保留 G 状态，这是 G 可以跨 M 调度的基础，M 的数量是不定的，由 Go Runtime 调整，为了防止创建过多 OS 线程导致系统调度不过来，目前默认最大限制为 10000 个。</li>
+</ul>
+<p>调度流程简述：</p>
+<ul>
+<li>有一个全局队列和本地队列，其中本地队列的容量一般不超过256</li>
+<li>当创建一个新的 Goroutine 时，它会被放入某个 P 的本地队列中。</li>
+<li>若本地队列已满或者不存在，则会将 Goroutine 放入全局队列。</li>
+<li>M 通过与其关联的 P 获取待执行的 Goroutine，然后执行它。</li>
+<li>若 M 闲置，会去全局队列或者从其他 P 抢夺 Goroutine 来执行（Work Stealing）。</li>
+<li>当 Goroutine 因 I&#x2F;O 操作阻塞时，对应的 M 会释放其与 P 的关联，并让出 CPU 给其他 Goroutine 执行，待阻塞解除后重新参与调度。</li>
+</ul>
+<h4 id="抢占式调度是如何抢占的"><a href="#抢占式调度是如何抢占的" class="headerlink" title="抢占式调度是如何抢占的"></a>抢占式调度是如何抢占的</h4><p>抢占式调度的过程通常包括以下几个步骤：</p>
+<ol>
+<li><strong>时间片分配</strong>：系统为每个任务分配一个固定的时间片（time quantum），即任务可以连续执行的最长时间。</li>
+<li><strong>上下文保存</strong>：当任务的时间片用完时，调度器会暂停该任务的执行，并保存其当前的执行状态（如寄存器值、程序计数器等）到任务的上下文中。</li>
+<li><strong>重新调度</strong>：调度器选择下一个要运行的任务。这个选择过程可能基于多种因素，如任务的优先级、等待时间、资源需求等。</li>
+<li><strong>上下文恢复</strong>：调度器加载新选中任务的上下文，恢复其执行状态，然后继续执行。</li>
+<li><strong>重复过程</strong>：这个过程周期性地重复，确保所有任务都有机会被执行。</li>
+</ol>
+<h4 id="Go语言调度模型G、M、P的数量多少合适？"><a href="#Go语言调度模型G、M、P的数量多少合适？" class="headerlink" title="Go语言调度模型G、M、P的数量多少合适？"></a>Go语言调度模型G、M、P的数量多少合适？</h4><ol>
+<li>G（Goroutine）：<ul>
+<li>Goroutine 的数量理论上没有严格的上限，但在实践中，大量的并发 Goroutine 会消耗内存（每个 Goroutine 都有自己的栈空间），并且过多的 Goroutine 可能导致上下文切换的开销增大，降低性能。</li>
+<li><strong>一般建议控制 Goroutine 的数量不要过于庞大</strong>，尤其是活跃 Goroutine 数量。通过合理设计程序，避免不必要的并发，<strong>使用 Channel 和 WaitGroup 等同步机制来控制并发水平。</strong></li>
+</ul>
+</li>
+<li>P（Processor）：<ul>
+<li>P 的数量代表了并发执行的 Goroutine 的最大数量，它的默认值由 <code>GOMAXPROCS</code> 环境变量或者 <code>runtime.GOMAXPROCS()</code> 函数设置，如果不设置，<strong>默认为 CPU 核心数。</strong></li>
+<li>一般来说，<strong>P 的数量设为与物理 CPU 核心数相匹配是比较合理的做法</strong>，这样可以充分利用多核优势。不过，在某些场景下，比如 CPU 密集型应用且核心数量较多时，可以尝试减小 P 的数量来观察效果，有时可能会因为减少上下文切换而提升性能。</li>
+<li><strong>如果应用存在大量 I&#x2F;O 密集型操作，适度增加 P 的数量（不超过 CPU 核心数）</strong>可能有利于提高系统的整体吞吐量，因为 I&#x2F;O 阻塞时，<strong>M 可以释放并服务于其他 P。</strong></li>
+</ul>
+</li>
+<li>M（Machine&#x2F;OS Thread）：<ul>
+<li><strong>M 的数量理论上可以大于 P，多余的部分会处于休眠状态，等待被唤醒并关联到一个 P 上执行 Goroutine。</strong></li>
+<li>Go 运行时会自动管理 M 的数量，确保有足够的 M 来运行所有关联到 P 的 Goroutine。</li>
+<li>在默认情况下，<strong>Go 调度器会根据 P 和 G 的数量以及系统资源动态调整 M 的数量，以达到较好的资源利用率。</strong></li>
+</ul>
+</li>
+</ol>
+<p>总结来说，大部分情况下无需特别关注 M 的数量，<strong>只需合理设置 P 的数量以匹配系统资源和应用需求</strong>。<strong>而对于 G 的数量，应尽量控制在合理的范围内，以避免内存浪费和过度的上下文切换。</strong>通过观察和测量实际应用的性能，可以进一步微调 P 和 G 的数量来优化程序的并发处理能力。</p>
+<h4 id="GMP模型中，M-发生系统调用了-G-和-P-会怎么样"><a href="#GMP模型中，M-发生系统调用了-G-和-P-会怎么样" class="headerlink" title="GMP模型中，M 发生系统调用了, G 和 P 会怎么样"></a>GMP模型中，M 发生系统调用了, G 和 P 会怎么样</h4><p>在Go语言的GMP调度模型中，当一个系统线程M（Machine）遇到需要执行系统调用时，会发生以下情况：</p>
+<ol>
+<li><strong>M与P解绑</strong>：M在执行系统调用前会先尝试释放与之关联的处理器P（Processor）。这是因为系统调用很可能会导致M阻塞，为了不让P闲置，M会把P交给调度器，让其他可运行的M来使用P继续执行Goroutine（G），从而提高CPU利用率。</li>
+<li><strong>G的调度</strong>：正在执行的Goroutine（G）会因为M的阻塞而暂停执行。这个G会被放回到P的本地队列或者全局队列中，等待下一个可用的M来获取并继续执行。如果G正在进行系统调用，当系统调用完成后，G需要重新获取P才能继续执行。</li>
+<li><strong>P的重分配</strong>：释放的P可以被重新分配给其他空闲的M，或者如果有新的M创建，也可以分配给新M，使得这些M能够带着P去执行Goroutine队列中的任务。</li>
+<li><strong>M的恢复</strong>：当M完成系统调用并解除阻塞后，它会尝试从调度器那里重新获取一个P，然后继续执行Goroutines。如果当前没有可用的P，M可能会进入休眠状态，直到有P可用时被唤醒。</li>
+</ol>
+<p>这样的设计确保了即使某个M因为系统调用而阻塞，也不会影响到整个程序的并发执行能力，提高了系统的响应速度和吞吐量。</p>
+<h4 id="M-系统调用结束以后会怎么样"><a href="#M-系统调用结束以后会怎么样" class="headerlink" title="M 系统调用结束以后会怎么样"></a>M 系统调用结束以后会怎么样</h4><p>当M（Machine，代表操作系统线程）完成系统调用并结束阻塞状态后，它会尝试恢复执行Go的goroutine。具体步骤如下：</p>
+<ol>
+<li><strong>尝试获取P（Processor）</strong>：M会首先尝试从调度器中获取一个空闲的P。P包含了执行环境和本地的任务队列，对于Goroutine的执行至关重要。</li>
+<li><strong>获取G并执行</strong>：<ul>
+<li>如果M成功获取到了P，它会查看P的本地队列是否有待执行的Goroutine（G）。如果有，M会从P的本地队列中取出一个G并开始执行。</li>
+<li>如果P的本地队列为空，M可能会从全局队列中取出Goroutine来执行，或者如果全局队列也为空，M可能会尝试从其他P的本地队列中“偷取”Goroutine来避免空闲。</li>
+</ul>
+</li>
+<li><strong>无P可获取</strong>：如果此时没有空闲的P可以分配给M，M会进入休眠状态或者被回收。M进入休眠意味着它不会占用CPU资源，而是等待条件满足时被唤醒，比如有新的任务到来或已有任务完成，从而可以重新获取P并开始执行Goroutine。</li>
+<li><strong>维持平衡</strong>：Go的运行时系统（runtime）会持续监控M、P、G的状态，以确保资源的有效利用和负载均衡。<strong>例如，sysmon监控线程会定期检查是否有阻塞过久的M，并可能采取行动促进其恢复工作。</strong></li>
+</ol>
+<h1 id="锁相关"><a href="#锁相关" class="headerlink" title="锁相关"></a>锁相关</h1><h2 id="锁的基本概念"><a href="#锁的基本概念" class="headerlink" title="锁的基本概念"></a>锁的基本概念</h2><p>锁（通常是指 <code>sync.Mutex</code>互斥锁 或 <code>sync.RWMutex</code>读写互斥锁）在 Go 语言中主要用于保护共享资源（如变量、数据结构）免受并发访问时的数据竞争。当多个 <code>goroutine</code> 并发访问和修改相同的资源，并且这些修改操作不能原子性完成时，就需要使用锁来确保每次只有一个 <code>goroutine</code> 能够访问和修改资源。</p>
+<h2 id="golang有哪些类型的锁"><a href="#golang有哪些类型的锁" class="headerlink" title="golang有哪些类型的锁"></a>golang有哪些类型的锁</h2><p>在 Go 语言中，标准库 <code>sync</code> 包提供了以下几种类型的锁来实现同步控制：</p>
+<ol>
+<li><p><strong>互斥锁（Mutex）</strong>: <code>sync.Mutex</code> 是最基本的互斥锁类型，它在同一时刻只允许一个 Goroutine 访问受保护的资源。提供了 <code>Lock()</code> 和 <code>Unlock()</code> 方法，分别用于获取和释放锁。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mu sync.Mutex</span><br><span class="line">mu.Lock()</span><br><span class="line"><span class="comment">// 访问共享资源</span></span><br><span class="line">mu.Unlock()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>读写互斥锁（RWMutex）</strong>: <code>sync.RWMutex</code> 是更为灵活的锁，它可以允许多个 Goroutine 同时读取数据，但写入数据时会独占锁，阻止其他 Goroutine 的读写。提供了 <code>RLock()</code>（读取锁）和 <code>RUnlock()</code>（释放读取锁），以及 <code>Lock()</code>（写入锁）和 <code>Unlock()</code>（释放写入锁）方法。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rwmu sync.RWMutex</span><br><span class="line">rwmu.RLock()</span><br><span class="line"><span class="comment">// 读取共享资源</span></span><br><span class="line">rwmu.RUnlock()</span><br><span class="line"></span><br><span class="line">rwmu.Lock()</span><br><span class="line"><span class="comment">// 写入共享资源</span></span><br><span class="line">rwmu.Unlock()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>互斥锁（Once）</strong>: <code>sync.Once</code> 用于确保某个操作（通常是一个初始化操作）只执行一次，即使在并发环境下也是如此。它通过内部的互斥锁机制实现，并提供了 <code>Do(f func())</code> 方法。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> once sync.Once</span><br><span class="line"><span class="keyword">var</span> data <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">once.Do(<span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 只执行一次的初始化操作</span></span><br><span class="line">    data = expensiveInitialization()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>条件变量（Cond）</strong>: <code>sync.Cond</code> 用于在满足特定条件时唤醒等待的 Goroutine，它基于互斥锁实现，提供了 <code>L</code> 字段（一个互斥锁）以及 <code>Wait()</code>, <code>Signal()</code> 和 <code>Broadcast()</code> 方法。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cond sync.Cond</span><br><span class="line">cond.L = &amp;sync.Mutex&#123;&#125;</span><br><span class="line">cond.L.Lock()</span><br><span class="line"><span class="comment">// 某条件不满足</span></span><br><span class="line">cond.Wait()</span><br><span class="line"><span class="comment">// 在被 Signal() 或 Broadcast() 唤醒后，重新检查条件</span></span><br><span class="line">cond.L.Unlock()</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li></li>
+</ol>
+
       
     </div>
 
