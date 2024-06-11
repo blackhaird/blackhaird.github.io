@@ -183,7 +183,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-10 00:30:53" itemprop="dateModified" datetime="2024-06-10T00:30:53+08:00">2024-06-10</time>
+                <time title="修改时间：2024-06-11 18:03:06" itemprop="dateModified" datetime="2024-06-11T18:03:06+08:00">2024-06-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -854,6 +854,99 @@
 <img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406091635828.png"/>
 
 <p>对于上述的三色标记法来讲,仍然需要依赖STW的. 因为如果不暂停程序, 程序的逻辑改变对象引用关系, 这种动作如果在标记阶段做了修改，会影响标记结果的正确性。</p>
+<h5 id="如果三色标记法不被STW保护"><a href="#如果三色标记法不被STW保护" class="headerlink" title="如果三色标记法不被STW保护"></a>如果三色标记法不被STW保护</h5><p>条件1:一个白色对象被黑色对象引用(白色被挂在黑色下）</p>
+<p>条件2:灰色对象与它之间的可达关系的白色对象遭到破坏(灰色同时丢了该白色）</p>
+<p>如果两个条件同时满足，那么就会出现对象丢失的现象</p>
+<p>从而引申出 <strong>强三色不变式</strong> 和 <strong>弱三色不变式</strong></p>
+<h5 id="强三色不变式"><a href="#强三色不变式" class="headerlink" title="强三色不变式"></a>强三色不变式</h5><p>强制性的不允许黑色对象引用白色对象 (破坏条件1)</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111718917.png"/>
+
+<h5 id="弱三色不变式"><a href="#弱三色不变式" class="headerlink" title="弱三色不变式"></a>弱三色不变式</h5><p>黑色对象可以引用白色对象， </p>
+<p>白色对象存在其他灰色对象对它的引用，或者可达它的链路上游存在灰色对象 （破坏条件2）</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111716801.png"/>
+
+
+
+<h5 id="屏障机制"><a href="#屏障机制" class="headerlink" title="屏障机制"></a>屏障机制</h5><p>go的栈和java的栈不一样，go会直接在栈上创建对象，只有逃逸时才会把栈上的对象写到堆上</p>
+<h6 id="插入屏障-（不在栈上使用）"><a href="#插入屏障-（不在栈上使用）" class="headerlink" title="插入屏障 （不在栈上使用）"></a>插入屏障 （不在栈上使用）</h6><p>具体操作：在A对象引用B对象的时候，B对象被标记为灰色。（将B挂在A下游，B必须被标记为灰色）</p>
+<p>满足：强三色不变式.(不存在黑色对象引用白色对象的情况了，因为白色会强制变成灰色）</p>
+<p>1. </p>
+<blockquote>
+<p>对象9因为在栈内存中 不涉及插入屏障，所以创建的对象不会被标记为灰色</p>
+</blockquote>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111729757.png"/>
+
+<ol start="2">
+<li><p>继续循环上述流程进行三色标记，直到没有灰色节点</p>
+</li>
+<li><p>在准备回收白色前，重新遍历扫描一次栈空间。<br>此时加STW暂停保护栈，防止外界干扰（有新的白色被黑色添加）</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111732320.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111732730.png"/>
+</li>
+<li><p>清除白色对象</p>
+</li>
+</ol>
+<p>插入写屏障的不足：结束时需要STW来重新扫描栈，大约需要10~100ms</p>
+<h6 id="删除屏障"><a href="#删除屏障" class="headerlink" title="删除屏障"></a>删除屏障</h6><p>具体操作：被删除的对象，如果自身为灰色或者白色，那么被标记为灰色。（不是删除对象 是删除对这个对象的引用）<br>满足：弱三色不变式.(保护灰色对象到白色对象的路径不会断）</p>
+<ol>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111737887.png"/></li>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111737490.png"/></li>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111738503.png"/></li>
+</ol>
+<p>删除屏障的不足：回收精度低，一个对象即使被删除了最后一个指向它的指针也依旧可以活过这一轮，在下一轮GC中被清理掉。</p>
+<h4 id="v1-8-混合写屏障机制"><a href="#v1-8-混合写屏障机制" class="headerlink" title="v1.8 混合写屏障机制"></a>v1.8 混合写屏障机制</h4><p>为了解决插入屏障和删除屏障的所存在的不足，混合写屏障孕育而生</p>
+<p>GoV1.8的三色标记法+混合写屏障机制 具体操作：</p>
+<ol>
+<li><p>GC开始将栈上的对象全部扫描并标记为黑色（之后不再进行第二次重复扫描，无需STW)</p>
+</li>
+<li><p>GC期间，任何在栈上创建的新对象，均为黑色。</p>
+</li>
+<li><p>被删除的对象标记为灰色。</p>
+</li>
+<li><p>被添加的对象标记为灰色。</p>
+</li>
+</ol>
+<p>满足：变形的弱三色不变式.(结合了插入、删除写屏障两者的有点）</p>
+<p>优先扫描栈，将栈全部标记为黑</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111746429.png"/>
+
+
+
+<h5 id="通过几个场景"><a href="#通过几个场景" class="headerlink" title="通过几个场景"></a>通过几个场景</h5><ol>
+<li><p>对象被一个堆对象删除引用，成为栈对象的下游</p>
+<ol>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111750411.png"/>
+</li>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111751598.png"/></li>
+</ol>
+</li>
+<li><p>对象被一个栈对象删除引用，成为另一个栈对象的下游</p>
+<ol>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111753932.png"/>
+</li>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111753551.png"/>
+</li>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111754493.png"/></li>
+</ol>
+</li>
+<li><p>对象被一个堆对象删除引用，成为另一个堆对象的下游</p>
+<ol>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111757264.png"/>
+</li>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111757045.png"/>
+</li>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111758102.png"/></li>
+</ol>
+</li>
+<li><p>对象从一个栈对象删除引用，成为另一个堆对象的下游</p>
+<ol>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111801669.png"/></li>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111801396.png"/></li>
+<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111802063.png"/></li>
+</ol>
+</li>
+</ol>
 <h3 id="go-是-gc-算法是怎么实现的？（中高级）"><a href="#go-是-gc-算法是怎么实现的？（中高级）" class="headerlink" title="go 是 gc 算法是怎么实现的？（中高级）"></a>go 是 gc 算法是怎么实现的？（中高级）</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/362668622">Go语言GC实现原理及源码分析</a></p>
 <h3 id="gc中STW的时机是什么？各个阶段都要解决什么？"><a href="#gc中STW的时机是什么？各个阶段都要解决什么？" class="headerlink" title="gc中STW的时机是什么？各个阶段都要解决什么？"></a>gc中STW的时机是什么？各个阶段都要解决什么？</h3><p>在 Go 中，GC 回收工作中需要停止所有的 goroutine，这个过程称为 STW（Stop-The-World）。Go 的 GC 会在以下几种情况下触发 STW：</p>
 <ul>
@@ -1006,6 +1099,127 @@
 <li>为线程预分配缓存需要进行1次系统调用，后续线程申请小内存时直接从缓存分配，都是在用户态执行的，没有了系统调用，缩短了内存总体的分配和释放时间，这是快速分配内存的第二个层次。</li>
 <li>多个线程同时申请小内存时，从各自的缓存分配，访问的是不同的地址空间，从而无需加锁，把内存并发访问的粒度进一步降低了，这是快速分配内存的第三个层次。</li>
 </ol>
+<h3 id="Channel-分配在栈上还是堆上？"><a href="#Channel-分配在栈上还是堆上？" class="headerlink" title="Channel 分配在栈上还是堆上？"></a>Channel 分配在栈上还是堆上？</h3><p> 在 Go 语言中，Channel（信道）本身是一个引用类型，它的实例始终分配在堆上。</p>
+<h4 id="Go-哪些对象分配在堆上，哪些对象分配在栈上？"><a href="#Go-哪些对象分配在堆上，哪些对象分配在栈上？" class="headerlink" title="Go 哪些对象分配在堆上，哪些对象分配在栈上？"></a>Go 哪些对象分配在堆上，哪些对象分配在栈上？</h4><ol>
+<li>栈上分配：<ul>
+<li>局部变量（包括简单类型如整数、浮点数、布尔值等）在函数内部创建且其生命周期仅限于函数内部时，通常会被分配在栈上。</li>
+<li>小的、生命周期短的结构体或数组等，如果编译器通过逃逸分析确定它们不会被函数外部访问或其生命周期没有超出函数范围，也可能被分配在栈上。</li>
+</ul>
+</li>
+<li>堆上分配：<ul>
+<li>所有通过 <code>new</code> 或 <code>make</code> 函数创建的对象都会分配在堆上，因为它们的生命周期不受函数调用栈的限制。</li>
+<li>如果一个局部变量被指针引用并且这个指针可能会被函数外部持有，或者传递给其他goroutine，那么这个局部变量将会逃逸到堆上。</li>
+<li>当局部变量的大小超过了编译器设置的栈空间大小限制时，也会被分配在堆上。</li>
+<li>切片（slice）、通道（channel）、映射（map）等动态大小的数据结构，无论其生命周期如何，都在堆上分配。</li>
+<li>结构体或数组即使在函数内部创建，如果它们作为函数返回值的一部分，或者被捕获在闭包中，也会发生逃逸，分配在堆上。</li>
+</ul>
+</li>
+</ol>
+<p>准确地说，变量存储在堆上还是栈上，是由逃逸分析、作用域、生命周期以及变量的类型和大小等因素共同决定的，和具体的语法没有很大的关系。变量的生命周期和存储位置由以下几个因素决定：</p>
+<ol>
+<li>作用域和生命周期：<ul>
+<li>如果变量是函数内的局部变量，并且它的生命周期仅限于函数执行期间，那么它通常会被分配在栈上。一旦函数执行结束，栈上的变量就会被自动释放。</li>
+<li>如果变量的生命周期超出了当前函数的作用域（如通过返回指针、闭包引用等），则编译器可能会选择将其分配在堆上以确保在函数结束后的存活。</li>
+</ul>
+</li>
+<li>逃逸分析：<ul>
+<li>Go 编译器通过逃逸分析来确定变量是否需要分配在堆上。即使一个变量原本应该分配在栈上，但如果它满足逃逸条件（如返回指针、被全局引用等），编译器就会将其分配在堆上。</li>
+</ul>
+</li>
+<li>类型和大小：<ul>
+<li>对于大型对象或动态大小的类型（如切片、映射、通道和某些结构体），它们总是存储在堆上，因为栈的大小有限，不适合存储这些大小不固定的对象。</li>
+</ul>
+</li>
+</ol>
+<h4 id="介绍一下大对象小对象，为什么小对象多了会造成-gc-压力？"><a href="#介绍一下大对象小对象，为什么小对象多了会造成-gc-压力？" class="headerlink" title="介绍一下大对象小对象，为什么小对象多了会造成 gc 压力？"></a>介绍一下大对象小对象，为什么小对象多了会造成 gc 压力？</h4><p>在 Go 语言中，内存分配通常会区分小对象和大对象：</p>
+<ul>
+<li><strong>小对象</strong>：指的是较小尺寸的内存分配请求。在 Go 语言中，小对象通常是指大小小于一定阈值（通常是 32KB 或由编译器设定）的对象，一般小对象通过 mspan 分配内存。</li>
+<li><strong>大对象</strong>：相比之下，大对象则是指大于上述阈值的内存分配请求，如大尺寸的数组或大型结构体等。大对象通常直接从全局堆（mheap）分配，并且分配和回收的开销相对较大。</li>
+</ul>
+<p>小对象多了造成 GC（垃圾回收）压力的原因主要有以下几点：</p>
+<ol>
+<li><strong>内存碎片</strong>：小对象频繁分配和回收容易导致内存碎片，即使空闲内存总量足够，但由于分散成众多小块，难以分配给较大的内存请求，从而迫使 GC 更频繁地进行压缩和整理内存空间。</li>
+<li><strong>扫描成本增加</strong>：GC 在执行时需要遍历整个堆内存来标记活跃对象。小对象数量增多意味着有更多的内存区域需要扫描，这对 CPU 资源的需求更高，从而加大了 GC 期间的停顿时间（STW，Stop-The-World）。</li>
+<li><strong>元数据开销</strong>：每一个分配的小对象都需要额外的元数据来管理，包括但不限于对象头部信息、span（内存区块）管理信息等，这些都会增加堆内存的整体使用量。</li>
+<li><strong>同步开销</strong>：小对象分配频繁，可能导致线程本地缓存（mcache）与全局堆（mheap）之间的同步操作增多，尤其是在多线程环境下，同步锁的竞争可能导致性能下降。</li>
+<li><strong>分配&#x2F;回收开销</strong>：频繁的小对象分配和回收操作涉及内存管理单元（如 mcache、mcentral 等）的查找、分配、合并等一系列操作，这些操作本身也会带来一定的计算开销。</li>
+</ol>
+<h1 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h1><h2 id="Go-多返回值怎么实现的？"><a href="#Go-多返回值怎么实现的？" class="headerlink" title="Go 多返回值怎么实现的？"></a>Go 多返回值怎么实现的？</h2><ul>
+<li><strong>函数签名定义</strong>： 在函数定义时，可以指定多个返回值类型</li>
+<li><strong>栈上的存储</strong>： 在函数调用时，Go 会为所有的返回值分配足够的空间，就像为参数分配空间一样。这些返回值空间会被压入调用者的栈帧上。</li>
+<li><strong>返回值传递</strong>： 当函数执行完毕并通过 <code>return</code> 语句返回时，会将返回值写入到之前预留的栈空间中。即便函数返回，这部分栈空间也不会立即被回收，因为它们现在包含了返回值。</li>
+</ul>
+<h2 id="讲讲-Go-中主协程如何等待其余协程退出"><a href="#讲讲-Go-中主协程如何等待其余协程退出" class="headerlink" title="讲讲 Go 中主协程如何等待其余协程退出?"></a>讲讲 Go 中主协程如何等待其余协程退出?</h2><ol>
+<li>**使用<code>sync.WaitGroup</code>**：这是最常见且推荐的方式。<code>sync.WaitGroup</code>有三个方法：<code>Add</code>、<code>Done</code>和<code>Wait</code>。你可以在启动一个协程时调用<code>Add</code>来设置要等待的协程数量，每个协程完成时调用<code>Done</code>，最后在主协程中调用<code>Wait</code>来阻塞等待所有协程完成。</li>
+<li><strong>使用通道（Channel）</strong>：你可以创建一个通道，并在每个协程中发送一个信号或特定的值。主协程可以通过<code>range</code>遍历通道或者用<code>len</code>函数检查通道的长度，以等待所有协程完成。</li>
+<li>**使用<code>sync.Once</code>**：虽然<code>sync.Once</code>通常用于确保某个操作只执行一次，但你也可以将其用作同步机制。你可以在每个协程中调用<code>Do</code>方法，而在主协程中调用<code>Wait</code>方法来等待所有协程完成。</li>
+<li><strong>使用<code>context</code>包</strong>：如果你的程序使用了Go的<code>context</code>包来管理多个协程，你可以使用<code>context.Done()</code>通道来等待所有协程完成。当上下文被取消时，所有使用该上下文的协程都会收到信号并退出。</li>
+<li>**使用<code>time.Sleep</code>或<code>time.After</code>**：这种方法不是最佳实践，因为它会导致不必要的延迟。你可以通过设置一个足够长的睡眠时间来等待所有协程完成，但这是不可靠的，尤其是在不确定协程何时完成的情况下。</li>
+<li><strong>使用第三方库</strong>：有些第三方库提供了更高级的同步原语，如<code>golang.org/x/sync/syncutil</code>包中的<code>WaitGroup</code>等。这些库可以提供更灵活的同步选项，但通常<code>sync.WaitGroup</code>已经足够使用。</li>
+</ol>
+<p>总的来说，<code>sync.WaitGroup</code>是最简单且常用的方法，它能够有效地满足主协程等待其他协程退出的需求。</p>
+<h2 id="Go-语言中各种类型是如何比较是否相等？"><a href="#Go-语言中各种类型是如何比较是否相等？" class="headerlink" title="Go 语言中各种类型是如何比较是否相等？"></a>Go 语言中各种类型是如何比较是否相等？</h2><p>在 Go 语言中，不同类型的数据比较是否相等有不同的规则：</p>
+<ol>
+<li><strong>基础类型</strong>：<ul>
+<li>布尔型 (<code>bool</code>)：可以直接使用 <code>==</code> 进行比较。</li>
+<li>整型 (<code>int</code>, <code>uint</code>, <code>byte</code>, <code>rune</code> 等)、浮点型 (<code>float32</code>, <code>float64</code>) 和复数 (<code>complex64</code>, <code>complex128</code>)：可以用 <code>==</code> 进行比较。</li>
+<li>字符串 (<code>string</code>)：同样使用 <code>==</code> 进行比较。</li>
+</ul>
+</li>
+<li><strong>指针类型</strong>：<ul>
+<li>指针类型可以直接用 <code>==</code> 比较，比较的是指针本身的地址是否相同，而不是它们指向的数据是否相等。</li>
+</ul>
+</li>
+<li><strong>数组和切片</strong>：<ul>
+<li>数组 (<code>[N]T</code>) 可以用 <code>==</code> 比较，<strong>前提是它们的类型相同且长度相等，且每个元素都可以比较。</strong></li>
+<li>切片 (<code>[]T</code>) 也可以用 <code>==</code> 比较，但<strong>同样要求长度和元素都相等。如果需要比较切片内容的深拷贝相等性，可以使用 <code>reflect.DeepEqual</code> 函数</strong>。</li>
+</ul>
+</li>
+<li><strong>结构体（struct）</strong>：<ul>
+<li>结构体可以使用 <code>==</code> 进行比较，如果结构体中的所有字段都是可比较的（也就是说，它们要么是基本类型，要么也是可比较的结构体或数组等），那么整个结构体就可以通过 <code>==</code> 来比较是否相等。</li>
+</ul>
+</li>
+<li><strong>接口类型</strong>：<ul>
+<li>Go 语言中的接口值可以比较，但比较的前提是它们内部存储的具体类型必须是可比较的，<strong>即满足 Go 语言的比较规则（例如，基本类型、结构体类型等）。如果内部存储的是不可比较类型的值，则接口值之间也就无法进行比较。</strong></li>
+<li>两个接口值（<code>interface&#123;&#125;</code>）如果它们的动态类型相同，并且动态值相等，那么它们才被认为是相等的。<strong>但是，由于接口可以包含任何类型的值，因此直接使用 <code>==</code> 通常只能比较它们是否为同一个值</strong>，<strong>不能比较它们所封装的具体值是否相等。</strong></li>
+</ul>
+</li>
+<li><strong>Map、Channel 和 Function 类型</strong>：<ul>
+<li>Map、Channel 和 Function 类型<strong>不可以直接用 <code>==</code> 比较</strong>，因为它们是引用类型，<strong>比较的是它们的地址，而不是它们的内容。</strong></li>
+</ul>
+</li>
+<li><strong>自定义类型</strong>：<ul>
+<li>对于自定义类型，你需要提供自定义的相等性判断方法，<strong>如 <code>Equal</code> 函数，或者实现 <code>Equal</code> 方法以满足某个接口要求。</strong></li>
+</ul>
+</li>
+<li><strong>深层次比较</strong>：<ul>
+<li>若要进行复杂的深度比较，例如包含嵌套结构、切片、Map 等混合类型的结构体，可以使用 <code>reflect.DeepEqual</code> 函数，它会对两个任意类型的数据进行深度比较，查看它们的值是否相等。但是要注意，<code>reflect.DeepEqual</code> 不适合用于比较包含不可比较类型（如函数或包含 channel 的结构体）的数据。</li>
+</ul>
+</li>
+</ol>
+<h2 id="Go-中-init-函数的特征"><a href="#Go-中-init-函数的特征" class="headerlink" title="Go 中 init 函数的特征?"></a>Go 中 init 函数的特征?</h2><ol>
+<li><strong>自动调用</strong>： <strong><code>init</code> 函数是不需要显式调用</strong>，当包被加载（imported）时，该包中的所有 <code>init</code> 函数会自动执行。<strong>在程序启动之初，先执行所有的 <code>init</code> 函数，然后再执行 <code>main</code> 函数。</strong>不管包被导入多少次，包内的 <strong>init 函数只会执行一次</strong>。</li>
+<li><strong>无参数和返回值</strong>： <code>init</code> 函数没有参数，也不返回任何值，其声明格式为：</li>
+<li><strong>并发安全</strong>： 虽然多个包的 <code>init</code> 函数执行顺序不确定，但同一包内的多个 <code>init</code> 函数是顺序执行的，并且 Go 语言保证了并发安全，即不同 <code>init</code> 函数间的执行互不影响。</li>
+<li><strong>跨包依赖</strong>： 不同包之间的 <code>init</code> 函数执行顺序遵循依赖关系，如果 A 包导入了 B 包，那么 B 包的 <code>init</code> 函数会在 A 包的 <code>init</code> 函数执行之前被执行。这允许开发者在包间构建一种依赖链式的初始化逻辑。</li>
+</ol>
+<h2 id="Go-中-uintptr-和-unsafe-Pointer-的区别？"><a href="#Go-中-uintptr-和-unsafe-Pointer-的区别？" class="headerlink" title="Go 中 uintptr 和 unsafe.Pointer 的区别？"></a>Go 中 uintptr 和 unsafe.Pointer 的区别？</h2><p>在 Go 语言中，<code>uintptr</code> 和 <code>unsafe.Pointer</code> 都与内存地址相关，但它们的用途和限制有所不同：</p>
+<ol>
+<li>uintptr：<ul>
+<li><code>uintptr</code> 是 Go 语言的内建类型，<strong>代表一个无符号整数类型，足够存储指针的值。</strong></li>
+<li><code>uintptr</code> <strong>通常用于进行指针算术（如偏移量计算），因为 Go 语言的标准指针类型不支持直接的数学运算。</strong></li>
+<li><code>uintptr</code> 类型并不能直接解引用为原来的指针类型，也不能阻止垃圾回收器对指向的对象进行回收。换句话说，<code>uintptr</code> 仅仅是数字，不代表它指向的内存区域是有效的或可访问的。</li>
+</ul>
+</li>
+<li>unsafe.Pointer：<ul>
+<li><code>unsafe.Pointer</code> 是来自 <code>unsafe</code> 包的一个类型，<strong>它是 Go 语言中唯一的通用指针类型。</strong></li>
+<li><code>unsafe.Pointer</code> 用于在不同类型的指针之间进行转换，这在高级内存操作、低级别编程或者与 C 语言接口交互时非常有用。</li>
+<li><strong>虽然可以将任何类型的指针转换为 <code>unsafe.Pointer</code>，然后再转换回另一种类型的指针，但这违反了 Go 语言的安全抽象原则，因此只有在必要且知道风险的情况下才能使用。</strong></li>
+<li>转换回具体类型指针后，<code>unsafe.Pointer</code> 指向的内存区域是可以被垃圾回收器追踪的，<strong>因此不会因为转换为 <code>unsafe.Pointer</code> 而丢失对对象的引用。</strong></li>
+</ul>
+</li>
+</ol>
+<h2 id="从数组中取一个相同大小的slice有成本吗？"><a href="#从数组中取一个相同大小的slice有成本吗？" class="headerlink" title="从数组中取一个相同大小的slice有成本吗？"></a>从数组中取一个相同大小的slice有成本吗？</h2><p>在 Go 语言中，<strong>从数组中取一个相同大小的切片（slice）操作本身几乎是没有成本的。slice并不存储任何数据，它仅仅是对底层数组的一个引用，并提供对该连续片段的访问。</strong>当创建一个切片时，<strong>它实际上是创建了一个轻量级的结构体</strong>，这个结构体包含三个字段：指向底层数组的指针、长度（length）和容量（capacity）。创建切片时，并不会复制数组的元素，只是创建了一个视图（view）而已。</p>
 
       
     </div>
