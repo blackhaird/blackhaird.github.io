@@ -183,7 +183,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-11 18:03:06" itemprop="dateModified" datetime="2024-06-11T18:03:06+08:00">2024-06-11</time>
+                <time title="修改时间：2024-06-13 02:38:20" itemprop="dateModified" datetime="2024-06-13T02:38:20+08:00">2024-06-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,7 +252,7 @@
 <li>引用传递：指在调用函数时将实际参数的地址直接传递到函数中，那么在函数中对参数所进行的修改，将影响到实际参数。</li>
 </ul>
 <p>在 Go 语言中，<strong>函数的参数传递只有值传递</strong>，而且传递的实参都是原始数据的一份拷贝。如果拷贝的内容是值类型的，那么在函数中就无法修改原始数据；如果拷贝的内容是指针（或者可以理解为引用类型 <code>map</code>、<code>chan</code> 等），那么就可以在函数中修改原始数据，这里是拷贝了<strong>指针</strong>，传递的是<strong>指针副本</strong>，也就是值传递，只是看起来像引用传递</p>
-<h2 id="golang-中-make-和-new-的区别？"><a href="#golang-中-make-和-new-的区别？" class="headerlink" title="golang 中 make 和 new 的区别？"></a>golang 中 make 和 new 的区别？</h2><p>在Go语言中，<code>make</code>和<code>new</code>都是用于内存分配的内建函数，但它们在分配内存和初始化内存方面有所不同：</p>
+<h2 id="golang-中-make-和-new-的区别？（必问）"><a href="#golang-中-make-和-new-的区别？（必问）" class="headerlink" title="golang 中 make 和 new 的区别？（必问）"></a>golang 中 make 和 new 的区别？（必问）</h2><p>在Go语言中，<code>make</code>和<code>new</code>都是用于内存分配的内建函数，但它们在分配内存和初始化内存方面有所不同：</p>
 <ol>
 <li>分配内存的区别：<ul>
 <li><code>new</code>可以分配<strong>任意类型的内存</strong>，并返回<strong>一个指向该类型的指针</strong>。</li>
@@ -656,10 +656,16 @@
 <p>GPM 模型由三部分组成：Goroutine（G）、M（Machine）、和 P（Processor）。</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Geffin/article/details/113996403">实战参考</a></p>
 <ul>
-<li><strong>G</strong>: 表示 Goroutine，每个 Goroutine 对应一个 G 结构体，G 存储 Goroutine 的运行堆栈、状态以及任务函数，可重用。G 并非执行体，<strong>每个 G 需要绑定到 P 才能被调度执行</strong>。</li>
-<li><strong>P</strong>: Processor，表示逻辑处理器， 对 G 来说，P 相当于 CPU 核，G 只有绑定到 P(在 P 的 local runq 中)才能被调度。对 M 来说，P 提供了相关的执行环境(Context)，如内存分配状态(mcache)，任务队列(G)等，P 的数量决定了系统内最大可并行的 G 的数量（前提：物理 CPU 核数 &gt;&#x3D; P 的数量），P 的数量由用户设置的 GOMAXPROCS 决定，但是不论 GOMAXPROCS 设置为多大，P 的数量最大为 256。</li>
-<li><strong>M</strong>: Machine，OS 线程抽象，代表着真正执行计算的资源，在绑定有效的 P 后，进入 schedule 循环；而 schedule 循环的机制大致是从 Global 队列、P 的 Local 队列以及 wait 队列中获取 G，切换到 G 的执行栈上并执行 G 的函数，调用 goexit 做清理工作并回到 M，如此反复。M 并不保留 G 状态，这是 G 可以跨 M 调度的基础，M 的数量是不定的，由 Go Runtime 调整，为了防止创建过多 OS 线程导致系统调度不过来，目前默认最大限制为 10000 个。</li>
+<li><strong>G</strong>: 表示 Goroutine，每个 Goroutine 对应一个 G 结构体，G 存储 Goroutine 的运行堆栈、状态以及任务函数，可重用。G 并非执行体，<strong>每个 G 需要绑定到 P 才能被调度执行</strong>。【协程（用户态线程）】</li>
+<li><strong>P</strong>: Processor，表示逻辑处理器， 对 G 来说，P 相当于 CPU 核，G 只有绑定到 P(在 P 的 local runq 中)才能被调度。对 M 来说，P 提供了相关的执行环境(Context)，如内存分配状态(mcache)，任务队列(G)等，P 的数量决定了系统内最大可并行的 G 的数量（前提：物理 CPU 核数 &gt;&#x3D; P 的数量），P 的数量由用户设置的 <strong>GOMAXPROCS</strong> 决定，但是不论 GOMAXPROCS 设置为多大，<strong>P 的数量最大为 256</strong>。【处理器（处理G携程）】</li>
+<li><strong>M</strong>: Machine，OS 线程抽象，代表着真正执行计算的资源，在绑定有效的 P 后，进入 schedule 循环；而 schedule 循环的机制大致是从 Global 队列、P 的 Local 队列以及 wait 队列中获取 G，切换到 G 的执行栈上并执行 G 的函数，调用 goexit 做清理工作并回到 M，如此反复。M 并不保留 G 状态，这是 G 可以跨 M 调度的基础，<strong>M 的数量是不定的，由 Go Runtime 调整，为了防止创建过多 OS 线程导致系统调度不过来，目前默认最大限制为 10000 个。</strong>通过runtime&#x2F;debug包中的SetMaxThreads函数设置【物理线程（内核态线程）】<ul>
+<li>有一个M阻塞会开启一个新的M</li>
+<li>如果有M空闲会回收或睡眠</li>
 </ul>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130157639.png"/>
+
 <p>调度流程简述：</p>
 <ul>
 <li>有一个全局队列和本地队列，其中本地队列的容量一般不超过256</li>
@@ -669,7 +675,18 @@
 <li>若 M 闲置，会去全局队列或者从其他 P 抢夺 Goroutine 来执行（Work Stealing）。</li>
 <li>当 Goroutine 因 I&#x2F;O 操作阻塞时，对应的 M 会释放其与 P 的关联，并让出 CPU 给其他 Goroutine 执行，待阻塞解除后重新参与调度。</li>
 </ul>
-<h4 id="抢占式调度是如何抢占的"><a href="#抢占式调度是如何抢占的" class="headerlink" title="抢占式调度是如何抢占的"></a>抢占式调度是如何抢占的</h4><p>抢占式调度的过程通常包括以下几个步骤：</p>
+<h4 id="调度器策略"><a href="#调度器策略" class="headerlink" title="调度器策略"></a>调度器策略</h4><h5 id="复用线程"><a href="#复用线程" class="headerlink" title="复用线程"></a>复用线程</h5><p>避免频繁的创建、销毁线程，而是对线程的复用</p>
+<h6 id="work-stealing机制"><a href="#work-stealing机制" class="headerlink" title="work stealing机制"></a>work stealing机制</h6><p>先从全局队列拿，全局队列没有G的话，再从其他线程绑定的P的本地队列中“窃取”</p>
+<h6 id="hand-off机制"><a href="#hand-off机制" class="headerlink" title="hand off机制"></a>hand off机制</h6><p>当本线程因为G进行系统调用阻塞时，线程释放绑定的P，把P转移给其他空闲的线程M执行（此时的P带剩余的G）。</p>
+<ol>
+<li>当前p本地队列有待执行g </li>
+<li>没有空闲的p和m, 全局g队列为空 (此时意味这全局繁忙) </li>
+<li>需要处理网络 I&#x2F;O</li>
+</ol>
+<h5 id="利用并行"><a href="#利用并行" class="headerlink" title="利用并行"></a>利用并行</h5><p>GOMAXPROCS设置P的数量，最多有GOMAXPROCS个线程分布在多个CPU上同时运行。GOMAXPROCS也限制了并发的程度，比如GOMAXPROCS &#x3D; 核数&#x2F;2，则最多利用了一半的CPU核进行并行。</p>
+<h5 id="抢占"><a href="#抢占" class="headerlink" title="抢占"></a>抢占</h5><p>在coroutine中要等待一个协程主动让出CPU才执行下一个协程，在Go中，一个goroutine最多占用CPU 10ms，防止其他goroutine被饿死，这就是goroutine不同于coroutine的一个地方。</p>
+<h5 id="全局G队列"><a href="#全局G队列" class="headerlink" title="全局G队列"></a>全局G队列</h5><p>在新的调度器M中依然有全局G队列，当P的本地队列为空时，优先从全局队列获取，如果全局队列为空时则通过work stealing机制从其他P的本地队列偷取G。</p>
+<h6 id="抢占式调度是如何抢占的"><a href="#抢占式调度是如何抢占的" class="headerlink" title="抢占式调度是如何抢占的"></a>抢占式调度是如何抢占的</h6><p>抢占式调度的过程通常包括以下几个步骤：</p>
 <ol>
 <li><strong>时间片分配</strong>：系统为每个任务分配一个固定的时间片（time quantum），即任务可以连续执行的最长时间。</li>
 <li><strong>上下文保存</strong>：当任务的时间片用完时，调度器会暂停该任务的执行，并保存其当前的执行状态（如寄存器值、程序计数器等）到任务的上下文中。</li>
@@ -677,6 +694,8 @@
 <li><strong>上下文恢复</strong>：调度器加载新选中任务的上下文，恢复其执行状态，然后继续执行。</li>
 <li><strong>重复过程</strong>：这个过程周期性地重复，确保所有任务都有机会被执行。</li>
 </ol>
+<h4 id="调度流程"><a href="#调度流程" class="headerlink" title="调度流程"></a>调度流程</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130217381.png"/>
+
 <h4 id="Go语言调度模型G、M、P的数量多少合适？"><a href="#Go语言调度模型G、M、P的数量多少合适？" class="headerlink" title="Go语言调度模型G、M、P的数量多少合适？"></a>Go语言调度模型G、M、P的数量多少合适？</h4><ol>
 <li>G（Goroutine）：<ul>
 <li>Goroutine 的数量理论上没有严格的上限，但在实践中，大量的并发 Goroutine 会消耗内存（每个 Goroutine 都有自己的栈空间），并且过多的 Goroutine 可能导致上下文切换的开销增大，降低性能。</li>
@@ -716,6 +735,22 @@
 <li><strong>无P可获取</strong>：如果此时没有空闲的P可以分配给M，M会进入休眠状态或者被回收。M进入休眠意味着它不会占用CPU资源，而是等待条件满足时被唤醒，比如有新的任务到来或已有任务完成，从而可以重新获取P并开始执行Goroutine。</li>
 <li><strong>维持平衡</strong>：Go的运行时系统（runtime）会持续监控M、P、G的状态，以确保资源的有效利用和负载均衡。<strong>例如，sysmon监控线程会定期检查是否有阻塞过久的M，并可能采取行动促进其恢复工作。</strong></li>
 </ol>
+<h4 id="M0-amp-G0"><a href="#M0-amp-G0" class="headerlink" title="M0 &amp; G0"></a>M0 &amp; G0</h4><p><strong>M0和G0会放在全局空间</strong></p>
+<h5 id="M0"><a href="#M0" class="headerlink" title="M0"></a>M0</h5><ul>
+<li>启动程序后编号为0的主线程</li>
+<li>在全局变量runtime.m0中，不需要再heap上分配</li>
+<li>负责执行初始化操作和启动第一个G</li>
+<li>在启动第一个G之后就与其他M一样了</li>
+</ul>
+<h5 id="G0"><a href="#G0" class="headerlink" title="G0"></a>G0</h5><ul>
+<li>每次启动一个M，都会第一个创建的G，就是G0</li>
+<li>G0仅用于负责调度G</li>
+<li>G0不指向任何可执行的函数</li>
+<li>每个M都会有一个自己的G0</li>
+<li>在调度或系统调用时会使用M会切换到G0，来调度</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130225105.png"/>
+
 <h1 id="锁相关"><a href="#锁相关" class="headerlink" title="锁相关"></a>锁相关</h1><h2 id="锁的基本概念"><a href="#锁的基本概念" class="headerlink" title="锁的基本概念"></a>锁的基本概念</h2><p>锁（通常是指 <code>sync.Mutex</code>互斥锁 或 <code>sync.RWMutex</code>读写互斥锁）在 Go 语言中主要用于保护共享资源（如变量、数据结构）免受并发访问时的数据竞争。当多个 <code>goroutine</code> 并发访问和修改相同的资源，并且这些修改操作不能原子性完成时，就需要使用锁来确保每次只有一个 <code>goroutine</code> 能够访问和修改资源。</p>
 <h2 id="golang有哪些类型的锁"><a href="#golang有哪些类型的锁" class="headerlink" title="golang有哪些类型的锁"></a>golang有哪些类型的锁</h2><p>在 Go 语言中，标准库 <code>sync</code> 包提供了以下几种类型的锁来实现同步控制：</p>
 <ol>
@@ -1011,7 +1046,7 @@
 </li>
 </ol>
 <h2 id="怎么定位排查内存泄漏问题？"><a href="#怎么定位排查内存泄漏问题？" class="headerlink" title="怎么定位排查内存泄漏问题？"></a>怎么定位排查内存泄漏问题？</h2><ol>
-<li><strong>使用 go tool pprof</strong></li>
+<li><strong>使用 go tool pprof</strong> &#x2F; -gcflags&#x3D;-m</li>
 </ol>
 <ul>
 <li><p><code>pprof</code> 是 <strong>Go 自带的性能分析工具</strong>，可以帮助分析程序运行时的 CPU、内存和阻塞调用等情况。</p>
@@ -1036,31 +1071,38 @@
 <p>栈是高地址到低地址，栈上的变量，函数结束后变量会跟着回收掉，不会有额外性能的开销。变量从栈逃逸到堆上，如果要回收掉，需要进行 gc，那么 gc 一定会带来额外的性能开销。编程语言不断优化 gc 算法，主要目的都是为了减少 gc 带来的额外性能开销，变量一旦逃逸会导致性能开销变大。</p>
 <p>内存逃逸在 Go 语言中通常发生在以下几种情况：</p>
 <ol>
-<li>函数返回局部变量的指针：<ul>
+<li><p>函数返回局部变量的指针：</p>
+<ul>
 <li>当函数内部创建了一个变量，并且函数返回的是指向这个局部变量的指针或引用时，由于返回的指针允许外部代码在函数结束后还能继续访问该变量，所以该变量必须在堆上分配，以保证其生命周期超过函数作用域。</li>
 </ul>
-</li>
-<li>外部引用：<ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130233118.png"/></li>
+<li><p>外部引用：</p>
+<ul>
 <li>函数内部引用了外部作用域的变量，并且这个外部变量有可能在函数执行完毕后仍被函数内部生成的对象所引用，这时编译器无法确定何时可以释放外部变量，故外部变量及其被引用的部分可能会在堆上分配。</li>
 </ul>
 </li>
-<li>闭包引用外部变量：<ul>
+<li><p>闭包引用外部变量：</p>
+<ul>
 <li>在闭包（匿名函数）中捕获了外部作用域的变量，如果闭包在其定义的函数返回后还能访问这些变量，那么这些变量的生命周期会延长至闭包被释放，因此它们可能会从栈上逃逸到堆上。</li>
 </ul>
-</li>
-<li>动态类型和接口转换：<ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130236407.png"/></li>
+<li><p>动态类型和接口转换：</p>
+<ul>
 <li>当一个变量需要存储在 interface{} 类型中时，编译器无法预知其具体类型和大小，可能会导致逃逸到堆上。</li>
 </ul>
-</li>
-<li>切片扩容：<ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130235531.png"/></li>
+<li><p>切片扩容：</p>
+<ul>
 <li>当切片（slice）在函数内部初始化后，由于 append 操作可能会导致其底层数组超出当前容量，编译器为了确保在函数返回后切片仍能正确工作，会将底层数组分配在堆上。</li>
 </ul>
-</li>
-<li>栈空间不足以容纳变量：<ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130234973.png"/></li>
+<li><p>栈空间不足以容纳变量：</p>
+<ul>
 <li>如果局部变量过大，超过编译器预设的栈空间大小限制，那么即使该变量的生命周期并未超出函数作用域，也会分配在堆上。</li>
 </ul>
-</li>
-<li>发送指针或包含指针的值到 channel：<ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130233239.png"/></li>
+<li><p>发送指针或包含指针的值到 channel：</p>
+<ul>
 <li>当将一个局部变量的指针或者其他含有指针的复合类型值发送到 channel 中时，由于编译器无法得知何时 channel 的接收端会接收到数据，因此不能确定何时可以释放这些变量，因此可能导致内存逃逸。</li>
 </ul>
 </li>
