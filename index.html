@@ -183,7 +183,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-13 02:38:20" itemprop="dateModified" datetime="2024-06-13T02:38:20+08:00">2024-06-13</time>
+                <time title="修改时间：2024-06-13 10:21:22" itemprop="dateModified" datetime="2024-06-13T10:21:22+08:00">2024-06-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,7 +231,30 @@
 <p>有栈协程和无栈协程</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">有栈协程：把局部变量放入到新开的空间上，golang的实现，类似于内核态线程的实现，不同协程间切换还是要切换对应的栈上下文，只是不用陷入内核</span><br><span class="line"></span><br><span class="line">无栈协程：直接把局部变量放入系统栈上，js、c++、rust那种await、async实现，主要原理就是闭包+异步，换句话说，其实就是协程的上下文都放到公共内存中，协程切换时，使用状态机来切换，就不用切换对应的上下文了，因为都在堆里的。比有栈协程都要轻量许多。</span><br></pre></td></tr></table></figure>
 
-<h1 id="基础部分"><a href="#基础部分" class="headerlink" title="基础部分"></a>基础部分</h1><h2 id="值类型和引用类型"><a href="#值类型和引用类型" class="headerlink" title="值类型和引用类型"></a>值类型和引用类型</h2><h3 id="值类型："><a href="#值类型：" class="headerlink" title="值类型："></a><strong>值类型</strong>：</h3><ul>
+<h1 id="基础部分"><a href="#基础部分" class="headerlink" title="基础部分"></a>基础部分</h1><h2 id="GO的基础数据类型"><a href="#GO的基础数据类型" class="headerlink" title="GO的基础数据类型"></a>GO的基础数据类型</h2><p>1、布尔型</p>
+<p>　　bool，值为true(真)或false（假）。</p>
+<p>2、整数型</p>
+<p>　　int8 有符号 8 位整型 (-128 到 127) 长度：8bit</p>
+<p>　　int16 有符号 16 位整型 (-32768 到 32767)</p>
+<p>　　int32 有符号 32 位整型 (-2147483648 到 2147483647)</p>
+<p>　　int64 有符号 64 位整型 (-9223372036854775808 到 9223372036854775807)</p>
+<p>　　uint8 无符号 8 位整型 (0 到 255) 8位都用于表示数值：</p>
+<p>　　uint16 无符号 16 位整型 (0 到 65535)</p>
+<p>　　uint32 无符号 32 位整型 (0 到 4294967295)</p>
+<p>　　uint64 无符号 64 位整型 (0 到 18446744073709551615) </p>
+<p>　　int 、uint 根据底层平台，表示32或64位整数。</p>
+<p>　　uintptr 无符号整型，用于存放一个指针</p>
+<p>3、浮点型</p>
+<p>　　float32  32位浮点型数</p>
+<p>　　float64  64位浮点型数</p>
+<p>　　complex64  32 位实数和虚数</p>
+<p>　　complex128  64 位实数和虚数</p>
+<p>4、字符型</p>
+<p>　　byte 单个字符，类似于uint8</p>
+<p>5、字符串类型</p>
+<p>　　string 字符串</p>
+<p>6、rune类型<br>　　类似 int32　　（Go语言的字符串的字节使用UTF-8编码标识Unicode文本，中文字符不是占用2个自己而是占用3个字节，rune用于获取真实的字节占用数）</p>
+<h2 id="值类型和引用类型"><a href="#值类型和引用类型" class="headerlink" title="值类型和引用类型"></a>值类型和引用类型</h2><h3 id="值类型："><a href="#值类型：" class="headerlink" title="值类型："></a><strong>值类型</strong>：</h3><ul>
 <li>包括基本数据类型，如<code>int</code>、<code>float</code>、<code>bool</code>、<code>string</code>。</li>
 <li>也包括复合数据类型，如数组和结构体（struct）。</li>
 <li>变量直接存储值。</li>
@@ -368,38 +391,37 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">defer before panic</span><br><span class="line">panic: panic</span><br><span class="line">goroutine 1 [running]:</span><br><span class="line">main.deferPanic()</span><br><span class="line">    E:/godemo/testdefer.go:19 +0x95</span><br><span class="line">main.main()</span><br><span class="line">    E:/godemo/testdefer.go:14 +0x20</span><br><span class="line">Process finished with exit code 2</span><br></pre></td></tr></table></figure>
 
 <p>defer 语句输出了内容。<br>Go中的panic类似其它语言中的抛出异常，panic后面的代码不再执行(panic语句前面的defer语句会被执行)。</p>
-<h3 id="调用os-Exit时defer不会被执行"><a href="#调用os-Exit时defer不会被执行" class="headerlink" title="调用os.Exit时defer不会被执行"></a>调用os.Exit时defer不会被执行</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">deferExit</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;defer&quot;</span>)</span><br><span class="line">    &#125;()</span><br><span class="line">    os.Exit(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="调用os-Exit时defer不会被执行"><a href="#调用os-Exit时defer不会被执行" class="headerlink" title="调用os.Exit时defer不会被执行"></a>调用os.Exit时defer不会被执行</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">deferExit</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;defer&quot;</span>)</span><br><span class="line">    &#125;()</span><br><span class="line">    os.Exit(<span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>当调用os.Exit()方法退出程序时，defer并不会被执行，上面的defer并不会输出。</p>
-<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="uint-类型溢出问题"><a href="#uint-类型溢出问题" class="headerlink" title="uint 类型溢出问题"></a><code>uint </code>类型溢出问题</h4><p>超过最大存储值，例如<code>uint8</code>最大是255</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="uint-类型溢出问题"><a href="#uint-类型溢出问题" class="headerlink" title="uint 类型溢出问题"></a><code>uint </code>类型溢出问题</h3><p>超过最大存储值，例如<code>uint8</code>最大是255</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a uint8 = 255</span><br><span class="line">var b uint8 = 1</span><br><span class="line">a + b` 发生溢出， 结果为`0</span><br></pre></td></tr></table></figure>
 
-<h4 id="rune-类型"><a href="#rune-类型" class="headerlink" title="rune 类型"></a>rune 类型</h4><p><strong><code>rune</code>类型是Go语言中用于表示<code>Unicode</code>字符的整数类型，它是<code>int32</code>的别名。</strong></p>
+<h3 id="rune-类型"><a href="#rune-类型" class="headerlink" title="rune 类型"></a>rune 类型</h3><p><strong><code>rune</code>类型是Go语言中用于表示<code>Unicode</code>字符的整数类型，它是<code>int32</code>的别名。</strong></p>
 <p>用于表示一个 Unicode 码点（Unicode Code Point）。Unicode 码点是Unicode标准中为每个字符分配的唯一整数，它可以涵盖世界上几乎所有的字符和符号。</p>
 <p>Go 语言中的 <code>rune</code> 主要是为了方便处理UTF-8编码的文本，特别是多字节字符，比如中文、日文、韩文等非ASCII字符。在UTF-8编码下，单个字符可能由1到4个字节组成，而一个 <code>rune</code> 能够容纳任何有效的Unicode码点，确保能够完整地表示所有这些字符。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">s := <span class="string">&quot;你好，世界！&quot;</span></span><br><span class="line">runes := []<span class="type">rune</span>(s)</span><br><span class="line"><span class="comment">// 对 runes 进行遍历或操作</span></span><br><span class="line"><span class="keyword">for</span> i, r := <span class="keyword">range</span> runes &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;索引: %d, 字符: %c, Unicode 编码: %U\n&quot;</span>, i, r, r)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">索引: 0, 字符: 你, Unicode 编码: U+4F60</span></span><br><span class="line"><span class="comment">索引: 1, 字符: 好, Unicode 编码: U+597D</span></span><br><span class="line"><span class="comment">索引: 2, 字符: ，, Unicode 编码: U+FF0C</span></span><br><span class="line"><span class="comment">索引: 3, 字符: 世, Unicode 编码: U+4E16</span></span><br><span class="line"><span class="comment">索引: 4, 字符: 界, Unicode 编码: U+754C</span></span><br><span class="line"><span class="comment">索引: 5, 字符: ！, Unicode 编码: U+FF01</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="int类型"><a href="#int类型" class="headerlink" title="int类型"></a><code>int</code>类型</h4><p>go语言中的int的大小是和操作系统位数相关的，如果是32位操作系统，int类型的大小就是4字节。如果是64位操作系统，int类型的大小就是8个字节。</p>
-<h3 id="golang-中解析-tag-是怎么实现的？反射原理是什么？-中高级题目"><a href="#golang-中解析-tag-是怎么实现的？反射原理是什么？-中高级题目" class="headerlink" title="golang 中解析 tag 是怎么实现的？反射原理是什么？(中高级题目)"></a>golang 中解析 tag 是怎么实现的？反射原理是什么？(中高级题目)</h3><p><strong>Tag 实现流程概要：</strong></p>
+<h3 id="int类型"><a href="#int类型" class="headerlink" title="int类型"></a><code>int</code>类型</h3><p>go语言中的int的大小是和操作系统位数相关的，如果是32位操作系统，int类型的大小就是4字节。如果是64位操作系统，int类型的大小就是8个字节。</p>
+<h2 id="golang-中解析-tag-是怎么实现的？反射原理是什么？-中高级题目"><a href="#golang-中解析-tag-是怎么实现的？反射原理是什么？-中高级题目" class="headerlink" title="golang 中解析 tag 是怎么实现的？反射原理是什么？(中高级题目)"></a>golang 中解析 tag 是怎么实现的？反射原理是什么？(中高级题目)</h2><p><strong>Tag 实现流程概要：</strong></p>
 <ol>
 <li>获取结构体类型的反射对象。</li>
 <li>遍历结构体的所有字段。</li>
 <li>对于每个字段，调用 <code>StructField.Tag.Get()</code> 方法并传入想要获取的 tag 键名，比如 <code>&quot;json&quot;</code> 或 <code>&quot;xml&quot;</code>。</li>
 <li>返回并处理 tag 中的值。</li>
 </ol>
-<p><strong>反射的原理，基于接口来实现：</strong></p>
-<p>在Go语言中，所有的类型都实现了空接口<code>interface&#123;&#125;</code>，这使得它们都可以被转换为反射类型<code>Type</code>和反射值<code>Value</code>。反射过程涉及到几个步骤：</p>
+<h3 id="反射的原理，基于接口来实现："><a href="#反射的原理，基于接口来实现：" class="headerlink" title="反射的原理，基于接口来实现："></a><strong>反射的原理，基于接口来实现：</strong></h3><p>在Go语言中，所有的类型都实现了空接口<code>interface&#123;&#125;</code>，这使得它们都可以被转换为反射类型<code>Type</code>和反射值<code>Value</code>。反射过程涉及到几个步骤：</p>
 <ol>
 <li><strong>类型转换</strong>：将普通类型隐式转换为接口类型。这个转换过程是自动进行的，当一个变量被赋值给接口类型的值时，就会进行这个转换。</li>
 <li><strong>获取反射对象</strong>：通过转换得到的接口值，可以调用标准库<code>reflect</code>包中的函数来获取对应的反射类型<code>Type</code>和反射值<code>Value</code>。</li>
 <li><strong>操作反射对象</strong>：通过反射类型和反射值，可以获取到原始类型的各种信息，包括字段、方法、标签等，并且可以对这些信息进行读取和修改操作。</li>
 </ol>
-<h3 id="Golang-调用函数传入结构体时，应该传值还是指针？"><a href="#Golang-调用函数传入结构体时，应该传值还是指针？" class="headerlink" title="Golang 调用函数传入结构体时，应该传值还是指针？"></a>Golang 调用函数传入结构体时，应该传值还是指针？</h3><p>分情况：</p>
+<h2 id="Golang-调用函数传入结构体时，应该传值还是指针？"><a href="#Golang-调用函数传入结构体时，应该传值还是指针？" class="headerlink" title="Golang 调用函数传入结构体时，应该传值还是指针？"></a>Golang 调用函数传入结构体时，应该传值还是指针？</h2><p>分情况：</p>
 <ol>
 <li><strong>结构体的大小：</strong>如果结构体非常大，使用<strong>指针传递会更有效率</strong>，因为这样只会复制指针值（一般是8字节），而不是复制整个结构体。<strong>如果结构体小</strong>，值传递和指针传递的性能差异可能可以忽略不计。</li>
 <li><strong>是否需要修改原始结构体</strong>：如果你需要在函数中<strong>修改原始结构体</strong>，你应该使用指针传递。如果你使用值传递，<strong>函数会接收结构体的一个副本</strong>，你在函数中对结构体的修改不会影响到原始的结构体。</li>
 </ol>
-<h3 id="slice"><a href="#slice" class="headerlink" title="slice"></a>slice</h3><p><strong>Go语言中的slice是一个结构体，包含指针、长度和容量三个部分</strong>。它的特性包括：</p>
+<h2 id="slice"><a href="#slice" class="headerlink" title="slice"></a>slice</h2><p><strong>Go语言中的slice是一个结构体，包含指针、长度和容量三个部分</strong>。它的特性包括：</p>
 <ul>
 <li><strong>指针</strong>：Slice包含一个指针，该指针指向底层数组，即实际存储数据的数组。</li>
 <li>**长度<code>len</code>**：Slice的长度表示当前Slice使用到的元素个数。</li>
@@ -414,7 +436,7 @@
 <li>当Slice的容量大于其长度时，可以通过append等操作来扩展Slice的长度，而不会改变底层数组的大小。</li>
 <li>当Slice的长度达到容量时，再次进行append操作将会导致底层数组的重新分配和复制，这可能会影响性能。</li>
 </ul>
-<h3 id="select"><a href="#select" class="headerlink" title="select"></a>select</h3><p>Go语言中的<code>select</code>语句是一种多路复用的控制结构，它用于同时处理多个通道（channel）上的事件。其底层数据结构和特性如下：</p>
+<h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><p>Go语言中的<code>select</code>语句是一种多路复用的控制结构，它用于同时处理多个通道（channel）上的事件。其底层数据结构和特性如下：</p>
 <ol>
 <li><strong>数据结构</strong>：<code>select</code>的底层实现与操作系统中的I&#x2F;O多路复用机制类似，如<code>poll</code>和<code>epoll</code>。在Go语言中，<code>select</code>用于监听通道的发送和接收操作，当通道准备好进行相应的操作时，会触发<code>select</code>中对应的<code>case</code>分支执行。</li>
 <li>特性：<ul>
@@ -426,7 +448,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h3><p>每个 defer 语句都对应一个<code>_defer</code> 实例，多个实例使用指针连接起来形成一个单连表，保存在 <code>goroutine</code> 数据结构中，每次插入<code>_defer</code> 实例，均插入到链表的头部，函数结束再一次从头部取出，从而形成后进先出的效果。</p>
+<h2 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h2><p>每个 defer 语句都对应一个<code>_defer</code> 实例，多个实例使用指针连接起来形成一个单连表，保存在 <code>goroutine</code> 数据结构中，每次插入<code>_defer</code> 实例，均插入到链表的头部，函数结束再一次从头部取出，从而形成后进先出的效果。</p>
 <p><strong>defer 的规则总结</strong>：</p>
 <ul>
 <li>延迟函数的参数是 defer 语句出现的时候就已经确定了的。</li>
@@ -434,23 +456,23 @@
 <li>延迟函数可能操作主函数的返回值。</li>
 <li>建议申请资源后立即使用 defer 关闭资源。</li>
 </ul>
-<h3 id="单引号，双引号，反引号的区别"><a href="#单引号，双引号，反引号的区别" class="headerlink" title="单引号，双引号，反引号的区别"></a>单引号，双引号，反引号的区别</h3><p><strong>单引号</strong>，表示<code>byte</code>类型或<code>rune</code>类型，对应 <code>uint8</code>和<code>int32</code>类型，默认是 <code>rune</code> 类型。<code>byte</code>用来强调数据是<code>raw data</code>，而不是数字；而<code>rune</code>用来表示<code>Unicode</code>的<code>code point</code>。</p>
+<h2 id="单引号，双引号，反引号的区别"><a href="#单引号，双引号，反引号的区别" class="headerlink" title="单引号，双引号，反引号的区别"></a>单引号，双引号，反引号的区别</h2><p><strong>单引号</strong>，表示<code>byte</code>类型或<code>rune</code>类型，对应 <code>uint8</code>和<code>int32</code>类型，默认是 <code>rune</code> 类型。<code>byte</code>用来强调数据是<code>raw data</code>，而不是数字；而<code>rune</code>用来表示<code>Unicode</code>的<code>code point</code>。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> v <span class="type">rune</span> = <span class="string">&#x27;你&#x27;</span></span><br><span class="line">	<span class="keyword">var</span> v1 <span class="type">rune</span> = <span class="string">&#x27;k&#x27;</span></span><br><span class="line">	<span class="keyword">var</span> v2 <span class="type">byte</span> = <span class="string">&#x27;k&#x27;</span></span><br><span class="line">	fmt.Println(v, v1, v2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">20320 107 107</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>双引号</strong>，里面可以是单个字符也可以是字符串，对应<code>string</code>类型，实际上是字符数组。可以用索引号访问某字节，也可以用<code>len()</code>函数来获取字符串所占的字节长度。双引号里的字符串可以转义，但是不能换行，可以利用<code>\n</code>来实现换行。</p>
 <p><strong>反引号</strong>中的字符串表示其原生的意思，里面的内容不会被转义，可以换行。</p>
-<h3 id="Go-支持默认参数或可选参数吗？"><a href="#Go-支持默认参数或可选参数吗？" class="headerlink" title="Go 支持默认参数或可选参数吗？"></a>Go 支持默认参数或可选参数吗？</h3><p>不支持。但是可以利用结构体参数，或者<code>...</code>传入参数切片数组。</p>
+<h2 id="Go-支持默认参数或可选参数吗？"><a href="#Go-支持默认参数或可选参数吗？" class="headerlink" title="Go 支持默认参数或可选参数吗？"></a>Go 支持默认参数或可选参数吗？</h2><p>不支持。但是可以利用结构体参数，或者<code>...</code>传入参数切片数组。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个函数可以传入任意数量的整型参数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sum</span><span class="params">(nums ...<span class="type">int</span>)</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="结构体打印时，-v-和-v-的区别"><a href="#结构体打印时，-v-和-v-的区别" class="headerlink" title="结构体打印时，%v 和 %+v 的区别"></a>结构体打印时，<code>%v</code> 和 <code>%+v</code> 的区别</h3><p><code>%v</code>输出结构体各成员的值；</p>
+<h2 id="结构体打印时，-v-和-v-的区别"><a href="#结构体打印时，-v-和-v-的区别" class="headerlink" title="结构体打印时，%v 和 %+v 的区别"></a>结构体打印时，<code>%v</code> 和 <code>%+v</code> 的区别</h2><p><code>%v</code>输出结构体各成员的值；</p>
 <p><code>%+v</code>输出结构体各成员的<strong>名称</strong>和<strong>值</strong>；</p>
 <p><code>%#v</code>输出结构体名称和结构体各成员的名称和值</p>
-<h3 id="Go-语言中如何表示枚举值"><a href="#Go-语言中如何表示枚举值" class="headerlink" title="Go 语言中如何表示枚举值"></a>Go 语言中如何表示枚举值</h3><ul>
+<h2 id="Go-语言中如何表示枚举值"><a href="#Go-语言中如何表示枚举值" class="headerlink" title="Go 语言中如何表示枚举值"></a>Go 语言中如何表示枚举值</h2><ul>
 <li>使用常量定义枚举值</li>
 <li>使用自定义类型定义枚举</li>
 <li>使用 <code>iota</code> 自增枚举值</li>
 </ul>
-<h3 id="空-struct-的用途"><a href="#空-struct-的用途" class="headerlink" title="空 struct{} 的用途"></a>空 struct{} 的用途</h3><p>在Go语言中，空的 <code>struct &#123;&#125;</code> 类型通常被用作占位符或者信号。它不占用任何内存空间，也不包含任何字段，可以避免任何多余的内存分配。</p>
+<h2 id="空-struct-的用途"><a href="#空-struct-的用途" class="headerlink" title="空 struct{} 的用途"></a>空 struct{} 的用途</h2><p>在Go语言中，空的 <code>struct &#123;&#125;</code> 类型通常被用作占位符或者信号。它不占用任何内存空间，也不包含任何字段，可以避免任何多余的内存分配。</p>
 <ol>
 <li><p>实现集合类型：Go语言本身没有直接的集合类型（类似于Set），但我们可以使用map来替代，例如</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type Set map[int]struct&#123;&#125;</span><br></pre></td></tr></table></figure>
@@ -652,7 +674,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="GPM调度模型"><a href="#GPM调度模型" class="headerlink" title="GPM调度模型"></a>GPM调度模型</h3><h4 id="什么是GPM调度模型"><a href="#什么是GPM调度模型" class="headerlink" title="什么是GPM调度模型?"></a>什么是GPM调度模型?</h4><p>Go 语言的 GPM 调度模型是 Go 运行时特有的并发调度模型，用于管理和调度 Goroutines（Go 语言的轻量级线程）。</p>
+<h1 id="GPM调度模型"><a href="#GPM调度模型" class="headerlink" title="GPM调度模型"></a>GPM调度模型</h1><h2 id="什么是GPM调度模型"><a href="#什么是GPM调度模型" class="headerlink" title="什么是GPM调度模型?"></a>什么是GPM调度模型?</h2><p>Go 语言的 GPM 调度模型是 Go 运行时特有的并发调度模型，用于管理和调度 Goroutines（Go 语言的轻量级线程）。</p>
 <p>GPM 模型由三部分组成：Goroutine（G）、M（Machine）、和 P（Processor）。</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Geffin/article/details/113996403">实战参考</a></p>
 <ul>
@@ -675,18 +697,18 @@
 <li>若 M 闲置，会去全局队列或者从其他 P 抢夺 Goroutine 来执行（Work Stealing）。</li>
 <li>当 Goroutine 因 I&#x2F;O 操作阻塞时，对应的 M 会释放其与 P 的关联，并让出 CPU 给其他 Goroutine 执行，待阻塞解除后重新参与调度。</li>
 </ul>
-<h4 id="调度器策略"><a href="#调度器策略" class="headerlink" title="调度器策略"></a>调度器策略</h4><h5 id="复用线程"><a href="#复用线程" class="headerlink" title="复用线程"></a>复用线程</h5><p>避免频繁的创建、销毁线程，而是对线程的复用</p>
-<h6 id="work-stealing机制"><a href="#work-stealing机制" class="headerlink" title="work stealing机制"></a>work stealing机制</h6><p>先从全局队列拿，全局队列没有G的话，再从其他线程绑定的P的本地队列中“窃取”</p>
-<h6 id="hand-off机制"><a href="#hand-off机制" class="headerlink" title="hand off机制"></a>hand off机制</h6><p>当本线程因为G进行系统调用阻塞时，线程释放绑定的P，把P转移给其他空闲的线程M执行（此时的P带剩余的G）。</p>
+<h3 id="调度器策略"><a href="#调度器策略" class="headerlink" title="调度器策略"></a>调度器策略</h3><h4 id="复用线程"><a href="#复用线程" class="headerlink" title="复用线程"></a>复用线程</h4><p>避免频繁的创建、销毁线程，而是对线程的复用</p>
+<h5 id="work-stealing机制"><a href="#work-stealing机制" class="headerlink" title="work stealing机制"></a>work stealing机制</h5><p>先从全局队列拿，全局队列没有G的话，再从其他线程绑定的P的本地队列中“窃取”</p>
+<h5 id="hand-off机制"><a href="#hand-off机制" class="headerlink" title="hand off机制"></a>hand off机制</h5><p>当本线程因为G进行系统调用阻塞时，线程释放绑定的P，把P转移给其他空闲的线程M执行（此时的P带剩余的G）。</p>
 <ol>
 <li>当前p本地队列有待执行g </li>
 <li>没有空闲的p和m, 全局g队列为空 (此时意味这全局繁忙) </li>
 <li>需要处理网络 I&#x2F;O</li>
 </ol>
-<h5 id="利用并行"><a href="#利用并行" class="headerlink" title="利用并行"></a>利用并行</h5><p>GOMAXPROCS设置P的数量，最多有GOMAXPROCS个线程分布在多个CPU上同时运行。GOMAXPROCS也限制了并发的程度，比如GOMAXPROCS &#x3D; 核数&#x2F;2，则最多利用了一半的CPU核进行并行。</p>
-<h5 id="抢占"><a href="#抢占" class="headerlink" title="抢占"></a>抢占</h5><p>在coroutine中要等待一个协程主动让出CPU才执行下一个协程，在Go中，一个goroutine最多占用CPU 10ms，防止其他goroutine被饿死，这就是goroutine不同于coroutine的一个地方。</p>
-<h5 id="全局G队列"><a href="#全局G队列" class="headerlink" title="全局G队列"></a>全局G队列</h5><p>在新的调度器M中依然有全局G队列，当P的本地队列为空时，优先从全局队列获取，如果全局队列为空时则通过work stealing机制从其他P的本地队列偷取G。</p>
-<h6 id="抢占式调度是如何抢占的"><a href="#抢占式调度是如何抢占的" class="headerlink" title="抢占式调度是如何抢占的"></a>抢占式调度是如何抢占的</h6><p>抢占式调度的过程通常包括以下几个步骤：</p>
+<h4 id="利用并行"><a href="#利用并行" class="headerlink" title="利用并行"></a>利用并行</h4><p>GOMAXPROCS设置P的数量，最多有GOMAXPROCS个线程分布在多个CPU上同时运行。GOMAXPROCS也限制了并发的程度，比如GOMAXPROCS &#x3D; 核数&#x2F;2，则最多利用了一半的CPU核进行并行。</p>
+<h4 id="抢占"><a href="#抢占" class="headerlink" title="抢占"></a>抢占</h4><p>在coroutine中要等待一个协程主动让出CPU才执行下一个协程，在Go中，一个goroutine最多占用CPU 10ms，防止其他goroutine被饿死，这就是goroutine不同于coroutine的一个地方。</p>
+<h4 id="全局G队列"><a href="#全局G队列" class="headerlink" title="全局G队列"></a>全局G队列</h4><p>在新的调度器M中依然有全局G队列，当P的本地队列为空时，优先从全局队列获取，如果全局队列为空时则通过work stealing机制从其他P的本地队列偷取G。</p>
+<h3 id="抢占式调度是如何抢占的"><a href="#抢占式调度是如何抢占的" class="headerlink" title="抢占式调度是如何抢占的"></a>抢占式调度是如何抢占的</h3><p>抢占式调度的过程通常包括以下几个步骤：</p>
 <ol>
 <li><strong>时间片分配</strong>：系统为每个任务分配一个固定的时间片（time quantum），即任务可以连续执行的最长时间。</li>
 <li><strong>上下文保存</strong>：当任务的时间片用完时，调度器会暂停该任务的执行，并保存其当前的执行状态（如寄存器值、程序计数器等）到任务的上下文中。</li>
@@ -694,9 +716,9 @@
 <li><strong>上下文恢复</strong>：调度器加载新选中任务的上下文，恢复其执行状态，然后继续执行。</li>
 <li><strong>重复过程</strong>：这个过程周期性地重复，确保所有任务都有机会被执行。</li>
 </ol>
-<h4 id="调度流程"><a href="#调度流程" class="headerlink" title="调度流程"></a>调度流程</h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130217381.png"/>
+<h2 id="调度流程"><a href="#调度流程" class="headerlink" title="调度流程"></a>调度流程</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130217381.png"/>
 
-<h4 id="Go语言调度模型G、M、P的数量多少合适？"><a href="#Go语言调度模型G、M、P的数量多少合适？" class="headerlink" title="Go语言调度模型G、M、P的数量多少合适？"></a>Go语言调度模型G、M、P的数量多少合适？</h4><ol>
+<h2 id="Go语言调度模型G、M、P的数量多少合适？"><a href="#Go语言调度模型G、M、P的数量多少合适？" class="headerlink" title="Go语言调度模型G、M、P的数量多少合适？"></a>Go语言调度模型G、M、P的数量多少合适？</h2><ol>
 <li>G（Goroutine）：<ul>
 <li>Goroutine 的数量理论上没有严格的上限，但在实践中，大量的并发 Goroutine 会消耗内存（每个 Goroutine 都有自己的栈空间），并且过多的 Goroutine 可能导致上下文切换的开销增大，降低性能。</li>
 <li><strong>一般建议控制 Goroutine 的数量不要过于庞大</strong>，尤其是活跃 Goroutine 数量。通过合理设计程序，避免不必要的并发，<strong>使用 Channel 和 WaitGroup 等同步机制来控制并发水平。</strong></li>
@@ -716,7 +738,7 @@
 </li>
 </ol>
 <p>总结来说，大部分情况下无需特别关注 M 的数量，<strong>只需合理设置 P 的数量以匹配系统资源和应用需求</strong>。<strong>而对于 G 的数量，应尽量控制在合理的范围内，以避免内存浪费和过度的上下文切换。</strong>通过观察和测量实际应用的性能，可以进一步微调 P 和 G 的数量来优化程序的并发处理能力。</p>
-<h4 id="GMP模型中，M-发生系统调用了-G-和-P-会怎么样"><a href="#GMP模型中，M-发生系统调用了-G-和-P-会怎么样" class="headerlink" title="GMP模型中，M 发生系统调用了, G 和 P 会怎么样"></a>GMP模型中，M 发生系统调用了, G 和 P 会怎么样</h4><p>在Go语言的GMP调度模型中，当一个系统线程M（Machine）遇到需要执行系统调用时，会发生以下情况：</p>
+<h2 id="GMP模型中，M-发生系统调用了-G-和-P-会怎么样"><a href="#GMP模型中，M-发生系统调用了-G-和-P-会怎么样" class="headerlink" title="GMP模型中，M 发生系统调用了, G 和 P 会怎么样"></a>GMP模型中，M 发生系统调用了, G 和 P 会怎么样</h2><p>在Go语言的GMP调度模型中，当一个系统线程M（Machine）遇到需要执行系统调用时，会发生以下情况：</p>
 <ol>
 <li><strong>M与P解绑</strong>：M在执行系统调用前会先尝试释放与之关联的处理器P（Processor）。这是因为系统调用很可能会导致M阻塞，为了不让P闲置，M会把P交给调度器，让其他可运行的M来使用P继续执行Goroutine（G），从而提高CPU利用率。</li>
 <li><strong>G的调度</strong>：正在执行的Goroutine（G）会因为M的阻塞而暂停执行。这个G会被放回到P的本地队列或者全局队列中，等待下一个可用的M来获取并继续执行。如果G正在进行系统调用，当系统调用完成后，G需要重新获取P才能继续执行。</li>
@@ -751,6 +773,13 @@
 </ul>
 <img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130225105.png"/>
 
+<p>G的9种状态</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span>(</span><br><span class="line">    _Gidle = <span class="literal">iota</span> <span class="comment">// 0 </span></span><br><span class="line">    <span class="comment">// 没有执行代码，没有栈的所有权，存储在运行队列中</span></span><br><span class="line">    _Grunnable <span class="comment">// 1 </span></span><br><span class="line">    <span class="comment">// 可以执行代码，拥有栈的所有权，被赋予了内核线程 M 和处理器 P</span></span><br><span class="line">    _Grunning <span class="comment">// 2 </span></span><br><span class="line">    <span class="comment">// 正在执行系统调用，拥有栈的所有权，没有执行用户代码，</span></span><br><span class="line">    <span class="comment">// 被赋予了内核线程 M 但是不在运行队列上</span></span><br><span class="line">    _Gsyscall <span class="comment">// 3 </span></span><br><span class="line">    <span class="comment">// 由于运行时而被阻塞，没有执行用户代码并且不在运行队列上，</span></span><br><span class="line">    <span class="comment">// 但是可能存在于 Channel 的等待队列上</span></span><br><span class="line">    _Gwaiting <span class="comment">// 4  </span></span><br><span class="line">    <span class="comment">//_Gmoribund_unused 当前未使用，但在 gdb 中硬编码脚本</span></span><br><span class="line">     _Gmoribund_unused <span class="comment">// 5</span></span><br><span class="line">    <span class="comment">// 表示当前goroutine没有被使用，没有执行代码，可能有分配的栈</span></span><br><span class="line">    _Gdead <span class="comment">// 6  </span></span><br><span class="line">    <span class="comment">//_Genqueue_unused当前未使用</span></span><br><span class="line">    _Genqueue_unused <span class="comment">// 7</span></span><br><span class="line">    <span class="comment">// 栈正在被拷贝，没有执行代码，不在运行队列上</span></span><br><span class="line">    _Gcopystack <span class="comment">// 8 </span></span><br><span class="line">    <span class="comment">// 由于抢占而被阻塞，没有执行用户代码并且不在运行队列上，等待唤醒</span></span><br><span class="line">    _Gpreempted <span class="comment">// 9 </span></span><br><span class="line">    <span class="comment">// GC 正在扫描栈空间，没有执行代码，可以与其他状态同时存在</span></span><br><span class="line">    	_Gscan          = <span class="number">0x1000</span></span><br><span class="line">    	_Gscanrunnable  = _Gscan + _Grunnable  <span class="comment">// 0x1001</span></span><br><span class="line">		_Gscanrunning   = _Gscan + _Grunning   <span class="comment">// 0x1002</span></span><br><span class="line">		_Gscansyscall   = _Gscan + _Gsyscall   <span class="comment">// 0x1003</span></span><br><span class="line">		_Gscanwaiting   = _Gscan + _Gwaiting   <span class="comment">// 0x1004</span></span><br><span class="line">		_Gscanpreempted = _Gscan + _Gpreempted <span class="comment">// 0x1009</span></span><br><span class="line">    </span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<h2 id="M去抢占G的时候会有一个自旋和非自旋的状态"><a href="#M去抢占G的时候会有一个自旋和非自旋的状态" class="headerlink" title="M去抢占G的时候会有一个自旋和非自旋的状态"></a>M去抢占G的时候会有一个自旋和非自旋的状态</h2><h2 id="OOM问题"><a href="#OOM问题" class="headerlink" title="OOM问题"></a>OOM问题</h2><h5 id="内存溢出-out-of-memory，简称OOM"><a href="#内存溢出-out-of-memory，简称OOM" class="headerlink" title="内存溢出(out of memory，简称OOM)"></a>内存溢出(out of memory，简称OOM)</h5><p>内存溢出是指程序在申请内存时，没有足够的内存空间供其使用，简单点说就是你要求分配的内存超出了系统能给你的，系统不能满足需求，于是产生溢出出现out of memory异常。</p>
+<h5 id="内存泄露-memory-leak"><a href="#内存泄露-memory-leak" class="headerlink" title="内存泄露(memory leak)"></a>内存泄露(memory leak)</h5><p>内存泄露是指程序在申请内存后，无法释放已申请的内存空间，简单点说就是你向系统申请分配内存进行使用(new)，可是使用完了以后却不归还(delete)，结果你申请到的那块内存你自己也不能再访问（也许你把它的地址给弄丢了），而系统也不能再次将它分配给需要的程序。</p>
+<p>若线程发生OOM，那么他在GPM模型中会被Kill掉</p>
+<p>goroutine 发生 OOM</p>
 <h1 id="锁相关"><a href="#锁相关" class="headerlink" title="锁相关"></a>锁相关</h1><h2 id="锁的基本概念"><a href="#锁的基本概念" class="headerlink" title="锁的基本概念"></a>锁的基本概念</h2><p>锁（通常是指 <code>sync.Mutex</code>互斥锁 或 <code>sync.RWMutex</code>读写互斥锁）在 Go 语言中主要用于保护共享资源（如变量、数据结构）免受并发访问时的数据竞争。当多个 <code>goroutine</code> 并发访问和修改相同的资源，并且这些修改操作不能原子性完成时，就需要使用锁来确保每次只有一个 <code>goroutine</code> 能够访问和修改资源。</p>
 <h2 id="golang有哪些类型的锁"><a href="#golang有哪些类型的锁" class="headerlink" title="golang有哪些类型的锁"></a>golang有哪些类型的锁</h2><p>在 Go 语言中，标准库 <code>sync</code> 包提供了以下几种类型的锁来实现同步控制：</p>
 <ol>
@@ -2133,7 +2162,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-15 01:03:48" itemprop="dateModified" datetime="2024-05-15T01:03:48+08:00">2024-05-15</time>
+                <time title="修改时间：2024-06-13 10:18:00" itemprop="dateModified" datetime="2024-06-13T10:18:00+08:00">2024-06-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2357,9 +2386,9 @@
 <h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>MVCC 的目的就是多版本并发控制，在数据库中的实现，就是为了解决读写冲突，它的实现原理<br>主要是依赖记录中的3 个隐式字段、undo 日志、Read View 来实现的。</p>
 <h2 id="数据库的锁"><a href="#数据库的锁" class="headerlink" title="数据库的锁"></a>数据库的锁</h2><ol>
 <li>共享锁：不堵塞，多个用户可以同一时刻读取同一个资源，相互之间没有影响。</li>
-<li>排他锁：一个写操作阻塞其他的读锁和写锁，这样可以只允许一个用户进行写入，防止其他<br>  用户读取正在写入的资源。</li>
+<li>排他锁：一个写操作阻塞其他的读锁和写锁，这样可以只允许一个用户进行写入，防止其他<br> 用户读取正在写入的资源。</li>
 <li>表锁：系统开销最小，会锁定整张表，MyISAM 使用表锁。</li>
-<li>行锁：容易出现死锁，发生冲突概率低，并发高，InnoDB 支持行锁（必须有索引才能实现，<br>  否则会自动锁全表，那么就不是行锁了）。</li>
+<li>行锁：容易出现死锁，发生冲突概率低，并发高，InnoDB 支持行锁（必须有索引才能实现，<br> 否则会自动锁全表，那么就不是行锁了）。</li>
 </ol>
 <h3 id="悲观锁和乐观锁"><a href="#悲观锁和乐观锁" class="headerlink" title="悲观锁和乐观锁"></a>悲观锁和乐观锁</h3><h4 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h4><p>在悲观锁的情况下，为了保证事务的隔离性，就需要一致性锁定。读取数据时给加锁，其他事务无<br>法修改这些数据。修改删除数据时也要加锁，其他事务无法读取这些数据。</p>
 <h4 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h4><p>相对悲观锁而言，乐观锁机制采取了更加宽松的加锁机制。悲观锁大多数情况下依靠数据库的锁<br>机制实现，以保证操作最大程度的独占性。但随之而来的就是数据库性能的大量开销，特别是对<br>长事务而言，这样的开销往往无法承受。</p>
@@ -2380,10 +2409,13 @@
 <li>MyCat 也得高可用：Haproxy，连接多个MyCat</li>
 <li>Haproxy 也得高可用：通过keepalived 辅助Haproxy</li>
 </ol>
-<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h2 id="为了应对多请求缓存数据，缓解mysql压力而诞生"><a href="#为了应对多请求缓存数据，缓解mysql压力而诞生" class="headerlink" title="为了应对多请求缓存数据，缓解mysql压力而诞生"></a>为了应对多请求缓存数据，缓解mysql压力而诞生</h2><p>Redis主要数据存在内存中，通过设置超时时间来解决Redis在内存内数据不断膨胀问题<br>当内存压力太大时，通过随机算法删除内容释放空间（随机算法）<br>当超期数据太久于内存中未删除，遇到请求查询超期键值，则会立即删除该数据（被动触发，惰性删除）</p>
-<h2 id="内存淘汰策略"><a href="#内存淘汰策略" class="headerlink" title="内存淘汰策略"></a>内存淘汰策略</h2><p>①noeviction：返回错误，不会删除任何键值<br>②allkeys-lru：使用LRU算法删除最近最少使用的键值<br>③volatile-lru：使用LRU算法从设置了过期时间的键集合中删除最近最少使用的键值<br>④allkeys-random:从所有key随机删］除<br>⑤volatile-random：从设置了过期时间的键的集合中随机删除<br>⑥volat计e-ttl：从设置了过期时间的键中删除剩余时间最短的键<br>⑦volatile・lfu：从配置了过期时间的键中删除使用频率最少的键<br>⑧allkeys-lfu:从所有键中删除使用频率最少的键</p>
-<h2 id="缓存击穿-缓存雪崩"><a href="#缓存击穿-缓存雪崩" class="headerlink" title="缓存击穿 缓存雪崩"></a>缓存击穿 缓存雪崩</h2><p>mysql被多次申请查询返回空数据从而使得redis无法缓存（缓存穿透&#x2F;缓存击穿）<br>mysql因为（大量）redis数据丢失或者数据删除导致大量请求涌向mysql导致mysql处理不过来请求（缓存雪崩）<br>解决方法：过期时间均匀分布+热点数据永不过期</p>
-<h2 id="持久化-RDB-AOF"><a href="#持久化-RDB-AOF" class="headerlink" title="持久化 RDB AOF"></a>持久化 RDB AOF</h2><h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3><p>redis因为出错导致丢失数据（需要通过持久化存储）<br>RDB：将全部遍历写入二进制连续文件rdb (周期性备份)<br>为了防止大量重复备份，redis提供了save配置参数解决问题</p>
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406131017905.png"/>
+
+<h2 id="为了应对多请求缓存数据，缓解mysql压力而诞生"><a href="#为了应对多请求缓存数据，缓解mysql压力而诞生" class="headerlink" title="为了应对多请求缓存数据，缓解mysql压力而诞生"></a>为了应对多请求缓存数据，缓解mysql压力而诞生</h2><p>Redis主要数据存在内存中，通过设置超时时间来解决Redis在内存内数据不断膨胀问题<br>当内存压力太大时，通过随机算法删除内容释放空间（随机算法）<br>当超期数据太久于内存中未删除，遇到请求查询超期键值，则会立即删除该数据（被动触发，惰性删除）</p>
+<h2 id="内存淘汰策略"><a href="#内存淘汰策略" class="headerlink" title="内存淘汰策略"></a>内存淘汰策略</h2><p>①noeviction：返回错误，不会删除任何键值<br>②allkeys-lru：使用LRU算法删除最近最少使用的键值<br>③volatile-lru：使用LRU算法从设置了过期时间的键集合中删除最近最少使用的键值<br>④allkeys-random:从所有key随机删除<br>⑤volatile-random：从设置了过期时间的键的集合中随机删除<br>⑥volat计e-ttl：从设置了过期时间的键中删除剩余时间最短的键<br>⑦volatile・lfu：从配置了过期时间的键中删除使用频率最少的键<br>⑧allkeys-lfu:从所有键中删除使用频率最少的键</p>
+<h2 id="缓存击穿-缓存雪崩"><a href="#缓存击穿-缓存雪崩" class="headerlink" title="缓存击穿 缓存雪崩"></a>缓存击穿 缓存雪崩</h2><p>mysql被多次申请查询返回空数据从而使得redis无法缓存（缓存穿透&#x2F;缓存击穿）</p>
+<p>mysql因为（大量）redis数据丢失或者数据删除导致大量请求涌向mysql导致mysql处理不过来请求（缓存雪崩）<br>解决方法：过期时间均匀分布+热点数据永不过期</p>
+<h2 id="持久化-RDB-AOF"><a href="#持久化-RDB-AOF" class="headerlink" title="持久化 RDB AOF"></a>持久化 RDB AOF</h2><h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3><p>redis因为出错导致丢失数据（需要通过持久化存储）<br>RDB：将全部遍历写入二进制连续文件 rdb (周期性备份)<br>为了防止大量重复备份，redis提供了save配置参数解决问题</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">save 900 1 #900秒 内有一个写入即备份（由子进程进行）</span><br></pre></td></tr></table></figure>
 
 <p>RDB数据不一致问题:因为数据库都是分钟级的，这种周期性备份还是容易丢数据</p>
