@@ -152,6 +152,65 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/08/%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/07/08/%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">程序实例笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-07-08 17:47:32 / 修改时间：17:48:38" itemprop="dateCreated datePublished" datetime="2024-07-08T17:47:32+08:00">2024-07-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h1><h1 id="GO"><a href="#GO" class="headerlink" title="GO"></a>GO</h1><h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h1 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h1><h2 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h2><p>数据库中的分库分表（Sharding）是一种数据库优化策略，用于处理大数据量和高并发访问的场景。分库分表可以分为两个主要方面：分库（Database Sharding）和分表（Table Partitioning）。下面我将分别解释这两种策略，并提供一些示例。<br>分库（Database Sharding）<br>分库是指将数据分散到多个物理数据库中，每个数据库称为一个分片（Shard）。这样做的目的是为了水平扩展数据库，提高读写性能和存储容量。分库通常基于某种分片键（Sharding Key）进行数据分割，常见的分片键有用户ID、地区、日期等。<br>示例：按用户ID分库<br>假设我们有一个用户表，其中包含大量用户信息。我们可以选择将用户数据根据用户ID的哈希值分布到多个数据库中。例如，我们有四个数据库分片，可以按照如下方式分库：<br>用户ID为1到2500的用户数据存储在数据库分片1。<br>用户ID为2501到5000的用户数据存储在数据库分片2。<br>用户ID为5001到7500的用户数据存储在数据库分片3。<br>用户ID为7501以上的用户数据存储在数据库分片4。<br>分表（Table Partitioning）<br>分表是指将一个大表分割成多个小表，以提高查询性能和管理效率。分表可以是水平分表（Horizontal Partitioning）或垂直分表（Vertical Partitioning）。<br>水平分表（Horizontal Partitioning）<br>水平分表是将表中的行数据根据一定的规则分割到不同的表中，通常也是基于某个字段的值。<br>示例：按年份分表<br>如果有一个订单表，包含多年的数据，可以按年份将数据分割到不同的表中。例如：<br>orders_2020<br>orders_2021<br>orders_2022<br>orders_2023<br>这样，查询某一年的订单数据时，可以直接访问对应的表，提高了查询效率。<br>垂直分表（Vertical Partitioning）<br>垂直分表是将表中的列分割到不同的表中，通常是将不常用或字段长度大的列放到另一个表中，以减小主表的大小，提高查询性能。<br>示例：用户表垂直分表<br>假设有一个用户表，包含基本用户信息和详细的用户偏好信息。可以将这个表拆分为两个表：<br>users：包含用户ID、用户名、密码等基本信息。<br>user_preferences：包含用户的详细偏好信息，如兴趣爱好、购物偏好等。<br>这样，大部分查询只需要访问users表即可，提高了查询速度。<br>总结<br>分库分表是数据库设计中的高级主题，需要仔细规划和考虑数据访问模式、业务需求和系统性能。在实际操作中，还需要解决数据路由、事务处理、数据迁移和备份恢复等问题。通常，分库分表策略会与应用层的逻辑紧密相关，可能需要修改应用程序代码以适应新的数据库架构。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/07/golang%E9%9D%A2%E8%AF%95%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -183,7 +242,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-13 10:21:22" itemprop="dateModified" datetime="2024-06-13T10:21:22+08:00">2024-06-13</time>
+                <time title="修改时间：2024-06-13 11:58:46" itemprop="dateModified" datetime="2024-06-13T11:58:46+08:00">2024-06-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -298,6 +357,9 @@
 </ul>
 </li>
 </ol>
+<blockquote>
+<p>在Go语言中，make和new都是用于内存分配的内建函数，但它们之间存在一些关键性差异：<br>用途对象不同:<br>new(T)接受一个类型T作为参数，为类型T分配零值初始化的内存，并返回一个指向该类型实例的指针<em>T。它适用于任何类型T，包括基本类型、结构体、切片、映射、通道等。但主要用在那些没有内建初始化函数的数据结构上，比如结构体。<br>make(T)专门用于创建和初始化切片(slice)、映射(map)和通道(channel)这类动态大小的数据结构。它返回的是初始化后的切片、映射或通道的引用，而不是一个指针。对于这些类型，直接使用new是不够的，因为它们需要额外的初始化逻辑来管理内部结构。<br>返回值不同:<br>new(T)总是返回一个类型为</em>T的指针，即使T本身就是一个指针类型，也会返回它的指针（即**T）。<br>make(T)的返回值直接是切片、映射或通道的实例，而不是指针。这是因为这些类型本身就是引用类型，不需要通过指针来间接访问或修改。<br>初始化程度不同:<br>使用new(T)分配的内存会被初始化为类型的零值。例如，对于整数类型是0，对于布尔类型是false，对于切片或映射则是nil。<br>make(T)不仅分配内存，还会对切片、映射或通道进行额外的初始化。例如，对于映射，它会设置哈希表；对于切片，它会创建底层数组并设置长度和容量；对于通道，它会初始化发送和接收缓冲区（如果指定大小的话）。<br>总结来说，new用于分配任意类型的零值内存并返回其指针，而make专门用于切片、映射和通道的创建和初始化，提供了一种更高级的内存分配方式，适合这些类型特有的需求。</p>
+</blockquote>
 <h2 id="数组和切片的区别"><a href="#数组和切片的区别" class="headerlink" title="数组和切片的区别"></a>数组和切片的区别</h2><ol>
 <li>类型：<ul>
 <li>数组是值类型，这意味着当你将<strong>一个数组赋值给另一个数组时，实际上是创建了数组的一个副本</strong>。因此，<strong>数组在函数参数传递时可能会导致性能问题，因为需要复制整个数组</strong>。</li>
@@ -436,6 +498,9 @@
 <li>当Slice的容量大于其长度时，可以通过append等操作来扩展Slice的长度，而不会改变底层数组的大小。</li>
 <li>当Slice的长度达到容量时，再次进行append操作将会导致底层数组的重新分配和复制，这可能会影响性能。</li>
 </ul>
+<p>修改元素: 直接通过索引修改 slice 中的元素（如 slice[index] &#x3D; value）会改变底层数组的对应元素值，因此会修改原始数据。所有引用该底层数组的 slice 都会观察到这一变化，除非它们的范围不包含被修改的索引位置。</p>
+<p>切片操作: 使用 slice 的切片操作（如 slice[start:end]）会创建一个新的 slice，这个新 slice 仍然指向同一个底层数组，只是视图（长度和起始位置）不同。这意味着，修改新 slice 中的元素同样会影响原始数据，只要这两个 slice 的元素范围有重叠。</p>
+<p>追加（append）操作: 当向 slice 追加元素，如果追加后 slice 的长度超出了其容量，Go 会自动分配一个新的更大的底层数组，将原数组的元素复制过去，然后再追加新元素。这种情况下，原始数据不会被修改，因为现在 slice 指向了一个全新的底层数组。</p>
 <h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><p>Go语言中的<code>select</code>语句是一种多路复用的控制结构，它用于同时处理多个通道（channel）上的事件。其底层数据结构和特性如下：</p>
 <ol>
 <li><strong>数据结构</strong>：<code>select</code>的底层实现与操作系统中的I&#x2F;O多路复用机制类似，如<code>poll</code>和<code>epoll</code>。在Go语言中，<code>select</code>用于监听通道的发送和接收操作，当通道准备好进行相应的操作时，会触发<code>select</code>中对应的<code>case</code>分支执行。</li>
@@ -2162,7 +2227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-13 10:18:00" itemprop="dateModified" datetime="2024-06-13T10:18:00+08:00">2024-06-13</time>
+                <time title="修改时间：2024-07-11 01:53:22" itemprop="dateModified" datetime="2024-07-11T01:53:22+08:00">2024-07-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2411,10 +2476,87 @@
 </ol>
 <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406131017905.png"/>
 
+
+
 <h2 id="为了应对多请求缓存数据，缓解mysql压力而诞生"><a href="#为了应对多请求缓存数据，缓解mysql压力而诞生" class="headerlink" title="为了应对多请求缓存数据，缓解mysql压力而诞生"></a>为了应对多请求缓存数据，缓解mysql压力而诞生</h2><p>Redis主要数据存在内存中，通过设置超时时间来解决Redis在内存内数据不断膨胀问题<br>当内存压力太大时，通过随机算法删除内容释放空间（随机算法）<br>当超期数据太久于内存中未删除，遇到请求查询超期键值，则会立即删除该数据（被动触发，惰性删除）</p>
 <h2 id="内存淘汰策略"><a href="#内存淘汰策略" class="headerlink" title="内存淘汰策略"></a>内存淘汰策略</h2><p>①noeviction：返回错误，不会删除任何键值<br>②allkeys-lru：使用LRU算法删除最近最少使用的键值<br>③volatile-lru：使用LRU算法从设置了过期时间的键集合中删除最近最少使用的键值<br>④allkeys-random:从所有key随机删除<br>⑤volatile-random：从设置了过期时间的键的集合中随机删除<br>⑥volat计e-ttl：从设置了过期时间的键中删除剩余时间最短的键<br>⑦volatile・lfu：从配置了过期时间的键中删除使用频率最少的键<br>⑧allkeys-lfu:从所有键中删除使用频率最少的键</p>
-<h2 id="缓存击穿-缓存雪崩"><a href="#缓存击穿-缓存雪崩" class="headerlink" title="缓存击穿 缓存雪崩"></a>缓存击穿 缓存雪崩</h2><p>mysql被多次申请查询返回空数据从而使得redis无法缓存（缓存穿透&#x2F;缓存击穿）</p>
-<p>mysql因为（大量）redis数据丢失或者数据删除导致大量请求涌向mysql导致mysql处理不过来请求（缓存雪崩）<br>解决方法：过期时间均匀分布+热点数据永不过期</p>
+<h2 id="缓存穿透-缓存击穿-缓存雪崩"><a href="#缓存穿透-缓存击穿-缓存雪崩" class="headerlink" title="缓存穿透 缓存击穿 缓存雪崩"></a>缓存穿透 缓存击穿 缓存雪崩</h2><h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><p>缓存穿透是指客户端请求的<strong>数据在缓存中和数据库中都不存在</strong>，这样缓存永远不会生效，<strong>这些请求都会打到数据库</strong>。</p>
+<ol>
+<li>缓存 null 值</li>
+<li>布隆过滤</li>
+<li>增强 id 的复杂度，避免被猜测 id 规律</li>
+<li>做好数据的基础格式校验</li>
+<li>加强用户权限校验</li>
+<li>做好热点参数的限流</li>
+</ol>
+<blockquote>
+<p>当我们客户端访问不存在的数据时，先请求 redis，但是此时 redis 中没有数据，此时会访问到数据库，但是数据库中也没有数据，这个数据穿透了缓存，直击数据库，我们都知道数据库能够承载的并发不如 redis 这么高，如果大量的请求同时过来访问这种不存在的数据，这些请求就都会访问到数据库，</p>
+<p>简单的解决方案就是哪怕这个数据在数据库中也不存在，我们也把这个数据存入到 redis 中去，这样，下次用户过来访问这个不存在的数据，那么在 redis 中也能找到这个数据就不会进入到数据库了。</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>简单的解决方案就是哪怕这个数据在数据库中也不存在，我们也把这个数据存入到 redis 中去，这样，下次用户过来访问这个不存在的数据，那么在 redis 中也能找到这个数据就不会进入到数据库了</li>
+</ol>
+<p>  简单的来说，就是请求之后，发现数据不存在，就将null值打入Redis中。</p>
+<p>  优点：实现简单，维护方便</p>
+<p>  缺点：额外的内存消耗，可能造成短期的不一致</p>
+<ol start="2">
+<li>后端与Redis之间加了一个布隆过滤器，对请求进行过滤。</li>
+</ol>
+<p>  布隆过滤器的大致的原理：布隆过滤器中存放二进制位。数据库的数据通过hash算法计算其hash值并存放到布隆过滤器中，之后判断数据是否存在的时候，就是判断该hash值是0还是1。但是这是一种概率上的统计，当其判断不存在的时候就一定是不存在；当其判断存在的时候就不一定存在。所以有一定的穿透风险</p>
+<p>  优点：内存占用较少，没有多余 key</p>
+<p>  缺点：实现复杂 存在误判可能</p>
+<ol start="3">
+<li>核心思路如下：<br>  在原来的逻辑中，我们如果发现这个数据在 mysql 中不存在，直接就返回 404 了，这样是会存在缓存穿透问题的<br>  现在的逻辑中：<br>  如果这个数据不存在，我们不会返回 404 ，还是会把这个数据写入到 Redis 中，并且将 value 设置为空，当再次发起查询时，我们如果发现命中之后，判断这个 value 是否是 null，如果是 null，则是之前写入的数据，证明是缓存穿透数据，如果不是，则直接返回数据。</li>
+</ol>
+</blockquote>
+<h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><p>缓存击穿是部分key过期导致的严重后果。</p>
+<ol>
+<li>互斥锁</li>
+<li>逻辑过期</li>
+</ol>
+<blockquote>
+<p>为什么大量key过期会产生问题而少量的key也会有问题？<br>缓存击穿问题也叫热点Key问题，就是⼀个被高并发访问并且缓存重建业务较复杂的key突然失效了，无数的请求访问会在瞬间给数据库带来巨大的冲击。</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>简单的来说:并不是所有的线程都有 “ 资格 ” 去访问数据库，只有持有锁的线程才可以对其进行操作。不过该操作有一个很明显的问题，就是会出现相互等待的情况。</li>
+</ol>
+  <img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202407110137432.png"/>
+
+<ol start="2">
+<li>不设置TTL<br>  之前所说导致缓存击穿的原因就是该key的TTL到期了，所以我们在这就不设置TTL了，而是使用一个字段,例如：expire表示过期时间（逻辑上的）。当我们想让它 “ 过期 ” 的时候，我们可以直接手动将其删除（热点key，即只是在一段时间内，其被访问的频次很高）。<br>  这种方案巧妙在于，异步的构建缓存，缺点在于在构建完缓存之前，返回的都是脏数据。</li>
+</ol>
+  <img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202407110139313.png"/>
+
+<table>
+<thead>
+<tr>
+<th>解决方案</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>互斥锁</td>
+<td>没有额外的内存消耗<br/>保证一致性<br/>实现简单</td>
+<td>线程需要等待·性能受影响<br/>可能有死锁风险</td>
+</tr>
+<tr>
+<td>逻辑过期</td>
+<td>线程无需等待，性能较好</td>
+<td>不保证一致性<br />有额外内存消耗<br />实现复杂</td>
+</tr>
+</tbody></table>
+<p>核心思路：<br>相较于原来从缓存中查询不到数据后直接查询数据库而言，现在的方案是 进行查询之后，如果从缓存没有查询到数据，则进行互斥锁的获取，获取互斥锁后，判断是否获得到了锁，如果没有得到，则休眠，过一会再进行尝试，直到获取到锁为止，才能进行查询<br>如果获取到了锁的线程，再去进行查询，查询后将数据写入 redis，再释放锁，返回数据，利用互斥锁就能保证只有一个线程去执行操作数据库的逻辑，防止缓存击穿。</p>
+</blockquote>
+<h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>缓存雪崩是指在<strong>同一时段大量的缓存key同时失效</strong>或者<strong>Redis服务宕机</strong>，导致大量请求到达数据库，带来巨大压力。缓存击穿是部分key过期导致的严重后果，而缓存雪崩则是因为大量的key同时过期所导致的问题</p>
+<ol>
+<li>给不同的Key的TTL添加随机值（推荐）<br>    操作简单，当我们在做缓存预热的时候，就有可能在同一时间批量插入大量的数据，那么如果它们的TTL都一样的话就可能出现大量key同时过期的情况！！！所以我们需要在设置过期时间TTL的时候，定义一个范围，追加该范围内的一个随机数。</li>
+<li>利用Redis集群提高服务的可用性使用集群提高可靠性</li>
+<li>给缓存业务添加降级限流策略 微服务的知识</li>
+<li>给业务添加多级缓存 请求到达浏览器，nginx可以做缓存，未命中找Redis，再未命中找JVM，最后到数据库……</li>
+</ol>
 <h2 id="持久化-RDB-AOF"><a href="#持久化-RDB-AOF" class="headerlink" title="持久化 RDB AOF"></a>持久化 RDB AOF</h2><h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3><p>redis因为出错导致丢失数据（需要通过持久化存储）<br>RDB：将全部遍历写入二进制连续文件 rdb (周期性备份)<br>为了防止大量重复备份，redis提供了save配置参数解决问题</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">save 900 1 #900秒 内有一个写入即备份（由子进程进行）</span><br></pre></td></tr></table></figure>
 
@@ -2436,7 +2578,7 @@
 <p>需要每个槽位都有节点负责，集群才能正确上线。</p>
 <p>数据读写时候，集群节点会先检查数据是否由自己负责，否则会发送MOVED错误给请求端，使其去寻找正确节点（发送槽号，IP，端口）自动运行，无须调用</p>
 <p>为了防止节点掉线，从节点会充当集群内节点的Backup</p>
-<h2 id="Redis实现消息队列"><a href="#Redis实现消息队列" class="headerlink" title="Redis实现消息队列"></a>Redis实现消息队列</h2><p>一般使用list结构作为队列，rpush生产消息，1pop消费消息。当1pop没有消息的时候，要适当<br>sleep一会再重试。</p>
+<h2 id="Redis-实现消息队列"><a href="#Redis-实现消息队列" class="headerlink" title="Redis 实现消息队列"></a>Redis 实现消息队列</h2><p>一般使用list结构作为队列，rpush生产消息，1pop消费消息。当1pop没有消息的时候，要适当<br>sleep一会再重试。</p>
 <ul>
 <li>面试官可能会问可不可以不用sleep呢？list还有个指令吸pop,在没有消息的时候，它会<br>阻塞住直到消息到来。</li>
 <li>面试官可能还问能不能生产一次消费多次呢？使用pub&#x2F;sub主题订阅者模式，可以实现<br>1:N的消息队列。</li>
@@ -4592,123 +4734,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/09/%E6%95%B0%E5%AD%A6-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MEIDE">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MEIDE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/03/09/%E6%95%B0%E5%AD%A6-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="post-title-link" itemprop="url">数学-线性代数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-03-09 09:29:59" itemprop="dateCreated datePublished" datetime="2023-03-09T09:29:59+08:00">2023-03-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-30 13:32:28" itemprop="dateModified" datetime="2023-03-30T13:32:28+08:00">2023-03-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E8%AF%95/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>本视频基于【2023考研数学汤家凤线性代数基础课程】</strong></p>
-<p>[第一章行列式.pdf]<a target="_blank" rel="noopener" href="https://pan.baidu.com/link/zhihu/7BhFzeuShBi0QJl2ZGRy1181YTQVNlbQQxhT==">https://pan.baidu.com/link/zhihu/7BhFzeuShBi0QJl2ZGRy1181YTQVNlbQQxhT==</a></p>
-<p>[第二章矩阵.pdf]<a target="_blank" rel="noopener" href="https://pan.baidu.com/link/zhihu/79hmzNuchpiEMnJXdlbZtFBTUDWQNTcwZTxE==">https://pan.baidu.com/link/zhihu/79hmzNuchpiEMnJXdlbZtFBTUDWQNTcwZTxE==</a></p>
-<h1 id="基本概述"><a href="#基本概述" class="headerlink" title="基本概述"></a>基本概述</h1><p>核心1:线性方程级</p>
-<blockquote>
-<table>
-<thead>
-<tr>
-<th>工具</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>行列式</td>
-</tr>
-<tr>
-<td>矩阵</td>
-</tr>
-<tr>
-<td>向量</td>
-</tr>
-</tbody></table>
-</blockquote>
-<p>核心2:矩阵对角比</p>
-<blockquote>
-<p>特征值与特征向量</p>
-</blockquote>
-<h1 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h1><h2 id="逆序"><a href="#逆序" class="headerlink" title="逆序"></a>逆序</h2><p>i,j ∈ N（自然数）且 i ≠ j</p>
-<blockquote>
-<p>这样就会形成两种情况</p>
-<p>i &lt; j （i ，j ）即顺序</p>
-<p>i &gt; j  （i，j）即逆序</p>
-</blockquote>
-<h2 id="逆序数"><a href="#逆序数" class="headerlink" title="逆序数"></a>逆序数</h2><p>设<br>$$<br>i,i_2,…,i_n 为1，2，…n的一个排列i_1,i_2,…i_n含逆序个数之和称为逆序数<br>$$<br>记做<br>$$<br>\tau(i_1,i_2,…,i_n)<br>$$</p>
-<blockquote>
-<p>例如<br>$$<br>\tau（5,1,4,2,3）&#x3D; 6<br>$$<br>那其中这个6就成为逆序数</p>
-</blockquote>
-<h2 id="行列式-1"><a href="#行列式-1" class="headerlink" title="行列式"></a>行列式</h2><p>$$<br>D &#x3D;<br>\left|\begin{matrix}<br>a_{11} &amp; a_{12} &amp; … &amp; a_{1n} \<br>a_{21} &amp; a_{22} &amp; … &amp; a_{2n} \<br>…\<br>a_{n1} &amp; a_{n2} &amp; … &amp; a_{nn} \<br>\end{matrix}\right|<br>&amp; 称为n阶行列式<br>$$</p>
-<p>行列式计算</p>
-<p>此处以三阶行列式为例<br>$$<br>D &#x3D;<br>\left|\begin{matrix}<br>a_{11} &amp; a_{12} &amp; a_{13} \<br>a_{21} &amp; a_{22} &amp; a_{23} \<br>a_{31} &amp; a_{32} &amp; a_{33} \<br>\end{matrix}\right|<br>$$</p>
-<p>$$<br>D&#x3D;+a_{11}a_{22}a_{33}-a_{11}a_{23}a_{32}+a_{12}a_{13}a_{21}+a_{32}-a_{13}a_{22}a_{31}<br>$$</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -4778,7 +4803,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

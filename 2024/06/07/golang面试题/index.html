@@ -68,7 +68,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130233239.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406100018475.png">
 <meta property="article:published_time" content="2024-06-07T13:15:39.000Z">
-<meta property="article:modified_time" content="2024-06-13T02:21:22.203Z">
+<meta property="article:modified_time" content="2024-06-13T03:58:46.686Z">
 <meta property="article:author" content="MEIDE">
 <meta property="article:tag" content="Golang">
 <meta property="article:tag" content="面试题">
@@ -230,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-13 10:21:22" itemprop="dateModified" datetime="2024-06-13T10:21:22+08:00">2024-06-13</time>
+                <time title="修改时间：2024-06-13 11:58:46" itemprop="dateModified" datetime="2024-06-13T11:58:46+08:00">2024-06-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -345,6 +345,9 @@
 </ul>
 </li>
 </ol>
+<blockquote>
+<p>在Go语言中，make和new都是用于内存分配的内建函数，但它们之间存在一些关键性差异：<br>用途对象不同:<br>new(T)接受一个类型T作为参数，为类型T分配零值初始化的内存，并返回一个指向该类型实例的指针<em>T。它适用于任何类型T，包括基本类型、结构体、切片、映射、通道等。但主要用在那些没有内建初始化函数的数据结构上，比如结构体。<br>make(T)专门用于创建和初始化切片(slice)、映射(map)和通道(channel)这类动态大小的数据结构。它返回的是初始化后的切片、映射或通道的引用，而不是一个指针。对于这些类型，直接使用new是不够的，因为它们需要额外的初始化逻辑来管理内部结构。<br>返回值不同:<br>new(T)总是返回一个类型为</em>T的指针，即使T本身就是一个指针类型，也会返回它的指针（即**T）。<br>make(T)的返回值直接是切片、映射或通道的实例，而不是指针。这是因为这些类型本身就是引用类型，不需要通过指针来间接访问或修改。<br>初始化程度不同:<br>使用new(T)分配的内存会被初始化为类型的零值。例如，对于整数类型是0，对于布尔类型是false，对于切片或映射则是nil。<br>make(T)不仅分配内存，还会对切片、映射或通道进行额外的初始化。例如，对于映射，它会设置哈希表；对于切片，它会创建底层数组并设置长度和容量；对于通道，它会初始化发送和接收缓冲区（如果指定大小的话）。<br>总结来说，new用于分配任意类型的零值内存并返回其指针，而make专门用于切片、映射和通道的创建和初始化，提供了一种更高级的内存分配方式，适合这些类型特有的需求。</p>
+</blockquote>
 <h2 id="数组和切片的区别"><a href="#数组和切片的区别" class="headerlink" title="数组和切片的区别"></a>数组和切片的区别</h2><ol>
 <li>类型：<ul>
 <li>数组是值类型，这意味着当你将<strong>一个数组赋值给另一个数组时，实际上是创建了数组的一个副本</strong>。因此，<strong>数组在函数参数传递时可能会导致性能问题，因为需要复制整个数组</strong>。</li>
@@ -483,6 +486,9 @@
 <li>当Slice的容量大于其长度时，可以通过append等操作来扩展Slice的长度，而不会改变底层数组的大小。</li>
 <li>当Slice的长度达到容量时，再次进行append操作将会导致底层数组的重新分配和复制，这可能会影响性能。</li>
 </ul>
+<p>修改元素: 直接通过索引修改 slice 中的元素（如 slice[index] &#x3D; value）会改变底层数组的对应元素值，因此会修改原始数据。所有引用该底层数组的 slice 都会观察到这一变化，除非它们的范围不包含被修改的索引位置。</p>
+<p>切片操作: 使用 slice 的切片操作（如 slice[start:end]）会创建一个新的 slice，这个新 slice 仍然指向同一个底层数组，只是视图（长度和起始位置）不同。这意味着，修改新 slice 中的元素同样会影响原始数据，只要这两个 slice 的元素范围有重叠。</p>
+<p>追加（append）操作: 当向 slice 追加元素，如果追加后 slice 的长度超出了其容量，Go 会自动分配一个新的更大的底层数组，将原数组的元素复制过去，然后再追加新元素。这种情况下，原始数据不会被修改，因为现在 slice 指向了一个全新的底层数组。</p>
 <h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><p>Go语言中的<code>select</code>语句是一种多路复用的控制结构，它用于同时处理多个通道（channel）上的事件。其底层数据结构和特性如下：</p>
 <ol>
 <li><strong>数据结构</strong>：<code>select</code>的底层实现与操作系统中的I&#x2F;O多路复用机制类似，如<code>poll</code>和<code>epoll</code>。在Go语言中，<code>select</code>用于监听通道的发送和接收操作，当通道准备好进行相应的操作时，会触发<code>select</code>中对应的<code>case</code>分支执行。</li>
@@ -1361,7 +1367,10 @@
     <a href="/2024/05/17/%E7%BB%BC%E5%90%88%E9%A2%98%E7%9B%AE%E5%9B%9E%E9%A1%BE/" rel="prev" title="综合题目回顾">
       <i class="fa fa-chevron-left"></i> 综合题目回顾
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2024/07/08/%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E7%AC%94%E8%AE%B0/" rel="next" title="程序实例笔记">
+      程序实例笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -1434,7 +1443,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
