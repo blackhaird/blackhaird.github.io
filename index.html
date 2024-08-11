@@ -242,7 +242,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-13 11:58:46" itemprop="dateModified" datetime="2024-06-13T11:58:46+08:00">2024-06-13</time>
+                <time title="修改时间：2024-08-11 21:23:37" itemprop="dateModified" datetime="2024-08-11T21:23:37+08:00">2024-08-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -342,8 +342,11 @@
 </ul>
 </li>
 <li>初始化的区别：<ul>
-<li><code>new</code>分配内存后，对于值类型，分配的是<strong>零值填充的内存空间</strong>，可直接使用。而对于引用类型，虽然也会分配内存并返回一个指向该内存的指针，但这块内存代表的是定义的那个引用类型，它的零值是<code>nil</code>，需要进一步初始化。例如 new(int) 之后，对应内存空间会有一个0；而<code>new(map[string]int)</code>，对应内存空间是nil，而不是<code>&#123;&quot;&quot;:0&#125;</code></li>
-<li><code>make</code>分配内存后，内存会被初始化，即分配的是有初始值的内存空间。</li>
+<li><p><code>new</code>分配内存后，对于值类型，分配的是<strong>零值填充的内存空间</strong>，可直接使用。而对于引用类型，虽然也会分配内存并返回一个指向该内存的指针，但这块内存代表的是定义的那个引用类型，它的零值是<code>nil</code>，需要进一步初始化。例如 new(int) 之后，对应内存空间会有一个0；而<code>new(map[string]int)</code>，对应内存空间是nil，而不是<code>&#123;&quot;&quot;:0&#125;</code></p>
+</li>
+<li><p><code>make</code>分配内存后，内存会被初始化，即分配的是有初始值的内存空间。</p>
+<p>切片：make([]T, len, cap)，其中len是切片的长度，cap是切片的容量。这会创建一个具有指定长度和容量的切片。<br>映射：make(map[K]V)，这会创建一个空的映射，可以开始插入键值对。<br>通道：make(chan T, n)，其中n是通道的缓冲大小。这会创建一个有缓冲的通道，可以安全地在多个goroutine之间传递值。</p>
+</li>
 </ul>
 </li>
 <li>返回类型的区别：<ul>
@@ -360,6 +363,33 @@
 <blockquote>
 <p>在Go语言中，make和new都是用于内存分配的内建函数，但它们之间存在一些关键性差异：<br>用途对象不同:<br>new(T)接受一个类型T作为参数，为类型T分配零值初始化的内存，并返回一个指向该类型实例的指针<em>T。它适用于任何类型T，包括基本类型、结构体、切片、映射、通道等。但主要用在那些没有内建初始化函数的数据结构上，比如结构体。<br>make(T)专门用于创建和初始化切片(slice)、映射(map)和通道(channel)这类动态大小的数据结构。它返回的是初始化后的切片、映射或通道的引用，而不是一个指针。对于这些类型，直接使用new是不够的，因为它们需要额外的初始化逻辑来管理内部结构。<br>返回值不同:<br>new(T)总是返回一个类型为</em>T的指针，即使T本身就是一个指针类型，也会返回它的指针（即**T）。<br>make(T)的返回值直接是切片、映射或通道的实例，而不是指针。这是因为这些类型本身就是引用类型，不需要通过指针来间接访问或修改。<br>初始化程度不同:<br>使用new(T)分配的内存会被初始化为类型的零值。例如，对于整数类型是0，对于布尔类型是false，对于切片或映射则是nil。<br>make(T)不仅分配内存，还会对切片、映射或通道进行额外的初始化。例如，对于映射，它会设置哈希表；对于切片，它会创建底层数组并设置长度和容量；对于通道，它会初始化发送和接收缓冲区（如果指定大小的话）。<br>总结来说，new用于分配任意类型的零值内存并返回其指针，而make专门用于切片、映射和通道的创建和初始化，提供了一种更高级的内存分配方式，适合这些类型特有的需求。</p>
 </blockquote>
+<h2 id="Go语言使用断言时会发生拷贝吗？"><a href="#Go语言使用断言时会发生拷贝吗？" class="headerlink" title="Go语言使用断言时会发生拷贝吗？"></a>Go语言使用断言时会发生拷贝吗？</h2><p>在Go语言中，类型断言（type assertion)本身不会导致拷贝。使用断言时，Go只是检查并转换接口值的动态类型，并不会复制底层的数据。这个过程本质上是类型转换而不是数据拷贝。</p>
+<h2 id="Go的接口是怎么实现的"><a href="#Go的接口是怎么实现的" class="headerlink" title="Go的接口是怎么实现的"></a>Go的接口是怎么实现的</h2><p>Go语言的接口通过一种叫做接口类型（interface type)机制实现的。在Go语言中，接口是一种抽象类型，它定义了一组方法，但这些方法没有具体实现。具体的实现由实现了这些接口的类型来提供。以下是接口的几个关键点：</p>
+<ol>
+<li>接口是一组方法的集合。</li>
+<li>任何类型只要实现了接口类型中的所有方法，就被认为实现了该接口。</li>
+<li>接口变量可以保存任何实现接口的类型的值。</li>
+<li>接口类型本身也是一种类型，可以用来声明变量。</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个接口</span></span><br><span class="line"><span class="keyword">type</span> Speaker <span class="keyword">interface</span> &#123;</span><br><span class="line">    Speak() <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现接口的类型</span></span><br><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span> &#123;</span><br><span class="line">    name <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Person)</span></span> Speak() <span class="type">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello, my name is &quot;</span> + p.name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> s Speaker</span><br><span class="line">    person := Person&#123;name: <span class="string">&quot;John&quot;</span>&#125;</span><br><span class="line">    s = person</span><br><span class="line">    fmt.Println(s.Speak()) <span class="comment">// 输出：Hello, my name is John</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="空接口（Empty-Interface"><a href="#空接口（Empty-Interface" class="headerlink" title="空接口（Empty Interface)"></a>空接口（Empty Interface)</h3><p>在Go语言中，空接口interface(}是一个特殊的接口类型，因为它不包含任何方法签名。因此，所有的类型都实现了空接口。这对于需要存储任意类型的数据结<br>构（例如集合，字典）非常有用。</p>
+<h3 id="类型断言（Type-Assertion-与类型开关（Type-Switch"><a href="#类型断言（Type-Assertion-与类型开关（Type-Switch" class="headerlink" title="类型断言（Type Assertion)与类型开关（Type Switch)"></a>类型断言（Type Assertion)与类型开关（Type Switch)</h3><p>类型断言用于从接口类型变量中提取具体类型的值。我们可以通过<code>value,ok := i.(ConcreteType)</code>的方式进行类型断言。</p>
+<h3 id="接口内部实现原理"><a href="#接口内部实现原理" class="headerlink" title="接口内部实现原理"></a>接口内部实现原理</h3><p>接口在Go语言中的实现是基于接口类型的内部结构实现的，通常包含两个主要的字段：类型和数据。接口变量持有一个具体类型和该类型的值的指针，这样接口就支持动态转型，也称为类型断言。</p>
+<h2 id="几种触发异常的场景"><a href="#几种触发异常的场景" class="headerlink" title="几种触发异常的场景"></a>几种触发异常的场景</h2><ol>
+<li>空指针引用：访问nil指针将引发panic。</li>
+<li>数组越界：访问超出数组或切片长度的索引将引发panic。</li>
+<li>除以零：整数除以零会导致panic,但浮点数除以零不会。</li>
+<li>使用未初始化的map:在nil map上执行写操作将引发panic。</li>
+<li>显式调用panic:开发者可以在代码中显式调用panic函数。</li>
+<li>类型断言失败：</li>
+</ol>
+<p>代码实例请看<a target="_blank" rel="noopener" href="https://www.mianshiya.com/bank/1810641215871569922/question/1810649484233826305">https://www.mianshiya.com/bank/1810641215871569922/question/1810649484233826305</a></p>
+<h3 id="错误捕获"><a href="#错误捕获" class="headerlink" title="错误捕获"></a>错误捕获</h3><p>触发异常可能会导致程序非正常退出，因此在需要确保程序健壮性的情况下，有必要使用recover 函数来捕获panic并进行恢复。recover通常与defer语句一起使用，以捕获在defer之前触发的任何panic。例如：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">doPanic</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> r := <span class="built_in">recover</span>(); r != <span class="literal">nil</span> &#123;</span><br><span class="line">            fmt.Println(<span class="string">&quot;Recovered from panic:&quot;</span>, r)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;()</span><br><span class="line">    <span class="built_in">panic</span>(<span class="string">&quot;Something went wrong!&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="数组和切片的区别"><a href="#数组和切片的区别" class="headerlink" title="数组和切片的区别"></a>数组和切片的区别</h2><ol>
 <li>类型：<ul>
 <li>数组是值类型，这意味着当你将<strong>一个数组赋值给另一个数组时，实际上是创建了数组的一个副本</strong>。因此，<strong>数组在函数参数传递时可能会导致性能问题，因为需要复制整个数组</strong>。</li>
@@ -377,6 +407,9 @@
 </ul>
 </li>
 </ol>
+<blockquote>
+<p>在Go语言中，数组和切片是有着密切联系的两种数据结构。数组是有固定长度的序列，而切片是基于数组构建的一种灵活、可变长度的序列。<br>1.数组：<br>。长度固定：数组在声明时必须指定长度，一旦声明长度无法改变。<br>。值类型：数组是值类型，赋值和函数传参都将复制整个数组。<br>。声明方式：声明数组时需要明确数组长度和类型，例如var a[5]int。<br>2.切片（Slice):<br>。长度可变：切片长度可以动态改变，通过内置函数append()可以增加元素。<br>。引用类型：切片是引用类型，赋值和函数传参都只是引用内部数组的地址。<br>。底层数组：切片实际上是数组的视图，可以通过切片操作从数组中创建切片。<br>。声明方式：切片不需要指定长度，只需指定类型，例如var s[] int。<br>这两者的不同点和优势在于，数组适用于需要固定大小且安全复制的场景，而切片适用于需要动态增减元素的操作，提供灵活且高效的管理数组的功能。</p>
+</blockquote>
 <h2 id="for-range-，元素地址会发生变化吗"><a href="#for-range-，元素地址会发生变化吗" class="headerlink" title="for range ，元素地址会发生变化吗"></a>for range ，元素地址会发生变化吗</h2><p> 在 for a,b :&#x3D; range c 遍历中，</p>
 <p> a 和 b 在内存中只会存在一份，即之后每次循环时遍历到的数据都是以值覆盖的方式赋给 a 和 b，并且a，b 的<strong>内存地址始终不变</strong>。由于有这个特性，<strong>for 循环里面如果开协程做并发</strong>，<strong>不要直接把 a 或者 b 的地址传给协程</strong>。</p>
 <ul>
@@ -440,6 +473,11 @@
 <p>这样的使用方式，似乎不太合理，但却有存在的必要性。</p>
 <p>大多数情况下，可以用于 u1,u2 之类非常消耗内存，或者cpu，其后执行时间过程且没有太多关联的情况。</p>
 <p>既保留了defer的功能特性，也满足范围精确控制的条件！</p>
+<h3 id="defer-的变量快照在什么情况下会失效？"><a href="#defer-的变量快照在什么情况下会失效？" class="headerlink" title="defer 的变量快照在什么情况下会失效？"></a>defer 的变量快照在什么情况下会失效？</h3><p>在Go语言中，defer声明所捕捉到的变量是具体值的快照，这意味着当defer语句执行时，它会使用当前的变量值。如果在defer语句声明与实际执行之间，相关变量的值发生了变化，会导致结果和预期不符。在以下几种情况下，defer的变量快照会失效：</p>
+<ol>
+<li>匿名函数闭包：当defer语句中使用的匿名函数捕获了外部变量时，如果这个变量在defer核心代码之后被修改，那么defer实际执行时使用的是修改后的变量值，而不是最初快照的值。</li>
+<li>引用类型：当defer引用持有引用类型的变量（如指针、切片、映射、通道和函数）时，虽然引用本身的地址不会变，但指向的内容可能变化，这也会导致最终的结果和预期的快照结果不同。</li>
+</ol>
 <h3 id="defer与panic"><a href="#defer与panic" class="headerlink" title="defer与panic"></a>defer与panic</h3><p>在panic语句后面的defer语句不被执行</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">panicDefer</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="built_in">panic</span>(<span class="string">&quot;panic&quot;</span>)</span><br><span class="line">    <span class="keyword">defer</span> fmt.Println(<span class="string">&quot;defer after panic&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -493,10 +531,16 @@
 </ul>
 <p>在使用Slice时，需要注意以下几点：</p>
 <ul>
-<li>Slice可以通过内置的<code>make</code>、<code>new</code>函数或直接对数组进行切片操作来创建。</li>
-<li>修改Slice的元素会影响到底层数组，反之亦然。</li>
-<li>当Slice的容量大于其长度时，可以通过append等操作来扩展Slice的长度，而不会改变底层数组的大小。</li>
-<li>当Slice的长度达到容量时，再次进行append操作将会导致底层数组的重新分配和复制，这可能会影响性能。</li>
+<li><p>Slice可以通过内置的<code>make</code>、<code>new</code>函数或直接对数组进行切片操作来创建。</p>
+</li>
+<li><p>修改Slice的元素会影响到底层数组，反之亦然。</p>
+</li>
+<li><p>当Slice的容量大于其长度时，可以通过append等操作来扩展Slice的长度，而不会改变底层数组的大小。</p>
+<p>1)对于容量小于1024的切片，容量会以两倍的速度增长。</p>
+<p>2)对于容量大于或等于1024的切片，容量会以1.25倍的速度增长。</p>
+</li>
+<li><p>当Slice的长度达到容量时，再次进行append操作将会导致底层数组的重新分配和复制，这可能会影响性能。</p>
+</li>
 </ul>
 <p>修改元素: 直接通过索引修改 slice 中的元素（如 slice[index] &#x3D; value）会改变底层数组的对应元素值，因此会修改原始数据。所有引用该底层数组的 slice 都会观察到这一变化，除非它们的范围不包含被修改的索引位置。</p>
 <p>切片操作: 使用 slice 的切片操作（如 slice[start:end]）会创建一个新的 slice，这个新 slice 仍然指向同一个底层数组，只是视图（长度和起始位置）不同。这意味着，修改新 slice 中的元素同样会影响原始数据，只要这两个 slice 的元素范围有重叠。</p>
@@ -549,7 +593,24 @@
 <li><p><strong>实现空通道</strong>：在Go的并发编程中，我们经常会遇到<strong>通知型channel</strong>，它们不需要传递任何数据，只是用于协调Goroutine的运行。这种情况下，使用空结构体作为通道元素类型非常合适，因为它不会增加额外的内存开销。</p>
 </li>
 <li><p><strong>实现方法接收者</strong>：有时我们需要使用结构体类型的变量作为方法接收者，但结构体本身不包含任何字段属性。这种情况下，使用空结构体作为接收者是比较合适的，因为它不会占用额外的内存空间。</p>
+<blockquote>
+<p>信号传递：在并发编程中，空struct(]通常用于channel中来传递信号。例如，一个worker可以通过发送空结构体到channel来通知主进程完成了一项任<br>务。相比发送一个整型或布尔值，空结构占用的内存更少。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;)</span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// do some work</span></span><br><span class="line">    done &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;  <span class="comment">// signal completion</span></span><br><span class="line">&#125;()</span><br><span class="line">&lt;-done  <span class="comment">// wait for signal</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</blockquote>
 </li>
+</ol>
+<h2 id="字符串转成byte数组时会发生内存拷贝吗？"><a href="#字符串转成byte数组时会发生内存拷贝吗？" class="headerlink" title="字符串转成byte数组时会发生内存拷贝吗？"></a>字符串转成byte数组时会发生内存拷贝吗？</h2><p>在Go语言中，当你将字符串转换为[]byte数组时，会发生内存拷贝。这是因为字符串在Go语言中是不可变的，而字节数组是可变的。为了确保字符串的不可变特性不被破坏，Go语言需要进行一次内存拷贝，将字符串的内容复制到一个新的字节数组中。</p>
+<ol>
+<li><p>字符串不可变性：在Go语言中，字符串是不可变的。也就是说，一旦字符串被创建，内容就不能被修改。这是为了确保字符串在不同部分的程序中传递时，保持一致性和安全。</p>
+</li>
+<li><p>类型转换机制：当通过 []byte(str) 这种方式将字符串转换为字节数组时，Go运行时会分配新的内存来存储字节数组，并将字符的内容逐字节复制到这块新的内存中。·下面是一个字符串转换为字节数组的示例：</p>
+</li>
+<li><p>性能考虑：由于这个内存拷贝的发生，频繁的字符串和字节数组之间的转换可能会影响程序的性能。为了避免这种性能问题，可以使用bytes其他有效的方式来处理字符串和字节数据。</p>
+</li>
+<li><p>零拷贝高效处理：有时，需要避免内存拷贝来提高性能，尤其在处理大数据时。Go提供了一些零拷贝的方法，例如使用unsafe包：</p>
+<p>注意事项：使用unsafe包可能导致程序不安全，需要非常小心地使用并理解潜在的风险。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;unsafe&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">StringToBytes</span><span class="params">(str <span class="type">string</span>)</span></span> []<span class="type">byte</span> &#123;</span><br><span class="line">    strHeader := (*[<span class="number">2</span>]<span class="type">uintptr</span>)(unsafe.Pointer(&amp;str))</span><br><span class="line">    byteSliceHeader := [<span class="number">3</span>]<span class="type">uintptr</span>&#123;strHeader[<span class="number">0</span>], strHeader[<span class="number">1</span>], strHeader[<span class="number">1</span>]&#125;</span><br><span class="line">    <span class="keyword">return</span> *(*[]<span class="type">byte</span>)(unsafe.Pointer(&amp;byteSliceHeader))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    str := <span class="string">&quot;hello&quot;</span></span><br><span class="line">    b := StringToBytes(str)</span><br><span class="line">    fmt.Println(b) <span class="comment">// 输出：[104 101 108 108 111]</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ol>
 <h1 id="MAP"><a href="#MAP" class="headerlink" title="MAP"></a>MAP</h1><h3 id="Map相关"><a href="#Map相关" class="headerlink" title="Map相关"></a>Map相关</h3><h4 id="map-使用需要注意点"><a href="#map-使用需要注意点" class="headerlink" title="map 使用需要注意点"></a>map 使用需要注意点</h4><ol>
 <li><strong>初始化</strong>：在使用map之前，需要先进行初始化，否则会导致编译错误。初始化一个map可以使用字面量语法，如<code>m := make(map[string]int)</code>或<code>m := map[string]int&#123;&#125;</code>。</li>
@@ -581,7 +642,7 @@
 <p><strong>如果删除的元素是值类型，如int、float、bool、string以及数组和struct，这些类型的内存通常不会自动释放。如果删除的元素是引用类型，如切片、映射和通道等，虽然它们所指向的实际数据结构可能会被释放，但map中的键值对所占用的内存同样不会立即释放。</strong></p>
 <p>总的来说，Go语言的垃圾收集器会在合适的时机回收未使用的内存。这意味着，即使从map中删除了元素，内存也可能不会立即得到释放，而是等待下一次垃圾收集周期进行处理。</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhw21w/article/details/129434340">参考教程</a></p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406081522409.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406081522409.png"/>
 
 
 
@@ -625,6 +686,32 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ma := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]any)</span><br><span class="line">ma[<span class="string">&quot;one&quot;</span>] = <span class="string">&quot;hello&quot;</span></span><br><span class="line">mb := ma</span><br><span class="line">mb[<span class="string">&quot;two&quot;</span>] = <span class="string">&quot;world&quot;</span></span><br><span class="line">fmt.Println(ma)</span><br><span class="line"><span class="comment">// 输出：map[one:hello two:world]</span></span><br><span class="line"><span class="comment">// 表示修改mb会影响ma</span></span><br></pre></td></tr></table></figure>
 
 <p>如果要复制一个完全独立的副本，需要遍历目标Map来创建。</p>
+<h4 id="MAP的值不可寻址，如何修改值属性"><a href="#MAP的值不可寻址，如何修改值属性" class="headerlink" title="MAP的值不可寻址，如何修改值属性"></a>MAP的值不可寻址，如何修改值属性</h4><p>在Go语言中，map的值是不可寻址的，这意味着你不能直接获取它们的指针。为了修改map中值的属性，一个简单而有效的方法是将map的值定义为一个引 用类型，比如指针、slice或者map,从而间接达到修改其属性的效果。</p>
+<p>假设我们有一个map,键是字符串类型，值是一个自定义结构体Person,我们需要修改Person的属性：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span> &#123;</span><br><span class="line">    Name <span class="type">string</span></span><br><span class="line">    Age  <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    people := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]Person)</span><br><span class="line"></span><br><span class="line">    people[<span class="string">&quot;Alice&quot;</span>] = Person&#123;Name: <span class="string">&quot;Alice&quot;</span>, Age: <span class="number">25</span>&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 直接修改 map 中值的属性会报错</span></span><br><span class="line">    <span class="comment">// people[&quot;Alice&quot;].Age = 26  // Cannot take the address of map element</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用辅助变量进行修改</span></span><br><span class="line">    person := people[<span class="string">&quot;Alice&quot;</span>]</span><br><span class="line">    person.Age = <span class="number">26</span></span><br><span class="line">    people[<span class="string">&quot;Alice&quot;</span>] = person</span><br><span class="line"></span><br><span class="line">    fmt.Println(people[<span class="string">&quot;Alice&quot;</span>]) <span class="comment">// 输出：&#123;Alice 26&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>一种有效的解决方案是将map的值定义为指针类型：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span> &#123;</span><br><span class="line">    Name <span class="type">string</span></span><br><span class="line">    Age  <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    people := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]*Person)</span><br><span class="line"></span><br><span class="line">    people[<span class="string">&quot;Alice&quot;</span>] = &amp;Person&#123;Name: <span class="string">&quot;Alice&quot;</span>, Age: <span class="number">25</span>&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 直接修改 map 中值的属性</span></span><br><span class="line">    people[<span class="string">&quot;Alice&quot;</span>].Age = <span class="number">26</span></span><br><span class="line"></span><br><span class="line">    fmt.Println(*people[<span class="string">&quot;Alice&quot;</span>]) <span class="comment">// 输出：&#123;Alice 26&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>让我们进一步了解一些与此相关的概念。</p>
+<ol>
+<li>不可寻址性（Unaddressable Values)。在Go语言中，有一些情况会导致值变得不可导址，比如map的值、临时变量（如函数的返回值）和常量。不可导址的值不能直接用&amp;取地址符操作，因为它们并不一定有持久的内存地址。</li>
+<li>引用类型的使用。引用类型包括指针（pointers)、slice、map和channel。它们的共同点是包含对底层数据的引用，而不是数据本身。例如，在上面的例子中，map的值是指针类型，这样就能直接修改指针所指向的Person结构体的属性。</li>
+<li>性能考虑。使用引用类型虽然解决了不可寻址的问题，但我们也需要考虑到性能和内存管理。例如，指针和引用类型在高性能场景下可能会引起额外的内存分配和垃圾回收压力。因此，在实际开发中需要权衡不同的因素。</li>
+<li>其他替代方案。有时候，如果引用类型的使用带来额外的复杂性，可以考虑其他设计方案。比如，在一些场景下，我们可以通过重新加入修改后的元素来解决不可寻址的问题。</li>
+</ol>
+</blockquote>
+<h4 id="如何顺序读取map"><a href="#如何顺序读取map" class="headerlink" title="如何顺序读取map"></a>如何顺序读取map</h4><p>在Go语言中，读写map是一个比较常见的操作，但它并不是顺序的。也就是说，map默认是无序的，因此不能保证读取的顺序。但有时我们需要顺序读取<br>map,可以通过以下方法来实现：</p>
+<ol>
+<li>首先，我们可以将map的键追加到一个切片中。</li>
+<li>然后对这个切片进行排序。</li>
+<li>最后，按照排序后的键顺序访问map。下面是一个实例代码展示如何顺序读取map:</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sort&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 定义一个 map</span></span><br><span class="line">	m := <span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>&#123;<span class="string">&quot;b&quot;</span>: <span class="number">2</span>, <span class="string">&quot;c&quot;</span>: <span class="number">3</span>, <span class="string">&quot;a&quot;</span>: <span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 将键保存到一个切片</span></span><br><span class="line">	keys := <span class="built_in">make</span>([]<span class="type">string</span>, <span class="number">0</span>, <span class="built_in">len</span>(m))</span><br><span class="line">	<span class="keyword">for</span> k := <span class="keyword">range</span> m &#123;</span><br><span class="line">		keys = <span class="built_in">append</span>(keys, k)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 对键进行排序</span></span><br><span class="line">	sort.Strings(keys)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 按照排序后的键顺序读取 map 值</span></span><br><span class="line">	<span class="keyword">for</span> _, k := <span class="keyword">range</span> keys &#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;%s: %d\n&quot;</span>, k, m[k])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="context相关"><a href="#context相关" class="headerlink" title="context相关"></a>context相关</h3><h4 id="context-结构是什么样的？context-使用场景和用途"><a href="#context-结构是什么样的？context-使用场景和用途" class="headerlink" title="context 结构是什么样的？context 使用场景和用途"></a>context 结构是什么样的？context 使用场景和用途</h4><p> <code>context.Context</code> 是 <code>Golang</code> 中用于<strong>处理并发编程的上下文控制</strong>，<strong>提供了截止日期、取消信号和请求相关值的传递机制</strong>。它的结构定义包括以下几个关键方法：</p>
 <ol>
 <li><strong>Deadline</strong>: 此方法返回一个截止日期和一个布尔值，表示上下文是否设置了截止日期。</li>
@@ -682,7 +769,7 @@
 
 
 
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406082034686.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406082034686.png"/>
 
 <h4 id="同步机制"><a href="#同步机制" class="headerlink" title="同步机制"></a>同步机制</h4><ul>
 <li>无缓冲 channel：发送和接收操作都是同步的，也就是说，发送操作会阻塞，直到有接收者准备好；同样地，接收操作也会阻塞，直到有发送者发送数据。</li>
@@ -751,7 +838,7 @@
 </ul>
 </li>
 </ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130157639.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406130157639.png"/>
 
 <p>调度流程简述：</p>
 <ul>
@@ -781,7 +868,7 @@
 <li><strong>上下文恢复</strong>：调度器加载新选中任务的上下文，恢复其执行状态，然后继续执行。</li>
 <li><strong>重复过程</strong>：这个过程周期性地重复，确保所有任务都有机会被执行。</li>
 </ol>
-<h2 id="调度流程"><a href="#调度流程" class="headerlink" title="调度流程"></a>调度流程</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130217381.png"/>
+<h2 id="调度流程"><a href="#调度流程" class="headerlink" title="调度流程"></a>调度流程</h2><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406130217381.png"/>
 
 <h2 id="Go语言调度模型G、M、P的数量多少合适？"><a href="#Go语言调度模型G、M、P的数量多少合适？" class="headerlink" title="Go语言调度模型G、M、P的数量多少合适？"></a>Go语言调度模型G、M、P的数量多少合适？</h2><ol>
 <li>G（Goroutine）：<ul>
@@ -836,7 +923,7 @@
 <li>每个M都会有一个自己的G0</li>
 <li>在调度或系统调用时会使用M会切换到G0，来调度</li>
 </ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130225105.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406130225105.png"/>
 
 <p>G的9种状态</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span>(</span><br><span class="line">    _Gidle = <span class="literal">iota</span> <span class="comment">// 0 </span></span><br><span class="line">    <span class="comment">// 没有执行代码，没有栈的所有权，存储在运行队列中</span></span><br><span class="line">    _Grunnable <span class="comment">// 1 </span></span><br><span class="line">    <span class="comment">// 可以执行代码，拥有栈的所有权，被赋予了内核线程 M 和处理器 P</span></span><br><span class="line">    _Grunning <span class="comment">// 2 </span></span><br><span class="line">    <span class="comment">// 正在执行系统调用，拥有栈的所有权，没有执行用户代码，</span></span><br><span class="line">    <span class="comment">// 被赋予了内核线程 M 但是不在运行队列上</span></span><br><span class="line">    _Gsyscall <span class="comment">// 3 </span></span><br><span class="line">    <span class="comment">// 由于运行时而被阻塞，没有执行用户代码并且不在运行队列上，</span></span><br><span class="line">    <span class="comment">// 但是可能存在于 Channel 的等待队列上</span></span><br><span class="line">    _Gwaiting <span class="comment">// 4  </span></span><br><span class="line">    <span class="comment">//_Gmoribund_unused 当前未使用，但在 gdb 中硬编码脚本</span></span><br><span class="line">     _Gmoribund_unused <span class="comment">// 5</span></span><br><span class="line">    <span class="comment">// 表示当前goroutine没有被使用，没有执行代码，可能有分配的栈</span></span><br><span class="line">    _Gdead <span class="comment">// 6  </span></span><br><span class="line">    <span class="comment">//_Genqueue_unused当前未使用</span></span><br><span class="line">    _Genqueue_unused <span class="comment">// 7</span></span><br><span class="line">    <span class="comment">// 栈正在被拷贝，没有执行代码，不在运行队列上</span></span><br><span class="line">    _Gcopystack <span class="comment">// 8 </span></span><br><span class="line">    <span class="comment">// 由于抢占而被阻塞，没有执行用户代码并且不在运行队列上，等待唤醒</span></span><br><span class="line">    _Gpreempted <span class="comment">// 9 </span></span><br><span class="line">    <span class="comment">// GC 正在扫描栈空间，没有执行代码，可以与其他状态同时存在</span></span><br><span class="line">    	_Gscan          = <span class="number">0x1000</span></span><br><span class="line">    	_Gscanrunnable  = _Gscan + _Grunnable  <span class="comment">// 0x1001</span></span><br><span class="line">		_Gscanrunning   = _Gscan + _Grunning   <span class="comment">// 0x1002</span></span><br><span class="line">		_Gscansyscall   = _Gscan + _Gsyscall   <span class="comment">// 0x1003</span></span><br><span class="line">		_Gscanwaiting   = _Gscan + _Gwaiting   <span class="comment">// 0x1004</span></span><br><span class="line">		_Gscanpreempted = _Gscan + _Gpreempted <span class="comment">// 0x1009</span></span><br><span class="line">    </span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
@@ -937,7 +1024,8 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;github.com/panjf2000/ants&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"> </span><br><span class="line"><span class="comment">//任务</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sendMail</span><span class="params">(i <span class="type">int</span>, wg *sync.WaitGroup)</span></span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> cnt <span class="type">int</span></span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			time.Sleep(time.Second * <span class="number">2</span>)</span><br><span class="line">			fmt.Println(<span class="string">&quot;send mail to &quot;</span>, i)</span><br><span class="line">			cnt++</span><br><span class="line">			<span class="keyword">if</span> cnt &gt; <span class="number">5</span> &amp;&amp; i == <span class="number">1</span> &#123;</span><br><span class="line">				fmt.Println(<span class="string">&quot;退出协程ID:&quot;</span>, i)</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		wg.Done()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	wg := sync.WaitGroup&#123;&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">//申请一个协程池对象</span></span><br><span class="line">	pool, _ := ants.NewPool(<span class="number">2</span>)</span><br><span class="line"> </span><br><span class="line">	<span class="comment">//关闭协程池</span></span><br><span class="line">	<span class="keyword">defer</span> pool.Release()</span><br><span class="line"> </span><br><span class="line">	<span class="comment">// 向pool提交任务</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++ &#123;</span><br><span class="line">		pool.Submit(sendMail(i, &amp;wg))</span><br><span class="line">		wg.Add(<span class="number">1</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	wg.Wait()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>源码中提到， ants的吞吐量能够比原生groutine高出N倍，内存节省10到20倍。</p>
-<h1 id="GC相关"><a href="#GC相关" class="headerlink" title="GC相关"></a>GC相关</h1><h2 id="go-gc-是怎么实现的？（必问）"><a href="#go-gc-是怎么实现的？（必问）" class="headerlink" title="go gc 是怎么实现的？（必问）"></a>go gc 是怎么实现的？（必问）</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaodaoge_it/article/details/121890145">一文弄懂 Golang GC、三色标记、混合写屏障机制</a></p>
+<h1 id="GC相关"><a href="#GC相关" class="headerlink" title="GC相关"></a>GC相关</h1><p>系统的定时触发：如果两分钟内没有触发GC，则会每隔两分钟进行触发一次GC。<br>用户显示调用：用户调用runtime.GC方法，进行强制触发<br>申请内存时触发：给对象申请堆空间的时候，可能会触发GC，调用mallocgc的方法。</p>
+<h2 id="go-gc-是怎么实现的？（必问）"><a href="#go-gc-是怎么实现的？（必问）" class="headerlink" title="go gc 是怎么实现的？（必问）"></a>go gc 是怎么实现的？（必问）</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaodaoge_it/article/details/121890145">一文弄懂 Golang GC、三色标记、混合写屏障机制</a></p>
 <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p><strong>赋值器</strong>:说白了就是你写的程序代码，在程序的执行过程中，可能会改变对象的引用关系，或者创建新的引用。</p>
 <p><strong>回收器</strong>:垃圾回收器的责任就是去干掉那些程序中不再被引用得对象</p>
 <p><strong>STW</strong>:全称是stop the word，GC期间某个阶段会停止所有的赋值器，中断你的程序逻辑，以确定引用关系。</p>
@@ -958,29 +1046,29 @@
 <ol>
 <li>开启STW，停止程序的运行，图中是本次GC涉及到的root节点和相关对象。</li>
 </ol>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406091631848.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406091631848.png"/>
 
 <ol start="2">
 <li><p>从根节点出发，标记所有可达对象。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406091633161.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406091633161.png"/>
 </li>
 <li><p>停止STW，然后回收所有未被标记的对象</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406091633218.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406091633218.png"/>
 
 <p>标记清除法的<strong>最大弊端就是在整个GC期间需要STW，将整个程序暂停</strong>。因为如果不进行STW的话，会出现已经被标记的对象A，引用了新的未被标记的对象B，但由于对象A已经标记过了，不会再重新扫描A对B的可达性，从而将B对象当做垃圾回收掉。</p>
 <p>说实话这种全程STW的GC算法真的是如过街老鼠，人见人打…好家伙，让我程序停下来，专门去做垃圾回收这件事，在追求高性能的今天，很难有人可以接受这种性能损耗。</p>
 <p>所以Golang团队这个时期就开始专注于如何能提升GC的性能，这里希望各位道友能明白Golang团队对GC算法优化的方向是什么，或者目标是什么，那就是让GC和用户程序可以互不干扰，并发进行。所以才有了后面的三色标记法。</p>
 </li>
 </ol>
-<h4 id="v1-5-三色标记法"><a href="#v1-5-三色标记法" class="headerlink" title="v1.5 三色标记法"></a>v1.5 三色标记法</h4><h5 id="三色标记法"><a href="#三色标记法" class="headerlink" title="三色标记法"></a>三色标记法</h5><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406091634260.png"/>
+<h4 id="v1-5-三色标记法"><a href="#v1-5-三色标记法" class="headerlink" title="v1.5 三色标记法"></a>v1.5 三色标记法</h4><h5 id="三色标记法"><a href="#三色标记法" class="headerlink" title="三色标记法"></a>三色标记法</h5><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406091634260.png"/>
 
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406091634242.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406091634242.png"/>
 
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406091634946.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406091634946.png"/>
 
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406091634749.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406091634749.png"/>
 
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406091635828.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406091635828.png"/>
 
 <p>对于上述的三色标记法来讲,仍然需要依赖STW的. 因为如果不暂停程序, 程序的逻辑改变对象引用关系, 这种动作如果在标记阶段做了修改，会影响标记结果的正确性。</p>
 <h5 id="如果三色标记法不被STW保护"><a href="#如果三色标记法不被STW保护" class="headerlink" title="如果三色标记法不被STW保护"></a>如果三色标记法不被STW保护</h5><p>条件1:一个白色对象被黑色对象引用(白色被挂在黑色下）</p>
@@ -988,11 +1076,11 @@
 <p>如果两个条件同时满足，那么就会出现对象丢失的现象</p>
 <p>从而引申出 <strong>强三色不变式</strong> 和 <strong>弱三色不变式</strong></p>
 <h5 id="强三色不变式"><a href="#强三色不变式" class="headerlink" title="强三色不变式"></a>强三色不变式</h5><p>强制性的不允许黑色对象引用白色对象 (破坏条件1)</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111718917.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111718917.png"/>
 
 <h5 id="弱三色不变式"><a href="#弱三色不变式" class="headerlink" title="弱三色不变式"></a>弱三色不变式</h5><p>黑色对象可以引用白色对象， </p>
 <p>白色对象存在其他灰色对象对它的引用，或者可达它的链路上游存在灰色对象 （破坏条件2）</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111716801.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111716801.png"/>
 
 
 
@@ -1003,15 +1091,15 @@
 <blockquote>
 <p>对象9因为在栈内存中 不涉及插入屏障，所以创建的对象不会被标记为灰色</p>
 </blockquote>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111729757.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111729757.png"/>
 
 <ol start="2">
 <li><p>继续循环上述流程进行三色标记，直到没有灰色节点</p>
 </li>
 <li><p>在准备回收白色前，重新遍历扫描一次栈空间。<br>此时加STW暂停保护栈，防止外界干扰（有新的白色被黑色添加）</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111732320.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111732320.png"/>
 
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111732730.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111732730.png"/>
 </li>
 <li><p>清除白色对象</p>
 </li>
@@ -1019,9 +1107,9 @@
 <p>插入写屏障的不足：结束时需要STW来重新扫描栈，大约需要10~100ms</p>
 <h6 id="删除屏障"><a href="#删除屏障" class="headerlink" title="删除屏障"></a>删除屏障</h6><p>具体操作：被删除的对象，如果自身为灰色或者白色，那么被标记为灰色。（不是删除对象 是删除对这个对象的引用）<br>满足：弱三色不变式.(保护灰色对象到白色对象的路径不会断）</p>
 <ol>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111737887.png"/></li>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111737490.png"/></li>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111738503.png"/></li>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111737887.png"/></li>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111737490.png"/></li>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111738503.png"/></li>
 </ol>
 <p>删除屏障的不足：回收精度低，一个对象即使被删除了最后一个指向它的指针也依旧可以活过这一轮，在下一轮GC中被清理掉。</p>
 <h4 id="v1-8-混合写屏障机制"><a href="#v1-8-混合写屏障机制" class="headerlink" title="v1.8 混合写屏障机制"></a>v1.8 混合写屏障机制</h4><p>为了解决插入屏障和删除屏障的所存在的不足，混合写屏障孕育而生</p>
@@ -1038,41 +1126,41 @@
 </ol>
 <p>满足：变形的弱三色不变式.(结合了插入、删除写屏障两者的有点）</p>
 <p>优先扫描栈，将栈全部标记为黑</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111746429.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111746429.png"/>
 
 
 
 <h5 id="通过几个场景"><a href="#通过几个场景" class="headerlink" title="通过几个场景"></a>通过几个场景</h5><ol>
 <li><p>对象被一个堆对象删除引用，成为栈对象的下游</p>
 <ol>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111750411.png"/>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111750411.png"/>
 </li>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111751598.png"/></li>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111751598.png"/></li>
 </ol>
 </li>
 <li><p>对象被一个栈对象删除引用，成为另一个栈对象的下游</p>
 <ol>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111753932.png"/>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111753932.png"/>
 </li>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111753551.png"/>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111753551.png"/>
 </li>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111754493.png"/></li>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111754493.png"/></li>
 </ol>
 </li>
 <li><p>对象被一个堆对象删除引用，成为另一个堆对象的下游</p>
 <ol>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111757264.png"/>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111757264.png"/>
 </li>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111757045.png"/>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111757045.png"/>
 </li>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111758102.png"/></li>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111758102.png"/></li>
 </ol>
 </li>
 <li><p>对象从一个栈对象删除引用，成为另一个堆对象的下游</p>
 <ol>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111801669.png"/></li>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111801396.png"/></li>
-<li><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406111802063.png"/></li>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111801669.png"/></li>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111801396.png"/></li>
+<li><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406111802063.png"/></li>
 </ol>
 </li>
 </ol>
@@ -1169,7 +1257,7 @@
 <ul>
 <li>当函数内部创建了一个变量，并且函数返回的是指向这个局部变量的指针或引用时，由于返回的指针允许外部代码在函数结束后还能继续访问该变量，所以该变量必须在堆上分配，以保证其生命周期超过函数作用域。</li>
 </ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130233118.png"/></li>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406130233118.png"/></li>
 <li><p>外部引用：</p>
 <ul>
 <li>函数内部引用了外部作用域的变量，并且这个外部变量有可能在函数执行完毕后仍被函数内部生成的对象所引用，这时编译器无法确定何时可以释放外部变量，故外部变量及其被引用的部分可能会在堆上分配。</li>
@@ -1179,22 +1267,22 @@
 <ul>
 <li>在闭包（匿名函数）中捕获了外部作用域的变量，如果闭包在其定义的函数返回后还能访问这些变量，那么这些变量的生命周期会延长至闭包被释放，因此它们可能会从栈上逃逸到堆上。</li>
 </ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130236407.png"/></li>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406130236407.png"/></li>
 <li><p>动态类型和接口转换：</p>
 <ul>
 <li>当一个变量需要存储在 interface{} 类型中时，编译器无法预知其具体类型和大小，可能会导致逃逸到堆上。</li>
 </ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130235531.png"/></li>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406130235531.png"/></li>
 <li><p>切片扩容：</p>
 <ul>
 <li>当切片（slice）在函数内部初始化后，由于 append 操作可能会导致其底层数组超出当前容量，编译器为了确保在函数返回后切片仍能正确工作，会将底层数组分配在堆上。</li>
 </ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130234973.png"/></li>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406130234973.png"/></li>
 <li><p>栈空间不足以容纳变量：</p>
 <ul>
 <li>如果局部变量过大，超过编译器预设的栈空间大小限制，那么即使该变量的生命周期并未超出函数作用域，也会分配在堆上。</li>
 </ul>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406130233239.png"/></li>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406130233239.png"/></li>
 <li><p>发送指针或包含指针的值到 channel：</p>
 <ul>
 <li>当将一个局部变量的指针或者其他含有指针的复合类型值发送到 channel 中时，由于编译器无法得知何时 channel 的接收端会接收到数据，因此不能确定何时可以释放这些变量，因此可能导致内存逃逸。</li>
@@ -1202,7 +1290,7 @@
 </li>
 </ol>
 <h2 id="Go-是如何分配内存的？"><a href="#Go-是如何分配内存的？" class="headerlink" title="Go 是如何分配内存的？"></a>Go 是如何分配内存的？</h2><p>这篇文章主要介绍Go内存分配和Go内存管理，会轻微涉及内存申请和释放，以及Go垃圾回收。从非常宏观的角度看，Go的内存管理就是下图这个样子，我们今天主要关注其中标红的部分。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406100018475.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406100018475.png"/>
 
 <ul>
 <li>栈在高地址，从高地址向低地址增长</li>
@@ -2227,7 +2315,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-07-11 01:53:22" itemprop="dateModified" datetime="2024-07-11T01:53:22+08:00">2024-07-11</time>
+                <time title="修改时间：2024-08-06 14:01:30" itemprop="dateModified" datetime="2024-08-06T14:01:30+08:00">2024-08-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -2259,7 +2347,7 @@
 <p>第三范式：表的非主属性不能依赖</p>
 <p>与其他表的非主属性外键约束且三大范式是一级一级依赖的，第二范式建立在第一范式上，第三范式建立第一第二范式上。</p>
 <h2 id="MYSQL数据库引擎"><a href="#MYSQL数据库引擎" class="headerlink" title="MYSQL数据库引擎"></a>MYSQL数据库引擎</h2><p>mysql 常用引擎包括：MYISAM、Innodb、Memory、MERGE</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202405131951060.png"/>
+<img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202405131951060.png"/>
 
 <ul>
 <li>MYISAM：<strong>全表锁</strong>，拥有较高的执行速度，<strong>不支持事务，不支持外键</strong>，并发性能差，占用空间相对较小，<strong>对事务完整性没有要求</strong>，以select、insert 为主的应用基本上可以使用这引擎</li>
@@ -2402,7 +2490,7 @@
 <li><p>执行器，通过分析器让SQL 知道你要干啥，通过优化器知道该怎么做，于是开始执行语句。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">执行语句的时候还要判断是否具备此权限，没有权限就直接返回提示没有权限的错误；有权限则打开表，根据表的引擎定义，去使用这个引擎提供的接口，获取这个表的第一行，判断id 是否等于1。如果是，直接返回；如果不是继续调用引擎接口去下一行，重复相同的判断，直到取到这个表的最后一行，最后返回。</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h2 id="索引-1"><a href="#索引-1" class="headerlink" title="索引"></a>索引</h2><h3 id="索引优缺点"><a href="#索引优缺点" class="headerlink" title="索引优缺点"></a>索引优缺点</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202405142210161.png"/>
+<h2 id="索引-1"><a href="#索引-1" class="headerlink" title="索引"></a>索引</h2><h3 id="索引优缺点"><a href="#索引优缺点" class="headerlink" title="索引优缺点"></a>索引优缺点</h3><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202405142210161.png"/>
 
 <h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
 <li>提高数据的检索速度，降低数据库IO成本：使用索引的意义就是通过缩小表中需要查询的记录的数目从而加快搜索的速度</li>
@@ -2474,20 +2562,68 @@
 <li>MyCat 也得高可用：Haproxy，连接多个MyCat</li>
 <li>Haproxy 也得高可用：通过keepalived 辅助Haproxy</li>
 </ol>
-<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202406131017905.png"/>
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202406131017905.png"/>
 
-
-
+<p>Redis是一个开源的键值对数据库，以其高性能、高可用性和丰富的数据类型而闻名。以下是Redis的五大基础数据类型及其使用详解：</p>
+<ol>
+<li><p><strong>字符串（String）</strong></p>
+<ul>
+<li><p>基本用途：存储和查询简单的数据，如用户信息、配置信息等。</p>
+</li>
+<li><p>使用方法：使用<code>SET</code>和<code>GET</code>命令来设置和获取字符串值。</p>
+</li>
+<li><p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bashSET name &quot;John Doe&quot;</span><br><span class="line">GET name</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>**列表（List）</p>
+<ul>
+<li><p>基本用途：存储有序的数据集合，常用于消息队列、文章列表等。</p>
+</li>
+<li><p>使用方法：使用<code>LPUSH</code>和<code>RPUSH</code>命令从列表头部或尾部插入元素；使用<code>LPOP</code>和<code>RPOP</code>从列表头部或尾部弹出元素。</p>
+</li>
+<li><p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bashLPUSH mylist &quot;item1&quot;</span><br><span class="line">RPUSH mylist &quot;item2&quot;</span><br><span class="line">LPOP mylist</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>**集合（Set）</p>
+<ul>
+<li><p>基本用途：存储不重复的数据集合，适用于实现唯一性约束，如用户标签、好友列表等。</p>
+</li>
+<li><p>使用方法：使用<code>SADD</code>命令添加元素到集合；使用<code>SREM</code>命令从集合中移除元素。</p>
+</li>
+<li><p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bashSADD myset &quot;value1&quot;</span><br><span class="line">SADD myset &quot;value2&quot;</span><br><span class="line">SREM myset &quot;value1&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>**有序集合（Sorted Set）</p>
+<ul>
+<li><p>基本用途：存储带权重的数据集合，可以按照权重对元素进行排序，适用于排行榜、带权重的消息队列等。</p>
+</li>
+<li><p>使用方法：使用<code>ZADD</code>命令添加带分数的元素到有序集合；使用<code>ZRANK</code>和<code>ZREVRANK</code>获取元素的排名。</p>
+</li>
+<li><p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bashZADD myzset 1 &quot;value1&quot;</span><br><span class="line">ZADD myzset 2 &quot;value2&quot;</span><br><span class="line">ZRANK myzset &quot;value1&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>**哈希（Hash）</p>
+<ul>
+<li><p>基本用途：存储键值对集合，适用于存储对象或JSON数据，如用户信息、配置项等。</p>
+</li>
+<li><p>使用方法：使用<code>HSET</code>命令设置哈希字段的值；使用<code>HGET</code>和<code>HGETALL</code>获取哈希字段的值或所有字段。</p>
+</li>
+<li><p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bashHSET myhash field1 &quot;value1&quot;</span><br><span class="line">HGET myhash field1</span><br><span class="line">HGETALL myhash</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<p>每种数据类型都有其特定的命令集，用于实现增删查改等操作。Redis的数据类型非常灵活，可以应对各种不同的使用场景。通过合理选择数据类型，可以有效地优化存储和查询性能。</p>
 <h2 id="为了应对多请求缓存数据，缓解mysql压力而诞生"><a href="#为了应对多请求缓存数据，缓解mysql压力而诞生" class="headerlink" title="为了应对多请求缓存数据，缓解mysql压力而诞生"></a>为了应对多请求缓存数据，缓解mysql压力而诞生</h2><p>Redis主要数据存在内存中，通过设置超时时间来解决Redis在内存内数据不断膨胀问题<br>当内存压力太大时，通过随机算法删除内容释放空间（随机算法）<br>当超期数据太久于内存中未删除，遇到请求查询超期键值，则会立即删除该数据（被动触发，惰性删除）</p>
 <h2 id="内存淘汰策略"><a href="#内存淘汰策略" class="headerlink" title="内存淘汰策略"></a>内存淘汰策略</h2><p>①noeviction：返回错误，不会删除任何键值<br>②allkeys-lru：使用LRU算法删除最近最少使用的键值<br>③volatile-lru：使用LRU算法从设置了过期时间的键集合中删除最近最少使用的键值<br>④allkeys-random:从所有key随机删除<br>⑤volatile-random：从设置了过期时间的键的集合中随机删除<br>⑥volat计e-ttl：从设置了过期时间的键中删除剩余时间最短的键<br>⑦volatile・lfu：从配置了过期时间的键中删除使用频率最少的键<br>⑧allkeys-lfu:从所有键中删除使用频率最少的键</p>
 <h2 id="缓存穿透-缓存击穿-缓存雪崩"><a href="#缓存穿透-缓存击穿-缓存雪崩" class="headerlink" title="缓存穿透 缓存击穿 缓存雪崩"></a>缓存穿透 缓存击穿 缓存雪崩</h2><h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><p>缓存穿透是指客户端请求的<strong>数据在缓存中和数据库中都不存在</strong>，这样缓存永远不会生效，<strong>这些请求都会打到数据库</strong>。</p>
 <ol>
 <li>缓存 null 值</li>
 <li>布隆过滤</li>
-<li>增强 id 的复杂度，避免被猜测 id 规律</li>
-<li>做好数据的基础格式校验</li>
-<li>加强用户权限校验</li>
-<li>做好热点参数的限流</li>
 </ol>
 <blockquote>
 <p>当我们客户端访问不存在的数据时，先请求 redis，但是此时 redis 中没有数据，此时会访问到数据库，但是数据库中也没有数据，这个数据穿透了缓存，直击数据库，我们都知道数据库能够承载的并发不如 redis 这么高，如果大量的请求同时过来访问这种不存在的数据，这些请求就都会访问到数据库，</p>
@@ -2507,7 +2643,7 @@
 <p>  优点：内存占用较少，没有多余 key</p>
 <p>  缺点：实现复杂 存在误判可能</p>
 <ol start="3">
-<li>核心思路如下：<br>  在原来的逻辑中，我们如果发现这个数据在 mysql 中不存在，直接就返回 404 了，这样是会存在缓存穿透问题的<br>  现在的逻辑中：<br>  如果这个数据不存在，我们不会返回 404 ，还是会把这个数据写入到 Redis 中，并且将 value 设置为空，当再次发起查询时，我们如果发现命中之后，判断这个 value 是否是 null，如果是 null，则是之前写入的数据，证明是缓存穿透数据，如果不是，则直接返回数据。</li>
+<li>核心思路如下：<br> 在原来的逻辑中，我们如果发现这个数据在 mysql 中不存在，直接就返回 404 了，这样是会存在缓存穿透问题的<br> 现在的逻辑中：<br> 如果这个数据不存在，我们不会返回 404 ，还是会把这个数据写入到 Redis 中，并且将 value 设置为空，当再次发起查询时，我们如果发现命中之后，判断这个 value 是否是 null，如果是 null，则是之前写入的数据，证明是缓存穿透数据，如果不是，则直接返回数据。</li>
 </ol>
 </blockquote>
 <h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><p>缓存击穿是部分key过期导致的严重后果。</p>
@@ -2522,12 +2658,12 @@
 <ol>
 <li>简单的来说:并不是所有的线程都有 “ 资格 ” 去访问数据库，只有持有锁的线程才可以对其进行操作。不过该操作有一个很明显的问题，就是会出现相互等待的情况。</li>
 </ol>
-  <img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202407110137432.png"/>
+  <img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202407110137432.png"/>
 
 <ol start="2">
-<li>不设置TTL<br>  之前所说导致缓存击穿的原因就是该key的TTL到期了，所以我们在这就不设置TTL了，而是使用一个字段,例如：expire表示过期时间（逻辑上的）。当我们想让它 “ 过期 ” 的时候，我们可以直接手动将其删除（热点key，即只是在一段时间内，其被访问的频次很高）。<br>  这种方案巧妙在于，异步的构建缓存，缺点在于在构建完缓存之前，返回的都是脏数据。</li>
+<li>不设置TTL<br> 之前所说导致缓存击穿的原因就是该key的TTL到期了，所以我们在这就不设置TTL了，而是使用一个字段,例如：expire表示过期时间（逻辑上的）。当我们想让它 “ 过期 ” 的时候，我们可以直接手动将其删除（热点key，即只是在一段时间内，其被访问的频次很高）。<br> 这种方案巧妙在于，异步的构建缓存，缺点在于在构建完缓存之前，返回的都是脏数据。</li>
 </ol>
-  <img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/work/202407110139313.png"/>
+  <img src="https://raw.githubusercontent.com/blackhaird/blog_img/main/work/202407110139313.png"/>
 
 <table>
 <thead>
@@ -2635,7 +2771,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-15 01:18:56" itemprop="dateModified" datetime="2024-05-15T01:18:56+08:00">2024-05-15</time>
+                <time title="修改时间：2024-08-09 15:44:52" itemprop="dateModified" datetime="2024-08-09T15:44:52+08:00">2024-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
