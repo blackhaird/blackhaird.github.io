@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/meideblog/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="执行策划  基础介绍岗位定义主要负责战斗模块的设计：  战斗的机制和规则，战斗交互  类似于战斗模块的架构、数值、成长； 角色，玩法的设计，平衡性和操作体验 负责游戏的打击感和表现力等等   游戏战斗效果的显现：  战斗效果的字体大小，位置，光效，速率等等，来给玩家更强的反馈感       游戏的职业角色  每个职业都会拥有自己的职业特色和战斗体系（例如狂战、刺客、法师、猎人、牧师等职业） 战斗策">
+<meta property="og:type" content="article">
+<meta property="og:title" content="游戏策划整理">
+<meta property="og:url" content="http://example.com/2024/08/16/%E6%B8%B8%E6%88%8F%E7%AD%96%E5%88%92%E6%95%B4%E7%90%86/index.html">
+<meta property="og:site_name" content="MEIDE&#39;S BLOG">
+<meta property="og:description" content="执行策划  基础介绍岗位定义主要负责战斗模块的设计：  战斗的机制和规则，战斗交互  类似于战斗模块的架构、数值、成长； 角色，玩法的设计，平衡性和操作体验 负责游戏的打击感和表现力等等   游戏战斗效果的显现：  战斗效果的字体大小，位置，光效，速率等等，来给玩家更强的反馈感       游戏的职业角色  每个职业都会拥有自己的职业特色和战斗体系（例如狂战、刺客、法师、猎人、牧师等职业） 战斗策">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408191055521.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408161903124.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408161950692.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408161955295.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408171234384.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408171638473.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408190004532.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252223357.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252224199.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252226271.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252226748.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252227289.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252228897.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252229259.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252229984.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252230949.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252232763.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252232300.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252242332.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252247719.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252245888.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252248450.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252303862.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252258699.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252259825.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252300917.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252301688.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252307207.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252309850.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252310987.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252315469.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252317248.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252318076.png">
+<meta property="article:published_time" content="2024-08-16T10:49:05.000Z">
+<meta property="article:modified_time" content="2024-08-25T15:18:51.952Z">
+<meta property="article:author" content="MEIDE">
+<meta property="article:tag" content="面试题">
+<meta property="article:tag" content="游戏策划">
+<meta property="article:tag" content="系统策划">
+<meta property="article:tag" content="执行策划">
+<meta property="article:tag" content="数值策划">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408191055521.png">
+
+<link rel="canonical" href="http://example.com/2024/08/16/%E6%B8%B8%E6%88%8F%E7%AD%96%E5%88%92%E6%95%B4%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>游戏策划整理 | MEIDE'S BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MEIDE'S BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/16/%E6%B8%B8%E6%88%8F%E7%AD%96%E5%88%92%E6%95%B4%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          游戏策划整理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-08-16 18:49:05" itemprop="dateCreated datePublished" datetime="2024-08-16T18:49:05+08:00">2024-08-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-08-25 23:18:51" itemprop="dateModified" datetime="2024-08-25T23:18:51+08:00">2024-08-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%B8%E6%88%8F%E6%96%B9%E9%9D%A2/" itemprop="url" rel="index"><span itemprop="name">游戏方面</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%B8%E6%88%8F%E6%96%B9%E9%9D%A2/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="执行策划"><a href="#执行策划" class="headerlink" title="执行策划"></a>执行策划</h1><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408191055521.png"/>
+
+<h2 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h2><h3 id="岗位定义"><a href="#岗位定义" class="headerlink" title="岗位定义"></a>岗位定义</h3><p>主要负责战斗模块的设计：</p>
+<ol>
+<li><p>战斗的机制和规则，战斗交互</p>
+<ul>
+<li>类似于战斗模块的架构、数值、成长；</li>
+<li>角色，玩法的设计，平衡性和操作体验</li>
+<li>负责游戏的打击感和表现力等等</li>
+</ul>
+</li>
+<li><p>游戏战斗效果的显现：</p>
+<ul>
+<li>战斗效果的字体大小，位置，光效，速率等等，来给玩家更强的反馈感</li>
+</ul>
+</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408161903124.png"/>
+
+<ol start="3">
+<li><p>游戏的职业角色</p>
+<ul>
+<li>每个职业都会拥有自己的职业特色和战斗体系（例如狂战、刺客、法师、猎人、牧师等职业）</li>
+<li>战斗策划是需要根据游戏的框架去设计符合需求的职业体系的</li>
+<li>并且要对职业的特色和平衡性进行规划</li>
+<li>职业特色和战斗策略都是需要战斗策划去进行设计的</li>
+</ul>
+</li>
+<li><p>游戏的战斗技能（技能、天赋跟阵容的配置策略）</p>
+<ul>
+<li>可能有普攻、大招、合击技能等，不同的卡牌可以通过上阵跟站位形成更强的策略组合，技能跟阵容的配置策略也是属于游戏战斗策划的工作范畴</li>
+<li>游戏的天赋体系，技能符文，战斗手感等内容</li>
+</ul>
+</li>
+</ol>
+<h3 id="工作内容"><a href="#工作内容" class="headerlink" title="工作内容"></a>工作内容</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408161950692.png"/>
+
+<h3 id="能力要求"><a href="#能力要求" class="headerlink" title="能力要求"></a>能力要求</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408161955295.png"/>
+
+<h2 id="面试应答"><a href="#面试应答" class="headerlink" title="面试应答"></a>面试应答</h2><h3 id="岗位理解："><a href="#岗位理解：" class="headerlink" title="岗位理解："></a>岗位理解：</h3><blockquote>
+<p>战斗策划和战斗系统设计的理解，包括战斗策划的岗位责职和战斗系统相关内容。</p>
+</blockquote>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408171234384.png"/>
+
+<h3 id="打击感理解："><a href="#打击感理解：" class="headerlink" title="打击感理解："></a>打击感理解：</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408171638473.png"/>
+
+<h3 id="战斗策划和数值策划的区别："><a href="#战斗策划和数值策划的区别：" class="headerlink" title="战斗策划和数值策划的区别："></a>战斗策划和数值策划的区别：</h3><ul>
+<li>战斗机制平衡通常由战斗策划负责</li>
+<li>数值平衡通常由数值策划负责</li>
+<li>高级策划会相辅相成互相处理</li>
+</ul>
+<h1 id="系统策划"><a href="#系统策划" class="headerlink" title="系统策划"></a>系统策划</h1><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408190004532.png"/>
+
+<h1 id="数值策划"><a href="#数值策划" class="headerlink" title="数值策划"></a>数值策划</h1><p>1.伤害计算：减法公式，乘法公式，除法公式。</p>
+<p> 2.养成计算：分段公式，指数公式，产出推导消耗的公式，消耗推导产出的公式。 </p>
+<p>3.概率计算：权重公式，抽卡补偿公式。</p>
+<h2 id="基础设计"><a href="#基础设计" class="headerlink" title="基础设计"></a>基础设计</h2><h3 id="核心命题"><a href="#核心命题" class="headerlink" title="核心命题"></a>核心命题</h3><p>游戏行为是普遍的社会活动中的一种，不独立于社会活动之外。</p>
+<ol>
+<li>游戏行为与其他任何社会活动所消耗的时间、精力、资源都是等质的。</li>
+<li>游戏行为亦有产出，在一定程度上符合经济学基本原理</li>
+<li>游戏行为的产出是基于游戏自身的符号系统而存在的</li>
+<li>游戏行为产生的价值是基于符号系统的价值</li>
+<li>符号价值依附于游戏内容（符号景观）存在</li>
+</ol>
+<p>游戏行为的价值是使用价值和交换价值的对立。</p>
+<ol>
+<li><p>使用价值是游戏向玩家兑现游戏体验的能力指标</p>
+</li>
+<li><p>交换价值是玩家放弃某个游戏内容的使用价值而获取其他游戏内容使用价值的交换尺度</p>
+</li>
+<li><p>数值设计是对价值的量化体系</p>
+</li>
+<li><p>使用价值是数值设计的参考依据，交换价值是数值设计的设计对象</p>
+</li>
+</ol>
+<h3 id="价值效率三原则"><a href="#价值效率三原则" class="headerlink" title="价值效率三原则"></a>价值效率三原则</h3><p>1.不同的游戏类型，价值效率不同（设计习惯和传统）</p>
+<p>2.同一个游戏中的不同的游戏时空，价值效率不同（玩家的资源积累导致的边际效用）</p>
+<p>3.同一个游戏中同一个游戏时空不同的游戏行为，价值效率不同（不同的游戏行为劳动强度存在差异）</p>
+<h2 id="经济设计"><a href="#经济设计" class="headerlink" title="经济设计"></a>经济设计</h2><h3 id="经济系统类型"><a href="#经济系统类型" class="headerlink" title="经济系统类型"></a>经济系统类型</h3><ul>
+<li>开放式经济系统：在游戏内部，玩家之间可以自由交易的经济系统，如冒险岛、魔兽世界、梦幻西游。</li>
+<li>封闭式经济系统：在游戏内部，玩家之间不可以或者几乎不可以交易物品，如明日方舟，阴阳师。</li>
+<li>半开放式经济系统：介于二者之间的类型。</li>
+</ul>
+<p>绝大部分游戏的经济系统都是开放式经济系统的简化版，包括半开放式和封闭式，这些系统的基础结构都可以由开放式经济系统在限制一定条件的情况下导出。</p>
+<h3 id="价值是经济系统的根基"><a href="#价值是经济系统的根基" class="headerlink" title="价值是经济系统的根基"></a>价值是经济系统的根基</h3><p>原始经济系统（以物易物）</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252223357.png"/>
+
+<p>产品A的价值&#x3D;产品B的价值</p>
+<p>如果参与产品交换的人多了，这种直接以物易物的交易系统就会显得庞大繁杂</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252224199.png"/>
+
+<p>故而出现了一般等价物（钱等）</p>
+<p>MMORPG中开放式游戏的经济系统</p>
+<p>水池模型：玩家所拥有的财富&#x3D;所有输入玩家的个人资产的总价值 - 所以输出玩家个人资产的总价值</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252226271.png"/>
+
+<p>“系统人”：价值输入、价值输出的任务由系统担任，故在经济设计中，把系统视为一个超级商人。注意：玩家和玩家之间的交易一般认为是发生在玩家整体内部，如果没有交易税、交易损耗等设定，则无论怎么交易，只要保持是等价交易的前提下，玩家整体所拥有价值的总量是不变的。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252226748.png"/>
+
+<ul>
+<li>投放价值：玩家从系统获得的价值，包括打怪掉落、每日签到、任务奖励、副本掉落、商店出售等。</li>
+<li>回收价值：系统从玩家获得的价值，包括维修消耗、购物费用、交易收税、时间消耗、道具消耗等。</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252227289.png"/>
+
+<p>退出流通的价值：</p>
+<ol>
+<li>沉淀为玩家的战斗力：面板属性、装备、天赋、技能、宠物等等。</li>
+<li>成为玩家的个人收藏：时装、弃用但没有出售的装备、有纪念意义的道具等等。</li>
+<li>成为玩家的财富积累：积攒的多余货币、以备不时之需但暂时不使用的道具等等。</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252228897.png"/>
+
+<p>可以通过数值设计来调控玩家财富积累的速率，进而调控玩家的成长速率。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252229259.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252229984.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252230949.png"/>
+
+<h2 id="战斗公式设计"><a href="#战斗公式设计" class="headerlink" title="战斗公式设计"></a>战斗公式设计</h2><p>战斗公式设计<br>常见的战斗公式，一般有2种设计范式：瀑布式和圆桌式</p>
+<h3 id="瀑布式"><a href="#瀑布式" class="headerlink" title="瀑布式"></a>瀑布式</h3><p>优点：结构清晰，容易理解<br>缺点：书面数值可能与实际效果不符合</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252232763.png"/>
+
+<h3 id="圆桌式"><a href="#圆桌式" class="headerlink" title="圆桌式"></a>圆桌式</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252232300.png"/>
+
+<p>优点：书面数值和实际效果基本吻合，符合直觉<br>缺点：结果可能溢出，没有瀑布式直观</p>
+<p>而公式的代数模型里，一般也分减法模型和除法模型</p>
+<h3 id="减法模型"><a href="#减法模型" class="headerlink" title="减法模型"></a>减法模型</h3><p>$$<br>DMG &#x3D; ATK - DEF<br>$$</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252242332.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252247719.png"/>
+
+<h3 id="乘法模型"><a href="#乘法模型" class="headerlink" title="乘法模型"></a>乘法模型</h3><p>$$<br>DMG &#x3D; ATK \times(1-减伤率)<br>$$</p>
+<p>$$<br>减伤率 &#x3D; 防御 &#x2F; (防御+修正参数)<br>$$</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252245888.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252248450.png"/>
+
+<blockquote>
+<p>玩家的战力&#x3D;有效输出<em>有效生命<br>乘法伤害&#x3D;攻击</em>(1-减伤率）<br>玩家的有效生命&#x3D;生命&#x2F;(1-减伤率）<br>玩家的战力&#x3D;生命&#x2F;(1-减伤率）*玩家输出</p>
+</blockquote>
+<h3 id="除法模型"><a href="#除法模型" class="headerlink" title="除法模型"></a>除法模型</h3><p>$$<br>DMG &#x3D; ATK \times (1- \frac{DEF}{DEF<br>+K})<br>$$</p>
+<p>绝大多数游戏的伤害计算公式都是减法模型或者除法模型的变种。<br>$$<br>伤害 &#x3D; 攻击^2&#x2F;(攻击+防御*防御参数)<br>$$<br>攻击数值&gt;防御价值</p>
+<p>正常公式：</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252303862.png"/>
+
+<p>大防御不会 不破防</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252258699.png"/>
+
+<p>固定伤害（乘法公式）</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252259825.png"/>
+
+<p>攻击提升防御不变（线性直线）攻击价值&gt;防御价值</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252300917.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252301688.png"/>
+
+<h2 id="命中公式"><a href="#命中公式" class="headerlink" title="命中公式"></a>命中公式</h2><h3 id="减法公式"><a href="#减法公式" class="headerlink" title="减法公式"></a>减法公式</h3><p>不利于投放超过100%命中率</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252307207.png"/>
+
+<h3 id="除法公式"><a href="#除法公式" class="headerlink" title="除法公式"></a>除法公式</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252309850.png"/>
+
+<h2 id="成长公式"><a href="#成长公式" class="headerlink" title="成长公式"></a>成长公式</h2><h3 id="分段公式"><a href="#分段公式" class="headerlink" title="分段公式"></a>分段公式</h3><p>每个阶段都有不同体验</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252310987.png"/>
+
+<h3 id="指数公式"><a href="#指数公式" class="headerlink" title="指数公式"></a>指数公式</h3><p>成长幅度大，越升级越爽</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252315469.png"/>
+
+<h2 id="消耗计算"><a href="#消耗计算" class="headerlink" title="消耗计算"></a>消耗计算</h2><h2 id="概率计算"><a href="#概率计算" class="headerlink" title="概率计算"></a>概率计算</h2><h3 id="权重公式"><a href="#权重公式" class="headerlink" title="权重公式"></a>权重公式</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252317248.png"/>
+
+<h3 id="概率补偿"><a href="#概率补偿" class="headerlink" title="概率补偿"></a>概率补偿</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/game_planning202408252318076.png"/>
+
+<h1 id="关卡策划"><a href="#关卡策划" class="headerlink" title="关卡策划"></a>关卡策划</h1><p>关卡负责三个方面的事情：</p>
+<p>一个是跟美术对接的负责场景的东西，最重要的就是房间设计，包含有白盒设计，跑图视角下玩家能看到的独特的场景物体，还有和文案等共同跟美术交流产生的关卡seq或者CG。</p>
+<p>另一个是跟程序对接的，最重要的是元素设计。包括关卡内的机关陷阱，宝箱奖励，解密元素，NPC和战斗，最重要是交互逻辑和，交互后的逻辑表现，动画表现（需要程序去调）。</p>
+<p>最后是自身对关卡的设计，包含有玩家在关卡内进行交互后的反馈，目的，关卡的路线，关卡的难度（直观反馈数值上的难度跟数值沟通，间接的还有机关难度和解密的难度需要自己去调），关卡的时间，以及关卡玩法对玩家心流的把控。 </p>
+<h2 id="关卡设计的详细流程"><a href="#关卡设计的详细流程" class="headerlink" title="关卡设计的详细流程"></a>关卡设计的详细流程</h2><ol>
+<li><strong>前期制作</strong>：规划好出色的创意和整体体验设计</li>
+<li><strong>战斗（可选）：</strong>对于战斗游戏，说明玩家如何和不同类型敌人互动</li>
+<li><strong>布局：</strong>为一个关卡绘制一个可视化的平面俯视草图</li>
+<li><strong>白盒：</strong>构建一个基本的可游玩的3D关卡草案，并进行可玩性测试</li>
+<li><strong>脚本：</strong>整合事件和行为（任务，探索，门，按钮，AI）</li>
+<li><strong>照明：</strong>安排光源的深度和可读性</li>
+<li><strong>环境艺术</strong>：“美术通行”关卡道具和布景</li>
+<li><strong>发布</strong>：打包，宣传和发布项目</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag"># 面试题</a>
+              <a href="/tags/%E6%B8%B8%E6%88%8F%E7%AD%96%E5%88%92/" rel="tag"># 游戏策划</a>
+              <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%AD%96%E5%88%92/" rel="tag"># 系统策划</a>
+              <a href="/tags/%E6%89%A7%E8%A1%8C%E7%AD%96%E5%88%92/" rel="tag"># 执行策划</a>
+              <a href="/tags/%E6%95%B0%E5%80%BC%E7%AD%96%E5%88%92/" rel="tag"># 数值策划</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/07/08/%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E7%AC%94%E8%AE%B0/" rel="prev" title="程序实例笔记">
+      <i class="fa fa-chevron-left"></i> 程序实例笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E7%AD%96%E5%88%92"><span class="nav-number">1.</span> <span class="nav-text">执行策划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">基础介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B2%97%E4%BD%8D%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">岗位定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9"><span class="nav-number">1.1.2.</span> <span class="nav-text">工作内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%BD%E5%8A%9B%E8%A6%81%E6%B1%82"><span class="nav-number">1.1.3.</span> <span class="nav-text">能力要求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E8%AF%95%E5%BA%94%E7%AD%94"><span class="nav-number">1.2.</span> <span class="nav-text">面试应答</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B2%97%E4%BD%8D%E7%90%86%E8%A7%A3%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">岗位理解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%87%BB%E6%84%9F%E7%90%86%E8%A7%A3%EF%BC%9A"><span class="nav-number">1.2.2.</span> <span class="nav-text">打击感理解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%98%E6%96%97%E7%AD%96%E5%88%92%E5%92%8C%E6%95%B0%E5%80%BC%E7%AD%96%E5%88%92%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">1.2.3.</span> <span class="nav-text">战斗策划和数值策划的区别：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%AD%96%E5%88%92"><span class="nav-number">2.</span> <span class="nav-text">系统策划</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E7%AD%96%E5%88%92"><span class="nav-number">3.</span> <span class="nav-text">数值策划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.1.</span> <span class="nav-text">基础设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%91%BD%E9%A2%98"><span class="nav-number">3.1.1.</span> <span class="nav-text">核心命题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%B7%E5%80%BC%E6%95%88%E7%8E%87%E4%B8%89%E5%8E%9F%E5%88%99"><span class="nav-number">3.1.2.</span> <span class="nav-text">价值效率三原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E6%B5%8E%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.2.</span> <span class="nav-text">经济设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E6%B5%8E%E7%B3%BB%E7%BB%9F%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.2.1.</span> <span class="nav-text">经济系统类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%B7%E5%80%BC%E6%98%AF%E7%BB%8F%E6%B5%8E%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A0%B9%E5%9F%BA"><span class="nav-number">3.2.2.</span> <span class="nav-text">价值是经济系统的根基</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%98%E6%96%97%E5%85%AC%E5%BC%8F%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.3.</span> <span class="nav-text">战斗公式设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%80%91%E5%B8%83%E5%BC%8F"><span class="nav-number">3.3.1.</span> <span class="nav-text">瀑布式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%86%E6%A1%8C%E5%BC%8F"><span class="nav-number">3.3.2.</span> <span class="nav-text">圆桌式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%8F%E6%B3%95%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.3.3.</span> <span class="nav-text">减法模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%98%E6%B3%95%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.3.4.</span> <span class="nav-text">乘法模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%A4%E6%B3%95%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.3.5.</span> <span class="nav-text">除法模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%B8%AD%E5%85%AC%E5%BC%8F"><span class="nav-number">3.4.</span> <span class="nav-text">命中公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%8F%E6%B3%95%E5%85%AC%E5%BC%8F"><span class="nav-number">3.4.1.</span> <span class="nav-text">减法公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%A4%E6%B3%95%E5%85%AC%E5%BC%8F"><span class="nav-number">3.4.2.</span> <span class="nav-text">除法公式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%90%E9%95%BF%E5%85%AC%E5%BC%8F"><span class="nav-number">3.5.</span> <span class="nav-text">成长公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E5%85%AC%E5%BC%8F"><span class="nav-number">3.5.1.</span> <span class="nav-text">分段公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E6%95%B0%E5%85%AC%E5%BC%8F"><span class="nav-number">3.5.2.</span> <span class="nav-text">指数公式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E8%80%97%E8%AE%A1%E7%AE%97"><span class="nav-number">3.6.</span> <span class="nav-text">消耗计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E8%AE%A1%E7%AE%97"><span class="nav-number">3.7.</span> <span class="nav-text">概率计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%83%E9%87%8D%E5%85%AC%E5%BC%8F"><span class="nav-number">3.7.1.</span> <span class="nav-text">权重公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E8%A1%A5%E5%81%BF"><span class="nav-number">3.7.2.</span> <span class="nav-text">概率补偿</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E5%8D%A1%E7%AD%96%E5%88%92"><span class="nav-number">4.</span> <span class="nav-text">关卡策划</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E5%8D%A1%E8%AE%BE%E8%AE%A1%E7%9A%84%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B"><span class="nav-number">4.1.</span> <span class="nav-text">关卡设计的详细流程</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MEIDE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MEIDE</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/meideblog/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/meideblog/velocity/velocity.min.js"></script>
+  <script src="/meideblog/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
