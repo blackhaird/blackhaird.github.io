@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/meideblog/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1.1234567891011121314151617type Item struct &amp;#123;	Grade string &#x2F;&#x2F;年级	Class string &#x2F;&#x2F;班级	Name  string &#x2F;&#x2F;姓名&amp;#125;func main() &amp;#123; 	&#x2F;&#x2F; 全校学生数组 	list :&#x3D; []Item&amp;#123;&amp;#123;Grade: &quot;一年级&quot;, Class: &amp;q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优力普面试题">
+<meta property="og:url" content="http://example.com/2024/08/29/%E4%BC%98%E5%8A%9B%E6%99%AE%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="MEIDE&#39;S BLOG">
+<meta property="og:description" content="1.1234567891011121314151617type Item struct &amp;#123;	Grade string &#x2F;&#x2F;年级	Class string &#x2F;&#x2F;班级	Name  string &#x2F;&#x2F;姓名&amp;#125;func main() &amp;#123; 	&#x2F;&#x2F; 全校学生数组 	list :&#x3D; []Item&amp;#123;&amp;#123;Grade: &quot;一年级&quot;, Class: &amp;q">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-29T14:02:26.000Z">
+<meta property="article:modified_time" content="2024-08-29T15:38:51.918Z">
+<meta property="article:author" content="MEIDE">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2024/08/29/%E4%BC%98%E5%8A%9B%E6%99%AE%E9%9D%A2%E8%AF%95%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>优力普面试题 | MEIDE'S BLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">MEIDE'S BLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/08/29/%E4%BC%98%E5%8A%9B%E6%99%AE%E9%9D%A2%E8%AF%95%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          优力普面试题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-08-29 22:02:26 / 修改时间：23:38:51" itemprop="dateCreated datePublished" datetime="2024-08-29T22:02:26+08:00">2024-08-29</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Item <span class="keyword">struct</span> &#123;</span><br><span class="line">	Grade <span class="type">string</span> <span class="comment">//年级</span></span><br><span class="line">	Class <span class="type">string</span> <span class="comment">//班级</span></span><br><span class="line">	Name  <span class="type">string</span> <span class="comment">//姓名</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123; </span><br><span class="line">	<span class="comment">// 全校学生数组 </span></span><br><span class="line">	list := []Item&#123;&#123;Grade: <span class="string">&quot;一年级&quot;</span>, Class: <span class="string">&quot;1班&quot;</span>, Name: <span class="string">&quot;小明&quot;</span>&#125;&#125;</span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> list &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 打印输出一年级1班全部学生姓名</span></span><br><span class="line">	fmt.Println(school[<span class="string">&quot;一年级&quot;</span>][<span class="string">&quot;1班&quot;</span>]) <span class="comment">//打印输出 [小明]</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">type</span> Item <span class="keyword">struct</span> &#123;</span><br><span class="line">	Grade <span class="type">string</span> <span class="comment">// 年级</span></span><br><span class="line">	Class <span class="type">string</span> <span class="comment">// 班级</span></span><br><span class="line">	Name  <span class="type">string</span> <span class="comment">// 姓名</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 全校学生数组</span></span><br><span class="line">	list := []Item&#123;</span><br><span class="line">		&#123;Grade: <span class="string">&quot;一年级&quot;</span>, Class: <span class="string">&quot;1班&quot;</span>, Name: <span class="string">&quot;小明&quot;</span>&#125;,</span><br><span class="line">		&#123;Grade: <span class="string">&quot;一年级&quot;</span>, Class: <span class="string">&quot;1班&quot;</span>, Name: <span class="string">&quot;小红&quot;</span>&#125;, <span class="comment">// 添加更多学生</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 创建一个嵌套的映射来存储年级和班级对应的学生姓名</span></span><br><span class="line">	school := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="keyword">map</span>[<span class="type">string</span>][]<span class="type">string</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 遍历学生列表</span></span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> list &#123;</span><br><span class="line">		<span class="comment">// 如果年级不存在，则创建一个新的年级映射</span></span><br><span class="line">		<span class="keyword">if</span> _, ok := school[v.Grade]; !ok &#123;</span><br><span class="line">			school[v.Grade] = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>][]<span class="type">string</span>)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 如果班级不存在，则创建一个新的班级列表</span></span><br><span class="line">		<span class="keyword">if</span> _, ok := school[v.Grade][v.Class]; !ok &#123;</span><br><span class="line">			school[v.Grade][v.Class] = <span class="built_in">make</span>([]<span class="type">string</span>, <span class="number">0</span>)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 添加学生姓名到对应的班级列表</span></span><br><span class="line">		school[v.Grade][v.Class] = <span class="built_in">append</span>(school[v.Grade][v.Class], v.Name)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 打印输出一年级1班全部学生姓名</span></span><br><span class="line">	fmt.Println(school[<span class="string">&quot;一年级&quot;</span>][<span class="string">&quot;1班&quot;</span>]) <span class="comment">// 打印输出 [小明 小红]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">listChange</span><span class="params">(list []<span class="type">int</span>)</span></span> &#123;</span><br><span class="line">list = <span class="built_in">append</span>(list, <span class="number">5</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">list1 := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">5</span>, <span class="number">8</span>)</span><br><span class="line">list2 := list1[<span class="number">3</span>:]</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">listChange</span><span class="params">(list []<span class="type">int</span>)</span></span> &#123;</span><br><span class="line">         list = <span class="built_in">append</span>(list, <span class="number">5</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 请写出打印结果</span></span><br><span class="line">fmt.Println(list1, <span class="built_in">len</span>(list1), <span class="built_in">cap</span>(list1))</span><br><span class="line">fmt.Println(list2, <span class="built_in">len</span>(list2), <span class="built_in">cap</span>(list2))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">``</span>[<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span>] <span class="number">5</span> <span class="number">8</span></span><br><span class="line">[<span class="number">0</span> <span class="number">0</span>] <span class="number">2</span> <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h1><p>为了实现 Cache 结构体的单例模式，并在初始化时将 CreateTime 设置为当前时间，你可以使用以下代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Cache <span class="keyword">struct</span> &#123;</span><br><span class="line">	CreateTime <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	once sync.Once</span><br><span class="line">	c    *Cache</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// NewCache 创建并返回 Cache 的单例实例</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewCache</span><span class="params">()</span></span> *Cache &#123;</span><br><span class="line">	once.Do(<span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		c = &amp;Cache&#123;</span><br><span class="line">			CreateTime: time.Now().Format(time.RFC3339),</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="keyword">return</span> c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 获取 Cache 的单例实例</span></span><br><span class="line">	cacheInstance := NewCache()</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 输出 CreateTime</span></span><br><span class="line">	fmt.Println(cacheInstance.CreateTime)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为了实现一个简单的 Key-Value 缓存工具库，我们可以扩展之前的 Cache 结构体，并添加相关的方法来支持 Put, Get, 和 Delete 操作。以下是完整的实现：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Put 存储键值对</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cache *Cache)</span></span> Put(key, value <span class="type">string</span>) &#123;</span><br><span class="line">	cache.mu.Lock()</span><br><span class="line">	<span class="keyword">defer</span> cache.mu.Unlock()</span><br><span class="line">	cache.data[key] = value</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Get 根据键查询对应的值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cache *Cache)</span></span> Get(key <span class="type">string</span>) (value <span class="type">string</span>, ok <span class="type">bool</span>) &#123;</span><br><span class="line">	cache.mu.Lock()</span><br><span class="line">	<span class="keyword">defer</span> cache.mu.Unlock()</span><br><span class="line">	value, ok = cache.data[key]</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Delete 根据键删除对应的键值对</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cache *Cache)</span></span> Delete(key <span class="type">string</span>) &#123;</span><br><span class="line">	cache.mu.Lock()</span><br><span class="line">	<span class="keyword">defer</span> cache.mu.Unlock()</span><br><span class="line">	<span class="built_in">delete</span>(cache.data, key)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h1><p>以下代码是商品价格为100，打印出该商品1-9折的价格，描述一下存在的问题和解决方案。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">以下代码是商品价格为<span class="number">100</span>，打印出该商品<span class="number">1</span><span class="number">-9</span>折的价格，描述一下存在的问题和解决方案。</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"> <span class="keyword">for</span> ratio := <span class="number">0.1</span>; ratio &lt; <span class="number">1</span>; ratio += <span class="number">0.1</span> &#123;</span><br><span class="line"> fmt.Println(strconv.FormatFloat(ratio*<span class="number">10</span>, <span class="string">&#x27;f&#x27;</span>, <span class="number">0</span>, <span class="number">64</span>)+<span class="string">&quot;折&quot;</span>, <span class="number">100</span>*(ratio), <span class="string">&quot;元&quot;</span>)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>问题分析<br>这段代码旨在打印出商品价格为100元时，从1折到9折的价格。但是存在以下几个问题：</p>
+<p>循环条件错误:<br>循环条件 ratio &lt; 1 导致循环只会执行9次，而不是预期的10次。这是因为当 ratio 的值为 0.9 时，ratio &lt; 1 仍然为真，但在下一次迭代中 ratio 的值变为 1.0，此时 ratio &lt; 1 为假，循环结束。<br>格式化输出问题:<br>当 ratio 的值为 0.1、0.2、0.3、0.4、0.5、0.6、0.7、0.8、0.9 时，strconv.FormatFloat(ratio*10, ‘f’, 0, 64) 会输出如 “1”、”2”、”3” 等，而不是期望的 “1折”、”2折”、”3折” 等。<br>解决方案<br>为了修复这些问题，可以进行以下修改：<br>调整循环条件:<br>将循环条件改为 ratio &lt;&#x3D; 1，以确保循环能够执行10次。<br>改进格式化输出:<br>直接在 fmt.Println 中进行字符串拼接，避免使用 strconv.FormatFloat。</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	price := <span class="number">100.0</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> ratio := <span class="number">0.1</span>; ratio &lt;= <span class="number">1.0</span>; ratio += <span class="number">0.1</span> &#123;</span><br><span class="line">		discount := fmt.Sprintf(<span class="string">&quot;%.0f&quot;</span>, ratio*<span class="number">10</span>)</span><br><span class="line">		fmt.Printf(<span class="string">&quot;%s折 %.0f元\n&quot;</span>, discount, price*ratio)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="5"><a href="#5" class="headerlink" title="5."></a>5.</h1><blockquote>
+<p>有一个请假数据的数组 leaveList ，包含开始时间戳和结束时间戳。补全以下代码，使用最少的判断条件，实现判断是否存在1月1日至1月7日的请假。</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">type</span> Item <span class="keyword">struct</span> &#123;</span><br><span class="line">	StartAt <span class="type">int64</span> <span class="comment">//开始时间戳</span></span><br><span class="line">	EndAt   <span class="type">int64</span> <span class="comment">//结束时间戳</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">//请假数据的数组</span></span><br><span class="line">	leaveList := []Item&#123;&#123;StartAt: <span class="number">0</span>, EndAt: <span class="number">0</span>&#125;&#125;</span><br><span class="line">	<span class="comment">//判断时间范围</span></span><br><span class="line">	startAt := time.Date(<span class="number">2023</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, time.Local)</span><br><span class="line">	endAt := startAt.AddDate(<span class="number">0</span>, <span class="number">0</span>, <span class="number">7</span>)</span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> leaveList &#123;</span><br><span class="line">		<span class="comment">//判断1月1日至1月7日是否请假了</span></span><br><span class="line">		<span class="keyword">if</span> &#123;</span><br><span class="line">			fmt.Println(<span class="string">&quot;1月1日至1月7日请假了&quot;</span>)</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">为了判断是否存在<span class="number">1</span>月<span class="number">1</span>日至<span class="number">1</span>月<span class="number">7</span>日的请假记录，我们可以检查每个请假记录的开始时间和结束时间是否覆盖了这段时间。以下是补全后的代码：</span><br><span class="line"><span class="keyword">type</span> Item <span class="keyword">struct</span> &#123;</span><br><span class="line">	StartAt <span class="type">int64</span> <span class="comment">// 开始时间戳</span></span><br><span class="line">	EndAt   <span class="type">int64</span> <span class="comment">// 结束时间戳</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 请假数据的数组</span></span><br><span class="line">	leaveList := []Item&#123;</span><br><span class="line">		&#123;StartAt: time.Date(<span class="number">2023</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, time.Local).Unix(),</span><br><span class="line">         EndAt: time.Date(<span class="number">2023</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, time.Local).Unix()&#125;,</span><br><span class="line">		&#123;StartAt: time.Date(<span class="number">2023</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, time.Local).Unix(), </span><br><span class="line">         EndAt: time.Date(<span class="number">2023</span>, <span class="number">1</span>, <span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, time.Local).Unix()&#125;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 判断时间范围</span></span><br><span class="line">	startAt := time.Date(<span class="number">2023</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, time.Local)</span><br><span class="line">	endAt := startAt.AddDate(<span class="number">0</span>, <span class="number">0</span>, <span class="number">7</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> leaveList &#123;</span><br><span class="line">		<span class="comment">// 判断1月1日至1月7日是否请假了</span></span><br><span class="line">		<span class="keyword">if</span> v.StartAt &lt;= endAt.Unix() &amp;&amp; v.EndAt &gt;= startAt.Unix() &#123;</span><br><span class="line">			fmt.Println(<span class="string">&quot;1月1日至1月7日请假了&quot;</span>)</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>代码解释<br>定义 Item 结构体:<br>包含 StartAt 和 EndAt 两个字段，分别表示请假的开始时间和结束时间。<br>初始化请假数据:<br>leaveList 是一个包含请假记录的切片。<br>定义时间范围:<br>startAt 表示1月1日的时间戳。<br>endAt 表示1月7日的时间戳。<br>遍历请假记录:<br>对于每个请假记录 v，检查其开始时间和结束时间是否覆盖了1月1日至1月7日的时间范围。<br>使用 v.StartAt &lt;&#x3D; endAt.Unix() 和 v.EndAt &gt;&#x3D; startAt.Unix() 来判断是否覆盖。<br>输出结果:<br>如果存在覆盖的情况，则输出 “1月1日至1月7日请假了” 并跳出循环。<br>这样，我们只需要两个判断条件即可完成任务。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/08/16/%E6%B8%B8%E6%88%8F%E7%AD%96%E5%88%92%E6%95%B4%E7%90%86/" rel="prev" title="游戏策划整理">
+      <i class="fa fa-chevron-left"></i> 游戏策划整理
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">1.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">2.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3"><span class="nav-number">3.</span> <span class="nav-text">3.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4"><span class="nav-number">4.</span> <span class="nav-text">4.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5"><span class="nav-number">5.</span> <span class="nav-text">5.</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MEIDE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MEIDE</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/meideblog/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/meideblog/velocity/velocity.min.js"></script>
+  <script src="/meideblog/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

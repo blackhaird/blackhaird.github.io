@@ -152,6 +152,399 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-1-%E6%A6%82%E8%BF%B0%E4%B8%8E%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-1-%E6%A6%82%E8%BF%B0%E4%B8%8E%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">计算机组成原理(1)-概述与数据</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-08-08 21:44:13" itemprop="dateCreated datePublished" datetime="2023-08-08T21:44:13+08:00">2023-08-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-07 21:20:07" itemprop="dateModified" datetime="2023-09-07T21:20:07+08:00">2023-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="计算机组成原理笔记"><a href="#计算机组成原理笔记" class="headerlink" title="计算机组成原理笔记"></a>计算机组成原理笔记</h1><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061623419.png"/>
+
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="计算机的发展"><a href="#计算机的发展" class="headerlink" title="计算机的发展"></a>计算机的发展</h2><p>数据库管理系统–系统软件<br>数据库系统–应用软件</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061530626.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061530997.png"/>
+
+<h2 id="计算机硬件"><a href="#计算机硬件" class="headerlink" title="计算机硬件"></a>计算机硬件</h2><h3 id="计算机硬件的基本组成"><a href="#计算机硬件的基本组成" class="headerlink" title="计算机硬件的基本组成"></a>计算机硬件的基本组成</h3><p>“存储程序”的概念是指将指令以<strong>二进制代码</strong>的形式事先输入计算机的主存储器，然后按其在<strong>存储器中的首地址执行程序的第一条指令</strong>，以后就按该程序的规定顺序执行其他指令，直到程序执行结束。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输入设备</td>
+<td>将信息转换成机器能识别的形式</td>
+</tr>
+<tr>
+<td>运算器</td>
+<td>算术运算逻辑运算</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>存放数据和程序</td>
+</tr>
+<tr>
+<td>控制器</td>
+<td>指挥程序运行</td>
+</tr>
+<tr>
+<td>输出设备</td>
+<td>将结果转换成人们熟悉的形式</td>
+</tr>
+</tbody></table>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061533552.png"/>
+
+<h4 id="冯诺依曼计算机的特点"><a href="#冯诺依曼计算机的特点" class="headerlink" title="冯诺依曼计算机的特点"></a>冯诺依曼计算机的特点</h4><ul>
+<li>计算机由五大部件组成</li>
+<li>指令和数据以同等地位存于存储器，可按地址访问（统一编址，指令和数据所在存储单元无差异）</li>
+<li>指令和数据用二进制表示</li>
+<li>指令由操作码和地址码组成</li>
+<li>存储程序</li>
+<li>以运算器为中心（输入输出设备与存储器之间的数据传送通过运算器完成）</li>
+</ul>
+<h4 id="数据驱动方式："><a href="#数据驱动方式：" class="headerlink" title="数据驱动方式："></a>数据驱动方式：</h4><ul>
+<li>控制流驱动：指令–&gt;数据</li>
+<li>数据流驱动：数据–&gt;指令</li>
+</ul>
+<h3 id="现代计算机的结构"><a href="#现代计算机的结构" class="headerlink" title="现代计算机的结构"></a>现代计算机的结构</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061536471.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061539722.png"/>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061539037.png"/>
+
+<h2 id="各硬件的工作原理"><a href="#各硬件的工作原理" class="headerlink" title="各硬件的工作原理"></a>各硬件的工作原理</h2><h3 id="主存储器的基本组成"><a href="#主存储器的基本组成" class="headerlink" title="主存储器的基本组成"></a>主存储器的基本组成</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061540782.png"/>
+
+<ol>
+<li>MAR（Memory Address Register）：MAR是一个存储器地址寄存器，用于存储要访问的内存地址。当计算机需要读取或写入内存中的数据时，它会将要访问的内存地址存储在MAR中。MAR通常是一个专门的寄存器，它可以直接与内存进行交互，将存储器地址传递给内存模块。</li>
+<li>MDR（Memory Data Register）：MDR是一个存储器数据寄存器，用于存储从内存中读取或要写入内存的数据。当计算机需要从内存中读取数据时，它将数据从内存传输到MDR中。同样，当计算机需要将数据写入内存时，它将数据从MDR传输到内存中的指定位置。MDR也是一个专门的寄存器，它在内存和其他计算机组件之间传递数据。</li>
+</ol>
+<p>因此，MAR和MDR之间的区别在于它们的功能和作用。MAR用于存储要访问的内存地址，而MDR用于存储从内存读取的数据或要写入内存的数据。它们共同参与内存的读取和写入操作，实现了计算机与内存之间的数据传输和交互。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061546501.png"/>
+
+<ul>
+<li>存储单元：每个存储单元存放一串二进制代码</li>
+<li>存储字(word)：存储单元中二进制代码的组合</li>
+<li>存储字长：存储单元中二进制代码的位数</li>
+<li>存储元：即存储二进制的电子元件，每个存储元可存1bit</li>
+</ul>
+<h3 id="运算器的基本组成"><a href="#运算器的基本组成" class="headerlink" title="运算器的基本组成"></a>运算器的基本组成</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061552267.png"/>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+<th>加</th>
+<th>减</th>
+<th>乘</th>
+<th>除</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ACC</td>
+<td>累加器，用于存放操作数，或运算结果。</td>
+<td>被加数，和</td>
+<td>被减数、差</td>
+<td>乘积高位</td>
+<td>被除数、余数</td>
+</tr>
+<tr>
+<td>MQ</td>
+<td>乘商寄存器，在乘、除运算时，用于存放作数或运算结果。</td>
+<td></td>
+<td></td>
+<td>乘数、乘积低位</td>
+<td>商</td>
+</tr>
+<tr>
+<td>X</td>
+<td>通用的操作数寄存器，用于存放操作数</td>
+<td>加数</td>
+<td>减数</td>
+<td>被乘数</td>
+<td>除数</td>
+</tr>
+<tr>
+<td>ALU</td>
+<td>算术逻辑单元，通过内部复杂的电路实现算数运算、逻辑运算</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="控制器的基本组成"><a href="#控制器的基本组成" class="headerlink" title="控制器的基本组成"></a>控制器的基本组成</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061559165.png"/>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CU 控制单元</td>
+<td>控制单元，分析指令，给出控制信号</td>
+</tr>
+<tr>
+<td>IR 指令寄存器</td>
+<td>指令寄存器，存放当前执行的指令</td>
+</tr>
+<tr>
+<td>PC 程序计数器</td>
+<td>程序计数器，存放下一条指令地址，自动加1功能</td>
+</tr>
+</tbody></table>
+<h3 id="计算机的工作过程"><a href="#计算机的工作过程" class="headerlink" title="计算机的工作过程"></a>计算机的工作过程</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061602437.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061602487.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061603976.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061603669.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061603318.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061603758.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061603390.png"/>
+
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>注：现在的计算机通常把MAR,MDR也集成在CPU内</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061604660.png"/>
+
+<h2 id="计算机系统的层次结构"><a href="#计算机系统的层次结构" class="headerlink" title="计算机系统的层次结构"></a>计算机系统的层次结构</h2><p>汇编语言指令和机器语言指令一一对应<br>LOAD： 取数操作 ，MUL： 乘法操作</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061605498.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061608592.png"/>
+
+<p><strong>编译程序</strong>：将高级语言编写的源程序全部语句一次全部翻译成机器语言程序，而后在执行机器语言程序（只需翻译一次）。 例如：使用我们使用C语言写的程序，经过编译和汇编之后，最终形成.exe文件，该.exe文件是用机器语言描述的程序，每次运行这个程序，只需加载.exe文件。</p>
+<p><strong>解释程序</strong>：将源程序的一条语句翻译成对应于机器语言的语句，并立即执行。紧接着在翻译下一句（每一次都要翻译）。 编译型语言执行效率较解释型语言高。 注：编译、汇编、解释程序，可统称为“翻译程序”。</p>
+<p>计算机体系结构：机器语言程序员所见到的计算机系统的属性概念性的结构与功能特性（指令系统、数据类型、寻址技术、I&#x2F;O机理）</p>
+<ul>
+<li>如何设计硬件与软件之间的接口。</li>
+</ul>
+<p>计算机组成原理：实现计算机体系结构所体现的属性，对程序员“透明”（具体指令的实现）</p>
+<ul>
+<li>如何用硬件实现所定义的接口。</li>
+</ul>
+<p>“透明”：看不见<br>“公开透明”：看得见</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>是否一次性</th>
+<th>编译时间</th>
+<th>运行速度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>编译程序</td>
+<td>是</td>
+<td>长</td>
+<td>快</td>
+</tr>
+<tr>
+<td>解释</td>
+<td>否</td>
+<td>短</td>
+<td>慢</td>
+</tr>
+</tbody></table>
+<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061617236.png"/>
+
+<h2 id="计算机性能指标"><a href="#计算机性能指标" class="headerlink" title="计算机性能指标"></a>计算机性能指标</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>机器字长</td>
+<td>能够直接处理的二进制数据的位数</td>
+</tr>
+<tr>
+<td>指令字长</td>
+<td>一个指令中包含的二进制代码的位数</td>
+</tr>
+<tr>
+<td>存储字长</td>
+<td>一个存储单元二进制数据的位数</td>
+</tr>
+</tbody></table>
+<h3 id="存储器性能指标"><a href="#存储器性能指标" class="headerlink" title="存储器性能指标"></a>存储器性能指标</h3><ul>
+<li>MAR位数反应存储单元的个数（最后支持多少个）</li>
+<li>MDR位数&#x3D;存储字长&#x3D;每个存储单元的大小</li>
+</ul>
+<p>总容量&#x3D;存储单元个数×存储字长 bit &#x3D;存储单元个数×存储字长&#x2F;8 Byte<br>$$<br>总容量 &#x3D; 存储单元个数 * 存储字长 bit &#x3D; 存储单元个数 * 存储字长&#x2F;8 Byte<br>$$</p>
+<blockquote>
+<p>Eg:MAR为32位，MDR为8位<br>总容量&#x3D;2^32×8 bit&#x3D;4GB</p>
+<p>2^10:K<br>2^20:M<br>2^30:G<br>2^40:T</p>
+</blockquote>
+<h3 id="CPU性能指标"><a href="#CPU性能指标" class="headerlink" title="CPU性能指标"></a>CPU性能指标</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061624562.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061627825.png"/>
+
+<p><strong>注</strong>：公式中主频的值反映的是：每秒钟会出现多少个时钟周期。</p>
+<p><strong>注</strong>：注意与存储器的容量或者文件的大小中的K、M、G、T的区别</p>
+<h3 id="系统整体的性能指标"><a href="#系统整体的性能指标" class="headerlink" title="系统整体的性能指标"></a>系统整体的性能指标</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据通路带宽</td>
+<td>数据总线一次所能并行传送信息的位数（各硬件部件通过数据总线传输数据）</td>
+</tr>
+<tr>
+<td>吞吐量</td>
+<td>指系统在单位时间内处理请求的数量。他取决于信息能多快地输入内存，CPU能多快地取指令，数据能多快地从内存取出或存入，以及所得结果能多快地从内存送给一台外部设备。这些步骤中的每一步都关系到主存，因此，系统吞吐量主要取决于主存的存取周期。</td>
+</tr>
+<tr>
+<td>响应时间</td>
+<td>指从用户向计算发送一个请求，到系统对该请求做出响应并获得它所需要的结果的等待时间。通常包括CPU时间（运行一个程序所花费的时间）与等待时间（用于磁盘访问、存储器访问、I&#x2F;O操作、操作系统开销时间）。</td>
+</tr>
+</tbody></table>
+<p>动态测试：基准程序（跑分软件）是用来测量计算机处理速度的一种实用程序，以便于被测量的计算机性能可以与运行相同程序的其他计算机性能进行比较。</p>
+<blockquote>
+<p><strong>思考：</strong><br>1、主频高的CPU一定比主频低的CPU快吗？<br>答：不一定，如两个CPU，A的主频为2GHz，平均CPI&#x3D;10，一秒钟可以执行0.2G条指令；B的主频为1GHz，平均CPI&#x3D;1，一秒钟可以执行1G条指令。</p>
+<p>2、若A、B两个CPU的平均CPI相同，那么A一定更快吗？<br>答：不一定，还要看指令系统，如A不支持乘法指令，只能用多次加法实现乘法；而B支持乘法指令。</p>
+<p>3、基准程序执行的越快说明机器性能越好吗？<br>答：基准程序中的语句存在频度差异，运行结果也不能完全说明问题。</p>
+</blockquote>
+<h3 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061630617.png"/>
+
+<p>存储器的容量：衡量计算机的存储容量<br>机器字长：衡量计算机并行处理的能力<br>数据通路带宽：衡量计算机在功能部件之间传送数据的能力</p>
+<h1 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h1><h2 id="数据的表示和运算"><a href="#数据的表示和运算" class="headerlink" title="数据的表示和运算"></a>数据的表示和运算</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061631856.png"/>
+
+<h3 id="进制转换"><a href="#进制转换" class="headerlink" title="..进制转换"></a>..进制转换</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061632203.png"/>
+
+<h3 id="无符号整数的表示和运算"><a href="#无符号整数的表示和运算" class="headerlink" title="无符号整数的表示和运算"></a>无符号整数的表示和运算</h3><p>无符号整数，即“自然数”，0、1、2、3、4、5…</p>
+<p>C语言中的无符号整数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">short</span> a=<span class="number">1</span>; <span class="comment">//无符号整数 （短整型 2B）</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> b=<span class="number">2</span>; <span class="comment">//无符号整数 （整型 4B）</span></span><br></pre></td></tr></table></figure>
+
+<p>无符号整数的表示</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061634609.png"/>
+
+<h3 id="无符号整数的加法运算"><a href="#无符号整数的加法运算" class="headerlink" title="..无符号整数的加法运算"></a>..无符号整数的加法运算</h3><h3 id="带符号整数的表示和运算-原反补"><a href="#带符号整数的表示和运算-原反补" class="headerlink" title="..带符号整数的表示和运算_原反补"></a>..带符号整数的表示和运算_原反补</h3><p>带符号整数，即“整数”，-2、-1、0、1、2、3、4、5…</p>
+<p>C语言中的带符号整数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">short</span> a=<span class="number">1</span>; <span class="comment">//带符号整数 （短整型 2B）</span></span><br><span class="line"><span class="type">int</span> b=<span class="number">-2</span>; <span class="comment">//带符号整数 （整型 4B）</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="知识回顾与重要考点"><a href="#知识回顾与重要考点" class="headerlink" title="知识回顾与重要考点"></a>知识回顾与重要考点</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061638672.png"/>
+
+<h2 id="原反补码的特性对比"><a href="#原反补码的特性对比" class="headerlink" title="原反补码的特性对比"></a>原反补码的特性对比</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309061639934.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071628336.png"/>
+
+<p>注：反码与原码表示的范围是一样的，当n是整数时，真值负数最小时，原码是1111 1111，反码是1000 0000。</p>
+<h2 id="移码"><a href="#移码" class="headerlink" title="移码"></a>移码</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071629744.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071629912.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071629875.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071630537.png"/>
+
+<h2 id="定点小数"><a href="#定点小数" class="headerlink" title="定点小数"></a>定点小数</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071630949.png"/>
+
+<h3 id="定点小数原反补码的转换"><a href="#定点小数原反补码的转换" class="headerlink" title="定点小数原反补码的转换"></a><strong>定点小数原反补码的转换</strong></h3><p>注：和定点整数一模一样。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071630223.png"/>
+
+<h3 id="定点小数的加减法运算"><a href="#定点小数的加减法运算" class="headerlink" title="定点小数的加减法运算"></a><strong>定点小数的加减法运算</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071630004.png"/>
+
+<p>小数的加减运算和整数的处理逻辑是一样的。</p>
+<p>定点小数VS定点整数</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071631154.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071631788.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071631522.png"/>
+
+<h2 id="电路的基本原理、加法器设计"><a href="#电路的基本原理、加法器设计" class="headerlink" title="电路的基本原理、加法器设计"></a>电路的基本原理、加法器设计</h2><h3 id="ALU（算数逻辑单元）"><a href="#ALU（算数逻辑单元）" class="headerlink" title="ALU（算数逻辑单元）"></a><strong>ALU（算数逻辑单元）</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071632246.png"/>
+
+<h4 id="基本的逻辑运算"><a href="#基本的逻辑运算" class="headerlink" title="基本的逻辑运算"></a><strong>基本的逻辑运算</strong></h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071632415.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071633941.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071633736.png"/>
+
+<blockquote>
+<p>异或：AB不同Y为1，相同为 0；同或：AB相同Y为1，不同为0。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/10/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80%E6%A6%82%E8%A7%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -5438,63 +5831,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/20/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-10-%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE-%E4%B8%8B%E5%8D%88%E9%A2%98%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MEIDE">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MEIDE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/20/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E7%AC%94%E8%AE%B0-10-%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE-%E4%B8%8B%E5%8D%88%E9%A2%98%EF%BC%89/" class="post-title-link" itemprop="url">软件设计师笔记(10)-数据流图(下午题）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-20 22:03:27" itemprop="dateCreated datePublished" datetime="2022-10-20T22:03:27+08:00">2022-10-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -5564,7 +5900,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
