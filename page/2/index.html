@@ -152,214 +152,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-2-%E5%AD%98%E5%82%A8%E4%B8%8E%E6%8C%87%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="MEIDE">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MEIDE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-2-%E5%AD%98%E5%82%A8%E4%B8%8E%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">计算机组成原理(2)-存储与指令</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-09-07 19:28:57 / 修改时间：20:21:53" itemprop="dateCreated datePublished" datetime="2023-09-07T19:28:57+08:00">2023-09-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="计算机组成原理笔记"><a href="#计算机组成原理笔记" class="headerlink" title="计算机组成原理笔记"></a>计算机组成原理笔记</h1><h1 id="存储系统"><a href="#存储系统" class="headerlink" title="存储系统"></a>存储系统</h1><h2 id="存储系统基本概念"><a href="#存储系统基本概念" class="headerlink" title="存储系统基本概念"></a>存储系统基本概念</h2><p>存储器的层次化结构</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071938083.png"/>
-
-<p>存储器的分类–层次</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071938377.png"/>
-
-<p>存储器的分类–存储介质</p>
-<ul>
-<li>半导体存储器：主存、Cache</li>
-<li>磁表面存储器：磁盘、磁带（以磁性材料存储信息）</li>
-<li>光存储器：光盘（以光介质存储信息）</li>
-</ul>
-<p>存储器的分类–存取方式</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071939552.png"/>
-
-<p>相联存储器既可以按地址又可以按内容寻址。</p>
-<p>存储器的分类–信息的可更改性</p>
-<ul>
-<li>读写存储器–即可读、也可写（如：磁盘、内存、Cache）</li>
-<li>只读存储器–只可读，不能写</li>
-</ul>
-<p>存储器的分类–信息的可保存性</p>
-<ul>
-<li>断电后，存储信息消失的存储器–易失性存储器 (主存、Cache)</li>
-<li>断电后，存储信息依然保持的存储器- – 非易失性存储器(磁盘、光盘)</li>
-<li>信息读出后，原存储信息被破坏– -破坏性读出(如DRAM芯片，读出数据后要进行重写</li>
-<li>信息读出后，原存储信息不被破坏– - 非破坏性读出(如SRAM芯片、磁盘、光盘)</li>
-</ul>
-<p>RAM都是易失性存储器；<br>ROM都是非易失性存储器；<br>随机存取存储器：RAM（专有名词）；<br>随机存取：是存取方式，ROM和RAM存取方式都是随机存取。</p>
-<h2 id="存储器的性能指标"><a href="#存储器的性能指标" class="headerlink" title="存储器的性能指标"></a><strong>存储器的性能指标</strong></h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071939078.png"/>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071940862.png"/>
-
-<h2 id="主存储器的基本组成"><a href="#主存储器的基本组成" class="headerlink" title="主存储器的基本组成"></a>主存储器的基本组成</h2><p><strong>基本的半导体元件及原理</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071940021.png"/>
-
-<p>注：MOS管可理解为一种电控开关，输入电压达到某个阈值时，MOS管就可以接通。</p>
-<h3 id="存储器芯片的基本原理"><a href="#存储器芯片的基本原理" class="headerlink" title="存储器芯片的基本原理"></a><strong>存储器芯片的基本原理</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071949374.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071954292.png"/>
-
-<p>驱动器在译码器后面，保证译码器输出的电信号是稳定可靠的。<br>片选线作用：若有多个存储芯片，保证此次读取指定芯片的数据，CS给予低电平，其他芯片为高电平。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071954216.png"/>
-
-<h4 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a><strong>寻址</strong></h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071955963.png"/>
-
-<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071956297.png"/>
-
-<h2 id="SRAM与DRAM"><a href="#SRAM与DRAM" class="headerlink" title="SRAM与DRAM"></a>SRAM与DRAM</h2><p>DRAM（动态RAM）用于主存，SRAM（静态RAM）用于Cache<br>DRAM芯片：使用栅极电容存储信息<br>SRAM芯片：使用双稳态触发器存储信息</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071957212.png"/>
-
-<blockquote>
-<p>1：电容内存储了电荷<br>0：电容内未存储电荷</p>
-<p>若触发器里存储的的二进制的1，当字选择线接通之后，BLX输出低电平信号</p>
-<p>若触发器里存储的的二进制的0，当字选择线接通之后，BL输出低电平信号<br>写入0：给BL加低电平，给BLX加高电平，呈现A低B高</p>
-<p>栅极电容：每个存储元制造成本更低，集成度高，功耗低。电容内的电荷只能维持2ms，即便不断电，2ms后信息也会消失，2ms之内必须“刷新”一次（给电容充电）</p>
-<p>双稳态触发器：每个存储元制造成本更高，集成度低，功耗大。只要不断电，触发器的状态就不会改变</p>
-</blockquote>
-<h3 id="DRAM的刷新"><a href="#DRAM的刷新" class="headerlink" title="DRAM的刷新"></a><strong>DRAM的刷新</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071958116.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071959175.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071959206.png"/>
-
-<p>分散刷新不存在死区</p>
-<h3 id="DRAM的地址线复用技术"><a href="#DRAM的地址线复用技术" class="headerlink" title="DRAM的地址线复用技术"></a><strong>DRAM的地址线复用技术</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309071959879.png"/>
-
-<blockquote>
-<p>地址：00000000。<br>同时送行列地址，需要8根地址线。两次送只需要4根地址线。<br>地址线复用技术：地址线是原来的1&#x2F;2（行和列相等）且地址线分行、列两次传送。<br>这里地址线取决于行和列的最大值。<br>地址引脚：log2max{行，列}</p>
-</blockquote>
-<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072000322.png"/>
-
-<h3 id="只读存储器ROM"><a href="#只读存储器ROM" class="headerlink" title="只读存储器ROM"></a>只读存储器ROM</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072001457.png"/>
-
-<p>EPROM不能作为随机存储器。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072002486.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072004305.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072005955.png"/>
-
-<h2 id="主存储器与CPU的连接"><a href="#主存储器与CPU的连接" class="headerlink" title="主存储器与CPU的连接"></a>主存储器与CPU的连接</h2><p>现在的计算机</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072006106.png"/>
-
-<p><strong>存储器芯片的输入输出信号</strong></p>
-<p>WE头上没有横杠，高电平表示写，低电平表示读。</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072007728.png"/>
-
-<h3 id="增加主存的存储字长-位扩展"><a href="#增加主存的存储字长-位扩展" class="headerlink" title="增加主存的存储字长-位扩展"></a><strong>增加主存的存储字长-位扩展</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072008374.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072008222.png"/>
-
-<h3 id="增加主存的存储字数-字扩展"><a href="#增加主存的存储字数-字扩展" class="headerlink" title="增加主存的存储字数-字扩展"></a><strong>增加主存的存储字数-字扩展</strong></h3><h4 id="线选法"><a href="#线选法" class="headerlink" title="线选法"></a><strong>线选法</strong></h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072008888.png"/>
-
-<h4 id="译码片选线"><a href="#译码片选线" class="headerlink" title="译码片选线"></a><strong>译码片选线</strong></h4><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072009042.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072010084.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072010580.png"/>
-
-<h3 id="主存容量扩展-字位同时扩展"><a href="#主存容量扩展-字位同时扩展" class="headerlink" title="主存容量扩展-字位同时扩展"></a><strong>主存容量扩展-字位同时扩展</strong></h3><p>①可以存储低四位–（D0、D1、D2、D3）</p>
-<p>②可以存储另四位–（D4、D5、D6、D7）</p>
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072011694.png"/>
-
-<h3 id="译码器"><a href="#译码器" class="headerlink" title="译码器"></a>译码器</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072014238.png"/>
-
-<p><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072014879.png"/><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072015772.png"/></p>
-<h3 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072014088.png"/>
-
-<h2 id="双端口RAM和多模块存储器"><a href="#双端口RAM和多模块存储器" class="headerlink" title="双端口RAM和多模块存储器"></a>双端口RAM和多模块存储器</h2><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072016516.png"/>
-
-<h3 id="双端口RAM"><a href="#双端口RAM" class="headerlink" title="双端口RAM"></a><strong>双端口RAM</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072016425.png"/>
-
-<h3 id="多体并行存储器"><a href="#多体并行存储器" class="headerlink" title="多体并行存储器"></a><strong>多体并行存储器</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072017237.png"/>
-
-<h3 id="应该取几个“体”"><a href="#应该取几个“体”" class="headerlink" title="应该取几个“体”"></a><strong>应该取几个“体”</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072017662.png"/>
-
-<blockquote>
-<p>当m&#x3D;T&#x2F;r时，存取流水线的效率最高，存储体的数量最少，成本最低。</p>
-<p>思考？<br>假设有m个存储体，第一种方法：可以根据体号确定它属于第几个存储体；第二种方法：用十进制地址x对m取余</p>
-</blockquote>
-<h3 id="多模块存储体"><a href="#多模块存储体" class="headerlink" title="多模块存储体"></a><strong>多模块存储体</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072018732.png"/>
-
-<h3 id="总结-4"><a href="#总结-4" class="headerlink" title="总结"></a>总结</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072019521.png"/>
-
-<h2 id="磁盘存储器"><a href="#磁盘存储器" class="headerlink" title="磁盘存储器"></a>磁盘存储器</h2><h3 id="外存储器"><a href="#外存储器" class="headerlink" title="外存储器"></a><strong>外存储器</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072019733.png"/>
-
-<h3 id="磁盘设备的组成"><a href="#磁盘设备的组成" class="headerlink" title="磁盘设备的组成"></a><strong>磁盘设备的组成</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072020333.png"/>
-
-<h3 id="磁盘的性能指标"><a href="#磁盘的性能指标" class="headerlink" title="磁盘的性能指标"></a><strong>磁盘的性能指标</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072020912.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072020736.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072021549.png"/>
-
-<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/computer_composition/202309072021194.png"/>
-
-<h3 id="磁盘阵列"><a href="#磁盘阵列" class="headerlink" title="磁盘阵列"></a><strong>磁盘阵列</strong></h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-1-%E6%A6%82%E8%BF%B0%E4%B8%8E%E6%95%B0%E6%8D%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1755,6 +1547,1189 @@
 <td></td>
 </tr>
 </tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/18/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%A7%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MEIDE">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MEIDE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/02/18/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%A7%88/" class="post-title-link" itemprop="url">机器学习与深度学习概览</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-18 13:27:36" itemprop="dateCreated datePublished" datetime="2023-02-18T13:27:36+08:00">2023-02-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-01-11 23:10:05" itemprop="dateModified" datetime="2025-01-11T23:10:05+08:00">2025-01-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考试</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E8%AF%95/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h1><h2 id="一、机器学习分类"><a href="#一、机器学习分类" class="headerlink" title="一、机器学习分类"></a>一、机器学习分类</h2><h3 id="1-1-学习形式分类"><a href="#1-1-学习形式分类" class="headerlink" title="1.1 学习形式分类"></a><strong>1.1 学习形式分类</strong></h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111220507627.png"/>
+
+<ul>
+<li>有监督学习（supervised learning）：<br>事先需要准备好要输入数据（训练样本）与**真实的输出结果（参考答案)**，然后通过计算机的学习得到一个预测模型，再用已知的模型去预测未知的样本。</li>
+<li>无监督学习（unsupervised learning）：<br>在**没有“参考答案”**的前提下，计算机**仅根据样本的特征或相关性**，就能实现从样本数据中训练出相应的预测模型。</li>
+<li>半监督学习</li>
+<li>强化学习</li>
+</ul>
+<h3 id="1-2-预测结果分类"><a href="#1-2-预测结果分类" class="headerlink" title="1.2 预测结果分类"></a><strong>1.2 预测结果分类</strong></h3><p>根据预测结果的类型，对上述学习形式做具体的问题划分。</p>
+<ul>
+<li>有监督学习划分为：<br>①回归问题（预测结果是连续的，比如身高，从 1.2m 到 1.78m 这个长高的过程就是连续的）<br>②分类问题（预测结果是离散的，超市每天的销售额）</li>
+<li>无监督学习划分为：<br>聚类问题（将相似的样本聚合在一起后，然后进行分析）</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111220937249.png"/>
+
+<h3 id="课程分类"><a href="#课程分类" class="headerlink" title="课程分类"></a>课程分类</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111221308160.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111174941379.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111175218942.png"/>
+
+<h4 id="1-课程体系"><a href="#1-课程体系" class="headerlink" title="1.课程体系"></a>1.课程体系</h4><p>①机器学习基础：常用术语和概念（数据集及其分类、特征和标签、归一化和标准化、监督学习和非监督学习、损失函数、偏差和方差、误差及其分类、泛化、模型评价指标、正则化、数据增强、交叉验证）</p>
+<p>②线性模型：线性回归、逻辑回归</p>
+<p>③决策树：ID3、CART、C4.5、信息增益、基尼系数</p>
+<p>④支持向量机：最大间隔、支持向量、核函数、对偶问题、函数间隔和几何间隔</p>
+<p>⑤EM算法、朴素贝叶斯</p>
+<p>⑥集成学习：boosting、bagging、随机森林、stacking</p>
+<p>⑦numpy基础（选修）</p>
+<p>①贝叶斯分类（选修）:贝叶斯统计决策、贝叶斯估计、最大似然估计、线性判别分析（LDA)</p>
+<p>②神经网络：神经元模型、BP算法、感知机、前馈神经网络</p>
+<h2 id="二、机器学习常用术语"><a href="#二、机器学习常用术语" class="headerlink" title="二、机器学习常用术语"></a>二、机器学习常用术语</h2><h3 id="2-1-机器学习术语"><a href="#2-1-机器学习术语" class="headerlink" title="2.1 机器学习术语"></a><strong>2.1 机器学习术语</strong></h3><ul>
+<li><strong>模型</strong>：把它看做一个“魔法盒”，你向它许愿（输入数据），它就会帮你实现愿望（输出预测结果）</li>
+<li><strong>数据集</strong>：如果说“模型”是“魔法盒”的话，那么数据集就是负责给它充能的“能量电池”。数据集可划分为“训练集”和“测试集”，它们分别在机器学习的“训练阶段”和“预测输出阶段”起着重要的作用。</li>
+<li><strong>样本&amp;特征</strong>：“一行一样本，一列一特征”<br>数据集中的数据，一条数据被称为“一个样本”；样本会包含多个特征值用来描述数据。【类似于一条sql数据】</li>
+<li><strong>向量</strong>：在线性代数中，向量也称欧几里得向量、几何向量、矢量，指具有大小和方向的量。在机器学习中，模型算法的运算均基于线性代数运算法则，比如行列式、矩阵运算、线性方程等等。向量的计算可采用 NmuPy 来实现</li>
+<li><strong>矩阵</strong>：可以把矩阵看成由向量组成的二维数组，数据集就是以二维矩阵的形式存储数据的。</li>
+</ul>
+<h3 id="2-2-假设函数-amp-损失函数"><a href="#2-2-假设函数-amp-损失函数" class="headerlink" title="2.2 假设函数&amp;损失函数"></a><strong>2.2 假设函数&amp;损失函数</strong></h3><p>假设函数和损失函数是机器学习中的两个概念，<strong>“根据实际应用场景确定的一种函数形式”</strong>，就像解决数学的应用题目一样，根据题意写出解决问题的方程组。</p>
+<ul>
+<li>假设函数：可表述为y&#x3D;f(x)，其中 x 表示输入数据，而 y 表示输出的预测结果</li>
+<li>损失函数：又叫目标函数。简写为 L(x)，这里的 x 是假设函数得出的预测结果“y”，如果 L(x) 的返回值越大就表示预测结果与实际偏差越大；越小则证明预测值越来越“逼近”真实值，这才是机器学习最终的目的。</li>
+<li>优化方法：通过 损失函数L(x) 可以得知假设函数输出的预测结果与实际值的偏差值，当该值较大时就需要对其做出相应的调整，这个调整的过程叫做“参数优化”。如何实现优化呢？比如梯度下降法、牛顿法与拟牛顿法、共轭梯度法等等。</li>
+</ul>
+<p><strong>2.3 拟合&amp;过拟合&amp;欠拟合</strong></p>
+<ul>
+<li>拟合：把平面坐标系中一系列散落的点，用一条光滑的曲线连接起来，因此拟合也被称为“曲线拟合”</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250105230358132.png"/>
+
+<ul>
+<li><p>过拟合：<strong>在训练样本中表现优越，但是在验证数据以及测试数据集中表现不佳</strong>。比如你训练一个识别狗狗照片的模型，如果你只用金毛犬的照片训练，那么该模型就只吸纳了金毛狗的相关特征，此时让训练好的模型识别一只“泰迪犬”，那么结果可想而知，该模型会认为“泰迪”不是一条狗。【简称：学得太好，但是丢失了泛化能力】</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250105230734583.png"/>
+</li>
+<li><p>欠拟合：指的是“曲线”不能很好的“拟合”数据。<strong>在训练和测试阶段，欠拟合模型表现均较差</strong>，无法输出理想的预测结果。主要原因是由于没有选择好合适的特征值。【简称：本身学得太差，连训练都无法做好】</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250105230831794.png"/>
+</li>
+<li><p>造成欠拟合的主要原因是由于没有选择好合适的特征值，比如使用一次函数（y&#x3D;kx+b）去拟合具有对数特征的散落点（y&#x3D;log2 x），示例图如下所示：</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250105230918989.png"/></li>
+</ul>
+<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p><strong>4.1 线性回归</strong><br>“性代”表示<strong>线性模型</strong>，而“回归”则表示<strong>回归问题</strong>。也就是用<strong>线性模型（模型中因变量与自变量之间存在线性关系）</strong> 来解决 <strong>回归问题（“预测”真实值的过程）</strong>，即利用线性模型来“预测”真实值的过程。</p>
+<p><strong>4.2 回归模型</strong><br>线性回归模型：<br>例如是我们所熟知的一次函数（即y&#x3D;kx+b），这种线性函数描述了两个变量之间的关系，其函数图像是一条连续的直线。如下图蓝色直线：</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250108212810600.png"/>
+
+<p>非线性回归模型：<br>(即不是一条直线)，比如我们所熟知的对数函数、指数函数、二次函数等</p>
+<p><strong>4.3 线性回归方程</strong><br>线性回归是如何实现预测的呢？其实主要是通过“线性方程”，或叫“回归方程”来实现。<br>现有以下一组数据</p>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>9</td>
+<td>?</td>
+</tr>
+</tbody></table>
+<p>可得<strong>线性方程Y&#x3D;2*X</strong>，预测出 9 所对应的输出值是18。在上述线程方程中<strong>2代表权值参数（权值，可理解为个不同“特征”对于预测结果的重要性。权值系数越大，那么这一项属性值对最终结果的影响就越大。）</strong>，而<strong>求权值参数的过程就是“回归”</strong>，一旦有了这个参数，再给定输入，做预测就非常容易了。<br>具体的做法就是用 回归系数w1 乘以 输入值x ，这样就得到了 预测值y。上述示例的预测函数（或称假设函数）可记为：<br>$$<br>y&#x3D;w_1x+b<br>$$<br>x ：输入的样本数据<br>y ：输出的预测结果<br>w1 ：线性回归模型的权值参数<br>b ：线性回归模型的“偏差值”<br><strong>解决线性回归问题的关键就在于求出权值参数w1 、偏差值b</strong></p>
+<p>在实际应有中，线性回归模型要更复杂一些，比如要分析实际特征值对结果影响程度的大小，从而调整相应特征值的回归系数。下面举一个简单的应用示例：</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111173907226.png"/>
+
+<h3 id="数学解析-Linear-Regression"><a href="#数学解析-Linear-Regression" class="headerlink" title="数学解析 Linear Regression"></a>数学解析 Linear Regression</h3><p>所谓“线性”其实就是一条“直线”（线性方程不能完全等同于“直线方程”，因为前者可以描述<strong>多维空间内直线</strong>，而后者只能描述二维平面内的 x 与 y 的关系。），先回顾初中的数学知识“一次函数”。</p>
+<p><strong>5.1 一次函数</strong><br>一次函数就是最简单的“线性模型”，其直线方程表达式为y &#x3D; kx + b，其中 k 表示斜率，b 表示截距，x 为自变量，y 表示因变量。例如y &#x3D; 2x + 3 的函数图像：</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111174059111.png"/>
+
+<p>在机器学习中斜率 k 通常用 w 表示，也就是权重系数，<strong>因此“线性方程”通过控制 w 与 b 来实现 “直线”与数据点 最大程度的“拟合”</strong> 。如图。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111174148428.png"/>
+
+<h2 id="线性回归：损失函数和假设函数"><a href="#线性回归：损失函数和假设函数" class="headerlink" title="线性回归：损失函数和假设函数"></a>线性回归：损失函数和假设函数</h2><p><strong>6.1 假设函数</strong><br>通过前面知识的学习，我们知道<strong>假设函数是用来预测结果的</strong>。<br>线性方程并不等同于“直线方程”，线性方程描绘的是<strong>多维空间内的一条“直线”</strong>，并且每一个样本都会以<strong>向量数组</strong>的形式输入到函数中，因此假设函数也会发生一些许变化，函数表达式如下所示：<br>$$<br>Y_1 &#x3D; w^TX_1+b<br>$$</p>
+<p>它和 Y&#x3D;wX + b 是类似的，只不过我们这个<strong>标量</strong>公式 换成了 <strong>向量</strong>的形式。<br>Y1仍然代表预测结果， X1表示数据样本， b表示用来调整预测结果的“偏差度量值”，而wT表示权值系数的转置。<br>可以将假设函数写成关于 x 的函述表达式，如下所示：<br>$$<br>Y_1 &#x3D; w^TX_1+b<br>$$<br><strong>6.2 损失函数</strong><br>我们知道，在线性回归模型中，数据样本散落在线性方程的周围</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111175801995.png"/>
+
+<p>在线性回归中，<strong>损失函数</strong>是衡量<strong>模型预测值</strong>与<strong>实际观测值</strong>之间差异的函数，通常用于<strong>评估模型的拟合程度</strong>。</p>
+<p>其实计算单个样本的误差值非常简单，只需用预测值减去真实值即可：<br><strong>单样本误差值 &#x3D; Y1 - Y</strong></p>
+<p>常见的损失函数包括均方误差（MSE）和平均绝对误差（MAE）</p>
+<ul>
+<li>均方误差（MSE）：将每个观测值的预测误差平方后求平均，对较大的误差给予更高的惩罚，适合对异常值比较敏感的情况。</li>
+<li>平均绝对误差（MAE）：则是观测值的预测误差的绝对值的平均，对异常值相对更加鲁棒。</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111175622782.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111175643625.png"/>
+
+<h2 id="梯度下降法求极值"><a href="#梯度下降法求极值" class="headerlink" title="梯度下降法求极值"></a>梯度下降法求极值</h2><p>上面解释了假设函数和损失函数，我们最终的目的要得到一个最佳的“拟合”直线，因此就需要将损失函数的偏差值减到最小，我们把<strong>寻找极小值的过程称为“优化方法”</strong>，常用的优化方法有很多，比如梯度下降法、共轭梯度法、牛顿法和拟牛顿法。</p>
+<p><strong>7.1 梯度下降</strong></p>
+<ul>
+<li><strong>梯度下降</strong>：作为一种优化方法，其目的是要使得损失值最小。<strong>因此 “梯度下降”就需要控制损失函数的w和b参数来找到极小值</strong>。当损失函数取得极小值时，此时的参数值被称为“最优参数”。因此，在机器学习中最重要的一点就是寻找“最优参数”。</li>
+<li><strong>梯度</strong>：是微积分学的术语，它本质上是一个<strong>向量</strong>，表示函数在某一点处的方向导数上沿着特定的方向取得最大值，即函数在该点处<strong>沿着该方向变化最快，变化率最大</strong>。</li>
+</ul>
+<h2 id="模型预测"><a href="#模型预测" class="headerlink" title="模型预测"></a>模型预测</h2><p>模型评价分为：偏差、方差、误差、泛化能力（过拟合、欠拟合）、F1、ROC曲线</p>
+<h3 id="偏差，方差"><a href="#偏差，方差" class="headerlink" title="偏差，方差"></a>偏差，方差</h3><p>偏差和偏差：算法的期望预测与真实值之间的偏差程度，反映了模型本身的拟合能力。偏差越大，越方差偏离真实数据，如下图第二行所示。</p>
+<p>方差：方差度量了同等大小训练集的变动导致学习性能的变化，刻画了数据扰动所导致的影响。描述预测值的变化范围，离散程度。方差越大，数据的分布越分散。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111180446235.png"/>
+
+<p>解决高偏差：（模型泛化程度差）尝试获得更多的特征、尝试减少正则化程度λ【欠拟合】</p>
+<p>解决高方差：（模型太乱）获得更多的训练实例、尝试减少特征的数量、尝试增加正则化程度入【过拟合】</p>
+<p>方差和偏差具有矛盾性，这就是常说的偏差方差困境。随着训练程度的提升，期望预测值与实值之间的差异越来越小，即偏差越来越小，但是另一方面，随着训练程度加大，学习算法对数据集的波动越来越敏感，方差值越来越大。</p>
+<ul>
+<li><strong>高偏差</strong>：模型过于简单，欠拟合数据。</li>
+<li><strong>高方差</strong>：模型过于复杂，过拟合数据。</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111181021822.png"/>
+
+<h3 id="误差"><a href="#误差" class="headerlink" title="误差"></a>误差</h3><p>我们将学习器对样本的实际预测结果与样本的真实值之间的差异称为误差（error)</p>
+<p>在训练集上的误差称为训练误差（training error)或经验误差（empirical error)。在测试集上的误差称为测试误差（test error)</p>
+<p>一般来说，若我们模型学习的效果好，则训练误差和测试误差接近一致。</p>
+<h3 id="泛化能力"><a href="#泛化能力" class="headerlink" title="泛化能力"></a>泛化能力</h3><p>①泛化能力：<strong>学得的模型适用于新样本的能力称为泛化能力</strong>，机器学习的目标是使学得的模型能够很好地适用于新的样本，而不是仅仅在训练样本上工作的很好。</p>
+<p>②<strong>学习器在所有新样本上的误差称为泛化误差</strong>（generalization error),如果测试集中的样本都是新样本，那么可以将测试误差当作泛化误差。显然，我们希望得到的是在新样本上表现得很好的学习器，即泛化误差小的学习器。</p>
+<p>③因此，我们应该让学习器尽可能地从训练集中学出<strong>普适性的“一般特征”</strong>，这样在遇到新样本时才能做出正确的判别。</p>
+<p>​	<strong>然而，当学习器把训练集学得“太好”的时候，即把一些训练样本的身特点当做了普遍特征；</strong></p>
+<p>​	<strong>同时也有学习能力不足的情况，即训练集的基本特征都没有学习出来。以上两点都会导致模型的泛化能力降低。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111184513881.png"/>
+
+<p>因此我们定义：</p>
+<h4 id="过拟合，欠拟合"><a href="#过拟合，欠拟合" class="headerlink" title="过拟合，欠拟合"></a>过拟合，欠拟合</h4><p><strong>欠拟合</strong>：学习能力太差，训练样本的一般性质尚未学好，称为欠拟合</p>
+<ul>
+<li>原因：模型过于简单（线性模型）、特征数量少，</li>
+<li>结果：训练误差&#x2F;错误率及测试误差（泛化误差）均较大，泛化能力差</li>
+</ul>
+<p><strong>过拟合</strong>：学习能力过强，以至于把训练样本所包含的不太一般的特性都学到了，称为过拟合</p>
+<ul>
+<li>原因：模型复杂（复杂曲线）</li>
+<li>结果：泛化误差大，推广性不好，训练误差小</li>
+<li>适中：模型较简单（二次曲线）,训练误差适中，泛化误差也不高。推广性好，泛化能力强</li>
+</ul>
+<p><strong>适中</strong>：模型较简单（二次曲线）,训练误差适中，泛化误差也不高。推广性好，泛化能力强</p>
+<p>④结论：</p>
+<ol>
+<li>我们必须在训练样本的分类错误丰和推广能力之间权衡以得到满意的设计。</li>
+<li>在欠拟合时，偏差主导泛化误差，而训练到一定程度后，偏差越来越小方差主导了泛化误差。因此训练也不要过度，造度辅正一</li>
+<li>偏差方差分解：偏差体现了学习器预测的准确度，刻画学习器的拟合能力；而方差体现了学习器的稳定性。通过对泛化误差的进行分解，可以得到：期望泛化误差&#x3D;方差+偏差</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111184820814.png"/>
+
+<h4 id="过拟合处理方法"><a href="#过拟合处理方法" class="headerlink" title="过拟合处理方法"></a>过拟合处理方法</h4><blockquote>
+<p>①获得更多的训练数据<br>使用更多的训练数据是解决过拟合问题最有效的手段，因为更多的样本能够让模型学习到更多更有效的特征，减小噪声的影响。</p>
+<p>②降维：减少特征数，即丢弃一些不能帮助我们正确预测的特征。可以是手工选择保留哪些特征，或者使用一些模型选择的算法来帮忙（例如PCA)。</p>
+<p>③正则化：代价函数后面添加正则化项，可以避免训练出来的参数过大从而改善模型过拟合使用正则化缓解过拟合的手段广泛应用，不论是在线性回归还是在神经网络的梯度下降计算过程中，都应用到了正则化的方法。常用的正则化有LI正则和L2正则，具体使用哪个视具体情况而定</p>
+<p>④集成学习方法：集成学习是把多个模型集成在一起，来降低单一模型的过拟合险。</p>
+<p>⑤避免过于复杂的决策面，降低模型复杂度</p>
+<p>⑥使用Dropout</p>
+<p>⑦调整参数和超参数</p>
+</blockquote>
+<h4 id="欠拟合处理方法"><a href="#欠拟合处理方法" class="headerlink" title="欠拟合处理方法"></a>欠拟合处理方法</h4><blockquote>
+<p>①添加新特征<br>当特征不足或者现有特征与样本标签的相关性不强时，模型容易出现欠拟合。通过挖掘组合特征等新的特征，往往能够取得更好的效果。</p>
+<p>②增加模型复杂度<br>简单模型的学习能力较差，通过增加模型的复杂度可以使模型拥有更强的拟合能力。例如，在线性模型中添加高次项，在神经网络模型中增加网络层数或神经元个数等。</p>
+<p>③调整参数和超参数<br>超参数包括：神经网络中：学习率、学习衰减率、隐藏层数、隐藏层的单元数、Adam优化算法中的队参数、batch_size数值等。其他算法中：随机森林的树数量，k-means中的cluster数，正则化参数入等。</p>
+<p>④降低正则化约束（减小正则化系数）<br>正则化约束是为了防止模型过拟合，如果模型压根不存在过拟合而是欠拟合了，那么就考虑是否降低正则化参数入或者直接去除正则化项</p>
+</blockquote>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111185820258.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111190039236.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111190049862.png"/>
+
+<h2 id="习题1"><a href="#习题1" class="headerlink" title="习题1."></a>习题1.</h2><p>题型一：考查误差<br>①阐述一下对泛化误差的理解。<br>答：<br>泛化误差&#x3D;偏差+方差+噪声</p>
+<ul>
+<li>偏差：度量了学习算法的期望预测与真实结果的偏离程度，刻画了学习算法本身的拟合能力</li>
+<li>方差：度量了同样大小的训练集的变动所导致的学习性能的变化，即刻画了数据扰动所造成的影响。</li>
+<li>噪声：表达了在当前任务上任何学习算法所能达到的期望泛化误差的下界，即刻画了学习问题本身的难度。</li>
+</ul>
+<p>②我们把学习器的实际预测输出与样本真实输出之间的差异称为（1），学习器在训练集上的误差称为（2）或者（3），在新样本上的误差称为（4）<br>(1)误差（2)训练误差（3)经验误差（4)泛化误差</p>
+<p>③什么是泛化误差和经验误差，是不是越小越好？为什么？</p>
+<p>经验误差是指模型在训练集上的误差又称为训练误差<br>泛化误差使指模型在“未来”样本算上的误差。泛化误差越小越好，</p>
+<p>因为我们训练模型的目的就是为了通过模型进行一定的预测，预测的越准确越好，<br>对应的就是泛化误差越小越好。</p>
+<p>经验误差不是越小越好，因为如果训练误差过小会导致模型过拟合，此时，横型不具备很好的泛化能力。</p>
+<p>④偏差、方差的定义以及出现偏差和方差的情况<br>偏差：度量了学习算法预测与真实结果的偏离程度，即刻画了学习算法本身的拟合能力高偏差（欠拟合）:训练误差和验证误差十分接近，但很大应对方法：引入更多相关特征；采用多项式特征；减弱正则化方差度量了同样大小训练集的变动所导致的学习性能的变化。</p>
+<p>即刻画了数据扰动所造成的影响高方差（过拟合）:训练误差较小，验证误差较大应对方法：增加训练样本；去除非主要特征；加强正则化</p>
+<p>一般训练趋势：高偏差-&gt;高方差</p>
+<p>模型复杂度并非越高越好，可能复杂度变高，效果反而更差</p>
+<p>⑤评估模型之后，得出模型存在偏差大的情况，下列哪种方法可能解决这一问题：<br>A、减少模型中特征的数量<br>B 向模型中增加更多的特征<br>C.增加更多的数据<br>D、B和C<br>E、以上全是<br>答案：B<br>解析：高偏差意味这模型不够复杂（欠拟合）,为了模型更加的强大，我们需要向特征空间中增加特征。增加更多数据是解决过拟合，即方差</p>
+<p>⑦有N个样本，一半用于训练，一半用于测试。若增大N值，则训练误差和测试误差之间的差距会如<br>何变化？<br>A.增大<br>B.减小<br>答案：B<br>解析：增加数据，能够有效减小过拟合，减小训练样本误差和测试样本误差之间的差距。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111191558077.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111191727955.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111193440243.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111193601070.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111193728260.png"/>
+
+<h2 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h2><p>上面解释了假设函数和损失函数，我们最终的目的要得到一个最佳的“拟合”直线，因此就需要将损失函数的偏差值减到最小，我们把<strong>寻找极小值的过程称为“优化方法”</strong>，常用的优化方法有很多，比如梯度下降法、共轭梯度法、牛顿法和拟牛顿法。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111201128397.png"/>
+
+<p><strong>7.1 梯度下降</strong></p>
+<ul>
+<li><strong>梯度下降</strong>：作为一种优化方法，其目的是要使得损失值最小。<strong>因此 “梯度下降”就需要控制损失函数的w和b参数来找到极小值</strong>。当损失函数取得极小值时，此时的参数值被称为“最优参数”。因此，在机器学习中最重要的一点就是寻找“最优参数”。</li>
+<li><strong>梯度</strong>：是微积分学的术语，它本质上是一个<strong>向量</strong>，表示函数在某一点处的方向导数上沿着特定的方向取得最大值，即函数在该点处<strong>沿着该方向变化最快，变化率最大</strong>。</li>
+</ul>
+<p><strong>7.2 求损失函数L的参数w和参数b</strong><br>如何求损失函数L的参数w和参数b ？<br>即 如何求一个线性函数y’ &#x3D; wx + b ？<br>使得 损失函数L（均方误差MSE）最小。</p>
+<p><strong>7.3 线性回归 步骤总结</strong><br>线性回归适用于有监督学习的回归问题，首先在构建线性模型前，需要准备好待输入的数据集，数据集按照需要可划分为训练集和测试集，使用训练集中的向量 X 与向量 Y 进行模型的训练，其中向量 Y 表示对应 X 的结果数值(也就是“参考答案”)；而输出时需要使用测试集，输入测试 X 向量输出预测结果向量 Y。</p>
+<p>其实线性回归主要解决了以下三个问题：<br>第一，为假设函数设定了参数 w，通过假设函数画出线性“拟合”直线。<br>第二，将预测值带入损失函数，计算出一个损失值。<br>第三，通过得到的损失值，利用梯度下降等优化方法，不断调整 w 参数，使得损失值取得最小值。我们把这个优化参数值的过程叫做“线性回归”的学习过程。</p>
+<h2 id="实战：房价预测模型"><a href="#实战：房价预测模型" class="headerlink" title="实战：房价预测模型"></a>实战：房价预测模型</h2><p>代码实现过程大致可以分为以下6个步骤：</p>
+<ol>
+<li>加载数据</li>
+<li>划分训练集和测试集</li>
+<li>建立线性回归模型</li>
+<li>对给定的测试集数据进行预测</li>
+<li>模型评估</li>
+<li>绘图观察</li>
+</ol>
+<h2 id="逻辑回归算法（Logistic-Regression）"><a href="#逻辑回归算法（Logistic-Regression）" class="headerlink" title="逻辑回归算法（Logistic Regression）"></a>逻辑回归算法（Logistic Regression）</h2><p>有监督学习分为“回归问题”和“分类问题”，前面我们已经认识了什么是“回归问题”，从本节开始我们将讲解“分类问题”的相关算法。Logistic回归算法 是针对“<strong>分类问题</strong>”的算法。不是用来解决“回归问题”的算法。</p>
+<p><strong>9.1 什么是分类问题</strong><br>拿最简单的“垃圾分类处理”的过程来认识一下这个词。<br>“可回收”与“不可回收”是两种预测分类，而小明是主观判断的个体，他通过自己日常接触的知识对“垃圾种类”做出判断，我们把这个过程称作“模型训练”，只有通过“训练”才可以更加准确地判断“垃圾”的种类。小明进行每一次垃圾投放，都要对“垃圾”种类做出预先判断，最终决定投放到哪个垃圾桶内。这就是根据模型训练的结果进行预测的整个过程。</p>
+<p>下面对上述过程做简单总结：<br>类别标签：“可回收”与“不可回收”。<br>模型训练：以小明为主体，把他所接受的知识、经验做为模型训练的参照。<br>预测：投放垃圾的结果，预测分类是否正确。并输出预测结果。</p>
+<p>分类问题是当前机器学习的研究热点，它被广泛应用到各个领域，比<strong>图像识别、垃圾邮件处理、预测天气、疾病诊断</strong>等等。<strong>“分类问题”的预测结果是离散的</strong>，它比线性回归要更加复杂，那么我们应该从何处着手处理“分类问题”呢，这就引出了本节要讲的 <strong>Logistic 回归分类算法</strong>。</p>
+<p><strong>9.2 Logistic回归算法（分类问题）</strong><br>Logistic 回归算法，又叫做逻辑回归算法，或者 LR 算法（Logistic Regression）。分类问题同样也可以基于“线性模型”构建。“线性模型”最大的特点就是“直来直去”不会打弯，而我们知道，分类问题的预测结果是“离散的”，即对输出数据的类别做判断。比如将类别预设条件分为“0”类和“1”类（或者“是”或者“否”）那么图像只会在 “0”和“1”之间上下起伏，如下图所示：</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111194158742.png"/>
+
+<p>此时你就可能会有很多疑问，线性回归函数（例如y&#x3D;2x+5）不可能“拟合”上述图像。没错，所以接下来我们要学习另一个线性函数 Logistic 函数。</p>
+<blockquote>
+<p>在机器学习中，<strong>Logistic 函数</strong>通常用来解决<strong>二元分类问</strong>题，也就是涉及两个预设类别的问题。而当<strong>类别数量超过两个时</strong>就需要使用 <strong>Softmax函数</strong>来解决。</p>
+</blockquote>
+<p><strong>梯度上升优化方法：</strong><br>梯度上升与梯度下降同属于优化方法，梯度下降求的是“最小值”，而梯度上升求的是“最大值”。梯度上升基于的思想是：要找到某函数的最大值，最好的发放是沿着该函数的梯度方向寻找，如果把梯度记为▽，那么关于 f(x,y) 有以下表达式：</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111194407930.png"/>
+
+<p>该函数分别对 x 与 y 求的偏导数，其中关于 x 的偏导数表示沿着 x 的方向移动，而关于 y 的偏导数一个表示沿 y 的方向移。其中，函数f(x,y) 必须要在待计算的点上可导。在梯度上升的过程中，梯度总是指向函数值增长最快的方向，我们可以把<strong>每移动一次的“步长”记为α</strong> 。用向量来表示的话，其公式如下：<strong>w1 &#x3D; w + α ▽w f(w)</strong></p>
+<p>在梯度上升的过程中，上述公式将一直被迭代执行，直至达到某个停止条件为止，比如达到某个指定的值或者某个被允许的误差范围之内。</p>
+<h3 id="逻辑回归分类"><a href="#逻辑回归分类" class="headerlink" title="逻辑回归分类"></a>逻辑回归分类</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111200128348.png"/>
+
+<p>最为经典的拆分策略有三种：“一对一”（Ov0)、“一对其余”（OvR)和“多对多”(MvM)</p>
+<ul>
+<li>OvO:给定数据集D,假定其中有N个真实类别，将这N个类别进行两两配对（一个正类&#x2F;一个反类）。从而产生N(N-1)&#x2F;2个二分类学习器，在测试阶段。将新样本放人所有的二分类学习器中测试，得出N(N-1)个结果，最终通过投票产生最终的分类结果，</li>
+<li>OvM:给定数据集D,假定其中有N个真实类别，每次取出一个类作为正类，剩余的所有类别作为一个新的反类，从而产生N个二分类学习器，在测试阶段，得出N个结果。若仅有一个学习器预测为正类，则对应的类标作为最终分类结果。</li>
+<li>MvM:给定数据集D,假定其中有N个真实类别。每次取若干个类作为正类，若干个类作为反类，若进行了M次划分，则生成了M个二分类学习器，在测试阶段，得出M个结果组成一个新的码，最终通过计算海明&#x2F;欧式距离洗择距离最小的类别作为最终分类结果。</li>
+</ul>
+<h3 id="软分类和硬分类"><a href="#软分类和硬分类" class="headerlink" title="软分类和硬分类"></a>软分类和硬分类</h3><ul>
+<li>对于二分类问题，我们期望模型只输出两个结果：1或者0代表两个类别。这种分类利为硬分类。</li>
+<li>但是在更多的应用当中，我们可以使模型输出为区间[0,1]当中的一个数，把这个数看作为样本属于某一个类别的概率，如果数字越靠近1,我们就认为样本属于这一类的概率越大。这种分类方式称为软分类。逻辑回归就可以看作是软分类。</li>
+</ul>
+<h3 id="类别不平衡"><a href="#类别不平衡" class="headerlink" title="类别不平衡"></a>类别不平衡</h3><p><img src="C:/Users/MY/AppData/Roaming/Typora/typora-user-images/image-20250111201535759.png" alt="image-20250111201535759"></p>
+<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><p>决策树是一种基本的分类与回归方法，本章主要讨论用于分类的决策树。决策树模型呈树形结构，在分类问题中，<strong>表示基于特征对样本进行分类的过程。</strong></p>
+<p>学习时，利用训练数据，<strong>根据损失函数最小化的原则建立决策树模型。预测时，对新的数据，利用决策树模型进行分类。</strong></p>
+<p>决策树学习通常包括3个步骤：<strong>特征选择、决策树的生成和决策树的修剪。</strong>这些决策树学习的思想主要来源于由Quinlan在1986年提出的ID3算法和1993年提出的C4.5算法，以及由Breiman等人在1984年提出的CART算法。</p>
+<p>每个内容节点表示一个特征属性测试、每个分支代表这个特征属性的分类、<strong>选择不同的特征作为根结点会构成不同的决策树，改变内容结点的顺序也会构成不同的决策树，进而影响泛化性能</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111201947066.png"/>
+
+<p>优点：</p>
+<ul>
+<li><p>推理过程容易理解，计算简单，可解释性强</p>
+</li>
+<li><p>比较适合处理有缺失属性的样本</p>
+</li>
+<li><p>可自动忽略目标变量没有贡献的属性变量，也为判断属性变量的重要性减少变量的数目提供参考</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>容易造成过拟合，需要采用剪枝操作</li>
+<li>忽略了数据之间的相关性</li>
+<li>对于各类别样本数量不一致的数据，信息增益会偏向于那些更多数值的特征</li>
+</ul>
+<h3 id="决策树的三种基本类型"><a href="#决策树的三种基本类型" class="headerlink" title="决策树的三种基本类型"></a>决策树的三种基本类型</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111203111627.png"/>
+
+<h2 id="支持向量机SVM"><a href="#支持向量机SVM" class="headerlink" title="支持向量机SVM"></a>支持向量机SVM</h2><ol>
+<li>支持向量机（Support Vector Machine)简称”SVM”</li>
+<li>支持向量机是一种经典的二分类监督学习模型，也是特征空间中最大间隔的线性分类器。其学习的优化目标便是间隔最大化，支持向量机本身可以转化为一个凸二次规划求解的问题</li>
+<li>硬间隔、软间隔和非线性SVM:</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111203249924.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111203702195.png"/>
+
+<h3 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h3><img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111203905075.png"/>
+
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111203940233.png"/>
+
+<h2 id="KNN最邻近分类算法（K-Nearest-Neighbor）"><a href="#KNN最邻近分类算法（K-Nearest-Neighbor）" class="headerlink" title="KNN最邻近分类算法（K-Nearest-Neighbor）"></a>KNN最邻近分类算法（K-Nearest-Neighbor）</h2><p>它是有监督学习分类算法的一种。所谓 K 近邻，就是 K 个最近的邻居。比如对一个样本数据进行分类，我们可以用与它最邻近的 K 个样本来表示它，这与俗语“近朱者赤，近墨者黑”是一个道理。</p>
+<p>在学习 KNN 算法的过程中，你需要牢记两个关键词，一个是“<strong>少数服从多数</strong>”，另一个是“<strong>距离</strong>”，它们是实现 KNN 算法的核心知识。</p>
+<p><strong>KNN算法原理</strong><br>为了判断未知样本的类别，以所有已知类别的样本作为参照来<strong>计算未知样本与所有已知样本的距离</strong>，然后<strong>从中选取与未知样本距离最近的 K 个已知样本</strong>，并根据<strong>少数服从多数</strong>的投票法则（majority-voting），将<strong>未知样本</strong>与 <strong>K 个最邻近样本中所属类别占比较多</strong>的归为一类。</p>
+<p>KNN 算法简单易于理解，无须估计参数，与训练模型，适合于解决多分类问题。但它的不足是：当样本不平衡时（例如一个类的样本容量很大，而其他类样本容量很小时），有很能导致当输入一个新样本时，该样本的 K 个邻居中大容量类的样本占多数，而此时只依照数量的多少去预测未知样本的类型，就会可能增加预测错误概率。此时，我们就可以采用对样本取“<strong>权值</strong>”的方法来改进。</p>
+<p><strong>KNN算法流程</strong><br>KNN 分类算法主要包括以下 4 个步骤：</p>
+<ol>
+<li>准备数据，对数据进行预处理 。</li>
+<li>计算测试样本点（也就是待分类点）到其他每个样本点的距离（选定度量距离的方法）。</li>
+<li>对每个距离进行排序，然后选择出距离最小的 K 个点。</li>
+<li>对 K 个点所属的类别进行比较，按照少数服从多数的原则（多数表决思想），将测试样本点归入到 K 个点中占比最高的一类中。</li>
+</ol>
+<p>在机器学习中有多种不同的距离公式，下面以计算二维空间 A(x,y)，B(x1,y1) 两点间的距离为例进行说明，下图展示了如何计算欧式距离和曼哈顿街区距离。</p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111195540021.png"/>
+
+<p>那么如何考虑它们两者的区别呢？其实很容易理解，我们知道两点之前线段最短，A 和 B 之间的最短距离就是“欧式距离”，但是在实际情况中，由于受到实际环境因素的影响，我们有时无法按照既定的最短距离行进，比如你在一个楼宇众多的小区内，你想从 A 栋达到 B 栋，但是中间隔着其他楼房，因此你必须按照街道路线行进（图中红线)，这种距离就被称作“曼哈顿街区距离”。<strong>在 KNN 算法中较为常用的距离公式是“欧氏距离”</strong>。</p>
+<h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a><strong>优点</strong>：</h4><ol>
+<li><strong>简单直观</strong>：易于理解和实现。</li>
+<li><strong>无需训练</strong>：KNN是一种<strong>惰性学习（Lazy Learning）</strong>算法，训练阶段只是存储数据，计算在预测阶段进行。</li>
+<li><strong>适用于多分类问题</strong>：天然支持多分类任务。</li>
+<li><strong>对数据分布无假设</strong>：不需要假设数据服从某种分布。</li>
+</ol>
+<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a><strong>缺点</strong>：</h4><ol>
+<li><strong>计算复杂度高</strong>：预测时需要计算新数据点与所有训练数据点的距离，时间复杂度为O(n)，不适合大规模数据。</li>
+<li><strong>对噪声敏感</strong>：如果K值过小，容易受到噪声数据的影响。</li>
+<li><strong>需要特征缩放</strong>：由于依赖距离计算，特征之间的尺度差异会影响结果，通常需要对数据进行标准化或归一化。</li>
+<li><strong>维度灾难</strong>：在高维空间中，距离计算可能失效，导致性能下降。</li>
+</ol>
+<h2 id="K-means聚类算法"><a href="#K-means聚类算法" class="headerlink" title="K-means聚类算法"></a>K-means聚类算法</h2><p>机器学习算法主要分为两大类：有监督学习和无监督学习，它们在算法思想上存在本质的区别。<br>有监督学习，主要对有标签的数据集（即有“参考答案”）去构建机器学习模型，但在实际的生产环境中，其实大量数据是处于没有被标注的状态，这时因为“贴标签”的工作需要耗费大量的人力，如果数据量巨大，或者调研难度大的话，生产出一份有标签的数据集是非常困难的。再者就算是使用人工来标注，标注的速度也会比数据生产的速度慢的多。因此<strong>要想对没有被标注的数据进行分类，就要使用无监督学习算法。</strong><br>常见的无监督学习算法，<strong>包括 K-means 聚类算法、均值漂移聚类算法、主成分分析法（即 PCA 算法）、EM算法（期望最大化算法）等。本节介绍无监督学习中最为经典的 K-means 算法，它是聚类算法簇中的一个，也是最为经典的聚类算法，其原理简单、容易理解，因此得到广泛的应用。</strong></p>
+<img src="https://cdn.jsdelivr.net/gh/blackhaird/blog_img@main/machine_learning/20250111204547047.png"/>
+
+<p><strong>27.1 聚类和分类的区别</strong><br>聚类算法与分类算法的最终的目的都是将数据区分开来，但是两者的实现过程完全不同。</p>
+<ul>
+<li><strong>分类问题：</strong> 通过对已有标签的数据进行训练来确定最佳预测模型，然后对新样本的所属类别进行预测，在这个过程中算法模型只要尽可能的实现最佳拟合就 OK 了。</li>
+<li><strong>聚类问题：</strong> 没有任何标签，可谓是一遍茫然，就像做练习题没有参考答案一样，不知道自己做的是否正确。在这种情况下，如果您想证明自己做的题目是否对，在没有参考答案的情况下，您会怎么做呢？没错，您可以多找同学几位同学，甚至找全班同学去对比。 举个简单的例子：一道选择题，你的选择答案是 A，通过询问后您发现全班 85% 以上同学都选择的 A，其余 15% 都选择的 C，那么您心里就会认为自己选择的是正确的，毕竟选择 A 选项占了多数，但是在老师没有公布正确答案之前，什么也说不准，也许会发生“真理只掌握在少数人手里”的事情，因此选择 C 的同学也并不一定就是是错误的，通过这种“找相似”的方法即使在没有“参考答案”的前提下，也能实现分类。因此 <strong>“找相似”是解决聚类问题的核心方法</strong> 。</li>
+</ul>
+<p><strong>27.2 找相似</strong><br>动物种类可以按照科属进行划分，比如豹子、老虎、猫咪都属于猫科动物，这就说明他们身上有相似的地方，比如都善于攀爬以及跳跃、皮毛柔软、爪子锋利并可伸缩等等。其实，科学家们最初也没有一个明确的答案知道什么是“猫科动物”，他们通过<strong>找相似特征</strong>的方法，最终将动物们分门别类，因此这个过程也可以看做是“无监督学习”。<br>K-means 聚类算法是如何在数据集中寻找相同点的？</p>
+<p><strong>27.3 簇是什么</strong><br>在聚类问题中，有一个非常重要的概念“簇”（Cluster）。<br>样本数据集<strong>通过聚类算法</strong>最终会聚集成一个个“类”，这些类在机器学习中的术语称为“簇”（注意，这里的前提是使用“聚类算法”），因此 <strong>“簇”是解决聚类问题的表现形式 ，数据集中的数据样本最终会以“簇”的形式分开</strong>。</p>
+<p>那么当要解决一个聚类问题时，到底要汇集成多少簇呢？<br>对于分类问题而言，由于有参考答案，因此要分成多少类是已知的，但是聚类则不同，由于没有参考答案，所以形成多少个簇，事先谁也不知道。<br>不同聚类算法采取了不同的思路，主要分为<strong>划分法、层次法、密度法和网格法</strong>，这些方法大致可总结为两类，<strong>一类是预先设定有多少个簇</strong>，<strong>另一类则是在聚类的过程中形成</strong>。</p>
+<p><strong>27.3 理解K的含义</strong><br>K-means 就是一种采用了<strong>划分法</strong>的聚类算法，K-means 聚类算法与前面的 KNN 分类算法一样，都带有字母“K”（就像数学中常用字母“n”）。</p>
+<p>KNN 分类算法中的 K ：<br>KNN 分类算法采用了“多数表决的方法”， K <strong>表示有多少个样本点参与表决</strong>，这里的 K 对于样本的分类起到了关键性的作用。</p>
+<p>K-means 中的 K ：<br>由于该算法是没有参考标准的。如果不加以限定的话，它会形多任意数量的“簇”，这就要求我们要预先设定“簇”的数量，因此 K-means 中 K 是聚集成几个“簇”的意思。</p>
+<p><strong>27.4 如何量化“相似”</strong><br>在聚类算法中“相似”其实并不是一个具体的指标，就像“人以群分”这句成语，它没有提供具体的划分标准，即“以什么分”，可能是性格、爱好，也可能是志向，因此量化相似也要根据具体的场景，也就是确定比较的标准（即度量相似的标准）。<br><strong>1. 随机选择质心</strong><br>从 KNN 解决分类问题的过程不难看出，要想解决 K-means 聚类问题，同样需要一个“中心点”。<br>假设聚类问题的样本数据也能找出 <strong>K 个中心点</strong>，就能以该点为中心，以距离为度量画出范围来，将同一范围内的样本点作为一个簇，从而解决聚类问题，在 K-means 聚类算法中，这样的中心点称为“质心”。</p>
+<p>聚类算法是无监督学习，因此数据中的样本点完全不知道自己属于哪一个簇， 就更别谈缺点“质心”了，为了解决这一问题，<strong>K-means 算法通过随机选择方式来确定质心</strong>。<strong>但由于是随机选择，因此无法保证随机选择的 K 个质心就恰好是完成聚类后的 K 个簇的中心点，这时就用到了“mean”，它是“均值”的意思，通过均值可以不断的调整质心，由此可知质心在 K-means 算法中是不断改变的。</strong></p>
+<p><strong>2. 求出新质心点</strong><br>假设现在随机了 K 个质心得到了 K 个簇，接下来要怎样让这 K 个簇形成新的质心呢？做法有很多，K-means 算法选择了最简单的一种，<strong>求平均</strong>。<br>每个簇都有若干数据点，求出这些数据点的坐标值均值，就得到了新质心的坐标点，比如一个簇中有三个数据点，分别 (3,2)，(3,1)，(2,3)，那么新质心点位于：</p>
+<blockquote>
+<p>x：(3+3+2)&#x2F;3 约等于 2.666<br>y：(2+1+3)&#x2F;3 &#x3D; 2<br>质心坐标：(2.666,2)</p>
+</blockquote>
+<p>最后重复上述过程：生成新质心后重新进行聚类，然后根据聚类结果再次生成新的质心，直至划分的“类”不再变化时结束。</p>
+<p>这其实也是一种<strong>变相的多数表决</strong>。根据全体拥有表决权的数据点的坐标来共同决定新的质心在哪里，而表决权则由簇决定。</p>
+<p>在 K-means 聚类的过程中会经历<strong>多次质心计算</strong>，数据点到底归属于哪个簇可能会频繁变动，比如同一个数据点可能在本轮与一群样本点进行簇 A 的质心计算，而在下一轮就与另一群样本点进行簇 B 的质心计算，这也是 K-means 算法与 KNN 算法最大的不同之处。</p>
+<h1 id="习题2"><a href="#习题2" class="headerlink" title="习题2"></a>习题2</h1><ol>
+<li><p>在训练大型模型时，使用更高的学习力总是能更快地收敛得到最优解</p>
+<blockquote>
+<ol>
+<li><strong>学习率过高</strong>：<ul>
+<li><strong>优点</strong>：在训练初期，较高的学习率可以加快模型的收敛速度，因为参数更新幅度较大。</li>
+<li><strong>缺点</strong>：过高的学习率可能导致模型在损失函数表面上“跳跃”过大，无法稳定地接近最优解，甚至可能导致发散（即损失函数值不断增大而不是减小）。此外，高学习率可能导致模型陷入局部最优或鞍点，而无法找到全局最优解。</li>
+</ul>
+</li>
+<li><strong>学习率过低</strong>：<ul>
+<li><strong>优点</strong>：较低的学习率可以使模型更稳定地接近最优解，减少震荡和发散的风险。</li>
+<li><strong>缺点</strong>：训练过程可能会非常缓慢，尤其是在训练初期，模型可能需要很长时间才能开始有效学习。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>时间序列分析是一种用于研究数据随时间变化规律的统计方法</p>
+<blockquote>
+<p><strong>时间序列分析</strong>是一种专门用于研究数据随时间变化规律的统计方法。它广泛应用于经济学、金融学、气象学、工程学等领域，用于预测未来趋势、识别模式以及分析数据中的周期性或趋势性变化。</p>
+</blockquote>
+</li>
+<li><p>在数据分析中异常时通常应该被删除，因为他们可能是错误的。</p>
+<blockquote>
+<p>在数据分析中，异常值（Outliers）的处理是一个复杂的问题，不能一概而论。异常值可能是错误的数据，也可能是重要的信息。以下是一些处理异常值的常见方法：</p>
+<ol>
+<li><strong>识别异常值</strong>：首先，需要识别出哪些数据点是异常值。这可以通过统计方法（如标准差、四分位数间距等）或可视化方法（如箱线图）来完成。</li>
+<li><strong>分析异常值</strong>：在删除异常值之前，应该分析它们出现的原因。异常值可能是由于测量错误、数据录入错误、或者是真实的极端情况。如果异常值是由于错误造成的，那么删除它们可能是合适的。但如果它们是真实的极端情况，那么删除它们可能会导致信息的丢失。</li>
+<li><strong>考虑业务背景</strong>：在某些情况下，异常值可能代表了重要的业务情况，比如在金融领域，异常值可能代表欺诈行为。在这种情况下，异常值不仅不应该被删除，反而应该被特别关注。</li>
+<li><strong>使用稳健的方法</strong>：在分析中，可以使用一些对异常值不敏感的统计方法，比如中位数而不是平均数，或者使用对异常值有鲁棒性的回归模型。</li>
+<li><strong>数据清洗</strong>：如果异常值是由于错误造成的，那么应该尝试修正这些错误，而不是简单地删除数据点。</li>
+<li><strong>敏感性分析</strong>：在删除异常值之前，可以进行敏感性分析，看看这些异常值对分析结果的影响有多大。如果影响很小，那么删除它们可能是合理的。</li>
+</ol>
+</blockquote>
+</li>
+<li><p>回归分析是一种预测性建模技术，它研究一个或多个自变量和因变量之间的关系</p>
+<blockquote>
+<p>回归分析是一种广泛应用于统计学和机器学习中的预测性建模技术，用于研究自变量（也称为解释变量或特征）与因变量（也称为目标变量或响应变量）之间的关系。通过回归分析，我们可以建立一个数学模型，描述自变量如何影响因变量，并利用该模型进行预测或推断。</p>
+</blockquote>
+</li>
+<li><p>自相关函数（Autocorrelation Function，简称ACF）acf用于测量时间序列中相当前值与过去值的相关性</p>
+<blockquote>
+<p><strong>自相关函数（Autocorrelation Function，ACF）</strong> 是时间序列分析中的一个重要工具，用于衡量时间序列中当前值与过去值之间的相关性。它帮助我们理解时间序列数据中的依赖关系，即当前值是否与过去的值相关，以及这种相关性如何随时间间隔（滞后）变化。</p>
+<h3 id="ACF-的作用"><a href="#ACF-的作用" class="headerlink" title="ACF 的作用"></a><strong>ACF 的作用</strong></h3><ol>
+<li><strong>检测时间序列的依赖性</strong>：<ul>
+<li>ACF 可以帮助我们判断时间序列是否存在自相关性，即当前值是否受到过去值的影响。</li>
+<li>如果 ACF 在某些滞后阶数上显著不为零，说明时间序列存在自相关性。</li>
+</ul>
+</li>
+<li><strong>识别时间序列的模式</strong>：<ul>
+<li>对于平稳时间序列，ACF 通常会随着滞后阶数的增加而逐渐衰减。</li>
+<li>对于非平稳时间序列（如具有趋势或季节性的序列），ACF 可能会缓慢衰减或呈现周期性。</li>
+</ul>
+</li>
+<li><strong>模型选择</strong>：<ul>
+<li>ACF 是识别时间序列模型（如 ARIMA 模型）的重要工具。</li>
+<li>例如，在 AR(p) 模型中，ACF 会逐渐衰减，而在 MA(q) 模型中，ACF 会在滞后 q<em>q</em> 之后截尾。</li>
+</ul>
+</li>
+<li><strong>诊断模型拟合效果</strong>：<ul>
+<li>在拟合时间序列模型后，可以通过检查残差的 ACF 来判断模型是否充分捕捉了时间序列的自相关性。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>时间序列预测。处理非平稳数据</p>
+<blockquote>
+<p>时间序列预测中，<strong>非平稳数据</strong>是一个常见的挑战。非平稳数据的特点是统计特性（如均值、方差）随时间变化，这会导致传统的时间序列模型（如ARIMA）无法直接应用。为了处理非平稳数据，通常需要对其进行平稳化处理，然后再进行建模和预测。</p>
+</blockquote>
+</li>
+<li><p>数据分析和挖掘前的重要步骤”可能指的是数据预处理。</p>
+<blockquote>
+<ol>
+<li><strong>数据清洗（Data Cleaning）</strong>：<ul>
+<li>处理缺失值：填补或删除缺失的数据。</li>
+<li>异常值检测：识别并处理异常值，这些可能是错误或噪声。</li>
+<li>去除重复数据：删除数据集中的重复记录。</li>
+</ul>
+</li>
+<li><strong>数据集成（Data Integration）</strong>：<ul>
+<li>合并来自不同来源的数据。</li>
+<li>解决数据源之间的不一致性和冗余问题。</li>
+</ul>
+</li>
+<li><strong>数据转换（Data Transformation）</strong>：<ul>
+<li>规范化：将数据按比例缩放，使之落入一个小的、指定的范围。</li>
+<li>归一化：调整数据的尺度，使其具有零均值和单位方差。</li>
+<li>离散化：将连续变量转换为离散变量。</li>
+<li>属性构造：创建新的特征以更好地表示数据。</li>
+</ul>
+</li>
+<li><strong>数据降维（Dimensionality Reduction）</strong>：<ul>
+<li>特征选择：从现有特征中选择最相关的子集。</li>
+<li>特征提取：通过组合现有特征来创建新特征，以减少特征的数量。</li>
+</ul>
+</li>
+<li><strong>数据离散化（Data Discretization）</strong>：<ul>
+<li>将连续变量转换为有限数量的区间或类别。</li>
+</ul>
+</li>
+<li><strong>数据规范化（Data Standardization）</strong>：<ul>
+<li>调整数据的尺度，使其具有统一的标准，便于比较。</li>
+</ul>
+</li>
+<li><strong>处理类别数据（Handling Categorical Data）</strong>：<ul>
+<li>将非数值的类别数据转换为数值形式，以便机器学习算法可以处理。</li>
+</ul>
+</li>
+<li><strong>特征编码（Feature Encoding）</strong>：<ul>
+<li>对类别特征进行编码，如使用独热编码（One-Hot Encoding）。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>svm方法</p>
+<blockquote>
+<p>支持向量机（Support Vector Machine，简称SVM）是一种监督学习算法，主要用于分类问题，但也可用于回归分析（称为支持向量回归，SVR）。SVM的核心思想是找到一个超平面（在二维空间中是一条直线，在三维空间中是一个平面，以此类推），这个超平面能够最好地分隔不同类别的数据点。</p>
+<p>以下是SVM的一些关键概念和步骤：</p>
+<ol>
+<li><strong>线性可分SVM</strong>：<ul>
+<li>首先，SVM试图找到一个超平面，使得不同类别的数据点被分隔开，并且这个超平面到最近的数据点（支持向量）的距离（称为间隔）最大化。</li>
+<li>这个超平面是通过解决一个优化问题来找到的，目标是最大化间隔的同时最小化分类误差。</li>
+</ul>
+</li>
+<li><strong>核技巧</strong>：<ul>
+<li>在现实世界中，数据往往不是线性可分的。为了处理这种情况，SVM引入了核技巧（Kernel Trick），允许算法在高维空间中寻找超平面，而无需显式地计算高维空间中的坐标。</li>
+<li>常用的核函数包括线性核、多项式核、径向基函数（RBF）核和Sigmoid核等。</li>
+</ul>
+</li>
+<li><strong>软间隔和正则化</strong>：<ul>
+<li>在某些情况下，数据可能不是完全线性可分的，或者我们希望模型对噪声和异常值更加鲁棒。这时，SVM引入了软间隔的概念，允许一些数据点违反分类规则，即被错误分类。</li>
+<li>软间隔通过引入松弛变量（slack variables）和正则化参数C来实现。C控制着间隔最大化和分类误差之间的权衡。</li>
+</ul>
+</li>
+<li><strong>优化问题</strong>：<ul>
+<li>SVM的优化问题通常是一个凸二次规划问题，可以使用拉格朗日乘子法和对偶问题来求解。</li>
+<li>解决优化问题后，我们得到的是拉格朗日乘子，这些乘子用于确定哪些数据点是支持向量，以及超平面的具体参数。</li>
+</ul>
+</li>
+<li><strong>多类分类</strong>：<ul>
+<li>SVM最初是为二分类问题设计的，但可以通过一对一（one-vs-one）或一对多（one-vs-rest）策略扩展到多类分类问题。</li>
+</ul>
+</li>
+<li><strong>应用</strong>：<ul>
+<li>SVM在许多领域都有应用，包括图像识别、文本分类、生物信息学和金融风险管理等。</li>
+</ul>
+</li>
+</ol>
+<p>SVM是一种强大的机器学习算法，以其在高维空间中的分类性能和对小样本数据的鲁棒性而闻名。然而，SVM的主要缺点是计算复杂度较高，尤其是在处理大规模数据集时。此外，选择合适的核函数和调整参数（如C和核函数的参数）可能需要专业知识和实验。</p>
+</blockquote>
+</li>
+<li><p>apache用于处理实时数据流</p>
+<blockquote>
+<ol>
+<li><strong>Apache Kafka</strong>：<ul>
+<li>Kafka是一个分布式流处理平台，设计用于高吞吐量的数据管道和流处理。它能够处理高吞吐量的数据，并支持实时的数据流处理。</li>
+<li>Kafka Streams是Kafka的客户端库，允许构建健壮、可扩展的实时应用程序和微服务。</li>
+<li>Kafka Connect提供了一个框架和一系列连接器，用于将Kafka与外部系统（如数据库、键值存储等）连接起来。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>神经网络中什么是指模型的训练数据上表现好，但在测试数据上表现不佳</p>
+<blockquote>
+<p>“过拟合”:</p>
+<ol>
+<li><strong>增加数据量</strong>：通过收集更多的训练数据来减少过拟合。</li>
+<li><strong>数据增强</strong>：通过生成新的数据点来扩充训练集。</li>
+<li><strong>正则化</strong>：使用L1、L2正则化或dropout等技术来减少模型复杂度。</li>
+</ol>
+</blockquote>
+</li>
+<li><p>在进行大数据分析时，什么数据库用于处理非结构化数据或半结构化数据？</p>
+<blockquote>
+<p>在处理非结构化数据或半结构化数据时，传统的关系型数据库可能不是最佳选择，因为它们通常需要数据遵循固定的模式。相反，以下几种数据库系统更适合处理这类数据：</p>
+<ol>
+<li><strong>NoSQL数据库</strong>：<ul>
+<li><strong>MongoDB</strong>：一个文档导向的数据库，它使用类似JSON的BSON格式存储数据，非常适合处理半结构化数据。</li>
+<li><strong>Cassandra</strong>：一个分布式NoSQL数据库，设计用于处理大量数据跨多个数据中心和云，具有良好的可扩展性和容错性。</li>
+<li><strong>Couchbase</strong>：结合了文档存储和键值存储的特性，支持灵活的JSON文档模型。</li>
+</ul>
+</li>
+<li><strong>NewSQL数据库</strong>：<ul>
+<li>这些数据库试图结合NoSQL系统的可扩展性和传统关系型数据库的ACID事务特性。例如，Google的Spanner和CockroachDB。</li>
+</ul>
+</li>
+<li><strong>图数据库</strong>：<ul>
+<li>如Neo4j，适用于处理高度关联的数据，如社交网络、推荐系统等。</li>
+</ul>
+</li>
+<li><strong>搜索引擎数据库</strong>：<ul>
+<li>如Elasticsearch，它不仅可以用于全文搜索，还可以用于存储和查询复杂的非结构化数据。</li>
+</ul>
+</li>
+<li><strong>时间序列数据库</strong>：<ul>
+<li>如InfluxDB，专门用于处理时间序列数据，如监控数据、物联网数据等。</li>
+</ul>
+</li>
+<li><strong>对象存储</strong>：<ul>
+<li>如Amazon S3，虽然它不是一个数据库，但它可以存储大量的非结构化数据，并且可以通过其他服务进行查询和分析。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>sql用于提高性能的数据结构</p>
+<blockquote>
+<p>在SQL数据库中，为了提高查询性能和数据操作的效率，通常会使用以下几种数据结构和技术：</p>
+<ol>
+<li><strong>索引（Indexes）</strong>：<ul>
+<li><strong>B-tree索引</strong>：最常见的索引类型，适用于等值查询和范围查询。</li>
+<li><strong>哈希索引</strong>：适用于等值查询，特别是当查询条件为精确匹配时。</li>
+<li><strong>全文索引</strong>：用于加速对文本数据的搜索查询。</li>
+<li><strong>空间索引</strong>：如R-tree，用于地理空间数据的查询。</li>
+<li><strong>位图索引</strong>：适用于低基数的列，即列中不同值的数量相对较少。</li>
+</ul>
+</li>
+<li><strong>分区（Partitioning）</strong>：<ul>
+<li><strong>范围分区</strong>：根据某个范围的值将数据分布到不同的分区。</li>
+<li><strong>列表分区</strong>：根据列的离散值进行分区。</li>
+<li><strong>哈希分区</strong>：通过哈希函数将数据均匀分布到不同的分区。</li>
+<li><strong>复合分区</strong>：结合以上几种分区策略。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>自然语言处理模型时，为了捕获文本中的上下文信息常用的技术是</p>
+<blockquote>
+<p>在自然语言处理（NLP）中，为了捕获文本中的上下文信息，常用的技术包括：</p>
+<ol>
+<li><strong>循环神经网络（RNN）</strong>：<ul>
+<li>RNN通过其循环结构能够处理序列数据，理论上可以捕获任意长度的上下文信息。然而，标准的RNN在实际应用中可能会遇到<strong>梯度消失或梯度爆炸的问题</strong>，难以学习到长距离依赖。</li>
+</ul>
+</li>
+<li><strong>长短期记忆网络（LSTM）</strong>：<ul>
+<li>LSTM是RNN的一种变体，通过引入门控机制（输入门、遗忘门、输出门）来控制信息的流动，有效地解决了标准RNN的长距离依赖问题。</li>
+</ul>
+</li>
+<li><strong>门控循环单元（GRU）</strong>：<ul>
+<li>GRU是另一种RNN的变体，它简化了LSTM的结构，只有两个门（更新门和重置门），但在许多任务上依然能够达到与LSTM相当的性能。</li>
+</ul>
+</li>
+<li><strong>Transformer模型</strong>：<ul>
+<li>Transformer模型完全基于注意力机制，摒弃了RNN的循环结构。它通过自注意力（Self-Attention）机制来捕获序列中任意位置的信息，极大地提高了处理长距离依赖的能力。</li>
+</ul>
+</li>
+<li><strong>BERT（Bidirectional Encoder Representations from Transformers）</strong>：<ul>
+<li>BERT是一种基于Transformer的预训练模型，它通过双向上下文信息来捕获文本的深层语义。BERT在多种NLP任务上取得了突破性的性能。</li>
+</ul>
+</li>
+<li><strong>GPT（Generative Pre-trained Transformer）</strong>：<ul>
+<li>GPT系列模型也是基于Transformer架构，但它采用的是单向的（从左到右）自回归模型。GPT通过大量的文本数据进行预训练，能够生成连贯的文本。</li>
+</ul>
+</li>
+<li><strong>注意力机制（Attention Mechanism）</strong>：<ul>
+<li>注意力机制允许模型在处理序列数据时，动态地聚焦于序列的不同部分，从而捕获更丰富的上下文信息。</li>
+</ul>
+</li>
+<li><strong>卷积神经网络（CNN）</strong>：<ul>
+<li>虽然CNN主要用于图像处理，但在NLP中，通过一维卷积操作也可以捕获局部上下文信息，尤其是在处理固定窗口大小的n-gram特征时。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>自然语言处理的主流架构，自注意力机制和位置编码</p>
+<blockquote>
+<p>在自然语言处理（NLP）领域，主流架构已经逐渐从传统的循环神经网络（RNN）和卷积神经网络（CNN）转向了基于自注意力机制（Self-Attention Mechanism）的模型，尤其是Transformer架构。以下是自注意力机制和位置编码的简要介绍：</p>
+<h3 id="自注意力机制（Self-Attention-Mechanism）"><a href="#自注意力机制（Self-Attention-Mechanism）" class="headerlink" title="自注意力机制（Self-Attention Mechanism）"></a>自注意力机制（Self-Attention Mechanism）</h3><p>自注意力机制是Transformer模型的核心组件，它允许模型在处理输入序列时，动态地关注序列中不同位置的信息。自注意力机制的主要特点包括：</p>
+<ol>
+<li><strong>并行计算</strong>：与RNN不同，自注意力机制不依赖于序列的顺序处理，因此可以并行计算，大大提高了训练效率。</li>
+<li><strong>长距离依赖</strong>：自注意力机制能够直接捕获序列中任意两个位置之间的依赖关系，无论它们之间的距离有多远。</li>
+<li><strong>多头注意力（Multi-Head Attention）</strong>：通过使用多个注意力头，模型可以从不同的子空间中学习到不同的表示，从而捕获更丰富的上下文信息。</li>
+</ol>
+<p>自注意力机制的计算过程通常包括以下步骤：</p>
+<ul>
+<li><strong>计算注意力分数</strong>：通过查询（Query）、键（Key）和值（Value）向量的点积来计算注意力分数。</li>
+<li><strong>应用Softmax函数</strong>：将注意力分数转换为概率分布。</li>
+<li><strong>加权求和</strong>：使用注意力权重对值向量进行加权求和，得到最终的输出表示。</li>
+</ul>
+<h3 id="位置编码（Positional-Encoding）"><a href="#位置编码（Positional-Encoding）" class="headerlink" title="位置编码（Positional Encoding）"></a>位置编码（Positional Encoding）</h3><p>由于Transformer模型完全基于自注意力机制，它本身不具备处理序列顺序信息的能力。为了引入序列的位置信息，Transformer模型使用了位置编码。位置编码的主要特点包括：</p>
+<ol>
+<li><strong>绝对位置编码</strong>：通过在输入嵌入中添加位置编码向量，模型能够感知每个词在序列中的绝对位置。</li>
+<li><strong>相对位置编码</strong>：一些改进的模型（如Transformer-XL）使用相对位置编码，使得模型能够更好地处理长序列和捕获相对位置信息。</li>
+</ol>
+</blockquote>
+</li>
+<li><p>聚类分析是的划分聚类方法</p>
+<blockquote>
+<p>KNN：算半径范围</p>
+<p>K-MEANS：随机生成簇心（聚类中心）</p>
+</blockquote>
+</li>
+<li><p>k-means基本步骤。实际应用中的优势</p>
+<blockquote>
+<h3 id="K均值聚类（K-Means-Clustering）基本步骤"><a href="#K均值聚类（K-Means-Clustering）基本步骤" class="headerlink" title="K均值聚类（K-Means Clustering）基本步骤"></a>K均值聚类（K-Means Clustering）基本步骤</h3><p>K均值聚类是一种常用的划分聚类方法，其基本步骤如下：</p>
+<ol>
+<li><p><strong>初始化</strong>：</p>
+<ul>
+<li>随机选择K个初始聚类中心（centroids）。这些中心点可以是数据集中的实际数据点，也可以是随机生成的点。</li>
+</ul>
+</li>
+<li><p><strong>分配</strong>：</p>
+<ul>
+<li>将每个数据点分配到最近的聚类中心。通常使用欧几里得距离来计算数据点与聚类中心之间的距离。</li>
+</ul>
+</li>
+<li><p><strong>更新</strong>：</p>
+<ul>
+<li>重新计算每个簇的聚类中心。新的聚类中心是簇内所有数据点的均值（即坐标的平均值）。</li>
+</ul>
+</li>
+<li><p><strong>迭代</strong>：</p>
+<ul>
+<li><p>重复分配和更新步骤，直到满足以下条件之一：</p>
+<ul>
+<li>聚类中心不再显著变化（即收敛）。</li>
+<li>达到预定的迭代次数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>输出</strong></p>
+</li>
+</ol>
+<p>K均值聚类在实际应用中具有以下优势：</p>
+<ol>
+<li><strong>简单易实现</strong>：<ul>
+<li>K均值聚类的算法逻辑简单，易于理解和实现。许多编程语言和数据分析工具都提供了K均值聚类的库和函数。</li>
+</ul>
+</li>
+<li><strong>计算效率高</strong>：<ul>
+<li>K均值聚类的计算复杂度相对较低，尤其是在处理大规模数据集时，能够快速收敛。这使得它适用于实时或近实时的应用场景。</li>
+</ul>
+</li>
+<li><strong>可扩展性强</strong>：<ul>
+<li>K均值聚类可以有效地处理大规模数据集。通过并行计算和分布式计算技术，可以进一步提高其处理能力。</li>
+</ul>
+</li>
+<li><strong>适用于高维数据</strong>：<ul>
+<li>K均值聚类在处理高维数据时表现良好，尤其是在数据维度较高但簇结构相对简单的情况下。</li>
+</ul>
+</li>
+<li><strong>结果直观</strong>：<ul>
+<li>K均值聚类的结果是明确的簇划分，每个数据点属于一个特定的簇。这种结果易于解释和可视化。</li>
+</ul>
+</li>
+<li><strong>广泛应用</strong>：<ul>
+<li>K均值聚类在许多领域都有广泛应用，如图像分割、文本聚类、市场细分、生物信息学等。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>什么是数据仓库？</p>
+<blockquote>
+<p>数据仓库（Data Warehouse）是一个用于报告和数据分析的中央数据存储库。它通常用于存储来自一个或多个数据源的数据，并且这些数据是经过清理、整合和优化以便于查询和分析的。以下是数据仓库的一些关键特点：</p>
+<ol>
+<li><strong>集成性</strong>：<ul>
+<li>数据仓库通常包含来自不同来源的数据，这些数据被集成在一起，以提供组织范围内的一致视图。</li>
+</ul>
+</li>
+<li><strong>持久性</strong>：<ul>
+<li>数据仓库存储历史数据，允许进行时间序列分析和趋势分析。</li>
+</ul>
+</li>
+<li><strong>主题导向</strong>：<ul>
+<li>数据仓库是围绕特定的业务主题（如销售、客户、财务等）组织的，这使得非技术用户更容易理解和使用。</li>
+</ul>
+</li>
+<li><strong>非易失性</strong>：<ul>
+<li>数据仓库中的数据主要用于查询和分析，而不是日常事务处理，因此它是非易失性的，即数据一旦写入，就很少被修改或删除。</li>
+</ul>
+</li>
+<li><strong>数据模型</strong>：<ul>
+<li>数据仓库使用特定的数据模型（如星型模型或雪花模型）来组织数据，这些模型支持高效的查询性能。</li>
+</ul>
+</li>
+<li><strong>数据抽取、转换和加载（ETL）</strong>：<ul>
+<li>数据仓库周期性地从源系统中抽取数据，进行清洗、转换和整合，然后加载到数据仓库中。</li>
+</ul>
+</li>
+<li><strong>OLAP（联机分析处理）</strong>：<ul>
+<li>数据仓库支持OLAP操作，允许用户从多个维度对数据进行分析，如钻取、切片和切块。</li>
+</ul>
+</li>
+<li><strong>数据治理</strong>：<ul>
+<li>数据仓库通常伴随着数据治理策略，确保数据的质量和一致性。</li>
+</ul>
+</li>
+<li><strong>性能优化</strong>：<ul>
+<li>数据仓库针对复杂的查询进行了优化，使用索引、分区和物化视图等技术来提高查询效率。</li>
+</ul>
+</li>
+<li><strong>可扩展性</strong>：<ul>
+<li>数据仓库可以水平扩展以存储PB级别的数据，并支持大量并发用户。</li>
+</ul>
+</li>
+</ol>
+<p>数据仓库是企业决策支持系统的核心组成部分，它帮助组织做出基于数据的决策，并提高业务效率和竞争力。随着大数据和云计算技术的发展，现代数据仓库解决方案也在不断演进，以支持更大规模的数据集和更复杂的分析需求。</p>
+</blockquote>
+</li>
+<li><p>sql查询参与了两个以上不同活动类型的人员数据</p>
+</li>
+<li><p>rnn不会出现梯度消失或者梯度爆炸的问题</p>
+<blockquote>
+<p>会</p>
+<h3 id="1-梯度消失（Vanishing-Gradient）"><a href="#1-梯度消失（Vanishing-Gradient）" class="headerlink" title="1. 梯度消失（Vanishing Gradient）"></a>1. <strong>梯度消失（Vanishing Gradient）</strong></h3><ul>
+<li><strong>原因</strong>：在RNN中，梯度是通过时间步逐步反向传播的。如果梯度值小于1，经过多次连乘后会变得非常小，最终趋近于0。这会导致较早时间步的参数几乎无法更新，模型难以学习到长距离依赖。</li>
+<li><strong>影响</strong>：RNN无法有效捕获长序列中的上下文信息，尤其是在处理长文本或时间序列数据时表现较差。</li>
+</ul>
+<hr>
+<h3 id="2-梯度爆炸（Exploding-Gradient）"><a href="#2-梯度爆炸（Exploding-Gradient）" class="headerlink" title="2. 梯度爆炸（Exploding Gradient）"></a>2. <strong>梯度爆炸（Exploding Gradient）</strong></h3><ul>
+<li><strong>原因</strong>：如果梯度值大于1，经过多次连乘后会变得非常大，导致参数更新幅度过大，模型训练不稳定甚至发散。</li>
+<li><strong>影响</strong>：梯度爆炸会导致模型参数更新失控，训练过程无法收敛。</li>
+</ul>
+<hr>
+<h3 id="为什么RNN容易出现梯度消失或梯度爆炸？"><a href="#为什么RNN容易出现梯度消失或梯度爆炸？" class="headerlink" title="为什么RNN容易出现梯度消失或梯度爆炸？"></a>为什么RNN容易出现梯度消失或梯度爆炸？</h3><p>RNN的梯度问题主要源于其<strong>循环结构</strong>。在BPTT中，梯度是通过时间步逐步反向传播的，而RNN的权重矩阵在每个时间步都会被重复使用。如果权重矩阵的特征值（eigenvalues）小于1，梯度会逐渐消失；如果特征值大于1，梯度会逐渐爆炸。</p>
+</blockquote>
+</li>
+<li><p>聚类分析是一种无监督学习方法</p>
+<blockquote>
+<p>对</p>
+</blockquote>
+</li>
+<li><p>scipy、Pandas库</p>
+<blockquote>
+<p><code>SciPy</code> 是一个基于 <code>NumPy</code> 的科学计算库，提供了大量的数学算法和高级函数，用于解决科学和工程中的复杂问题。它是 <code>NumPy</code> 的扩展，专注于数值计算、优化、积分、插值、信号处理等领域。</p>
+</blockquote>
+</li>
+<li><p>相关性分析可以用来确定两个变量之间是否存在因果关系</p>
+</li>
+<li><p>样本量足够大p将趋近于或1</p>
+</li>
+<li><p>Pca所有主成分都是正交</p>
+<blockquote>
+<p>主成分分析（PCA）是一种常用的降维技术，其核心思想是通过线性变换将原始数据投影到一组新的正交基上，这些基被称为主成分。以下是关于PCA主成分正交性的详细解释：</p>
+<h3 id="主成分正交性的作用"><a href="#主成分正交性的作用" class="headerlink" title="主成分正交性的作用"></a><strong>主成分正交性的作用</strong></h3><ul>
+<li><strong>降维</strong>：通过选择前 k<em>k</em> 个主成分，可以在保留大部分数据信息的同时降低数据维度。</li>
+<li><strong>去相关性</strong>：主成分之间的正交性确保了降维后的数据特征之间没有冗余信息。</li>
+<li><strong>简化计算</strong>：正交基使得投影和重构的计算更加高效。</li>
+</ul>
+<hr>
+<h3 id="4-注意事项"><a href="#4-注意事项" class="headerlink" title="4. 注意事项"></a><strong>4. 注意事项</strong></h3><ul>
+<li>PCA假设数据是线性可分的，如果数据具有非线性结构，PCA可能无法有效降维。</li>
+<li>PCA对数据的尺度敏感，因此在应用PCA之前通常需要对数据进行标准化（如归一化或标准化）。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>sql选取最近时间的数据</p>
+</li>
+<li><p>根据客户的特征和行为将数据分成不同的群体</p>
+<blockquote>
+<p> 聚类分析</p>
+<ul>
+<li><strong>K-Means</strong>：基于距离的聚类，适合数值型数据。</li>
+<li><strong>层次聚类</strong>：适合小规模数据，可以生成树状图。</li>
+<li><strong>DBSCAN</strong>：基于密度的聚类，适合处理噪声数据。</li>
+<li><strong>高斯混合模型（GMM）</strong>：适合数据分布复杂的情况。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>dbms的功能</p>
+<blockquote>
+<ul>
+<li>关系型数据库：MySQL、PostgreSQL、Oracle、SQL Server。</li>
+<li>非关系型数据库：MongoDB、Redis、Cassandra。</li>
+</ul>
+<p>数据库管理系统（Database Management System，简称DBMS）是用于创建、管理、维护和操作数据库的软件系统。DBMS提供了用户和应用程序与数据库交互的接口，确保数据的安全性、完整性和一致性。以下是DBMS的主要功能：</p>
+<ol>
+<li><strong>数据存储和管理</strong>：<ul>
+<li><strong>数据存储</strong>：DBMS负责将数据存储在物理存储介质上，如硬盘或固态驱动器。</li>
+<li><strong>数据组织</strong>：DBMS通过表、索引、视图等数据结构来组织数据，以便高效地存储和检索数据。</li>
+</ul>
+</li>
+<li><strong>数据定义</strong>：<ul>
+<li><strong>数据定义语言（DDL）</strong>：DBMS提供DDL，允许用户定义数据库的结构，包括表、字段、数据类型、约束等。常见的DDL语句包括<code>CREATE</code>、<code>ALTER</code>和<code>DROP</code>。</li>
+</ul>
+</li>
+<li><strong>数据操纵</strong>：<ul>
+<li><strong>数据操纵语言（DML）</strong>：DBMS提供DML，允许用户插入、更新、删除和查询数据。常见的DML语句包括<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>和<code>SELECT</code>。</li>
+</ul>
+</li>
+<li><strong>数据查询</strong>：<ul>
+<li><strong>查询处理</strong>：DBMS能够解析和执行SQL查询，返回用户请求的数据。</li>
+<li><strong>优化器</strong>：DBMS中的查询优化器会自动选择最高效的查询执行计划，以提高查询性能。</li>
+</ul>
+</li>
+<li><strong>数据控制</strong>：<ul>
+<li><strong>数据控制语言（DCL）</strong>：DBMS提供DCL，允许用户控制对数据库的访问权限，包括授予和撤销用户权限。常见的DCL语句包括<code>GRANT</code>和<code>REVOKE</code>。</li>
+<li><strong>事务管理</strong>：DBMS支持事务处理，确保数据操作的原子性、一致性、隔离性和持久性（ACID属性）。</li>
+</ul>
+</li>
+<li><strong>数据安全</strong>：<ul>
+<li><strong>用户认证</strong>：DBMS提供用户认证机制，确保只有授权用户可以访问数据库。</li>
+<li><strong>数据加密</strong>：DBMS支持数据加密，保护数据在存储和传输过程中的安全性。</li>
+</ul>
+</li>
+<li><strong>数据完整性</strong>：<ul>
+<li><strong>约束</strong>：DBMS支持多种约束，如主键、外键、唯一性约束、检查约束等，以确保数据的完整性和一致性。</li>
+<li><strong>触发器</strong>：DBMS支持触发器，可以在特定数据操作发生时自动执行预定义的操作，以维护数据的完整性。</li>
+</ul>
+</li>
+<li><strong>并发控制</strong>：<ul>
+<li><strong>锁定机制</strong>：DBMS使用锁定机制来管理并发访问，防止多个用户同时修改同一数据导致的冲突。</li>
+<li><strong>多版本并发控制（MVCC）</strong>：一些DBMS使用MVCC来提高并发性能，允许多个版本的数据同时存在，从而减少锁的使用。</li>
+</ul>
+</li>
+<li><strong>恢复和备份</strong>：<ul>
+<li><strong>备份</strong>：DBMS提供备份功能，定期备份数据库，以防止数据丢失。</li>
+<li><strong>恢复</strong>：DBMS提供恢复功能，可以在数据库损坏或故障时恢复数据。</li>
+</ul>
+</li>
+<li><strong>性能优化</strong>：<ul>
+<li><strong>索引</strong>：DBMS支持索引，通过索引可以快速定位数据，提高查询性能。</li>
+<li><strong>缓存</strong>：DBMS使用缓存机制，将频繁访问的数据存储在内存中，以减少磁盘I&#x2F;O操作。</li>
+</ul>
+</li>
+<li><strong>数据仓库和数据挖掘</strong>：<ul>
+<li><strong>数据仓库支持</strong>：一些DBMS提供数据仓库功能，支持大规模数据的存储和分析。</li>
+<li><strong>数据挖掘工具</strong>：一些DBMS集成了数据挖掘工具，帮助用户发现数据中的模式和趋势。</li>
+</ul>
+</li>
+<li><strong>分布式数据库支持</strong>：<ul>
+<li><strong>分布式事务</strong>：DBMS支持分布式事务，确保在多个节点上操作的一致性。</li>
+<li><strong>数据分片</strong>：DBMS支持数据分片，将数据分布在多个节点上，以提高性能和可扩展性。</li>
+</ul>
+</li>
+</ol>
+<p>DBMS的功能非常广泛，不同的DBMS产品（如MySQL、PostgreSQL、Oracle、SQL Server等）在具体实现和功能上可能有所不同，但它们都提供了上述核心功能，以满足不同用户和应用程序的需求。</p>
+</blockquote>
+</li>
+<li><p>数据库ACID</p>
+<blockquote>
+<p>ACID 是数据库事务处理的四个关键属性，确保数据库操作的可靠性和一致性。ACID 是以下四个词的缩写：</p>
+<ol>
+<li><strong>原子性（Atomicity）</strong>：<ul>
+<li>原子性保证事务中的所有操作要么全部完成，要么全部不完成。事务中的每个操作都是不可分割的，就像原子一样。如果事务中的任何一个操作失败，整个事务将被回滚，数据库状态将恢复到事务开始之前的状态。这确保了事务的完整性。</li>
+</ul>
+</li>
+<li><strong>一致性（Consistency）</strong>：<ul>
+<li>一致性确保事务执行前后，数据库从一个一致的状态转换到另一个一致的状态。事务必须遵守数据库的约束、触发器和规则。如果事务违反了这些规则，事务将被回滚，以保持数据库的一致性。例如，如果一个事务试图插入一个违反唯一性约束的记录，事务将被终止，数据库状态将保持不变。</li>
+</ul>
+</li>
+<li><strong>隔离性（Isolation）</strong>：<ul>
+<li>隔离性确保多个事务并发执行时，每个事务都像是在独立的环境中运行，不会相互干扰。数据库系统通过锁定机制或乐观并发控制来实现隔离性。隔离性级别包括：<ul>
+<li><strong>读未提交（Read Uncommitted）</strong>：最低的隔离级别，允许读取未提交的数据，可能会导致脏读、不可重复读和幻读。</li>
+<li><strong>读已提交（Read Committed）</strong>：只允许读取已提交的数据，避免了脏读，但可能会导致不可重复读和幻读。</li>
+<li><strong>可重复读（Repeatable Read）</strong>：确保在同一个事务中，多次读取同一数据时，结果是一致的，避免了不可重复读，但可能会导致幻读。</li>
+<li><strong>串行化（Serializable）</strong>：最高的隔离级别，事务完全串行执行，避免了脏读、不可重复读和幻读，但性能开销最大。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>持久性（Durability）</strong>：<ul>
+<li>持久性确保一旦事务提交，对数据库的更改将永久生效，即使系统发生故障。数据库系统通常通过写入日志文件来实现持久性。当事务提交时，系统会将事务的更改记录到日志文件中，即使在系统崩溃后，也可以通过日志文件恢复数据。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>常用于验证模型的性能</p>
+<blockquote>
+<p>验证模型的性能是机器学习和数据科学中的关键步骤，目的是评估模型在未知数据上的表现，确保其具有良好的泛化能力。以下是常用于验证模型性能的方法和指标：</p>
+<hr>
+<h3 id="1-数据集划分"><a href="#1-数据集划分" class="headerlink" title="1. 数据集划分"></a><strong>1. 数据集划分</strong></h3><p>在验证模型性能之前，通常需要将数据集划分为训练集、验证集和测试集：</p>
+<ul>
+<li><strong>训练集（Training Set）</strong>：用于训练模型。</li>
+<li><strong>验证集（Validation Set）</strong>：用于调参和选择模型。</li>
+<li><strong>测试集（Test Set）</strong>：用于最终评估模型性能。</li>
+</ul>
+<p>常见的划分方法：</p>
+<ul>
+<li><strong>简单划分</strong>：如 70% 训练集，15% 验证集，15% 测试集。</li>
+<li><strong>交叉验证（Cross-Validation）</strong>：将数据集分为 k<em>k</em> 个子集，轮流使用其中一个子集作为验证集，其余作为训练集。</li>
+</ul>
+<hr>
+<h3 id="2-常用验证方法"><a href="#2-常用验证方法" class="headerlink" title="2. 常用验证方法"></a><strong>2. 常用验证方法</strong></h3><h4 id="1-交叉验证（Cross-Validation）"><a href="#1-交叉验证（Cross-Validation）" class="headerlink" title="(1) 交叉验证（Cross-Validation）"></a><strong>(1) 交叉验证（Cross-Validation）</strong></h4><ul>
+<li><p>K折交叉验证（K-Fold Cross-Validation）</p>
+<p>：</p>
+<ul>
+<li>将数据集分为 k<em>k</em> 个子集。</li>
+<li>每次使用 k-1<em>k</em>−1 个子集训练模型，剩下的 1 个子集验证模型。</li>
+<li>重复 k<em>k</em> 次，取平均性能作为最终结果。</li>
+</ul>
+</li>
+<li><p>留一法交叉验证（Leave-One-Out Cross-Validation, LOOCV）</p>
+<p>：</p>
+<ul>
+<li>每次留一个样本作为验证集，其余作为训练集。</li>
+<li>适合小数据集，但计算成本较高。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-自助法（Bootstrap）"><a href="#2-自助法（Bootstrap）" class="headerlink" title="(2) 自助法（Bootstrap）"></a><strong>(2) 自助法（Bootstrap）</strong></h4><ul>
+<li>从数据集中有放回地随机采样，生成多个训练集和验证集。</li>
+<li>适合小数据集，但可能引入偏差。</li>
+</ul>
+<h4 id="3-时间序列交叉验证（Time-Series-Cross-Validation）"><a href="#3-时间序列交叉验证（Time-Series-Cross-Validation）" class="headerlink" title="(3) 时间序列交叉验证（Time Series Cross-Validation）"></a><strong>(3) 时间序列交叉验证（Time Series Cross-Validation）</strong></h4><ul>
+<li>针对时间序列数据，按时间顺序划分训练集和验证集。</li>
+<li>确保验证集的时间在训练集之后，避免数据泄露。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>以下哪个指标用于衡量去学元角度的东西？衡量去中心化程度的一个常用指标是“最小Nakamoto系数”</p>
+<blockquote>
+<p>您提到的“最小Nakamoto系数”（Minimum Nakamoto Coefficient）确实是衡量去中心化程度的一个常用指标。它主要用于评估区块链网络或分布式系统的去中心化水平。以下是关于这一指标的详细解释</p>
+</blockquote>
+</li>
+<li><p>关联规则挖掘的层面算法？</p>
+</li>
+<li><p>文本分析通常用于提取文本的关键词</p>
+<blockquote>
+<p>文本分析中的关键词提取是识别文本中最重要的词汇或短语的过程，这些词汇或短语能够概括文本的主要内容和主题。以下是一些常用的方法和技术用于提取文本的关键词：</p>
+</blockquote>
+</li>
+<li><p>哪个指标用于评估聚类效果的好坏？</p>
+</li>
+<li><p>时间序列分析的常用方法？</p>
+<blockquote>
+<p>时间序列分析的常用方法包括多种统计和机器学习技术，这些方法能够帮助我们理解数据的时间依赖性和趋势，为预测和决策提供支持。以下是一些常用的时间序列分析方法：</p>
+<p><strong>自回归模型（AR）</strong>：</p>
+<p><strong>移动平均模型（MA）</strong>：</p>
+<p><strong>自回归移动平均模型（ARMA）</strong>：</p>
+<p><strong>自回归积分移动平均模型（ARIMA）</strong>：</p>
+<p><strong>指数平滑模型（ETS）</strong>：</p>
+</blockquote>
+</li>
+<li><p>处理变量间的非线性关系用哪种方法？</p>
+<blockquote>
+<p>处理变量间的非线性关系可以采用以下几种方法：</p>
+<ol>
+<li><strong>非线性回归分析</strong>：<ul>
+<li>通过建立非线性模型（如多项式、指数、对数等）来拟合变量之间的非线性关系。</li>
+</ul>
+</li>
+<li><strong>机器学习方法</strong>：<ul>
+<li><strong>多项式回归</strong>：通过添加高阶特征来捕捉非线性关系。</li>
+<li><strong>支持向量回归（SVR）</strong>：适用于复杂的非线性数据。</li>
+<li><strong>决策树回归</strong>：通过树形结构处理非线性关系。</li>
+<li><strong>KNN回归</strong>：基于最近邻居的平均值进行预测。</li>
+<li><strong>神经网络MLP回归</strong>：通过多层神经元捕捉复杂非线性关系。</li>
+</ul>
+</li>
+<li><strong>限制性立方样条（RCS）</strong>：<ul>
+<li>通过分段的立方多项式拟合非线性关系，特别适用于医学研究。</li>
+</ul>
+</li>
+<li><strong>广义线性模型（GLM）</strong>：<ul>
+<li>适用于多种分布的数据，通过连接函数处理非线性关系。</li>
+</ul>
+</li>
+<li><strong>广义加性模型（GAM）</strong>：<ul>
+<li>通过平滑函数捕捉自变量与因变量之间的非线性关系。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>衡量数据的离散程度</p>
+<blockquote>
+<p>衡量数据的离散程度常用以下几种指标：</p>
+<ol>
+<li><strong>极差（Range）</strong>：最大值与最小值的差。</li>
+<li><strong>四分位距（IQR）</strong>：上四分位数（Q3）与下四分位数（Q1）的差。</li>
+<li><strong>方差（Variance）</strong>：数据点与均值差值平方的平均值。</li>
+<li><strong>标准差（Standard Deviation）</strong>：方差的平方根。</li>
+<li><strong>变异系数（CV）</strong>：标准差与均值的比值。</li>
+<li><strong>平均绝对偏差（MAD）</strong>：数据点与均值绝对差值的平均值。</li>
+</ol>
+<p>这些指标帮助理解数据的分布特性，选择合适的指标需根据具体应用和数据特性。</p>
+</blockquote>
+</li>
+<li><p>在数据仓库中olap是一种用于分析和查询大规模数据集的计算机处理技术。</p>
+<blockquote>
+<p>是的，OLAP（On-Line Analytical Processing，联机分析处理）是一种用于分析和查询大规模数据集的计算机处理技术，特别是在数据仓库环境中。OLAP技术允许用户快速地进行复杂的数据分析，支持多维度的数据查询和报表生成，帮助决策者从不同角度理解数据，从而做出更明智的决策。以下是OLAP的一些关键特点：</p>
+</blockquote>
+</li>
+<li><p>随机森林算法中，如果数足够多，通常会导致。</p>
+<blockquote>
+<p>在随机森林算法中，如果树的数量足够多，通常会导致：</p>
+<ol>
+<li><strong>提高模型的稳定性和准确性</strong>：减少方差，提高泛化能力。</li>
+<li><strong>增加计算成本</strong>：训练和预测时间增加。</li>
+<li><strong>减少模型的偏差</strong>：预测结果更接近真实值。</li>
+<li><strong>增加过拟合的风险</strong>：模型对训练数据拟合过于紧密。</li>
+<li><strong>提高模型的鲁棒性</strong>：对异常值和噪声更鲁棒。</li>
+<li><strong>可能导致性能饱和</strong>：增加树的数量不再显著提升性能。</li>
+</ol>
+</blockquote>
+</li>
+<li><p>处理文本数据稀疏性采用的嵌入技术  BGE-M3和SPLADE</p>
+<blockquote>
+<p>处理文本数据稀疏性采用的嵌入技术主要有两种：<strong>BGE-M3</strong> 和 <strong>SPLADE</strong>。以下是这两种技术的简单介绍：</p>
+</blockquote>
+</li>
+<li><p>Svn非线性映射</p>
+<blockquote>
+<p>在支持向量机（SVM）中，处理非线性数据的一种方法是使用非线性映射（核函数）将输入变量映射到一个高维特征空间，使得数据在高维空间中变得线性可分。这种方法被称为“核技巧”（Kernel Trick）。</p>
+</blockquote>
+</li>
+<li><p>大数据分析什么过程用于从数据源提取数据？</p>
+<blockquote>
+<p>在大数据分析中，从数据源提取数据的过程通常称为<strong>数据抽取（Data Extraction）</strong>。这是数据预处理的第一步，涉及从各种数据源收集和整合数据，以便进行进一步的分析和处理。</p>
+</blockquote>
+</li>
+<li><p>非结构化或半结构化数据数据库。</p>
+</li>
+<li><p>SQL中什么句子句用于将一个结果按一个或多个列进行分支？</p>
+</li>
+<li><p>是数据分析和挖掘前的重要步骤。</p>
+</li>
+<li><p>类算法。</p>
+<blockquote>
+<p>在机器学习中，“类算法”可能是指用于分类任务的算法。分类算法是监督学习的一种，用于将数据点分配到预定义的类别中。以下是一些常见的分类算法：</p>
+<h3 id="1-逻辑回归（Logistic-Regression）"><a href="#1-逻辑回归（Logistic-Regression）" class="headerlink" title="1. 逻辑回归（Logistic Regression）"></a>1. <strong>逻辑回归（Logistic Regression）</strong></h3><ul>
+<li><strong>原理</strong>：通过逻辑函数（Sigmoid函数）将线性组合的特征映射到0和1之间，用于二分类问题。</li>
+<li><strong>优点</strong>：模型简单，易于理解和实现，计算效率高。</li>
+<li><strong>缺点</strong>：只能捕捉线性关系，对非线性关系效果不佳。</li>
+</ul>
+<h3 id="2-支持向量机（Support-Vector-Machine-SVM）"><a href="#2-支持向量机（Support-Vector-Machine-SVM）" class="headerlink" title="2. 支持向量机（Support Vector Machine, SVM）"></a>2. <strong>支持向量机（Support Vector Machine, SVM）</strong></h3><ul>
+<li><strong>原理</strong>：寻找一个最优超平面，使得不同类别的数据点之间的间隔最大化。</li>
+<li><strong>优点</strong>：在高维空间中表现良好，能够处理非线性关系（通过核技巧）。</li>
+<li><strong>缺点</strong>：对参数选择和核函数的选择敏感，训练时间较长。</li>
+</ul>
+<h3 id="3-决策树（Decision-Tree）"><a href="#3-决策树（Decision-Tree）" class="headerlink" title="3. 决策树（Decision Tree）"></a>3. <strong>决策树（Decision Tree）</strong></h3><ul>
+<li><strong>原理</strong>：通过一系列问题的决策规则将数据点分类，每个节点代表一个特征的决策。</li>
+<li><strong>优点</strong>：模型易于理解和解释，能够处理非线性关系。</li>
+<li><strong>缺点</strong>：容易过拟合，对数据的噪声敏感。</li>
+</ul>
+<h3 id="4-随机森林（Random-Forest）"><a href="#4-随机森林（Random-Forest）" class="headerlink" title="4. 随机森林（Random Forest）"></a>4. <strong>随机森林（Random Forest）</strong></h3><ul>
+<li><strong>原理</strong>：集成多个决策树，通过随机选择特征和样本构建多个决策树，然后通过投票或平均值来确定最终结果。</li>
+<li><strong>优点</strong>：模型鲁棒性强，能够处理大规模数据集，对过拟合有较好的抵抗能力。</li>
+<li><strong>缺点</strong>：模型复杂度高，训练和预测时间较长。</li>
+</ul>
+<h3 id="5-K-最近邻（K-Nearest-Neighbors-KNN）"><a href="#5-K-最近邻（K-Nearest-Neighbors-KNN）" class="headerlink" title="5. K-最近邻（K-Nearest Neighbors, KNN）"></a>5. <strong>K-最近邻（K-Nearest Neighbors, KNN）</strong></h3><ul>
+<li><strong>原理</strong>：根据K个最近邻的数据点的类别，通过投票或加权投票来确定新数据点的类别。</li>
+<li><strong>优点</strong>：简单易懂，无需训练模型，对非线性关系效果良好。</li>
+<li><strong>缺点</strong>：计算成本高，对数据的规模和维度敏感，需要进行数据归一化。</li>
+</ul>
+<h3 id="6-朴素贝叶斯（Naive-Bayes）"><a href="#6-朴素贝叶斯（Naive-Bayes）" class="headerlink" title="6. 朴素贝叶斯（Naive Bayes）"></a>6. <strong>朴素贝叶斯（Naive Bayes）</strong></h3><ul>
+<li><strong>原理</strong>：基于贝叶斯定理和特征之间的条件独立性假设，计算每个类别的后验概率。</li>
+<li><strong>优点</strong>：模型简单，训练和预测速度快，对小数据集效果良好。</li>
+<li><strong>缺点</strong>：假设特征之间相互独立，这在实际应用中往往不成立。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>贝叶式算法是什么算法？</p>
+<blockquote>
+<p>你想问的可能是“贝叶斯算法”。它是基于贝叶斯定理和特征条件独立假设的分类方法，在机器学习、数据挖掘、自然语言处理等诸多领域有广泛应用。以下为你详细介绍：</p>
+</blockquote>
+</li>
+</ol>
 
       
     </div>
@@ -6058,13 +7033,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -6095,7 +7070,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
